@@ -157,7 +157,7 @@ export default function HomePage() {
 
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-light shimmer leading-loose pb-3 mb-6 md:mb-8">
-            Practice the conversations that matter most.
+            Practice the conversations that matter most with AI Clinical Simulation.
           </h1>
 
           <p className="text-lg md:text-xl text-gray-600 font-light mb-4">
