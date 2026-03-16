@@ -13,16 +13,30 @@ import { getAllAudiences } from "@/lib/audiences"
 import { BookOpen, Shield, Mic, Users, FileText, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "AI Clinical Simulation for Communication Remediation & Medical Training",
-  description: "ClinicalSim.ai is an AI clinical simulation platform purpose-built for communication remediation in graduate medical education. Structured practice mapped to ACGME ICS Milestones 2.0 with CCC-ready documentation. 93% of programs face remediation. Built by simulation directors and communication researchers.",
+  title: {
+    absolute: "AI Clinical Simulation for Medical Training | ClinicalSim",
+  },
+  description:
+    "AI clinical simulation for communication remediation in GME. ACGME Milestones 2.0 mapped practice. 93% of programs face remediation—we solve it.",
   openGraph: {
-    title: "ClinicalSim.ai | Practice the Conversations That Matter Most",
-    description: "AI clinical simulation for communication remediation. Structured practice mapped to ACGME milestones with CCC-ready documentation. Built by simulation directors and communication researchers.",
+    title: "AI Clinical Simulation for Medical Training",
+    description:
+      "Voice-based AI simulation for communication remediation in graduate medical education. ACGME Milestones 2.0 compliant.",
     url: "https://clinicalsim.ai",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "ClinicalSim.ai — AI Clinical Simulation for Communication Remediation",
+      },
+    ],
   },
   twitter: {
-    title: "ClinicalSim.ai | Practice the Conversations That Matter Most",
-    description: "AI clinical simulation purpose-built for communication remediation. 93% of programs face remediation. We built the toolkit.",
+    title: "AI Clinical Simulation for Medical Training",
+    description:
+      "Voice-based AI simulation for communication remediation. ACGME compliant.",
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://clinicalsim.ai",

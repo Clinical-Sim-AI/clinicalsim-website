@@ -31,9 +31,18 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: 'ClinicalSim.ai',
     locale: 'en_US',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'ClinicalSim.ai — AI Clinical Simulation for Communication Remediation',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
+    images: ['/og-image.png'],
   },
 }
 
