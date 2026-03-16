@@ -7,16 +7,16 @@ import { getAllAudiences } from "@/lib/audiences"
 import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Who We Serve: Health Systems, Clinicians & Medical Educators",
-  description: "ClinicalSim.ai serves health system leaders seeking ROI from communication training, clinicians building confidence in difficult conversations, and medical educators meeting ACGME requirements at scale.",
+  title: "Who We Serve: Program Directors, DIOs, Sim Directors & CCCs",
+  description: "ClinicalSim.ai serves every stakeholder in the remediation process — program directors seeking structured toolkits, DIOs standardizing remediation across programs, simulation center directors extending SP capacity, and CCCs needing milestone-aligned assessment data.",
   openGraph: {
     title: "Who ClinicalSim.ai Serves",
-    description: "AI communication training for health system leaders, clinicians, and medical educators.",
+    description: "Communication remediation tools for program directors, DIOs, simulation centers, and clinical competency committees.",
     url: "https://clinicalsim.ai/audiences",
   },
   twitter: {
     title: "Who ClinicalSim.ai Serves",
-    description: "AI communication training for health systems, clinicians, and educators.",
+    description: "Communication remediation tools for program directors, DIOs, simulation centers, and CCCs.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/audiences",
@@ -35,13 +35,13 @@ export default function AudiencesPage() {
 
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-light shimmer leading-loose pb-3 mb-6 md:mb-8">
-            Built for How You Think About Training
+            Built for Every Stakeholder in the Remediation Process
           </h1>
           <p className="text-lg md:text-xl text-gray-700 font-light leading-relaxed mb-4 max-w-3xl mx-auto">
-            Different roles. Different priorities. <span className="text-warm font-medium">Same platform.</span>
+            From the program director managing a remediation case to the CCC reviewing milestone data, <span className="text-warm font-medium">ClinicalSim serves every role.</span>
           </p>
           <p className="text-base md:text-lg text-gray-500 font-light mb-8 max-w-2xl mx-auto">
-            Whether you&apos;re focused on ROI, clinical confidence, or accreditation compliance, ClinicalSim delivers measurable results for your specific goals.
+            Structured practice, milestone-aligned feedback, and CCC-ready documentation — tailored to your specific priorities.
           </p>
         </div>
       </section>
@@ -51,7 +51,7 @@ export default function AudiencesPage() {
       {/* Audience Cards */}
       <section className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {audiences.map((audience) => (
               <AudienceCard
                 key={audience.slug}
@@ -102,9 +102,10 @@ export default function AudiencesPage() {
                 Request a Pilot
               </Button>
             </Link>
-            <Link href="https://form.typeform.com/to/Zve4CKk2" target="_blank" rel="noopener noreferrer">
+            <Link href="/solutions">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-transparent hover:bg-white/10">
-                Join the Waitlist
+                View Solutions
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
           </div>

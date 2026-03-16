@@ -64,12 +64,12 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
                 Request a Pilot
               </Button>
             </Link>
-            <Link href="https://form.typeform.com/to/Zve4CKk2" target="_blank" rel="noopener noreferrer">
-              <Button variant="warm-accent" size="lg">
-                Join the Waitlist
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
+            <p className="text-sm text-gray-500 font-light self-center">
+              Or{" "}
+              <Link href="https://form.typeform.com/to/Zve4CKk2" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-warm transition-colors">
+                join the waitlist
+              </Link>
+            </p>
           </div>
         </div>
       </section>

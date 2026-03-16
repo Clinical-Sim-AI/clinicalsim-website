@@ -98,6 +98,9 @@ export interface Solution {
 
   // Last updated date
   lastUpdated?: string
+
+  // Remediation connection (optional)
+  remediationCallout?: string
 }
 
 const solutions: Solution[] = [
@@ -257,7 +260,10 @@ const solutions: Solution[] = [
       },
     ],
 
-    lastUpdated: "2026-02-14",
+    lastUpdated: "2026-03-16",
+
+    remediationCallout:
+      "Advance care planning conversations are among the most common communication scenarios assigned during remediation. ClinicalSim provides structured, repeatable practice for residents working to demonstrate competence in discussing patient preferences and end-of-life care.",
   },
 
   {
@@ -427,7 +433,10 @@ const solutions: Solution[] = [
       },
     ],
 
-    lastUpdated: "2026-02-15",
+    lastUpdated: "2026-03-16",
+
+    remediationCallout:
+      "CCM enrollment conversations require the same structured communication skills that remediation programs target. ClinicalSim helps residents practice explaining complex programs, addressing patient concerns, and obtaining informed consent.",
   },
 
   {
@@ -572,7 +581,10 @@ const solutions: Solution[] = [
       },
     ],
 
-    lastUpdated: "2026-02-14",
+    lastUpdated: "2026-03-16",
+
+    remediationCallout:
+      "Goals-of-care conversations are the highest-stakes communication scenario in clinical practice and among the most common triggers for communication remediation. ClinicalSim provides unlimited practice for residents working to meet ICS milestone expectations.",
   },
 
   {
@@ -728,7 +740,10 @@ const solutions: Solution[] = [
       },
     ],
 
-    lastUpdated: "2026-02-14",
+    lastUpdated: "2026-03-16",
+
+    remediationCallout:
+      "Cognitive assessment disclosure conversations require empathy, clarity, and structured communication — the same competencies that ICS remediation targets. ClinicalSim helps residents practice delivering difficult diagnostic information with milestone-aligned feedback.",
   },
 
   {
@@ -872,7 +887,10 @@ const solutions: Solution[] = [
       },
     ],
 
-    lastUpdated: "2026-02-14",
+    lastUpdated: "2026-03-16",
+
+    remediationCallout:
+      "Menopause care conversations require providers to listen actively, validate patient concerns, and discuss treatment options clearly — core ICS competencies that remediation programs work to develop.",
   },
 ]
 

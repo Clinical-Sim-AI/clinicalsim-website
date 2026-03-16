@@ -35,16 +35,14 @@ export default function ContactPage() {
             <div>
               <h1 className="text-4xl md:text-5xl font-light mb-6">Contact us</h1>
               <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-blue-50">
-                Interested in working together? Fill out some info and we will be in touch shortly. We can&apos;t wait to
-                hear from you!
+                Interested in piloting structured communication remediation for your program? Whether you&apos;re in medical school, residency, or fellowship education, fill out some info and we&apos;ll be in touch shortly.
               </p>
 
               <div className="space-y-6">
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-xl font-medium mb-2">Get in Touch</h3>
                   <p className="text-base font-light text-blue-50">
-                    Whether you&apos;re interested in joining our pilot program, have questions about our platform, or want
-                    to explore partnership opportunities, we&apos;d love to hear from you.
+                    Whether you&apos;re a program director exploring remediation tools, a DIO looking for institutional infrastructure, or a simulation center director seeking to extend your SP program, we&apos;d love to hear from you.
                   </p>
                 </div>
 
@@ -122,7 +120,7 @@ export default function ContactPage() {
                 <Textarea
                   name="message"
                   rows={6}
-                  placeholder="Tell us about your interest in ClinicalSim.ai..."
+                  placeholder="Tell us about your program's communication training or remediation needs..."
                   required
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-warm focus:ring-0 resize-none rounded-lg"
                 />
@@ -172,8 +170,8 @@ export default function ContactPage() {
               </div>
               <h3 className="text-xl font-medium text-navy mb-3">Pilot Program</h3>
               <p className="text-gray-700 font-light leading-relaxed">
-                Interested in being part of our pilot program? We&apos;re looking for healthcare
-                organizations ready to improve how their clinicians learn to communicate.
+                We&apos;re piloting with medical schools, residency programs, and fellowships looking to standardize communication
+                training and remediation with structured, milestone-aligned practice.
               </p>
             </div>
 

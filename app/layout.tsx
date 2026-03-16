@@ -19,10 +19,10 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://clinicalsim.ai'),
   title: {
-    default: 'ClinicalSim.ai — AI Voice Simulation for Medical Communication Training',
+    default: 'ClinicalSim.ai — Clinical Simulation for Communication Remediation & Training',
     template: '%s | ClinicalSim.ai',
   },
-  description: 'Practice conversations that matter most. AI voice simulation for high-stakes medical conversations — goals of care, advance care planning, diagnosis disclosure — built on research with medical practitioners.',
+  description: 'Practice the conversations that matter most. Clinical simulation purpose-built for communication remediation and training in medical education. Structured practice mapped to ACGME milestones with CCC-ready documentation. Built by simulation directors and communication researchers.',
   icons: {
     icon: '/favicon.svg',
     apple: '/apple-touch-icon.png',

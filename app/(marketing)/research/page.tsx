@@ -11,7 +11,7 @@ import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb } from "luc
 
 export const metadata: Metadata = {
   title: "Research Collaboration",
-  description: "Apply to collaborate with ClinicalSim.ai on research in medical communication training. We provide platform access, custom scenario development, data collection infrastructure, and publication support for studies using AI voice simulation.",
+  description: "Apply to collaborate with ClinicalSim.ai on research in communication remediation, simulation-based education, and competency assessment. We provide platform access, custom scenario development, data collection infrastructure, and publication support.",
   openGraph: {
     title: "Research with ClinicalSim.ai",
     description: "Apply to collaborate on research in medical communication training using AI voice simulation. Platform access, custom scenarios, and publication support provided.",
@@ -91,8 +91,8 @@ export default function ResearchPage() {
             <div>
               <h1 className="text-4xl md:text-5xl font-light mb-6">Research with ClinicalSim.ai</h1>
               <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-blue-50">
-                We partner with researchers studying medical communication, simulation-based education,
-                and AI in healthcare training. If you have a study idea that could use our platform,
+                We partner with researchers studying communication remediation, simulation-based education,
+                and competency assessment in graduate and undergraduate medical education. If you have a study idea that could use our platform,
                 we&apos;d love to hear from you.
               </p>
 

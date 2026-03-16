@@ -109,9 +109,9 @@ export function SolutionPageLayout({ solution, children }: SolutionPageLayoutPro
                 Request a Pilot
               </Button>
             </Link>
-            <Link href="https://form.typeform.com/to/Zve4CKk2" target="_blank" rel="noopener noreferrer">
+            <Link href="/solutions/remediation">
               <Button variant="warm-accent" size="lg">
-                Join the Waitlist
+                Communication Remediation
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
@@ -241,6 +241,29 @@ export function SolutionPageLayout({ solution, children }: SolutionPageLayoutPro
           </ul>
         </div>
       </section>
+
+      {/* Remediation Callout */}
+      {solution.remediationCallout && (
+        <section className="px-6 py-8 bg-warm/5">
+          <div className="max-w-4xl mx-auto">
+            <div className="border-l-4 border-warm pl-6">
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                How this connects to communication remediation
+              </h3>
+              <p className="text-base text-gray-700 font-light leading-relaxed">
+                {solution.remediationCallout}
+              </p>
+              <Link
+                href="/solutions/remediation"
+                className="inline-flex items-center text-warm font-medium mt-3 hover:text-orange-600 transition-colors text-sm"
+              >
+                Learn about our remediation toolkit
+                <ArrowRight className="w-3.5 h-3.5 ml-1" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       <SectionDivider variant="diagonal-up" color="white" />
 

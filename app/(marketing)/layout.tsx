@@ -18,7 +18,7 @@ export default function MarketingLayout({
             url: "https://clinicalsim.ai",
             logo: "https://clinicalsim.ai/logo.svg",
             description:
-              "AI-powered voice simulation platform for practicing high-stakes medical conversations. Built on research with medical practitioners.",
+              "Clinical simulation platform purpose-built for communication remediation and training across medical education — medical school, residency, and fellowship. Built by simulation directors and communication researchers.",
           },
           {
             "@context": "https://schema.org",
@@ -26,7 +26,7 @@ export default function MarketingLayout({
             name: "ClinicalSim.ai",
             url: "https://clinicalsim.ai",
             description:
-              "Practice conversations that matter most. AI voice simulation for goals of care, advance care planning, cognitive assessments, and menopause care conversations.",
+              "Practice the conversations that matter most. Clinical simulation for communication remediation, goals of care, advance care planning, cognitive assessments, and more.",
           },
         ]}
       />

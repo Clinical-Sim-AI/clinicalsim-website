@@ -6,7 +6,7 @@ import { StatHighlight } from "@/components/stat-highlight"
 import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { getAllSolutions, type Solution } from "@/lib/solutions"
-import { BookOpen, TrendingUp, BarChart3 } from "lucide-react"
+import { BookOpen, TrendingUp, BarChart3, Shield, ArrowRight } from "lucide-react"
 
 // Group solutions into categories for display
 function groupSolutions(solutions: Solution[]) {
@@ -22,16 +22,16 @@ function groupSolutions(solutions: Solution[]) {
 }
 
 export const metadata: Metadata = {
-  title: "Clinical Solutions: AI Simulation for Billable Medical Conversations",
-  description: "AI voice simulation training for chronic care management, advance care planning, goals of care, cognitive assessments, and menopause care. 95% of eligible patients go without chronic care coordination. The bottleneck is provider confidence.",
+  title: "Clinical Communication Training Solutions",
+  description: "Clinical communication training solutions including communication remediation mapped to ACGME ICS Milestones 2.0, chronic care management, advance care planning, goals of care, cognitive assessments, and menopause care. 93% of programs face remediation — ClinicalSim provides structured practice with CCC-ready documentation.",
   openGraph: {
-    title: "Clinical Solutions from ClinicalSim.ai",
-    description: "AI voice simulation for clinical conversations: chronic care management, ACP, goals of care, cognitive assessments, and more.",
+    title: "Clinical Communication Training Solutions from ClinicalSim.ai",
+    description: "Communication remediation, chronic care management, ACP, goals of care, cognitive assessments, and menopause care training with milestone-aligned feedback.",
     url: "https://clinicalsim.ai/solutions",
   },
   twitter: {
-    title: "Clinical Solutions from ClinicalSim.ai",
-    description: "AI voice simulation for clinical conversations: chronic care, ACP, behavioral health, and more.",
+    title: "Clinical Communication Training Solutions from ClinicalSim.ai",
+    description: "Communication remediation and clinical conversation training with milestone-aligned feedback and CCC-ready documentation.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/solutions",
@@ -50,13 +50,13 @@ export default function SolutionsPage() {
 
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-light shimmer leading-loose pb-3 mb-6 md:mb-8">
-            Close the Gap Between Training and Practice
+            Communication scenarios that build competence across your program.
           </h1>
           <p className="text-lg md:text-xl text-gray-700 font-light leading-relaxed mb-4 max-w-3xl mx-auto">
-            Patients with chronic conditions, cognitive decline, serious illness, and behavioral health needs deserve <span className="text-warm font-medium">proactive, confident conversations</span>. Most providers have never practiced them.
+            From communication remediation to chronic care enrollment, ClinicalSim provides <span className="text-warm font-medium">structured, repeatable practice</span> for the conversations that matter most.
           </p>
           <p className="text-base md:text-lg text-gray-500 font-light mb-8 max-w-2xl mx-auto">
-            The bottleneck is confidence. ClinicalSim builds it.
+            Milestone-aligned feedback. CCC-ready documentation. Unlimited practice volume.
           </p>
         </div>
       </section>
@@ -67,17 +67,17 @@ export default function SolutionsPage() {
       <section className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-navy mb-6">
-            The <span className="text-warm font-medium">confidence gap</span>
+            The <span className="text-warm font-medium">communication competency gap</span>
           </h2>
           <div className="space-y-4 text-lg text-gray-600 font-light leading-relaxed mb-12">
             <p>
-              There are clinical conversations that patients need, conversations that improve outcomes and help people manage chronic illness, that simply aren&apos;t happening at scale.
+              93% of residency programs face communication remediation, and half of program directors want an accessible toolkit. At the same time, clinical conversations that patients need — conversations that improve outcomes and help people manage chronic illness — aren&apos;t happening at scale.
             </p>
             <p>
-              Research shows the primary barrier is <span className="text-warm font-medium">provider confidence</span>. Clinicians who have never practiced these conversations avoid initiating them, even when patients would benefit and Medicare has created dedicated codes to support them.
+              Whether the need is <span className="text-warm font-medium">remediation for a struggling resident</span> or building communication confidence across the program, the solution is the same: structured, repeatable practice with milestone-aligned feedback.
             </p>
             <p>
-              The conversations below represent the highest-impact areas where better preparation drives better patient outcomes. When providers are trained, patients get the care they need.
+              The scenarios below represent the highest-impact areas where better preparation drives better patient outcomes and stronger ICS milestone performance.
             </p>
           </div>
 
@@ -132,6 +132,32 @@ export default function SolutionsPage() {
             <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto">
               Each area below represents a conversation where better provider preparation directly improves patient outcomes, and where Medicare has created dedicated codes to support it.
             </p>
+          </div>
+
+          {/* Featured: Communication Remediation */}
+          <div className="mb-12">
+            <Link href="/solutions/remediation" className="block">
+              <div className="bg-white/70 rounded-2xl border-2 border-warm/30 p-8 hover:border-warm transition-colors border-glow-hover">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="p-3 rounded-xl bg-warm/10">
+                    <Shield className="h-6 w-6 text-warm" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-xl font-medium text-gray-900">Communication Remediation</h3>
+                      <span className="text-xs font-medium text-warm bg-warm/10 px-2 py-0.5 rounded-full">Featured</span>
+                    </div>
+                    <p className="text-base text-gray-600 font-light leading-relaxed">
+                      The first AI clinical simulation purpose-built for communication remediation. Structured practice mapped to ACGME ICS Milestones 2.0 with CCC-ready documentation. 93% of programs face remediation — 50% of program directors want a toolkit.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center text-warm font-medium text-sm">
+                  Learn more
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </div>
+              </div>
+            </Link>
           </div>
 
           {Object.entries(groupSolutions(solutions)).map(([category, categorySolutions]) => (
@@ -212,9 +238,10 @@ export default function SolutionsPage() {
                 Request a Pilot
               </Button>
             </Link>
-            <Link href="https://form.typeform.com/to/Zve4CKk2" target="_blank" rel="noopener noreferrer">
+            <Link href="/solutions/remediation">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-transparent hover:bg-white/10">
-                Join the Waitlist
+                Communication Remediation
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
           </div>

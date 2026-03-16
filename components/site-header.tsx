@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState, useRef, useEffect } from "react"
-import { Brain, ChevronDown, Menu, X } from "lucide-react"
+import { Brain, ChevronDown, Menu, Shield, X } from "lucide-react"
 import { getAllSolutions } from "@/lib/solutions"
 import { getAllAudiences } from "@/lib/audiences"
 
@@ -132,6 +132,16 @@ export function SiteHeader() {
           {solutionsOpen && (
             <div className="absolute top-full left-0 pt-2 w-72 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100 py-2">
+              {/* Remediation - Featured */}
+              <Link
+                href="/solutions/remediation"
+                className="flex items-center gap-3 px-4 py-2.5 hover:bg-warm/5 transition-colors bg-warm/5 border-l-2 border-warm"
+                onClick={() => setSolutionsOpen(false)}
+              >
+                <Shield className="h-4 w-4 shrink-0 text-warm" />
+                <span className="text-sm text-gray-900 font-medium">Communication Remediation</span>
+              </Link>
+              <div className="border-b border-gray-100 my-1" />
               {solutions.map((solution) => {
                 const Icon = solution.icon
                 return (
@@ -248,6 +258,16 @@ export function SiteHeader() {
                 </button>
                 {mobileSolutionsOpen && (
                   <div className="pb-3 pl-2">
+                    {/* Remediation - Featured */}
+                    <Link
+                      href="/solutions/remediation"
+                      className="flex items-center gap-3 px-3 py-2.5 hover:bg-warm/5 transition-colors bg-warm/5 border-l-2 border-warm rounded-lg"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Shield className="h-4 w-4 shrink-0 text-warm" />
+                      <span className="text-sm text-gray-900 font-medium">Communication Remediation</span>
+                    </Link>
+                    <div className="border-b border-gray-100 my-1" />
                     {solutions.map((solution) => {
                       const Icon = solution.icon
                       return (

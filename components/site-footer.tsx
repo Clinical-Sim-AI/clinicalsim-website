@@ -16,7 +16,7 @@ export function SiteFooter() {
               </span>
             </Link>
             <p className="text-sm text-gray-600 font-light leading-relaxed">
-              AI-powered voice simulation for high-stakes medical conversations. Backed by published research.
+              Clinical simulation purpose-built for communication remediation in medical education — medical school, residency, and fellowship. Built by simulation directors and communication researchers.
             </p>
           </div>
 
@@ -24,6 +24,9 @@ export function SiteFooter() {
           <div className="space-y-4">
             <h3 className="text-sm font-medium text-gray-900 uppercase tracking-wider">Navigate</h3>
             <nav className="flex flex-col gap-2">
+              <Link href="/solutions/remediation" className="text-sm text-gray-600 hover:text-gray-900 font-light transition-colors">
+                Communication Remediation
+              </Link>
               <Link href="/solutions" className="text-sm text-gray-600 hover:text-gray-900 font-light transition-colors">
                 Solutions
               </Link>
@@ -49,17 +52,19 @@ export function SiteFooter() {
           <div className="space-y-4">
             <h3 className="text-sm font-medium text-gray-900 uppercase tracking-wider">Get Started</h3>
             <p className="text-sm text-gray-600 font-light">
-              Running pilot programs with academic medical centers.
+              Piloting with medical schools, residency programs, and fellowships nationwide.
             </p>
-            <Link href="https://form.typeform.com/to/Zve4CKk2" target="_blank" rel="noopener noreferrer">
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300"
-              >
-                Join the Waitlist
+            <Link href="/contact">
+              <Button variant="warm-filled" size="lg">
+                Request a Pilot
               </Button>
             </Link>
+            <p className="text-sm text-gray-500 font-light mt-2">
+              Or{" "}
+              <Link href="https://form.typeform.com/to/Zve4CKk2" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-warm transition-colors">
+                join the waitlist
+              </Link>
+            </p>
           </div>
         </div>
 

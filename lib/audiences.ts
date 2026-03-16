@@ -1,7 +1,8 @@
 import {
   Building2,
-  Stethoscope,
   GraduationCap,
+  FlaskConical,
+  ClipboardCheck,
   type LucideIcon,
 } from "lucide-react"
 
@@ -61,216 +62,322 @@ export interface Audience {
 
 const audiences: Audience[] = [
   {
-    slug: "health-system-leaders",
-    title: "Health System Leaders",
-    shortTitle: "Health Systems",
-    subtitle: "Turn training into measurable ROI",
-    icon: Building2,
-    colorVariant: "warm",
+    slug: "program-directors",
+    title: "Program Directors",
+    shortTitle: "Program Directors",
+    subtitle: "The remediation toolkit you told CERA you wanted",
+    icon: GraduationCap,
+    colorVariant: "navy",
 
     cardBullets: [
-      "Capture revenue from billable conversations providers aren't having",
-      "Reduce malpractice exposure driven by communication failures",
-      "Improve HCAHPS scores tied to Medicare reimbursement",
+      "20 structured encounters before your first coaching session",
+      "Milestone-aligned feedback your CCC can use at the next review",
+      "No scheduling, no SP recruitment, no faculty observer required for practice",
     ],
 
-    heroHeadline: "Turn training into measurable ROI",
+    heroHeadline:
+      "Your next remediation case doesn't have to consume 45 faculty hours",
     heroDescription:
-      "Communication failures drive 40% of malpractice claims (Candello, 2025) and put $2-3M in HCAHPS-linked reimbursement at risk for a mid-size academic center. At the same time, billable clinical conversations (advance care planning, cognitive assessments, goals of care) go unheld because providers lack the confidence to initiate them. ClinicalSim closes that gap at scale, without the logistics of traditional SP programs.",
+      "Your next remediation case will consume 29-45 faculty hours. The learner who needs the most practice will get the fewest repetitions, because every SP encounter takes weeks to schedule and costs $200-$500. ClinicalSim gives struggling residents unlimited, on-demand practice — breaking bad news, navigating angry patients, conducting informed consent — with real-time feedback mapped to ICS Milestones 2.0. Every session generates a timestamped, milestone-aligned record your CCC can actually use.",
 
     painPoints: [
       {
-        headline: "Revenue left on the table",
+        headline: "Faculty time consumed",
         description:
-          "Medicare reimburses ACP conversations at $87 each with no annual cap, and cognitive assessments at ~$260. Yet fewer than 5% of eligible patients receive a billed ACP conversation. The bottleneck is provider readiness.",
-        stat: "$1.5M+",
-        statSource: "Combined annual opportunity for a 75-PCP system",
+          "Each remediation case absorbs 29-45 faculty hours in direct coaching, observation, and documentation. At $150-$300/hour clinical revenue, that's $5,000-$15,000 in opportunity cost per case.",
+        stat: "29-45 hrs",
+        statSource: "Per remediation case (University of Colorado; Penn EIRC)",
       },
       {
-        headline: "Malpractice exposure you can reduce",
+        headline: "No standardized tools",
         description:
-          "Communication-related malpractice cases have 39% greater odds of closing with indemnity payment. 6% of physicians attract 40% of suits. Across all provider types, patient complaints driven by communication failures are the strongest predictor of claims.",
-        stat: "$1.7B",
-        statSource: "Malpractice costs from communication breakdowns over five years (CRICO, 2009-2013)",
+          "93% of programs face remediation, but no national toolkit exists. Most programs build their approach from scratch every time, with inconsistent methods and undocumented outcomes.",
+        stat: "93%",
+        statSource: "CERA Survey, 267 Family Medicine PDs",
       },
       {
-        headline: "HCAHPS scores at risk",
+        headline: "Insufficient training in remediation",
         description:
-          "Communication domains influence 50-75% of the Person & Community Engagement score in Medicare's Value-Based Purchasing program. A single weak communication domain drags down your entire HCAHPS performance through the Consistency Score.",
-        stat: "$2-3M",
-        statSource: "At risk from communication scores for a 500-bed AMC",
+          "One in four program directors report receiving little to no training in how to remediate residents. The people responsible for fixing communication deficits often lack formal preparation themselves.",
+        stat: "25%",
+        statSource: "CERA Survey",
       },
       {
-        headline: "Training that doesn't scale",
+        headline: "The hardest competencies to fix",
         description:
-          "Standardized patient actors cost $15-50/hour each and require scheduling, space, and faculty facilitators. Training all 1,000 providers at an institution is not feasible at that cost. ClinicalSim deploys 24/7 from any device with no linear cost scaling.",
+          "ICS and professionalism are consistently identified as the most difficult competencies to remediate. Programs report 77-91% overall remediation success, but communication failures are the cases that persist and escalate.",
       },
     ],
 
     stats: [
       {
-        value: "40%",
-        label: "of malpractice claims driven by communication failures",
-        source: "CRICO/Candello 2025",
-        variant: "warm",
-      },
-      {
-        value: "$2-3M",
-        label: "in HCAHPS-linked reimbursement at risk per mid-size AMC",
-        source: "Based on CMS VBP program structure for a 500-bed AMC",
+        value: "93%",
+        label: "of programs have faced remediation in the past 3 years",
+        source: "CERA Survey, 267 Family Medicine PDs",
         variant: "navy",
       },
       {
-        value: "<5%",
-        label: "of eligible Medicare patients receive a billed ACP conversation",
-        source: "Health Affairs, 2021",
+        value: "29-45",
+        label: "faculty hours consumed per remediation case",
+        source: "University of Colorado; Penn EIRC",
         variant: "warm",
       },
       {
-        value: "83%",
-        label: "of VBP hospitals received a financial penalty in 2020",
-        source: "CMS data",
+        value: "50%",
+        label: "of PDs want an accessible remediation toolkit",
+        source: "CERA Survey",
+        variant: "navy",
+      },
+      {
+        value: "25%",
+        label: "of PDs received little to no training in remediation",
+        source: "CERA Survey",
+        variant: "warm",
+      },
+    ],
+
+    valueProps: [
+      {
+        title: "Structured Practice Before Coaching",
+        description:
+          "Give residents 20 structured encounters before their first coaching session. Breaking bad news, angry patient encounters, informed consent — each with milestone-aligned feedback. Faculty time goes to coaching, not facilitation.",
+      },
+      {
+        title: "Milestone-Aligned Assessment",
+        description:
+          "Every practice session generates feedback mapped to ICS Milestones 2.0 (ICS-1: patient communication, ICS-2: interprofessional communication, ICS-3: communication within healthcare systems). Documentation your CCC can use at the next review.",
+      },
+      {
+        title: "On-Demand, Not On-Schedule",
+        description:
+          "The learner who needs the most practice shouldn't wait for the next available SP slot. ClinicalSim provides unlimited practice 24/7, from any device, with no scheduling bottleneck.",
+      },
+      {
+        title: "Faculty Coach, Not Faculty Infrastructure",
+        description:
+          "The PD stays in the loop as coach, not as the entire remediation infrastructure. Monitor progress through the faculty dashboard without being present for every practice session.",
+      },
+    ],
+
+    relevantSolutionSlugs: [
+      "goals-of-care",
+      "advance-care-planning",
+      "cognitive-assessments",
+    ],
+
+    ctaHeadline:
+      "The remediation toolkit you told CERA you wanted — it exists now.",
+    ctaDescription:
+      "Request a pilot and see how structured AI practice with milestone-aligned feedback changes how your program approaches communication remediation.",
+
+    relatedPostSlugs: [
+      "scalability-problem-sp-programs",
+      "osce-case-design-guide",
+      "breaking-bad-news-medical-training",
+    ],
+  },
+
+  {
+    slug: "dios-gme-leadership",
+    title: "DIOs & GME Leadership",
+    shortTitle: "DIOs & GME",
+    subtitle: "Standardize remediation infrastructure across every program",
+    icon: Building2,
+    colorVariant: "warm",
+
+    cardBullets: [
+      "Standardized remediation documentation across every program",
+      "Costs less than a single PACE assessment",
+      "Every session creates a timestamped, milestone-aligned record",
+    ],
+
+    heroHeadline:
+      "When the GMEC asks what you're doing about remediation consistency, there's an answer",
+    heroDescription:
+      "Communication failures are behind 60% of hospital adverse events and $1.7 billion in malpractice costs annually. Your institution has no standardized system for remediating the trainees most likely to cause them. ClinicalSim provides structured, repeatable communication practice across all ACGME-accredited programs — with every session documented, every assessment mapped to ICS milestones, and every learner's progress tracked longitudinally.",
+
+    painPoints: [
+      {
+        headline: "No standardized remediation across programs",
+        description:
+          "Each program builds its remediation approach independently. Methods vary, documentation is inconsistent, and there's no way to demonstrate to GMEC or accreditation that communication remediation is systematic.",
+      },
+      {
+        headline: "Accreditation vulnerability",
+        description:
+          "ACGME requires demonstrated competency in interpersonal and communication skills. When remediation documentation is inconsistent or missing, your institution carries risk in every site visit.",
+      },
+      {
+        headline: "Documentation gaps create legal exposure",
+        description:
+          "Remediation cases that lack structured documentation are the ones that create liability. Due process requirements demand evidence of fair, consistent, and well-documented remediation efforts.",
+        stat: "$1.7B",
+        statSource:
+          "In malpractice costs from communication breakdowns (CRICO, 2009-2013)",
+      },
+      {
+        headline: "PACE referrals are expensive and limited",
+        description:
+          "External remediation referrals to PACE cost $15,000-$19,000 per learner. An institutional ClinicalSim license costs less than a single referral and covers every program, every resident, every competency committee cycle.",
+        stat: "$15K-$19K",
+        statSource: "Per PACE assessment (UC San Diego)",
+      },
+    ],
+
+    stats: [
+      {
+        value: "60%",
+        label: "of hospital adverse events linked to communication failures",
+        source: "Literature",
+        variant: "warm",
+      },
+      {
+        value: "$1.7B",
+        label:
+          "in malpractice costs from communication breakdowns over 5 years",
+        source: "CRICO, 2009-2013",
+        variant: "navy",
+      },
+      {
+        value: "$15K-$19K",
+        label: "cost per external PACE remediation assessment",
+        source: "PACE at UC San Diego",
+        variant: "warm",
+      },
+      {
+        value: "93%",
+        label: "of programs face remediation in past 3 years",
+        source: "CERA Survey",
         variant: "success",
       },
     ],
 
     valueProps: [
       {
-        title: "Capture Billable Conversations",
+        title: "Standardize Across All Programs",
         description:
-          "Train physicians, NPs, and PAs to confidently initiate and bill for ACP (CPT 99497/98), cognitive assessments (CPT 99483), and other reimbursable conversations that are currently going unbilled. These CPT codes are billable by any qualified provider, expanding your revenue potential across the entire care team.",
+          "One platform, consistent documentation, uniform assessment standards. Every program uses the same milestone-aligned framework for communication remediation, whether it's family medicine, surgery, or psychiatry.",
       },
       {
-        title: "Reduce Risk System-Wide",
+        title: "Documentation for Due Process",
         description:
-          "Target the 6% of providers who attract 40% of malpractice suits with structured communication practice. Reduce the communication failures behind 40% of all malpractice claims (Candello, 2025).",
+          "Every practice session generates a timestamped, milestone-aligned record. When remediation decisions are reviewed — by GMEC, by legal, by accreditation — the documentation exists.",
       },
       {
-        title: "Protect HCAHPS Revenue",
+        title: "Replace PACE-Level Costs",
         description:
-          "Improve provider communication scores that directly drive Medicare Value-Based Purchasing payments. Cleveland Clinic's communication training significantly improved CGCAHPS scores across 1,537 physicians. The same communication skills drive HCAHPS performance regardless of provider type.",
+          "One institutional license replaces the cost of 3-6 external PACE referrals — and covers every program, every resident, every competency committee cycle. The economics are straightforward.",
       },
       {
-        title: "Scale Without Logistics",
+        title: "Accreditation-Ready Infrastructure",
         description:
-          "Deploy training across every department and provider level, from 10 to 1,000, without scheduling, sim center booking, or linear cost increases. SaaS model stays under departmental approval thresholds.",
+          "Demonstrate to ACGME site visitors that your institution has a systematic, documented approach to communication remediation. Not ad hoc. Not program-dependent. Standardized.",
       },
     ],
 
-    relevantSolutionSlugs: [
-      "advance-care-planning",
-      "goals-of-care",
-      "cognitive-assessments",
-      "menopause-care",
-    ],
+    relevantSolutionSlugs: ["goals-of-care", "advance-care-planning"],
 
-    ctaHeadline: "See the ROI for your system.",
+    ctaHeadline:
+      "Standardize remediation documentation across every program.",
     ctaDescription:
-      "ClinicalSim helps health systems capture revenue, reduce risk, and improve patient experience scores.",
+      "Request a pilot and see how ClinicalSim provides the institutional remediation infrastructure your GMEC has been looking for.",
 
     relatedPostSlugs: [
       "hospital-communication-training-roi",
-      "end-of-life-care-communication",
       "scalability-problem-sp-programs",
     ],
   },
 
   {
-    slug: "clinicians",
-    title: "Clinicians & Providers",
-    shortTitle: "Clinicians",
-    subtitle: "Practice on your terms, build real confidence",
-    icon: Stethoscope,
+    slug: "simulation-center-directors",
+    title: "Simulation Center Directors",
+    shortTitle: "Sim Directors",
+    subtitle: "Extend your SP program, don't replace it",
+    icon: FlaskConical,
     colorVariant: "blue",
 
     cardBullets: [
-      "Practice difficult conversations on-demand, from any device",
-      "Build confidence without the pressure of a live observer",
-      "Get structured feedback on validated communication frameworks",
+      "Assessment data your CCC can actually use from every session",
+      "Practice volume struggling learners need without scheduling bottleneck",
+      "Measurable communication outcomes that justify your center's investment",
     ],
 
-    heroHeadline: "Practice on your terms, build real confidence",
+    heroHeadline:
+      "The practice volume struggling learners need, without the scheduling bottleneck",
     heroDescription:
-      "You know the conversations that keep you up at night: goals of care, breaking bad news, difficult disclosures. You've seen colleagues struggle with them. You've struggled yourself. But when did you last get to practice? Whether you're a physician, nurse practitioner, or PA, ClinicalSim gives you unlimited, private, voice-based practice with AI patients. On your schedule, from your phone, with no one watching until you're ready.",
+      "SP encounters are the gold standard for communication assessment. They're also $50-$500 per session, take weeks to schedule for individual remediation, and can't provide the practice volume struggling learners actually need. ClinicalSim isn't replacing your SP program. It's extending it. On-demand practice between scheduled encounters, with assessment data that validates what your center already does.",
 
     painPoints: [
       {
-        headline: "High stakes, minimal preparation",
+        headline: "SP encounters can't scale for remediation",
         description:
-          "The average resident receives fewer than two hours of formal communication training across their entire residency. NP and PA programs rarely include dedicated communication simulation either. Yet these conversations determine patient outcomes, family satisfaction, and your own professional confidence.",
-        stat: "<2hrs",
-        statSource: "Formal communication training in most residency programs",
+          "Individual remediation requires high-volume, repeated practice. At $50-$500 per SP encounter and weeks of scheduling lead time, you can't give a single struggling resident the 20+ practice sessions they need.",
+        stat: "$50-$500",
+        statSource: "Per SP encounter (industry range)",
       },
       {
-        headline: "No safe space to practice",
+        headline: "Budget pressure on communication sim",
         description:
-          "Traditional simulation requires scheduling, observers, and performance pressure. Many clinicians avoid it entirely. You need a way to practice that feels safe enough to make mistakes and learn from them.",
+          "60-75% of simulation center budgets go to procedural simulation. Communication simulation is labor-intensive, SP-dependent, and difficult to scale. Justifying budget for individual remediation encounters is hard.",
       },
       {
-        headline: "Confidence affects everything",
+        headline: "Assessment data gaps",
         description:
-          "Fewer than half of residents report confidence in goals-of-care conversations, and the gap persists across all provider types. That discomfort leads to avoidance: conversations that don't happen, screenings that get skipped, diagnoses that go undelivered.",
-        stat: "<50%",
-        statSource: "Residents confident in goals-of-care conversations (medical education literature)",
+          "SP encounters produce assessment data, but it's often inconsistent across evaluators and difficult to aggregate longitudinally. CCC members need standardized data they can compare across time and across learners.",
       },
       {
-        headline: "Skills atrophy without reinforcement",
+        headline: "Center value justification",
         description:
-          "Even when you do get training, skills fade without regular practice. Real end-of-life conversations are rare enough that you can't build proficiency through clinical experience alone.",
+          "Simulation center directors constantly justify their centers' existence and impact. Measurable communication outcomes at scale — documented, longitudinal, milestone-aligned — are the kind of data that makes that case.",
       },
     ],
 
     stats: [
       {
-        value: "<50%",
-        label: "of residents report confidence in goals-of-care conversations",
-        source: "Medical education literature",
-        variant: "warm",
+        value: "$50-$500",
+        label: "per SP encounter for communication assessment",
+        source: "Industry range",
+        variant: "blue",
       },
       {
-        value: "<2hrs",
-        label: "of formal communication training in most residency programs",
-        source: "Medical education surveys",
+        value: "60-75%",
+        label: "of sim center budgets go to procedural simulation",
+        source: "Simulation center surveys",
         variant: "navy",
       },
       {
         value: "24/7",
-        label: "on-demand access from any device, no scheduling required",
+        label: "on-demand access with no scheduling bottleneck",
         variant: "blue",
       },
       {
-        value: "86%",
-        label: "of patients had wishes followed after providers received ACP training",
-        source: "Detering et al., BMJ, 2010",
+        value: "ICS 1-3",
+        label: "milestone-aligned feedback from every practice session",
+        source: "ACGME Milestones 2.0",
         variant: "success",
       },
     ],
 
     valueProps: [
       {
-        title: "Real Voice Conversations",
+        title: "Extend, Don't Replace",
         description:
-          "Practice real-time spoken conversations with AI patients. Goals of care, diagnosis disclosure, family meetings, all through natural voice dialogue the way these conversations actually happen.",
+          "ClinicalSim handles the high-volume practice reps between your scheduled SP encounters. Your SPs stay focused on high-stakes assessments like OSCEs. Both programs are stronger together.",
       },
       {
-        title: "Practice Without Pressure",
+        title: "Assessment Data That Scales",
         description:
-          "No scheduling, no observers, no performance anxiety. Practice on your own time, make mistakes privately, and build confidence before the real conversation happens.",
+          "Every AI practice session generates milestone-aligned assessment data — the same ICS milestones your CCC already evaluates against. Consistent across learners, aggregable over time, ready for committee review.",
       },
       {
-        title: "Structured Feedback That Helps",
+        title: "The Volume Remediation Requires",
         description:
-          "Get automated assessment using validated frameworks (ACGME milestones, Calgary-Cambridge) with specific feedback on empathy, language, and information delivery.",
+          "A struggling learner needs 20+ practice encounters, not 2. ClinicalSim provides unlimited repetitions without consuming SP hours, faculty time, or scheduling bandwidth.",
       },
       {
-        title: "Build Skills That Stick",
+        title: "Justify Your Center's Impact",
         description:
-          "Unlimited repetitions means you can practice the exact conversation you're preparing for, as many times as you need. One workshop a year doesn't build lasting skill.",
-      },
-      {
-        title: "Bill the Conversations You Practice",
-        description:
-          "Physicians, NPs, and PAs can all bill for advance care planning (CPT 99497/98), cognitive assessments (CPT 99483), and other reimbursable conversations. ClinicalSim prepares you to initiate, navigate, and document these conversations confidently, regardless of your credential.",
+          "When you show the dean that your simulation infrastructure now generates measurable communication outcomes at scale — with documented improvement on validated milestones — that's a conversation worth having.",
       },
     ],
 
@@ -278,129 +385,123 @@ const audiences: Audience[] = [
       "goals-of-care",
       "advance-care-planning",
       "cognitive-assessments",
-      "menopause-care",
     ],
 
-    ctaHeadline: "Practice the conversation before it counts.",
+    ctaHeadline:
+      "Assessment data your CCC can actually use — from every practice session.",
     ctaDescription:
-      "ClinicalSim gives you unlimited, private, voice-based practice so you're ready when the real conversation happens.",
+      "Request a pilot and see how ClinicalSim extends your simulation center's communication training capacity.",
 
     relatedPostSlugs: [
-      "breaking-bad-news-medical-training",
-      "end-of-life-care-communication",
+      "scalability-problem-sp-programs",
+      "osce-case-design-guide",
       "what-learners-want-from-ai-sps",
     ],
   },
 
   {
-    slug: "medical-educators",
-    title: "Medical Educators",
-    shortTitle: "Educators",
-    subtitle: "Meet accreditation standards at scale",
-    icon: GraduationCap,
-    colorVariant: "navy",
+    slug: "clinical-competency-committees",
+    title: "Clinical Competency Committees",
+    shortTitle: "CCCs",
+    subtitle: "Milestone-aligned data for every learner review",
+    icon: ClipboardCheck,
+    colorVariant: "success",
 
     cardBullets: [
-      "Meet ACGME communication competency requirements systematically",
-      "Scale simulation training without scaling your SP budget",
-      "Track learner progress with validated assessment data",
+      "Milestone-aligned assessment data from structured practice sessions",
+      "Longitudinal progress tracking across the remediation period",
+      "Objective data to complement faculty observations",
     ],
 
-    heroHeadline: "Meet accreditation standards at scale",
+    heroHeadline: "The assessment data you've been making decisions without",
     heroDescription:
-      "ACGME requires structured communication competency training across every specialty and explicitly states that on-the-job training alone is not sufficient. Yet most programs rely on ad-hoc observation and role-modeling. ClinicalSim gives you a scalable, evidence-based platform to meet accreditation requirements, track milestones, and fill curriculum gaps without overwhelming your simulation center budget.",
+      "Clinical Competency Committees make high-stakes decisions about resident progression with limited communication assessment data. Faculty observations are subjective, inconsistent, and sparse. ClinicalSim generates structured, milestone-aligned assessment data from every practice session — giving your committee objective evidence of communication competency development over time.",
 
     painPoints: [
       {
-        headline: "Accreditation requirements are explicit",
+        headline: "Subjective assessment data",
         description:
-          "ACGME Common Program Requirements mandate that residents demonstrate interpersonal and communication skills, and guidance explicitly states simulation is \"increasingly used as an effective method.\" Most programs can't deliver this at the scale ACGME expects.",
+          "Most ICS assessment relies on faculty observation and subjective reporting. One in five GME stakeholders report not knowing how to assess ICS milestones. The data reaching your committee may not reflect actual competency.",
+        stat: "1 in 5",
+        statSource:
+          "GME stakeholders don't know how to assess ICS milestones",
       },
       {
-        headline: "Milestone tracking gaps",
+        headline: "Sparse data points",
         description:
-          "36% of palliative care-relevant milestones reside in the Interpersonal and Communication Skills competency. Harmonized Milestones 2.0 created universal assessment requirements across specialties, yet few programs have systematic ways to assess them.",
-        stat: "36%",
-        statSource: "Palliative care milestones in ICS competency",
+          "A resident in remediation might have 2-3 documented communication assessments over months. That's not enough data to make confident progression decisions or demonstrate improvement.",
       },
       {
-        headline: "SP programs can't scale to the need",
+        headline: "No longitudinal view",
         description:
-          "Standardized patient encounters cost $150-300 each when you factor in actor fees, space, scheduling, and faculty facilitation. You can't give every resident the communication reps they need at that price point.",
-        stat: "$150-300",
-        statSource: "Per SP encounter (fully loaded cost)",
+          "Without structured, repeatable assessment, it's impossible to show a trajectory of improvement. Did the resident actually get better, or did they just have one good day with a lenient evaluator?",
       },
       {
-        headline: "Curriculum gaps are documented",
+        headline: "Documentation for due process",
         description:
-          "69% of OB/GYN residencies have no menopause curriculum. Only a minority of programs formally teach all ACGME communication competencies. The gap between what's required and what's delivered is well-documented.",
+          "When a CCC decision is challenged, the strength of your documentation determines the outcome. Subjective impressions don't withstand scrutiny. Timestamped, milestone-aligned assessment records do.",
       },
     ],
 
     stats: [
       {
-        value: "36%",
-        label: "of palliative care milestones in ICS competency across 14 specialties",
-        source: "Milestones meta-analysis",
-        variant: "navy",
-      },
-      {
-        value: "$150-300",
-        label: "per traditional SP encounter (fully loaded cost)",
-        source: "Simulation center data",
-        variant: "warm",
-      },
-      {
-        value: "69%",
-        label: "of OB/GYN residencies lack a dedicated menopause curriculum",
-        source: "Menopause, 2023",
-        variant: "navy",
-      },
-      {
-        value: "PICU",
-        label: "Pilot study with PICU fellows using blinded evaluation and validated assessment tools",
-        source: "ClinicalSim pilot study",
+        value: "1 in 5",
+        label:
+          "GME stakeholders don't know how to assess ICS milestones",
+        source: "Survey of 1,195 GME stakeholders",
         variant: "success",
+      },
+      {
+        value: "ICS 1-3",
+        label:
+          "structured feedback mapped to Milestones 2.0 from every session",
+        source: "ACGME Milestones 2.0",
+        variant: "navy",
+      },
+      {
+        value: "100%",
+        label: "of practice sessions generate timestamped assessment data",
+        variant: "success",
+      },
+      {
+        value: "Longitudinal",
+        label: "progress tracking shows improvement trajectory over time",
+        variant: "blue",
       },
     ],
 
     valueProps: [
       {
-        title: "Systematic ACGME Compliance",
+        title: "Objective Communication Data",
         description:
-          "Map simulation scenarios directly to Harmonized Milestones 2.0 communication competencies. Document structured training that goes beyond ad-hoc observation.",
+          "Every practice session generates assessment data mapped to ICS Milestones 2.0. Not subjective impressions — structured, consistent, comparable data your committee can use alongside faculty evaluations.",
       },
       {
-        title: "Extend Your Sim Center's Reach",
+        title: "Longitudinal Progress Tracking",
         description:
-          "Free your SPs for high-stakes assessments like OSCEs while ClinicalSim handles the high-volume communication reps that build foundational skill. It works alongside your existing program.",
+          "See a learner's communication trajectory across weeks and months of remediation. Multiple data points per milestone, tracked over time, showing whether intervention is working.",
       },
       {
-        title: "Evidence You Can Point To",
+        title: "CCC-Ready Reports",
         description:
-          "Built on research with medical practitioners, with blinded evaluation using validated tools (ACGME milestones, Calgary-Cambridge). Evidence your accreditation reviewers will recognize.",
+          "Assessment data formatted for committee review. Timestamped sessions, milestone scores, progress trends — the documentation your committee needs to make and defend progression decisions.",
       },
       {
-        title: "Track Progress Over Time",
+        title: "Complement Faculty Assessment",
         description:
-          "Structured assessment data across validated frameworks lets you track learner development, identify gaps, and demonstrate curriculum effectiveness to program leadership.",
+          "ClinicalSim data doesn't replace faculty judgment. It supplements it with objective, repeatable assessment data that addresses the gaps in subjective observation.",
       },
     ],
 
-    relevantSolutionSlugs: [
-      "goals-of-care",
-      "advance-care-planning",
-      "cognitive-assessments",
-      "menopause-care",
-    ],
+    relevantSolutionSlugs: ["goals-of-care", "advance-care-planning"],
 
-    ctaHeadline: "Build the curriculum your learners need.",
+    ctaHeadline:
+      "Milestone-aligned assessment data from every practice session.",
     ctaDescription:
-      "ClinicalSim gives medical educators a scalable, evidence-based platform for communication training, with the milestone tracking and assessment data accreditation demands.",
+      "Request a pilot and see how structured practice data changes the quality of your committee's learner reviews.",
 
     relatedPostSlugs: [
       "osce-case-design-guide",
-      "scalability-problem-sp-programs",
       "what-learners-want-from-ai-sps",
     ],
   },
