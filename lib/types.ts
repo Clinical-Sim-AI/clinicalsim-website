@@ -18,3 +18,12 @@ export interface FaqItem {
   question: string
   answer: string
 }
+
+export interface Citation {
+  authors?: string
+  title: string
+  source: string
+  year: string
+  url?: string
+  doi?: string
+}

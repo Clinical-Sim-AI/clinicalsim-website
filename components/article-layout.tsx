@@ -1,7 +1,32 @@
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { JsonLd } from "@/components/json-ld"
+import { AuthorByline } from "@/components/author-byline"
+import { getAuthorById, TEAM_AUTHOR_ID } from "@/lib/authors"
 import type { Post } from "@/lib/posts"
+
+function buildAuthorSchema(post: Post) {
+  const author = post.authorId ? getAuthorById(post.authorId) : undefined
+
+  if (author && author.id !== TEAM_AUTHOR_ID) {
+    return {
+      "@type": "Person" as const,
+      name: author.name,
+      jobTitle: author.title,
+      worksFor: {
+        "@type": "Organization" as const,
+        name: "ClinicalSim.ai",
+        url: "https://clinicalsim.ai",
+      },
+    }
+  }
+
+  return {
+    "@type": "Organization" as const,
+    name: "ClinicalSim.ai",
+    url: "https://clinicalsim.ai",
+  }
+}
 
 export function ArticleLayout({
   post,
@@ -19,11 +44,8 @@ export function ArticleLayout({
           headline: post.title,
           description: post.description,
           datePublished: post.date,
-          author: {
-            "@type": "Organization",
-            name: "ClinicalSim.ai",
-            url: "https://clinicalsim.ai",
-          },
+          dateModified: post.dateModified || post.date,
+          author: buildAuthorSchema(post),
           publisher: {
             "@type": "Organization",
             name: "ClinicalSim.ai",
@@ -59,15 +81,14 @@ export function ArticleLayout({
             </time>
             <span>&middot;</span>
             <span>{post.readingTime}</span>
-            <span>&middot;</span>
-            <span>{post.author}</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">
             {post.title}
           </h1>
-          <p className="text-xl text-gray-600 font-light leading-relaxed">
+          <p className="text-xl text-gray-600 font-light leading-relaxed mb-6">
             {post.description}
           </p>
+          <AuthorByline authorId={post.authorId} authorName={post.author} />
         </div>
 
         <div className="border-t border-gray-200 pt-8">

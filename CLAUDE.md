@@ -74,6 +74,30 @@ The project uses shadcn/ui components which are:
   - Ensure MDX files follow the ArticleLayout pattern
   - **IMPORTANT**: When multiple agents work on this codebase, always pull latest changes before making commits to avoid conflicts with blog post additions
 
+### Authorship (E-E-A-T)
+- **Author registry**: `lib/authors.ts` — 5 real team members + "ClinicalSim.ai Team" fallback
+- **Assigning an author to a post**: Add `authorId: "vinod-havalad"` (or any valid author ID) to the post entry in `lib/posts.ts`. Valid IDs: `vinod-havalad`, `lauren-rissman`, `gillian-brennan`, `ben-conway`, `will-meyer`
+- **Default behavior**: Posts without `authorId` (or with no match) render as "ClinicalSim.ai Team" with a Users icon
+- **Individual authors** render with colored initials avatar + name + title via `components/author-byline.tsx`
+- **JSON-LD**: Article schema automatically uses `Person` for individual authors and `Organization` for team posts
+- **About page**: Emits Person JSON-LD for each team member automatically via `getAllAuthors()`
+- **`dateModified`**: Optional field on posts. Falls back to `date` in JSON-LD if not set. Update when making significant content edits.
+
+### Citations in Blog Posts
+- **Component**: `components/references-section.tsx` — numbered academic citation list
+- **Type**: `Citation` interface in `lib/types.ts` (fields: `authors?`, `title`, `source`, `year`, `url?`, `doi?`)
+- **Usage in MDX**: Import and use at the bottom of a post:
+  ```mdx
+  import { ReferencesSection } from "@/components/references-section"
+
+  {/* ... post content ... */}
+
+  <ReferencesSection references={[
+    { authors: "Smith J, Doe A", title: "Study Title", source: "Journal Name", year: "2024", doi: "10.1234/example" },
+  ]} />
+  ```
+- **Hallucination rule applies**: Never fabricate citations. Only add references with real, verifiable sources.
+
 ### MDX Content Guidelines
 - Use `page.mdx` files that import ArticleLayout component
 - Escape special characters: `p<0.001` → `p&lt;0.001`
@@ -94,6 +118,10 @@ The project uses shadcn/ui components which are:
 **Media Components:**
 - `components/demo-video-section.tsx` - Video embed with custom warm accent play button
 - `components/screenshot-gallery.tsx` - Lightbox gallery with keyboard navigation
+
+**Authorship & Citation Components:**
+- `components/author-byline.tsx` - Author display with colored initials avatar (individual) or Users icon (team)
+- `components/references-section.tsx` - Numbered academic citation list for MDX blog posts
 
 ### Color System
 - **Primary**: Blue (#3B82F6) - Brand identity, navigation

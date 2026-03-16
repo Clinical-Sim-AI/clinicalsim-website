@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button"
 import { StatHighlight } from "@/components/stat-highlight"
 import { SectionDivider } from "@/components/section-divider"
 import { AudienceCard } from "@/components/audience-card"
+import { JsonLd } from "@/components/json-ld"
 import { getAllAudiences } from "@/lib/audiences"
+import { getAllAuthors } from "@/lib/authors"
 import { Check, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -26,9 +28,28 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const audiences = getAllAudiences()
+  const authors = getAllAuthors()
 
   return (
     <>
+      {authors.map((author) => (
+        <JsonLd
+          key={author.id}
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: author.name,
+            jobTitle: author.title,
+            description: author.bio,
+            worksFor: {
+              "@type": "Organization",
+              name: "ClinicalSim.ai",
+              url: "https://clinicalsim.ai",
+            },
+          }}
+        />
+      ))}
+
       {/* Hero Section */}
       <section className="relative text-center px-6 py-16 md:py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 -z-10" />

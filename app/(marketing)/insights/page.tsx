@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { getAllPosts } from "@/lib/posts"
+import { getAuthorById, TEAM_AUTHOR_ID } from "@/lib/authors"
 import { SectionDivider } from "@/components/section-divider"
 import { BookOpen } from "lucide-react"
 
@@ -93,6 +94,14 @@ export default function InsightsPage() {
                     <p className="text-lg text-gray-700 font-light leading-relaxed mb-6">
                       {featuredPost.description}
                     </p>
+                    {featuredPost.authorId && featuredPost.authorId !== TEAM_AUTHOR_ID && (() => {
+                      const author = getAuthorById(featuredPost.authorId!)
+                      return author ? (
+                        <p className="text-sm text-gray-600 font-medium mb-4">
+                          {author.name}
+                        </p>
+                      ) : null
+                    })()}
                     <div className="flex flex-wrap gap-2">
                       {featuredPost.tags.map((tag) => (
                         <span
@@ -139,9 +148,18 @@ export default function InsightsPage() {
                         {post.title}
                       </h2>
 
-                      <p className="text-gray-700 font-light leading-relaxed mb-6">
+                      <p className="text-gray-700 font-light leading-relaxed mb-4">
                         {post.description}
                       </p>
+
+                      {post.authorId && post.authorId !== TEAM_AUTHOR_ID && (() => {
+                        const author = getAuthorById(post.authorId!)
+                        return author ? (
+                          <p className="text-sm text-gray-600 font-medium mb-4">
+                            {author.name}
+                          </p>
+                        ) : null
+                      })()}
 
                       <div className="flex flex-wrap gap-2">
                         {post.tags.map((tag) => (

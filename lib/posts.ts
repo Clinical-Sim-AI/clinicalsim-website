@@ -6,6 +6,8 @@ export interface Post {
   author: string
   readingTime: string
   tags: string[]
+  authorId?: string
+  dateModified?: string
 }
 
 const posts: Post[] = [
