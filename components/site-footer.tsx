@@ -65,10 +65,13 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 mt-8 pt-8 text-center">
+        <div className="border-t border-gray-200 mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-sm text-gray-500 font-light">
             &copy; {new Date().getFullYear()} ClinicalSim.ai. All rights reserved.
           </p>
+          <Link href="/privacy" className="text-sm text-gray-500 hover:text-gray-900 font-light transition-colors">
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </footer>
