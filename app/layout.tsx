@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins, IBM_Plex_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const poppins = Poppins({
@@ -53,7 +54,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${ibmPlexMono.variable} font-sans`} suppressHydrationWarning={true}>{children}</body>
+      <body className={`${poppins.variable} ${ibmPlexMono.variable} font-sans`} suppressHydrationWarning={true}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }
