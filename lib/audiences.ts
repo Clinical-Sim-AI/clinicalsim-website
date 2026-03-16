@@ -78,7 +78,7 @@ const audiences: Audience[] = [
     heroHeadline:
       "Your next remediation case doesn't have to consume 45 faculty hours",
     heroDescription:
-      "Your next remediation case will consume 29-45 faculty hours. The learner who needs the most practice will get the fewest repetitions, because every SP encounter takes weeks to schedule and costs $200-$500. ClinicalSim gives struggling residents unlimited, on-demand practice — breaking bad news, navigating angry patients, conducting informed consent — with real-time feedback mapped to ICS Milestones 2.0. Every session generates a timestamped, milestone-aligned record your CCC can actually use.",
+      "Your next remediation case will consume 29-45 faculty hours. The learner who needs the most practice will get the fewest repetitions, because every SP encounter takes weeks to schedule and costs $200-$500. ClinicalSim gives struggling learners unlimited, on-demand practice — breaking bad news, navigating angry patients, conducting informed consent — with real-time feedback mapped to ICS Milestones 2.0. Every session generates a timestamped, milestone-aligned record your CCC can actually use.",
 
     painPoints: [
       {
@@ -140,7 +140,7 @@ const audiences: Audience[] = [
       {
         title: "Structured Practice Before Coaching",
         description:
-          "Give residents 20 structured encounters before their first coaching session. Breaking bad news, angry patient encounters, informed consent — each with milestone-aligned feedback. Faculty time goes to coaching, not facilitation.",
+          "Give learners 20 structured encounters before their first coaching session. Breaking bad news, angry patient encounters, informed consent — each with milestone-aligned feedback. Faculty time goes to coaching, not facilitation.",
       },
       {
         title: "Milestone-Aligned Assessment",
@@ -218,7 +218,7 @@ const audiences: Audience[] = [
       {
         headline: "PACE referrals are expensive and limited",
         description:
-          "External remediation referrals to PACE cost $15,000-$19,000 per learner. An institutional ClinicalSim license costs less than a single referral and covers every program, every resident, every competency committee cycle.",
+          "External remediation referrals to PACE cost $15,000-$19,000 per learner. An institutional ClinicalSim license costs less than a single referral and covers every program, every learner, every competency committee cycle.",
         stat: "$15K-$19K",
         statSource: "Per PACE assessment (UC San Diego)",
       },
@@ -266,7 +266,7 @@ const audiences: Audience[] = [
       {
         title: "Replace PACE-Level Costs",
         description:
-          "One institutional license replaces the cost of 3-6 external PACE referrals — and covers every program, every resident, every competency committee cycle. The economics are straightforward.",
+          "One institutional license replaces the cost of 3-6 external PACE referrals — and covers every program, every learner, every competency committee cycle. The economics are straightforward.",
       },
       {
         title: "Accreditation-Ready Infrastructure",
@@ -311,7 +311,7 @@ const audiences: Audience[] = [
       {
         headline: "SP encounters can't scale for remediation",
         description:
-          "Individual remediation requires high-volume, repeated practice. At $50-$500 per SP encounter and weeks of scheduling lead time, you can't give a single struggling resident the 20+ practice sessions they need.",
+          "Individual remediation requires high-volume, repeated practice. At $50-$500 per SP encounter and weeks of scheduling lead time, you can't give a single struggling learner the 20+ practice sessions they need.",
         stat: "$50-$500",
         statSource: "Per SP encounter (industry range)",
       },
@@ -415,7 +415,7 @@ const audiences: Audience[] = [
 
     heroHeadline: "The assessment data you've been making decisions without",
     heroDescription:
-      "Clinical Competency Committees make high-stakes decisions about resident progression with limited communication assessment data. Faculty observations are subjective, inconsistent, and sparse. ClinicalSim generates structured, milestone-aligned assessment data from every practice session — giving your committee objective evidence of communication competency development over time.",
+      "Clinical Competency Committees make high-stakes decisions about learner progression with limited communication assessment data. Faculty observations are subjective, inconsistent, and sparse. ClinicalSim generates structured, milestone-aligned assessment data from every practice session — giving your committee objective evidence of communication competency development over time.",
 
     painPoints: [
       {
@@ -429,12 +429,12 @@ const audiences: Audience[] = [
       {
         headline: "Sparse data points",
         description:
-          "A resident in remediation might have 2-3 documented communication assessments over months. That's not enough data to make confident progression decisions or demonstrate improvement.",
+          "A learner in remediation might have 2-3 documented communication assessments over months. That's not enough data to make confident progression decisions or demonstrate improvement.",
       },
       {
         headline: "No longitudinal view",
         description:
-          "Without structured, repeatable assessment, it's impossible to show a trajectory of improvement. Did the resident actually get better, or did they just have one good day with a lenient evaluator?",
+          "Without structured, repeatable assessment, it's impossible to show a trajectory of improvement. Did the learner actually get better, or did they just have one good day with a lenient evaluator?",
       },
       {
         headline: "Documentation for due process",

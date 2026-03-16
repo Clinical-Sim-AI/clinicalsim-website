@@ -114,7 +114,7 @@ export default function HomePage() {
           </p>
 
           <p className="text-lg md:text-xl text-gray-700 font-light leading-relaxed mb-4 max-w-3xl mx-auto">
-            Structured practice for the communication scenarios residents struggle with most — breaking bad news, navigating difficult family meetings, informed consent, and goals-of-care discussions. On-demand, from any device.
+            Structured practice for the communication scenarios learners struggle with most — breaking bad news, navigating difficult family meetings, informed consent, and goals-of-care discussions. On-demand, from any device.
           </p>
 
           <div className="space-y-3">

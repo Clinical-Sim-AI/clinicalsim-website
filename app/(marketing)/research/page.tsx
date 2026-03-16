@@ -201,7 +201,7 @@ export default function ResearchPage() {
                   name="targetParticipants"
                   id="targetParticipants"
                   required
-                  placeholder="e.g., PGY-1 internal medicine residents"
+                  placeholder="e.g., PGY-1 internal medicine learners"
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-warm focus:ring-0 rounded-lg"
                 />
               </div>

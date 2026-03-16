@@ -355,7 +355,7 @@ export const remediationPageData: RemediationPageData = {
     {
       question: "What is communication remediation in GME?",
       answer:
-        "Communication remediation in graduate medical education (GME) is a structured process for residents or fellows who have been identified as struggling with clinical communication skills, particularly interpersonal and communication skills (ICS) as defined by the ACGME. 93% of residency programs have encountered remediation in the past 3 years (CERA Survey, 267 Family Medicine PDs). ICS and professionalism are consistently among the hardest competencies to remediate because they require repeated practice with feedback — not just didactic instruction. Despite the prevalence of the problem, only 16 published studies address communication-specific remediation, and 50% of program directors report wanting an accessible remediation toolkit.",
+        "Communication remediation in graduate medical education (GME) is a structured process for learners who have been identified as struggling with clinical communication skills, particularly interpersonal and communication skills (ICS) as defined by the ACGME. 93% of residency programs have encountered remediation in the past 3 years (CERA Survey, 267 Family Medicine PDs). ICS and professionalism are consistently among the hardest competencies to remediate because they require repeated practice with feedback — not just didactic instruction. Despite the prevalence of the problem, only 16 published studies address communication-specific remediation, and 50% of program directors report wanting an accessible remediation toolkit.",
     },
     {
       question:

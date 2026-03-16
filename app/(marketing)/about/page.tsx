@@ -152,7 +152,7 @@ export default function AboutPage() {
 
           <div className="bg-white/90 rounded-2xl p-8 md:p-10 shadow-xl border border-gray-200 mb-8">
             <p className="text-lg md:text-xl text-gray-700 font-light leading-relaxed mb-8">
-              You wouldn&apos;t remediate a surgical skill without a sim lab. Communication deserves the same rigor. ClinicalSim provides structured, repeatable practice for the specific communication scenarios residents struggle with most — breaking bad news, navigating angry patients, conducting informed consent, leading goals-of-care discussions.
+              You wouldn&apos;t remediate a surgical skill without a sim lab. Communication deserves the same rigor. ClinicalSim provides structured, repeatable practice for the specific communication scenarios learners struggle with most — breaking bad news, navigating angry patients, conducting informed consent, leading goals-of-care discussions.
             </p>
 
             <div className="space-y-6">
