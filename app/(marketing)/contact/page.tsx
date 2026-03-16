@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
+import { JsonLd } from "@/components/json-ld"
 import { Users, Handshake, FlaskConical, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -27,6 +28,46 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: "Contact ClinicalSim.ai",
+            description:
+              "Request a pilot program, schedule a demo, or learn how AI voice simulation can improve medical communication training at your institution.",
+            url: "https://clinicalsim.ai/contact",
+            mainEntity: {
+              "@type": "Organization",
+              name: "ClinicalSim.ai",
+              url: "https://clinicalsim.ai",
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "sales",
+                availableLanguage: "English",
+              },
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://clinicalsim.ai",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Contact",
+                item: "https://clinicalsim.ai/contact",
+              },
+            ],
+          },
+        ]}
+      />
       {/* Contact Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 text-white py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6 md:px-12">

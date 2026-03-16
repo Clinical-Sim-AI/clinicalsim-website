@@ -16,9 +16,22 @@ export default function MarketingLayout({
             "@type": "Organization",
             name: "ClinicalSim.ai",
             url: "https://clinicalsim.ai",
-            logo: "https://clinicalsim.ai/logo.svg",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://clinicalsim.ai/logo.svg",
+              width: "512",
+              height: "512",
+            },
             description:
               "Clinical simulation platform purpose-built for communication remediation and training across medical education — medical school, residency, and fellowship. Built by simulation directors and communication researchers.",
+            foundingDate: "2024",
+            knowsAbout: [
+              "Medical communication training",
+              "Clinical simulation",
+              "ACGME Milestones 2.0",
+              "Communication remediation",
+              "Graduate medical education",
+            ],
           },
           {
             "@context": "https://schema.org",
@@ -27,6 +40,11 @@ export default function MarketingLayout({
             url: "https://clinicalsim.ai",
             description:
               "Practice the conversations that matter most. AI clinical simulation purpose-built for communication remediation in graduate medical education, mapped to ACGME ICS Milestones 2.0.",
+            publisher: {
+              "@type": "Organization",
+              name: "ClinicalSim.ai",
+              url: "https://clinicalsim.ai",
+            },
           },
         ]}
       />

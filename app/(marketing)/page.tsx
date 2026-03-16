@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { FeatureCard } from "@/components/feature-card"
@@ -6,11 +7,15 @@ import { StatHighlight } from "@/components/stat-highlight"
 import { EvidenceShowcase } from "@/components/evidence-showcase"
 import { AsymmetricGrid } from "@/components/asymmetric-grid"
 import { SectionDivider } from "@/components/section-divider"
-import { DemoVideoSection } from "@/components/demo-video-section"
 import { AudienceCard } from "@/components/audience-card"
 import { RotatingText } from "@/components/rotating-text"
 import { getAllAudiences } from "@/lib/audiences"
+import { JsonLd } from "@/components/json-ld"
 import { BookOpen, Shield, Mic, Users, FileText, ArrowRight } from "lucide-react"
+
+const DemoVideoSection = dynamic(
+  () => import("@/components/demo-video-section").then((m) => ({ default: m.DemoVideoSection }))
+)
 
 export const metadata: Metadata = {
   title: {
@@ -108,6 +113,42 @@ export default function HomePage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "ClinicalSim.ai",
+            applicationCategory: "HealthApplication",
+            operatingSystem: "Web",
+            description:
+              "AI clinical simulation platform purpose-built for communication remediation in graduate medical education. ACGME ICS Milestones 2.0 mapped practice for breaking bad news, goals-of-care, informed consent, and family meetings.",
+            url: "https://clinicalsim.ai",
+            offers: {
+              "@type": "Offer",
+              availability: "https://schema.org/PreOrder",
+              description: "Piloting with medical schools, residency programs, and fellowships nationwide",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "ClinicalSim.ai",
+              url: "https://clinicalsim.ai",
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://clinicalsim.ai",
+              },
+            ],
+          },
+        ]}
+      />
       {/* Hero Section - Enhanced with diagonal background and new CTA */}
       <section className="relative flex flex-col items-center justify-center px-6 py-16 md:py-24 text-center">
         {/* Diagonal Background Gradient */}

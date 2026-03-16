@@ -70,7 +70,7 @@ export function SiteHeader() {
       <Link href="/" className="flex items-center gap-2">
         <Brain className="h-8 w-8 text-blue-600" />
         <span className="text-2xl font-light text-slate-800">
-          ClinicalSim<span className="text-blue-600 shimmer">.ai</span>
+          ClinicalSim<span className="text-blue-600">.ai</span>
         </span>
       </Link>
 

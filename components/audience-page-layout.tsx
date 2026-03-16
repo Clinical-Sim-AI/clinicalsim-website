@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { StatHighlight } from "@/components/stat-highlight"
 import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
+import { JsonLd } from "@/components/json-ld"
 import { type Audience } from "@/lib/audiences"
 import { getPostBySlug } from "@/lib/posts"
 import {
@@ -26,6 +27,46 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
   return (
     <>
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: `ClinicalSim.ai for ${audience.title}`,
+            description: audience.heroDescription,
+            url: `https://clinicalsim.ai/audiences/${audience.slug}`,
+            isPartOf: {
+              "@type": "WebSite",
+              name: "ClinicalSim.ai",
+              url: "https://clinicalsim.ai",
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://clinicalsim.ai",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Who We Serve",
+                item: "https://clinicalsim.ai/audiences",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: audience.title,
+                item: `https://clinicalsim.ai/audiences/${audience.slug}`,
+              },
+            ],
+          },
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative px-6 py-12 md:py-20">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 -z-10" />

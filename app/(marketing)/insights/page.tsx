@@ -3,6 +3,7 @@ import Link from "next/link"
 import { getAllPosts } from "@/lib/posts"
 import { getAuthorById, TEAM_AUTHOR_ID } from "@/lib/authors"
 import { SectionDivider } from "@/components/section-divider"
+import { JsonLd } from "@/components/json-ld"
 import { BookOpen } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -24,6 +25,49 @@ export const metadata: Metadata = {
 
 export default function InsightsPage() {
   const posts = getAllPosts()
+
+  const insightsJsonLd = [
+    {
+      "@context": "https://schema.org" as const,
+      "@type": "CollectionPage" as const,
+      name: "Insights — Research & Evidence for Medical Communication Training",
+      description:
+        "Evidence-based insights on medical communication training, simulation technology, and the clinical conversations that drive patient outcomes.",
+      url: "https://clinicalsim.ai/insights",
+      mainEntity: {
+        "@type": "ItemList" as const,
+        itemListElement: posts.map((post, index) => ({
+          "@type": "ListItem" as const,
+          position: index + 1,
+          url: `https://clinicalsim.ai/insights/${post.slug}`,
+          name: post.title,
+        })),
+      },
+      publisher: {
+        "@type": "Organization" as const,
+        name: "ClinicalSim.ai",
+        url: "https://clinicalsim.ai",
+      },
+    },
+    {
+      "@context": "https://schema.org" as const,
+      "@type": "BreadcrumbList" as const,
+      itemListElement: [
+        {
+          "@type": "ListItem" as const,
+          position: 1,
+          name: "Home",
+          item: "https://clinicalsim.ai",
+        },
+        {
+          "@type": "ListItem" as const,
+          position: 2,
+          name: "Insights",
+          item: "https://clinicalsim.ai/insights",
+        },
+      ],
+    },
+  ]
 
   // Helper function to get tag color variant
   const getTagColor = (tag: string) => {
@@ -49,6 +93,7 @@ export default function InsightsPage() {
 
   return (
     <>
+      <JsonLd data={insightsJsonLd} />
       {/* Hero */}
       <section className="relative text-center px-6 pt-20 pb-16 md:pt-28 md:pb-24">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 -z-10" />
