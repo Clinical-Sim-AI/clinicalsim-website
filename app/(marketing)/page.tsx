@@ -117,22 +117,6 @@ export default function HomePage() {
             Structured practice for the communication scenarios residents struggle with most — breaking bad news, navigating difficult family meetings, informed consent, and goals-of-care discussions. On-demand, from any device.
           </p>
 
-          <div className="flex flex-col items-center gap-2 mb-6">
-            <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">
-              Built by leaders in simulation and clinical communication
-            </p>
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-sm text-gray-500 font-light">
-              <span>Director of Simulation, Advocate Health</span>
-              <span className="text-gray-300">&middot;</span>
-              <span>Director of Simulation, University of Chicago</span>
-              <span className="text-gray-300">&middot;</span>
-              <span>Published Communication Researchers</span>
-            </div>
-            <p className="text-xs text-gray-400 font-light tracking-wide mt-1">
-              HIPAA compliant &middot; ACGME milestone-aligned &middot; CCC-ready documentation
-            </p>
-          </div>
-
           <div className="space-y-3">
             <Link href="/contact">
               <Button
