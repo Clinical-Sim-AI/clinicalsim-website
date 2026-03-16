@@ -1,13 +1,11 @@
 import type { MetadataRoute } from "next"
 import { getAllPosts } from "@/lib/posts"
-import { getAllSolutions } from "@/lib/solutions"
 import { getAllAudiences } from "@/lib/audiences"
 
 const BASE_URL = "https://clinicalsim.ai"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts()
-  const solutions = getAllSolutions()
   const audiences = getAllAudiences()
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -36,12 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/solutions`,
-      lastModified: new Date("2026-03-16"),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
       url: `${BASE_URL}/solutions/remediation`,
       lastModified: new Date("2026-03-16"),
       changeFrequency: "monthly",
@@ -61,13 +53,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  const solutionPages: MetadataRoute.Sitemap = solutions.map((solution) => ({
-    url: `${BASE_URL}/solutions/${solution.slug}`,
-    lastModified: new Date("2026-02-14"),
-    changeFrequency: "monthly" as const,
-    priority: 0.9,
-  }))
-
   const audiencePages: MetadataRoute.Sitemap = audiences.map((audience) => ({
     url: `${BASE_URL}/audiences/${audience.slug}`,
     lastModified: new Date("2026-02-14"),
@@ -82,5 +67,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...solutionPages, ...audiencePages, ...blogPages]
+  return [...staticPages, ...audiencePages, ...blogPages]
 }

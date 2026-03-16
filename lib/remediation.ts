@@ -1,4 +1,4 @@
-import type { StatItem, EvidenceItem, FaqItem } from "@/lib/solutions"
+import type { StatItem, EvidenceItem, FaqItem } from "@/lib/types"
 
 // ---------------------------------------------------------------------------
 // Remediation-specific interfaces

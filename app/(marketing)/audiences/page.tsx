@@ -73,14 +73,14 @@ export default function AudiencesPage() {
       <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
-            Explore our clinical <span className="text-warm font-medium">solutions</span>
+            Communication <span className="text-warm font-medium">remediation</span>
           </h2>
           <p className="text-lg text-gray-600 font-light leading-relaxed mb-8 max-w-2xl mx-auto">
-            See the specific conversations ClinicalSim trains, each with dedicated billing codes, proven outcomes, and measurable results.
+            See how ClinicalSim.ai supports structured communication remediation across your program.
           </p>
-          <Link href="/solutions">
+          <Link href="/solutions/remediation">
             <Button variant="warm-accent" size="lg">
-              View Solutions
+              Learn about Communication Remediation
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>
@@ -102,9 +102,9 @@ export default function AudiencesPage() {
                 Request a Pilot
               </Button>
             </Link>
-            <Link href="/solutions">
+            <Link href="/solutions/remediation">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-transparent hover:bg-white/10">
-                View Solutions
+                Communication Remediation
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>

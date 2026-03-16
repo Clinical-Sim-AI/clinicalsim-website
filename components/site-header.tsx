@@ -3,39 +3,20 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState, useRef, useEffect } from "react"
-import { Brain, ChevronDown, Menu, Shield, X } from "lucide-react"
-import { getAllSolutions } from "@/lib/solutions"
+import { Brain, ChevronDown, Menu, X } from "lucide-react"
 import { getAllAudiences } from "@/lib/audiences"
 
 export function SiteHeader() {
   const pathname = usePathname()
-  const [solutionsOpen, setSolutionsOpen] = useState(false)
   const [audiencesOpen, setAudiencesOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false)
   const [mobileAudiencesOpen, setMobileAudiencesOpen] = useState(false)
-  const solutionsDropdownRef = useRef<HTMLDivElement>(null)
   const audiencesDropdownRef = useRef<HTMLDivElement>(null)
-  const solutionsTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
   const audiencesTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
-  const solutions = getAllSolutions()
   const audiences = getAllAudiences()
-
-  const openSolutions = () => {
-    if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current)
-    setAudiencesOpen(false)
-    if (audiencesTimeoutRef.current) clearTimeout(audiencesTimeoutRef.current)
-    setSolutionsOpen(true)
-  }
-
-  const closeSolutions = () => {
-    solutionsTimeoutRef.current = setTimeout(() => setSolutionsOpen(false), 150)
-  }
 
   const openAudiences = () => {
     if (audiencesTimeoutRef.current) clearTimeout(audiencesTimeoutRef.current)
-    setSolutionsOpen(false)
-    if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current)
     setAudiencesOpen(true)
   }
 
@@ -46,7 +27,6 @@ export function SiteHeader() {
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false)
-    setMobileSolutionsOpen(false)
     setMobileAudiencesOpen(false)
   }, [pathname])
 
@@ -64,9 +44,6 @@ export function SiteHeader() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (solutionsDropdownRef.current && !solutionsDropdownRef.current.contains(event.target as Node)) {
-        setSolutionsOpen(false)
-      }
       if (audiencesDropdownRef.current && !audiencesDropdownRef.current.contains(event.target as Node)) {
         setAudiencesOpen(false)
       }
@@ -74,7 +51,6 @@ export function SiteHeader() {
     document.addEventListener("mousedown", handleClickOutside)
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
-      if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current)
       if (audiencesTimeoutRef.current) clearTimeout(audiencesTimeoutRef.current)
     }
   }, [])
@@ -86,7 +62,7 @@ export function SiteHeader() {
     { href: "/contact", label: "Contact" },
   ]
 
-  const isSolutionsActive = pathname === "/solutions" || pathname?.startsWith("/solutions/")
+  const isRemediationActive = pathname?.startsWith("/solutions/remediation")
   const isAudiencesActive = pathname === "/audiences" || pathname?.startsWith("/audiences/")
 
   return (
@@ -109,66 +85,15 @@ export function SiteHeader() {
 
       {/* Desktop navigation */}
       <nav className="hidden md:flex items-center gap-4 md:gap-8">
-        {/* Solutions dropdown */}
-        <div
-          ref={solutionsDropdownRef}
-          className="relative"
-          onMouseEnter={openSolutions}
-          onMouseLeave={closeSolutions}
+        {/* Remediation direct link */}
+        <Link
+          href="/solutions/remediation"
+          className={`text-gray-700 hover:text-gray-900 font-medium transition-colors pb-1 ${
+            isRemediationActive ? "border-b-2 border-blue-600" : ""
+          }`}
         >
-          <button
-            onClick={() => {
-              setSolutionsOpen(!solutionsOpen)
-              setAudiencesOpen(false)
-            }}
-            className={`flex items-center gap-1 text-gray-700 hover:text-gray-900 font-medium transition-colors pb-1 ${
-              isSolutionsActive ? "border-b-2 border-blue-600" : ""
-            }`}
-          >
-            Solutions
-            <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${solutionsOpen ? "rotate-180" : ""}`} />
-          </button>
-
-          {solutionsOpen && (
-            <div className="absolute top-full left-0 pt-2 w-72 z-50">
-            <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100 py-2">
-              {/* Remediation - Featured */}
-              <Link
-                href="/solutions/remediation"
-                className="flex items-center gap-3 px-4 py-2.5 hover:bg-warm/5 transition-colors bg-warm/5 border-l-2 border-warm"
-                onClick={() => setSolutionsOpen(false)}
-              >
-                <Shield className="h-4 w-4 shrink-0 text-warm" />
-                <span className="text-sm text-gray-900 font-medium">Communication Remediation</span>
-              </Link>
-              <div className="border-b border-gray-100 my-1" />
-              {solutions.map((solution) => {
-                const Icon = solution.icon
-                return (
-                  <Link
-                    key={solution.slug}
-                    href={`/solutions/${solution.slug}`}
-                    className="flex items-center gap-3 px-4 py-2.5 hover:bg-blue-50/70 transition-colors"
-                    onClick={() => setSolutionsOpen(false)}
-                  >
-                    <Icon className="h-4 w-4 text-blue-600 shrink-0" />
-                    <span className="text-sm text-gray-700">{solution.shortTitle}</span>
-                  </Link>
-                )
-              })}
-              <div className="border-t border-gray-100 mt-1 pt-1">
-                <Link
-                  href="/solutions"
-                  className="block px-4 py-2.5 text-sm font-medium text-blue-600 hover:bg-blue-50/70 transition-colors"
-                  onClick={() => setSolutionsOpen(false)}
-                >
-                  View All Solutions
-                </Link>
-              </div>
-            </div>
-            </div>
-          )}
-        </div>
+          Remediation
+        </Link>
 
         {/* Who We Serve dropdown */}
         <div
@@ -180,7 +105,6 @@ export function SiteHeader() {
           <button
             onClick={() => {
               setAudiencesOpen(!audiencesOpen)
-              setSolutionsOpen(false)
             }}
             className={`flex items-center gap-1 text-gray-700 hover:text-gray-900 font-medium transition-colors pb-1 ${
               isAudiencesActive ? "border-b-2 border-blue-600" : ""
@@ -242,63 +166,22 @@ export function SiteHeader() {
           <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
           <nav className="relative bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-lg max-h-[calc(100dvh-65px)] overflow-y-auto">
             <div className="px-4 py-3">
-              {/* Solutions accordion */}
-              <div className="border-b border-gray-100">
-                <button
-                  onClick={() => {
-                    setMobileSolutionsOpen(!mobileSolutionsOpen)
-                    setMobileAudiencesOpen(false)
-                  }}
-                  className={`flex items-center justify-between w-full py-3 text-gray-700 font-medium ${
-                    isSolutionsActive ? "text-blue-600" : ""
-                  }`}
-                >
-                  Solutions
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
-                </button>
-                {mobileSolutionsOpen && (
-                  <div className="pb-3 pl-2">
-                    {/* Remediation - Featured */}
-                    <Link
-                      href="/solutions/remediation"
-                      className="flex items-center gap-3 px-3 py-2.5 hover:bg-warm/5 transition-colors bg-warm/5 border-l-2 border-warm rounded-lg"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      <Shield className="h-4 w-4 shrink-0 text-warm" />
-                      <span className="text-sm text-gray-900 font-medium">Communication Remediation</span>
-                    </Link>
-                    <div className="border-b border-gray-100 my-1" />
-                    {solutions.map((solution) => {
-                      const Icon = solution.icon
-                      return (
-                        <Link
-                          key={solution.slug}
-                          href={`/solutions/${solution.slug}`}
-                          className="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-gray-900 hover:bg-blue-50/70 rounded-lg transition-colors"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          <Icon className="h-4 w-4 text-blue-600 shrink-0" />
-                          <span className="text-sm">{solution.shortTitle}</span>
-                        </Link>
-                      )
-                    })}
-                    <Link
-                      href="/solutions"
-                      className="block px-3 py-2.5 text-sm font-medium text-blue-600 hover:bg-blue-50/70 rounded-lg transition-colors mt-1"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      View All Solutions
-                    </Link>
-                  </div>
-                )}
-              </div>
+              {/* Remediation direct link */}
+              <Link
+                href="/solutions/remediation"
+                className={`block py-3 font-medium transition-colors border-b border-gray-100 ${
+                  isRemediationActive ? "text-blue-600" : "text-gray-700 hover:text-gray-900"
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Remediation
+              </Link>
 
               {/* Who We Serve accordion */}
               <div className="border-b border-gray-100">
                 <button
                   onClick={() => {
                     setMobileAudiencesOpen(!mobileAudiencesOpen)
-                    setMobileSolutionsOpen(false)
                   }}
                   className={`flex items-center justify-between w-full py-3 text-gray-700 font-medium ${
                     isAudiencesActive ? "text-blue-600" : ""

@@ -10,7 +10,7 @@ import { DemoVideoSection } from "@/components/demo-video-section"
 import { AudienceCard } from "@/components/audience-card"
 import { RotatingText } from "@/components/rotating-text"
 import { getAllAudiences } from "@/lib/audiences"
-import { BookOpen, Shield, TrendingUp, Mic, Users, FileText, ArrowRight } from "lucide-react"
+import { BookOpen, Shield, Mic, Users, FileText, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "AI Clinical Simulation for Communication Remediation & Medical Training",
@@ -38,12 +38,6 @@ export default function HomePage() {
       title: "Purpose-Built for Communication Remediation",
       description: "When a learner struggles with communication, give them structured practice — not a single extra SP session. Unlimited on-demand repetitions with documented improvement mapped to ICS milestones.",
       variant: "warm" as const,
-    },
-    {
-      icon: TrendingUp,
-      title: "Close the Care Gap and Get Reimbursed",
-      description: "Medicare created billing codes for chronic care management, wellness visits, behavioral health, and advance care planning. When providers are trained in these conversations, patients get better care and health systems capture the value.",
-      variant: "success" as const,
     },
     {
       icon: BookOpen,
@@ -114,13 +108,13 @@ export default function HomePage() {
           <p className="text-lg md:text-xl text-gray-600 font-light mb-4">
             AI clinical simulation for{" "}
             <RotatingText
-              phrases={["communication remediation", "advance care planning", "goals-of-care discussions", "chronic care management"]}
+              phrases={["communication remediation", "breaking bad news", "goals-of-care discussions", "informed consent"]}
               className="text-warm font-medium"
             />
           </p>
 
           <p className="text-lg md:text-xl text-gray-700 font-light leading-relaxed mb-4 max-w-3xl mx-auto">
-            Structured practice for the conversations clinicians face but rarely get to practice — remediation, advance care planning, goals of care, chronic care management, and cognitive assessments. On-demand, from any device.
+            Structured practice for the communication scenarios residents struggle with most — breaking bad news, navigating difficult family meetings, informed consent, and goals-of-care discussions. On-demand, from any device.
           </p>
 
           <div className="flex flex-col items-center gap-2 mb-6">
@@ -163,10 +157,10 @@ export default function HomePage() {
           <div className="border-l-4 border-warm pl-6 md:pl-8">
             <h2 className="text-xl md:text-2xl font-light text-navy mb-3">What is ClinicalSim.ai?</h2>
             <p className="text-base md:text-lg text-gray-700 font-light leading-relaxed mb-3">
-              ClinicalSim.ai is an AI clinical simulation platform for the conversations clinicians face but rarely get to practice: advance care planning, goals of care, chronic care management, and cognitive assessments. Available on-demand from any device, it is built on research with medical practitioners using blinded evaluation and validated assessment tools.
+              ClinicalSim.ai is an AI clinical simulation platform purpose-built for communication remediation in graduate medical education. When Step 2 CS was discontinued in 2021, programs lost the only national standardized assessment of clinical communication skills. 93% of programs now face remediation with no scalable toolkit (CERA Survey, 267 Family Medicine PDs).
             </p>
             <p className="text-base md:text-lg text-gray-700 font-light leading-relaxed">
-              The platform addresses two critical gaps. First, the <span className="text-warm font-medium">provider confidence gap</span> — clinicians have the knowledge but lack structured practice. Second, the <span className="text-warm font-medium">communication remediation gap</span> — when Step 2 CS was discontinued in 2021, the last standardized national assessment of clinical communication skills disappeared. 93% of programs now face remediation with no national toolkit (CERA Survey). ClinicalSim provides structured, milestone-aligned practice for both formative training and remediation.
+              ClinicalSim provides structured, on-demand practice mapped to ACGME ICS Milestones 2.0 — breaking bad news, goals-of-care discussions, informed consent, and navigating difficult family meetings. Every session generates milestone-aligned, CCC-ready documentation. Built on research with medical practitioners using blinded evaluation and validated assessment tools.
             </p>
           </div>
         </div>
@@ -367,8 +361,8 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-8">
-            <Link href="/solutions" className="inline-flex items-center text-blue-600 font-medium hover:text-warm transition-colors">
-              View all clinical solutions
+            <Link href="/solutions/remediation" className="inline-flex items-center text-blue-600 font-medium hover:text-warm transition-colors">
+              Learn about communication remediation
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </div>
@@ -384,7 +378,7 @@ export default function HomePage() {
             Ready to close the communication gap?
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-blue-100">
-            See how ClinicalSim.ai works for communication training and remediation.
+            See how ClinicalSim.ai works for communication remediation.
           </p>
           <Link href="/contact">
             <Button

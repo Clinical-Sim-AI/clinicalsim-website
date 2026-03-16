@@ -3,10 +3,8 @@ import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { StatHighlight } from "@/components/stat-highlight"
 import { FeatureCard } from "@/components/feature-card"
-import { SolutionCard } from "@/components/solution-card"
 import { SectionDivider } from "@/components/section-divider"
 import { type Audience } from "@/lib/audiences"
-import { getSolutionBySlug } from "@/lib/solutions"
 import { getPostBySlug } from "@/lib/posts"
 import {
   Target,
@@ -24,10 +22,6 @@ interface AudiencePageLayoutProps {
 export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
   const relatedPosts = audience.relatedPostSlugs
     .map((slug) => getPostBySlug(slug))
-    .filter(Boolean)
-
-  const relevantSolutions = audience.relevantSolutionSlugs
-    .map((slug) => getSolutionBySlug(slug))
     .filter(Boolean)
 
   return (
@@ -168,36 +162,23 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
       <SectionDivider variant="curve" color="blue" />
 
-      {/* Relevant Solutions */}
-      {relevantSolutions.length > 0 && (
-        <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
-                Clinical <span className="text-warm font-medium">solutions</span>
-              </h2>
-              <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto">
-                Explore the specific conversations ClinicalSim trains, each with dedicated billing codes and proven outcomes.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {relevantSolutions.map((solution) => (
-                <SolutionCard
-                  key={solution!.slug}
-                  icon={solution!.icon}
-                  title={solution!.shortTitle}
-                  description={solution!.description}
-                  keyStat={solution!.revenueStats[0].value}
-                  keyStatLabel={solution!.revenueStats[0].label}
-                  href={`/solutions/${solution!.slug}`}
-                  variant={solution!.colorVariant}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* Communication Remediation CTA */}
+      <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+            Communication <span className="text-warm font-medium">remediation</span>
+          </h2>
+          <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto mb-8">
+            Learn how ClinicalSim provides structured, milestone-aligned practice for communication remediation — with CCC-ready documentation from every session.
+          </p>
+          <Link href="/solutions/remediation">
+            <Button variant="warm-accent" size="lg">
+              Learn about Communication Remediation
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </Link>
+        </div>
+      </section>
 
       <SectionDivider variant="diagonal-down" color="white" />
 

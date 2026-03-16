@@ -26,7 +26,7 @@ export default function MarketingLayout({
             name: "ClinicalSim.ai",
             url: "https://clinicalsim.ai",
             description:
-              "Practice the conversations that matter most. Clinical simulation for communication remediation, goals of care, advance care planning, cognitive assessments, and more.",
+              "Practice the conversations that matter most. AI clinical simulation purpose-built for communication remediation in graduate medical education, mapped to ACGME ICS Milestones 2.0.",
           },
         ]}
       />

@@ -1,18 +1,12 @@
 # ClinicalSim.ai
 
-> Clinical simulation platform purpose-built for communication remediation and training in medical education. Built by simulation directors and communication researchers.
+> AI clinical simulation platform purpose-built for communication remediation in graduate medical education. Built by simulation directors and communication researchers.
 
 ## Pages
 
-- [Homepage](https://clinicalsim.ai): Overview of ClinicalSim.ai — clinical simulation for communication remediation, goals of care, advance care planning, cognitive assessments, and more. 93% of programs face remediation. Built by simulation directors and communication researchers.
+- [Homepage](https://clinicalsim.ai): Overview of ClinicalSim.ai — AI clinical simulation purpose-built for communication remediation. Structured practice mapped to ACGME ICS Milestones 2.0 with CCC-ready documentation. 93% of programs face remediation. Built by simulation directors and communication researchers.
 - [About](https://clinicalsim.ai/about): Built by leaders in simulation and clinical communication — Director of Simulation at Advocate Health, Director of Simulation at University of Chicago, and published communication researchers.
 - [Communication Remediation](https://clinicalsim.ai/solutions/remediation): The first AI clinical simulation purpose-built for communication remediation. Structured practice mapped to ACGME ICS Milestones 2.0 with CCC-ready documentation. 93% of programs face remediation — 50% of program directors want a toolkit.
-- [Solutions](https://clinicalsim.ai/solutions): Clinical communication training solutions — remediation, advance care planning, goals of care, chronic care management, cognitive assessments, and menopause care.
-- [Advance Care Planning](https://clinicalsim.ai/solutions/advance-care-planning): ACP conversation training — CPT 99497/99498, $87 per conversation, no annual cap. Fewer than 5% of eligible patients receive a billed ACP conversation.
-- [Goals of Care](https://clinicalsim.ai/solutions/goals-of-care): Serious illness conversation training. Communication failures drive 66% of sentinel events and 40% of malpractice claims.
-- [Chronic Care Management](https://clinicalsim.ai/solutions/chronic-care-management): CCM enrollment conversation training — CPT 99490/99491/99437/99439. 67% of Medicare beneficiaries qualify but only 3-5% are enrolled.
-- [Cognitive Assessments](https://clinicalsim.ai/solutions/cognitive-assessments): Cognitive assessment and dementia diagnosis training — CPT 99483, ~$260 reimbursement. Over 50% of cases go undiagnosed.
-- [Menopause Care](https://clinicalsim.ai/solutions/menopause-care): Menopause conversation training. ~54M US women affected, fewer than 1% of providers certified.
 - [Program Directors](https://clinicalsim.ai/audiences/program-directors): Communication remediation toolkit for program directors — 20 structured encounters before coaching, milestone-aligned feedback, CCC-ready documentation.
 - [DIOs & GME Leadership](https://clinicalsim.ai/audiences/dios-gme-leadership): Standardized remediation infrastructure across all programs — costs less than a single PACE assessment, accreditation-ready documentation.
 - [Simulation Center Directors](https://clinicalsim.ai/audiences/simulation-center-directors): Extend your SP program to unlimited practice volume — assessment data from every session, measurable communication outcomes.

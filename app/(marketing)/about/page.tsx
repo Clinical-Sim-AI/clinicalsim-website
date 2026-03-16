@@ -235,10 +235,10 @@ export default function AboutPage() {
 
           <div className="text-center">
             <Link
-              href="/solutions"
+              href="/solutions/remediation"
               className="inline-flex items-center text-blue-600 font-medium hover:text-warm transition-colors group"
             >
-              View our clinical solutions
+              Learn about communication remediation
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
