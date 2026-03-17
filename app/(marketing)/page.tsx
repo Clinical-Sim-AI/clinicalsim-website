@@ -11,7 +11,7 @@ import { AudienceCard } from "@/components/audience-card"
 import { RotatingText } from "@/components/rotating-text"
 import { getAllAudiences } from "@/lib/audiences"
 import { JsonLd } from "@/components/json-ld"
-import { BookOpen, Shield, Mic, Users, FileText, ArrowRight } from "lucide-react"
+import { BookOpen, Shield, Mic, Users, FileText, Lock, ArrowRight } from "lucide-react"
 
 const DemoVideoSection = dynamic(
   () => import("@/components/demo-video-section").then((m) => ({ default: m.DemoVideoSection }))
@@ -80,6 +80,12 @@ export default function HomePage() {
       icon: FileText,
       title: "CCC-Ready Documentation",
       description: "Every practice session generates timestamped, milestone-aligned assessment data. Track learner progress longitudinally and generate documentation your Clinical Competency Committee can use at the next review.",
+      variant: "navy" as const,
+    },
+    {
+      icon: Lock,
+      title: "Private, Judgment-Free Practice",
+      description: "Remediation carries stigma. ClinicalSim lets learners practice difficult conversations privately — no observers, no scheduling, no performance anxiety. Repeat as many times as needed in a low-stakes environment designed for growth.",
       variant: "navy" as const,
     }
   ]
