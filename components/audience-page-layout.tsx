@@ -290,7 +290,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
       {/* Final CTA */}
       <section className="px-6 py-16 md:py-20 bg-gradient-to-br from-navy via-blue-900 to-indigo-900 text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6 text-balance">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6 text-pretty">
             {audience.ctaHeadline}
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-blue-100">
