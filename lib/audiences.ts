@@ -166,7 +166,7 @@ const audiences: Audience[] = [
     ],
 
     ctaHeadline:
-      "The remediation toolkit you told CERA you wanted — it exists now.",
+      "The remediation toolkit CERA asked for is here.",
     ctaDescription:
       "Request a pilot and see how structured AI practice with milestone-aligned feedback changes how your program approaches communication remediation.",
 
