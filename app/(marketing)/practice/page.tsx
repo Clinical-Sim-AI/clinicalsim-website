@@ -166,7 +166,9 @@ export default function PracticePage() {
           <p className="text-base md:text-lg text-gray-600 font-light leading-relaxed mb-8 max-w-3xl">
             ClinicalSim gives you a private space to practice difficult
             remediation conversations with an AI-simulated resident or fellow —
-            before the stakes are real.
+            before the stakes are real. Describe your exact situation, and we
+            dynamically generate the scenario, the rubric, and the assessment
+            around it.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 items-start">
@@ -236,6 +238,16 @@ export default function PracticePage() {
               fellow who&apos;s defensive about professionalism feedback — the
               playbook doesn&apos;t exist. Until now.
             </p>
+            <p className="text-lg text-gray-600 font-light leading-relaxed mt-4">
+              These are common starting points — but you&apos;re not limited to
+              them.{" "}
+              <span className="text-navy font-medium">
+                Tell us the specific conversation you&apos;re preparing for, and
+                we&apos;ll dynamically build the scenario, the simulated
+                trainee&apos;s personality, the assessment rubric, and the
+                feedback framework around your exact situation.
+              </span>
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -251,11 +263,27 @@ export default function PracticePage() {
             ))}
           </div>
 
-          <p className="mt-8 text-base text-gray-500 font-light text-center max-w-2xl mx-auto">
-            These are real scenarios drawn from published remediation literature.
-            The AI trainee responds with the defensiveness, denial, emotion, and
-            resistance that make these conversations so difficult in practice.
-          </p>
+          <div className="mt-10 bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-warm/20 border-glow-hover transition-all duration-300 max-w-3xl mx-auto">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-lg bg-warm flex items-center justify-center flex-shrink-0 mt-1">
+                <Layers className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  Your situation is unique — your practice scenario should be too
+                </h3>
+                <p className="text-base text-gray-600 font-light leading-relaxed">
+                  Don&apos;t see your exact conversation above? That&apos;s the
+                  point. Describe what you&apos;re facing — the resident&apos;s
+                  history, the specific deficiency, the political dynamics — and
+                  we generate a complete practice encounter tailored to your
+                  situation: custom scenario prompt, realistic trainee persona,
+                  milestone-aligned rubric, and structured feedback, all built
+                  around the conversation you actually need to have.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -379,7 +407,7 @@ export default function PracticePage() {
                 {[
                   {
                     icon: MessageSquare,
-                    text: "Practice remediation scenarios with a realistic AI trainee",
+                    text: "Describe your situation and get a custom-built practice scenario — or choose from our library",
                   },
                   {
                     icon: TrendingUp,
@@ -511,15 +539,18 @@ export default function PracticePage() {
                     htmlFor="practice-scenario"
                     className="text-sm font-normal text-gray-700 mb-1.5 block"
                   >
-                    What remediation conversation are you preparing for?
+                    Describe the conversation you&apos;re preparing for
                   </Label>
                   <Textarea
                     id="practice-scenario"
                     name="scenario"
                     rows={3}
-                    placeholder="Optional — helps us tailor the experience"
+                    placeholder="e.g., 'PGY-2 who received below-expected milestone ratings from CCC, disputes the assessment, has a history of defensiveness with feedback...'"
                     className="bg-white border-gray-300 focus:border-blue-500 focus:ring-0 resize-none rounded-lg"
                   />
+                  <p className="text-xs text-gray-500 font-light mt-1.5">
+                    We&apos;ll dynamically generate a practice scenario, trainee persona, and assessment rubric tailored to your exact situation.
+                  </p>
                 </div>
 
                 <Button
