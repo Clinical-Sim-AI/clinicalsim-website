@@ -168,7 +168,8 @@ All content on this site must be optimized for discovery by AI search systems (C
 - Marketing layout includes Organization + WebSite schemas
 - Blog posts include Article schema via `components/article-layout.tsx`
 - Solution pages include BreadcrumbList + FAQPage schemas via `components/solution-page-layout.tsx`
-- When adding new page types, add appropriate JSON-LD schema
+- Standalone pages include WebPage + BreadcrumbList schemas (see `/practice` page for example)
+- **IMPORTANT**: Every new page MUST include appropriate JSON-LD structured data. This is a non-negotiable requirement — always add at minimum WebPage + BreadcrumbList schemas when creating new pages.
 
 ### Citation Magnets & Extractable Content
 - Include self-contained, quotable definition blocks (2-3 sentences with a stat + source)

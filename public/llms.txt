@@ -11,6 +11,7 @@
 - [DIOs & GME Leadership](https://clinicalsim.ai/audiences/dios-gme-leadership): Standardized remediation infrastructure across all programs — costs less than a single PACE assessment, accreditation-ready documentation.
 - [Simulation Center Directors](https://clinicalsim.ai/audiences/simulation-center-directors): Extend your SP program to unlimited practice volume — assessment data from every session, measurable communication outcomes.
 - [Clinical Competency Committees](https://clinicalsim.ai/audiences/clinical-competency-committees): Milestone-aligned assessment data from every practice session — longitudinal progress tracking, CCC-ready reports.
+- [Practice Remediation Conversations](https://clinicalsim.ai/practice): Free AI simulation for program directors to practice difficult remediation conversations — delivering remediation news, addressing professionalism, communicating milestone deficiency. Milestone-aligned feedback mapped to ACGME ICS Milestones 2.0.
 - [Research Collaboration](https://clinicalsim.ai/research): Apply to collaborate on research in communication remediation, simulation-based education, and competency assessment. Platform access, custom scenarios, data collection, and publication support provided.
 - [Insights](https://clinicalsim.ai/insights): Research and evidence on medical communication training, simulation technology, and clinical conversation outcomes.
 - [Privacy Policy](https://clinicalsim.ai/privacy): Privacy policy covering data collection, cookies, online advertising opt-out, and user rights.

@@ -203,23 +203,56 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
       <SectionDivider variant="curve" color="blue" />
 
-      {/* Communication Remediation CTA */}
-      <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
-            Communication <span className="text-warm font-medium">remediation</span>
-          </h2>
-          <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto mb-8">
-            Learn how ClinicalSim provides structured, milestone-aligned practice for communication remediation — with CCC-ready documentation from every session.
-          </p>
-          <Link href="/solutions/remediation">
-            <Button variant="warm-accent" size="lg">
-              Learn about Communication Remediation
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
-        </div>
-      </section>
+      {/* Practice Tool CTA — Program Directors only */}
+      {audience.slug === "program-directors" && (
+        <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-warm/20 border-glow-hover transition-all duration-300">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                  <p className="text-sm font-medium text-warm uppercase tracking-wider mb-2">
+                    Free Early Access
+                  </p>
+                  <h3 className="text-2xl md:text-3xl font-light text-navy mb-2">
+                    Practice the conversation before you have it
+                  </h3>
+                  <p className="text-base text-gray-600 font-light max-w-xl">
+                    Try remediation conversations yourself with our AI simulation — experience the feedback, the milestone-aligned assessment, and the documentation firsthand.
+                  </p>
+                </div>
+                <div className="flex-shrink-0">
+                  <Link href="/practice">
+                    <Button variant="warm-filled" size="lg">
+                      Try It Yourself
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Communication Remediation CTA — all other audiences */}
+      {audience.slug !== "program-directors" && (
+        <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+              Communication <span className="text-warm font-medium">remediation</span>
+            </h2>
+            <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto mb-8">
+              Learn how ClinicalSim provides structured, milestone-aligned practice for communication remediation — with CCC-ready documentation from every session.
+            </p>
+            <Link href="/solutions/remediation">
+              <Button variant="warm-accent" size="lg">
+                Learn about Communication Remediation
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </section>
+      )}
 
       <SectionDivider variant="diagonal-down" color="white" />
 
