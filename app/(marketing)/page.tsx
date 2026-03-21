@@ -379,6 +379,55 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Faculty Feedback */}
+      <section className="px-6 py-12 md:py-16 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+              What faculty are saying
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+            <div className="relative">
+              <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-warm/20 font-serif">&ldquo;</div>
+              <blockquote className="relative pl-8 pt-4">
+                <p className="text-lg md:text-xl text-gray-800 font-light leading-relaxed mb-4">
+                  I just tried it out and it was like talking to a real patient.
+                </p>
+                <cite className="text-sm text-gray-600 font-normal not-italic border-l-4 border-warm pl-4">
+                  Faculty, Johns Hopkins University School of Medicine
+                </cite>
+              </blockquote>
+            </div>
+
+            <div className="relative">
+              <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-warm/20 font-serif">&ldquo;</div>
+              <blockquote className="relative pl-8 pt-4">
+                <p className="text-lg md:text-xl text-gray-800 font-light leading-relaxed mb-4">
+                  The AI feedback is very pinpoint and detailed. I did perform a demo to my faculty group and they were BLOWN AWAY!
+                </p>
+                <cite className="text-sm text-gray-600 font-normal not-italic border-l-4 border-warm pl-4">
+                  Faculty, Georgetown University
+                </cite>
+              </blockquote>
+            </div>
+
+            <div className="relative">
+              <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-warm/20 font-serif">&ldquo;</div>
+              <blockquote className="relative pl-8 pt-4">
+                <p className="text-lg md:text-xl text-gray-800 font-light leading-relaxed mb-4">
+                  The AI tool is really cool! It seems very transferable to the work we are doing around transport.
+                </p>
+                <cite className="text-sm text-gray-600 font-normal not-italic border-l-4 border-warm pl-4">
+                  Faculty, University of Colorado
+                </cite>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Audience Selector */}
       <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
         <div className="max-w-6xl mx-auto">
