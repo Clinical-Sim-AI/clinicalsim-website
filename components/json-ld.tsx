@@ -5,13 +5,20 @@ interface JsonLdProps {
 }
 
 export function JsonLd({ data }: JsonLdProps) {
-  // Content is safe: only serialized from typed schema-dts objects, never user input
+  // Render each JSON-LD object as a separate script tag so Next.js can
+  // process them individually (it expects a single object per tag).
+  const items = Array.isArray(data) ? data : [data]
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(data),
-      }}
-    />
+    <>
+      {items.map((item, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(item),
+          }}
+        />
+      ))}
+    </>
   )
 }
