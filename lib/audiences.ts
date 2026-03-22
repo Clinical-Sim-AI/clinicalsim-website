@@ -228,7 +228,7 @@ const audiences: Audience[] = [
       {
         value: "60%",
         label: "of hospital adverse events linked to communication failures",
-        source: "Literature",
+        source: "The Joint Commission Sentinel Event Data",
         variant: "warm",
       },
       {
