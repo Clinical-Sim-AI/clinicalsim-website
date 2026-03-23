@@ -10,6 +10,11 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+  		fontSize: {
+  			'5xl': ['3rem', { lineHeight: '1.3' }],
+  			'6xl': ['3.75rem', { lineHeight: '1.25' }],
+  			'7xl': ['4.5rem', { lineHeight: '1.2' }],
+  		},
   		fontFamily: {
   			sans: ['var(--font-poppins)', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
   			mono: ['var(--font-ibm-plex-mono)', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
