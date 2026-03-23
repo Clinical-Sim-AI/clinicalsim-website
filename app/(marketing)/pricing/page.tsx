@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { StatHighlight } from "@/components/stat-highlight"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { ROICalculator } from "@/components/roi-calculator"
 import { cn } from "@/lib/utils"
 import { pricingPageData } from "@/lib/pricing"
 
@@ -491,9 +492,17 @@ export default function PricingPage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Testimonials                                                         */}
+      {/* ROI Calculator                                                       */}
       {/* ------------------------------------------------------------------ */}
       <SectionDivider variant="diagonal-down" color="white" />
+
+      <section className="px-6 py-12 md:py-16 bg-white">
+        <ROICalculator />
+      </section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Testimonials                                                         */}
+      {/* ------------------------------------------------------------------ */}
 
       <section className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-5xl mx-auto">

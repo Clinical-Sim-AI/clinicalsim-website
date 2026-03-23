@@ -80,6 +80,28 @@
     animation: fade-slide-in 0.2s ease-out forwards;
   }
 
+  /* ROI calculator range slider thumb */
+  .roi-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #3B82F6;
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+  .roi-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #3B82F6;
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+
   .border-glow-hover:hover {
     animation: border-glow 2s ease-in-out infinite;
     border-color: #F97316;
