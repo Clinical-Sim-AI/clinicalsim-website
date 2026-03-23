@@ -25,6 +25,7 @@ function SliderInput({
   prefix = "",
   suffix = "",
   description,
+  formatValue,
 }: {
   label: string
   value: number
@@ -35,6 +36,7 @@ function SliderInput({
   prefix?: string
   suffix?: string
   description?: string
+  formatValue?: (v: number) => string
 }) {
   const pct = ((value - min) / (max - min)) * 100
   return (
@@ -42,9 +44,13 @@ function SliderInput({
       <div className="flex justify-between items-baseline mb-1">
         <label className="text-sm font-light text-gray-700">{label}</label>
         <span className="font-mono font-bold text-base text-navy">
-          {prefix}
-          {typeof value === "number" ? value.toLocaleString() : value}
-          {suffix}
+          {formatValue ? formatValue(value) : (
+            <>
+              {prefix}
+              {typeof value === "number" ? value.toLocaleString() : value}
+              {suffix}
+            </>
+          )}
         </span>
       </div>
       {description && (
@@ -64,14 +70,22 @@ function SliderInput({
       />
       <div className="flex justify-between mt-1">
         <span className="text-xs text-gray-500">
-          {prefix}
-          {min.toLocaleString()}
-          {suffix}
+          {formatValue ? formatValue(min) : (
+            <>
+              {prefix}
+              {min.toLocaleString()}
+              {suffix}
+            </>
+          )}
         </span>
         <span className="text-xs text-gray-500">
-          {prefix}
-          {max.toLocaleString()}
-          {suffix}
+          {formatValue ? formatValue(max) : (
+            <>
+              {prefix}
+              {max.toLocaleString()}
+              {suffix}
+            </>
+          )}
         </span>
       </div>
     </div>
@@ -344,27 +358,50 @@ function ProgramDirectorView() {
 }
 
 function CMOView() {
-  const [beds, setBeds] = useState(400)
+  const [medicareRevenue, setMedicareRevenue] = useState(300000000)
   const [rnCount, setRnCount] = useState(800)
   const [rnTurnoverRate, setRnTurnoverRate] = useState(16)
+  const [physicianCount, setPhysicianCount] = useState(300)
+  const [physicianTurnoverRate, setPhysicianTurnoverRate] = useState(6)
   const [commClaimsPerYear, setCommClaimsPerYear] = useState(3)
   const [avgClaimCost, setAvgClaimCost] = useState(238000)
+  const [sentinelEvents, setSentinelEvents] = useState(2)
 
-  const estMedicareRevenue = beds * 750000
-  const vbpExposure = estMedicareRevenue * 0.02 * 0.25
-  const readmissionPenalty = estMedicareRevenue * 0.003
+  const vbpExposure = medicareRevenue * 0.02 * 0.14
+  const readmissionPenalty = medicareRevenue * 0.003
   const malpracticeExposure = commClaimsPerYear * avgClaimCost
   const costPerRnDeparture = 61110
   const rnTurnoverCost =
     rnCount * (rnTurnoverRate / 100) * costPerRnDeparture
+  const costPerPhysicianDeparture = 500000
+  const physicianTurnoverCost =
+    physicianCount * (physicianTurnoverRate / 100) * costPerPhysicianDeparture
   const totalExposure =
-    vbpExposure + readmissionPenalty + malpracticeExposure + rnTurnoverCost
+    vbpExposure +
+    readmissionPenalty +
+    malpracticeExposure +
+    rnTurnoverCost +
+    physicianTurnoverCost
+
+  // Estimated ClinicalSim investment (20% of clinical workforce at $30/user/mo)
+  const totalWorkforce = rnCount + physicianCount
+  const deploymentRate = 0.2
+  const estimatedUsers = Math.round(totalWorkforce * deploymentRate)
+  const investmentLow = estimatedUsers * 25 * 12
+  const investmentHigh = estimatedUsers * 35 * 12
+  const investmentMid = (investmentLow + investmentHigh) / 2
+  const roiMultiple =
+    investmentMid > 0 ? Math.round(totalExposure / investmentMid) : 0
+  const paybackDays =
+    totalExposure > 0
+      ? Math.round((investmentMid / totalExposure) * 365)
+      : 0
 
   const exposureItems = [
     {
       label: "HCAHPS / VBP penalty exposure",
       value: vbpExposure,
-      source: "2% Medicare withhold \u00d7 25% HCAHPS weight",
+      source: "2% Medicare withhold \u00d7 14% HCAHPS weight (CMS FY2025)",
     },
     {
       label: "Readmission penalties",
@@ -379,7 +416,12 @@ function CMOView() {
     {
       label: "RN turnover cost",
       value: rnTurnoverCost,
-      source: `${formatNumber(Math.round(rnCount * rnTurnoverRate / 100))} departures \u00d7 $61,110 each`,
+      source: `${formatNumber(Math.round(rnCount * rnTurnoverRate / 100))} departures \u00d7 $61,110 each (NSI, 2024)`,
+    },
+    {
+      label: "Physician turnover cost",
+      value: physicianTurnoverCost,
+      source: `${formatNumber(Math.round(physicianCount * physicianTurnoverRate / 100))} departures \u00d7 $500K each (AMA, 2022)`,
     },
   ]
 
@@ -391,13 +433,15 @@ function CMOView() {
           Your <span className="text-warm font-medium">organization</span>
         </h3>
         <SliderInput
-          label="Hospital beds"
-          value={beds}
-          onChange={setBeds}
-          min={50}
-          max={1500}
-          step={50}
-          description={`Est. Medicare revenue: ${formatCurrency(estMedicareRevenue)}`}
+          label="Annual Medicare inpatient revenue"
+          value={medicareRevenue}
+          onChange={setMedicareRevenue}
+          min={10000000}
+          max={800000000}
+          step={5000000}
+          prefix="$"
+          description="Total Medicare IPPS revenue (check your cost report)"
+          formatValue={(v) => formatCurrency(v)}
         />
         <SliderInput
           label="Registered nurses"
@@ -417,12 +461,30 @@ function CMOView() {
           description="National avg: 16.4% (NSI, 2024)"
         />
         <SliderInput
+          label="Physicians"
+          value={physicianCount}
+          onChange={setPhysicianCount}
+          min={50}
+          max={2000}
+          step={25}
+          description="Attending physicians and specialists"
+        />
+        <SliderInput
+          label="Physician turnover rate"
+          value={physicianTurnoverRate}
+          onChange={setPhysicianTurnoverRate}
+          min={2}
+          max={15}
+          suffix="%"
+          description="National avg: 6.8% (AAMC)"
+        />
+        <SliderInput
           label="Communication-related malpractice claims per year"
           value={commClaimsPerYear}
           onChange={setCommClaimsPerYear}
           min={0}
           max={15}
-          description="30-49% of all malpractice claims involve communication failure"
+          description="30-40% of all malpractice claims involve communication failure (CRICO)"
         />
         <SliderInput
           label="Average cost per claim"
@@ -432,7 +494,15 @@ function CMOView() {
           max={500000}
           step={10000}
           prefix="$"
-          description="National avg for communication-related claims: ~$238K"
+          description="National avg for communication-related claims: ~$238K (CRICO)"
+        />
+        <SliderInput
+          label="Sentinel events per year"
+          value={sentinelEvents}
+          onChange={setSentinelEvents}
+          min={0}
+          max={10}
+          description="80% involve communication failures (Joint Commission, 2024)"
         />
       </div>
 
@@ -470,26 +540,82 @@ function CMOView() {
         </div>
       </div>
 
-      {/* Break-even */}
+      {/* ROI & Break-even */}
       <div className="mb-6">
         <h3 className="text-lg font-light text-navy mb-4">
-          What it takes to{" "}
-          <span className="text-warm font-medium">break even</span>
+          Return on{" "}
+          <span className="text-warm font-medium">investment</span>
         </h3>
-        <div className="grid grid-cols-2 gap-3 mb-5">
+
+        {/* Estimated investment */}
+        <div className="px-4 py-3.5 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-600/10 mb-4">
+          <div className="flex justify-between items-center">
+            <div>
+              <div className="text-sm text-gray-700">
+                Estimated annual investment
+              </div>
+              <div className="text-xs font-light italic text-gray-500">
+                ~{formatNumber(estimatedUsers)} users (20% of workforce) at $25–35/user/mo
+              </div>
+            </div>
+            <div className="font-mono font-bold text-base text-navy whitespace-nowrap">
+              {formatCurrency(investmentLow)} – {formatCurrency(investmentHigh)}
+            </div>
+          </div>
+          <p className="text-xs font-light text-gray-500 mt-2">
+            Actual pricing is custom — contact us for a tailored quote.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 mb-4">
+          <StatCard
+            value={`${roiMultiple}x`}
+            label="Potential return on investment"
+            variant="warm"
+            source="Total exposure ÷ est. investment"
+          />
+          <StatCard
+            value={`${paybackDays} days`}
+            label="To break even on training investment"
+            variant="success"
+            source="Based on estimated midpoint"
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 mb-4">
           <StatCard
             value="< 1"
-            label="Prevented malpractice claim pays for a year of training"
+            label="Prevented malpractice claim pays for a year"
             variant="navy"
             source={`1 claim = ${formatCurrency(avgClaimCost)}`}
           />
           <StatCard
-            value="< 2"
-            label="Prevented RN departures pay for a year of training"
-            variant="success"
-            source="$61,110 per RN departure (NSI)"
+            value="< 1"
+            label="Prevented physician departure pays for a year"
+            variant="blue"
+            source="$500K per physician (AMA, 2022)"
           />
         </div>
+
+        {/* Sentinel events callout */}
+        {sentinelEvents > 0 && (
+          <div className="px-4 py-3.5 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-warm/15 mb-4">
+            <div className="flex items-start gap-3">
+              <div className="font-mono font-bold text-2xl text-warm leading-none mt-0.5">
+                {sentinelEvents}
+              </div>
+              <div>
+                <div className="text-sm font-medium text-gray-900">
+                  Sentinel events per year
+                </div>
+                <div className="text-xs font-light text-gray-600 mt-0.5">
+                  80% of sentinel events involve communication failures (Joint Commission, 2024). Each carries regulatory, reputational, and legal costs beyond malpractice exposure.
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="px-4 py-3.5 bg-gradient-to-br from-emerald-50 to-green-100 rounded-xl border border-success/20 text-center">
           <div className="text-sm font-light text-gray-700 mb-1">
             Your organization faces
@@ -522,12 +648,13 @@ function CMOView() {
       {/* Framing note */}
       <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-600/10">
         <p className="text-sm font-light text-gray-700 leading-relaxed">
-          Communication failures drive 30-49% of malpractice claims (CRICO,
-          2023) and directly impact HCAHPS &ldquo;Communication with
-          Doctors/Nurses&rdquo; domains — worth up to 25% of your VBP score.
-          Even modest improvement in communication competency across your
-          clinical workforce can prevent claims, reduce readmissions, and
-          improve retention.
+          Communication failures drive 30–40% of malpractice claims
+          (CRICO/Candello, 2025) and directly impact HCAHPS
+          &ldquo;Communication with Doctors/Nurses&rdquo; domains — worth 14%
+          of your VBP Total Performance Score (CMS FY2025). Even modest
+          improvement in communication competency across your clinical
+          workforce can prevent claims, reduce readmissions, and improve
+          retention.
         </p>
       </div>
     </div>
@@ -596,10 +723,13 @@ export function ROICalculator() {
 
       {/* Disclaimer */}
       <p className="text-xs font-light italic text-gray-500 text-center mt-4 leading-relaxed">
-        Estimates based on published benchmarks. SP costs: $100-$200/encounter
-        fully loaded. HCAHPS penalty data: CMS VBP program. Malpractice data:
-        CRICO CBS Report. RN turnover: NSI Nursing Solutions. Your actual costs
-        and savings may vary.
+        Estimates based on published benchmarks. SP costs: $100–$200/encounter
+        fully loaded. HCAHPS penalty data: CMS FY2025 VBP program.
+        Malpractice data: CRICO/Candello CBS Report. RN turnover: NSI Nursing
+        Solutions, 2024. Physician turnover: AMA/Mayo Clinic Proceedings,
+        2022. Sentinel events: Joint Commission, 2024. Enterprise investment
+        estimates are illustrative — contact us for custom pricing. Your
+        actual costs and savings may vary.
       </p>
     </div>
   )
