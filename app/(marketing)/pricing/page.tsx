@@ -227,7 +227,7 @@ export default function PricingPage() {
                 )}
 
                 {/* Feature list */}
-                <ul className="space-y-3 mb-8 flex-1">
+                <ul className="space-y-3 mb-6 flex-1">
                   {tier.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2.5">
                       <Check
@@ -242,6 +242,26 @@ export default function PricingPage() {
                     </li>
                   ))}
                 </ul>
+
+                {/* Custom scenarios callout — Program tier only */}
+                {tier.id === "program" && (
+                  <div className="border border-warm/20 bg-orange-50/50 rounded-lg px-4 py-3 mb-6">
+                    <p className="text-sm text-gray-800 font-medium mb-1">
+                      Need scenarios built for your specialty?
+                    </p>
+                    <p className="text-xs text-gray-600 font-light leading-relaxed">
+                      We build custom scenarios grounded in validated frameworks
+                      (Calgary-Cambridge, SPIKES, ACGME ICS 2.0) — included for
+                      founding programs.{" "}
+                      <Link
+                        href="/contact"
+                        className="text-blue-600 hover:text-warm transition-colors font-normal"
+                      >
+                        Learn more &rarr;
+                      </Link>
+                    </p>
+                  </div>
+                )}
 
                 {/* CTA */}
                 <div className="mt-auto">
@@ -466,59 +486,9 @@ export default function PricingPage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Custom scenarios                                                     */}
-      {/* ------------------------------------------------------------------ */}
-      <SectionDivider variant="diagonal-down" color="white" />
-
-      <section className="px-6 py-12 md:py-16 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
-            {data.customScenariosHeadline}
-          </h2>
-          <p className="text-base text-gray-600 font-light leading-relaxed mb-6">
-            Every program has conversations unique to their specialty, patient
-            population, or training gaps. We build custom simulation scenarios
-            grounded in validated assessment frameworks and tailored to the
-            specific situations your learners need to practice.
-          </p>
-
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
-                How it works
-              </h3>
-              <p className="text-base text-gray-700 font-light leading-relaxed">
-                {data.customScenariosHowItWorks}
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
-                Coming soon
-              </h3>
-              <p className="text-base text-gray-700 font-light leading-relaxed">
-                {data.customScenariosComingSoon}
-              </p>
-            </div>
-
-            <div className="border-l-4 border-warm pl-6 py-3 bg-orange-50/50 rounded-r-lg">
-              <p className="text-base text-gray-800 font-light leading-relaxed">
-                {data.customScenariosFoundingNote}{" "}
-                <Link
-                  href="/contact"
-                  className="text-blue-600 hover:text-warm transition-colors font-normal"
-                >
-                  Talk to us about becoming a founding program.
-                </Link>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------------------ */}
       {/* Testimonials                                                         */}
       {/* ------------------------------------------------------------------ */}
+      <SectionDivider variant="diagonal-down" color="white" />
 
       <section className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-5xl mx-auto">
