@@ -74,7 +74,7 @@ export interface PricingPageData {
 export const pricingPageData: PricingPageData = {
   heroHeadline: "Practice the conversations that matter most.",
   heroSubheadline:
-    "Structured, voice-based simulation for communication remediation and training — from medical school through fellowship. Backed by a published randomized controlled trial.",
+    "Structured, voice-based simulation for communication remediation and training — from medical school through fellowship. Backed by research with top academic medical institutions.",
 
   contextParagraph:
     "93% of residency programs have faced communication remediation in the past three years. Each case consumes 29\u201345 faculty hours — and most programs still don\u2019t have a structured toolkit for it. ClinicalSim gives learners unlimited, private practice on the conversations they\u2019re struggling with, mapped to ACGME ICS Milestones 2.0 and scored with validated frameworks.",
@@ -274,7 +274,7 @@ export const pricingPageData: PricingPageData = {
     },
   ],
   trustLine:
-    "Published in Academic Pediatrics. Blinded evaluation using validated assessment tools. Among the first AI communication training platforms backed by a randomized controlled trial.",
+    "Built on research with top academic medical institutions. Blinded evaluation using validated assessment tools.",
 
   faqs: [
     {
@@ -301,7 +301,7 @@ export const pricingPageData: PricingPageData = {
     {
       question: "Is there evidence this works?",
       answer:
-        "ClinicalSim is among the first AI communication training platforms backed by a published randomized controlled trial with blinded evaluation, published in Academic Pediatrics. The platform is built on research conducted with medical practitioners using validated assessment tools.",
+        "ClinicalSim is built on research conducted with top academic medical institutions, using blinded evaluation and validated assessment tools. The platform was developed alongside clinical educators and medical practitioners.",
     },
     {
       question: "How does this help with remediation?",
