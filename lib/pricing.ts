@@ -32,6 +32,7 @@ export interface ProgramCostRow {
   programSize: string
   annualCost: string
   perLearnerYear: string
+  note?: string
 }
 
 export interface ComparisonRow {
@@ -192,6 +193,7 @@ export const pricingPageData: PricingPageData = {
       programSize: "90 residents",
       annualCost: "$31,320",
       perLearnerYear: "$348",
+      note: "Volume pricing available for 100+ users — contact us",
     },
   ],
   programCostContext:

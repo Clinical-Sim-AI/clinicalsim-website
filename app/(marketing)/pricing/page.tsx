@@ -96,9 +96,9 @@ export default function PricingPage() {
           <p className="text-lg md:text-xl text-gray-700 font-light leading-relaxed max-w-3xl mx-auto mb-8">
             {data.heroSubheadline}
           </p>
-          <a href="#plans">
+          <a href="#roi-calculator">
             <Button variant="warm-accent" size="lg">
-              See plans
+              See what you could save
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </a>
@@ -122,9 +122,23 @@ export default function PricingPage() {
           <p className="text-base md:text-lg text-gray-700 font-light leading-relaxed max-w-3xl mx-auto mt-8">
             {data.contextParagraph}
           </p>
-          <p className="text-lg md:text-xl text-gray-900 font-medium mt-6">
-            {data.contextCta}
-          </p>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* ROI Calculator                                                      */}
+      {/* ------------------------------------------------------------------ */}
+      <SectionDivider variant="wave" color="white" />
+
+      <section id="roi-calculator" className="px-6 py-12 md:py-16 bg-white scroll-mt-20">
+        <ROICalculator />
+        <div className="text-center mt-8">
+          <a href="#plans">
+            <Button variant="warm-accent" size="lg">
+              See plans &amp; pricing
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </a>
         </div>
       </section>
 
@@ -143,10 +157,11 @@ export default function PricingPage() {
               <div
                 key={tier.id}
                 className={cn(
-                  "relative bg-white rounded-2xl border p-6 md:p-8 transition-all duration-300 border-glow-hover flex flex-col",
+                  "relative bg-white rounded-2xl border transition-all duration-300 border-glow-hover flex flex-col",
                   tier.highlighted
-                    ? "border-warm/50 md:scale-105 shadow-xl z-10"
-                    : "border-gray-200"
+                    ? "border-warm/50 md:scale-105 shadow-xl z-10 p-6 md:p-8"
+                    : "border-gray-200 p-6 md:p-8",
+                  tier.id === "individual" && "md:opacity-80 md:scale-95"
                 )}
               >
                 {/* Badge */}
@@ -297,6 +312,11 @@ export default function PricingPage() {
                         </td>
                         <td className="px-6 py-4 text-sm font-mono text-gray-700">
                           {row.perLearnerYear}
+                          {row.note && (
+                            <span className="block font-sans font-light text-xs text-gray-500 mt-1">
+                              {row.note}
+                            </span>
+                          )}
                         </td>
                       </tr>
                     ))}
@@ -329,6 +349,11 @@ export default function PricingPage() {
                       </span>
                     </div>
                   </div>
+                  {row.note && (
+                    <p className="text-xs text-gray-500 font-light mt-3">
+                      {row.note}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
@@ -341,60 +366,9 @@ export default function PricingPage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Custom scenarios                                                     */}
-      {/* ------------------------------------------------------------------ */}
-      <SectionDivider variant="diagonal-up" color="white" />
-
-      <section className="px-6 py-12 md:py-16 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
-            {data.customScenariosHeadline}
-          </h2>
-          <p className="text-base text-gray-600 font-light leading-relaxed mb-6">
-            Every program has conversations unique to their specialty, patient
-            population, or training gaps. We build custom simulation scenarios
-            grounded in validated assessment frameworks and tailored to the
-            specific situations your learners need to practice.
-          </p>
-
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
-                How it works
-              </h3>
-              <p className="text-base text-gray-700 font-light leading-relaxed">
-                {data.customScenariosHowItWorks}
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
-                Coming soon
-              </h3>
-              <p className="text-base text-gray-700 font-light leading-relaxed">
-                {data.customScenariosComingSoon}
-              </p>
-            </div>
-
-            <div className="border-l-4 border-warm pl-6 py-3 bg-orange-50/50 rounded-r-lg">
-              <p className="text-base text-gray-800 font-light leading-relaxed">
-                {data.customScenariosFoundingNote}{" "}
-                <Link
-                  href="/contact"
-                  className="text-blue-600 hover:text-warm transition-colors font-normal"
-                >
-                  Talk to us about becoming a founding program.
-                </Link>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------------------ */}
       {/* Comparison table                                                     */}
       {/* ------------------------------------------------------------------ */}
-      <SectionDivider variant="wave" color="slate" />
+      <SectionDivider variant="diagonal-up" color="slate" />
 
       <section className="px-6 py-12 md:py-16 bg-gradient-to-b from-slate-50 to-blue-50/30">
         <div className="max-w-5xl mx-auto">
@@ -492,12 +466,54 @@ export default function PricingPage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* ROI Calculator                                                       */}
+      {/* Custom scenarios                                                     */}
       {/* ------------------------------------------------------------------ */}
       <SectionDivider variant="diagonal-down" color="white" />
 
       <section className="px-6 py-12 md:py-16 bg-white">
-        <ROICalculator />
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+            {data.customScenariosHeadline}
+          </h2>
+          <p className="text-base text-gray-600 font-light leading-relaxed mb-6">
+            Every program has conversations unique to their specialty, patient
+            population, or training gaps. We build custom simulation scenarios
+            grounded in validated assessment frameworks and tailored to the
+            specific situations your learners need to practice.
+          </p>
+
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                How it works
+              </h3>
+              <p className="text-base text-gray-700 font-light leading-relaxed">
+                {data.customScenariosHowItWorks}
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                Coming soon
+              </h3>
+              <p className="text-base text-gray-700 font-light leading-relaxed">
+                {data.customScenariosComingSoon}
+              </p>
+            </div>
+
+            <div className="border-l-4 border-warm pl-6 py-3 bg-orange-50/50 rounded-r-lg">
+              <p className="text-base text-gray-800 font-light leading-relaxed">
+                {data.customScenariosFoundingNote}{" "}
+                <Link
+                  href="/contact"
+                  className="text-blue-600 hover:text-warm transition-colors font-normal"
+                >
+                  Talk to us about becoming a founding program.
+                </Link>
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ------------------------------------------------------------------ */}
