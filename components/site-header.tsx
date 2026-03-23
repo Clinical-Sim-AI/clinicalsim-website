@@ -59,6 +59,7 @@ export function SiteHeader() {
     { href: "/about", label: "About" },
     { href: "/insights", label: "Insights" },
     { href: "/research", label: "Research" },
+    { href: "/pricing", label: "Pricing" },
     { href: "/contact", label: "Contact" },
   ]
 
