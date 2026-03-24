@@ -63,7 +63,6 @@ export function SiteHeader() {
     { href: "/contact", label: "Contact" },
   ]
 
-  const isRemediationActive = pathname?.startsWith("/solutions/remediation")
   const isAudiencesActive = pathname === "/audiences" || pathname?.startsWith("/audiences/")
 
   return (
@@ -86,16 +85,6 @@ export function SiteHeader() {
 
       {/* Desktop navigation */}
       <nav className="hidden md:flex items-center gap-4 md:gap-8">
-        {/* Remediation direct link */}
-        <Link
-          href="/solutions/remediation"
-          className={`text-gray-700 hover:text-gray-900 font-medium transition-colors pb-1 ${
-            isRemediationActive ? "border-b-2 border-blue-600" : ""
-          }`}
-        >
-          Remediation
-        </Link>
-
         {/* Who We Serve dropdown */}
         <div
           ref={audiencesDropdownRef}
@@ -167,17 +156,6 @@ export function SiteHeader() {
           <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
           <nav className="relative bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-lg max-h-[calc(100dvh-65px)] overflow-y-auto">
             <div className="px-4 py-3">
-              {/* Remediation direct link */}
-              <Link
-                href="/solutions/remediation"
-                className={`block py-3 font-medium transition-colors border-b border-gray-100 ${
-                  isRemediationActive ? "text-blue-600" : "text-gray-700 hover:text-gray-900"
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Remediation
-              </Link>
-
               {/* Who We Serve accordion */}
               <div className="border-b border-gray-100">
                 <button
