@@ -359,34 +359,45 @@ function ProgramDirectorView() {
 
 function CMOView() {
   const [medicareRevenue, setMedicareRevenue] = useState(300000000)
-  const [rnCount, setRnCount] = useState(800)
-  const [rnTurnoverRate, setRnTurnoverRate] = useState(16)
-  const [physicianCount, setPhysicianCount] = useState(300)
-  const [physicianTurnoverRate, setPhysicianTurnoverRate] = useState(6)
+  const [licensedBeds, setLicensedBeds] = useState(350)
   const [commClaimsPerYear, setCommClaimsPerYear] = useState(3)
-  const [avgClaimCost, setAvgClaimCost] = useState(238000)
-  const [sentinelEvents, setSentinelEvents] = useState(2)
+  const [avgLOS, setAvgLOS] = useState(5.0)
 
-  const vbpExposure = medicareRevenue * 0.02 * 0.14
-  const readmissionPenalty = medicareRevenue * 0.003
+  // Derived workforce estimates
+  const avgClaimCost = 237600 // CRICO, 2025
+  const estimatedRNs = Math.round(licensedBeds * 2.2)
+  const estimatedPhysicians = Math.round(licensedBeds * 0.75)
+  const totalClinicalWorkforce = estimatedRNs + estimatedPhysicians
+
+  // Bucket 1: HCAHPS / VBP penalty exposure
+  // 2% Medicare withhold × 25% HCAHPS domain weight
+  const vbpExposure = medicareRevenue * 0.02 * 0.25
+
+  // Bucket 2: Readmission penalties
+  // Avg 0.43% penalty (CMS FY2024 actual data)
+  const readmissionPenalty = medicareRevenue * 0.0043
+
+  // Bucket 3: Malpractice risk (communication-related)
   const malpracticeExposure = commClaimsPerYear * avgClaimCost
-  const costPerRnDeparture = 61110
-  const rnTurnoverCost =
-    rnCount * (rnTurnoverRate / 100) * costPerRnDeparture
-  const costPerPhysicianDeparture = 500000
-  const physicianTurnoverCost =
-    physicianCount * (physicianTurnoverRate / 100) * costPerPhysicianDeparture
-  const totalExposure =
-    vbpExposure +
-    readmissionPenalty +
-    malpracticeExposure +
-    rnTurnoverCost +
-    physicianTurnoverCost
 
-  // Estimated ClinicalSim investment (20% of clinical workforce at $30/user/mo)
-  const totalWorkforce = rnCount + physicianCount
+  // Penalty subtotal
+  const penaltySubtotal = vbpExposure + readmissionPenalty + malpracticeExposure
+
+  // Bucket 4: Length-of-stay / throughput opportunity
+  const costPerDay = 3100 // KFF, 2024
+  const occupancyRate = 0.65 // national avg
+  const losReductionDays = 0.5 // conservative estimate from communication interventions
+  const annualDischarges = Math.round(
+    (licensedBeds * occupancyRate * 365) / avgLOS
+  )
+  const throughputOpportunity = annualDischarges * losReductionDays * costPerDay
+
+  // Total financial impact
+  const totalExposure = penaltySubtotal + throughputOpportunity
+
+  // Estimated ClinicalSim investment (20% of clinical workforce at $25-35/user/mo)
   const deploymentRate = 0.2
-  const estimatedUsers = Math.round(totalWorkforce * deploymentRate)
+  const estimatedUsers = Math.round(totalClinicalWorkforce * deploymentRate)
   const investmentLow = estimatedUsers * 25 * 12
   const investmentHigh = estimatedUsers * 35 * 12
   const investmentMid = (investmentLow + investmentHigh) / 2
@@ -397,31 +408,25 @@ function CMOView() {
       ? Math.round((investmentMid / totalExposure) * 365)
       : 0
 
-  const exposureItems = [
+  // Turnover secondary benefit (not included in totals)
+  const costPerRnDeparture = 61110
+  const turnoverSavingsPerPoint = Math.round(estimatedRNs * 0.01 * costPerRnDeparture)
+
+  const penaltyItems = [
     {
       label: "HCAHPS / VBP penalty exposure",
       value: vbpExposure,
-      source: "2% Medicare withhold \u00d7 14% HCAHPS weight (CMS FY2025)",
+      source: "2% Medicare withhold \u00d7 25% HCAHPS domain weight (CMS FY2025)",
     },
     {
       label: "Readmission penalties",
       value: readmissionPenalty,
-      source: "Avg 0.3% of Medicare revenue",
+      source: "Avg 0.43% penalty; 70%+ hospitals penalized (CMS FY2024)",
     },
     {
       label: "Malpractice risk (communication-related)",
       value: malpracticeExposure,
-      source: `${commClaimsPerYear} claims \u00d7 ${formatCurrency(avgClaimCost)}/claim`,
-    },
-    {
-      label: "RN turnover cost",
-      value: rnTurnoverCost,
-      source: `${formatNumber(Math.round(rnCount * rnTurnoverRate / 100))} departures \u00d7 $61,110 each (NSI, 2024)`,
-    },
-    {
-      label: "Physician turnover cost",
-      value: physicianTurnoverCost,
-      source: `${formatNumber(Math.round(physicianCount * physicianTurnoverRate / 100))} departures \u00d7 $500K each (AMA, 2022)`,
+      source: `${commClaimsPerYear} claims \u00d7 $237,600/claim (CRICO, 2025)`,
     },
   ]
 
@@ -444,39 +449,13 @@ function CMOView() {
           formatValue={(v) => formatCurrency(v)}
         />
         <SliderInput
-          label="Registered nurses"
-          value={rnCount}
-          onChange={setRnCount}
-          min={100}
-          max={5000}
-          step={50}
-        />
-        <SliderInput
-          label="RN turnover rate"
-          value={rnTurnoverRate}
-          onChange={setRnTurnoverRate}
-          min={5}
-          max={30}
-          suffix="%"
-          description="National avg: 16.4% (NSI, 2024)"
-        />
-        <SliderInput
-          label="Physicians"
-          value={physicianCount}
-          onChange={setPhysicianCount}
+          label="Licensed beds"
+          value={licensedBeds}
+          onChange={setLicensedBeds}
           min={50}
-          max={2000}
+          max={1200}
           step={25}
-          description="Attending physicians and specialists"
-        />
-        <SliderInput
-          label="Physician turnover rate"
-          value={physicianTurnoverRate}
-          onChange={setPhysicianTurnoverRate}
-          min={2}
-          max={15}
-          suffix="%"
-          description="National avg: 6.8% (AAMC)"
+          description="Used to estimate throughput impact and workforce size"
         />
         <SliderInput
           label="Communication-related malpractice claims per year"
@@ -484,25 +463,17 @@ function CMOView() {
           onChange={setCommClaimsPerYear}
           min={0}
           max={15}
-          description="30-40% of all malpractice claims involve communication failure (CRICO)"
+          description="30% of all malpractice claims involve communication failure (CRICO)"
         />
         <SliderInput
-          label="Average cost per claim"
-          value={avgClaimCost}
-          onChange={setAvgClaimCost}
-          min={100000}
-          max={500000}
-          step={10000}
-          prefix="$"
-          description="National avg for communication-related claims: ~$238K (CRICO)"
-        />
-        <SliderInput
-          label="Sentinel events per year"
-          value={sentinelEvents}
-          onChange={setSentinelEvents}
-          min={0}
-          max={10}
-          description="80% involve communication failures (Joint Commission, 2024)"
+          label="Average length of stay"
+          value={avgLOS}
+          onChange={setAvgLOS}
+          min={3}
+          max={8}
+          step={0.1}
+          suffix=" days"
+          description="National average: 5.4 days (AHA, 2023)"
         />
       </div>
 
@@ -510,10 +481,12 @@ function CMOView() {
       <div className="mb-6">
         <h3 className="text-lg font-light text-navy mb-4">
           Annual financial{" "}
-          <span className="text-warm font-medium">exposure</span>
+          <span className="text-warm font-medium">impact</span>
         </h3>
-        <div className="flex flex-col gap-2 mb-4">
-          {exposureItems.map((item, i) => (
+
+        {/* Penalty buckets */}
+        <div className="flex flex-col gap-2 mb-2">
+          {penaltyItems.map((item, i) => (
             <div
               key={i}
               className="flex justify-between items-center px-4 py-3 bg-white rounded-xl border border-gray-200"
@@ -529,14 +502,59 @@ function CMOView() {
               </div>
             </div>
           ))}
-          <div className="flex justify-between items-center px-4 py-3.5 bg-gradient-to-br from-red-50 to-red-100 rounded-xl border border-red-200">
+          <div className="flex justify-between items-center px-4 py-3 bg-gradient-to-br from-red-50 to-red-100 rounded-xl border border-red-200">
             <div className="text-sm font-medium text-gray-900">
-              Total annual exposure
+              Penalty exposure subtotal
             </div>
-            <div className="font-mono font-bold text-2xl text-red-600">
-              {formatCurrency(totalExposure)}
+            <div className="font-mono font-bold text-xl text-red-600">
+              {formatCurrency(penaltySubtotal)}
             </div>
           </div>
+        </div>
+
+        {/* Throughput opportunity */}
+        <div className="flex flex-col gap-2 mb-2 mt-4">
+          <div className="flex justify-between items-center px-4 py-3 bg-white rounded-xl border border-gray-200">
+            <div className="mr-4">
+              <div className="text-sm text-gray-700">
+                Length-of-stay / throughput opportunity
+              </div>
+              <div className="text-xs font-light italic text-gray-500">
+                0.5-day LOS reduction \u00d7 {formatNumber(annualDischarges)}{" "}
+                annual discharges \u00d7 $3,100/day (KFF, 2024)
+              </div>
+            </div>
+            <div className="font-mono font-bold text-base text-navy whitespace-nowrap">
+              {formatCurrency(throughputOpportunity)}
+            </div>
+          </div>
+        </div>
+
+        {/* Total financial impact */}
+        <div className="flex justify-between items-center px-4 py-3.5 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-warm/20 mt-4">
+          <div className="text-sm font-medium text-gray-900">
+            Total annual financial impact
+          </div>
+          <div className="font-mono font-bold text-2xl text-warm">
+            {formatCurrency(totalExposure)}
+          </div>
+        </div>
+      </div>
+
+      {/* Secondary turnover benefit */}
+      <div className="px-4 py-3 bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl border border-gray-200 mb-6">
+        <div className="text-sm font-medium text-gray-700 mb-1">
+          Additional workforce benefit
+        </div>
+        <div className="text-xs font-light text-gray-600 leading-relaxed">
+          Communication training also reduces nursing turnover — each RN
+          departure costs $61,110 (NSI, 2024). For a hospital your size
+          (~{formatNumber(estimatedRNs)} RNs), even a 1-point reduction in
+          turnover rate saves{" "}
+          <span className="font-mono font-medium text-navy">
+            {formatCurrency(turnoverSavingsPerPoint)}
+          </span>{" "}
+          annually — not included in the totals above.
         </div>
       </div>
 
@@ -555,7 +573,8 @@ function CMOView() {
                 Estimated annual investment
               </div>
               <div className="text-xs font-light italic text-gray-500">
-                ~{formatNumber(estimatedUsers)} users (20% of workforce) at $25–35/user/mo
+                ~{formatNumber(estimatedUsers)} users (20% of clinical
+                workforce) at $25–35/user/mo
               </div>
             </div>
             <div className="font-mono font-bold text-base text-navy whitespace-nowrap">
@@ -572,7 +591,7 @@ function CMOView() {
             value={`${roiMultiple}x`}
             label="Potential return on investment"
             variant="warm"
-            source="Total exposure ÷ est. investment"
+            source="Total impact \u00f7 est. investment"
           />
           <StatCard
             value={`${paybackDays} days`}
@@ -587,34 +606,15 @@ function CMOView() {
             value="< 1"
             label="Prevented malpractice claim pays for a year"
             variant="navy"
-            source={`1 claim = ${formatCurrency(avgClaimCost)}`}
+            source="1 claim = $237,600 (CRICO, 2025)"
           />
           <StatCard
-            value="< 1"
-            label="Prevented physician departure pays for a year"
+            value="0.5 day"
+            label="LOS reduction pays for itself many times over"
             variant="blue"
-            source="$500K per physician (AMA, 2022)"
+            source={`$3,100/day \u00d7 ${formatNumber(annualDischarges)} discharges`}
           />
         </div>
-
-        {/* Sentinel events callout */}
-        {sentinelEvents > 0 && (
-          <div className="px-4 py-3.5 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-warm/15 mb-4">
-            <div className="flex items-start gap-3">
-              <div className="font-mono font-bold text-2xl text-warm leading-none mt-0.5">
-                {sentinelEvents}
-              </div>
-              <div>
-                <div className="text-sm font-medium text-gray-900">
-                  Sentinel events per year
-                </div>
-                <div className="text-xs font-light text-gray-600 mt-0.5">
-                  80% of sentinel events involve communication failures (Joint Commission, 2024). Each carries regulatory, reputational, and legal costs beyond malpractice exposure.
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
 
         <div className="px-4 py-3.5 bg-gradient-to-br from-emerald-50 to-green-100 rounded-xl border border-success/20 text-center">
           <div className="text-sm font-light text-gray-700 mb-1">
@@ -624,7 +624,7 @@ function CMOView() {
             {formatCurrency(totalExposure)}
           </div>
           <div className="text-sm font-light text-gray-700 mt-1">
-            in annual communication-related financial exposure
+            in annual communication-related financial impact
           </div>
         </div>
       </div>
@@ -648,13 +648,13 @@ function CMOView() {
       {/* Framing note */}
       <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-600/10">
         <p className="text-sm font-light text-gray-700 leading-relaxed">
-          Communication failures drive 30–40% of malpractice claims
-          (CRICO/Candello, 2025) and directly impact HCAHPS
-          &ldquo;Communication with Doctors/Nurses&rdquo; domains — worth 14%
-          of your VBP Total Performance Score (CMS FY2025). Even modest
-          improvement in communication competency across your clinical
-          workforce can prevent claims, reduce readmissions, and improve
-          retention.
+          Communication failures drive 30% of malpractice claims (CRICO, 2025),
+          contribute to 80% of sentinel events (Joint Commission, 2024), and
+          directly impact HCAHPS &ldquo;Communication with Doctors/Nurses&rdquo;
+          domains — worth 25% of your VBP Total Performance Score (CMS FY2025).
+          Discharge communication interventions reduce readmissions by up to 31%
+          (JAMA) and length of stay by 0.5+ days. Even modest improvement in
+          communication competency compounds across every category above.
         </p>
       </div>
     </div>
@@ -725,11 +725,12 @@ export function ROICalculator() {
       <p className="text-xs font-light italic text-gray-500 text-center mt-4 leading-relaxed">
         Estimates based on published benchmarks. SP costs: $100–$200/encounter
         fully loaded. HCAHPS penalty data: CMS FY2025 VBP program.
-        Malpractice data: CRICO/Candello CBS Report. RN turnover: NSI Nursing
-        Solutions, 2024. Physician turnover: AMA/Mayo Clinic Proceedings,
-        2022. Sentinel events: Joint Commission, 2024. Enterprise investment
-        estimates are illustrative — contact us for custom pricing. Your
-        actual costs and savings may vary.
+        Readmission penalties: CMS FY2024 HRRP data. Malpractice data:
+        CRICO/Candello CBS Report, 2025. Hospital cost per day: KFF State
+        Health Facts, 2024. LOS national average: AHA, 2023. RN turnover:
+        NSI Nursing Solutions, 2024. Sentinel events: Joint Commission, 2024.
+        Enterprise investment estimates are illustrative — contact us for
+        custom pricing. Your actual costs and savings may vary.
       </p>
     </div>
   )
