@@ -4,22 +4,20 @@ import { Button } from "@/components/ui/button"
 import { StatHighlight } from "@/components/stat-highlight"
 import { SectionDivider } from "@/components/section-divider"
 import { AudienceCard } from "@/components/audience-card"
-import { JsonLd } from "@/components/json-ld"
 import { getAllAudiences } from "@/lib/audiences"
-import { getAllAuthors } from "@/lib/authors"
 import { Check, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "About ClinicalSim.ai: Built by Simulation Directors & Communication Researchers",
-  description: "ClinicalSim.ai is the first AI clinical simulation purpose-built for communication remediation. Built by a Director of Simulation at Advocate Health, Director of Simulation at University of Chicago, and published communication researchers. ACGME milestone-aligned.",
+  title: "About ClinicalSim.ai: AI Clinical Simulation for Communication Remediation",
+  description: "ClinicalSim.ai is the first AI clinical simulation purpose-built for communication remediation. ACGME milestone-aligned with real-time feedback and CCC-ready documentation.",
   openGraph: {
     title: "About ClinicalSim.ai",
-    description: "Built by leaders in simulation and clinical communication. Purpose-built for communication remediation in medical education.",
+    description: "The first AI clinical simulation purpose-built for communication remediation. ACGME milestone-aligned.",
     url: "https://clinicalsim.ai/about",
   },
   twitter: {
     title: "About ClinicalSim.ai",
-    description: "Built by simulation directors and communication researchers. Purpose-built for communication remediation.",
+    description: "The first AI clinical simulation purpose-built for communication remediation. ACGME milestone-aligned.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/about",
@@ -28,34 +26,15 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const audiences = getAllAudiences()
-  const authors = getAllAuthors()
 
   return (
     <>
-      {authors.map((author) => (
-        <JsonLd
-          key={author.id}
-          data={{
-            "@context": "https://schema.org",
-            "@type": "Person",
-            name: author.name,
-            jobTitle: author.title,
-            description: author.bio,
-            worksFor: {
-              "@type": "Organization",
-              name: "ClinicalSim.ai",
-              url: "https://clinicalsim.ai",
-            },
-          }}
-        />
-      ))}
-
       {/* Hero Section */}
       <section className="relative text-center px-6 py-16 md:py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 -z-10" />
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-light shimmer mb-6">
-            Built by the people who run simulation and publish the research.
+            The first AI simulation purpose-built for communication remediation.
           </h1>
           <p className="text-xl text-gray-700 font-light leading-relaxed max-w-3xl mx-auto">
             ClinicalSim.ai is the first AI clinical simulation purpose-built for <span className="text-warm font-medium">communication remediation</span> — structured practice with real-time feedback, mapped to ACGME ICS Milestones 2.0, generating documentation your CCC can use.
@@ -101,68 +80,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <SectionDivider variant="wave" color="blue" />
-
-      {/* Team Section */}
-      <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-navy mb-4 text-center">
-            Built by leaders in simulation and clinical communication
-          </h2>
-          <p className="text-lg text-gray-600 font-light text-center mb-12 max-w-3xl mx-auto">
-            Not a generic AI company entering healthcare. A team from the institutions and research programs that define medical simulation.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Vinod Havalad */}
-            <div className="bg-white/70 rounded-xl p-6 md:p-8 border border-gray-200 border-l-4 border-l-navy shadow-sm">
-              <h3 className="text-xl font-medium text-gray-900 mb-1">Vinod Havalad, MD</h3>
-              <p className="text-sm text-navy font-medium mb-4">Former Director of Simulation, Advocate Health System</p>
-              <p className="text-gray-600 font-light leading-relaxed">
-                Vinod designed simulation programs at one of the largest health systems in the Midwest. He brings direct experience building and running simulation centers that serve residency programs across multiple specialties.
-              </p>
-            </div>
-
-            {/* Lauren Rissman */}
-            <div className="bg-white/70 rounded-xl p-6 md:p-8 border border-gray-200 border-l-4 border-l-warm shadow-sm">
-              <h3 className="text-xl font-medium text-gray-900 mb-1">Lauren Rissman, PhD</h3>
-              <p className="text-sm text-warm font-medium mb-4">Communication Skills Researcher</p>
-              <p className="text-gray-600 font-light leading-relaxed">
-                Lauren is a published researcher in clinical communication with multiple peer-reviewed papers. Her research background means the platform&apos;s assessment frameworks are grounded in validated communication science, not ad hoc rubrics.
-              </p>
-            </div>
-
-            {/* Gillian Brennan */}
-            <div className="bg-white/70 rounded-xl p-6 md:p-8 border border-gray-200 border-l-4 border-l-navy shadow-sm">
-              <h3 className="text-xl font-medium text-gray-900 mb-1">Gillian Brennan, MD</h3>
-              <p className="text-sm text-navy font-medium mb-4">Director of Simulation, University of Chicago</p>
-              <p className="text-gray-600 font-light leading-relaxed">
-                Gillian currently runs simulation at one of the country&apos;s top academic medical centers. Her role means ClinicalSim was designed by someone who lives the challenges program directors face daily — not by engineers guessing at what educators need.
-              </p>
-            </div>
-
-            {/* Ben Conway */}
-            <div className="bg-white/70 rounded-xl p-6 md:p-8 border border-gray-200 border-l-4 border-l-blue-600 shadow-sm">
-              <h3 className="text-xl font-medium text-gray-900 mb-1">Ben Conway</h3>
-              <p className="text-sm text-blue-600 font-medium mb-4">Co-Founder &amp; CEO</p>
-              <p className="text-gray-600 font-light leading-relaxed">
-                Ben leads ClinicalSim&apos;s business operations and market strategy. His focus is translating the team&apos;s clinical and educational expertise into a product that serves the institutions that need it.
-              </p>
-            </div>
-
-            {/* Will Meyer */}
-            <div className="bg-white/70 rounded-xl p-6 md:p-8 border border-gray-200 border-l-4 border-l-blue-600 shadow-sm">
-              <h3 className="text-xl font-medium text-gray-900 mb-1">Will Meyer</h3>
-              <p className="text-sm text-blue-600 font-medium mb-4">Co-Founder &amp; CTO</p>
-              <p className="text-gray-600 font-light leading-relaxed">
-                Will leads ClinicalSim&apos;s technical development, building the AI simulation platform that delivers voice-based clinical encounters at scale.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <SectionDivider variant="diagonal-up" color="white" />
+      <SectionDivider variant="wave" color="white" />
 
       {/* Our Approach Section */}
       <section className="px-6 py-12 md:py-16 bg-white">
