@@ -7,11 +7,11 @@ import { Textarea } from "@/components/ui/textarea"
 import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
-import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb } from "lucide-react"
+import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb, Presentation, MapPin, Calendar } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Research Collaboration",
-  description: "Apply to collaborate with ClinicalSim.ai on research in communication remediation, simulation-based education, and competency assessment. We provide platform access, custom scenario development, data collection infrastructure, and publication support.",
+  description: "ClinicalSim.ai research includes presentations at IPSSW, PAS, Critical Care Congress, and IPSS on AI-driven communication training. Apply to collaborate on research in communication remediation, simulation-based education, and competency assessment.",
   openGraph: {
     title: "Research with ClinicalSim.ai",
     description: "Apply to collaborate on research in medical communication training using AI voice simulation. Platform access, custom scenarios, and publication support provided.",
@@ -62,6 +62,50 @@ const benefits = [
     title: "IRB & Study Design Guidance",
     description: "Experience navigating IRB protocols for AI simulation research and input on study design considerations unique to this modality.",
     variant: "warm" as const,
+  },
+]
+
+const presentations = [
+  {
+    authors: "Brennan G, … Havalad V, et al.",
+    title: "Teaching Affirming Care in Challenging Times: An AI Approach for Transgender Communication Training",
+    venue: "International Pediatric Simulation Society Meeting",
+    location: "Rome",
+    date: "May 2026",
+    year: "2026",
+  },
+  {
+    authors: "Havalad V, et al.",
+    title: "Enhancing Difficult Conversations in Pediatrics Using Artificial Intelligence: A Hands-On Workshop for Designing AI-Driven Communication Training",
+    venue: "International Pediatric Simulation Society Meeting",
+    location: "Rome",
+    date: "May 2026",
+    year: "2026",
+  },
+  {
+    authors: "Brennan G, … Havalad V",
+    title: "From Simulation to Conversation: Using AI to Teach Difficult Conversations",
+    venue: "Pediatric Academic Societies Meeting",
+    location: "Boston",
+    date: "April 2026",
+    year: "2026",
+  },
+  {
+    authors: "Havalad V, et al.",
+    title: "AI-Driven Just-In-Time Training for Handling Difficult Conversations",
+    venue: "Critical Care Congress",
+    location: "Chicago",
+    date: "March 2026",
+    year: "2026",
+  },
+  {
+    authors: "Havalad V, Rissman L, Conway B, Brennan G",
+    title: "AI-Driven Just-In-Time Training for Handling Difficult Conversations",
+    venue: "International Pediatric Simulation Symposium and Workshops (IPSSW)",
+    type: "Oral Presentation",
+    location: "Munich",
+    date: "May 2025",
+    year: "2025",
   },
 ]
 
@@ -277,6 +321,60 @@ export default function ResearchPage() {
       </section>
 
       <SectionDivider variant="diagonal-down" color="white" />
+
+      {/* Conference Presentations Section */}
+      <section className="px-6 py-16 md:py-24 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+              Conference Presentations
+            </h2>
+            <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto">
+              Our team has presented research on AI-driven communication training at leading medical education and simulation conferences.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {presentations.map((p, index) => (
+              <div
+                key={index}
+                className="relative bg-gradient-to-br from-white to-blue-50/50 rounded-xl p-6 md:p-8 border border-blue-100 hover:border-blue-200 hover:shadow-md transition-all duration-300"
+              >
+                <div className="flex flex-col md:flex-row md:items-start gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center">
+                    <Presentation className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-semibold text-navy mb-2 leading-snug">
+                      {p.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-3">
+                      {p.authors}
+                    </p>
+                    <div className="flex flex-wrap items-center gap-3 text-sm">
+                      <span className="inline-flex items-center gap-1.5 text-gray-700 font-medium">
+                        <Calendar className="w-3.5 h-3.5 text-warm" />
+                        {p.venue}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 text-gray-500">
+                        <MapPin className="w-3.5 h-3.5 text-warm" />
+                        {p.location}, {p.date}
+                      </span>
+                      {p.type && (
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success/10 text-success border border-success/20">
+                          {p.type}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider variant="wave" color="white" />
 
       {/* Why Collaborate Section */}
       <section className="px-6 py-16 md:py-24 bg-white">
