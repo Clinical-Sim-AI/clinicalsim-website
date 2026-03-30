@@ -12,6 +12,15 @@ export interface Post {
 
 const posts: Post[] = [
   {
+    slug: "ai-affirming-care-communication-training",
+    title: "When Affirming Care Training Disappears, Simulation Has to Fill the Gap",
+    description: "A new AI simulation approach presented at IPSS Rome tackles the growing gap in transgender communication training for pediatric residents, where 60% of programs lack direct clinical exposure.",
+    date: "2026-03-30",
+    author: "ClinicalSim.ai Team",
+    readingTime: "6 min read",
+    tags: ["ai", "simulation", "communication-training", "affirming-care", "pediatrics"],
+  },
+  {
     slug: "osce-case-design-guide",
     title: "How to Design Effective OSCE Cases: A Practical Guide for Medical Educators",
     description: "Proven strategies for creating OSCE cases that assess clinical competence. Practical frameworks, common pitfalls, and validation methods.",
