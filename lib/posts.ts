@@ -12,6 +12,15 @@ export interface Post {
 
 const posts: Post[] = [
   {
+    slug: "faculty-hour-problem-communication-remediation",
+    title: "The Faculty Hour Problem with Communication Remediation, and Why It Doesn't Scale",
+    description: "93% of residency programs face remediation, and communication is the hardest competency to fix. Each case consumes 25-75 faculty hours. Programs build their approach from scratch every time. The math doesn't work.",
+    date: "2026-04-07",
+    author: "ClinicalSim.ai Team",
+    readingTime: "7 min read",
+    tags: ["communication-remediation", "faculty-time", "ACGME", "milestones", "medical-education", "residency"],
+  },
+  {
     slug: "ai-affirming-care-communication-training",
     title: "When Affirming Care Training Disappears, Simulation Has to Fill the Gap",
     description: "A new AI simulation approach presented at IPSS Rome tackles the growing gap in transgender communication training for pediatric residents, where 60% of programs lack direct clinical exposure.",
