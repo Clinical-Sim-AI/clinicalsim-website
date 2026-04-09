@@ -6,6 +6,15 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/practice',
+        destination: 'https://app.clinicalsim.ai',
+        permanent: false,
+      },
+    ]
+  },
 }
 
 const withMDX = createMDX({})
