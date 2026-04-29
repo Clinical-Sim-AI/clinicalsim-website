@@ -30,14 +30,13 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative text-center px-6 py-16 md:py-24">
-        <div className="absolute inset-0 bg-cs-cloud -z-10" />
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-light mb-6">
+      <section className="relative text-center px-6 py-16 md:py-24 bg-cs-dark-blue text-white">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <h1 className="text-4xl md:text-5xl font-light mb-6 text-white">
             The first AI simulation purpose-built for communication remediation.
           </h1>
-          <p className="text-xl text-cs-dark-blue/85 font-light leading-relaxed max-w-3xl mx-auto">
-            ClinicalSim.ai is the first AI clinical simulation purpose-built for <span className="text-cs-dark-blue font-medium">communication remediation</span> — structured practice with real-time feedback, mapped to ACGME ICS Milestones 2.0, generating documentation your CCC can use.
+          <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">
+            ClinicalSim.ai is the first AI clinical simulation purpose-built for <span className="text-cs-electric font-medium">communication remediation</span> — structured practice with real-time feedback, mapped to ACGME ICS Milestones 2.0, generating documentation your CCC can use.
           </p>
         </div>
       </section>

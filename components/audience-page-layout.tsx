@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, ChevronRight, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { StatHighlight } from "@/components/stat-highlight"
 import { FeatureCard } from "@/components/feature-card"
@@ -7,14 +7,14 @@ import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { type Audience } from "@/lib/audiences"
 import { getPostBySlug } from "@/lib/posts"
-import {
-  Target,
-  Shield,
-  TrendingUp,
-  Zap,
-} from "lucide-react"
+import { type BrandIconName } from "@/components/brand-icon"
 
-const valuePropIcons = [Target, Shield, TrendingUp, Zap]
+const valuePropBrandIcons: Array<BrandIconName | null> = [
+  "ribbon-check",
+  "badge-check",
+  null,
+  "star-raising",
+]
 
 interface AudiencePageLayoutProps {
   audience: Audience
@@ -187,16 +187,21 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {audience.valueProps.map((prop, index) => (
-              <FeatureCard
-                key={index}
-                icon={valuePropIcons[index % valuePropIcons.length]}
-                title={prop.title}
-                description={prop.description}
-                variant={index === 0 ? "accent" : "default"}
-                expandOnHover
-              />
-            ))}
+            {audience.valueProps.map((prop, index) => {
+              const slot = index % valuePropBrandIcons.length
+              const brandIcon = valuePropBrandIcons[slot]
+              return (
+                <FeatureCard
+                  key={index}
+                  icon={brandIcon ? undefined : TrendingUp}
+                  brandIcon={brandIcon ?? undefined}
+                  title={prop.title}
+                  description={prop.description}
+                  variant={index === 0 ? "accent" : "default"}
+                  expandOnHover
+                />
+              )
+            })}
           </div>
         </div>
       </section>

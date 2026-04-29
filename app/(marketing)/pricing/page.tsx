@@ -87,17 +87,16 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       {/* Hero                                                                */}
       {/* ------------------------------------------------------------------ */}
-      <section className="relative px-6 py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-cs-cloud" />
-        <div className="relative max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-cs-dark-blue mb-6 leading-tight">
+      <section className="relative px-6 py-16 md:py-24 overflow-hidden bg-cs-dark-blue text-white">
+        <div className="relative max-w-4xl mx-auto text-center z-10">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
             <span className="font-medium">{data.heroHeadline}</span>
           </h1>
-          <p className="text-lg md:text-xl text-cs-dark-blue/85 font-light leading-relaxed max-w-3xl mx-auto mb-8">
+          <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto mb-8">
             {data.heroSubheadline}
           </p>
           <a href="#roi-calculator">
-            <Button variant="secondary" size="lg">
+            <Button variant="accent" size="lg">
               See what you could save
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

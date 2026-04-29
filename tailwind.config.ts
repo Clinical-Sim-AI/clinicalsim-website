@@ -16,22 +16,16 @@ const config: Config = {
   			'7xl': ['4.5rem', { lineHeight: '1.2' }],
   		},
   		fontFamily: {
-  			sans: ['var(--font-poppins)', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-  			mono: ['var(--font-ibm-plex-mono)', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+  			sans: ['var(--font-plus-jakarta)', 'system-ui', '-apple-system', 'Helvetica Neue', 'sans-serif'],
   		},
   		colors: {
-  			warm: {
-  				DEFAULT: '#F97316',
-  				foreground: '#FFFFFF',
-  			},
-  			success: {
-  				DEFAULT: '#10B981',
-  				foreground: '#FFFFFF',
-  			},
-  			navy: {
-  				DEFAULT: '#1E3A8A',
-  				foreground: '#FFFFFF',
-  			},
+  			'cs-dark-blue': '#061729',
+  			'cs-electric':  '#79f0b8',
+  			'cs-cloud':     '#e8e7e6',
+  			'cs-navy':      '#163b61',
+  			'cs-light-blue':'#86d0eb',
+  			'cs-dark-gray': '#8e9091',
+  			'cs-gray':      '#c3c5c7',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

@@ -2,17 +2,7 @@ import Link from "next/link"
 import { ChevronRight, ArrowLeft } from "lucide-react"
 import {
   Clock,
-  Users,
-  FileWarning,
-  Mic,
-  BarChart3,
   TrendingUp,
-  FileText,
-  LayoutDashboard,
-  GraduationCap,
-  Building2,
-  Monitor,
-  ClipboardCheck,
   type LucideIcon,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -22,6 +12,7 @@ import { EvidenceShowcase } from "@/components/evidence-showcase"
 import { SectionDivider } from "@/components/section-divider"
 import { AsymmetricGrid } from "@/components/asymmetric-grid"
 import { JsonLd } from "@/components/json-ld"
+import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
 import { cn } from "@/lib/utils"
 import type { RemediationPageData } from "@/lib/remediation"
 
@@ -31,17 +22,20 @@ import type { RemediationPageData } from "@/lib/remediation"
 
 const iconMap: Record<string, LucideIcon> = {
   Clock,
-  Users,
-  FileWarning,
-  Mic,
-  BarChart3,
   TrendingUp,
-  FileText,
-  LayoutDashboard,
-  GraduationCap,
-  Building2,
-  Monitor,
-  ClipboardCheck,
+}
+
+const brandIconMap: Record<string, BrandIconName> = {
+  Users: "people",
+  FileWarning: "chat-exclamation",
+  Mic: "sound-wave",
+  BarChart3: "chart-pie-quarter",
+  FileText: "list-unordered",
+  LayoutDashboard: "view-grid-small",
+  GraduationCap: "hat-graduation",
+  Building2: "hospital",
+  Monitor: "square-video",
+  ClipboardCheck: "ribbon-check",
 }
 
 const featureVariants: Array<"accent" | "navy" | "default"> = [
@@ -228,14 +222,19 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {data.painPoints.map((point, index) => {
               const Icon = iconMap[point.icon]
+              const brandIcon = brandIconMap[point.icon]
               return (
                 <div
                   key={index}
                   className="bg-white rounded-xl border border-cs-gray/50 p-6 hover:shadow-lg transition-all duration-300"
                 >
-                  {Icon && (
+                  {(Icon || brandIcon) && (
                     <div className="w-12 h-12 rounded-lg bg-cs-electric flex items-center justify-center mb-4">
-                      <Icon className="w-7 h-7 text-white" />
+                      {brandIcon ? (
+                        <BrandIcon name={brandIcon} color="dark" size={28} />
+                      ) : Icon ? (
+                        <Icon className="w-7 h-7 text-cs-dark-blue" />
+                      ) : null}
                     </div>
                   )}
                   <div className="font-bold tracking-tight text-3xl font-bold text-cs-dark-blue mb-1">
@@ -279,10 +278,12 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <AsymmetricGrid layout="staggered" gap="large">
             {data.features.map((feature, index) => {
               const Icon = iconMap[feature.iconName]
+              const brandIcon = brandIconMap[feature.iconName]
               return (
                 <FeatureCard
                   key={index}
-                  icon={Icon || Mic}
+                  icon={!brandIcon ? Icon : undefined}
+                  brandIcon={brandIcon ?? (!Icon ? "sound-wave" : undefined)}
                   title={feature.title}
                   description={feature.description}
                   variant={featureVariants[index % featureVariants.length]}
@@ -312,7 +313,18 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {data.personas.map((persona, index) => {
               const Icon = iconMap[persona.iconName]
+              const brandIcon = brandIconMap[persona.iconName]
               const styles = colorVariantStyles[persona.colorVariant]
+              const brandIconColor =
+                persona.colorVariant === "accent" ||
+                persona.colorVariant === "light-blue"
+                  ? "dark"
+                  : "white"
+              const lucideColor =
+                persona.colorVariant === "accent" ||
+                persona.colorVariant === "light-blue"
+                  ? "text-cs-dark-blue"
+                  : "text-white"
               return (
                 <div
                   key={index}
@@ -322,7 +334,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
                   )}
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    {Icon && (
+                    {(Icon || brandIcon) && (
                       <div
                         className={cn(
                           "w-10 h-10 rounded-lg flex items-center justify-center",
@@ -335,7 +347,15 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
                             "bg-cs-light-blue"
                         )}
                       >
-                        <Icon className="w-5 h-5 text-white" />
+                        {brandIcon ? (
+                          <BrandIcon
+                            name={brandIcon}
+                            color={brandIconColor}
+                            size={20}
+                          />
+                        ) : Icon ? (
+                          <Icon className={cn("w-5 h-5", lucideColor)} />
+                        ) : null}
                       </div>
                     )}
                     <h3 className="text-xl font-medium text-cs-dark-blue">

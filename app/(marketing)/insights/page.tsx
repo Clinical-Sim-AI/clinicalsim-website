@@ -95,12 +95,11 @@ export default function InsightsPage() {
     <>
       <JsonLd data={insightsJsonLd} />
       {/* Hero */}
-      <section className="relative text-center px-6 pt-20 pb-16 md:pt-28 md:pb-24">
-        <div className="absolute inset-0 bg-cs-cloud -z-10" />
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-light mb-6 leading-loose pb-3">Insights</h1>
-          <p className="text-xl text-cs-dark-blue/85 font-light leading-relaxed">
-            Research, analysis, and perspectives on <span className="text-cs-dark-blue font-medium">communication training</span> in medical education.
+      <section className="relative text-center px-6 pt-20 pb-16 md:pt-28 md:pb-24 bg-cs-dark-blue text-white">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <h1 className="text-4xl md:text-5xl font-light mb-6 leading-loose pb-3 text-white">Insights</h1>
+          <p className="text-xl text-cs-cloud font-light leading-relaxed">
+            Research, analysis, and perspectives on <span className="text-cs-electric font-medium">communication training</span> in medical education.
           </p>
         </div>
       </section>

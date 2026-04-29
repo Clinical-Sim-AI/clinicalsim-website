@@ -2,17 +2,11 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import {
   ArrowRight,
-  MessageSquare,
-  ShieldAlert,
-  BarChart3,
-  ClipboardCheck,
   Eye,
   TrendingUp,
   Quote,
-  Layers,
-  UserCheck,
   Clock,
-  FileText,
+  type LucideIcon,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -22,6 +16,15 @@ import { StatHighlight } from "@/components/stat-highlight"
 import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
+
+type FeatureItem = {
+  icon?: LucideIcon
+  brandIcon?: BrandIconName
+  title: string
+  description: string
+  variant?: "default" | "accent" | "navy" | "light-blue"
+}
 
 export const metadata: Metadata = {
   title: "Practice Remediation Conversations with AI Simulation",
@@ -43,38 +46,38 @@ export const metadata: Metadata = {
   },
 }
 
-const scenarios = [
+const scenarios: FeatureItem[] = [
   {
-    icon: MessageSquare,
+    brandIcon: "chat-dots",
     title: "Delivering initial remediation news",
     description:
       "The resident doesn't see it coming. They're shocked, defensive, or shut down entirely. You need to be clear, compassionate, and legally sound — all in the same conversation.",
-    variant: "accent" as const,
+    variant: "accent",
   },
   {
-    icon: ShieldAlert,
+    brandIcon: "chat-exclamation",
     title: "Addressing professionalism concerns",
     description:
       "Multiple staff members have reported dismissive behavior. The resident disputes every account. You need to convey a pattern without it becoming adversarial.",
-    variant: "navy" as const,
+    variant: "navy",
   },
   {
-    icon: BarChart3,
+    brandIcon: "chart-pie-quarter",
     title: "Communicating milestone deficiency from CCC",
     description:
       "The committee rated them below expected level. They believe the assessment was subjective. You need to deliver the message and keep them engaged in a plan forward.",
-    variant: "default" as const,
+    variant: "default",
   },
   {
-    icon: ClipboardCheck,
+    brandIcon: "ribbon-check",
     title: "The conversation after failed remediation",
     description:
       "They completed every step of the plan, but benchmarks weren't met. This is the hardest conversation because they tried — and it still wasn't enough.",
-    variant: "light-blue" as const,
+    variant: "light-blue",
   },
 ]
 
-const feedbackFeatures = [
+const feedbackFeatures: FeatureItem[] = [
   {
     icon: TrendingUp,
     title: "Milestone-aligned feedback",
@@ -94,7 +97,7 @@ const feedbackFeatures = [
       "See the rubric, the communication framework, and the assessment criteria being used. Grounded in established models like Kalamazoo and Calgary-Cambridge — nothing happens in a black box.",
   },
   {
-    icon: FileText,
+    brandIcon: "list-unordered",
     title: "Structured session documentation",
     description:
       "Every practice session generates a structured report — the same kind of milestone-aligned documentation a CCC would use. When you're ready to bring this to your learners, the reporting infrastructure is already built.",
@@ -141,29 +144,27 @@ export default function PracticePage() {
       />
 
       {/* Hero Section */}
-      <section className="relative px-6 py-16 md:py-24">
-        <div className="absolute inset-0 bg-cs-cloud -z-10" />
-
-        <div className="max-w-4xl mx-auto">
-          <p className="text-sm font-medium text-cs-dark-blue uppercase tracking-wider mb-4">
+      <section className="relative px-6 py-16 md:py-24 bg-cs-dark-blue text-white">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <p className="text-sm font-medium text-cs-electric uppercase tracking-wider mb-4">
             Free Early Access for Program Directors
           </p>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-loose pb-3 mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-loose pb-3 mb-6 text-white">
             Practice the conversation before you have it
           </h1>
 
-          <p className="text-xl md:text-2xl text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+          <p className="text-xl md:text-2xl text-cs-cloud font-light leading-relaxed mb-4">
             You were trained to lead a program, teach clinical medicine, and
             evaluate competency. But{" "}
-            <span className="text-cs-dark-blue font-medium">
+            <span className="text-cs-electric font-medium">
               remediation conversations
             </span>{" "}
             are a different skill — and the data shows most program directors
             never received formal training in them.
           </p>
 
-          <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-8 max-w-3xl">
+          <p className="text-base md:text-lg text-white/85 font-light leading-relaxed mb-8 max-w-3xl">
             ClinicalSim gives you a private space to practice difficult
             remediation conversations with an AI-simulated resident or fellow —
             before the stakes are real. Describe your exact situation, and we
@@ -178,7 +179,7 @@ export default function PracticePage() {
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </a>
-            <p className="text-sm text-cs-dark-gray font-light self-center">
+            <p className="text-sm text-cs-cloud/70 font-light self-center">
               Free for program directors. Limited spots.
             </p>
           </div>
@@ -255,6 +256,7 @@ export default function PracticePage() {
               <FeatureCard
                 key={index}
                 icon={scenario.icon}
+                brandIcon={scenario.brandIcon}
                 title={scenario.title}
                 description={scenario.description}
                 variant={scenario.variant}
@@ -266,7 +268,7 @@ export default function PracticePage() {
           <div className="mt-10 bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-cs-electric/20 transition-all duration-300 max-w-3xl mx-auto">
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 rounded-lg bg-cs-electric flex items-center justify-center flex-shrink-0 mt-1">
-                <Layers className="w-5 h-5 text-white" />
+                <BrandIcon name="stack" color="dark" size={20} />
               </div>
               <div>
                 <h3 className="text-lg font-medium text-cs-dark-blue mb-2">
@@ -312,6 +314,7 @@ export default function PracticePage() {
               <FeatureCard
                 key={index}
                 icon={feature.icon}
+                brandIcon={feature.brandIcon}
                 title={feature.title}
                 description={feature.description}
                 variant={index === 0 ? "accent" : "default"}
@@ -342,25 +345,31 @@ export default function PracticePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                icon: Layers,
+                renderIcon: () => (
+                  <BrandIcon name="stack" color="white" size={20} />
+                ),
                 title: "Case library",
                 description:
                   "See every scenario, what communication skills it targets, and how it maps to ACGME milestones.",
               },
               {
-                icon: Eye,
+                renderIcon: () => <Eye className="w-5 h-5 text-white" />,
                 title: "Assessment rubric",
                 description:
                   "The criteria are visible, editable, and grounded in Kalamazoo, Calgary-Cambridge, and SEGUE frameworks.",
               },
               {
-                icon: UserCheck,
+                renderIcon: () => (
+                  <BrandIcon name="people-connected" color="white" size={20} />
+                ),
                 title: "Feedback methodology",
                 description:
                   "How individual moments are identified, evaluated, and translated into actionable guidance.",
               },
               {
-                icon: TrendingUp,
+                renderIcon: () => (
+                  <TrendingUp className="w-5 h-5 text-white" />
+                ),
                 title: "Longitudinal tracking",
                 description:
                   "Progress across multiple sessions with trend lines and targeted improvement areas.",
@@ -371,7 +380,7 @@ export default function PracticePage() {
                 className="bg-white/70 rounded-xl p-6 border border-cs-gray/50 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-lg bg-cs-navy flex items-center justify-center mb-4">
-                  <item.icon className="w-5 h-5 text-white" />
+                  {item.renderIcon()}
                 </div>
                 <h3 className="text-lg font-medium text-cs-dark-blue mb-2">
                   {item.title}
@@ -406,25 +415,33 @@ export default function PracticePage() {
               <div className="space-y-4">
                 {[
                   {
-                    icon: MessageSquare,
+                    renderIcon: () => (
+                      <BrandIcon name="chat-dots" color="dark" size={16} />
+                    ),
                     text: "Describe your situation and get a custom-built practice scenario — or choose from our library",
                   },
                   {
-                    icon: TrendingUp,
+                    renderIcon: () => (
+                      <TrendingUp className="w-4 h-4 text-cs-dark-blue" />
+                    ),
                     text: "Get real-time feedback mapped to ICS Milestones 2.0",
                   },
                   {
-                    icon: FileText,
+                    renderIcon: () => (
+                      <BrandIcon name="list-unordered" color="dark" size={16} />
+                    ),
                     text: "Receive structured session reports after every conversation",
                   },
                   {
-                    icon: Clock,
+                    renderIcon: () => (
+                      <Clock className="w-4 h-4 text-cs-dark-blue" />
+                    ),
                     text: "Practice on your schedule — private, on-demand, no booking required",
                   },
                 ].map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-md bg-cs-cloud flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <item.icon className="w-4 h-4 text-cs-dark-blue" />
+                      {item.renderIcon()}
                     </div>
                     <p className="text-base text-cs-dark-blue/85 font-light">
                       {item.text}
@@ -598,19 +615,25 @@ export default function PracticePage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
             {[
               {
-                icon: MessageSquare,
+                renderIcon: () => (
+                  <BrandIcon name="chat-dots" color="white" size={20} />
+                ),
                 title: "Unlimited AI patient encounters",
                 description:
                   "Clinical communication scenarios your learners can practice on demand — no SPs to book, no rooms to reserve.",
               },
               {
-                icon: ClipboardCheck,
+                renderIcon: () => (
+                  <BrandIcon name="ribbon-check" color="white" size={20} />
+                ),
                 title: "CCC-ready documentation",
                 description:
                   "Every session generates milestone-aligned reports with longitudinal tracking visible to you and your CCC.",
               },
               {
-                icon: Clock,
+                renderIcon: () => (
+                  <Clock className="w-5 h-5 text-white" />
+                ),
                 title: "On-demand, not on-schedule",
                 description:
                   "Struggling learners who need the most repetitions finally get them — without consuming 45 faculty hours per case.",
@@ -621,7 +644,7 @@ export default function PracticePage() {
                 className="bg-white/70 rounded-xl p-6 border border-cs-gray/50 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-lg bg-cs-dark-blue flex items-center justify-center mb-4">
-                  <item.icon className="w-5 h-5 text-white" />
+                  {item.renderIcon()}
                 </div>
                 <h3 className="text-lg font-medium text-cs-dark-blue mb-2">
                   {item.title}
