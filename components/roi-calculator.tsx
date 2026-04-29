@@ -42,8 +42,8 @@ function SliderInput({
   return (
     <div className="mb-6">
       <div className="flex justify-between items-baseline mb-1">
-        <label className="text-sm font-light text-gray-700">{label}</label>
-        <span className="font-mono font-bold text-base text-navy">
+        <label className="text-sm font-light text-cs-dark-blue/85">{label}</label>
+        <span className="font-bold tracking-tight text-base text-cs-navy">
           {formatValue ? formatValue(value) : (
             <>
               {prefix}
@@ -54,7 +54,7 @@ function SliderInput({
         </span>
       </div>
       {description && (
-        <p className="text-xs font-light text-gray-500 mb-1.5">{description}</p>
+        <p className="text-xs font-light text-cs-dark-gray mb-1.5">{description}</p>
       )}
       <input
         type="range"
@@ -65,11 +65,11 @@ function SliderInput({
         onChange={(e) => onChange(Number(e.target.value))}
         className="roi-slider w-full h-2 rounded-lg appearance-none cursor-pointer"
         style={{
-          background: `linear-gradient(to right, #3B82F6 0%, #3B82F6 ${pct}%, #E5E7EB ${pct}%, #E5E7EB 100%)`,
+          background: `linear-gradient(to right, var(--cs-electric) 0%, var(--cs-electric) ${pct}%, #E5E7EB ${pct}%, #E5E7EB 100%)`,
         }}
       />
       <div className="flex justify-between mt-1">
-        <span className="text-xs text-gray-500">
+        <span className="text-xs text-cs-dark-gray">
           {formatValue ? formatValue(min) : (
             <>
               {prefix}
@@ -78,7 +78,7 @@ function SliderInput({
             </>
           )}
         </span>
-        <span className="text-xs text-gray-500">
+        <span className="text-xs text-cs-dark-gray">
           {formatValue ? formatValue(max) : (
             <>
               {prefix}
@@ -95,30 +95,30 @@ function SliderInput({
 function StatCard({
   value,
   label,
-  variant = "warm",
+  variant = "accent",
   source,
 }: {
   value: string
   label: string
-  variant?: "warm" | "navy" | "success" | "blue"
+  variant?: "accent" | "navy" | "light-blue" | "blue"
   source?: string
 }) {
   const styles = {
-    warm: "bg-gradient-to-br from-orange-50 to-amber-50 border-warm/10 [&_.stat-value]:text-warm",
-    navy: "bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-600/10 [&_.stat-value]:text-navy",
-    success: "bg-gradient-to-br from-emerald-50 to-green-100 border-success/10 [&_.stat-value]:text-success",
-    blue: "bg-gradient-to-br from-blue-50 to-blue-100 border-blue-600/10 [&_.stat-value]:text-blue-600",
+    accent: "bg-cs-cloud border-cs-electric/40 [&_.stat-value]:text-cs-dark-blue",
+    navy: "bg-cs-cloud border-cs-navy/20 [&_.stat-value]:text-cs-navy",
+    "light-blue": "bg-cs-cloud border-cs-light-blue/40 [&_.stat-value]:text-cs-dark-blue",
+    blue: "bg-cs-cloud border-cs-dark-blue/20 [&_.stat-value]:text-cs-dark-blue",
   }
   return (
     <div className={cn("rounded-2xl p-5 text-center border", styles[variant])}>
-      <div className="stat-value font-mono font-bold text-3xl leading-tight">
+      <div className="stat-value font-bold tracking-tight text-3xl leading-tight">
         {value}
       </div>
-      <div className="font-normal text-sm text-gray-700 mt-1.5 leading-snug">
+      <div className="font-normal text-sm text-cs-dark-blue/85 mt-1.5 leading-snug">
         {label}
       </div>
       {source && (
-        <div className="font-light italic text-xs text-gray-500 mt-1">
+        <div className="font-light italic text-xs text-cs-dark-gray mt-1">
           {source}
         </div>
       )}
@@ -146,35 +146,35 @@ function ComparisonBar({
   return (
     <div className="mb-5">
       <div className="flex justify-between mb-1">
-        <span className="text-sm text-gray-700">{leftLabel}</span>
-        <span className="font-mono font-bold text-sm text-gray-700">
+        <span className="text-sm text-cs-dark-blue/85">{leftLabel}</span>
+        <span className="font-bold tracking-tight text-sm text-cs-dark-blue/85">
           {formatCurrency(leftValue)}/yr
         </span>
       </div>
       <div className="h-7 bg-gray-100 rounded-lg overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-red-500 to-red-400 rounded-lg transition-all duration-300"
+          className="h-full bg-cs-dark-blue/40 rounded-lg transition-all duration-300"
           style={{ width: `${leftPct}%` }}
         />
       </div>
 
       <div className="flex justify-between mb-1 mt-3">
-        <span className="text-sm text-gray-700">{rightLabel}</span>
-        <span className="font-mono font-bold text-sm text-success">
+        <span className="text-sm text-cs-dark-blue/85">{rightLabel}</span>
+        <span className="font-bold tracking-tight text-sm text-cs-light-blue">
           {formatCurrency(rightValue)}/yr
         </span>
       </div>
       <div className="h-7 bg-gray-100 rounded-lg overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-lg transition-all duration-300"
+          className="h-full bg-cs-electric rounded-lg transition-all duration-300"
           style={{ width: `${rightPct}%` }}
         />
       </div>
 
       {savings > 0 && (
-        <div className="mt-3 px-4 py-2.5 bg-gradient-to-br from-emerald-50 to-green-100 rounded-xl border border-success/20 flex justify-between items-center">
-          <span className="text-sm text-gray-700">Annual savings</span>
-          <span className="font-mono font-bold text-xl text-success">
+        <div className="mt-3 px-4 py-2.5 bg-cs-cloud rounded-xl border border-cs-light-blue/20 flex justify-between items-center">
+          <span className="text-sm text-cs-dark-blue/85">Annual savings</span>
+          <span className="font-bold tracking-tight text-xl text-cs-light-blue">
             {formatCurrency(savings)}
           </span>
         </div>
@@ -222,9 +222,9 @@ function ProgramDirectorView() {
   return (
     <div>
       {/* Inputs */}
-      <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl p-6 mb-6 border border-gray-200">
-        <h3 className="text-lg font-light text-navy mb-5">
-          Your <span className="text-warm font-medium">program</span>
+      <div className="bg-cs-cloud rounded-2xl p-6 mb-6 border border-cs-gray/50">
+        <h3 className="text-lg font-light text-cs-navy mb-5">
+          Your <span className="text-cs-dark-blue font-medium">program</span>
         </h3>
         <SliderInput
           label="Learners in program"
@@ -276,15 +276,15 @@ function ProgramDirectorView() {
 
       {showEnterprise ? (
         <div>
-          <div className="px-4 py-3.5 bg-gradient-to-br from-red-50 to-red-100 rounded-xl border border-red-200 flex justify-between items-center mb-5">
-            <span className="text-sm text-gray-700">
+          <div className="px-4 py-3.5 bg-cs-cloud rounded-xl border border-cs-gray flex justify-between items-center mb-5">
+            <span className="text-sm text-cs-dark-blue/85">
               Your current annual SP cost
             </span>
-            <span className="font-mono font-bold text-xl text-red-600">
+            <span className="font-bold tracking-tight text-xl text-cs-dark-blue">
               {formatCurrency(totalCurrentCost)}/yr
             </span>
           </div>
-          <div className="p-6 bg-gradient-to-br from-navy via-blue-800 to-indigo-900 rounded-2xl text-center mb-6">
+          <div className="p-6 bg-cs-dark-blue rounded-2xl text-center mb-6">
             <p className="text-base font-light text-white mb-1">
               For programs with 200+ learners
             </p>
@@ -293,7 +293,7 @@ function ProgramDirectorView() {
               your organization.
             </p>
             <Link href="/contact">
-              <Button variant="warm-filled" size="lg">
+              <Button variant="accent" size="lg">
                 Request Enterprise Pricing
               </Button>
             </Link>
@@ -302,8 +302,8 @@ function ProgramDirectorView() {
       ) : (
         <div>
           <div className="mb-6">
-            <h3 className="text-lg font-light text-navy mb-4">
-              Cost <span className="text-warm font-medium">comparison</span>
+            <h3 className="text-lg font-light text-cs-navy mb-4">
+              Cost <span className="text-cs-dark-blue font-medium">comparison</span>
             </h3>
             <ComparisonBar
               leftLabel="Current SP program cost"
@@ -318,12 +318,12 @@ function ProgramDirectorView() {
             <StatCard
               value={savingsPct > 0 ? `${savingsPct}%` : "\u2014"}
               label="Cost reduction"
-              variant="success"
+              variant="light-blue"
             />
             <StatCard
               value={`${practiceMultiplier}x`}
               label="More practice volume"
-              variant="warm"
+              variant="accent"
               source="Est. 10 AI sessions/mo vs. current SP"
             />
             <StatCard
@@ -335,7 +335,7 @@ function ProgramDirectorView() {
             <StatCard
               value={formatCurrency(costPerAIEncounter)}
               label="Cost per AI encounter"
-              variant="success"
+              variant="light-blue"
               source="Based on est. usage"
             />
           </div>
@@ -343,8 +343,8 @@ function ProgramDirectorView() {
       )}
 
       {/* Framing note */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-600/10">
-        <p className="text-sm font-light text-gray-700 leading-relaxed">
+      <div className="bg-cs-cloud rounded-xl p-4 border border-cs-dark-blue/10">
+        <p className="text-sm font-light text-cs-dark-blue/85 leading-relaxed">
           ClinicalSim.ai extends your SP program — it doesn&apos;t replace it.
           SPs stay focused on high-stakes OSCEs and summative assessments.
           ClinicalSim gives learners the on-demand practice reps that are
@@ -433,9 +433,9 @@ function CMOView() {
   return (
     <div>
       {/* Inputs */}
-      <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl p-6 mb-6 border border-gray-200">
-        <h3 className="text-lg font-light text-navy mb-5">
-          Your <span className="text-warm font-medium">organization</span>
+      <div className="bg-cs-cloud rounded-2xl p-6 mb-6 border border-cs-gray/50">
+        <h3 className="text-lg font-light text-cs-navy mb-5">
+          Your <span className="text-cs-dark-blue font-medium">organization</span>
         </h3>
         <SliderInput
           label="Annual Medicare inpatient revenue"
@@ -479,9 +479,9 @@ function CMOView() {
 
       {/* Financial Exposure */}
       <div className="mb-6">
-        <h3 className="text-lg font-light text-navy mb-4">
+        <h3 className="text-lg font-light text-cs-navy mb-4">
           Annual financial{" "}
-          <span className="text-warm font-medium">impact</span>
+          <span className="text-cs-dark-blue font-medium">impact</span>
         </h3>
 
         {/* Penalty buckets */}
@@ -489,24 +489,24 @@ function CMOView() {
           {penaltyItems.map((item, i) => (
             <div
               key={i}
-              className="flex justify-between items-center px-4 py-3 bg-white rounded-xl border border-gray-200"
+              className="flex justify-between items-center px-4 py-3 bg-white rounded-xl border border-cs-gray/50"
             >
               <div className="mr-4">
-                <div className="text-sm text-gray-700">{item.label}</div>
-                <div className="text-xs font-light italic text-gray-500">
+                <div className="text-sm text-cs-dark-blue/85">{item.label}</div>
+                <div className="text-xs font-light italic text-cs-dark-gray">
                   {item.source}
                 </div>
               </div>
-              <div className="font-mono font-bold text-base text-red-500 whitespace-nowrap">
+              <div className="font-bold tracking-tight text-base text-cs-dark-blue whitespace-nowrap">
                 {formatCurrency(item.value)}
               </div>
             </div>
           ))}
-          <div className="flex justify-between items-center px-4 py-3 bg-gradient-to-br from-red-50 to-red-100 rounded-xl border border-red-200">
-            <div className="text-sm font-medium text-gray-900">
+          <div className="flex justify-between items-center px-4 py-3 bg-cs-cloud rounded-xl border border-cs-gray">
+            <div className="text-sm font-medium text-cs-dark-blue">
               Penalty exposure subtotal
             </div>
-            <div className="font-mono font-bold text-xl text-red-600">
+            <div className="font-bold tracking-tight text-xl text-cs-dark-blue">
               {formatCurrency(penaltySubtotal)}
             </div>
           </div>
@@ -514,44 +514,44 @@ function CMOView() {
 
         {/* Throughput opportunity */}
         <div className="flex flex-col gap-2 mb-2 mt-4">
-          <div className="flex justify-between items-center px-4 py-3 bg-white rounded-xl border border-gray-200">
+          <div className="flex justify-between items-center px-4 py-3 bg-white rounded-xl border border-cs-gray/50">
             <div className="mr-4">
-              <div className="text-sm text-gray-700">
+              <div className="text-sm text-cs-dark-blue/85">
                 Length-of-stay / throughput opportunity
               </div>
-              <div className="text-xs font-light italic text-gray-500">
+              <div className="text-xs font-light italic text-cs-dark-gray">
                 0.5-day LOS reduction \u00d7 {formatNumber(annualDischarges)}{" "}
                 annual discharges \u00d7 $3,100/day (KFF, 2024)
               </div>
             </div>
-            <div className="font-mono font-bold text-base text-navy whitespace-nowrap">
+            <div className="font-bold tracking-tight text-base text-cs-navy whitespace-nowrap">
               {formatCurrency(throughputOpportunity)}
             </div>
           </div>
         </div>
 
         {/* Total financial impact */}
-        <div className="flex justify-between items-center px-4 py-3.5 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-warm/20 mt-4">
-          <div className="text-sm font-medium text-gray-900">
+        <div className="flex justify-between items-center px-4 py-3.5 bg-cs-cloud rounded-xl border border-cs-electric/20 mt-4">
+          <div className="text-sm font-medium text-cs-dark-blue">
             Total annual financial impact
           </div>
-          <div className="font-mono font-bold text-2xl text-warm">
+          <div className="font-bold tracking-tight text-2xl text-cs-dark-blue">
             {formatCurrency(totalExposure)}
           </div>
         </div>
       </div>
 
       {/* Secondary turnover benefit */}
-      <div className="px-4 py-3 bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl border border-gray-200 mb-6">
-        <div className="text-sm font-medium text-gray-700 mb-1">
+      <div className="px-4 py-3 bg-cs-cloud rounded-xl border border-cs-gray/50 mb-6">
+        <div className="text-sm font-medium text-cs-dark-blue/85 mb-1">
           Additional workforce benefit
         </div>
-        <div className="text-xs font-light text-gray-600 leading-relaxed">
+        <div className="text-xs font-light text-cs-dark-blue/70 leading-relaxed">
           Communication training also reduces nursing turnover — each RN
           departure costs $61,110 (NSI, 2024). For a hospital your size
           (~{formatNumber(estimatedRNs)} RNs), even a 1-point reduction in
           turnover rate saves{" "}
-          <span className="font-mono font-medium text-navy">
+          <span className="font-medium tracking-tight text-cs-navy">
             {formatCurrency(turnoverSavingsPerPoint)}
           </span>{" "}
           annually — not included in the totals above.
@@ -560,28 +560,28 @@ function CMOView() {
 
       {/* ROI & Break-even */}
       <div className="mb-6">
-        <h3 className="text-lg font-light text-navy mb-4">
+        <h3 className="text-lg font-light text-cs-navy mb-4">
           Return on{" "}
-          <span className="text-warm font-medium">investment</span>
+          <span className="text-cs-dark-blue font-medium">investment</span>
         </h3>
 
         {/* Estimated investment */}
-        <div className="px-4 py-3.5 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-600/10 mb-4">
+        <div className="px-4 py-3.5 bg-cs-cloud rounded-xl border border-cs-dark-blue/10 mb-4">
           <div className="flex justify-between items-center">
             <div>
-              <div className="text-sm text-gray-700">
+              <div className="text-sm text-cs-dark-blue/85">
                 Estimated annual investment
               </div>
-              <div className="text-xs font-light italic text-gray-500">
+              <div className="text-xs font-light italic text-cs-dark-gray">
                 ~{formatNumber(estimatedUsers)} users (20% of clinical
                 workforce) at $25–35/user/mo
               </div>
             </div>
-            <div className="font-mono font-bold text-base text-navy whitespace-nowrap">
+            <div className="font-bold tracking-tight text-base text-cs-navy whitespace-nowrap">
               {formatCurrency(investmentLow)} – {formatCurrency(investmentHigh)}
             </div>
           </div>
-          <p className="text-xs font-light text-gray-500 mt-2">
+          <p className="text-xs font-light text-cs-dark-gray mt-2">
             Actual pricing is custom — contact us for a tailored quote.
           </p>
         </div>
@@ -590,13 +590,13 @@ function CMOView() {
           <StatCard
             value={`${roiMultiple}x`}
             label="Potential return on investment"
-            variant="warm"
+            variant="accent"
             source="Total impact \u00f7 est. investment"
           />
           <StatCard
             value={`${paybackDays} days`}
             label="To break even on training investment"
-            variant="success"
+            variant="light-blue"
             source="Based on estimated midpoint"
           />
         </div>
@@ -616,21 +616,21 @@ function CMOView() {
           />
         </div>
 
-        <div className="px-4 py-3.5 bg-gradient-to-br from-emerald-50 to-green-100 rounded-xl border border-success/20 text-center">
-          <div className="text-sm font-light text-gray-700 mb-1">
+        <div className="px-4 py-3.5 bg-cs-cloud rounded-xl border border-cs-light-blue/20 text-center">
+          <div className="text-sm font-light text-cs-dark-blue/85 mb-1">
             Your organization faces
           </div>
-          <div className="font-mono font-bold text-3xl text-warm">
+          <div className="font-bold tracking-tight text-3xl text-cs-dark-blue">
             {formatCurrency(totalExposure)}
           </div>
-          <div className="text-sm font-light text-gray-700 mt-1">
+          <div className="text-sm font-light text-cs-dark-blue/85 mt-1">
             in annual communication-related financial impact
           </div>
         </div>
       </div>
 
       {/* CTA */}
-      <div className="p-6 bg-gradient-to-br from-navy via-blue-800 to-indigo-900 rounded-2xl text-center mb-6">
+      <div className="p-6 bg-cs-dark-blue rounded-2xl text-center mb-6">
         <p className="text-base font-light text-white mb-1">
           Let us build your custom ROI analysis
         </p>
@@ -639,15 +639,15 @@ function CMOView() {
           exposure profile.
         </p>
         <Link href="/contact">
-          <Button variant="warm-filled" size="lg">
+          <Button variant="accent" size="lg">
             Request Enterprise Pricing
           </Button>
         </Link>
       </div>
 
       {/* Framing note */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-600/10">
-        <p className="text-sm font-light text-gray-700 leading-relaxed">
+      <div className="bg-cs-cloud rounded-xl p-4 border border-cs-dark-blue/10">
+        <p className="text-sm font-light text-cs-dark-blue/85 leading-relaxed">
           Communication failures drive 30% of malpractice claims (CRICO, 2025),
           contribute to 80% of sentinel events (Joint Commission, 2024), and
           directly impact HCAHPS &ldquo;Communication with Doctors/Nurses&rdquo;
@@ -668,10 +668,10 @@ export function ROICalculator() {
     <div className="max-w-2xl mx-auto">
       {/* Header */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-light text-navy mb-2 leading-tight">
-          ROI <span className="text-warm font-medium">Calculator</span>
+        <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-2 leading-tight">
+          ROI <span className="text-cs-dark-blue font-medium">Calculator</span>
         </h2>
-        <p className="text-base font-light text-gray-700 leading-relaxed">
+        <p className="text-base font-light text-cs-dark-blue/85 leading-relaxed">
           See what communication training costs today — and what it could save
           tomorrow.
         </p>
@@ -691,8 +691,8 @@ export function ROICalculator() {
             className={cn(
               "flex-1 px-4 py-2.5 rounded-xl text-sm transition-all duration-200",
               activeTab === tab.key
-                ? "bg-gradient-to-br from-blue-600 to-indigo-600 text-white font-medium shadow-md"
-                : "text-gray-700 hover:text-gray-900 font-normal"
+                ? "bg-cs-dark-blue text-white font-medium shadow-md"
+                : "text-cs-dark-blue/85 hover:text-cs-dark-blue font-normal"
             )}
           >
             {tab.label}
@@ -705,7 +705,7 @@ export function ROICalculator() {
 
       {/* Footer CTA — only on Program tab */}
       {activeTab === "program" && (
-        <div className="mt-8 p-6 bg-gradient-to-br from-navy via-blue-800 to-indigo-900 rounded-2xl text-center">
+        <div className="mt-8 p-6 bg-cs-dark-blue rounded-2xl text-center">
           <p className="text-lg font-light text-white mb-1 leading-relaxed">
             Ready to see it in action?
           </p>
@@ -714,7 +714,7 @@ export function ROICalculator() {
             program.
           </p>
           <Link href="/contact">
-            <Button variant="warm-filled" size="lg">
+            <Button variant="accent" size="lg">
               Request a Pilot
             </Button>
           </Link>
@@ -722,7 +722,7 @@ export function ROICalculator() {
       )}
 
       {/* Disclaimer */}
-      <p className="text-xs font-light italic text-gray-500 text-center mt-4 leading-relaxed">
+      <p className="text-xs font-light italic text-cs-dark-gray text-center mt-4 leading-relaxed">
         Estimates based on published benchmarks. SP costs: $100–$200/encounter
         fully loaded. HCAHPS penalty data: CMS FY2025 VBP program.
         Readmission penalties: CMS FY2024 HRRP data. Malpractice data:

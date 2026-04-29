@@ -22,7 +22,7 @@ export interface AudienceStatItem {
   value: string
   label: string
   source?: string
-  variant: "warm" | "navy" | "blue" | "success"
+  variant: "accent" | "navy" | "blue" | "light-blue"
 }
 
 export interface Audience {
@@ -31,7 +31,7 @@ export interface Audience {
   shortTitle: string
   subtitle: string
   icon: LucideIcon
-  colorVariant: "warm" | "navy" | "blue" | "success"
+  colorVariant: "accent" | "navy" | "blue" | "light-blue"
 
   // Homepage card bullets
   cardBullets: string[]
@@ -120,7 +120,7 @@ const audiences: Audience[] = [
         value: "29-45",
         label: "faculty hours consumed per remediation case",
         source: "University of Colorado; Penn EIRC",
-        variant: "warm",
+        variant: "accent",
       },
       {
         value: "50%",
@@ -132,7 +132,7 @@ const audiences: Audience[] = [
         value: "25%",
         label: "of PDs received little to no training in remediation",
         source: "CERA Survey",
-        variant: "warm",
+        variant: "accent",
       },
     ],
 
@@ -183,7 +183,7 @@ const audiences: Audience[] = [
     shortTitle: "DIOs & GME",
     subtitle: "Standardize remediation infrastructure across every program",
     icon: Building2,
-    colorVariant: "warm",
+    colorVariant: "accent",
 
     cardBullets: [
       "Standardized remediation documentation across every program",
@@ -229,7 +229,7 @@ const audiences: Audience[] = [
         value: "60%",
         label: "of hospital adverse events linked to communication failures",
         source: "The Joint Commission Sentinel Event Data",
-        variant: "warm",
+        variant: "accent",
       },
       {
         value: "$1.7B",
@@ -242,13 +242,13 @@ const audiences: Audience[] = [
         value: "$15K-$19K",
         label: "cost per external PACE remediation assessment",
         source: "PACE at UC San Diego",
-        variant: "warm",
+        variant: "accent",
       },
       {
         value: "93%",
         label: "of programs face remediation in past 3 years",
         source: "CERA Survey",
-        variant: "success",
+        variant: "light-blue",
       },
     ],
 
@@ -354,7 +354,7 @@ const audiences: Audience[] = [
         value: "ICS 1-3",
         label: "milestone-aligned feedback from every practice session",
         source: "ACGME Milestones 2.0",
-        variant: "success",
+        variant: "light-blue",
       },
     ],
 
@@ -405,7 +405,7 @@ const audiences: Audience[] = [
     shortTitle: "CCCs",
     subtitle: "Milestone-aligned data for every learner review",
     icon: ClipboardCheck,
-    colorVariant: "success",
+    colorVariant: "light-blue",
 
     cardBullets: [
       "Milestone-aligned assessment data from structured practice sessions",
@@ -449,7 +449,7 @@ const audiences: Audience[] = [
         label:
           "GME stakeholders don't know how to assess ICS milestones",
         source: "Survey of 1,195 GME stakeholders",
-        variant: "success",
+        variant: "light-blue",
       },
       {
         value: "ICS 1-3",
@@ -461,7 +461,7 @@ const audiences: Audience[] = [
       {
         value: "100%",
         label: "of practice sessions generate timestamped assessment data",
-        variant: "success",
+        variant: "light-blue",
       },
       {
         value: "Longitudinal",

@@ -26,9 +26,9 @@ export function EvidenceShowcase({
   return (
     <div
       className={cn(
-        "relative bg-gradient-to-br from-white/90 to-blue-50/90",
-        "rounded-2xl p-8 md:p-10 border border-blue-200",
-        "shadow-xl hover:shadow-2xl transition-all duration-300",
+        "relative bg-white",
+        "rounded-2xl p-8 md:p-10 border border-cs-gray",
+        "transition-shadow duration-300 hover:shadow-md",
         className
       )}
       {...props}
@@ -38,7 +38,7 @@ export function EvidenceShowcase({
         {badges.map((badge, index) => (
           <span
             key={index}
-            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-success/10 text-success border border-success/20"
+            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-cs-electric/20 text-cs-dark-blue border border-cs-electric/40"
           >
             {badge}
           </span>
@@ -47,21 +47,21 @@ export function EvidenceShowcase({
 
       {/* Icon and Title */}
       <div className="flex items-start gap-4 mb-4">
-        <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center flex-shrink-0">
-          <BookOpen className="w-6 h-6 text-white" />
+        <div className="w-12 h-12 rounded-lg bg-cs-dark-blue flex items-center justify-center flex-shrink-0">
+          <BookOpen className="w-6 h-6 text-cs-electric" />
         </div>
         <div className="flex-1">
-          <h3 className="text-xl md:text-2xl font-semibold text-navy mb-2">
+          <h3 className="text-xl md:text-2xl font-semibold text-cs-dark-blue mb-2">
             {studyTitle}
           </h3>
-          <p className="text-base text-gray-600 font-medium">
+          <p className="text-base text-cs-dark-gray font-medium">
             {journal} ({year})
           </p>
         </div>
       </div>
 
       {/* Summary */}
-      <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+      <p className="text-base md:text-lg text-cs-dark-blue/80 leading-relaxed mb-6">
         {summary}
       </p>
 
@@ -69,7 +69,7 @@ export function EvidenceShowcase({
       {link && (
         <Link href={link} target="_blank" rel="noopener noreferrer">
           <Button
-            variant="warm-accent"
+            variant="secondary"
             size="lg"
             className="group"
           >

@@ -8,7 +8,7 @@ export default function MarketingLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-white">
       <JsonLd
         data={[
           {
@@ -50,7 +50,7 @@ export default function MarketingLayout({
       />
       <SiteHeader />
       <main className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-indigo-600/10"></div>
+        <div className="absolute inset-0 bg-transparent"></div>
         <div className="relative">
           {children}
         </div>

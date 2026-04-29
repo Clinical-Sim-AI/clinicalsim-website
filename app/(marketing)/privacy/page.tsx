@@ -22,10 +22,10 @@ export default function PrivacyPolicyPage() {
   return (
     <section className="py-16 md:py-24">
       <div className="max-w-3xl mx-auto px-6 md:px-12">
-        <h1 className="text-4xl md:text-5xl font-light text-navy mb-4">Privacy Policy</h1>
-        <p className="text-sm text-gray-500 font-light mb-12">Last updated: March 16, 2026</p>
+        <h1 className="text-4xl md:text-5xl font-light text-cs-navy mb-4">Privacy Policy</h1>
+        <p className="text-sm text-cs-dark-gray font-light mb-12">Last updated: March 16, 2026</p>
 
-        <div className="prose prose-gray max-w-none space-y-8 [&_h2]:text-2xl [&_h2]:font-light [&_h2]:text-navy [&_h2]:mt-12 [&_h2]:mb-4 [&_p]:text-gray-700 [&_p]:font-light [&_p]:leading-relaxed [&_a]:text-blue-600 [&_a]:hover:text-warm [&_a]:transition-colors [&_ul]:space-y-2 [&_li]:text-gray-700 [&_li]:font-light">
+        <div className="prose prose-gray max-w-none space-y-8 [&_h2]:text-2xl [&_h2]:font-light [&_h2]:text-cs-navy [&_h2]:mt-12 [&_h2]:mb-4 [&_p]:text-cs-dark-blue/85 [&_p]:font-light [&_p]:leading-relaxed [&_a]:text-cs-dark-blue [&_a]:hover:text-cs-dark-blue [&_a]:transition-colors [&_ul]:space-y-2 [&_li]:text-cs-dark-blue/85 [&_li]:font-light">
           <h2>Introduction</h2>
           <p>
             ClinicalSim.ai (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website at clinicalsim.ai (the &quot;Site&quot;). Please read this policy carefully. By using the Site, you consent to the practices described in this policy.

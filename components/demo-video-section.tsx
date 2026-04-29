@@ -46,12 +46,12 @@ export function DemoVideoSection({
       {(title || description) && (
         <div className="text-center max-w-3xl mx-auto mb-8">
           {title && (
-            <h2 className="text-3xl md:text-4xl font-light shimmer mb-4">
+            <h2 className="text-3xl md:text-4xl font-light mb-4">
               {title}
             </h2>
           )}
           {description && (
-            <p className="text-lg md:text-xl text-gray-700 font-light">
+            <p className="text-lg md:text-xl text-cs-dark-blue/85 font-light">
               {description}
             </p>
           )}
@@ -107,7 +107,7 @@ export function DemoVideoSection({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-warm shadow-2xl flex items-center justify-center transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-warm/50">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-cs-electric shadow-2xl flex items-center justify-center transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-cs-electric/50">
                 <Play className="w-10 h-10 md:w-12 md:h-12 text-white ml-1" fill="white" />
               </div>
             </div>
@@ -116,7 +116,7 @@ export function DemoVideoSection({
 
         {/* Coming Soon Overlay (if no video URL provided) */}
         {!videoUrl && !youtubeUrl && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-600/90 to-indigo-600/90">
+          <div className="absolute inset-0 flex items-center justify-center bg-cs-dark-blue/90">
             <div className="text-center text-white p-8">
               <Play className="w-16 h-16 mx-auto mb-4 opacity-50" />
               <p className="text-2xl font-medium">Demo Video Coming Soon</p>

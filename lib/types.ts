@@ -2,7 +2,7 @@ export interface StatItem {
   value: string
   label: string
   source?: string
-  variant: "warm" | "navy" | "blue" | "success"
+  variant: "accent" | "navy" | "blue" | "light-blue"
 }
 
 export interface EvidenceItem {

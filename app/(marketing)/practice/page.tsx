@@ -49,7 +49,7 @@ const scenarios = [
     title: "Delivering initial remediation news",
     description:
       "The resident doesn't see it coming. They're shocked, defensive, or shut down entirely. You need to be clear, compassionate, and legally sound — all in the same conversation.",
-    variant: "warm" as const,
+    variant: "accent" as const,
   },
   {
     icon: ShieldAlert,
@@ -70,7 +70,7 @@ const scenarios = [
     title: "The conversation after failed remediation",
     description:
       "They completed every step of the plan, but benchmarks weren't met. This is the hardest conversation because they tried — and it still wasn't enough.",
-    variant: "success" as const,
+    variant: "light-blue" as const,
   },
 ]
 
@@ -142,28 +142,28 @@ export default function PracticePage() {
 
       {/* Hero Section */}
       <section className="relative px-6 py-16 md:py-24">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 -z-10" />
+        <div className="absolute inset-0 bg-cs-cloud -z-10" />
 
         <div className="max-w-4xl mx-auto">
-          <p className="text-sm font-medium text-warm uppercase tracking-wider mb-4">
+          <p className="text-sm font-medium text-cs-dark-blue uppercase tracking-wider mb-4">
             Free Early Access for Program Directors
           </p>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light shimmer leading-loose pb-3 mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-loose pb-3 mb-6">
             Practice the conversation before you have it
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-700 font-light leading-relaxed mb-4">
+          <p className="text-xl md:text-2xl text-cs-dark-blue/85 font-light leading-relaxed mb-4">
             You were trained to lead a program, teach clinical medicine, and
             evaluate competency. But{" "}
-            <span className="text-warm font-medium">
+            <span className="text-cs-dark-blue font-medium">
               remediation conversations
             </span>{" "}
             are a different skill — and the data shows most program directors
             never received formal training in them.
           </p>
 
-          <p className="text-base md:text-lg text-gray-600 font-light leading-relaxed mb-8 max-w-3xl">
+          <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-8 max-w-3xl">
             ClinicalSim gives you a private space to practice difficult
             remediation conversations with an AI-simulated resident or fellow —
             before the stakes are real. Describe your exact situation, and we
@@ -173,12 +173,12 @@ export default function PracticePage() {
 
           <div className="flex flex-col sm:flex-row gap-4 items-start">
             <a href="#early-access">
-              <Button variant="gradient-primary" size="xl">
+              <Button variant="accent" size="xl">
                 Get Early Access
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </a>
-            <p className="text-sm text-gray-500 font-light self-center">
+            <p className="text-sm text-cs-dark-gray font-light self-center">
               Free for program directors. Limited spots.
             </p>
           </div>
@@ -195,7 +195,7 @@ export default function PracticePage() {
               value="93%"
               label="of residency programs have faced remediation in the past 3 years"
               source="CERA Survey"
-              variant="warm"
+              variant="accent"
             />
             <StatHighlight
               value="25%"
@@ -213,7 +213,7 @@ export default function PracticePage() {
               value="50%"
               label="of PDs said an accessible remediation toolkit is what they want most"
               source="CERA Survey"
-              variant="success"
+              variant="light-blue"
             />
           </div>
         </div>
@@ -222,26 +222,26 @@ export default function PracticePage() {
       <SectionDivider variant="wave" color="slate" />
 
       {/* Scenarios Section */}
-      <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-3xl mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               The conversations{" "}
-              <span className="text-warm font-medium">
+              <span className="text-cs-dark-blue font-medium">
                 no one prepared you for
               </span>
             </h2>
-            <p className="text-lg text-gray-600 font-light leading-relaxed">
+            <p className="text-lg text-cs-dark-blue/70 font-light leading-relaxed">
               You know how to run a morbidity conference. You know how to
               evaluate a procedure. But when you sit across from a resident who
               just learned they&apos;re being placed on remediation — or a
               fellow who&apos;s defensive about professionalism feedback — the
               playbook doesn&apos;t exist. Until now.
             </p>
-            <p className="text-lg text-gray-600 font-light leading-relaxed mt-4">
+            <p className="text-lg text-cs-dark-blue/70 font-light leading-relaxed mt-4">
               These are common starting points — but you&apos;re not limited to
               them.{" "}
-              <span className="text-navy font-medium">
+              <span className="text-cs-navy font-medium">
                 Tell us the specific conversation you&apos;re preparing for, and
                 we&apos;ll dynamically build the scenario, the simulated
                 trainee&apos;s personality, the assessment rubric, and the
@@ -263,16 +263,16 @@ export default function PracticePage() {
             ))}
           </div>
 
-          <div className="mt-10 bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-warm/20 border-glow-hover transition-all duration-300 max-w-3xl mx-auto">
+          <div className="mt-10 bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-cs-electric/20 transition-all duration-300 max-w-3xl mx-auto">
             <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-warm flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-10 h-10 rounded-lg bg-cs-electric flex items-center justify-center flex-shrink-0 mt-1">
                 <Layers className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-cs-dark-blue mb-2">
                   Your situation is unique — your practice scenario should be too
                 </h3>
-                <p className="text-base text-gray-600 font-light leading-relaxed">
+                <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed">
                   Don&apos;t see your exact conversation above? That&apos;s the
                   point. Describe what you&apos;re facing — the resident&apos;s
                   history, the specific deficiency, the political dynamics — and
@@ -293,13 +293,13 @@ export default function PracticePage() {
       <section className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-3xl mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-cs-dark-blue mb-4">
               See exactly{" "}
-              <span className="text-warm font-medium">
+              <span className="text-cs-dark-blue font-medium">
                 how you did — and why
               </span>
             </h2>
-            <p className="text-lg text-gray-600 font-light leading-relaxed">
+            <p className="text-lg text-cs-dark-blue/70 font-light leading-relaxed">
               This isn&apos;t a chatbot that tells you &ldquo;good job.&rdquo;
               Every practice conversation generates structured, milestone-aligned
               feedback — the same assessment rigor your learners would
@@ -314,7 +314,7 @@ export default function PracticePage() {
                 icon={feature.icon}
                 title={feature.title}
                 description={feature.description}
-                variant={index === 0 ? "warm" : "default"}
+                variant={index === 0 ? "accent" : "default"}
                 expandOnHover
               />
             ))}
@@ -325,14 +325,14 @@ export default function PracticePage() {
       <SectionDivider variant="curve" color="blue" />
 
       {/* Transparency Section */}
-      <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50">
+      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               Full transparency into{" "}
-              <span className="text-warm font-medium">our approach</span>
+              <span className="text-cs-dark-blue font-medium">our approach</span>
             </h2>
-            <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto">
+            <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
               We don&apos;t ask you to trust a black box. Every scenario, every
               rubric, every piece of feedback is visible and grounded in the
               communication science your CCCs already use.
@@ -368,15 +368,15 @@ export default function PracticePage() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-white/70 rounded-xl p-6 border border-gray-200 border-glow-hover transition-all duration-300"
+                className="bg-white/70 rounded-xl p-6 border border-cs-gray/50 transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-lg bg-navy flex items-center justify-center mb-4">
+                <div className="w-10 h-10 rounded-lg bg-cs-navy flex items-center justify-center mb-4">
                   <item.icon className="w-5 h-5 text-white" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-cs-dark-blue mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-gray-600 font-light leading-relaxed">
+                <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -393,11 +393,11 @@ export default function PracticePage() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             {/* Left: Copy */}
             <div>
-              <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">
+              <h2 className="text-3xl md:text-4xl font-light text-cs-dark-blue mb-4">
                 Be one of the first to{" "}
-                <span className="text-warm font-medium">try it</span>
+                <span className="text-cs-dark-blue font-medium">try it</span>
               </h2>
-              <p className="text-lg text-gray-600 font-light leading-relaxed mb-6">
+              <p className="text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-6">
                 We&apos;re opening early access to a limited group of residency
                 and fellowship program directors who want to practice
                 remediation conversations with AI simulation.
@@ -423,24 +423,24 @@ export default function PracticePage() {
                   },
                 ].map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-md bg-blue-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <item.icon className="w-4 h-4 text-blue-600" />
+                    <div className="w-8 h-8 rounded-md bg-cs-cloud flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <item.icon className="w-4 h-4 text-cs-dark-blue" />
                     </div>
-                    <p className="text-base text-gray-700 font-light">
+                    <p className="text-base text-cs-dark-blue/85 font-light">
                       {item.text}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <p className="mt-6 text-sm text-gray-500 font-light">
+              <p className="mt-6 text-sm text-cs-dark-gray font-light">
                 Free. Private. On your schedule.
               </p>
             </div>
 
             {/* Right: Form */}
-            <div className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 rounded-2xl p-6 md:p-8 border border-gray-200">
-              <h3 className="text-xl font-medium text-navy mb-6">
+            <div className="bg-cs-cloud rounded-2xl p-6 md:p-8 border border-cs-gray/50">
+              <h3 className="text-xl font-medium text-cs-navy mb-6">
                 Request early access
               </h3>
 
@@ -459,29 +459,29 @@ export default function PracticePage() {
                   <div>
                     <Label
                       htmlFor="practice-firstName"
-                      className="text-sm font-normal text-gray-700 mb-1.5 block"
+                      className="text-sm font-normal text-cs-dark-blue/85 mb-1.5 block"
                     >
-                      First name <span className="text-warm">*</span>
+                      First name <span className="text-cs-dark-blue">*</span>
                     </Label>
                     <Input
                       id="practice-firstName"
                       name="firstName"
                       required
-                      className="bg-white border-gray-300 focus:border-blue-500 focus:ring-0 rounded-lg"
+                      className="bg-white border-cs-gray focus:border-cs-electric focus:ring-0 rounded-lg"
                     />
                   </div>
                   <div>
                     <Label
                       htmlFor="practice-lastName"
-                      className="text-sm font-normal text-gray-700 mb-1.5 block"
+                      className="text-sm font-normal text-cs-dark-blue/85 mb-1.5 block"
                     >
-                      Last name <span className="text-warm">*</span>
+                      Last name <span className="text-cs-dark-blue">*</span>
                     </Label>
                     <Input
                       id="practice-lastName"
                       name="lastName"
                       required
-                      className="bg-white border-gray-300 focus:border-blue-500 focus:ring-0 rounded-lg"
+                      className="bg-white border-cs-gray focus:border-cs-electric focus:ring-0 rounded-lg"
                     />
                   </div>
                 </div>
@@ -489,55 +489,55 @@ export default function PracticePage() {
                 <div>
                   <Label
                     htmlFor="practice-email"
-                    className="text-sm font-normal text-gray-700 mb-1.5 block"
+                    className="text-sm font-normal text-cs-dark-blue/85 mb-1.5 block"
                   >
-                    Email <span className="text-warm">*</span>
+                    Email <span className="text-cs-dark-blue">*</span>
                   </Label>
                   <Input
                     id="practice-email"
                     name="email"
                     type="email"
                     required
-                    className="bg-white border-gray-300 focus:border-blue-500 focus:ring-0 rounded-lg"
+                    className="bg-white border-cs-gray focus:border-cs-electric focus:ring-0 rounded-lg"
                   />
                 </div>
 
                 <div>
                   <Label
                     htmlFor="practice-institution"
-                    className="text-sm font-normal text-gray-700 mb-1.5 block"
+                    className="text-sm font-normal text-cs-dark-blue/85 mb-1.5 block"
                   >
-                    Institution <span className="text-warm">*</span>
+                    Institution <span className="text-cs-dark-blue">*</span>
                   </Label>
                   <Input
                     id="practice-institution"
                     name="institution"
                     placeholder="Hospital, Medical School, etc."
                     required
-                    className="bg-white border-gray-300 focus:border-blue-500 focus:ring-0 rounded-lg"
+                    className="bg-white border-cs-gray focus:border-cs-electric focus:ring-0 rounded-lg"
                   />
                 </div>
 
                 <div>
                   <Label
                     htmlFor="practice-specialty"
-                    className="text-sm font-normal text-gray-700 mb-1.5 block"
+                    className="text-sm font-normal text-cs-dark-blue/85 mb-1.5 block"
                   >
-                    Program / Specialty <span className="text-warm">*</span>
+                    Program / Specialty <span className="text-cs-dark-blue">*</span>
                   </Label>
                   <Input
                     id="practice-specialty"
                     name="specialty"
                     placeholder="e.g., Internal Medicine Residency"
                     required
-                    className="bg-white border-gray-300 focus:border-blue-500 focus:ring-0 rounded-lg"
+                    className="bg-white border-cs-gray focus:border-cs-electric focus:ring-0 rounded-lg"
                   />
                 </div>
 
                 <div>
                   <Label
                     htmlFor="practice-scenario"
-                    className="text-sm font-normal text-gray-700 mb-1.5 block"
+                    className="text-sm font-normal text-cs-dark-blue/85 mb-1.5 block"
                   >
                     Describe the conversation you&apos;re preparing for
                   </Label>
@@ -546,16 +546,16 @@ export default function PracticePage() {
                     name="scenario"
                     rows={3}
                     placeholder="e.g., 'PGY-2 who received below-expected milestone ratings from CCC, disputes the assessment, has a history of defensiveness with feedback...'"
-                    className="bg-white border-gray-300 focus:border-blue-500 focus:ring-0 resize-none rounded-lg"
+                    className="bg-white border-cs-gray focus:border-cs-electric focus:ring-0 resize-none rounded-lg"
                   />
-                  <p className="text-xs text-gray-500 font-light mt-1.5">
+                  <p className="text-xs text-cs-dark-gray font-light mt-1.5">
                     We&apos;ll dynamically generate a practice scenario, trainee persona, and assessment rubric tailored to your exact situation.
                   </p>
                 </div>
 
                 <Button
                   type="submit"
-                  variant="gradient-primary"
+                  variant="accent"
                   size="lg"
                   className="w-full"
                 >
@@ -563,11 +563,11 @@ export default function PracticePage() {
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
 
-                <p className="text-xs text-gray-500 font-light text-center">
+                <p className="text-xs text-cs-dark-gray font-light text-center">
                   We&apos;ll never share your information. See our{" "}
                   <Link
                     href="/privacy"
-                    className="text-blue-600 hover:text-warm transition-colors"
+                    className="text-cs-dark-blue hover:text-cs-dark-blue transition-colors"
                   >
                     privacy policy
                   </Link>
@@ -582,13 +582,13 @@ export default function PracticePage() {
       <SectionDivider variant="curve" color="blue" />
 
       {/* Bridge Section — From Your Practice to Your Program */}
-      <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50">
+      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
             From your practice to{" "}
-            <span className="text-warm font-medium">your program</span>
+            <span className="text-cs-dark-blue font-medium">your program</span>
           </h2>
-          <p className="text-lg text-gray-600 font-light leading-relaxed mb-8 max-w-3xl">
+          <p className="text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-8 max-w-3xl">
             The same simulation engine that helps you prepare for a remediation
             meeting helps your residents and fellows practice the clinical
             conversations they&apos;re struggling with — breaking bad news,
@@ -618,15 +618,15 @@ export default function PracticePage() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-white/70 rounded-xl p-6 border border-gray-200 border-glow-hover transition-all duration-300"
+                className="bg-white/70 rounded-xl p-6 border border-cs-gray/50 transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center mb-4">
+                <div className="w-10 h-10 rounded-lg bg-cs-dark-blue flex items-center justify-center mb-4">
                   <item.icon className="w-5 h-5 text-white" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-cs-dark-blue mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-gray-600 font-light leading-relaxed">
+                <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -635,7 +635,7 @@ export default function PracticePage() {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/audiences/program-directors">
-              <Button variant="warm-accent" size="lg">
+              <Button variant="secondary" size="lg">
                 Learn more about ClinicalSim for your program
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
@@ -650,19 +650,19 @@ export default function PracticePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="px-6 py-16 md:py-20 bg-gradient-to-br from-navy via-blue-900 to-indigo-900 text-white">
+      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             The next remediation conversation doesn&apos;t have to be the first
             time you practice it
           </h2>
-          <p className="text-lg md:text-xl font-light mb-8 text-blue-100">
+          <p className="text-lg md:text-xl font-light mb-8 text-white/90">
             Get free early access to AI-powered remediation practice — built for
             program directors, by people who understand graduate medical
             education.
           </p>
           <a href="#early-access">
-            <Button variant="warm-filled" size="xl">
+            <Button variant="accent" size="xl">
               Get Early Access
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

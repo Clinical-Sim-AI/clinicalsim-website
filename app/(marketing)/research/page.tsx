@@ -37,7 +37,7 @@ const benefits = [
     icon: Lightbulb,
     title: "Custom Scenario Development",
     description: "We'll work with you to build tailored simulation scenarios that match your study design and clinical focus area.",
-    variant: "warm" as const,
+    variant: "accent" as const,
   },
   {
     icon: BarChart3,
@@ -49,7 +49,7 @@ const benefits = [
     icon: FileText,
     title: "Publication Support",
     description: "Co-authorship opportunities, statistical consultation, and support preparing manuscripts for peer-reviewed journals.",
-    variant: "success" as const,
+    variant: "light-blue" as const,
   },
   {
     icon: Users,
@@ -61,7 +61,7 @@ const benefits = [
     icon: FlaskConical,
     title: "IRB & Study Design Guidance",
     description: "Experience navigating IRB protocols for AI simulation research and input on study design considerations unique to this modality.",
-    variant: "warm" as const,
+    variant: "accent" as const,
   },
 ]
 
@@ -128,13 +128,13 @@ export default function ResearchPage() {
       />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 text-white py-16 md:py-24">
+      <section className="bg-cs-dark-blue text-white py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             {/* Research Info */}
             <div>
               <h1 className="text-4xl md:text-5xl font-light mb-6">Research with ClinicalSim.ai</h1>
-              <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-blue-50">
+              <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-cs-cloud">
                 We partner with researchers studying communication remediation, simulation-based education,
                 and competency assessment in graduate and undergraduate medical education. If you have a study idea that could use our platform,
                 we&apos;d love to hear from you.
@@ -143,7 +143,7 @@ export default function ResearchPage() {
               <div className="space-y-6">
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-xl font-medium mb-2">What We Provide</h3>
-                  <p className="text-base font-light text-blue-50">
+                  <p className="text-base font-light text-cs-cloud">
                     Platform access, custom scenario development, data collection support,
                     and co-authorship opportunities, all at no cost to your research team.
                   </p>
@@ -151,9 +151,9 @@ export default function ResearchPage() {
 
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-xl font-medium mb-2">Response Time</h3>
-                  <p className="text-base font-light text-blue-50">
+                  <p className="text-base font-light text-cs-cloud">
                     We review applications on a rolling basis and typically respond within{" "}
-                    <span className="font-mono text-warm">1-2 weeks</span>.
+                    <span className="font-bold tracking-tight text-cs-dark-blue">1-2 weeks</span>.
                   </p>
                 </div>
               </div>
@@ -168,63 +168,63 @@ export default function ResearchPage() {
               {/* Name */}
               <div>
                 <Label htmlFor="name" className="text-white text-base font-normal mb-2 block">
-                  Name <span className="text-warm">*</span>
+                  Name <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
                   name="name"
                   id="name"
                   required
                   placeholder="Full name"
-                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-warm focus:ring-0 rounded-lg"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
               </div>
 
               {/* Email */}
               <div>
                 <Label htmlFor="email" className="text-white text-base font-normal mb-2 block">
-                  Email <span className="text-warm">*</span>
+                  Email <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
                   name="email"
                   id="email"
                   type="email"
                   required
-                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-warm focus:ring-0 rounded-lg"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
               </div>
 
               {/* Institution */}
               <div>
                 <Label htmlFor="institution" className="text-white text-base font-normal mb-2 block">
-                  Affiliate Institution <span className="text-warm">*</span>
+                  Affiliate Institution <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
                   name="institution"
                   id="institution"
                   required
                   placeholder="University, hospital, or research center"
-                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-warm focus:ring-0 rounded-lg"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
               </div>
 
               {/* Primary Specialty */}
               <div>
                 <Label htmlFor="specialty" className="text-white text-base font-normal mb-2 block">
-                  Primary Specialty <span className="text-warm">*</span>
+                  Primary Specialty <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
                   name="specialty"
                   id="specialty"
                   required
                   placeholder="e.g., Palliative Care, Medical Education, Internal Medicine"
-                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-warm focus:ring-0 rounded-lg"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
               </div>
 
               {/* Study Idea */}
               <div>
                 <Label htmlFor="studyIdea" className="text-white text-base font-normal mb-2 block">
-                  Study Idea <span className="text-warm">*</span>
+                  Study Idea <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Textarea
                   name="studyIdea"
@@ -232,35 +232,35 @@ export default function ResearchPage() {
                   rows={3}
                   required
                   placeholder="Brief description of your research question and how you envision using the platform"
-                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-warm focus:ring-0 resize-none rounded-lg"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 resize-none rounded-lg"
                 />
               </div>
 
               {/* Target Participants */}
               <div>
                 <Label htmlFor="targetParticipants" className="text-white text-base font-normal mb-2 block">
-                  Target Participants <span className="text-warm">*</span>
+                  Target Participants <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
                   name="targetParticipants"
                   id="targetParticipants"
                   required
                   placeholder="e.g., PGY-1 internal medicine learners"
-                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-warm focus:ring-0 rounded-lg"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
               </div>
 
               {/* Estimated Number of Participants */}
               <div>
                 <Label htmlFor="participantCount" className="text-white text-base font-normal mb-2 block">
-                  Estimated Number of Participants <span className="text-warm">*</span>
+                  Estimated Number of Participants <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
                   name="participantCount"
                   id="participantCount"
                   required
                   placeholder="e.g., 30-50"
-                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-warm focus:ring-0 rounded-lg"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
               </div>
 
@@ -274,7 +274,7 @@ export default function ResearchPage() {
                   id="feedbackTool"
                   rows={2}
                   placeholder="e.g., Calgary-Cambridge, ACGME milestones. If not yet decided, write NA."
-                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-warm focus:ring-0 resize-none rounded-lg"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 resize-none rounded-lg"
                 />
               </div>
 
@@ -288,7 +288,7 @@ export default function ResearchPage() {
                   id="preSurvey"
                   rows={2}
                   placeholder="Describe any pre-intervention survey or assessment. If no, write NA."
-                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-warm focus:ring-0 resize-none rounded-lg"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 resize-none rounded-lg"
                 />
               </div>
 
@@ -302,14 +302,14 @@ export default function ResearchPage() {
                   id="postSurvey"
                   rows={2}
                   placeholder="Describe any post-intervention survey or assessment. If no, write NA."
-                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-warm focus:ring-0 resize-none rounded-lg"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 resize-none rounded-lg"
                 />
               </div>
 
               {/* Submit Button */}
               <Button
                 type="submit"
-                variant="warm-filled"
+                variant="accent"
                 size="lg"
                 className="w-full md:w-auto"
               >
@@ -326,10 +326,10 @@ export default function ResearchPage() {
       <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               Conference Presentations
             </h2>
-            <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto">
+            <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
               Our team has presented research on AI-driven communication training at leading medical education and simulation conferences.
             </p>
           </div>
@@ -338,30 +338,30 @@ export default function ResearchPage() {
             {presentations.map((p, index) => (
               <div
                 key={index}
-                className="relative bg-gradient-to-br from-white to-blue-50/50 rounded-xl p-6 md:p-8 border border-blue-100 hover:border-blue-200 hover:shadow-md transition-all duration-300"
+                className="relative bg-white rounded-xl p-6 md:p-8 border border-cs-gray hover:border-cs-light-blue/40 hover:shadow-md transition-all duration-300"
               >
                 <div className="flex flex-col md:flex-row md:items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-cs-dark-blue flex items-center justify-center">
                     <Presentation className="w-5 h-5 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-semibold text-navy mb-2 leading-snug">
+                    <h3 className="text-lg font-semibold text-cs-navy mb-2 leading-snug">
                       {p.title}
                     </h3>
-                    <p className="text-sm text-gray-600 mb-3">
+                    <p className="text-sm text-cs-dark-blue/70 mb-3">
                       {p.authors}
                     </p>
                     <div className="flex flex-wrap items-center gap-3 text-sm">
-                      <span className="inline-flex items-center gap-1.5 text-gray-700 font-medium">
-                        <Calendar className="w-3.5 h-3.5 text-warm" />
+                      <span className="inline-flex items-center gap-1.5 text-cs-dark-blue/85 font-medium">
+                        <Calendar className="w-3.5 h-3.5 text-cs-dark-blue" />
                         {p.venue}
                       </span>
-                      <span className="inline-flex items-center gap-1.5 text-gray-500">
-                        <MapPin className="w-3.5 h-3.5 text-warm" />
+                      <span className="inline-flex items-center gap-1.5 text-cs-dark-gray">
+                        <MapPin className="w-3.5 h-3.5 text-cs-dark-blue" />
                         {p.location}, {p.date}
                       </span>
                       {p.type && (
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success/10 text-success border border-success/20">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-cs-light-blue/10 text-cs-light-blue border border-cs-light-blue/20">
                           {p.type}
                         </span>
                       )}
@@ -380,10 +380,10 @@ export default function ResearchPage() {
       <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
-              Why collaborate with <span className="text-warm font-medium">ClinicalSim.ai</span>?
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
+              Why collaborate with <span className="text-cs-dark-blue font-medium">ClinicalSim.ai</span>?
             </h2>
-            <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto">
+            <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
               We handle the platform logistics so you can focus on the research.
             </p>
           </div>
@@ -402,9 +402,9 @@ export default function ResearchPage() {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-gray-600 font-light">
+            <p className="text-cs-dark-blue/70 font-light">
               Have questions before applying?{" "}
-              <Link href="/contact" className="text-blue-600 font-medium hover:text-warm transition-colors">
+              <Link href="/contact" className="text-cs-dark-blue font-medium hover:text-cs-dark-blue transition-colors">
                 Get in touch
               </Link>
             </p>

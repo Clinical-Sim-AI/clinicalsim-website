@@ -25,13 +25,13 @@ export interface RemediationPersona {
   painPoint: string
   whatTheyGet: string
   iconName: string
-  colorVariant: "warm" | "navy" | "blue" | "success"
+  colorVariant: "accent" | "navy" | "blue" | "light-blue"
 }
 
 export interface TeamCredential {
   area: string
   credentials: string[]
-  colorVariant: "warm" | "navy" | "blue" | "success"
+  colorVariant: "accent" | "navy" | "blue" | "light-blue"
 }
 
 export interface PricingComparison {
@@ -96,7 +96,7 @@ export const remediationPageData: RemediationPageData = {
       label:
         "of residency programs have faced remediation in the past 3 years",
       source: "CERA Survey, 267 Family Medicine PDs",
-      variant: "warm",
+      variant: "accent",
     },
     {
       value: "16",
@@ -116,7 +116,7 @@ export const remediationPageData: RemediationPageData = {
       value: "29-45",
       label: "faculty hours consumed per remediation case",
       source: "University of Colorado; Penn EIRC",
-      variant: "warm",
+      variant: "accent",
     },
   ],
 
@@ -213,7 +213,7 @@ export const remediationPageData: RemediationPageData = {
       whatTheyGet:
         "Institution-wide remediation infrastructure with consistent assessment standards, defensible documentation, and centralized oversight.",
       iconName: "Building2",
-      colorVariant: "warm",
+      colorVariant: "accent",
     },
     {
       role: "Simulation Centers",
@@ -235,7 +235,7 @@ export const remediationPageData: RemediationPageData = {
       whatTheyGet:
         "Structured, longitudinal data aligned to ICS Milestones 2.0 from every remediation session, giving your committee objective evidence for competency decisions.",
       iconName: "ClipboardCheck",
-      colorVariant: "success",
+      colorVariant: "light-blue",
     },
   ],
 
@@ -257,7 +257,7 @@ export const remediationPageData: RemediationPageData = {
         "Published communication skills researchers",
         "Blinded evaluation using validated frameworks",
       ],
-      colorVariant: "warm",
+      colorVariant: "accent",
     },
     {
       area: "Graduate Medical Education",
@@ -273,7 +273,7 @@ export const remediationPageData: RemediationPageData = {
         "HIPAA-compliant platform architecture",
         "Voice-based AI simulation",
       ],
-      colorVariant: "success",
+      colorVariant: "light-blue",
     },
   ],
 
@@ -296,7 +296,7 @@ export const remediationPageData: RemediationPageData = {
       label:
         "of residency programs have faced remediation in the past 3 years",
       source: "CERA Survey, 267 Family Medicine PDs",
-      variant: "warm",
+      variant: "accent",
     },
     {
       value: "50%",

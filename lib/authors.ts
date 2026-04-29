@@ -4,7 +4,7 @@ export interface Author {
   credentials?: string
   title: string
   bio: string
-  colorVariant: "warm" | "navy" | "blue" | "success"
+  colorVariant: "accent" | "navy" | "blue" | "light-blue"
 }
 
 export const TEAM_AUTHOR_ID = "clinicalsim-team"

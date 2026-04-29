@@ -88,16 +88,16 @@ export default function PricingPage() {
       {/* Hero                                                                */}
       {/* ------------------------------------------------------------------ */}
       <section className="relative px-6 py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50" />
+        <div className="absolute inset-0 bg-cs-cloud" />
         <div className="relative max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-6 leading-tight">
-            <span className="shimmer font-medium">{data.heroHeadline}</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-cs-dark-blue mb-6 leading-tight">
+            <span className="font-medium">{data.heroHeadline}</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-700 font-light leading-relaxed max-w-3xl mx-auto mb-8">
+          <p className="text-lg md:text-xl text-cs-dark-blue/85 font-light leading-relaxed max-w-3xl mx-auto mb-8">
             {data.heroSubheadline}
           </p>
           <a href="#roi-calculator">
-            <Button variant="warm-accent" size="lg">
+            <Button variant="secondary" size="lg">
               See what you could save
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
@@ -116,10 +116,10 @@ export default function PricingPage() {
             value="93%"
             label="of residency programs have faced communication remediation in the past three years"
             source="CERA Survey"
-            variant="warm"
+            variant="accent"
             size="large"
           />
-          <p className="text-base md:text-lg text-gray-700 font-light leading-relaxed max-w-3xl mx-auto mt-8">
+          <p className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed max-w-3xl mx-auto mt-8">
             {data.contextParagraph}
           </p>
         </div>
@@ -134,7 +134,7 @@ export default function PricingPage() {
         <ROICalculator />
         <div className="text-center mt-8">
           <a href="#plans">
-            <Button variant="warm-accent" size="lg">
+            <Button variant="secondary" size="lg">
               See plans &amp; pricing
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
@@ -149,7 +149,7 @@ export default function PricingPage() {
 
       <section
         id="plans"
-        className="px-6 py-12 md:py-16 bg-gradient-to-b from-slate-50 to-blue-50/30 scroll-mt-20"
+        className="px-6 py-12 md:py-16 bg-cs-cloud scroll-mt-20"
       >
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 lg:gap-8 items-start">
@@ -157,22 +157,22 @@ export default function PricingPage() {
               <div
                 key={tier.id}
                 className={cn(
-                  "relative bg-white rounded-2xl border transition-all duration-300 border-glow-hover flex flex-col",
+                  "relative bg-white rounded-2xl border transition-all duration-300 flex flex-col",
                   tier.highlighted
-                    ? "border-warm/50 md:scale-105 shadow-xl z-10 p-6 md:p-8"
-                    : "border-gray-200 p-6 md:p-8",
+                    ? "border-cs-electric/50 md:scale-105 shadow-xl z-10 p-6 md:p-8"
+                    : "border-cs-gray/50 p-6 md:p-8",
                   tier.id === "individual" && "md:opacity-80 md:scale-95"
                 )}
               >
                 {/* Badge */}
                 {tier.badge && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-warm text-white text-sm font-medium px-4 py-1 rounded-full whitespace-nowrap">
+                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-cs-electric text-white text-sm font-medium px-4 py-1 rounded-full whitespace-nowrap">
                     {tier.badge}
                   </span>
                 )}
 
                 {/* Tier name */}
-                <h3 className="text-sm font-medium uppercase tracking-wider text-gray-500 mb-4">
+                <h3 className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mb-4">
                   {tier.name}
                 </h3>
 
@@ -182,18 +182,18 @@ export default function PricingPage() {
                     <div className="flex items-baseline gap-1">
                       <span
                         className={cn(
-                          "font-mono text-4xl md:text-5xl font-bold",
-                          tier.highlighted ? "text-warm" : "text-blue-600"
+                          "font-bold tracking-tight text-4xl md:text-5xl font-bold",
+                          tier.highlighted ? "text-cs-dark-blue" : "text-cs-dark-blue"
                         )}
                       >
                         {tier.priceMonthly}
                       </span>
-                      <span className="text-gray-500 font-light text-base">
+                      <span className="text-cs-dark-gray font-light text-base">
                         {tier.priceLabel}
                       </span>
                     </div>
                   ) : (
-                    <span className="font-mono text-3xl md:text-4xl font-bold text-navy">
+                    <span className="font-bold tracking-tight text-3xl md:text-4xl font-bold text-cs-navy">
                       {tier.priceLabel}
                     </span>
                   )}
@@ -201,7 +201,7 @@ export default function PricingPage() {
 
                 {/* Annual price note */}
                 {tier.priceAnnualPerMonth && (
-                  <p className="text-sm text-gray-500 font-light mb-4">
+                  <p className="text-sm text-cs-dark-gray font-light mb-4">
                     {tier.priceAnnualPerMonth}/month billed annually (
                     {tier.priceAnnualTotal})
                   </p>
@@ -209,19 +209,19 @@ export default function PricingPage() {
 
                 {/* Footnote (billing terms) */}
                 {tier.footnote && !tier.priceAnnualPerMonth && (
-                  <p className="text-sm text-gray-500 font-light mb-4">
+                  <p className="text-sm text-cs-dark-gray font-light mb-4">
                     {tier.footnote}
                   </p>
                 )}
 
                 {/* Description */}
-                <p className="text-sm text-gray-600 font-light leading-relaxed mb-6">
+                <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed mb-6">
                   {tier.description}
                 </p>
 
                 {/* Features heading */}
                 {tier.featuresHeading && (
-                  <p className="text-sm font-medium text-gray-900 mb-3">
+                  <p className="text-sm font-medium text-cs-dark-blue mb-3">
                     {tier.featuresHeading}
                   </p>
                 )}
@@ -233,10 +233,10 @@ export default function PricingPage() {
                       <Check
                         className={cn(
                           "w-4 h-4 mt-0.5 flex-shrink-0",
-                          tier.highlighted ? "text-warm" : "text-blue-600"
+                          tier.highlighted ? "text-cs-dark-blue" : "text-cs-dark-blue"
                         )}
                       />
-                      <span className="text-sm text-gray-700 font-light leading-relaxed">
+                      <span className="text-sm text-cs-dark-blue/85 font-light leading-relaxed">
                         {feature}
                       </span>
                     </li>
@@ -245,17 +245,17 @@ export default function PricingPage() {
 
                 {/* Custom scenarios callout — Program tier only */}
                 {tier.id === "program" && (
-                  <div className="border border-warm/20 bg-orange-50/50 rounded-lg px-4 py-3 mb-6">
-                    <p className="text-sm text-gray-800 font-medium mb-1">
+                  <div className="border border-cs-electric/20 bg-cs-cloud rounded-lg px-4 py-3 mb-6">
+                    <p className="text-sm text-cs-dark-blue font-medium mb-1">
                       Need scenarios built for your specialty?
                     </p>
-                    <p className="text-xs text-gray-600 font-light leading-relaxed">
+                    <p className="text-xs text-cs-dark-blue/70 font-light leading-relaxed">
                       We build custom scenarios grounded in validated frameworks
                       (Calgary-Cambridge, SPIKES, ACGME ICS 2.0) — included for
                       founding programs.{" "}
                       <Link
                         href="/contact"
-                        className="text-blue-600 hover:text-warm transition-colors font-normal"
+                        className="text-cs-dark-blue hover:text-cs-dark-blue transition-colors font-normal"
                       >
                         Learn more &rarr;
                       </Link>
@@ -277,13 +277,13 @@ export default function PricingPage() {
                   {tier.secondaryCta && (
                     <Link
                       href={tier.secondaryCta.href}
-                      className="block text-center mt-2 text-sm text-blue-600 hover:text-warm transition-colors font-light"
+                      className="block text-center mt-2 text-sm text-cs-dark-blue hover:text-cs-dark-blue transition-colors font-light"
                     >
                       {tier.secondaryCta.label}
                     </Link>
                   )}
                   {tier.footnote && tier.priceAnnualPerMonth && (
-                    <p className="text-xs text-gray-400 font-light text-center mt-2">
+                    <p className="text-xs text-cs-gray font-light text-center mt-2">
                       {tier.footnote}
                     </p>
                   )}
@@ -296,20 +296,20 @@ export default function PricingPage() {
           {/* Program cost table                                                */}
           {/* ---------------------------------------------------------------- */}
           <div className="mt-16 max-w-4xl mx-auto">
-            <h3 className="text-2xl md:text-3xl font-light text-gray-900 mb-2 text-center">
+            <h3 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-2 text-center">
               What does this look like for{" "}
-              <span className="text-warm font-medium">your program?</span>
+              <span className="text-cs-dark-blue font-medium">your program?</span>
             </h3>
-            <p className="text-sm text-gray-500 font-light text-center mb-8">
+            <p className="text-sm text-cs-dark-gray font-light text-center mb-8">
               Program tier pricing
             </p>
 
             {/* Desktop table */}
             <div className="hidden md:block">
-              <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+              <div className="bg-white rounded-2xl border border-cs-gray/50 overflow-hidden shadow-sm">
                 <table className="w-full">
                   <thead>
-                    <tr className="bg-navy text-white">
+                    <tr className="bg-cs-navy text-white">
                       <th className="px-6 py-4 text-left text-sm font-medium">
                         Program Size
                       </th>
@@ -324,16 +324,16 @@ export default function PricingPage() {
                   <tbody className="divide-y divide-gray-100">
                     {data.programCostRows.map((row, index) => (
                       <tr key={index} className="hover:bg-gray-50 transition-colors">
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                        <td className="px-6 py-4 text-sm font-medium text-cs-dark-blue">
                           {row.programSize}
                         </td>
-                        <td className="px-6 py-4 text-sm font-mono text-warm font-bold">
+                        <td className="px-6 py-4 text-sm font-bold tracking-tight text-cs-dark-blue font-bold">
                           {row.annualCost}
                         </td>
-                        <td className="px-6 py-4 text-sm font-mono text-gray-700">
+                        <td className="px-6 py-4 text-sm font-bold tracking-tight text-cs-dark-blue/85">
                           {row.perLearnerYear}
                           {row.note && (
-                            <span className="block font-sans font-light text-xs text-gray-500 mt-1">
+                            <span className="block font-sans font-light text-xs text-cs-dark-gray mt-1">
                               {row.note}
                             </span>
                           )}
@@ -350,27 +350,27 @@ export default function PricingPage() {
               {data.programCostRows.map((row, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl border border-gray-200 p-5"
+                  className="bg-white rounded-xl border border-cs-gray/50 p-5"
                 >
-                  <h4 className="text-base font-medium text-gray-900 mb-3">
+                  <h4 className="text-base font-medium text-cs-dark-blue mb-3">
                     {row.programSize}
                   </h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Annual Cost</span>
-                      <span className="font-mono text-warm font-bold">
+                      <span className="text-cs-dark-gray">Annual Cost</span>
+                      <span className="font-bold tracking-tight text-cs-dark-blue font-bold">
                         {row.annualCost}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Per Learner / Year</span>
-                      <span className="font-mono text-gray-700">
+                      <span className="text-cs-dark-gray">Per Learner / Year</span>
+                      <span className="font-bold tracking-tight text-cs-dark-blue/85">
                         {row.perLearnerYear}
                       </span>
                     </div>
                   </div>
                   {row.note && (
-                    <p className="text-xs text-gray-500 font-light mt-3">
+                    <p className="text-xs text-cs-dark-gray font-light mt-3">
                       {row.note}
                     </p>
                   )}
@@ -378,7 +378,7 @@ export default function PricingPage() {
               ))}
             </div>
 
-            <p className="text-sm text-gray-600 font-light leading-relaxed mt-8 max-w-3xl mx-auto text-center">
+            <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed mt-8 max-w-3xl mx-auto text-center">
               {data.programCostContext}
             </p>
           </div>
@@ -390,19 +390,19 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       <SectionDivider variant="diagonal-up" color="slate" />
 
-      <section className="px-6 py-12 md:py-16 bg-gradient-to-b from-slate-50 to-blue-50/30">
+      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-navy mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 text-center">
             Standardized Patients vs.{" "}
-            <span className="text-warm font-medium">ClinicalSim AI</span>
+            <span className="text-cs-dark-blue font-medium">ClinicalSim AI</span>
           </h2>
 
           {/* Desktop table */}
           <div className="hidden md:block">
-            <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+            <div className="bg-white rounded-2xl border border-cs-gray/50 overflow-hidden shadow-sm">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-navy text-white">
+                  <tr className="bg-cs-navy text-white">
                     <th className="px-6 py-4 text-left text-sm font-medium" />
                     <th className="px-6 py-4 text-left text-sm font-medium">
                       Standardized Patients
@@ -419,22 +419,22 @@ export default function PricingPage() {
                       className={cn(
                         "transition-colors",
                         row.highlight
-                          ? "bg-warm/5 border-l-4 border-l-warm"
+                          ? "bg-cs-electric/5 border-l-4 border-l-cs-electric"
                           : "hover:bg-gray-50"
                       )}
                     >
-                      <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                      <td className="px-6 py-4 text-sm font-medium text-cs-dark-blue">
                         {row.feature}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
+                      <td className="px-6 py-4 text-sm text-cs-dark-blue/85">
                         {row.sp}
                       </td>
                       <td
                         className={cn(
                           "px-6 py-4 text-sm",
                           row.highlight
-                            ? "text-warm font-bold font-mono"
-                            : "text-gray-700"
+                            ? "text-cs-dark-blue font-bold font-bold tracking-tight"
+                            : "text-cs-dark-blue/85"
                         )}
                       >
                         {row.clinicalsim}
@@ -454,25 +454,25 @@ export default function PricingPage() {
                 className={cn(
                   "rounded-xl border p-5",
                   row.highlight
-                    ? "bg-warm/5 border-warm/20"
-                    : "bg-white border-gray-200"
+                    ? "bg-cs-electric/5 border-cs-electric/20"
+                    : "bg-white border-cs-gray/50"
                 )}
               >
-                <h3 className="text-base font-medium text-gray-900 mb-3">
+                <h3 className="text-base font-medium text-cs-dark-blue mb-3">
                   {row.feature}
                 </h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">SPs</span>
-                    <span className="text-gray-700">{row.sp}</span>
+                    <span className="text-cs-dark-gray">SPs</span>
+                    <span className="text-cs-dark-blue/85">{row.sp}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">ClinicalSim</span>
+                    <span className="text-cs-dark-gray">ClinicalSim</span>
                     <span
                       className={cn(
                         row.highlight
-                          ? "text-warm font-bold font-mono"
-                          : "text-gray-700"
+                          ? "text-cs-dark-blue font-bold font-bold tracking-tight"
+                          : "text-cs-dark-blue/85"
                       )}
                     >
                       {row.clinicalsim}
@@ -495,14 +495,14 @@ export default function PricingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
             {data.testimonials.map((testimonial, index) => (
               <div key={index} className="relative">
-                <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-warm/20 font-serif">
+                <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-cs-dark-blue/20 font-serif">
                   &ldquo;
                 </div>
                 <blockquote className="relative pl-8 pt-4">
-                  <p className="text-lg md:text-xl text-gray-800 font-light leading-relaxed mb-4">
+                  <p className="text-lg md:text-xl text-cs-dark-blue font-light leading-relaxed mb-4">
                     {testimonial.quote}
                   </p>
-                  <cite className="text-sm text-gray-600 font-normal not-italic border-l-4 border-warm pl-4">
+                  <cite className="text-sm text-cs-dark-blue/70 font-normal not-italic border-l-4 border-cs-electric pl-4">
                     {testimonial.attribution}
                   </cite>
                 </blockquote>
@@ -510,7 +510,7 @@ export default function PricingPage() {
             ))}
           </div>
 
-          <p className="text-sm text-gray-500 font-light text-center mt-12 max-w-2xl mx-auto italic">
+          <p className="text-sm text-cs-dark-gray font-light text-center mt-12 max-w-2xl mx-auto italic">
             {data.trustLine}
           </p>
         </div>
@@ -521,27 +521,27 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       <SectionDivider variant="diagonal-up" color="slate" />
 
-      <section className="px-6 py-12 md:py-16 bg-gradient-to-b from-slate-50 to-blue-50/30">
+      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-navy mb-8">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
             Frequently Asked{" "}
-            <span className="text-warm font-medium">Questions</span>
+            <span className="text-cs-dark-blue font-medium">Questions</span>
           </h2>
           <div className="space-y-4">
             {data.faqs.map((faq, index) => (
               <div
                 key={index}
-                className="border border-gray-200 rounded-xl overflow-hidden"
+                className="border border-cs-gray/50 rounded-xl overflow-hidden"
               >
                 <details className="group">
                   <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-white hover:bg-gray-50 transition-colors">
-                    <h3 className="text-lg font-medium text-gray-900 pr-4">
+                    <h3 className="text-lg font-medium text-cs-dark-blue pr-4">
                       {faq.question}
                     </h3>
-                    <ChevronRight className="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-90" />
+                    <ChevronRight className="w-5 h-5 text-cs-gray flex-shrink-0 transition-transform group-open:rotate-90" />
                   </summary>
                   <div className="px-6 pb-5 pt-2">
-                    <p className="text-base text-gray-700 font-light leading-relaxed">
+                    <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
@@ -557,7 +557,7 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       <SectionDivider variant="diagonal-down" color="indigo" />
 
-      <section className="px-6 py-16 md:py-20 bg-gradient-to-br from-navy via-blue-900 to-indigo-900 text-white">
+      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             {data.foundingHeadline}
@@ -565,14 +565,14 @@ export default function PricingPage() {
           {data.foundingDescription.split("\n\n").map((paragraph, i) => (
             <p
               key={i}
-              className="text-lg md:text-xl font-light mb-6 text-blue-100"
+              className="text-lg md:text-xl font-light mb-6 text-white/90"
             >
               {paragraph}
             </p>
           ))}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link href="/contact">
-              <Button variant="warm-filled" size="xl">
+              <Button variant="accent" size="xl">
                 {data.foundingCta}
               </Button>
             </Link>

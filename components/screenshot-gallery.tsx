@@ -84,7 +84,7 @@ export function ScreenshotGallery({
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             {screenshot.caption && (
-              <p className="text-sm text-gray-600 mt-3 text-center font-light">
+              <p className="text-sm text-cs-dark-blue/70 mt-3 text-center font-light">
                 {screenshot.caption}
               </p>
             )}
@@ -100,7 +100,7 @@ export function ScreenshotGallery({
         >
           {/* Close Button */}
           <button
-            className="absolute top-4 right-4 text-white hover:text-warm transition-colors p-2 rounded-full hover:bg-white/10"
+            className="absolute top-4 right-4 text-white hover:text-cs-dark-blue transition-colors p-2 rounded-full hover:bg-white/10"
             onClick={closeLightbox}
             aria-label="Close"
           >
@@ -109,7 +109,7 @@ export function ScreenshotGallery({
 
           {/* Previous Button */}
           <button
-            className="absolute left-4 text-white hover:text-warm transition-colors p-2 rounded-full hover:bg-white/10"
+            className="absolute left-4 text-white hover:text-cs-dark-blue transition-colors p-2 rounded-full hover:bg-white/10"
             onClick={(e) => {
               e.stopPropagation()
               goToPrevious()
@@ -143,7 +143,7 @@ export function ScreenshotGallery({
 
           {/* Next Button */}
           <button
-            className="absolute right-4 text-white hover:text-warm transition-colors p-2 rounded-full hover:bg-white/10"
+            className="absolute right-4 text-white hover:text-cs-dark-blue transition-colors p-2 rounded-full hover:bg-white/10"
             onClick={(e) => {
               e.stopPropagation()
               goToNext()

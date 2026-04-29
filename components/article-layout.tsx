@@ -64,14 +64,14 @@ export function ArticleLayout({
       <article className="max-w-3xl mx-auto">
         <Link
           href="/insights"
-          className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 font-light mb-8 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-cs-dark-gray hover:text-cs-dark-blue font-light mb-8 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Insights
         </Link>
 
         <div className="mb-10">
-          <div className="flex items-center gap-3 text-sm text-gray-500 font-light mb-4">
+          <div className="flex items-center gap-3 text-sm text-cs-dark-gray font-light mb-4">
             <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -82,16 +82,16 @@ export function ArticleLayout({
             <span>&middot;</span>
             <span>{post.readingTime}</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-light text-gray-900 mb-4">
+          <h1 className="text-3xl md:text-4xl font-light text-cs-dark-blue mb-4">
             {post.title}
           </h1>
-          <p className="text-xl text-gray-600 font-light leading-relaxed mb-6">
+          <p className="text-xl text-cs-dark-blue/70 font-light leading-relaxed mb-6">
             {post.description}
           </p>
           <AuthorByline authorId={post.authorId} authorName={post.author} />
         </div>
 
-        <div className="border-t border-gray-200 pt-8">
+        <div className="border-t border-cs-gray/50 pt-8">
           {children}
         </div>
       </article>

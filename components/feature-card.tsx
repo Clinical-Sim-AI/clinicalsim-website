@@ -1,37 +1,48 @@
 import * as React from "react"
 import { LucideIcon } from "lucide-react"
+import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
 import { cn } from "@/lib/utils"
 
 export interface FeatureCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  icon: LucideIcon
+  icon?: LucideIcon
+  brandIcon?: BrandIconName
   title: string
   description: string
-  variant?: "default" | "warm" | "navy" | "success"
+  variant?: "default" | "accent" | "navy" | "light-blue"
   asymmetric?: boolean
   expandOnHover?: boolean
 }
 
 const variantStyles = {
   default: {
-    iconContainer: "bg-gradient-to-r from-blue-600 to-indigo-600",
-    border: "border-gray-200",
+    iconContainer: "bg-cs-dark-blue",
+    iconColor: "text-white",
+    brandIconColor: "white" as const,
+    border: "border-cs-gray",
   },
-  warm: {
-    iconContainer: "bg-gradient-to-r from-warm to-orange-600",
-    border: "border-warm/30",
+  accent: {
+    iconContainer: "bg-cs-electric",
+    iconColor: "text-cs-dark-blue",
+    brandIconColor: "dark" as const,
+    border: "border-cs-gray",
   },
   navy: {
-    iconContainer: "bg-navy",
-    border: "border-navy/30",
+    iconContainer: "bg-cs-navy",
+    iconColor: "text-white",
+    brandIconColor: "white" as const,
+    border: "border-cs-gray",
   },
-  success: {
-    iconContainer: "bg-gradient-to-r from-success to-emerald-600",
-    border: "border-success/30",
+  "light-blue": {
+    iconContainer: "bg-cs-light-blue",
+    iconColor: "text-cs-dark-blue",
+    brandIconColor: "dark" as const,
+    border: "border-cs-gray",
   },
 }
 
 export function FeatureCard({
   icon: Icon,
+  brandIcon,
   title,
   description,
   variant = "default",
@@ -45,10 +56,9 @@ export function FeatureCard({
   return (
     <div
       className={cn(
-        "relative bg-white/70 rounded-xl p-6 md:p-8",
+        "relative bg-white rounded-xl p-6 md:p-8",
         "border transition-all duration-300",
-        "border-glow-hover",
-        expandOnHover && "hover:bg-white/90 hover:shadow-xl",
+        expandOnHover && "hover:shadow-lg",
         asymmetric ? "h-auto" : "h-full",
         styles.border,
         className
@@ -56,14 +66,18 @@ export function FeatureCard({
       {...props}
     >
       <div className={cn("w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110", styles.iconContainer)}>
-        <Icon className="w-7 h-7 text-white" />
+        {brandIcon ? (
+          <BrandIcon name={brandIcon} color={styles.brandIconColor} size={28} />
+        ) : Icon ? (
+          <Icon className={cn("w-7 h-7", styles.iconColor)} />
+        ) : null}
       </div>
 
-      <h3 className="text-xl md:text-2xl font-medium mb-3 text-gray-900">
+      <h3 className="text-xl md:text-2xl font-medium mb-3 text-cs-dark-blue">
         {title}
       </h3>
 
-      <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+      <p className="text-base md:text-lg text-cs-dark-blue/80 leading-relaxed">
         {description}
       </p>
     </div>

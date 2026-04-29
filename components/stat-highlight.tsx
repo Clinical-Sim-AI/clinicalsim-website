@@ -5,22 +5,22 @@ export interface StatHighlightProps extends React.HTMLAttributes<HTMLDivElement>
   value: string
   label: string
   source?: string
-  variant?: "warm" | "navy" | "blue" | "success"
+  variant?: "accent" | "navy" | "blue" | "light-blue"
   size?: "default" | "large"
 }
 
 const variantStyles = {
-  warm: "text-warm",
-  navy: "text-navy",
-  blue: "text-blue-600",
-  success: "text-success",
+  accent: "text-cs-electric",
+  navy: "text-cs-navy",
+  blue: "text-cs-dark-blue",
+  "light-blue": "text-cs-light-blue",
 }
 
 export function StatHighlight({
   value,
   label,
   source,
-  variant = "warm",
+  variant = "blue",
   size = "default",
   className,
   ...props
@@ -35,7 +35,7 @@ export function StatHighlight({
     >
       <div
         className={cn(
-          "font-mono font-bold mb-3",
+          "font-bold mb-3 tracking-tight",
           size === "large" ? "text-4xl md:text-5xl lg:text-6xl" : "text-3xl md:text-4xl lg:text-5xl",
           variantStyles[variant]
         )}
@@ -43,12 +43,12 @@ export function StatHighlight({
         {value}
       </div>
 
-      <p className="text-base md:text-lg text-gray-700 font-normal leading-relaxed max-w-xs">
+      <p className="text-base md:text-lg text-cs-dark-blue font-normal leading-relaxed max-w-xs">
         {label}
       </p>
 
       {source && (
-        <p className="text-sm text-gray-500 font-light mt-2 italic">
+        <p className="text-sm text-cs-dark-gray font-light mt-2 italic">
           {source}
         </p>
       )}

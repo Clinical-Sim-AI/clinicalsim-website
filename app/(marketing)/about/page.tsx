@@ -31,13 +31,13 @@ export default function AboutPage() {
     <>
       {/* Hero Section */}
       <section className="relative text-center px-6 py-16 md:py-24">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 -z-10" />
+        <div className="absolute inset-0 bg-cs-cloud -z-10" />
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-light shimmer mb-6">
+          <h1 className="text-4xl md:text-5xl font-light mb-6">
             The first AI simulation purpose-built for communication remediation.
           </h1>
-          <p className="text-xl text-gray-700 font-light leading-relaxed max-w-3xl mx-auto">
-            ClinicalSim.ai is the first AI clinical simulation purpose-built for <span className="text-warm font-medium">communication remediation</span> — structured practice with real-time feedback, mapped to ACGME ICS Milestones 2.0, generating documentation your CCC can use.
+          <p className="text-xl text-cs-dark-blue/85 font-light leading-relaxed max-w-3xl mx-auto">
+            ClinicalSim.ai is the first AI clinical simulation purpose-built for <span className="text-cs-dark-blue font-medium">communication remediation</span> — structured practice with real-time feedback, mapped to ACGME ICS Milestones 2.0, generating documentation your CCC can use.
           </p>
         </div>
       </section>
@@ -47,7 +47,7 @@ export default function AboutPage() {
       {/* Problem Statement Section */}
       <section className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-navy mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 text-center">
             Communication is the competency everyone remediates — and no one has tools for.
           </h2>
 
@@ -56,7 +56,7 @@ export default function AboutPage() {
               value="93%"
               label="of programs have faced remediation in the past 3 years"
               source="CERA Survey"
-              variant="warm"
+              variant="accent"
             />
             <StatHighlight
               value="50%"
@@ -68,13 +68,13 @@ export default function AboutPage() {
               value="16"
               label="published studies exist on communication-specific remediation"
               source="Literature review"
-              variant="warm"
+              variant="accent"
             />
           </div>
 
-          <div className="bg-white/70 border border-gray-200 rounded-2xl p-8 shadow-lg">
-            <p className="text-lg text-gray-700 font-light leading-relaxed">
-              When Step 2 CS was discontinued in 2021, programs lost the only national standardized assessment of clinical communication skills. ACGME Milestones 2.0 created universal ICS requirements — but most programs have no scalable way to assess or remediate communication competency. The result: <span className="font-mono text-warm font-medium">29-45 faculty hours</span> consumed per remediation case, with no standardized tools, inconsistent documentation, and learners who need the most practice getting the fewest repetitions.
+          <div className="bg-white/70 border border-cs-gray/50 rounded-2xl p-8 shadow-lg">
+            <p className="text-lg text-cs-dark-blue/85 font-light leading-relaxed">
+              When Step 2 CS was discontinued in 2021, programs lost the only national standardized assessment of clinical communication skills. ACGME Milestones 2.0 created universal ICS requirements — but most programs have no scalable way to assess or remediate communication competency. The result: <span className="font-bold tracking-tight text-cs-dark-blue font-medium">29-45 faculty hours</span> consumed per remediation case, with no standardized tools, inconsistent documentation, and learners who need the most practice getting the fewest repetitions.
             </p>
           </div>
         </div>
@@ -85,63 +85,63 @@ export default function AboutPage() {
       {/* Our Approach Section */}
       <section className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-navy mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 text-center">
             Structured practice that changes clinical communication.
           </h2>
 
-          <div className="bg-white/90 rounded-2xl p-8 md:p-10 shadow-xl border border-gray-200 mb-8">
-            <p className="text-lg md:text-xl text-gray-700 font-light leading-relaxed mb-8">
+          <div className="bg-white/90 rounded-2xl p-8 md:p-10 shadow-xl border border-cs-gray/50 mb-8">
+            <p className="text-lg md:text-xl text-cs-dark-blue/85 font-light leading-relaxed mb-8">
               You wouldn&apos;t remediate a surgical skill without a sim lab. Communication deserves the same rigor. ClinicalSim provides structured, repeatable practice for the specific communication scenarios learners struggle with most — breaking bad news, navigating angry patients, conducting informed consent, leading goals-of-care discussions.
             </p>
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <span className="w-8 h-8 rounded-lg bg-warm flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="w-8 h-8 rounded-lg bg-cs-electric flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-5 h-5 text-white" />
                 </span>
                 <div>
-                  <h3 className="text-lg font-medium text-navy">On-demand AI patient encounters</h3>
-                  <p className="text-gray-600 font-light">Practice specific scenarios 24/7 from any device</p>
+                  <h3 className="text-lg font-medium text-cs-navy">On-demand AI patient encounters</h3>
+                  <p className="text-cs-dark-blue/70 font-light">Practice specific scenarios 24/7 from any device</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <span className="w-8 h-8 rounded-lg bg-warm flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="w-8 h-8 rounded-lg bg-cs-electric flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-5 h-5 text-white" />
                 </span>
                 <div>
-                  <h3 className="text-lg font-medium text-navy">Real-time feedback mapped to ICS Milestones 2.0</h3>
-                  <p className="text-gray-600 font-light">ICS-1, ICS-2, ICS-3 assessment from every session</p>
+                  <h3 className="text-lg font-medium text-cs-navy">Real-time feedback mapped to ICS Milestones 2.0</h3>
+                  <p className="text-cs-dark-blue/70 font-light">ICS-1, ICS-2, ICS-3 assessment from every session</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <span className="w-8 h-8 rounded-lg bg-success flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="w-8 h-8 rounded-lg bg-cs-light-blue flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-5 h-5 text-white" />
                 </span>
                 <div>
-                  <h3 className="text-lg font-medium text-navy">CCC-ready documentation</h3>
-                  <p className="text-gray-600 font-light">Timestamped, milestone-aligned records for committee review</p>
+                  <h3 className="text-lg font-medium text-cs-navy">CCC-ready documentation</h3>
+                  <p className="text-cs-dark-blue/70 font-light">Timestamped, milestone-aligned records for committee review</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <span className="w-8 h-8 rounded-lg bg-success flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="w-8 h-8 rounded-lg bg-cs-light-blue flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-5 h-5 text-white" />
                 </span>
                 <div>
-                  <h3 className="text-lg font-medium text-navy">Longitudinal progress tracking</h3>
-                  <p className="text-gray-600 font-light">Demonstrate improvement across the remediation period</p>
+                  <h3 className="text-lg font-medium text-cs-navy">Longitudinal progress tracking</h3>
+                  <p className="text-cs-dark-blue/70 font-light">Demonstrate improvement across the remediation period</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <span className="w-8 h-8 rounded-lg bg-navy flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="w-8 h-8 rounded-lg bg-cs-navy flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="w-5 h-5 text-white" />
                 </span>
                 <div>
-                  <h3 className="text-lg font-medium text-navy">Faculty dashboard</h3>
-                  <p className="text-gray-600 font-light">Monitor learner progress without being present for every session</p>
+                  <h3 className="text-lg font-medium text-cs-navy">Faculty dashboard</h3>
+                  <p className="text-cs-dark-blue/70 font-light">Monitor learner progress without being present for every session</p>
                 </div>
               </div>
             </div>
@@ -152,9 +152,9 @@ export default function AboutPage() {
       <SectionDivider variant="wave" color="blue" />
 
       {/* Who We Serve Section */}
-      <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50">
+      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-navy mb-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">
             Built for every stakeholder in the remediation process
           </h2>
 
@@ -175,7 +175,7 @@ export default function AboutPage() {
           <div className="text-center">
             <Link
               href="/solutions/remediation"
-              className="inline-flex items-center text-blue-600 font-medium hover:text-warm transition-colors group"
+              className="inline-flex items-center text-cs-dark-blue font-medium hover:text-cs-dark-blue transition-colors group"
             >
               Learn about communication remediation
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -187,18 +187,18 @@ export default function AboutPage() {
       <SectionDivider variant="diagonal-down" color="slate" />
 
       {/* Final CTA Section */}
-      <section className="px-6 py-16 md:py-20 bg-gradient-to-br from-navy via-blue-900 to-indigo-900 text-white">
+      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-4">
             The institutions that move first will set the standard.
           </h2>
-          <p className="text-lg md:text-xl font-light mb-8 text-blue-100 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl font-light mb-8 text-white/90 max-w-3xl mx-auto">
             Communication remediation is inevitable. The only question is whether you build the infrastructure from scratch every time, or use a system already mapped to your milestones.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/contact">
               <Button
-                variant="warm-filled"
+                variant="accent"
                 size="xl"
               >
                 Request a Pilot
@@ -206,7 +206,7 @@ export default function AboutPage() {
             </Link>
             <Link
               href="/research"
-              className="inline-flex items-center text-blue-200 font-medium hover:text-warm transition-colors group"
+              className="inline-flex items-center text-white/70 font-medium hover:text-cs-dark-blue transition-colors group"
             >
               Are you a researcher? Apply to collaborate
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

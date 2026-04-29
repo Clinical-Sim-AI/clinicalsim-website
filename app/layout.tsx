@@ -1,20 +1,13 @@
 import type { Metadata } from 'next'
-import { Poppins, IBM_Plex_Mono } from 'next/font/google'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const poppins = Poppins({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '500', '700'],
   display: 'swap',
-  variable: '--font-poppins',
-})
-
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  display: 'swap',
-  variable: '--font-ibm-plex-mono',
+  variable: '--font-plus-jakarta',
 })
 
 export const metadata: Metadata = {
@@ -53,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={plusJakarta.variable}>
       <head>
         {/* R2B visitor identification - hardcoded first-party script, safe for inline use */}
         <script
@@ -62,7 +55,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${poppins.variable} ${ibmPlexMono.variable} font-sans`} suppressHydrationWarning={true}>
+      <body className="font-sans" suppressHydrationWarning={true}>
         {children}
         <Analytics />
       </body>

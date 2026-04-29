@@ -18,7 +18,7 @@ export interface PricingTier {
   cta: {
     label: string
     href: string
-    variant: "gradient-primary" | "warm-filled" | "warm-accent"
+    variant: "default" | "accent" | "secondary"
   }
   secondaryCta: {
     label: string
@@ -104,7 +104,7 @@ export const pricingPageData: PricingPageData = {
       cta: {
         label: "Start practicing",
         href: "#PLACEHOLDER_INDIVIDUAL_MONTHLY",
-        variant: "gradient-primary",
+        variant: "default",
       },
       secondaryCta: {
         label: "or $179/year — save 21%",
@@ -136,7 +136,7 @@ export const pricingPageData: PricingPageData = {
       cta: {
         label: "Request a pilot",
         href: "/contact",
-        variant: "warm-filled",
+        variant: "accent",
       },
       secondaryCta: null,
       footnote: "Billed annually. 10+ users.",
@@ -165,7 +165,7 @@ export const pricingPageData: PricingPageData = {
       cta: {
         label: "Contact us",
         href: "/contact",
-        variant: "warm-accent",
+        variant: "secondary",
       },
       secondaryCta: null,
       footnote: null,

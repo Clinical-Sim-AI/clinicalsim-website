@@ -9,25 +9,29 @@ export interface AudienceCardProps extends React.HTMLAttributes<HTMLDivElement> 
   subtitle: string
   bullets: string[]
   href: string
-  variant?: "warm" | "navy" | "blue" | "success"
+  variant?: "accent" | "navy" | "blue" | "light-blue"
 }
 
 const variantStyles = {
-  warm: {
-    iconBg: "bg-gradient-to-r from-warm to-orange-600",
-    bulletColor: "bg-warm",
+  accent: {
+    iconBg: "bg-cs-electric",
+    iconColor: "text-cs-dark-blue",
+    bulletColor: "bg-cs-electric",
   },
   navy: {
-    iconBg: "bg-navy",
-    bulletColor: "bg-navy",
+    iconBg: "bg-cs-navy",
+    iconColor: "text-white",
+    bulletColor: "bg-cs-navy",
   },
   blue: {
-    iconBg: "bg-gradient-to-r from-blue-600 to-indigo-600",
-    bulletColor: "bg-blue-600",
+    iconBg: "bg-cs-dark-blue",
+    iconColor: "text-white",
+    bulletColor: "bg-cs-dark-blue",
   },
-  success: {
-    iconBg: "bg-gradient-to-r from-success to-emerald-600",
-    bulletColor: "bg-success",
+  "light-blue": {
+    iconBg: "bg-cs-light-blue",
+    iconColor: "text-cs-dark-blue",
+    bulletColor: "bg-cs-light-blue",
   },
 }
 
@@ -37,7 +41,7 @@ export function AudienceCard({
   subtitle,
   bullets,
   href,
-  variant = "warm",
+  variant = "accent",
   className,
   ...props
 }: AudienceCardProps) {
@@ -47,23 +51,22 @@ export function AudienceCard({
     <Link href={href} className="group block">
       <div
         className={cn(
-          "relative bg-white/70 rounded-xl p-6 md:p-8",
-          "border border-gray-200 transition-all duration-300",
-          "border-glow-hover h-full",
-          "hover:bg-white/90 hover:shadow-xl",
+          "relative bg-white rounded-xl p-6 md:p-8",
+          "border border-cs-gray transition-all duration-300 h-full",
+          "hover:shadow-lg",
           className
         )}
         {...props}
       >
         <div className={cn("w-12 h-12 rounded-lg flex items-center justify-center mb-4", styles.iconBg)}>
-          <Icon className="w-7 h-7 text-white" />
+          <Icon className={cn("w-7 h-7", styles.iconColor)} />
         </div>
 
-        <h3 className="text-xl md:text-2xl font-medium mb-2 text-gray-900 group-hover:text-navy transition-colors">
+        <h3 className="text-xl md:text-2xl font-medium mb-2 text-cs-dark-blue group-hover:text-cs-navy transition-colors">
           {title}
         </h3>
 
-        <p className="text-base text-gray-500 font-light mb-4">
+        <p className="text-base text-cs-dark-gray font-light mb-4">
           {subtitle}
         </p>
 
@@ -71,12 +74,12 @@ export function AudienceCard({
           {bullets.map((bullet, index) => (
             <li key={index} className="flex items-start gap-2.5">
               <div className={cn("w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0", styles.bulletColor)} />
-              <span className="text-sm text-gray-600 font-light leading-relaxed">{bullet}</span>
+              <span className="text-sm text-cs-dark-blue/80 font-light leading-relaxed">{bullet}</span>
             </li>
           ))}
         </ul>
 
-        <div className="flex items-center text-blue-600 font-medium group-hover:text-warm transition-colors">
+        <div className="flex items-center text-cs-dark-blue font-medium">
           Learn More
           <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
         </div>

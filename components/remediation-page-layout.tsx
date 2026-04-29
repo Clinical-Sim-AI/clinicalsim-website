@@ -44,38 +44,38 @@ const iconMap: Record<string, LucideIcon> = {
   ClipboardCheck,
 }
 
-const featureVariants: Array<"warm" | "navy" | "default" | "warm" | "default"> = [
-  "warm",
+const featureVariants: Array<"accent" | "navy" | "default"> = [
+  "accent",
   "navy",
   "default",
-  "warm",
+  "accent",
   "default",
 ]
 
 const colorVariantStyles = {
-  warm: {
-    border: "border-warm/30",
-    text: "text-warm",
-    topBorder: "border-t-warm",
-    bg: "from-orange-50 to-amber-50",
+  accent: {
+    border: "border-cs-electric/40",
+    text: "text-cs-dark-blue",
+    topBorder: "border-t-cs-electric",
+    bg: "bg-cs-cloud",
   },
   navy: {
-    border: "border-navy/30",
-    text: "text-navy",
-    topBorder: "border-t-navy",
-    bg: "from-blue-50 to-indigo-50",
+    border: "border-cs-navy/30",
+    text: "text-cs-navy",
+    topBorder: "border-t-cs-navy",
+    bg: "bg-cs-cloud",
   },
   blue: {
-    border: "border-blue-400/30",
-    text: "text-blue-600",
-    topBorder: "border-t-blue-600",
-    bg: "from-sky-50 to-blue-50",
+    border: "border-cs-dark-blue/20",
+    text: "text-cs-dark-blue",
+    topBorder: "border-t-cs-dark-blue",
+    bg: "bg-cs-cloud",
   },
-  success: {
-    border: "border-success/30",
-    text: "text-success",
-    topBorder: "border-t-success",
-    bg: "from-emerald-50 to-green-50",
+  "light-blue": {
+    border: "border-cs-light-blue/40",
+    text: "text-cs-dark-blue",
+    topBorder: "border-t-cs-light-blue",
+    bg: "bg-cs-cloud",
   },
 }
 
@@ -141,34 +141,34 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       {/* Section 1: Hero                                                    */}
       {/* ----------------------------------------------------------------- */}
       <section className="relative px-6 py-12 md:py-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 -z-10" />
+        <div className="absolute inset-0 bg-cs-cloud -z-10" />
 
         <div className="max-w-4xl mx-auto">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
+          <nav className="flex items-center gap-2 text-sm text-cs-dark-gray mb-8">
             <Link
               href="/"
-              className="hover:text-gray-700 transition-colors"
+              className="hover:text-cs-dark-blue/85 transition-colors"
             >
               Home
             </Link>
             <ChevronRight className="w-4 h-4" />
             <Link
               href="/solutions"
-              className="hover:text-gray-700 transition-colors"
+              className="hover:text-cs-dark-blue/85 transition-colors"
             >
               Solutions
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-gray-700">Communication Remediation</span>
+            <span className="text-cs-dark-blue/85">Communication Remediation</span>
           </nav>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light shimmer leading-loose pb-3 mb-4">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-loose pb-3 mb-4">
             {data.heroH1}
           </h1>
 
           {data.lastUpdated && (
-            <p className="text-sm text-gray-400 font-light mb-4">
+            <p className="text-sm text-cs-gray font-light mb-4">
               Last updated:{" "}
               {new Date(data.lastUpdated).toLocaleDateString("en-US", {
                 month: "long",
@@ -177,7 +177,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
             </p>
           )}
 
-          <p className="text-lg md:text-xl text-gray-600 font-light leading-relaxed mb-10 max-w-3xl">
+          <p className="text-lg md:text-xl text-cs-dark-blue/70 font-light leading-relaxed mb-10 max-w-3xl">
             {data.heroSubtitle}
           </p>
 
@@ -197,12 +197,12 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           {/* Dual CTAs */}
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/contact">
-              <Button variant="gradient-primary" size="xl">
+              <Button variant="accent" size="xl">
                 Request a Pilot
               </Button>
             </Link>
             <Link href="#evidence">
-              <Button variant="warm-accent" size="lg">
+              <Button variant="secondary" size="lg">
                 See a Remediation Session
               </Button>
             </Link>
@@ -218,9 +218,9 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       <section className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               Why communication{" "}
-              <span className="text-warm font-medium">remediation</span> is
+              <span className="text-cs-dark-blue font-medium">remediation</span> is
               broken
             </h2>
           </div>
@@ -231,26 +231,26 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
               return (
                 <div
                   key={index}
-                  className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 border-glow-hover"
+                  className="bg-white rounded-xl border border-cs-gray/50 p-6 hover:shadow-lg transition-all duration-300"
                 >
                   {Icon && (
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-warm to-orange-600 flex items-center justify-center mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-cs-electric flex items-center justify-center mb-4">
                       <Icon className="w-7 h-7 text-white" />
                     </div>
                   )}
-                  <div className="font-mono text-3xl font-bold text-warm mb-1">
+                  <div className="font-bold tracking-tight text-3xl font-bold text-cs-dark-blue mb-1">
                     {point.stat}
                   </div>
-                  <p className="text-sm text-gray-500 font-medium mb-3">
+                  <p className="text-sm text-cs-dark-gray font-medium mb-3">
                     {point.statLabel}
                   </p>
-                  <h3 className="text-xl font-medium text-gray-900 mb-2">
+                  <h3 className="text-xl font-medium text-cs-dark-blue mb-2">
                     {point.headline}
                   </h3>
-                  <p className="text-base text-gray-700 font-light leading-relaxed mb-3">
+                  <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-3">
                     {point.description}
                   </p>
-                  <p className="text-xs text-gray-400 italic">{point.source}</p>
+                  <p className="text-xs text-cs-gray italic">{point.source}</p>
                 </div>
               )
             })}
@@ -263,14 +263,14 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       {/* ----------------------------------------------------------------- */}
       <SectionDivider variant="wave" color="slate" />
 
-      <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
-              How <span className="text-warm font-medium">ClinicalSim</span>{" "}
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
+              How <span className="text-cs-dark-blue font-medium">ClinicalSim</span>{" "}
               works for remediation
             </h2>
-            <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto">
+            <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
               Five capabilities purpose-built for communication remediation in
               GME.
             </p>
@@ -303,9 +303,9 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       <section className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               Built for every stakeholder in the{" "}
-              <span className="text-warm font-medium">remediation process</span>
+              <span className="text-cs-dark-blue font-medium">remediation process</span>
             </h2>
           </div>
 
@@ -317,7 +317,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
                 <div
                   key={index}
                   className={cn(
-                    "bg-white rounded-xl border p-6 hover:shadow-lg transition-all duration-300 border-glow-hover",
+                    "bg-white rounded-xl border p-6 hover:shadow-lg transition-all duration-300",
                     styles.border
                   )}
                 >
@@ -326,19 +326,19 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
                       <div
                         className={cn(
                           "w-10 h-10 rounded-lg flex items-center justify-center",
-                          persona.colorVariant === "warm" &&
-                            "bg-gradient-to-r from-warm to-orange-600",
-                          persona.colorVariant === "navy" && "bg-navy",
+                          persona.colorVariant === "accent" &&
+                            "bg-cs-electric",
+                          persona.colorVariant === "navy" && "bg-cs-navy",
                           persona.colorVariant === "blue" &&
-                            "bg-gradient-to-r from-blue-600 to-indigo-600",
-                          persona.colorVariant === "success" &&
-                            "bg-gradient-to-r from-success to-emerald-600"
+                            "bg-cs-dark-blue",
+                          persona.colorVariant === "light-blue" &&
+                            "bg-cs-light-blue"
                         )}
                       >
                         <Icon className="w-5 h-5 text-white" />
                       </div>
                     )}
-                    <h3 className="text-xl font-medium text-gray-900">
+                    <h3 className="text-xl font-medium text-cs-dark-blue">
                       {persona.role}
                     </h3>
                   </div>
@@ -352,11 +352,11 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
                     &ldquo;{persona.headline}&rdquo;
                   </p>
 
-                  <p className="text-sm text-gray-600 italic mb-4">
+                  <p className="text-sm text-cs-dark-blue/70 italic mb-4">
                     {persona.painPoint}
                   </p>
 
-                  <p className="text-sm text-gray-700 font-light leading-relaxed">
+                  <p className="text-sm text-cs-dark-blue/85 font-light leading-relaxed">
                     {persona.whatTheyGet}
                   </p>
                 </div>
@@ -371,14 +371,14 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       {/* ----------------------------------------------------------------- */}
       <SectionDivider variant="curve" color="blue" />
 
-      <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50">
+      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               Built by the people who{" "}
-              <span className="text-warm font-medium">do this work</span>
+              <span className="text-cs-dark-blue font-medium">do this work</span>
             </h2>
-            <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto">
+            <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
               Simulation directors, communication researchers, and GME leaders
               who understand what remediation actually requires.
             </p>
@@ -391,7 +391,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
                 <div
                   key={index}
                   className={cn(
-                    "bg-white rounded-xl border-t-4 border border-gray-200 p-6 hover:shadow-lg transition-all duration-300",
+                    "bg-white rounded-xl border-t-4 border border-cs-gray/50 p-6 hover:shadow-lg transition-all duration-300",
                     styles.topBorder
                   )}
                 >
@@ -407,7 +407,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
                     {cred.credentials.map((item, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-2 text-sm text-gray-700 font-light"
+                        className="flex items-start gap-2 text-sm text-cs-dark-blue/85 font-light"
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-1.5 flex-shrink-0" />
                         {item}
@@ -429,9 +429,9 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       <section id="evidence" className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               Backed by{" "}
-              <span className="text-warm font-medium">rigorous evidence</span>
+              <span className="text-cs-dark-blue font-medium">rigorous evidence</span>
             </h2>
           </div>
 
@@ -463,14 +463,14 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       {/* ----------------------------------------------------------------- */}
       <SectionDivider variant="wave" color="slate" />
 
-      <section className="px-6 py-12 md:py-16 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               How the{" "}
-              <span className="text-warm font-medium">economics</span> compare
+              <span className="text-cs-dark-blue font-medium">economics</span> compare
             </h2>
-            <p className="text-lg text-gray-600 font-light max-w-2xl mx-auto">
+            <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
               Current remediation approaches are expensive, unscalable, and
               inconsistently documented.
             </p>
@@ -478,10 +478,10 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
 
           {/* Desktop table */}
           <div className="hidden md:block">
-            <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+            <div className="bg-white rounded-2xl border border-cs-gray/50 overflow-hidden shadow-sm">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-navy text-white">
+                  <tr className="bg-cs-navy text-white">
                     <th className="px-6 py-4 text-left text-sm font-medium">
                       Method
                     </th>
@@ -506,35 +506,35 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
                       className={cn(
                         "transition-colors",
                         row.highlight
-                          ? "bg-warm/5 border-l-4 border-l-warm"
+                          ? "bg-cs-electric/5 border-l-4 border-l-cs-electric"
                           : "hover:bg-gray-50"
                       )}
                     >
                       <td
                         className={cn(
                           "px-6 py-4 text-sm font-medium",
-                          row.highlight ? "text-warm" : "text-gray-900"
+                          row.highlight ? "text-cs-dark-blue" : "text-cs-dark-blue"
                         )}
                       >
                         {row.method}
                       </td>
                       <td
                         className={cn(
-                          "px-6 py-4 text-sm font-mono",
+                          "px-6 py-4 text-sm font-bold tracking-tight",
                           row.highlight
-                            ? "text-warm font-bold"
-                            : "text-gray-700"
+                            ? "text-cs-dark-blue font-bold"
+                            : "text-cs-dark-blue/85"
                         )}
                       >
                         {row.costRange}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
+                      <td className="px-6 py-4 text-sm text-cs-dark-blue/85">
                         {row.scalability}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
+                      <td className="px-6 py-4 text-sm text-cs-dark-blue/85">
                         {row.availability}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
+                      <td className="px-6 py-4 text-sm text-cs-dark-blue/85">
                         {row.documentation}
                       </td>
                     </tr>
@@ -552,43 +552,43 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
                 className={cn(
                   "rounded-xl border p-5",
                   row.highlight
-                    ? "bg-warm/5 border-warm/20"
-                    : "bg-white border-gray-200"
+                    ? "bg-cs-electric/5 border-cs-electric/20"
+                    : "bg-white border-cs-gray/50"
                 )}
               >
                 <h3
                   className={cn(
                     "text-lg font-medium mb-3",
-                    row.highlight ? "text-warm" : "text-gray-900"
+                    row.highlight ? "text-cs-dark-blue" : "text-cs-dark-blue"
                   )}
                 >
                   {row.method}
                 </h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Cost</span>
+                    <span className="text-cs-dark-gray">Cost</span>
                     <span
                       className={cn(
-                        "font-mono",
+                        "font-bold tracking-tight",
                         row.highlight
-                          ? "text-warm font-bold"
-                          : "text-gray-700"
+                          ? "text-cs-dark-blue font-bold"
+                          : "text-cs-dark-blue/85"
                       )}
                     >
                       {row.costRange}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Scalability</span>
-                    <span className="text-gray-700">{row.scalability}</span>
+                    <span className="text-cs-dark-gray">Scalability</span>
+                    <span className="text-cs-dark-blue/85">{row.scalability}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Availability</span>
-                    <span className="text-gray-700">{row.availability}</span>
+                    <span className="text-cs-dark-gray">Availability</span>
+                    <span className="text-cs-dark-blue/85">{row.availability}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Documentation</span>
-                    <span className="text-gray-700">{row.documentation}</span>
+                    <span className="text-cs-dark-gray">Documentation</span>
+                    <span className="text-cs-dark-blue/85">{row.documentation}</span>
                   </div>
                 </div>
               </div>
@@ -598,7 +598,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           {/* CTA below comparison */}
           <div className="text-center mt-10">
             <Link href="/contact">
-              <Button variant="gradient-primary" size="xl">
+              <Button variant="accent" size="xl">
                 Request a Pilot
               </Button>
             </Link>
@@ -615,25 +615,25 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
 
           <section className="px-6 py-12 md:py-16 bg-white">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-light text-navy mb-8">
+              <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
                 Frequently Asked{" "}
-                <span className="text-warm font-medium">Questions</span>
+                <span className="text-cs-dark-blue font-medium">Questions</span>
               </h2>
               <div className="space-y-6">
                 {data.faqs.map((faq, index) => (
                   <div
                     key={index}
-                    className="border border-gray-200 rounded-xl overflow-hidden"
+                    className="border border-cs-gray/50 rounded-xl overflow-hidden"
                   >
                     <details className="group">
                       <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-white hover:bg-gray-50 transition-colors">
-                        <h3 className="text-lg font-medium text-gray-900 pr-4">
+                        <h3 className="text-lg font-medium text-cs-dark-blue pr-4">
                           {faq.question}
                         </h3>
-                        <ChevronRight className="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-90" />
+                        <ChevronRight className="w-5 h-5 text-cs-gray flex-shrink-0 transition-transform group-open:rotate-90" />
                       </summary>
                       <div className="px-6 pb-5 pt-2">
-                        <p className="text-base text-gray-700 font-light leading-relaxed">
+                        <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
                           {faq.answer}
                         </p>
                       </div>
@@ -651,17 +651,17 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       {/* ----------------------------------------------------------------- */}
       <SectionDivider variant="diagonal-down" color="indigo" />
 
-      <section className="px-6 py-16 md:py-20 bg-gradient-to-br from-navy via-blue-900 to-indigo-900 text-white">
+      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             {data.ctaHeadline}
           </h2>
-          <p className="text-lg md:text-xl font-light mb-8 text-blue-100">
+          <p className="text-lg md:text-xl font-light mb-8 text-white/90">
             {data.ctaDescription}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
-              <Button variant="warm-filled" size="xl">
+              <Button variant="accent" size="xl">
                 Request a Pilot
               </Button>
             </Link>
