@@ -155,35 +155,35 @@ export default function HomePage() {
           },
         ]}
       />
-      {/* Hero Section - Dark Blue per brand */}
-      <section className="relative flex flex-col items-center justify-center px-6 py-16 md:py-28 text-center bg-cs-dark-blue text-white">
+      {/* Hero Section - Light cloud per brand */}
+      <section className="relative flex flex-col items-center justify-center px-6 py-16 md:py-28 text-center bg-cs-cloud">
         <div className="max-w-4xl mx-auto relative z-10">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight pb-3 mb-6 md:mb-8 text-white">
-            AI Clinical Simulation — Practice the <span className="text-cs-electric font-medium">Conversations That Matter Most</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-3 mb-6 md:mb-8 text-cs-dark-blue">
+            Practice the <span className="font-medium">Conversations That Matter Most</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-cs-cloud font-light mb-4">
+          <p className="text-lg md:text-xl text-cs-dark-blue/85 font-light mb-4">
             AI clinical simulation for{" "}
             <RotatingText
               phrases={["communication remediation", "breaking bad news", "goals-of-care discussions", "informed consent"]}
-              className="text-cs-electric font-medium"
+              className="text-cs-navy font-medium"
             />
           </p>
 
-          <p className="text-lg md:text-xl text-white/85 font-light leading-relaxed mb-8 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-cs-dark-blue/75 font-light leading-relaxed mb-8 max-w-3xl mx-auto">
             Structured practice for the communication scenarios learners struggle with most — breaking bad news, navigating difficult family meetings, informed consent, and goals-of-care discussions. On-demand, from any device.
           </p>
 
           <div className="space-y-3">
             <Link href="/contact">
               <Button
-                variant="accent"
+                variant="default"
                 size="xl"
               >
                 Request a Pilot
               </Button>
             </Link>
-            <p className="text-sm text-cs-cloud/70 font-light">
+            <p className="text-sm text-cs-dark-gray font-light">
               Piloting with medical schools, residency programs, and fellowships nationwide.
             </p>
           </div>
@@ -193,7 +193,7 @@ export default function HomePage() {
       <SectionDivider variant="diagonal-down" color="white" />
 
       {/* Definition Block - GEO citation magnet */}
-      <section className="px-6 py-10 md:py-12 bg-white">
+      <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-3xl mx-auto">
           <div className="border-l-4 border-cs-electric pl-6 md:pl-8">
             <h2 className="text-xl md:text-2xl font-light text-cs-navy mb-3">What is ClinicalSim.ai?</h2>
@@ -208,9 +208,9 @@ export default function HomePage() {
       </section>
 
       {/* Problem Statement Section - Full-width with stats */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 py-8 md:py-12 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               Communication is the competency everyone remediates — and no one has <span className="text-cs-dark-blue font-medium">tools for</span>.
             </h2>
@@ -234,11 +234,9 @@ export default function HomePage() {
       </section>
 
       {/* Why Now Section */}
-      <SectionDivider variant="diagonal-up" color="white" />
-
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 py-8 md:py-12 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
             Why <span className="text-cs-dark-blue font-medium">now</span>
           </h2>
           <div className="space-y-6">
@@ -270,7 +268,7 @@ export default function HomePage() {
       <SectionDivider variant="wave" color="slate" />
 
       {/* Demo Video Section */}
-      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
+      <section className="px-6 py-8 md:py-12 bg-cs-cloud">
         <div className="max-w-5xl mx-auto">
           <DemoVideoSection
             title="See ClinicalSim.ai in Action"
@@ -283,9 +281,9 @@ export default function HomePage() {
       <SectionDivider variant="diagonal-up" color="white" />
 
       {/* Features Section - Asymmetric Grid */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 py-8 md:py-12 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-light text-cs-dark-blue mb-4">
               Why ClinicalSim.ai
             </h2>
@@ -310,8 +308,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionDivider variant="curve" color="blue" />
-
       {/* Evidence Section - Hidden until study is published
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
@@ -335,12 +331,10 @@ export default function HomePage() {
       </section>
       */}
 
-      <SectionDivider variant="diagonal-down" color="white" />
-
       {/* Testimonials Section - Pull-quote style (not cards) */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 py-8 md:py-12 bg-white">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-light text-cs-dark-blue mb-4">
               What learners are saying
             </h2>
@@ -376,9 +370,9 @@ export default function HomePage() {
       </section>
 
       {/* Faculty Feedback */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 py-8 md:py-12 bg-white">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               What faculty are saying
             </h2>
@@ -425,9 +419,9 @@ export default function HomePage() {
       </section>
 
       {/* Audience Selector */}
-      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
+      <section className="px-6 py-8 md:py-12 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               Built for every stakeholder in the <span className="text-cs-dark-blue font-medium">remediation process</span>
             </h2>
@@ -462,7 +456,7 @@ export default function HomePage() {
       <SectionDivider variant="diagonal-down" color="navy" />
 
       {/* Final CTA Section */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <section className="px-6 py-12 md:py-16 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             Ready to close the communication gap?
