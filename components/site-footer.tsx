@@ -42,9 +42,6 @@ export function SiteFooter() {
               <Link href="/research" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Research
               </Link>
-              <Link href="/pricing" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
-                Pricing
-              </Link>
               <Link href="/contact" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Contact
               </Link>
@@ -57,7 +54,7 @@ export function SiteFooter() {
             <p className="text-sm text-cs-dark-blue/70 font-light">
               Piloting with medical schools, residency programs, and fellowships nationwide.
             </p>
-            <Link href="/contact">
+            <Link href="/contact" className="inline-block pt-2">
               <Button variant="accent" size="lg">
                 Request a Pilot
               </Button>

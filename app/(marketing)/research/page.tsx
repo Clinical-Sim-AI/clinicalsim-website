@@ -153,7 +153,7 @@ export default function ResearchPage() {
                   <h3 className="text-xl font-medium mb-2">Response Time</h3>
                   <p className="text-base font-light text-cs-cloud">
                     We review applications on a rolling basis and typically respond within{" "}
-                    <span className="font-bold tracking-tight text-cs-dark-blue">1-2 weeks</span>.
+                    <span className="font-bold tracking-tight text-cs-electric">1-2 weeks</span>.
                   </p>
                 </div>
               </div>

@@ -5,6 +5,7 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { useState, useRef, useEffect } from "react"
 import { ChevronDown, Menu, X } from "lucide-react"
+import { BrandIcon } from "@/components/brand-icon"
 import { getAllAudiences } from "@/lib/audiences"
 
 export function SiteHeader() {
@@ -60,7 +61,6 @@ export function SiteHeader() {
     { href: "/about", label: "About" },
     { href: "/insights", label: "Insights" },
     { href: "/research", label: "Research" },
-    { href: "/pricing", label: "Pricing" },
     { href: "/contact", label: "Contact" },
   ]
 
@@ -112,20 +112,17 @@ export function SiteHeader() {
           {audiencesOpen && (
             <div className="absolute top-full left-0 pt-2 w-72 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
-              {audiences.map((audience) => {
-                const Icon = audience.icon
-                return (
-                  <Link
-                    key={audience.slug}
-                    href={`/audiences/${audience.slug}`}
-                    className="flex items-center gap-3 px-4 py-2.5 hover:bg-cs-cloud/70 transition-colors"
-                    onClick={() => setAudiencesOpen(false)}
-                  >
-                    <Icon className="h-4 w-4 text-cs-dark-blue shrink-0" />
-                    <span className="text-sm text-cs-dark-blue/85">{audience.title}</span>
-                  </Link>
-                )
-              })}
+              {audiences.map((audience) => (
+                <Link
+                  key={audience.slug}
+                  href={`/audiences/${audience.slug}`}
+                  className="flex items-center gap-3 px-4 py-2.5 hover:bg-cs-cloud/70 transition-colors"
+                  onClick={() => setAudiencesOpen(false)}
+                >
+                  <BrandIcon name={audience.icon} size={16} className="shrink-0" />
+                  <span className="text-sm text-cs-dark-blue/85">{audience.title}</span>
+                </Link>
+              ))}
               <div className="border-t border-cs-gray/30 mt-1 pt-1">
                 <Link
                   href="/audiences"
@@ -176,20 +173,17 @@ export function SiteHeader() {
                 </button>
                 {mobileAudiencesOpen && (
                   <div className="pb-3 pl-2">
-                    {audiences.map((audience) => {
-                      const Icon = audience.icon
-                      return (
-                        <Link
-                          key={audience.slug}
-                          href={`/audiences/${audience.slug}`}
-                          className="flex items-center gap-3 px-3 py-2.5 text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          <Icon className="h-4 w-4 text-cs-dark-blue shrink-0" />
-                          <span className="text-sm">{audience.title}</span>
-                        </Link>
-                      )
-                    })}
+                    {audiences.map((audience) => (
+                      <Link
+                        key={audience.slug}
+                        href={`/audiences/${audience.slug}`}
+                        className="flex items-center gap-3 px-3 py-2.5 text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <BrandIcon name={audience.icon} size={16} className="shrink-0" />
+                        <span className="text-sm">{audience.title}</span>
+                      </Link>
+                    ))}
                     <Link
                       href="/audiences"
                       className="block px-3 py-2.5 text-sm font-medium text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors mt-1"

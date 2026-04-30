@@ -27,6 +27,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://clinicalsim.ai/pricing",
   },
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 const data = pricingPageData
