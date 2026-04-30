@@ -97,7 +97,7 @@ export default function AudiencesPage() {
             {audiences.map((audience) => (
               <AudienceCard
                 key={audience.slug}
-                icon={audience.icon}
+                brandIcon={audience.icon}
                 title={audience.title}
                 subtitle={audience.subtitle}
                 bullets={audience.cardBullets}

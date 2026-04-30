@@ -1,10 +1,12 @@
 import * as React from "react"
 import Link from "next/link"
-import { LucideIcon, ArrowRight } from "lucide-react"
+import { ArrowRight, type LucideIcon } from "lucide-react"
+import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
 import { cn } from "@/lib/utils"
 
 export interface AudienceCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  icon: LucideIcon
+  icon?: LucideIcon
+  brandIcon?: BrandIconName
   title: string
   subtitle: string
   bullets: string[]
@@ -16,27 +18,32 @@ const variantStyles = {
   accent: {
     iconBg: "bg-cs-electric",
     iconColor: "text-cs-dark-blue",
+    brandIconColor: "dark" as const,
     bulletColor: "bg-cs-electric",
   },
   navy: {
     iconBg: "bg-cs-navy",
     iconColor: "text-white",
+    brandIconColor: "white" as const,
     bulletColor: "bg-cs-navy",
   },
   blue: {
     iconBg: "bg-cs-dark-blue",
     iconColor: "text-white",
+    brandIconColor: "white" as const,
     bulletColor: "bg-cs-dark-blue",
   },
   "light-blue": {
     iconBg: "bg-cs-light-blue",
     iconColor: "text-cs-dark-blue",
+    brandIconColor: "dark" as const,
     bulletColor: "bg-cs-light-blue",
   },
 }
 
 export function AudienceCard({
   icon: Icon,
+  brandIcon,
   title,
   subtitle,
   bullets,
@@ -59,7 +66,11 @@ export function AudienceCard({
         {...props}
       >
         <div className={cn("w-12 h-12 rounded-lg flex items-center justify-center mb-4", styles.iconBg)}>
-          <Icon className={cn("w-7 h-7", styles.iconColor)} />
+          {brandIcon ? (
+            <BrandIcon name={brandIcon} color={styles.brandIconColor} size={28} />
+          ) : Icon ? (
+            <Icon className={cn("w-7 h-7", styles.iconColor)} />
+          ) : null}
         </div>
 
         <h3 className="text-xl md:text-2xl font-medium mb-2 text-cs-dark-blue group-hover:text-cs-navy transition-colors">

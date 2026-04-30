@@ -1,10 +1,4 @@
-import {
-  Building2,
-  GraduationCap,
-  FlaskConical,
-  ClipboardCheck,
-  type LucideIcon,
-} from "lucide-react"
+import type { BrandIconName } from "@/components/brand-icon"
 
 export interface PainPoint {
   headline: string
@@ -30,7 +24,7 @@ export interface Audience {
   title: string
   shortTitle: string
   subtitle: string
-  icon: LucideIcon
+  icon: BrandIconName
   colorVariant: "accent" | "navy" | "blue" | "light-blue"
 
   // Homepage card bullets
@@ -66,7 +60,7 @@ const audiences: Audience[] = [
     title: "Program Directors",
     shortTitle: "Program Directors",
     subtitle: "The remediation toolkit you told CERA you wanted",
-    icon: GraduationCap,
+    icon: "hat-graduation",
     colorVariant: "navy",
 
     cardBullets: [
@@ -182,7 +176,7 @@ const audiences: Audience[] = [
     title: "DIOs & GME Leadership",
     shortTitle: "DIOs & GME",
     subtitle: "Standardize remediation infrastructure across every program",
-    icon: Building2,
+    icon: "hospital",
     colorVariant: "accent",
 
     cardBullets: [
@@ -293,7 +287,7 @@ const audiences: Audience[] = [
     title: "Simulation Center Directors",
     shortTitle: "Sim Directors",
     subtitle: "Extend your SP program, don't replace it",
-    icon: FlaskConical,
+    icon: "microscope",
     colorVariant: "blue",
 
     cardBullets: [
@@ -404,7 +398,7 @@ const audiences: Audience[] = [
     title: "Clinical Competency Committees",
     shortTitle: "CCCs",
     subtitle: "Milestone-aligned data for every learner review",
-    icon: ClipboardCheck,
+    icon: "ribbon-check",
     colorVariant: "light-blue",
 
     cardBullets: [
