@@ -155,35 +155,35 @@ export default function HomePage() {
           },
         ]}
       />
-      {/* Hero Section - Light cloud per brand */}
-      <section className="relative flex flex-col items-center justify-center px-6 py-16 md:py-28 text-center bg-cs-cloud">
+      {/* Hero Section - Dark Blue per brand */}
+      <section className="relative flex flex-col items-center justify-center px-6 py-16 md:py-28 text-center bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto relative z-10">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight pb-3 mb-6 md:mb-8 text-cs-dark-blue">
-            Practice the <span className="font-medium">Conversations That Matter Most</span>
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight pb-3 mb-6 md:mb-8 text-white">
+            AI Clinical Simulation — Practice the <span className="text-cs-electric font-medium">Conversations That Matter Most</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-cs-dark-blue/85 font-light mb-4">
+          <p className="text-lg md:text-xl text-cs-cloud font-light mb-4">
             AI clinical simulation for{" "}
             <RotatingText
               phrases={["communication remediation", "breaking bad news", "goals-of-care discussions", "informed consent"]}
-              className="text-cs-navy font-medium"
+              className="text-cs-electric font-medium"
             />
           </p>
 
-          <p className="text-lg md:text-xl text-cs-dark-blue/75 font-light leading-relaxed mb-8 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-white/85 font-light leading-relaxed mb-8 max-w-3xl mx-auto">
             Structured practice for the communication scenarios learners struggle with most — breaking bad news, navigating difficult family meetings, informed consent, and goals-of-care discussions. On-demand, from any device.
           </p>
 
           <div className="space-y-3">
             <Link href="/contact">
               <Button
-                variant="default"
+                variant="accent"
                 size="xl"
               >
                 Request a Pilot
               </Button>
             </Link>
-            <p className="text-sm text-cs-dark-gray font-light">
+            <p className="text-sm text-cs-cloud/70 font-light">
               Piloting with medical schools, residency programs, and fellowships nationwide.
             </p>
           </div>

@@ -74,11 +74,11 @@ export function SiteHeader() {
         <Image
           src="/brand/ClinicalSim_Logo_Lockup_Transparent.svg"
           alt="ClinicalSim"
-          width={770}
+          width={1320}
           height={280}
           priority
           unoptimized
-          className="h-[2.8125rem] w-auto"
+          className="h-9 w-auto"
         />
       </Link>
 
