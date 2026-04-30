@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 770 280" preserveAspectRatio="xMinYMid meet" role="img" aria-label="ClinicalSim">
+  <g fill="#79f0b8">
+    <rect x="6"   y="105" width="28" height="80"  rx="3" />
+    <rect x="42"  y="80"  width="28" height="130" rx="3" />
+    <rect x="78"  y="40"  width="28" height="210" rx="3" />
+    <rect x="114" y="95"  width="28" height="100" rx="3" />
+  </g>
+  <text x="170" y="205"
+        font-family="'Plus Jakarta Sans', system-ui, -apple-system, 'Helvetica Neue', sans-serif"
+        font-weight="300"
+        font-size="225"
+        letter-spacing="-3"
+        fill="#061729">ClinicalSim</text>
+</svg>
