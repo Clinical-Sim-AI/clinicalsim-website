@@ -26,11 +26,13 @@ export function SiteHeader() {
     audiencesTimeoutRef.current = setTimeout(() => setAudiencesOpen(false), 150)
   }
 
-  // Close mobile menu on route change
-  useEffect(() => {
+  // Close mobile menu on route change (derived state)
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname)
     setMobileMenuOpen(false)
     setMobileAudiencesOpen(false)
-  }, [pathname])
+  }
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -76,7 +78,7 @@ export function SiteHeader() {
           height={280}
           priority
           unoptimized
-          className="h-9 w-auto"
+          className="h-[2.8125rem] w-auto"
         />
       </Link>
 

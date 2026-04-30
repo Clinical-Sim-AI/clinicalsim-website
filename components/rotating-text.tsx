@@ -16,35 +16,37 @@ export function RotatingText({
 }: RotatingTextProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
   const [height, setHeight] = useState<number | undefined>(undefined);
   const measureRef = useRef<HTMLSpanElement>(null);
-  const hiddenRef = useRef<HTMLSpanElement>(null);
 
-  // Detect prefers-reduced-motion
+  // Detect prefers-reduced-motion changes
   useEffect(() => {
     const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mql.matches);
     const handler = (e: MediaQueryListEvent) =>
       setPrefersReducedMotion(e.matches);
     mql.addEventListener("change", handler);
     return () => mql.removeEventListener("change", handler);
   }, []);
 
-  // Measure the tallest phrase to prevent layout shift
-  useEffect(() => {
-    if (!hiddenRef.current) return;
-    const container = hiddenRef.current;
-    let maxHeight = 0;
-    // Temporarily render each phrase to measure
-    const originalText = container.textContent;
-    for (const phrase of phrases) {
-      container.textContent = phrase;
-      maxHeight = Math.max(maxHeight, container.offsetHeight);
-    }
-    container.textContent = originalText;
-    setHeight(maxHeight);
-  }, [phrases]);
+  // Measure the tallest phrase to prevent layout shift via ref callback
+  const hiddenRefCallback = useCallback(
+    (node: HTMLSpanElement | null) => {
+      if (!node) return;
+      let maxHeight = 0;
+      const originalText = node.textContent;
+      for (const phrase of phrases) {
+        node.textContent = phrase;
+        maxHeight = Math.max(maxHeight, node.offsetHeight);
+      }
+      node.textContent = originalText;
+      setHeight(maxHeight);
+    },
+    [phrases]
+  );
 
   // Cycle through phrases
   const cycle = useCallback(() => {
@@ -80,7 +82,7 @@ export function RotatingText({
     <>
       {/* Hidden element for measuring tallest phrase */}
       <span
-        ref={hiddenRef}
+        ref={hiddenRefCallback}
         aria-hidden="true"
         className={cn(className, "invisible absolute whitespace-nowrap")}
         style={{ pointerEvents: "none" }}
