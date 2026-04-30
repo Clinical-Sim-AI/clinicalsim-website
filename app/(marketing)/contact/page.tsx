@@ -6,7 +6,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
 import { JsonLd } from "@/components/json-ld"
-import { Users, Handshake, FlaskConical, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
+import { BrandIcon } from "@/components/brand-icon"
 
 export const metadata: Metadata = {
   title: "Contact Us — Request a Pilot",
@@ -207,7 +208,7 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-lg border border-cs-gray/50 hover:shadow-xl transition-all duration-300">
               <div className="w-12 h-12 rounded-lg bg-cs-electric flex items-center justify-center mb-6">
-                <Users className="w-6 h-6 text-white" />
+                <BrandIcon name="people-connected" color="dark" size={28} />
               </div>
               <h3 className="text-xl font-medium text-cs-navy mb-3">Pilot Program</h3>
               <p className="text-cs-dark-blue/85 font-light leading-relaxed">
@@ -218,7 +219,7 @@ export default function ContactPage() {
 
             <div className="bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-lg border border-cs-gray/50 hover:shadow-xl transition-all duration-300">
               <div className="w-12 h-12 rounded-lg bg-cs-dark-blue flex items-center justify-center mb-6">
-                <Handshake className="w-6 h-6 text-white" />
+                <BrandIcon name="friendship" color="white" size={28} />
               </div>
               <h3 className="text-xl font-medium text-cs-navy mb-3">Partnerships</h3>
               <p className="text-cs-dark-blue/85 font-light leading-relaxed">
@@ -229,7 +230,7 @@ export default function ContactPage() {
 
             <div className="bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-lg border border-cs-gray/50 hover:shadow-xl transition-all duration-300">
               <div className="w-12 h-12 rounded-lg bg-cs-light-blue flex items-center justify-center mb-6">
-                <FlaskConical className="w-6 h-6 text-white" />
+                <BrandIcon name="microscope" color="dark" size={28} />
               </div>
               <h3 className="text-xl font-medium text-cs-navy mb-3">Research Collaboration</h3>
               <p className="text-cs-dark-blue/85 font-light leading-relaxed mb-4">
