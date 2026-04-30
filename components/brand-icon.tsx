@@ -73,8 +73,10 @@ export function BrandIcon({
   alt = "",
 }: BrandIconProps) {
   const id = iconRegistry[name]
-  const colorCode = color === "white" ? "FFFFFF" : "07172F"
-  const src = `/brand/icons/noun-${name}-${id}-${colorCode}.png`
+  // Always render the dark master and recolor with a CSS filter when white
+  // is requested. This avoids gaps when the FFFFFF variant wasn't shipped.
+  const src = `/brand/icons/noun-${name}-${id}-07172F.png`
+  const filter = color === "white" ? "brightness(0) invert(1)" : undefined
   return (
     <Image
       src={src}
@@ -82,6 +84,7 @@ export function BrandIcon({
       width={size}
       height={size}
       className={cn("inline-block", className)}
+      style={filter ? { filter } : undefined}
       unoptimized
     />
   )
