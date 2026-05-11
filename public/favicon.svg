@@ -1,11 +1,8 @@
-<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <!-- Rounded dark-blue tile so the mark is legible on light and dark browser tabs -->
-  <rect width="64" height="64" rx="14" ry="14" fill="#061729"/>
-  <!-- Soundwave bars match the proportions of the new ClinicalSim brand lockup -->
-  <g fill="#79f0b8">
-    <rect x="17" y="24" width="6" height="16" rx="1.5"/>
-    <rect x="25" y="18" width="6" height="28" rx="1.5"/>
-    <rect x="33" y="10" width="6" height="44" rx="1.5"/>
-    <rect x="41" y="22" width="6" height="20" rx="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="ClinicalSim">
+  <g fill="#061729">
+    <rect x="16" y="32" width="31" height="192"/>
+    <rect x="80" y="64" width="31" height="128"/>
+    <rect x="145" y="0" width="31" height="256"/>
+    <rect x="209" y="64" width="31" height="128"/>
   </g>
 </svg>

@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   },
   description: 'Practice the conversations that matter most. Clinical simulation purpose-built for communication remediation and training in medical education. Structured practice mapped to ACGME milestones with CCC-ready documentation. Built by simulation directors and communication researchers.',
   icons: {
-    icon: '/favicon.svg?v=2',
-    apple: '/apple-touch-icon.png',
+    icon: '/favicon.svg?v=3',
+    apple: '/apple-touch-icon.png?v=3',
   },
   openGraph: {
     type: 'website',

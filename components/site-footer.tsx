@@ -11,10 +11,10 @@ export function SiteFooter() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center" aria-label="ClinicalSim home">
               <Image
-                src="/brand/ClinicialSim_Logo_Lockup_DarkBlue.png"
+                src="/brand/ClinicalSim_Logo_Lockup_DarkBlue.svg"
                 alt="ClinicalSim"
-                width={783}
-                height={294}
+                width={612}
+                height={367}
                 className="h-8 w-auto"
               />
             </Link>
