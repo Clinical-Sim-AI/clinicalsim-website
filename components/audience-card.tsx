@@ -73,7 +73,7 @@ export function AudienceCard({
           ) : null}
         </div>
 
-        <h3 className="text-xl md:text-2xl font-medium mb-2 text-cs-dark-blue group-hover:text-cs-navy transition-colors">
+        <h3 className="text-xl md:text-2xl font-medium mb-2 text-cs-dark-blue group-hover:text-cs-navy transition-colors min-h-[5.25rem] md:min-h-[6rem]">
           {title}
         </h3>
 
