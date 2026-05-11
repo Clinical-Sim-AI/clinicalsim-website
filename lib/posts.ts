@@ -12,6 +12,15 @@ export interface Post {
 
 const posts: Post[] = [
   {
+    slug: "what-programs-lost-when-step-2-cs-disappeared",
+    title: "What Programs Lost When Step 2 CS Disappeared, and What Hasn't Replaced It",
+    description: "USMLE Step 2 CS was permanently discontinued in 2021. Five years later, residency programs still have no standardized way to assess communication skills. Milestones 2.0 raised the bar, but gave programs no new tools to meet it.",
+    date: "2026-05-11",
+    author: "ClinicalSim.ai Team",
+    readingTime: "7 min read",
+    tags: ["step-2-cs", "communication-assessment", "ACGME", "milestones", "medical-education", "residency", "USMLE"],
+  },
+  {
     slug: "faculty-hour-problem-communication-remediation",
     title: "The Faculty Hour Problem with Communication Remediation, and Why It Doesn't Scale",
     description: "93% of residency programs face remediation, and communication is the hardest competency to fix. Each case consumes 25-75 faculty hours. Programs build their approach from scratch every time. The math doesn't work.",
