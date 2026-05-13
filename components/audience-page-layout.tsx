@@ -150,7 +150,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
         </div>
       </section>
 
-      <SectionDivider variant="wave" color="slate" />
+      <SectionDivider variant="wave" color="white" />
 
       {/* Key Stats */}
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">
@@ -206,7 +206,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
         </div>
       </section>
 
-      <SectionDivider variant="curve" color="blue" />
+      <SectionDivider variant="curve" color="cloud" />
 
       {/* Practice Tool CTA — Program Directors only */}
       {audience.slug === "program-directors" && (

@@ -260,7 +260,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       {/* ----------------------------------------------------------------- */}
       {/* Section 3: How It Works                                            */}
       {/* ----------------------------------------------------------------- */}
-      <SectionDivider variant="wave" color="slate" />
+      <SectionDivider variant="wave" color="white" />
 
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
@@ -389,7 +389,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       {/* ----------------------------------------------------------------- */}
       {/* Section 5: The Team                                                */}
       {/* ----------------------------------------------------------------- */}
-      <SectionDivider variant="curve" color="blue" />
+      <SectionDivider variant="curve" color="cloud" />
 
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
@@ -481,7 +481,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       {/* ----------------------------------------------------------------- */}
       {/* Section 7: Pricing Frame                                           */}
       {/* ----------------------------------------------------------------- */}
-      <SectionDivider variant="wave" color="slate" />
+      <SectionDivider variant="wave" color="white" />
 
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
@@ -669,7 +669,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       {/* ----------------------------------------------------------------- */}
       {/* Final CTA                                                          */}
       {/* ----------------------------------------------------------------- */}
-      <SectionDivider variant="diagonal-down" color="indigo" />
+      <SectionDivider variant="diagonal-down" color="cloud" />
 
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">

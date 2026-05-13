@@ -148,7 +148,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <SectionDivider variant="wave" color="blue" />
+      <SectionDivider variant="wave" color="cloud" />
 
       {/* Who We Serve Section */}
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">
@@ -183,7 +183,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <SectionDivider variant="diagonal-down" color="slate" />
+      <SectionDivider variant="diagonal-down" color="white" />
 
       {/* Final CTA Section */}
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">

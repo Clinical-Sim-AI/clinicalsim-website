@@ -103,45 +103,65 @@ The project uses shadcn/ui components which are:
 - Escape special characters: `p<0.001` → `p&lt;0.001`
 - Follow established tag conventions (see Insights page for color coding)
 
-## Design System (Updated Feb 2026)
+## Design System (Updated May 2026)
+
+**Source of truth**: `/Users/benconway/Documents/Documents - Ben ClinicalSim Macbook Pro/Clinical Sim AI LLC/Claude-Workspace/context/brand-guidelines.md`. Read it before producing any visual or branded output. The guidelines override anything below if they conflict.
+
+### Color System (Tailwind tokens in `tailwind.config.ts`)
+**Primary palette**
+- `cs-dark-blue` `#061729` — primary brand color, default body text on light, hero backgrounds
+- `cs-electric` `#79f0b8` — accent only (CTAs, single emphasized words, logo soundwave)
+- `cs-cloud` `#e8e7e6` — soft neutral background
+
+**Secondary palette**
+- `cs-navy` `#163b61` — color-coded sections, secondary dark surfaces
+- `cs-light-blue` `#86d0eb` — soft accent
+- `cs-dark-gray` `#8e9091`, `cs-gray` `#c3c5c7` — dividers, secondary text, footnotes
+
+**Electric green contrast rule (non-negotiable)**
+- Electric is only legible over `cs-dark-blue` or `cs-navy`. Never place Electric text, icons, dividers, or backgrounds on White, Cloud, Light Blue, or Gray.
+- For CTAs on light surfaces use the inverse pair: Dark Blue background, White text. Reserve the Electric-background button for placements that sit on Dark Blue or Navy.
+
+### Typography
+- **Plus Jakarta Sans** is the only brand typeface. Loaded via `var(--font-plus-jakarta)` in `tailwind.config.ts`.
+- Approved weights only: Light (300), Medium (500), Bold (700).
+- Default text color on light surfaces is `cs-dark-blue` (never pure black). On Dark Blue or Navy surfaces use white or `cs-cloud`.
+
+### Button Variants (`components/ui/button.tsx`)
+- `default` — Dark Blue background, white text. Primary CTA on light surfaces.
+- `accent` — Electric background, Dark Blue text, bold. Primary CTA on Dark Blue or Navy surfaces only.
+- `secondary` — 1.5px Dark Blue outline, Dark Blue text, fills on hover.
+- `link` — Dark Blue underline on hover.
+- `outline`, `ghost`, `destructive` — shadcn defaults retained for product UI.
 
 ### Custom Components Library
 **Feature Components:**
-- `components/feature-card.tsx` - Asymmetric cards with border glow hover, color variants (default, warm, navy, success)
-- `components/stat-highlight.tsx` - Large statistics with IBM Plex Mono font, multiple color variants
-- `components/evidence-showcase.tsx` - Research study display with badges and citations
+- `components/feature-card.tsx` — Asymmetric cards with hover state
+- `components/stat-highlight.tsx` — Large statistics, Plus Jakarta
+- `components/evidence-showcase.tsx` — Research study display with badges and citations
 
 **Layout Components:**
-- `components/asymmetric-grid.tsx` - Flexible layouts: featured-left/right, staggered, mixed
-- `components/section-divider.tsx` - SVG dividers: diagonal-down/up, wave, curve
+- `components/asymmetric-grid.tsx` — Featured-left/right, staggered, mixed
+- `components/section-divider.tsx` — SVG dividers: diagonal-down/up, wave, curve
 
 **Media Components:**
-- `components/demo-video-section.tsx` - Video embed with custom warm accent play button
-- `components/screenshot-gallery.tsx` - Lightbox gallery with keyboard navigation
+- `components/demo-video-section.tsx` — Video embed
+- `components/screenshot-gallery.tsx` — Lightbox gallery with keyboard navigation
 
 **Authorship & Citation Components:**
-- `components/author-byline.tsx` - Author display with colored initials avatar (individual) or Users icon (team)
-- `components/references-section.tsx` - Numbered academic citation list for MDX blog posts
-
-### Color System
-- **Primary**: Blue (#3B82F6) - Brand identity, navigation
-- **Warm Accent**: Orange (#F97316) - CTAs, metrics, highlights - `text-warm`, `bg-warm`, `border-warm`
-- **Success**: Green (#10B981) - Outcomes, testimonials - `text-success`, `bg-success`
-- **Navy**: Deep blue (#1E3A8A) - Authority, headers - `text-navy`, `bg-navy`
-
-### Typography
-- **Primary**: Poppins (300-700) - All body text, headlines, UI
-- **Secondary**: IBM Plex Mono (400-700) - Statistics, data - `font-mono` class
-
-### Button Variants
-- `gradient-primary` - Blue-indigo-purple gradient with shimmer
-- `warm-accent` - Orange border with sliding fill animation
-- `warm-filled` - Solid warm accent background
-- `text-link` - Animated underline on hover
+- `components/author-byline.tsx` — Author display with colored initials avatar (individual) or Users icon (team)
+- `components/references-section.tsx` — Numbered academic citation list for MDX blog posts
 
 ### Border Radius System
 - `rounded-xs` (4px), `rounded-sm` (6px), `rounded-md` (8px), `rounded-lg` (8px), `rounded-xl` (16px), `rounded-2xl` (24px)
-- **Guideline**: Vary based on component importance, avoid uniform 8px everywhere
+- Vary based on component importance — avoid uniform 8px everywhere.
+
+### Retired (do not reintroduce)
+The following are deprecated as of April 2026. Do not add new instances and replace any survivors:
+- Warm orange accent `#F97316` and `text-warm` / `bg-warm` / `border-warm` / `warm-accent` / `warm-filled` classes
+- Blue-to-indigo-to-purple gradient buttons (`gradient-primary`) and shimmer animations
+- Border-glow hover in warm orange
+- Poppins, IBM Plex Mono, Inter, Roboto — replaced by Plus Jakarta Sans only
 
 ## Hallucination Prevention
 

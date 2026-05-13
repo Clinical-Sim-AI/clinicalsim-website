@@ -3,17 +3,15 @@ import { cn } from "@/lib/utils"
 
 export interface SectionDividerProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "diagonal-down" | "diagonal-up" | "wave" | "curve"
-  color?: "cloud" | "white" | "blue" | "indigo" | "slate"
+  color?: "cloud" | "white" | "dark-blue" | "navy"
   flip?: boolean
 }
 
 const colorMap = {
   cloud: "#e8e7e6",
   white: "#FFFFFF",
-  // Aliases mapped to brand neutrals (legacy keys preserved for callers)
-  blue: "#e8e7e6",
-  indigo: "#e8e7e6",
-  slate: "#FFFFFF",
+  "dark-blue": "#061729",
+  navy: "#163b61",
 }
 
 export function SectionDivider({

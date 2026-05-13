@@ -220,7 +220,7 @@ export default function PracticePage() {
         </div>
       </section>
 
-      <SectionDivider variant="wave" color="slate" />
+      <SectionDivider variant="wave" color="white" />
 
       {/* Scenarios Section */}
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">
@@ -325,7 +325,7 @@ export default function PracticePage() {
         </div>
       </section>
 
-      <SectionDivider variant="curve" color="blue" />
+      <SectionDivider variant="curve" color="cloud" />
 
       {/* Transparency Section */}
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">
@@ -596,7 +596,7 @@ export default function PracticePage() {
         </div>
       </section>
 
-      <SectionDivider variant="curve" color="blue" />
+      <SectionDivider variant="curve" color="cloud" />
 
       {/* Bridge Section — From Your Practice to Your Program */}
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">

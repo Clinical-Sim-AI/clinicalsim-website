@@ -265,7 +265,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionDivider variant="wave" color="slate" />
+      <SectionDivider variant="wave" color="white" />
 
       {/* Demo Video Section */}
       <section className="px-6 py-8 md:py-12 bg-cs-cloud">
@@ -474,7 +474,7 @@ export default function HomePage() {
           </Link>
           <p className="mt-4 text-sm text-white/70 font-light">
             Are you a researcher?{" "}
-            <Link href="/research" className="text-cs-dark-blue hover:text-white font-medium transition-colors inline-flex items-center">
+            <Link href="/research" className="text-cs-electric hover:text-white font-medium transition-colors inline-flex items-center">
               Apply to collaborate
               <ArrowRight className="w-3.5 h-3.5 ml-1" />
             </Link>

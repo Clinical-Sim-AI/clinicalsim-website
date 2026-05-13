@@ -109,7 +109,7 @@ export default function AudiencesPage() {
         </div>
       </section>
 
-      <SectionDivider variant="wave" color="slate" />
+      <SectionDivider variant="wave" color="white" />
 
       {/* Solutions Bridge */}
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">

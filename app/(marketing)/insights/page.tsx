@@ -167,7 +167,7 @@ export default function InsightsPage() {
       {/* All Posts Grid */}
       {otherPosts.length > 0 && (
         <>
-          <SectionDivider variant="wave" color="slate" />
+          <SectionDivider variant="wave" color="white" />
 
           <section className="px-6 py-12 md:py-16 bg-cs-cloud">
             <div className="max-w-5xl mx-auto">

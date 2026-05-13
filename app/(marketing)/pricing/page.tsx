@@ -148,7 +148,7 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       {/* Pricing cards                                                       */}
       {/* ------------------------------------------------------------------ */}
-      <SectionDivider variant="wave" color="slate" />
+      <SectionDivider variant="wave" color="white" />
 
       <section
         id="plans"
@@ -391,7 +391,7 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       {/* Comparison table                                                     */}
       {/* ------------------------------------------------------------------ */}
-      <SectionDivider variant="diagonal-up" color="slate" />
+      <SectionDivider variant="diagonal-up" color="white" />
 
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-5xl mx-auto">
@@ -522,7 +522,7 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       {/* FAQ                                                                  */}
       {/* ------------------------------------------------------------------ */}
-      <SectionDivider variant="diagonal-up" color="slate" />
+      <SectionDivider variant="diagonal-up" color="white" />
 
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
@@ -558,7 +558,7 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       {/* Founding Program CTA                                                 */}
       {/* ------------------------------------------------------------------ */}
-      <SectionDivider variant="diagonal-down" color="indigo" />
+      <SectionDivider variant="diagonal-down" color="cloud" />
 
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
