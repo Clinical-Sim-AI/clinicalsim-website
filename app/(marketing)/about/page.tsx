@@ -9,7 +9,7 @@ import { Check, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "About ClinicalSim.ai: AI Clinical Simulation for Communication Remediation",
-  description: "ClinicalSim.ai is the first AI clinical simulation purpose-built for communication remediation. ACGME milestone-aligned with real-time feedback and CCC-ready documentation.",
+  description: "ClinicalSim is the first AI clinical simulation purpose-built for communication remediation. ACGME milestone-aligned with real-time feedback and CCC-ready documentation.",
   openGraph: {
     title: "About ClinicalSim.ai",
     description: "The first AI clinical simulation purpose-built for communication remediation. ACGME milestone-aligned.",
@@ -36,7 +36,7 @@ export default function AboutPage() {
             The first AI simulation purpose-built for communication remediation.
           </h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">
-            ClinicalSim.ai is the first AI clinical simulation purpose-built for <span className="text-cs-electric font-medium">communication remediation</span> — structured practice with real-time feedback, mapped to ACGME ICS Milestones 2.0, generating documentation your CCC can use.
+            ClinicalSim is the first AI clinical simulation purpose-built for <span className="text-cs-electric font-medium">communication remediation</span> — structured practice with real-time feedback, mapped to ACGME ICS Milestones 2.0, generating documentation your CCC can use.
           </p>
         </div>
       </section>

@@ -24,7 +24,7 @@ export function DemoVideoSection({
   videoUrl,
   youtubeUrl,
   thumbnailUrl = "/placeholder-video-thumbnail.jpg",
-  title = "See ClinicalSim.ai in Action",
+  title = "See ClinicalSim in Action",
   description,
   aspectRatio = "video",
   className,

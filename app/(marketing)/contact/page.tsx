@@ -11,7 +11,7 @@ import { BrandIcon } from "@/components/brand-icon"
 
 export const metadata: Metadata = {
   title: "Contact Us — Request a Pilot",
-  description: "Contact ClinicalSim.ai to request a pilot program, schedule a demo, or learn how AI voice simulation can improve medical communication training at your institution.",
+  description: "Contact ClinicalSim to request a pilot program, schedule a demo, or learn how AI voice simulation can improve medical communication training at your institution.",
   openGraph: {
     title: "Contact ClinicalSim.ai",
     description: "Request a pilot program or learn how AI voice simulation can improve medical communication training at your institution.",
@@ -40,7 +40,7 @@ export default function ContactPage() {
             url: "https://clinicalsim.ai/contact",
             mainEntity: {
               "@type": "Organization",
-              name: "ClinicalSim.ai",
+              name: "ClinicalSim",
               url: "https://clinicalsim.ai",
               contactPoint: {
                 "@type": "ContactPoint",

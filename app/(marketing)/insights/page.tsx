@@ -8,7 +8,7 @@ import { BookOpen } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Insights — Research & Evidence for Medical Communication Training",
-  description: "Evidence-based insights on medical communication training, simulation technology, and the clinical conversations that drive patient outcomes. Research from ClinicalSim.ai.",
+  description: "Evidence-based insights on medical communication training, simulation technology, and the clinical conversations that drive patient outcomes. Research from ClinicalSim.",
   openGraph: {
     title: "Insights from ClinicalSim.ai",
     description: "Evidence-based insights on medical communication training, simulation technology, and clinical conversation outcomes.",
@@ -45,7 +45,7 @@ export default function InsightsPage() {
       },
       publisher: {
         "@type": "Organization" as const,
-        name: "ClinicalSim.ai",
+        name: "ClinicalSim",
         url: "https://clinicalsim.ai",
       },
     },

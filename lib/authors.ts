@@ -12,9 +12,9 @@ export const TEAM_AUTHOR_ID = "clinicalsim-team"
 const authors: Author[] = [
   {
     id: TEAM_AUTHOR_ID,
-    name: "ClinicalSim.ai Team",
-    title: "ClinicalSim.ai",
-    bio: "The ClinicalSim.ai team combines expertise in medical simulation, clinical communication research, and healthcare technology.",
+    name: "ClinicalSim Team",
+    title: "ClinicalSim",
+    bio: "The ClinicalSim team combines expertise in medical simulation, clinical communication research, and healthcare technology.",
     colorVariant: "blue",
   },
 ]

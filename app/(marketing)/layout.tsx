@@ -14,7 +14,7 @@ export default function MarketingLayout({
           {
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "ClinicalSim.ai",
+            name: "ClinicalSim",
             url: "https://clinicalsim.ai",
             logo: {
               "@type": "ImageObject",
@@ -42,7 +42,7 @@ export default function MarketingLayout({
               "Practice the conversations that matter most. AI clinical simulation purpose-built for communication remediation in graduate medical education, mapped to ACGME ICS Milestones 2.0.",
             publisher: {
               "@type": "Organization",
-              name: "ClinicalSim.ai",
+              name: "ClinicalSim",
               url: "https://clinicalsim.ai",
             },
           },

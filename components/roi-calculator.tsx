@@ -308,7 +308,7 @@ function ProgramDirectorView() {
             <ComparisonBar
               leftLabel="Current SP program cost"
               leftValue={totalCurrentCost}
-              rightLabel={`ClinicalSim.ai (${formatCurrency(pricePerUser)}/user/mo)`}
+              rightLabel={`ClinicalSim (${formatCurrency(pricePerUser)}/user/mo)`}
               rightValue={clinicalSimAnnual}
               savings={savings > 0 ? savings : 0}
             />
@@ -345,7 +345,7 @@ function ProgramDirectorView() {
       {/* Framing note */}
       <div className="bg-cs-cloud rounded-xl p-4 border border-cs-dark-blue/10">
         <p className="text-sm font-light text-cs-dark-blue/85 leading-relaxed">
-          ClinicalSim.ai extends your SP program — it doesn&apos;t replace it.
+          ClinicalSim extends your SP program — it doesn&apos;t replace it.
           SPs stay focused on high-stakes OSCEs and summative assessments.
           ClinicalSim gives learners the on-demand practice reps that are
           difficult to schedule with live SPs — no coordinator logistics, no
@@ -635,7 +635,7 @@ function CMOView() {
           Let us build your custom ROI analysis
         </p>
         <p className="text-sm font-light text-blue-300 mb-4">
-          We&apos;ll map ClinicalSim.ai pricing to your specific workforce and
+          We&apos;ll map ClinicalSim pricing to your specific workforce and
           exposure profile.
         </p>
         <Link href="/contact">

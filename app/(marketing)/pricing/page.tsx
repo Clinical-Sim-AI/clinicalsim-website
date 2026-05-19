@@ -12,7 +12,7 @@ import { pricingPageData } from "@/lib/pricing"
 export const metadata: Metadata = {
   title: "Pricing — AI Clinical Simulation for Medical Education",
   description:
-    "ClinicalSim.ai pricing for individuals, programs, and enterprise. Individual plans from $19/month. Program licenses from $29/user/month billed annually. Enterprise custom pricing with SSO, LMS integration, and dedicated support.",
+    "ClinicalSim pricing for individuals, programs, and enterprise. Individual plans from $19/month. Program licenses from $29/user/month billed annually. Enterprise custom pricing with SSO, LMS integration, and dedicated support.",
   openGraph: {
     title: "Pricing | ClinicalSim.ai",
     description:
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Pricing | ClinicalSim.ai",
     description:
-      "ClinicalSim.ai pricing from $19/month for individuals. Program licenses from $29/user/month. Enterprise custom pricing available.",
+      "ClinicalSim pricing from $19/month for individuals. Program licenses from $29/user/month. Enterprise custom pricing available.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/pricing",

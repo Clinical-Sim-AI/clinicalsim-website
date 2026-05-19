@@ -9,7 +9,7 @@ import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Who We Serve: Program Directors, DIOs, Sim Directors & CCCs",
-  description: "ClinicalSim.ai serves every stakeholder in the remediation process — program directors seeking structured toolkits, DIOs standardizing remediation across programs, simulation center directors extending SP capacity, and CCCs needing milestone-aligned assessment data.",
+  description: "ClinicalSim serves every stakeholder in the remediation process — program directors seeking structured toolkits, DIOs standardizing remediation across programs, simulation center directors extending SP capacity, and CCCs needing milestone-aligned assessment data.",
   openGraph: {
     title: "Who ClinicalSim.ai Serves",
     description: "Communication remediation tools for program directors, DIOs, simulation centers, and clinical competency committees.",
@@ -36,7 +36,7 @@ export default function AudiencesPage() {
             "@type": "CollectionPage",
             name: "Who We Serve: Program Directors, DIOs, Sim Directors & CCCs",
             description:
-              "ClinicalSim.ai serves every stakeholder in the remediation process — program directors, DIOs, simulation center directors, and clinical competency committees.",
+              "ClinicalSim serves every stakeholder in the remediation process — program directors, DIOs, simulation center directors, and clinical competency committees.",
             url: "https://clinicalsim.ai/audiences",
             mainEntity: {
               "@type": "ItemList",
@@ -49,7 +49,7 @@ export default function AudiencesPage() {
             },
             publisher: {
               "@type": "Organization",
-              name: "ClinicalSim.ai",
+              name: "ClinicalSim",
               url: "https://clinicalsim.ai",
             },
           },
@@ -118,7 +118,7 @@ export default function AudiencesPage() {
             Communication <span className="text-cs-dark-blue font-medium">remediation</span>
           </h2>
           <p className="text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-8 max-w-2xl mx-auto">
-            See how ClinicalSim.ai supports structured communication remediation across your program.
+            See how ClinicalSim supports structured communication remediation across your program.
           </p>
           <Link href="/solutions/remediation">
             <Button variant="secondary" size="lg">
@@ -136,7 +136,7 @@ export default function AudiencesPage() {
             Ready to see ClinicalSim in action?
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            Join academic medical centers piloting ClinicalSim.ai
+            Join academic medical centers piloting ClinicalSim
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">

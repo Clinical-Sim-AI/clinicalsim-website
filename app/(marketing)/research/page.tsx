@@ -11,7 +11,7 @@ import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb, Presentati
 
 export const metadata: Metadata = {
   title: "Research Collaboration",
-  description: "ClinicalSim.ai research includes presentations at IPSSW, PAS, Critical Care Congress, and IPSS on AI-driven communication training. Apply to collaborate on research in communication remediation, simulation-based education, and competency assessment.",
+  description: "ClinicalSim research includes presentations at IPSSW, PAS, Critical Care Congress, and IPSS on AI-driven communication training. Apply to collaborate on research in communication remediation, simulation-based education, and competency assessment.",
   openGraph: {
     title: "Research with ClinicalSim.ai",
     description: "Apply to collaborate on research in medical communication training using AI voice simulation. Platform access, custom scenarios, and publication support provided.",
@@ -30,7 +30,7 @@ const benefits = [
   {
     icon: Laptop,
     title: "Full Platform Access",
-    description: "Complimentary access to ClinicalSim.ai for your study participants, including all simulation scenarios and feedback tools.",
+    description: "Complimentary access to ClinicalSim for your study participants, including all simulation scenarios and feedback tools.",
     variant: "default" as const,
   },
   {
@@ -117,7 +117,7 @@ export default function ResearchPage() {
           "@context": "https://schema.org",
           "@type": "WebPage",
           name: "Research Collaboration — ClinicalSim.ai",
-          description: "Apply to collaborate with ClinicalSim.ai on research in medical communication training using AI voice simulation.",
+          description: "Apply to collaborate with ClinicalSim on research in medical communication training using AI voice simulation.",
           url: "https://clinicalsim.ai/research",
           isPartOf: {
             "@type": "WebSite",
@@ -133,7 +133,7 @@ export default function ResearchPage() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             {/* Research Info */}
             <div>
-              <h1 className="text-4xl md:text-5xl font-light mb-6">Research with ClinicalSim.ai</h1>
+              <h1 className="text-4xl md:text-5xl font-light mb-6">Research with ClinicalSim</h1>
               <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-cs-cloud">
                 We partner with researchers studying communication remediation, simulation-based education,
                 and competency assessment in graduate and undergraduate medical education. If you have a study idea that could use our platform,
@@ -381,7 +381,7 @@ export default function ResearchPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-              Why collaborate with <span className="text-cs-dark-blue font-medium">ClinicalSim.ai</span>?
+              Why collaborate with <span className="text-cs-dark-blue font-medium">ClinicalSim</span>?
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
               We handle the platform logistics so you can focus on the research.

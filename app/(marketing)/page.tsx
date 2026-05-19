@@ -33,7 +33,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ClinicalSim.ai — AI Clinical Simulation for Communication Remediation",
+        alt: "ClinicalSim — AI Clinical Simulation for Communication Remediation",
       },
     ],
   },
@@ -124,7 +124,7 @@ export default function HomePage() {
           {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            name: "ClinicalSim.ai",
+            name: "ClinicalSim",
             applicationCategory: "HealthApplication",
             operatingSystem: "Web",
             description:
@@ -137,7 +137,7 @@ export default function HomePage() {
             },
             publisher: {
               "@type": "Organization",
-              name: "ClinicalSim.ai",
+              name: "ClinicalSim",
               url: "https://clinicalsim.ai",
             },
           },
@@ -196,9 +196,9 @@ export default function HomePage() {
       <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-3xl mx-auto">
           <div className="border-l-4 border-cs-electric pl-6 md:pl-8">
-            <h2 className="text-xl md:text-2xl font-light text-cs-navy mb-3">What is ClinicalSim.ai?</h2>
+            <h2 className="text-xl md:text-2xl font-light text-cs-navy mb-3">What is ClinicalSim?</h2>
             <p className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed mb-3">
-              ClinicalSim.ai is an AI clinical simulation platform purpose-built for communication remediation in graduate medical education. When Step 2 CS was discontinued in 2021, programs lost the only national standardized assessment of clinical communication skills. 93% of programs now face remediation with no scalable toolkit (CERA Survey, 267 Family Medicine PDs).
+              ClinicalSim is an AI clinical simulation platform purpose-built for communication remediation in graduate medical education. When Step 2 CS was discontinued in 2021, programs lost the only national standardized assessment of clinical communication skills. 93% of programs now face remediation with no scalable toolkit (CERA Survey, 267 Family Medicine PDs).
             </p>
             <p className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed">
               ClinicalSim provides structured, on-demand practice mapped to ACGME ICS Milestones 2.0 — breaking bad news, goals-of-care discussions, informed consent, and navigating difficult family meetings. Every session generates milestone-aligned, CCC-ready documentation. Built on research with medical practitioners using blinded evaluation and validated assessment tools.
@@ -271,7 +271,7 @@ export default function HomePage() {
       <section className="px-6 py-8 md:py-12 bg-cs-cloud">
         <div className="max-w-5xl mx-auto">
           <DemoVideoSection
-            title="See ClinicalSim.ai in Action"
+            title="See ClinicalSim in Action"
             description="Watch how learners practice difficult conversations with AI-powered simulation"
             youtubeUrl="https://www.youtube.com/embed/HRFtR44QlQk?si=dwv7JdCHPUtWSQIL&amp;start=97"
           />
@@ -285,7 +285,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-light text-cs-dark-blue mb-4">
-              Why ClinicalSim.ai
+              Why ClinicalSim
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
               Built for the conversations clinicians face but rarely get to practice.
@@ -426,7 +426,7 @@ export default function HomePage() {
               Built for every stakeholder in the <span className="text-cs-dark-blue font-medium">remediation process</span>
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
-              See how ClinicalSim.ai works for your role.
+              See how ClinicalSim works for your role.
             </p>
           </div>
 
@@ -462,7 +462,7 @@ export default function HomePage() {
             Ready to close the communication gap?
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            See how ClinicalSim.ai works for communication remediation.
+            See how ClinicalSim works for communication remediation.
           </p>
           <Link href="/contact">
             <Button

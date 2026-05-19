@@ -15,7 +15,7 @@ function buildAuthorSchema(post: Post) {
       jobTitle: author.title,
       worksFor: {
         "@type": "Organization" as const,
-        name: "ClinicalSim.ai",
+        name: "ClinicalSim",
         url: "https://clinicalsim.ai",
       },
     }
@@ -23,7 +23,7 @@ function buildAuthorSchema(post: Post) {
 
   return {
     "@type": "Organization" as const,
-    name: "ClinicalSim.ai",
+    name: "ClinicalSim",
     url: "https://clinicalsim.ai",
   }
 }
@@ -48,7 +48,7 @@ export function ArticleLayout({
           author: buildAuthorSchema(post),
           publisher: {
             "@type": "Organization",
-            name: "ClinicalSim.ai",
+            name: "ClinicalSim",
             url: "https://clinicalsim.ai",
             logo: {
               "@type": "ImageObject",

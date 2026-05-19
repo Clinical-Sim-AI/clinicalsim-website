@@ -36,9 +36,9 @@ export function AuthorByline({
         </div>
         <div>
           <p className="text-sm font-medium text-cs-dark-blue">
-            {authorName || "ClinicalSim.ai Team"}
+            {authorName || "ClinicalSim Team"}
           </p>
-          <p className="text-xs text-cs-dark-gray">ClinicalSim.ai</p>
+          <p className="text-xs text-cs-dark-gray">ClinicalSim</p>
         </div>
       </div>
     )

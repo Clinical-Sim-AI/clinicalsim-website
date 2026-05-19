@@ -70,7 +70,7 @@ export function SiteFooter() {
 
         <div className="border-t border-cs-gray/50 mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-sm text-cs-dark-gray font-light">
-            &copy; {new Date().getFullYear()} ClinicalSim.ai. All rights reserved.
+            &copy; {new Date().getFullYear()} ClinicalSim. All rights reserved.
           </p>
           <Link href="/privacy" className="text-sm text-cs-dark-gray hover:text-cs-dark-blue font-light transition-colors">
             Privacy Policy
