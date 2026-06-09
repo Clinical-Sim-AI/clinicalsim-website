@@ -7,6 +7,7 @@ import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { type Audience } from "@/lib/audiences"
 import { getPostBySlug } from "@/lib/posts"
+import { getSolutionBySlug } from "@/lib/solutions"
 import { type BrandIconName } from "@/components/brand-icon"
 
 const valuePropBrandIcons: Array<BrandIconName | null> = [
@@ -24,6 +25,13 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
   const relatedPosts = audience.relatedPostSlugs
     .map((slug) => getPostBySlug(slug))
     .filter(Boolean)
+
+  // The audience's primary use case, if it maps to a real solution page.
+  // Falls back to the remediation solution to preserve existing behavior.
+  const primarySolution =
+    audience.relevantSolutionSlugs
+      .map((slug) => getSolutionBySlug(slug))
+      .find(Boolean) ?? getSolutionBySlug("remediation")!
 
   return (
     <>
@@ -239,19 +247,19 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
         </section>
       )}
 
-      {/* Communication Remediation CTA — all other audiences */}
+      {/* Primary use-case CTA — all other audiences */}
       {audience.slug !== "program-directors" && (
         <section className="px-6 py-12 md:py-16 bg-cs-cloud">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-              Communication <span className="text-cs-dark-blue font-medium">remediation</span>
+              {primarySolution.title}
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto mb-8">
-              Learn how ClinicalSim provides structured, milestone-aligned practice for communication remediation — with CCC-ready documentation from every session.
+              {primarySolution.heroDescription}
             </p>
-            <Link href="/solutions/remediation">
+            <Link href={`/solutions/${primarySolution.slug}`}>
               <Button variant="secondary" size="lg">
-                Learn about Communication Remediation
+                Learn about {primarySolution.shortTitle}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>

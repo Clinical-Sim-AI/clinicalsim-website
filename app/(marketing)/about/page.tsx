@@ -8,16 +8,16 @@ import { getAllAudiences } from "@/lib/audiences"
 import { Check, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "About ClinicalSim.ai: AI Clinical Simulation for Communication Remediation",
-  description: "ClinicalSim is the first AI clinical simulation purpose-built for communication remediation. ACGME milestone-aligned with real-time feedback and CCC-ready documentation.",
+  title: "About ClinicalSim.ai: AI Clinical Simulation for Medical Communication",
+  description: "ClinicalSim is a voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum — UME, residency, fellowship, remediation, and faculty development. ACGME milestone-aligned with real-time feedback.",
   openGraph: {
     title: "About ClinicalSim.ai",
-    description: "The first AI clinical simulation purpose-built for communication remediation. ACGME milestone-aligned.",
+    description: "Voice-based AI clinical simulation to practice the conversations that matter most, across every stage of a medical career. ACGME milestone-aligned.",
     url: "https://clinicalsim.ai/about",
   },
   twitter: {
     title: "About ClinicalSim.ai",
-    description: "The first AI clinical simulation purpose-built for communication remediation. ACGME milestone-aligned.",
+    description: "Voice-based AI clinical simulation to practice the conversations that matter most, across every stage of a medical career.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/about",
@@ -33,10 +33,10 @@ export default function AboutPage() {
       <section className="relative text-center px-6 py-16 md:py-24 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl md:text-5xl font-light mb-6 text-white">
-            The first AI simulation purpose-built for communication remediation.
+            Practice the conversations that matter most.
           </h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">
-            ClinicalSim is the first AI clinical simulation purpose-built for <span className="text-cs-electric font-medium">communication remediation</span> — structured practice with real-time feedback, mapped to ACGME ICS Milestones 2.0, generating documentation your CCC can use.
+            ClinicalSim is a voice-based AI clinical simulation platform to practice and measure <span className="text-cs-electric font-medium">clinical communication</span> — structured practice with real-time feedback, mapped to ACGME ICS Milestones 2.0, across undergraduate medical education, residency and fellowship, remediation, and faculty development.
           </p>
         </div>
       </section>
@@ -47,7 +47,7 @@ export default function AboutPage() {
       <section className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 text-center">
-            Communication is the competency everyone remediates — and no one has tools for.
+            Communication is the hardest competency to teach, train, and measure.
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
@@ -90,7 +90,7 @@ export default function AboutPage() {
 
           <div className="bg-white/90 rounded-2xl p-8 md:p-10 shadow-xl border border-cs-gray/50 mb-8">
             <p className="text-lg md:text-xl text-cs-dark-blue/85 font-light leading-relaxed mb-8">
-              You wouldn&apos;t remediate a surgical skill without a sim lab. Communication deserves the same rigor. ClinicalSim provides structured, repeatable practice for the specific communication scenarios learners struggle with most — breaking bad news, navigating angry patients, conducting informed consent, leading goals-of-care discussions.
+              You wouldn&apos;t teach a procedure without a sim lab. Communication deserves the same rigor. ClinicalSim provides structured, repeatable practice for the conversations that matter most — breaking bad news, navigating angry patients, conducting informed consent, leading goals-of-care discussions — for learners and the faculty who teach them.
             </p>
 
             <div className="space-y-6">
@@ -154,7 +154,7 @@ export default function AboutPage() {
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">
-            Built for every stakeholder in the remediation process
+            Built for every stakeholder across the training continuum
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 mb-10">
@@ -173,10 +173,10 @@ export default function AboutPage() {
 
           <div className="text-center">
             <Link
-              href="/solutions/remediation"
+              href="/solutions"
               className="inline-flex items-center text-cs-dark-blue font-medium hover:text-cs-dark-blue transition-colors group"
             >
-              Learn about communication remediation
+              Explore all use cases
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -192,7 +192,7 @@ export default function AboutPage() {
             The institutions that move first will set the standard.
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90 max-w-3xl mx-auto">
-            Communication remediation is inevitable. The only question is whether you build the infrastructure from scratch every time, or use a system already mapped to your milestones.
+            Communication is teachable, measurable, and improvable. The only question is whether you build the infrastructure from scratch every time, or use a system already mapped to your milestones.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/contact">

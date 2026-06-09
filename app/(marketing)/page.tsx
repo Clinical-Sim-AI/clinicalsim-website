@@ -10,6 +10,7 @@ import { SectionDivider } from "@/components/section-divider"
 import { AudienceCard } from "@/components/audience-card"
 import { RotatingText } from "@/components/rotating-text"
 import { getAllAudiences } from "@/lib/audiences"
+import { getAllSolutions } from "@/lib/solutions"
 import { JsonLd } from "@/components/json-ld"
 import { ArrowRight } from "lucide-react"
 
@@ -19,28 +20,28 @@ const DemoVideoSection = dynamic(
 
 export const metadata: Metadata = {
   title: {
-    absolute: "AI Clinical Simulation for Medical Training | ClinicalSim",
+    absolute: "AI Clinical Simulation for Medical Communication | ClinicalSim",
   },
   description:
-    "AI clinical simulation for communication remediation in GME. ACGME Milestones 2.0 mapped practice. 93% of programs face remediation—we solve it.",
+    "Voice-based AI simulation to practice and measure clinical communication at every stage of a medical career — from undergraduate medical education through residency, fellowship, and faculty development. Mapped to ACGME ICS Milestones 2.0.",
   openGraph: {
-    title: "AI Clinical Simulation for Medical Training",
+    title: "AI Clinical Simulation for Medical Communication",
     description:
-      "Voice-based AI simulation for communication remediation in graduate medical education. ACGME Milestones 2.0 compliant.",
+      "Practice the conversations that matter most. Voice-based AI simulation for clinical communication across medical school, residency, fellowship, and faculty development.",
     url: "https://clinicalsim.ai",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ClinicalSim — AI Clinical Simulation for Communication Remediation",
+        alt: "ClinicalSim — AI Clinical Simulation for Medical Communication",
       },
     ],
   },
   twitter: {
-    title: "AI Clinical Simulation for Medical Training",
+    title: "AI Clinical Simulation for Medical Communication",
     description:
-      "Voice-based AI simulation for communication remediation. ACGME compliant.",
+      "Voice-based AI simulation to practice the conversations that matter most, across every stage of a medical career.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -50,6 +51,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const audiences = getAllAudiences()
+  const solutions = getAllSolutions()
 
   const features = [
     {
@@ -128,7 +130,7 @@ export default function HomePage() {
             applicationCategory: "HealthApplication",
             operatingSystem: "Web",
             description:
-              "AI clinical simulation platform purpose-built for communication remediation in graduate medical education. ACGME ICS Milestones 2.0 mapped practice for breaking bad news, goals-of-care, informed consent, and family meetings.",
+              "Voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum — undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Rubric-scored practice mapped to ACGME ICS Milestones 2.0 for breaking bad news, goals-of-care, informed consent, error disclosure, and family meetings.",
             url: "https://clinicalsim.ai",
             offers: {
               "@type": "Offer",
@@ -163,15 +165,15 @@ export default function HomePage() {
           </h1>
 
           <p className="text-lg md:text-xl text-cs-cloud font-light mb-4">
-            AI clinical simulation for{" "}
+            Voice-based AI simulation for{" "}
             <RotatingText
-              phrases={["communication remediation", "breaking bad news", "goals-of-care discussions", "informed consent"]}
+              phrases={["breaking bad news", "goals-of-care discussions", "informed consent", "giving difficult feedback", "disclosing a medical error"]}
               className="text-cs-electric font-medium"
             />
           </p>
 
           <p className="text-lg md:text-xl text-white/85 font-light leading-relaxed mb-8 max-w-3xl mx-auto">
-            Structured practice for the communication scenarios learners struggle with most — breaking bad news, navigating difficult family meetings, informed consent, and goals-of-care discussions. On-demand, from any device.
+            ClinicalSim is a voice-based AI simulation platform to practice and measure clinical communication at every stage of a medical career — from a medical student&apos;s first patient history to an attending leading a goals-of-care meeting. On-demand, from any device.
           </p>
 
           <div className="space-y-3">
@@ -198,10 +200,10 @@ export default function HomePage() {
           <div className="border-l-4 border-cs-electric pl-6 md:pl-8">
             <h2 className="text-xl md:text-2xl font-light text-cs-navy mb-3">What is ClinicalSim?</h2>
             <p className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed mb-3">
-              ClinicalSim is an AI clinical simulation platform purpose-built for communication remediation in graduate medical education. When Step 2 CS was discontinued in 2021, programs lost the only national standardized assessment of clinical communication skills. 93% of programs now face remediation with no scalable toolkit (CERA Survey, 267 Family Medicine PDs).
+              ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication — the hardest competency to teach, train, and assess at every level of medicine. The same engine and dashboard serve medical students, residents, fellows, and faculty, across undergraduate medical education, a longitudinal residency and fellowship curriculum, communication remediation, and faculty development.
             </p>
             <p className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed">
-              ClinicalSim provides structured, on-demand practice mapped to ACGME ICS Milestones 2.0 — breaking bad news, goals-of-care discussions, informed consent, and navigating difficult family meetings. Every session generates milestone-aligned, CCC-ready documentation. Built on research with medical practitioners using blinded evaluation and validated assessment tools.
+              ClinicalSim provides structured, on-demand practice mapped to ACGME ICS Milestones 2.0 — breaking bad news, goals-of-care discussions, informed consent, error disclosure, giving feedback, and navigating difficult family meetings. Every session generates rubric-scored, milestone-aligned documentation. Built on research with medical practitioners using blinded evaluation and validated assessment tools.
             </p>
           </div>
         </div>
@@ -212,10 +214,10 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-              Communication is the competency everyone remediates — and no one has <span className="text-cs-dark-blue font-medium">tools for</span>.
+              Communication is the hardest competency to teach, train, and <span className="text-cs-dark-blue font-medium">measure</span>.
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
-              93% of programs face remediation. Only 16 published studies address communication-specific remediation. Half of PDs want a toolkit. We built it.
+              Since Step 2 CS retired in 2021, there&apos;s no scalable way to measure communication against ICS milestones, EPAs, or competency frameworks. The gap is sharpest in remediation, where it&apos;s impossible to ignore:
             </p>
           </div>
 
@@ -260,6 +262,58 @@ export default function HomePage() {
               <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
                 93% of programs face remediation, but only 16 published studies address communication-specific remediation. The CERA survey confirmed: half of program directors said a remediation toolkit is the single thing that would help most. We built it.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* One Platform, Many Conversations - use cases as peers */}
+      <section className="px-6 py-8 md:py-12 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
+              One platform. <span className="text-cs-dark-blue font-medium">Many conversations.</span>
+            </h2>
+            <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
+              The same engine, rubric, and dashboard across every stage of a medical career.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {solutions.map((solution) => (
+              <AudienceCard
+                key={solution.slug}
+                brandIcon={solution.icon}
+                title={solution.title}
+                subtitle={solution.subtitle}
+                bullets={solution.cardBullets}
+                href={`/solutions/${solution.slug}`}
+                variant={solution.colorVariant}
+              />
+            ))}
+          </div>
+
+          {/* Looking ahead — practicing clinicians (vision, links to the latest essay) */}
+          <div className="mt-8 bg-cs-dark-blue rounded-2xl p-8 md:p-10 text-white">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div className="max-w-2xl">
+                <p className="text-sm font-medium uppercase tracking-wider text-cs-electric mb-2">
+                  Looking ahead
+                </p>
+                <h3 className="text-2xl md:text-3xl font-light mb-2">
+                  The confidence–competence gap doesn&apos;t end at training.
+                </h3>
+                <p className="text-base text-white/85 font-light leading-relaxed">
+                  In one survey, the attendings furthest out from training reported the highest confidence in leading end-of-life conversations — and the least formal preparation for them. Confidence isn&apos;t evidence of skill; it&apos;s often the absence of feedback. The same practice that develops trainees can keep practicing clinicians sharp.
+                </p>
+              </div>
+              <Link
+                href="/insights/eol-communication-training-measurement-gap"
+                className="inline-flex items-center text-cs-electric font-medium hover:text-white transition-colors whitespace-nowrap"
+              >
+                Read the essay
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
             </div>
           </div>
         </div>
@@ -423,7 +477,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-              Built for every stakeholder in the <span className="text-cs-dark-blue font-medium">remediation process</span>
+              Built for every stakeholder across the <span className="text-cs-dark-blue font-medium">training continuum</span>
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
               See how ClinicalSim works for your role.
@@ -445,8 +499,8 @@ export default function HomePage() {
           </div>
 
           <div className="text-center mt-8">
-            <Link href="/solutions/remediation" className="inline-flex items-center text-cs-dark-blue font-medium hover:text-cs-dark-blue transition-colors">
-              Learn about communication remediation
+            <Link href="/solutions" className="inline-flex items-center text-cs-dark-blue font-medium hover:text-cs-dark-blue transition-colors">
+              Explore all use cases
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </div>
@@ -462,7 +516,7 @@ export default function HomePage() {
             Ready to close the communication gap?
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            See how ClinicalSim works for communication remediation.
+            See how ClinicalSim helps your learners and faculty practice the conversations that matter most.
           </p>
           <Link href="/contact">
             <Button

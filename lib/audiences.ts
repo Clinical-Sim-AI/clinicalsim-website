@@ -499,6 +499,216 @@ const audiences: Audience[] = [
       "what-learners-want-from-ai-sps",
     ],
   },
+
+  {
+    slug: "medical-school-leadership",
+    title: "Medical School & UME Leadership",
+    shortTitle: "Medical School (UME)",
+    subtitle: "Sequence communication across all four years",
+    icon: "book-opened",
+    colorVariant: "blue",
+
+    cardBullets: [
+      "A four-year arc from history-taking to diagnosis disclosure",
+      "Unlimited practice between standardized-patient encounters",
+      "A dashboard that follows each student through clerkships",
+    ],
+
+    heroHeadline:
+      "Communication should grow alongside clinical knowledge — not be left to chance",
+    heroDescription:
+      "Medical students learn anatomy and pathophysiology on a deliberate sequence, but communication is often taught unevenly and assessed inconsistently. When Step 2 CS was discontinued in 2021, schools lost the only national standardized assessment of clinical communication. ClinicalSim lets you sequence scenarios across all four years — from structured history-taking to delivering a new diagnosis — with unlimited on-demand practice and a dashboard that follows each student through clerkships.",
+
+    painPoints: [
+      {
+        headline: "The national communication exam is gone",
+        description:
+          "USMLE Step 2 CS was permanently discontinued in 2021. Medical schools lost the only external, standardized assessment of clinical communication skills and have had no scalable replacement since.",
+        stat: "2021",
+        statSource: "Step 2 CS discontinued (USMLE / NBME)",
+      },
+      {
+        headline: "Standardized-patient encounters don't scale",
+        description:
+          "SP encounters are the gold standard, but at $50-$500 each and weeks of scheduling lead time, students can't get the repetition that builds real communication skill before clerkships.",
+        stat: "$50-$500",
+        statSource: "Per SP encounter (industry range)",
+      },
+      {
+        headline: "Communication is taught unevenly",
+        description:
+          "Across a four-year curriculum, communication instruction is often fragmented — a workshop here, an OSCE there — with no continuous arc and no longitudinal view of how each student is progressing.",
+      },
+      {
+        headline: "Skills fade without practice",
+        description:
+          "Communication is a performance skill. Without deliberate, repeated practice and feedback, the rapport-building and diagnosis-disclosure skills students learn early erode before they reach the wards.",
+      },
+    ],
+
+    stats: [
+      {
+        value: "2021",
+        label: "Step 2 CS — the national communication exam — was discontinued",
+        source: "USMLE / NBME",
+        variant: "blue",
+      },
+      {
+        value: "4 years",
+        label: "of sequenced practice, from history-taking to diagnosis disclosure",
+        variant: "navy",
+      },
+      {
+        value: "24/7",
+        label: "on-demand practice between standardized-patient encounters",
+        variant: "blue",
+      },
+      {
+        value: "Every session",
+        label: "generates structured, rubric-scored feedback",
+        variant: "light-blue",
+      },
+    ],
+
+    valueProps: [
+      {
+        title: "A Four-Year Arc",
+        description:
+          "Sequence scenarios so communication complexity rises with clinical knowledge — structured history-taking in the preclinical years, updating families on a plan in M3, and delivering a new diagnosis in M4.",
+      },
+      {
+        title: "Practice Between SP Encounters",
+        description:
+          "ClinicalSim handles the high-volume reps between scheduled standardized-patient sessions and OSCEs, so in-person encounters are spent demonstrating skill rather than building it for the first time.",
+      },
+      {
+        title: "A Dashboard Through Clerkships",
+        description:
+          "Follow each student's communication trajectory across the four years — not a single OSCE score, but a longitudinal view of how the skill is developing.",
+      },
+      {
+        title: "Built on Validated Frameworks",
+        description:
+          "Scenarios and feedback draw on established communication frameworks — SPIKES, teach-back, and Calgary-Cambridge — so students learn structures they'll carry into residency.",
+      },
+    ],
+
+    relevantSolutionSlugs: ["undergraduate-medical-education"],
+
+    ctaHeadline:
+      "Build communication skill across all four years.",
+    ctaDescription:
+      "Request a pilot and see how a sequenced arc of scenarios develops communication from the first patient history to delivering a diagnosis.",
+
+    relatedPostSlugs: [
+      "osce-case-design-guide",
+      "what-learners-want-from-ai-sps",
+      "breaking-bad-news-medical-training",
+    ],
+  },
+
+  {
+    slug: "faculty-clinician-educators",
+    title: "Faculty & Clinician Educators",
+    shortTitle: "Faculty Educators",
+    subtitle: "Practice the conversations faculty are expected to model",
+    icon: "medal-star",
+    colorVariant: "accent",
+
+    cardBullets: [
+      "Rehearse giving difficult, specific feedback",
+      "Navigate professionalism conversations with peers",
+      "The same rubric system that trains residents",
+    ],
+
+    heroHeadline:
+      "Faculty have to model conversations no one trained them for",
+    heroDescription:
+      "Attendings, fellows-as-teachers, and clinician educators are expected to give difficult feedback, address professionalism concerns, and teach at the bedside — conversations they were rarely formally trained to lead and almost never get objective feedback on. ClinicalSim turns the same engine and rubric that train residents toward the skills faculty are expected to demonstrate, in a private, low-stakes setting.",
+
+    painPoints: [
+      {
+        headline: "Faculty model skills they never practiced",
+        description:
+          "Giving structured feedback, handling defensiveness, and running a professionalism conversation are learned skills — but most faculty picked them up by osmosis, without deliberate practice or feedback.",
+      },
+      {
+        headline: "Confidence is not competence",
+        description:
+          "In one survey, the attendings furthest out from training reported the highest confidence in leading end-of-life conversations and the least formal preparation for them. Confidence, in this domain, is largely the absence of feedback.",
+        statSource: "See our essay on the measurement gap",
+      },
+      {
+        headline: "No objective feedback loop",
+        description:
+          "Once training ends, structured feedback on how a clinician actually communicates effectively stops. There is rarely a safe place to rehearse a hard feedback conversation before having it for real.",
+      },
+      {
+        headline: "Professionalism conversations get avoided",
+        description:
+          "Addressing a peer's lateness, disengagement, or underperformance is uncomfortable, so it's often deferred — and unaddressed concerns escalate into larger problems for the team and the program.",
+      },
+    ],
+
+    stats: [
+      {
+        value: "Same rubric",
+        label: "the engine and dashboard that train residents, turned toward faculty",
+        variant: "accent",
+      },
+      {
+        value: "Pendleton · SBI",
+        label: "structured feedback frameworks built into the scenarios",
+        variant: "navy",
+      },
+      {
+        value: "24/7",
+        label: "private, on-demand practice from any device",
+        variant: "accent",
+      },
+      {
+        value: "Every session",
+        label: "generates objective, rubric-scored feedback",
+        variant: "light-blue",
+      },
+    ],
+
+    valueProps: [
+      {
+        title: "Rehearse Difficult Feedback",
+        description:
+          "Practice delivering corrective feedback to a learner with structure (Pendleton, SBI) and handling defensiveness — before the real conversation, not during it.",
+      },
+      {
+        title: "Navigate Professionalism Concerns",
+        description:
+          "Work through addressing lateness, disengagement, or a colleague performing below expectations directly, without damaging the working relationship.",
+      },
+      {
+        title: "Sharpen Bedside Teaching",
+        description:
+          "Practice teach-back from the teacher's side — calibrating to the learner's level and protecting time for questions — with feedback on how it lands.",
+      },
+      {
+        title: "One Platform for Learners and Teachers",
+        description:
+          "Faculty-development scenarios run on the same engine, rubric, and dashboard as the trainee-facing programs, so an institution supports learners and the faculty who teach them from one system.",
+      },
+    ],
+
+    relevantSolutionSlugs: ["faculty-development"],
+
+    ctaHeadline:
+      "Give faculty the practice they never got.",
+    ctaDescription:
+      "Request a pilot and see how attendings and clinician educators rehearse feedback, professionalism, and teaching conversations with objective feedback.",
+
+    relatedPostSlugs: [
+      "eol-communication-training-measurement-gap",
+      "why-communication-training-matters",
+      "breaking-bad-news-practice-not-knowledge",
+    ],
+  },
 ]
 
 export function getAllAudiences(): Audience[] {

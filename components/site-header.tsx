@@ -7,15 +7,21 @@ import { useState, useRef, useEffect } from "react"
 import { ChevronDown, Menu, X } from "lucide-react"
 import { BrandIcon } from "@/components/brand-icon"
 import { getAllAudiences } from "@/lib/audiences"
+import { getAllSolutions } from "@/lib/solutions"
 
 export function SiteHeader() {
   const pathname = usePathname()
   const [audiencesOpen, setAudiencesOpen] = useState(false)
+  const [solutionsOpen, setSolutionsOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileAudiencesOpen, setMobileAudiencesOpen] = useState(false)
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false)
   const audiencesDropdownRef = useRef<HTMLDivElement>(null)
   const audiencesTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
+  const solutionsDropdownRef = useRef<HTMLDivElement>(null)
+  const solutionsTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
   const audiences = getAllAudiences()
+  const solutions = getAllSolutions()
 
   const openAudiences = () => {
     if (audiencesTimeoutRef.current) clearTimeout(audiencesTimeoutRef.current)
@@ -26,12 +32,22 @@ export function SiteHeader() {
     audiencesTimeoutRef.current = setTimeout(() => setAudiencesOpen(false), 150)
   }
 
+  const openSolutions = () => {
+    if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current)
+    setSolutionsOpen(true)
+  }
+
+  const closeSolutions = () => {
+    solutionsTimeoutRef.current = setTimeout(() => setSolutionsOpen(false), 150)
+  }
+
   // Close mobile menu on route change (derived state)
   const [prevPathname, setPrevPathname] = useState(pathname)
   if (pathname !== prevPathname) {
     setPrevPathname(pathname)
     setMobileMenuOpen(false)
     setMobileAudiencesOpen(false)
+    setMobileSolutionsOpen(false)
   }
 
   // Prevent body scroll when mobile menu is open
@@ -51,11 +67,15 @@ export function SiteHeader() {
       if (audiencesDropdownRef.current && !audiencesDropdownRef.current.contains(event.target as Node)) {
         setAudiencesOpen(false)
       }
+      if (solutionsDropdownRef.current && !solutionsDropdownRef.current.contains(event.target as Node)) {
+        setSolutionsOpen(false)
+      }
     }
     document.addEventListener("mousedown", handleClickOutside)
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
       if (audiencesTimeoutRef.current) clearTimeout(audiencesTimeoutRef.current)
+      if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current)
     }
   }, [])
 
@@ -67,6 +87,7 @@ export function SiteHeader() {
   ]
 
   const isAudiencesActive = pathname === "/audiences" || pathname?.startsWith("/audiences/")
+  const isSolutionsActive = pathname === "/solutions" || pathname?.startsWith("/solutions/")
 
   return (
     <header className="relative z-50 flex items-center justify-between px-4 py-4 md:px-12 md:py-6 bg-white/80 backdrop-blur-sm border-b border-white/20">
@@ -93,6 +114,53 @@ export function SiteHeader() {
 
       {/* Desktop navigation */}
       <nav className="hidden md:flex items-center gap-4 md:gap-8">
+        {/* Use Cases dropdown */}
+        <div
+          ref={solutionsDropdownRef}
+          className="relative"
+          onMouseEnter={openSolutions}
+          onMouseLeave={closeSolutions}
+        >
+          <button
+            onClick={() => {
+              setSolutionsOpen(!solutionsOpen)
+            }}
+            className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
+              isSolutionsActive ? "border-b-2 border-cs-dark-blue" : ""
+            }`}
+          >
+            Use Cases
+            <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${solutionsOpen ? "rotate-180" : ""}`} />
+          </button>
+
+          {solutionsOpen && (
+            <div className="absolute top-full left-0 pt-2 w-72 z-50">
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
+              {solutions.map((solution) => (
+                <Link
+                  key={solution.slug}
+                  href={`/solutions/${solution.slug}`}
+                  className="flex items-center gap-3 px-4 py-2.5 hover:bg-cs-cloud/70 transition-colors"
+                  onClick={() => setSolutionsOpen(false)}
+                >
+                  <BrandIcon name={solution.icon} size={16} className="shrink-0" />
+                  <span className="text-sm text-cs-dark-blue/85">{solution.title}</span>
+                </Link>
+              ))}
+              <div className="border-t border-cs-gray/30 mt-1 pt-1">
+                <Link
+                  href="/solutions"
+                  className="block px-4 py-2.5 text-sm font-medium text-cs-dark-blue hover:bg-cs-cloud/70 transition-colors"
+                  onClick={() => setSolutionsOpen(false)}
+                >
+                  View All
+                </Link>
+              </div>
+            </div>
+            </div>
+          )}
+        </div>
+
         {/* Who We Serve dropdown */}
         <div
           ref={audiencesDropdownRef}
@@ -161,6 +229,43 @@ export function SiteHeader() {
           <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
           <nav className="relative bg-white/95 backdrop-blur-sm border-b border-cs-gray/30 shadow-lg max-h-[calc(100dvh-65px)] overflow-y-auto">
             <div className="px-4 py-3">
+              {/* Use Cases accordion */}
+              <div className="border-b border-cs-gray/30">
+                <button
+                  onClick={() => {
+                    setMobileSolutionsOpen(!mobileSolutionsOpen)
+                  }}
+                  className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
+                    isSolutionsActive ? "text-cs-dark-blue" : ""
+                  }`}
+                >
+                  Use Cases
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
+                </button>
+                {mobileSolutionsOpen && (
+                  <div className="pb-3 pl-2">
+                    {solutions.map((solution) => (
+                      <Link
+                        key={solution.slug}
+                        href={`/solutions/${solution.slug}`}
+                        className="flex items-center gap-3 px-3 py-2.5 text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <BrandIcon name={solution.icon} size={16} className="shrink-0" />
+                        <span className="text-sm">{solution.title}</span>
+                      </Link>
+                    ))}
+                    <Link
+                      href="/solutions"
+                      className="block px-3 py-2.5 text-sm font-medium text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors mt-1"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      View All
+                    </Link>
+                  </div>
+                )}
+              </div>
+
               {/* Who We Serve accordion */}
               <div className="border-b border-cs-gray/30">
                 <button
