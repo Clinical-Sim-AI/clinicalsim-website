@@ -5,6 +5,12 @@ export interface Author {
   title: string
   bio: string
   colorVariant: "accent" | "navy" | "blue" | "light-blue"
+  /**
+   * Real off-site identity URLs (LinkedIn, ORCID, institutional profile) used
+   * for the Person JSON-LD `sameAs`, strengthening E-E-A-T. Populate only with
+   * verified URLs — never fabricate. Omit when none are available.
+   */
+  sameAs?: string[]
 }
 
 export const TEAM_AUTHOR_ID = "clinicalsim-team"

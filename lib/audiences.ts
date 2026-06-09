@@ -33,6 +33,7 @@ export interface Audience {
   // Hero
   heroHeadline: string
   heroDescription: string
+  lastUpdated?: string
 
   // Pain points
   painPoints: PainPoint[]

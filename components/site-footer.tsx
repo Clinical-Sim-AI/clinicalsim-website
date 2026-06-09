@@ -42,6 +42,12 @@ export function SiteFooter() {
               <Link href="/research" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Research
               </Link>
+              <Link href="/compare" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Compare
+              </Link>
+              <Link href="/glossary" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Glossary
+              </Link>
               <Link href="/contact" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Contact
               </Link>

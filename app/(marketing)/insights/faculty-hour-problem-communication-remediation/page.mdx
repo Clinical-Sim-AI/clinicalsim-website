@@ -1,6 +1,7 @@
 import { ArticleLayout } from "@/components/article-layout"
 import { getPostBySlug } from "@/lib/posts"
 import { ReferencesSection } from "@/components/references-section"
+import { KeyTakeaway } from "@/components/key-takeaway"
 
 export const metadata = {
   title: "The Faculty Hour Problem with Communication Remediation | ClinicalSim.ai",
@@ -8,6 +9,10 @@ export const metadata = {
 }
 
 <ArticleLayout post={getPostBySlug("faculty-hour-problem-communication-remediation")}>
+
+<KeyTakeaway stat="25-75 hrs" statSource="faculty hours per remediation case (Kalet & Chou, Remediation in Medical Education, 2014)">
+Communication is the hardest competency to remediate, and the traditional approach doesn't scale: a single case consumes 25 to 75 faculty hours, and with 93% of programs facing remediation, most rebuild their method from scratch every time.
+</KeyTakeaway>
 
 A single remediation case in a residency program consumes somewhere between 25 and 75 faculty hours, depending on the competency and the severity of the deficit (Kalet and Chou, *Remediation in Medical Education*, 2014). That range is enormous, and it only accounts for the direct hours spent on assessment, coaching, documentation, and follow-up. It doesn't include the planning, the meetings with the Clinical Competency Committee, or the emotional toll on everyone involved.
 

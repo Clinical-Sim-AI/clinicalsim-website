@@ -1,6 +1,7 @@
 import { ArticleLayout } from "@/components/article-layout"
 import { getPostBySlug } from "@/lib/posts"
 import { ReferencesSection } from "@/components/references-section"
+import { KeyTakeaway } from "@/components/key-takeaway"
 
 export const metadata = {
   title: "Breaking Bad News Is a Practice Problem, Not a Knowledge Problem | ClinicalSim.ai",
@@ -8,6 +9,10 @@ export const metadata = {
 }
 
 <ArticleLayout post={getPostBySlug("breaking-bad-news-practice-not-knowledge")}>
+
+<KeyTakeaway stat="17.6%" statSource="of residents report formal training in breaking bad news (Mărginean et al., BMC Medical Education, 2026)">
+Breaking bad news fails at the bedside not because residents lack knowledge of frameworks like SPIKES, but because they lack practice — and the gap closes through structured, repeated rehearsal with feedback, not more lectures.
+</KeyTakeaway>
 
 Most residents can describe the SPIKES protocol from memory. Setting, Perception, Invitation, Knowledge, Emotions, Summary. They've read about it, taken notes on it, probably answered a board question about it. And then they walk into a room where a patient is waiting to hear that the biopsy came back positive, and everything they memorized evaporates.
 

@@ -1,6 +1,7 @@
 import { ArticleLayout } from "@/components/article-layout"
 import { getPostBySlug } from "@/lib/posts"
 import { ReferencesSection } from "@/components/references-section"
+import { KeyTakeaway } from "@/components/key-takeaway"
 
 export const metadata = {
   title: "What Programs Lost When Step 2 CS Disappeared | ClinicalSim.ai",
@@ -8,6 +9,10 @@ export const metadata = {
 }
 
 <ArticleLayout post={getPostBySlug("what-programs-lost-when-step-2-cs-disappeared")}>
+
+<KeyTakeaway stat="2021" statSource="USMLE Step 2 CS permanently discontinued (USMLE.org / NBME & FSMB)">
+When USMLE Step 2 CS was permanently discontinued in 2021, medical education lost its only standardized, independent assessment of clinical communication — and five years later, no national replacement has arrived.
+</KeyTakeaway>
 
 On January 26, 2021, the NBME and the Federation of State Medical Boards announced they were permanently discontinuing USMLE Step 2 Clinical Skills. The exam had been suspended since May 2020 because of COVID-19, and after a year of review, the co-sponsors decided that bringing it back wasn't worth the effort. They framed the decision as an opportunity to "work with colleagues in medical education and at the state medical boards to determine innovative ways to assess clinical skills" (USMLE.org, January 2021).
 

@@ -18,6 +18,10 @@ function buildAuthorSchema(post: Post) {
         name: "ClinicalSim",
         url: "https://clinicalsim.ai",
       },
+      // Populated only when verified off-site identity URLs exist (see Author.sameAs).
+      ...(author.sameAs && author.sameAs.length > 0
+        ? { sameAs: author.sameAs }
+        : {}),
     }
   }
 
@@ -45,7 +49,20 @@ export function ArticleLayout({
           description: post.description,
           datePublished: post.date,
           dateModified: post.dateModified || post.date,
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: [".key-takeaway", ".article-intro"],
+          },
           author: buildAuthorSchema(post),
+          // Populated only when a credentialed reviewer is set (see Post.reviewedBy).
+          ...(post.reviewedBy
+            ? {
+                reviewedBy: {
+                  "@type": "Person" as const,
+                  name: post.reviewedBy,
+                },
+              }
+            : {}),
           publisher: {
             "@type": "Organization",
             name: "ClinicalSim",
@@ -85,10 +102,30 @@ export function ArticleLayout({
           <h1 className="text-3xl md:text-4xl font-light text-cs-dark-blue mb-4">
             {post.title}
           </h1>
-          <p className="text-xl text-cs-dark-blue/70 font-light leading-relaxed mb-6">
+          <p className="article-intro text-xl text-cs-dark-blue/70 font-light leading-relaxed mb-6">
             {post.description}
           </p>
           <AuthorByline authorId={post.authorId} authorName={post.author} />
+          {post.reviewedBy && (
+            <p className="mt-3 text-sm text-cs-dark-gray font-light">
+              Medically reviewed by{" "}
+              <span className="text-cs-dark-blue/85 font-medium">
+                {post.reviewedBy}
+              </span>
+              {post.reviewedDate && (
+                <>
+                  {" · "}
+                  <time dateTime={post.reviewedDate}>
+                    {new Date(post.reviewedDate).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
+                </>
+              )}
+            </p>
+          )}
         </div>
 
         <div className="border-t border-cs-gray/50 pt-8">
