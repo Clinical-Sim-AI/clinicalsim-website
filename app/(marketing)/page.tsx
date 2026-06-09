@@ -53,6 +53,21 @@ export default function HomePage() {
   const audiences = getAllAudiences()
   const solutions = getAllSolutions()
 
+  // Representative scenario types practiced on the platform (drawn from the
+  // scenario library — breaking bad news through error disclosure).
+  const conversationTypes = [
+    "Breaking bad news",
+    "Goals-of-care discussions",
+    "Informed consent",
+    "Error disclosure",
+    "Difficult family meetings",
+    "Delivering a new diagnosis",
+    "Communicating uncertainty",
+    "Giving difficult feedback",
+    "Professionalism conversations",
+    "History-taking",
+  ]
+
   const features = [
     {
       brandIcon: "badge-check" as const,
@@ -199,15 +214,63 @@ export default function HomePage() {
         <div className="max-w-3xl mx-auto">
           <div className="border-l-4 border-cs-electric pl-6 md:pl-8">
             <h2 className="text-xl md:text-2xl font-light text-cs-navy mb-3">What is ClinicalSim?</h2>
-            <p className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed mb-3">
-              ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication — the hardest competency to teach, train, and assess at every level of medicine. The same engine and dashboard serve medical students, residents, fellows, and faculty, across undergraduate medical education, a longitudinal residency and fellowship curriculum, communication remediation, and faculty development.
-            </p>
             <p className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed">
-              ClinicalSim provides structured, on-demand practice mapped to ACGME ICS Milestones 2.0 — breaking bad news, goals-of-care discussions, informed consent, error disclosure, giving feedback, and navigating difficult family meetings. Every session generates rubric-scored, milestone-aligned documentation. Built on research with medical practitioners using blinded evaluation and validated assessment tools.
+              ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication — the hardest competency to teach, train, and measure. The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to ACGME ICS Milestones 2.0 and documented feedback from every session.
             </p>
           </div>
         </div>
       </section>
+
+      {/* Conversation types — explicit scenario list */}
+      <section className="px-6 pb-8 md:pb-10 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mb-5">
+            Conversations you can practice
+          </p>
+          <ul className="flex flex-wrap justify-center gap-2.5 md:gap-3">
+            {conversationTypes.map((type) => (
+              <li
+                key={type}
+                className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
+              >
+                {type}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <SectionDivider variant="diagonal-down" color="navy" />
+
+      {/* The cost of communication — the stakes */}
+      <section className="px-6 py-12 md:py-16 bg-cs-navy text-white">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-light mb-3">
+            Communication isn&apos;t a soft skill. When it fails, the cost is <span className="text-cs-electric font-medium">measurable</span>.
+          </h2>
+          <p className="text-base md:text-lg text-white/80 font-light max-w-2xl mx-auto mb-10">
+            The conversations clinicians have the least time to practice are the ones with the highest stakes.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-3xl mx-auto">
+            <div>
+              <div className="text-5xl md:text-6xl font-medium text-cs-electric mb-3">60%</div>
+              <p className="text-base text-white/90 font-light leading-relaxed">
+                of hospital adverse events are linked to communication failures
+              </p>
+              <p className="text-xs text-white/50 mt-2">The Joint Commission, Sentinel Event Data</p>
+            </div>
+            <div>
+              <div className="text-5xl md:text-6xl font-medium text-cs-electric mb-3">$1.7B</div>
+              <p className="text-base text-white/90 font-light leading-relaxed">
+                in malpractice costs tied to communication breakdowns over five years
+              </p>
+              <p className="text-xs text-white/50 mt-2">CRICO, 2009&ndash;2013</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider variant="diagonal-up" color="white" />
 
       {/* Problem Statement Section - Full-width with stats */}
       <section className="px-6 py-8 md:py-12 bg-white">
