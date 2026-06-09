@@ -20,12 +20,12 @@ import type { RemediationPageData } from "@/lib/remediation"
 // Icon mapping
 // ---------------------------------------------------------------------------
 
-const iconMap: Record<string, LucideIcon> = {
+const iconMap: Record<string, LucideIcon | undefined> = {
   Clock,
   TrendingUp,
 }
 
-const brandIconMap: Record<string, BrandIconName> = {
+const brandIconMap: Record<string, BrandIconName | undefined> = {
   Users: "people",
   FileWarning: "chat-exclamation",
   Mic: "sound-wave",

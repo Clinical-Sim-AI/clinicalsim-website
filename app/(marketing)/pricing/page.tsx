@@ -58,7 +58,7 @@ export default function PricingPage() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: "Pricing — ClinicalSim.ai",
-            description: metadata.description,
+            description: metadata.description ?? undefined,
             url: "https://clinicalsim.ai/pricing",
             isPartOf: {
               "@type": "WebSite",
