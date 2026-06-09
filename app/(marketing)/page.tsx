@@ -68,6 +68,15 @@ export default function HomePage() {
     "History-taking",
   ]
 
+  // Clinical contexts the scenario library supports today.
+  const specialties = [
+    "Neonatal ICU (NICU)",
+    "Pediatric ICU (PICU)",
+    "Hematology/Oncology",
+    "Faculty development",
+    "and more",
+  ]
+
   const features = [
     {
       brandIcon: "badge-check" as const,
@@ -221,7 +230,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Conversation types — explicit scenario list */}
+      {/* Conversation types + clinical contexts — explicit scenario list */}
       <section className="px-6 pb-8 md:pb-10 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mb-5">
@@ -234,6 +243,20 @@ export default function HomePage() {
                 className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
               >
                 {type}
+              </li>
+            ))}
+          </ul>
+
+          <p className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mt-10 mb-5">
+            Specialties &amp; settings
+          </p>
+          <ul className="flex flex-wrap justify-center gap-2.5 md:gap-3">
+            {specialties.map((item) => (
+              <li
+                key={item}
+                className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
+              >
+                {item}
               </li>
             ))}
           </ul>
