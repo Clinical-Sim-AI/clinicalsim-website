@@ -65,6 +65,9 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
             name: solution.metaTitle,
             description: solution.heroDescription,
             url: `https://clinicalsim.ai/solutions/${solution.slug}`,
+            ...(solution.lastUpdated
+              ? { dateModified: solution.lastUpdated }
+              : {}),
             isPartOf: {
               "@type": "WebSite",
               name: "ClinicalSim.ai",
@@ -145,6 +148,16 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight pb-3 mb-6">
             {solution.heroHeadline}
           </h1>
+
+          {solution.lastUpdated && (
+            <p className="text-sm text-cs-gray font-light mb-4">
+              Last updated:{" "}
+              {new Date(solution.lastUpdated).toLocaleDateString("en-US", {
+                month: "long",
+                year: "numeric",
+              })}
+            </p>
+          )}
 
           <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-8 max-w-3xl">
             {solution.heroDescription}

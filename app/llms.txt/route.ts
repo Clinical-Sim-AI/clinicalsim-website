@@ -1,6 +1,7 @@
 import { getAllPosts } from "@/lib/posts"
 import { getAllSolutions } from "@/lib/solutions"
 import { getAllAudiences } from "@/lib/audiences"
+import { getAllComparisons } from "@/lib/comparisons"
 
 const BASE_URL = "https://clinicalsim.ai"
 
@@ -17,6 +18,7 @@ export async function GET() {
   const posts = getAllPosts()
   const solutions = getAllSolutions()
   const audiences = getAllAudiences()
+  const comparisons = getAllComparisons()
 
   const solutionLines = [
     `\n## Use Cases\n`,
@@ -43,6 +45,19 @@ export async function GET() {
     `- [Insights](${BASE_URL}/insights): Research and evidence on medical communication training, simulation technology, and clinical conversation outcomes.`,
   ].join("\n")
 
+  const glossaryLines = [
+    `\n## Glossary\n`,
+    `- [Glossary](${BASE_URL}/glossary): Clear, sourced definitions of key medical-education and clinical-simulation terms — competency-based medical education (CBME), EPAs, ACGME Milestones, Clinical Competency Committees, OSCEs, standardized patients, deliberate practice, and remediation.`,
+  ].join("\n")
+
+  const comparisonLines = [
+    `\n## Compare\n`,
+    `- [Compare](${BASE_URL}/compare): Neutral, side-by-side comparisons of clinical communication training approaches.`,
+    ...comparisons.map(
+      (c) => `- [${c.title}](${BASE_URL}/compare/${c.slug}): ${c.metaDescription}`
+    ),
+  ].join("\n")
+
   const postLines = [
     `\n## Insights\n`,
     ...posts.map(
@@ -53,7 +68,7 @@ export async function GET() {
 
   const privacyLine = `\n\n- [Privacy Policy](${BASE_URL}/privacy): Privacy policy covering data collection, cookies, online advertising opt-out, and user rights.`
 
-  const body = `${HEADER}\n${solutionLines}\n${audienceLines}\n${otherPages}\n${postLines}${privacyLine}\n`
+  const body = `${HEADER}\n${solutionLines}\n${audienceLines}\n${otherPages}\n${comparisonLines}\n${glossaryLines}\n${postLines}${privacyLine}\n`
 
   return new Response(body, {
     headers: {

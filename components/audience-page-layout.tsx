@@ -43,6 +43,9 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             name: `ClinicalSim.ai for ${audience.title}`,
             description: audience.heroDescription,
             url: `https://clinicalsim.ai/audiences/${audience.slug}`,
+            ...(audience.lastUpdated
+              ? { dateModified: audience.lastUpdated }
+              : {}),
             isPartOf: {
               "@type": "WebSite",
               name: "ClinicalSim.ai",
@@ -92,6 +95,16 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-loose pb-3 mb-6">
             {audience.heroHeadline}
           </h1>
+
+          {audience.lastUpdated && (
+            <p className="text-sm text-cs-gray font-light mb-4">
+              Last updated:{" "}
+              {new Date(audience.lastUpdated).toLocaleDateString("en-US", {
+                month: "long",
+                year: "numeric",
+              })}
+            </p>
+          )}
 
           <p className="text-xl md:text-2xl text-cs-dark-blue/85 font-light leading-relaxed mb-4">
             For <span className="text-cs-dark-blue font-medium">{audience.title.toLowerCase()}</span> who need results they can measure.

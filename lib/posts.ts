@@ -8,6 +8,14 @@ export interface Post {
   tags: string[]
   authorId?: string
   dateModified?: string
+  /**
+   * Name of a credentialed clinical reviewer for "Medically reviewed by"
+   * attribution on clinical posts. Populate only with a real reviewer who has
+   * actually reviewed the content — never fabricate. Optional reviewedDate is
+   * an ISO date string.
+   */
+  reviewedBy?: string
+  reviewedDate?: string
 }
 
 const posts: Post[] = [
