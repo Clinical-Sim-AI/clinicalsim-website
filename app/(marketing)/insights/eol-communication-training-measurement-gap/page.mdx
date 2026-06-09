@@ -1,0 +1,87 @@
+import { ArticleLayout } from "@/components/article-layout"
+import { getPostBySlug } from "@/lib/posts"
+
+export const metadata = {
+  title: "Six of 105: Why End-of-Life Communication Training Has a Measurement Problem | ClinicalSim.ai",
+  description: "A systematic review of 105 studies found only 6 with clear training objectives — none sharing the same outcomes. A pediatric intensivist and palliative care physician explains what this means for fellows learning to navigate the hardest conversations in medicine.",
+}
+
+<ArticleLayout post={getPostBySlug("eol-communication-training-measurement-gap")}>
+
+There was a stretch during my fellowship when I was simultaneously a NICU parent, an ICU survivor, and a critical care fellow learning to run family meetings. My son was admitted to the NICU. A few months before that, I had been the patient in an ICU myself. And in between those two experiences, I was on the other side of the curtain — the trainee walking into family rooms to have the conversations I'd just been on the receiving end of.
+
+That convergence did something to me. Being a patient and a parent made the stakes of these conversations visceral in a way that textbooks can't produce. Not tragic, exactly — more clarifying. It made me stop thinking about end-of-life communication as a soft skill and start thinking about it the way I think about other technical competencies: something that can be taught, practiced, measured, and improved. Or failed to be taught, never practiced, never measured, and therefore never improved.
+
+That's the problem I've been working on since.
+
+## What physicians think they said, and what families heard
+
+Early in fellowship, I worked with Kelly Michelson on a study published in Pediatric Critical Care Medicine looking at concordance — specifically, what physicians thought they communicated in family meetings versus what families actually heard and retained.
+
+The findings were not reassuring. Even when physicians believed they had communicated clearly and fully about prognosis, families often had a strikingly different picture of what had been said. Patients and families wanted more information, even when physicians thought they had already given enough. The gap wasn't just perceived. It was measurable.
+
+What struck me wasn't that physicians were lying or careless. Most of them were genuinely trying. What struck me was that they had no feedback loop. They walked out of that family room without knowing whether the family understood. And the next time they had a similar conversation, they would do the same thing — because they had no data suggesting it wasn't working.
+
+## Six of 105
+
+That question — how do we know if these conversations are working? — became the frame for a systematic review our group published recently. We looked at 105 published studies examining end-of-life communication training in pediatric critical care. One hundred and five studies. This is not an under-researched area. People care about this problem and have been trying to address it for decades.
+
+Of those 105 studies, only 6 had clearly stated training objectives. Six.
+
+Of those 6, none shared the same objectives, the same outcome measures, or the same framework for what they were trying to teach or assess.
+
+This is not a gap in effort. It is a gap in standardization. Researchers and educators across the field are working on this problem in parallel, from different starting points, measuring different things in different ways with no shared language. The result is 105 data points that can't be compared, combined, or built on — because nobody agreed on what they were trying to measure.
+
+We cannot improve what we are not measuring consistently. And right now, we are not measuring this consistently at all.
+
+## EPAs give trainees a target they've never had
+
+One response to the measurement problem is to create the frameworks we've been missing. That's the work I've been doing with the Society of Critical Care Medicine End of Life Guidelines Committee — developing guidelines for end-of-life care in the NICU, PICU, and PCICU — and separately with the American Board of Pediatrics on Entrustable Professional Activities for fellowship training.
+
+The EPA work is the part I find most meaningful for trainees right now. For a long time, fellowship training in critical care has ended with an implicit message: by the time you finish, you should be able to have end-of-life conversations. There's been no specification of what that looks like in practice. No defined competencies. No shared rubric for what "being able to do it" means.
+
+EPAs give trainees a concrete target for the first time. Instead of vague expectations that trainees absorb by osmosis, we can say: here are the specific skills that constitute competency in this domain, here is what entrustment looks like at each stage of training, and here is how you and your supervisors will know when you've reached it.
+
+That specificity matters enormously for learners. Trainees are not bad at these conversations because they don't care. They're bad at them because they've never had a clear picture of what "good" looks like, never had structured practice opportunities, and often receive feedback — if they receive it at all — in the form of vague encouragement rather than actionable critique.
+
+## The confidence-competence gap
+
+Here is what I find most clinically troubling about the current state of training. In a national needs assessment we conducted, attendings who were more than ten years out of fellowship reported the highest confidence in their ability to lead end-of-life conversations. They also had the least formal training in how to do them.
+
+In our current AI simulation study, we're finding no meaningful correlation between self-reported confidence and the objective scores the tool generates. Physicians who rate themselves as highly skilled receive scores across the full range. Physicians who describe themselves as uncertain sometimes score among the highest.
+
+Confidence, in this domain, is not evidence of skill. It is largely the absence of feedback. Attendings who finished training a decade ago never received structured coaching on these conversations. They've had hundreds of them since, developed their own approaches, and because most of those conversations ended without measurable adverse events, they've interpreted that as competency. But absence of obvious failure is not the same thing as performance.
+
+This is not a critique of those physicians. It's an artifact of a training system that never gave them objective feedback in the first place. If we don't measure something, we can't improve it — and we also can't recognize when we're not as good at it as we think.
+
+## What objective measurement makes possible
+
+The AI simulation work we're doing is trying to address this directly. The tool doesn't just score a conversation pass/fail. It generates specific, actionable narrative feedback: you explained the prognosis clearly, consider unpacking what "breathing tube" means for families who've never seen one in a clinical context, you paused to check for understanding in this section but moved through the prognosis explanation quickly.
+
+That specificity matters. Vague feedback — "try to be more empathic" — doesn't give a trainee anything to work with. Specific feedback tied to particular moments in a conversation gives them a target for the next attempt.
+
+We're also building dashboards for program directors: longitudinal data showing how individual trainees are progressing across encounters, where cohorts are struggling, which scenarios are exposing consistent gaps. One hospital system is currently piloting the tool as an OSCE prerequisite — you practice these scenarios before the formal assessment, with data to document what you've worked on and how you've improved.
+
+The goal is to treat communication competency the same way we treat procedural competency. You don't give a fellow one intubation and then assess them. You give them structured practice, you document it, you track it over time, you identify what they need to work on before the high-stakes moment. There's no principled reason to do less for conversations that carry equally serious consequences.
+
+## The accessibility problem
+
+Not every program has a simulation center. Community hospitals, international training programs, and under-resourced academic programs need something that doesn't require a simulation center, a standardized patient coordinator, and a budget for actor fees.
+
+AI simulation doesn't replace human feedback and human connection in training — a real faculty mentor watching a fellow run a family meeting and debriefing it afterward is irreplaceable. But it creates practice volume and psychological safety that make human feedback land better. A trainee who has done a scenario fifteen times, received feedback after each attempt, and developed their own approach through iteration is in a fundamentally different place when they sit down with a faculty mentor than a trainee who has done it twice.
+
+The accessibility argument is particularly important for EOL communication, where the scenarios are high-stakes enough that many trainees feel significant anxiety about practice encounters. The low-stakes environment of AI simulation — where there are no real families, no consequences for stumbling, and no social judgment from peers or supervisors — gives people permission to be bad at this while they're learning. That permission is not trivial. It's often the precondition for genuine skill development.
+
+## What comes next
+
+The next International Pediatric Simulation Society meeting is in Dublin in May 2027. I hope to have more data by then — on how training programs are using these tools, what outcomes they're tracking, and whether objective measurement is actually changing how we train and assess fellows.
+
+There's a lot of work between now and then. The measurement problem in end-of-life communication training is solvable. We have the frameworks: EPAs give us shared competency targets, the SCCM guidelines give programs a shared standard. We have the tools: AI simulation creates practice volume and generates the objective data that has been missing from this field. What's needed now is the institutional commitment to actually use them — program by program, fellow by fellow, conversation by conversation.
+
+The field has produced 105 studies. It's time to produce a few that share the same outcomes.
+
+---
+
+*This piece is adapted from a conversation with Dr. Samreen Vora on the [IPSS Podcast](https://ipss.org/Podcast).*
+
+</ArticleLayout>

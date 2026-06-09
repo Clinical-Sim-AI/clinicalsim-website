@@ -12,6 +12,16 @@ export interface Post {
 
 const posts: Post[] = [
   {
+    slug: "eol-communication-training-measurement-gap",
+    title: "Six of 105: Why End-of-Life Communication Training Has a Measurement Problem",
+    description: "A systematic review of 105 studies found only 6 with clear training objectives — none sharing the same outcomes. A pediatric intensivist and palliative care physician explains what this means for fellows learning to navigate the hardest conversations in medicine.",
+    date: "2026-06-09",
+    author: "Lauren Rissman, MD",
+    authorId: "lauren-rissman",
+    readingTime: "8 min read",
+    tags: ["end-of-life", "palliative-care", "communication-training", "pediatrics", "simulation", "AI", "medical-education", "OSCE"],
+  },
+  {
     slug: "breaking-bad-news-practice-not-knowledge",
     title: "Breaking Bad News Is a Practice Problem, Not a Knowledge Problem",
     description: "Residents who score well on written exams still freeze in real conversations. Only 17.6% of residents report formal training in breaking bad news, and the gap isn't knowledge, it's comfort. Communication skills improve through repetition and feedback in realistic scenarios, not lectures.",
