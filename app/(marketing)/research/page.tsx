@@ -12,7 +12,7 @@ import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb, Presentati
 
 export const metadata: Metadata = {
   title: "Research Collaboration",
-  description: "In a blinded pilot study, PICU fellows' communication scores improved significantly after a single AI coaching cycle (p = 0.000345); findings presented at IPSSW 2026, manuscript in preparation. Explore ClinicalSim's research and conference presentations, or apply to collaborate.",
+  description: "In a pilot study, participants' communication performance scores improved significantly after an AI coaching cycle; findings presented at IPSSW 2026, manuscript in preparation. Explore ClinicalSim's research and conference presentations, or apply to collaborate.",
   openGraph: {
     title: "Research with ClinicalSim.ai",
     description: "Apply to collaborate on research in medical communication training using AI voice simulation. Platform access, custom scenarios, and publication support provided.",
@@ -323,28 +323,35 @@ export default function ResearchPage() {
 
       <SectionDivider variant="diagonal-down" color="cloud" />
 
-      {/* Pilot Study Section */}
+      {/* Research Findings Section */}
       <section className="px-6 py-16 md:py-24 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-              Pilot study <span className="text-cs-dark-blue font-medium">findings</span>
+              Research <span className="text-cs-dark-blue font-medium">findings</span>
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
-              A blinded study in a real GME setting, scored with validated communication rubrics. Findings presented at IPSSW; a manuscript is in preparation.
+              Studies in real medical-education settings, scored with structured rubrics and student evaluation. Findings presented at IPSSW 2026; manuscripts in preparation.
             </p>
           </div>
 
-          <EvidenceShowcase
-            studyTitle="AI-Powered Simulation for Pediatric Critical Care Communication Training"
-            journal="Presented at IPSSW"
-            year="2026"
-            summary="In a blinded pilot study with PICU fellows, communication scores improved significantly after a single AI-simulated coaching cycle (p = 0.000345). Evaluation used the Calgary-Cambridge and ACGME ICS Milestone rubrics — an early controlled signal that voice-based AI simulation produces objective, measurable improvement in clinical communication, not just engagement or satisfaction. The full results are being prepared for peer-reviewed publication."
-            badges={["Pilot Study", "Blinded Evaluation", "p = 0.000345"]}
-          />
-          <p className="text-sm text-cs-dark-gray font-light text-center mt-4">
-            Havalad V, Rissman L, Conway B, Brennan G. Presented at the International Pediatric Simulation Symposium and Workshops (IPSSW), 2026.
-          </p>
+          <div className="space-y-6">
+            <EvidenceShowcase
+              studyTitle="AI Voice Simulation for Clinical Communication Training"
+              journal="Presented at IPSSW"
+              year="2026"
+              summary="In a pilot study, participants' communication performance scores improved significantly after a single AI-simulated coaching cycle, scored with structured communication rubrics — an early signal that voice-based AI simulation can produce objective, measurable improvement in clinical communication, not just engagement or satisfaction. Full results are being prepared for peer-reviewed publication."
+              badges={["Pilot Study", "Presented at IPSSW 2026"]}
+            />
+
+            <EvidenceShowcase
+              studyTitle="A Pedagogy-Governed, AI-Augmented Pipeline to Scale Case-Based Collaborative Learning"
+              journal="Manuscript in preparation"
+              year="2026"
+              summary="A structured, AI-augmented authoring pipeline let a single trained educator build complete case-based collaborative learning (CBCL) modules across subspecialties outside their own expertise. After iterative refinement, students rated the AI-built modules 4.4–4.6 out of 5 (89–95% agreement) — a range comparable to expert-authored modules — showing that pedagogy-governed AI can scale high-quality medical-education content without sacrificing instructional quality."
+              badges={["Medical Education", "Student-Evaluated"]}
+            />
+          </div>
         </div>
       </section>
 

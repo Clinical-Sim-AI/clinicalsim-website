@@ -271,7 +271,7 @@ export const pricingPageData: PricingPageData = {
     },
   ],
   trustLine:
-    "Built on research with top academic medical institutions. Blinded evaluation using validated assessment tools.",
+    "Built on research with academic medical institutions. Structured evaluation using validated assessment tools.",
 
   faqs: [
     {
@@ -298,7 +298,7 @@ export const pricingPageData: PricingPageData = {
     {
       question: "Is there evidence this works?",
       answer:
-        "ClinicalSim is built on research conducted with top academic medical institutions, using blinded evaluation and validated assessment tools. The platform was developed alongside clinical educators and medical practitioners.",
+        "ClinicalSim is built on research conducted with academic medical institutions, using structured evaluation and validated assessment tools. In a pilot study, participants' communication performance scores improved significantly after an AI coaching cycle (findings presented at IPSSW 2026). The platform was developed alongside clinical educators and medical practitioners.",
     },
     {
       question: "How does this help with remediation?",

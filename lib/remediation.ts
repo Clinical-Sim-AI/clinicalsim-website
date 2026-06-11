@@ -255,7 +255,7 @@ export const remediationPageData: RemediationPageData = {
       area: "Clinical Communication Research",
       credentials: [
         "Published communication skills researchers",
-        "Blinded evaluation using validated frameworks",
+        "Structured evaluation using validated frameworks",
       ],
       colorVariant: "accent",
     },
@@ -282,12 +282,12 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   evidence: {
     studyTitle:
-      "AI-Powered Simulation for Pediatric Critical Care Communication Training",
+      "AI Voice Simulation for Clinical Communication Training",
     journal: "Presented at IPSSW",
     year: "2026",
     summary:
-      "In a blinded pilot study with PICU fellows, communication scores improved significantly after a single AI-simulated coaching cycle (p = 0.000345). Evaluation used the Calgary-Cambridge and ACGME ICS Milestone rubrics — an early controlled signal that voice-based AI simulation produces objective, measurable improvement in clinical communication. Findings presented at IPSSW; a manuscript is in preparation.",
-    badges: ["Pilot Study", "Blinded Evaluation", "p = 0.000345"],
+      "In a pilot study, participants' communication performance scores improved significantly after a single AI-simulated coaching cycle, scored with structured communication rubrics — an early signal that voice-based AI simulation produces objective, measurable improvement in clinical communication. Findings presented at IPSSW 2026; a manuscript is in preparation.",
+    badges: ["Pilot Study", "Presented at IPSSW 2026"],
   },
 
   outcomeStats: [
