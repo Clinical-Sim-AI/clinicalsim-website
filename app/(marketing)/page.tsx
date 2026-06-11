@@ -209,9 +209,6 @@ export default function HomePage() {
                 Request a Pilot
               </Button>
             </Link>
-            <p className="text-sm text-cs-cloud/70 font-light max-w-2xl mx-auto">
-              In use at University Hospitals Rainbow Babies &amp; Children&apos;s, UT Southwestern, University of Chicago, University of Miami, and other training programs nationwide.
-            </p>
           </div>
         </div>
       </section>
