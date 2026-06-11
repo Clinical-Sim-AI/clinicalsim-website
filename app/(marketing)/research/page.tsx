@@ -12,7 +12,7 @@ import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb, Presentati
 
 export const metadata: Metadata = {
   title: "Research Collaboration",
-  description: "In a blinded pilot study (Academic Pediatrics 2024), PICU fellows' communication scores improved significantly after a single AI coaching cycle (p = 0.000345). Explore ClinicalSim's published research and conference presentations, or apply to collaborate.",
+  description: "In a blinded pilot study, PICU fellows' communication scores improved significantly after a single AI coaching cycle (p = 0.000345); findings presented at IPSSW 2025, manuscript in preparation. Explore ClinicalSim's research and conference presentations, or apply to collaborate.",
   openGraph: {
     title: "Research with ClinicalSim.ai",
     description: "Apply to collaborate on research in medical communication training using AI voice simulation. Platform access, custom scenarios, and publication support provided.",
@@ -114,37 +114,18 @@ export default function ResearchPage() {
   return (
     <>
       <JsonLd
-        data={[
-          {
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: "Research Collaboration — ClinicalSim.ai",
-            description: "Apply to collaborate with ClinicalSim on research in medical communication training using AI voice simulation.",
-            url: "https://clinicalsim.ai/research",
-            isPartOf: {
-              "@type": "WebSite",
-              name: "ClinicalSim.ai",
-              url: "https://clinicalsim.ai",
-            },
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Research Collaboration — ClinicalSim.ai",
+          description: "Apply to collaborate with ClinicalSim on research in medical communication training using AI voice simulation.",
+          url: "https://clinicalsim.ai/research",
+          isPartOf: {
+            "@type": "WebSite",
+            name: "ClinicalSim.ai",
+            url: "https://clinicalsim.ai",
           },
-          {
-            "@context": "https://schema.org",
-            "@type": "MedicalScholarlyArticle",
-            headline: "AI-Powered Simulation for Pediatric Critical Care Communication Training",
-            datePublished: "2024",
-            isPartOf: {
-              "@type": "Periodical",
-              name: "Academic Pediatrics",
-            },
-            author: [
-              { "@type": "Person", name: "Vinod Havalad" },
-              { "@type": "Person", name: "Lauren Rissman" },
-              { "@type": "Person", name: "Ben Conway" },
-              { "@type": "Person", name: "Gillian Brennan" },
-            ],
-            about: "A blinded pilot study with PICU fellows showing communication scores improved significantly after a single AI-simulated coaching cycle (p = 0.000345), evaluated with the Calgary-Cambridge and ACGME ICS Milestone rubrics.",
-          },
-        ]}
+        }}
       />
 
       {/* Hero Section */}
@@ -342,27 +323,27 @@ export default function ResearchPage() {
 
       <SectionDivider variant="diagonal-down" color="cloud" />
 
-      {/* Published Study Section */}
+      {/* Pilot Study Section */}
       <section className="px-6 py-16 md:py-24 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-              Published <span className="text-cs-dark-blue font-medium">evidence</span>
+              Pilot study <span className="text-cs-dark-blue font-medium">findings</span>
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
-              A blinded study in a real GME setting, scored with validated communication rubrics.
+              A blinded study in a real GME setting, scored with validated communication rubrics. Findings presented at IPSSW; a manuscript is in preparation.
             </p>
           </div>
 
           <EvidenceShowcase
             studyTitle="AI-Powered Simulation for Pediatric Critical Care Communication Training"
-            journal="Academic Pediatrics"
-            year="2024"
-            summary="In a blinded pilot study with PICU fellows, communication scores improved significantly after a single AI-simulated coaching cycle (p = 0.000345). Evaluation used the Calgary-Cambridge and ACGME ICS Milestone rubrics — the first published controlled result showing voice-based AI simulation produces objective, measurable improvement in clinical communication, not just engagement or satisfaction."
+            journal="Presented at IPSSW"
+            year="2025"
+            summary="In a blinded pilot study with PICU fellows, communication scores improved significantly after a single AI-simulated coaching cycle (p = 0.000345). Evaluation used the Calgary-Cambridge and ACGME ICS Milestone rubrics — an early controlled signal that voice-based AI simulation produces objective, measurable improvement in clinical communication, not just engagement or satisfaction. The full results are being prepared for peer-reviewed publication."
             badges={["Pilot Study", "Blinded Evaluation", "p = 0.000345"]}
           />
           <p className="text-sm text-cs-dark-gray font-light text-center mt-4">
-            Havalad V, Rissman L, Conway B, Brennan G, et al. <em>Academic Pediatrics</em> (2024).
+            Havalad V, Rissman L, Conway B, Brennan G. Presented at the International Pediatric Simulation Symposium and Workshops (IPSSW), 2025.
           </p>
         </div>
       </section>
