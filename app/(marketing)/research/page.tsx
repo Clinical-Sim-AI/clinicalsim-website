@@ -12,7 +12,7 @@ import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb, Presentati
 
 export const metadata: Metadata = {
   title: "Research Collaboration",
-  description: "In a blinded pilot study, PICU fellows' communication scores improved significantly after a single AI coaching cycle (p = 0.000345); findings presented at IPSSW 2025, manuscript in preparation. Explore ClinicalSim's research and conference presentations, or apply to collaborate.",
+  description: "In a blinded pilot study, PICU fellows' communication scores improved significantly after a single AI coaching cycle (p = 0.000345); findings presented at IPSSW 2026, manuscript in preparation. Explore ClinicalSim's research and conference presentations, or apply to collaborate.",
   openGraph: {
     title: "Research with ClinicalSim.ai",
     description: "Apply to collaborate on research in medical communication training using AI voice simulation. Platform access, custom scenarios, and publication support provided.",
@@ -338,12 +338,12 @@ export default function ResearchPage() {
           <EvidenceShowcase
             studyTitle="AI-Powered Simulation for Pediatric Critical Care Communication Training"
             journal="Presented at IPSSW"
-            year="2025"
+            year="2026"
             summary="In a blinded pilot study with PICU fellows, communication scores improved significantly after a single AI-simulated coaching cycle (p = 0.000345). Evaluation used the Calgary-Cambridge and ACGME ICS Milestone rubrics — an early controlled signal that voice-based AI simulation produces objective, measurable improvement in clinical communication, not just engagement or satisfaction. The full results are being prepared for peer-reviewed publication."
             badges={["Pilot Study", "Blinded Evaluation", "p = 0.000345"]}
           />
           <p className="text-sm text-cs-dark-gray font-light text-center mt-4">
-            Havalad V, Rissman L, Conway B, Brennan G. Presented at the International Pediatric Simulation Symposium and Workshops (IPSSW), 2025.
+            Havalad V, Rissman L, Conway B, Brennan G. Presented at the International Pediatric Simulation Symposium and Workshops (IPSSW), 2026.
           </p>
         </div>
       </section>

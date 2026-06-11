@@ -284,7 +284,7 @@ export const remediationPageData: RemediationPageData = {
     studyTitle:
       "AI-Powered Simulation for Pediatric Critical Care Communication Training",
     journal: "Presented at IPSSW",
-    year: "2025",
+    year: "2026",
     summary:
       "In a blinded pilot study with PICU fellows, communication scores improved significantly after a single AI-simulated coaching cycle (p = 0.000345). Evaluation used the Calgary-Cambridge and ACGME ICS Milestone rubrics — an early controlled signal that voice-based AI simulation produces objective, measurable improvement in clinical communication. Findings presented at IPSSW; a manuscript is in preparation.",
     badges: ["Pilot Study", "Blinded Evaluation", "p = 0.000345"],

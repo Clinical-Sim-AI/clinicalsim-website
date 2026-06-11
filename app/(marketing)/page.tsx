@@ -106,7 +106,7 @@ export default function HomePage() {
     {
       brandIcon: "book-opened" as const,
       title: "Measured Improvement, Not Marketing Claims",
-      description: "In a blinded pilot study, communication scores improved significantly after a single AI coaching cycle (p = 0.000345). Evaluation used Calgary-Cambridge and ACGME ICS Milestone rubrics; findings presented at IPSSW 2025, with a manuscript in preparation.",
+      description: "In a blinded pilot study, communication scores improved significantly after a single AI coaching cycle (p = 0.000345). Evaluation used Calgary-Cambridge and ACGME ICS Milestone rubrics; findings presented at IPSSW 2026, with a manuscript in preparation.",
       variant: "accent" as const,
     },
     {
@@ -216,7 +216,7 @@ export default function HomePage() {
           </p>
 
           <p className="text-lg md:text-xl text-white/85 font-light leading-relaxed mb-8 max-w-3xl mx-auto">
-            ClinicalSim practices and measures clinical communication across the medical-education continuum, with rubric scoring tied to ACGME ICS Milestones 2.0. In a blinded pilot study, communication scores improved significantly after a single AI coaching cycle (p&nbsp;=&nbsp;0.000345; findings presented at IPSSW 2025).
+            ClinicalSim practices and measures clinical communication across the medical-education continuum, with rubric scoring tied to ACGME ICS Milestones 2.0. In a blinded pilot study, communication scores improved significantly after a single AI coaching cycle (p&nbsp;=&nbsp;0.000345; findings presented at IPSSW 2026).
           </p>
 
           <div className="space-y-3">
@@ -487,7 +487,7 @@ export default function HomePage() {
       </section>
 
       {/* Evidence Section - Hidden until study is PUBLISHED (peer-reviewed).
-           NOTE: the study is NOT yet published — findings were presented at IPSSW 2025
+           NOTE: the study is NOT yet published — findings were presented at IPSSW 2026
            and a manuscript is in preparation. Before uncommenting, fill in the real
            journal + year + paper link. Do NOT reintroduce a placeholder citation.
       <section className="px-6 py-12 md:py-16 bg-cs-cloud">
