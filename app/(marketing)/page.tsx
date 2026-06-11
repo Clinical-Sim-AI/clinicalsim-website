@@ -77,25 +77,6 @@ export default function HomePage() {
     "and more",
   ]
 
-  // Training programs piloting ClinicalSim. Keep this list accurate — only add a
-  // program once it is approved to be named publicly.
-  const institutions = [
-    "University Hospitals Rainbow Babies & Children's",
-    "Akron Children's",
-    "USA Health Children's & Women's Hospital",
-    "Orlando Health Arnold Palmer Hospital",
-    "Nemours Children's",
-    "New York Medical College (Metropolitan)",
-    "University of Miami",
-    "UT Southwestern",
-    "University of Arkansas",
-    "The Children's Hospital at Montefiore",
-    "Washington State University",
-    "University of Chicago",
-    "University of South Florida",
-    "Nemours Delaware",
-  ]
-
   const features = [
     {
       brandIcon: "badge-check" as const,
@@ -236,25 +217,6 @@ export default function HomePage() {
       </section>
 
       <SectionDivider variant="diagonal-down" color="white" />
-
-      {/* Pilot institutions — named peer-adoption signal */}
-      <section className="px-6 pt-8 md:pt-10 bg-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <p className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mb-5">
-            In use at training programs including
-          </p>
-          <ul className="flex flex-wrap justify-center gap-x-3 gap-y-2 md:gap-x-4">
-            {institutions.map((name, index) => (
-              <li key={name} className="flex items-center text-sm md:text-base font-medium text-cs-dark-blue">
-                {name}
-                {index < institutions.length - 1 && (
-                  <span aria-hidden="true" className="ml-3 md:ml-4 text-cs-gray">&middot;</span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
 
       {/* Definition Block - GEO citation magnet */}
       <section className="px-6 py-8 md:py-10 bg-white">
