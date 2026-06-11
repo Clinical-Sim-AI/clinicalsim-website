@@ -206,9 +206,9 @@ const audiences: Audience[] = [
         headline: "Documentation gaps create legal exposure",
         description:
           "Remediation cases that lack structured documentation are the ones that create liability. Due process requirements demand evidence of fair, consistent, and well-documented remediation efforts.",
-        stat: "$1.7B",
+        stat: "40%",
         statSource:
-          "In malpractice costs from communication breakdowns (CRICO, 2009-2013)",
+          "Of malpractice cases now involve a communication failure, up from 30% (Candello 2025 Benchmarking Report)",
       },
       {
         headline: "PACE referrals are expensive and limited",
@@ -227,10 +227,10 @@ const audiences: Audience[] = [
         variant: "accent",
       },
       {
-        value: "$1.7B",
+        value: "40%",
         label:
-          "in malpractice costs from communication breakdowns over 5 years",
-        source: "CRICO, 2009-2013",
+          "of malpractice cases involve a communication failure, up from 30%",
+        source: "Candello 2025 Benchmarking Report",
         variant: "navy",
       },
       {

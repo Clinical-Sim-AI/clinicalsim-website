@@ -286,8 +286,8 @@ export const remediationPageData: RemediationPageData = {
     journal: "Academic Pediatrics",
     year: "2024",
     summary:
-      "Pilot study with PICU fellows demonstrated measurable improvements in clinical communication skills through AI-driven simulation. Performance was assessed via blinded evaluation using validated communication frameworks, showing that structured AI practice can produce objective, measurable gains in communication competency.",
-    badges: ["Pilot Study", "Blinded Evaluation"],
+      "In a blinded pilot study with PICU fellows, communication scores improved significantly after a single AI-simulated coaching cycle (p = 0.000345). Evaluation used the Calgary-Cambridge and ACGME ICS Milestone rubrics — the first published controlled result showing voice-based AI simulation produces objective, measurable improvement in clinical communication.",
+    badges: ["Pilot Study", "Blinded Evaluation", "p = 0.000345"],
   },
 
   outcomeStats: [
@@ -387,9 +387,9 @@ export const remediationPageData: RemediationPageData = {
   // CTA
   // ---------------------------------------------------------------------------
   ctaHeadline:
-    "The institutions that move first will set the standard.",
+    "Remediation is inevitable. Rebuilding the process every time isn't.",
   ctaDescription:
-    "Communication remediation is inevitable. The only question is whether you build the infrastructure from scratch every time, or use a system already mapped to your milestones.",
+    "Training programs at University Hospitals Rainbow Babies & Children's, UT Southwestern, University of Chicago, University of Miami, and other institutions are already running structured communication practice on a system mapped to their milestones — with documentation their CCC can use.",
 
   // ---------------------------------------------------------------------------
   // Meta

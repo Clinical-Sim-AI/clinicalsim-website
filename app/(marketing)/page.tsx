@@ -77,17 +77,36 @@ export default function HomePage() {
     "and more",
   ]
 
+  // Training programs piloting ClinicalSim. Keep this list accurate — only add a
+  // program once it is approved to be named publicly.
+  const institutions = [
+    "University Hospitals Rainbow Babies & Children's",
+    "Akron Children's",
+    "USA Health Children's & Women's Hospital",
+    "Orlando Health Arnold Palmer Hospital",
+    "Nemours Children's",
+    "New York Medical College (Metropolitan)",
+    "University of Miami",
+    "UT Southwestern",
+    "University of Arkansas",
+    "The Children's Hospital at Montefiore",
+    "Washington State University",
+    "University of Chicago",
+    "University of South Florida",
+    "Nemours Delaware",
+  ]
+
   const features = [
     {
       brandIcon: "badge-check" as const,
-      title: "Purpose-Built for Communication Remediation",
-      description: "When a learner struggles with communication, give them structured practice — not a single extra SP session. Unlimited on-demand repetitions with documented improvement mapped to ICS milestones.",
+      title: "Built for the Full Training Continuum",
+      description: "The same engine, rubric, and dashboard serve medical students, residents, fellows, and practicing faculty — from a first patient history to leading a goals-of-care meeting. Longitudinal curriculum, faculty development, and remediation all run on one platform.",
       variant: "accent" as const,
     },
     {
       brandIcon: "book-opened" as const,
-      title: "Evidence-Based",
-      description: "Built on research with medical practitioners, with blinded evaluation using validated assessment tools (ACGME milestones, Calgary-Cambridge). Published in Academic Pediatrics.",
+      title: "Published Evidence, Not Just a Citation",
+      description: "In a blinded pilot study, communication scores improved significantly after a single AI coaching cycle (p = 0.000345, Academic Pediatrics 2024). Evaluation used Calgary-Cambridge and ACGME ICS Milestone rubrics.",
       variant: "accent" as const,
     },
     {
@@ -159,7 +178,7 @@ export default function HomePage() {
             offers: {
               "@type": "Offer",
               availability: "https://schema.org/PreOrder",
-              description: "Piloting with medical schools, residency programs, and fellowships nationwide",
+              description: "In use at academic medical centers, children's hospitals, and residency and fellowship programs nationwide, including University Hospitals Rainbow Babies & Children's, UT Southwestern, University of Chicago, and University of Miami",
             },
             publisher: {
               "@type": "Organization",
@@ -185,7 +204,7 @@ export default function HomePage() {
       <section className="relative flex flex-col items-center justify-center px-6 py-16 md:py-28 text-center bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight pb-3 mb-6 md:mb-8 text-white">
-            AI Clinical Simulation — Practice the <span className="text-cs-electric font-medium">Conversations That Matter Most</span>
+            Communication is a <span className="text-cs-electric font-medium">clinical procedure</span> — the one physicians perform most and practice least.
           </h1>
 
           <p className="text-lg md:text-xl text-cs-cloud font-light mb-4">
@@ -197,7 +216,7 @@ export default function HomePage() {
           </p>
 
           <p className="text-lg md:text-xl text-white/85 font-light leading-relaxed mb-8 max-w-3xl mx-auto">
-            ClinicalSim is a voice-based AI simulation platform to practice and measure clinical communication at every stage of a medical career — from a medical student&apos;s first patient history to an attending leading a goals-of-care meeting. On-demand, from any device.
+            ClinicalSim practices and measures clinical communication across the medical-education continuum, with rubric scoring tied to ACGME ICS Milestones 2.0. In a blinded pilot study, communication scores improved significantly after a single AI coaching cycle (p&nbsp;=&nbsp;0.000345, <em>Academic Pediatrics</em> 2024).
           </p>
 
           <div className="space-y-3">
@@ -209,14 +228,33 @@ export default function HomePage() {
                 Request a Pilot
               </Button>
             </Link>
-            <p className="text-sm text-cs-cloud/70 font-light">
-              Piloting with medical schools, residency programs, and fellowships nationwide.
+            <p className="text-sm text-cs-cloud/70 font-light max-w-2xl mx-auto">
+              In use at University Hospitals Rainbow Babies &amp; Children&apos;s, UT Southwestern, University of Chicago, University of Miami, and other training programs nationwide.
             </p>
           </div>
         </div>
       </section>
 
       <SectionDivider variant="diagonal-down" color="white" />
+
+      {/* Pilot institutions — named peer-adoption signal */}
+      <section className="px-6 pt-8 md:pt-10 bg-white">
+        <div className="max-w-5xl mx-auto text-center">
+          <p className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mb-5">
+            In use at training programs including
+          </p>
+          <ul className="flex flex-wrap justify-center gap-x-3 gap-y-2 md:gap-x-4">
+            {institutions.map((name, index) => (
+              <li key={name} className="flex items-center text-sm md:text-base font-medium text-cs-dark-blue">
+                {name}
+                {index < institutions.length - 1 && (
+                  <span aria-hidden="true" className="ml-3 md:ml-4 text-cs-gray">&middot;</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {/* Definition Block - GEO citation magnet */}
       <section className="px-6 py-8 md:py-10 bg-white">
@@ -283,11 +321,11 @@ export default function HomePage() {
               <p className="text-xs text-white/50 mt-2">The Joint Commission, Sentinel Event Data</p>
             </div>
             <div>
-              <div className="text-5xl md:text-6xl font-medium text-cs-electric mb-3">$1.7B</div>
+              <div className="text-5xl md:text-6xl font-medium text-cs-electric mb-3">40%</div>
               <p className="text-base text-white/90 font-light leading-relaxed">
-                in malpractice costs tied to communication breakdowns over five years
+                of malpractice cases now involve a communication failure &mdash; up from 30%
               </p>
-              <p className="text-xs text-white/50 mt-2">CRICO, 2009&ndash;2013</p>
+              <p className="text-xs text-white/50 mt-2">Candello 2025 Benchmarking Report</p>
             </div>
           </div>
         </div>
@@ -518,39 +556,15 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+          <div className="max-w-3xl mx-auto">
             <div className="relative">
               <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-cs-dark-blue/20 font-serif">&ldquo;</div>
               <blockquote className="relative pl-8 pt-4">
-                <p className="text-lg md:text-xl text-cs-dark-blue font-light leading-relaxed mb-4">
+                <p className="text-xl md:text-2xl text-cs-dark-blue font-light leading-relaxed mb-4">
                   I just tried it out and it was like talking to a real patient.
                 </p>
-                <cite className="text-sm text-cs-dark-blue/70 font-normal not-italic border-l-4 border-cs-electric pl-4">
+                <cite className="text-base text-cs-dark-blue/70 font-normal not-italic border-l-4 border-cs-electric pl-4">
                   Faculty, Johns Hopkins University School of Medicine
-                </cite>
-              </blockquote>
-            </div>
-
-            <div className="relative">
-              <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-cs-dark-blue/20 font-serif">&ldquo;</div>
-              <blockquote className="relative pl-8 pt-4">
-                <p className="text-lg md:text-xl text-cs-dark-blue font-light leading-relaxed mb-4">
-                  The AI feedback is very pinpoint and detailed. I did perform a demo to my faculty group and they were BLOWN AWAY!
-                </p>
-                <cite className="text-sm text-cs-dark-blue/70 font-normal not-italic border-l-4 border-cs-electric pl-4">
-                  Faculty, Georgetown University
-                </cite>
-              </blockquote>
-            </div>
-
-            <div className="relative">
-              <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-cs-dark-blue/20 font-serif">&ldquo;</div>
-              <blockquote className="relative pl-8 pt-4">
-                <p className="text-lg md:text-xl text-cs-dark-blue font-light leading-relaxed mb-4">
-                  The AI tool is really cool! It seems very transferable to the work we are doing around transport.
-                </p>
-                <cite className="text-sm text-cs-dark-blue/70 font-normal not-italic border-l-4 border-cs-electric pl-4">
-                  Faculty, University of Colorado
                 </cite>
               </blockquote>
             </div>

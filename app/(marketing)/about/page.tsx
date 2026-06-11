@@ -46,9 +46,12 @@ export default function AboutPage() {
       {/* Problem Statement Section */}
       <section className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">
             Communication is the hardest competency to teach, train, and measure.
           </h2>
+          <p className="text-lg text-cs-dark-blue/70 font-light leading-relaxed text-center max-w-3xl mx-auto mb-8">
+            It&apos;s a clinical procedure — the one clinicians perform most often and practice least. Yet unlike every other procedure, there&apos;s no scalable way to rehearse it, score it, or document improvement.
+          </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
             <StatHighlight
@@ -189,10 +192,10 @@ export default function AboutPage() {
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-4">
-            The institutions that move first will set the standard.
+            Communication is teachable, measurable, and improvable.
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90 max-w-3xl mx-auto">
-            Communication is teachable, measurable, and improvable. The only question is whether you build the infrastructure from scratch every time, or use a system already mapped to your milestones.
+            Training programs at University Hospitals Rainbow Babies &amp; Children&apos;s, UT Southwestern, University of Chicago, University of Miami, and other institutions are already practicing on a system mapped to their milestones — instead of rebuilding the infrastructure from scratch every time.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/contact">

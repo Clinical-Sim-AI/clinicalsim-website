@@ -19,7 +19,7 @@ export function SiteFooter() {
               />
             </Link>
             <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed">
-              Clinical simulation purpose-built for communication remediation in medical education — medical school, residency, and fellowship. Built by simulation directors and communication researchers.
+              Voice-based AI simulation for practicing and measuring clinical communication across the medical-education continuum — medical school, residency, fellowship, and faculty development. Built by simulation directors and communication researchers.
             </p>
           </div>
 

@@ -494,8 +494,8 @@ export default function PricingPage() {
       <SectionDivider variant="diagonal-down" color="white" />
 
       <section className="px-6 py-12 md:py-16 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {data.testimonials.map((testimonial, index) => (
               <div key={index} className="relative">
                 <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-cs-dark-blue/20 font-serif">

@@ -266,11 +266,6 @@ export const pricingPageData: PricingPageData = {
     },
     {
       quote:
-        "The AI feedback is very pinpoint and detailed. I did perform a demo to my faculty group and they were BLOWN AWAY!",
-      attribution: "Faculty, Georgetown University",
-    },
-    {
-      quote:
         "It was helpful to have time to think and reflect without feeling the pressure of a person across from you expecting a response.",
       attribution: "PICU Fellow, Pilot Study Participant",
     },

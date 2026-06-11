@@ -50,18 +50,18 @@ export default async function OpenGraphImage() {
               marginBottom: 28,
             }}
           >
-            AI Clinical Simulation
+            Communication is a
           </div>
           <div
             style={{
-              fontSize: 44,
+              fontSize: 56,
               fontWeight: 500,
               color: "#79f0b8",
               lineHeight: 1.2,
               letterSpacing: "-0.02em",
             }}
           >
-            Practice the Conversations That Matter Most
+            clinical procedure.
           </div>
         </div>
 
@@ -73,7 +73,7 @@ export default async function OpenGraphImage() {
             opacity: 0.75,
           }}
         >
-          Communication remediation · ACGME milestone-aligned · CCC-ready
+          Voice AI simulation · ACGME ICS Milestones 2.0 · Published evidence
         </div>
       </div>
     ),
