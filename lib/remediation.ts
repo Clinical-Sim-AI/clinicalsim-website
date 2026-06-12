@@ -282,12 +282,12 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   evidence: {
     studyTitle:
-      "AI Voice Simulation for Clinical Communication Training",
+      "Enhancing Difficult Conversations in Pediatrics Using Artificial Intelligence",
     journal: "Presented at IPSSW",
     year: "2026",
     summary:
-      "In a pilot study, participants' communication performance scores improved significantly after a single AI-simulated coaching cycle, scored with structured communication rubrics — an early signal that voice-based AI simulation produces objective, measurable improvement in clinical communication. Findings presented at IPSSW 2026; a manuscript is in preparation.",
-    badges: ["Pilot Study", "Presented at IPSSW 2026"],
+      "In a feasibility pilot with residents and advanced practice providers, perceived comfort with difficult conversations improved significantly after AI voice-simulation practice, and objective communication scores improved among repeat users. Findings presented at IPSSW 2026; a manuscript is in preparation.",
+    badges: ["Feasibility Pilot", "Presented at IPSSW 2026"],
   },
 
   outcomeStats: [

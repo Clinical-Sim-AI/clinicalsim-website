@@ -87,7 +87,7 @@ export default function HomePage() {
     {
       brandIcon: "book-opened" as const,
       title: "Measured Improvement, Not Marketing Claims",
-      description: "In a pilot study, communication performance scores improved significantly after a single AI coaching cycle, scored with structured communication rubrics. Findings presented at IPSSW 2026, with a manuscript in preparation.",
+      description: "In a feasibility pilot with residents and advanced practice providers, comfort with difficult conversations improved significantly, and objective communication scores improved with repeated practice. Findings presented at IPSSW 2026, with a manuscript in preparation.",
       variant: "accent" as const,
     },
     {
@@ -197,7 +197,7 @@ export default function HomePage() {
           </p>
 
           <p className="text-lg md:text-xl text-white/85 font-light leading-relaxed mb-8 max-w-3xl mx-auto">
-            ClinicalSim practices and measures clinical communication across the medical-education continuum, with rubric scoring tied to ACGME ICS Milestones 2.0. In a pilot study, communication performance scores improved significantly after a single AI coaching cycle (findings presented at IPSSW 2026).
+            ClinicalSim practices and measures clinical communication across the medical-education continuum, with rubric scoring tied to ACGME ICS Milestones 2.0. In a feasibility pilot with residents and advanced practice providers, comfort with difficult conversations improved significantly and objective communication scores rose with repeated practice (presented at IPSSW 2026).
           </p>
 
           <div className="space-y-3">
@@ -464,7 +464,7 @@ export default function HomePage() {
             studyTitle="AI-Powered Simulation for Pediatric Critical Care Communication Training"
             journal="TODO: real journal once published"
             year="TODO"
-            summary="Pilot study demonstrating significant improvement in communication performance scores after an AI voice-simulation coaching cycle, scored with structured assessment rubrics."
+            summary="Feasibility pilot with residents and advanced practice providers showing significantly improved comfort with difficult conversations and improved objective communication scores with repeated practice, using AI voice simulation with structured rubric-based scoring."
             link="TODO: real paper link once published"
           />
         </div>

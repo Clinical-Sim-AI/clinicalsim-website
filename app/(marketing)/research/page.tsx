@@ -12,7 +12,7 @@ import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb, Presentati
 
 export const metadata: Metadata = {
   title: "Research Collaboration",
-  description: "In a pilot study, participants' communication performance scores improved significantly after an AI coaching cycle; findings presented at IPSSW 2026, manuscript in preparation. Explore ClinicalSim's research and conference presentations, or apply to collaborate.",
+  description: "In a feasibility pilot with residents and advanced practice providers, comfort with difficult conversations improved significantly and objective communication scores rose with repeated practice; findings presented at IPSSW 2026. Explore ClinicalSim's research and conference presentations, or apply to collaborate.",
   openGraph: {
     title: "Research with ClinicalSim.ai",
     description: "Apply to collaborate on research in medical communication training using AI voice simulation. Platform access, custom scenarios, and publication support provided.",
@@ -331,16 +331,16 @@ export default function ResearchPage() {
               Pilot study <span className="text-cs-dark-blue font-medium">findings</span>
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
-              A pilot study in a real medical-education setting, scored with structured communication rubrics. Findings presented at IPSSW 2026; a manuscript is in preparation.
+              A feasibility pilot with residents and advanced practice providers, using AI voice simulation with structured, objective scoring. Findings presented at IPSSW 2026; a manuscript is in preparation.
             </p>
           </div>
 
           <EvidenceShowcase
-            studyTitle="AI Voice Simulation for Clinical Communication Training"
+            studyTitle="Enhancing Difficult Conversations in Pediatrics Using Artificial Intelligence"
             journal="Presented at IPSSW"
             year="2026"
-            summary="In a pilot study, participants' communication performance scores improved significantly after a single AI-simulated coaching cycle, scored with structured communication rubrics — an early signal that voice-based AI simulation can produce objective, measurable improvement in clinical communication, not just engagement or satisfaction. Full results are being prepared for peer-reviewed publication."
-            badges={["Pilot Study", "Presented at IPSSW 2026"]}
+            summary="In a feasibility pilot (January–March 2026) with residents and advanced practice providers, perceived comfort with difficult conversations improved significantly after AI voice-simulation practice, and objective communication scores improved among repeat users. Each session generates structured, rubric-based feedback on empathy, clarity, and sensitive language. Full results are being prepared for peer-reviewed publication."
+            badges={["Feasibility Pilot", "Presented at IPSSW 2026"]}
           />
         </div>
       </section>
