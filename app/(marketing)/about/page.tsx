@@ -195,7 +195,7 @@ export default function AboutPage() {
             Communication is teachable, measurable, and improvable.
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90 max-w-3xl mx-auto">
-            Training programs at University Hospitals Rainbow Babies &amp; Children&apos;s, UT Southwestern, University of Chicago, University of Miami, and other institutions are already practicing on a system mapped to their milestones — instead of rebuilding the infrastructure from scratch every time.
+            Training programs across the country are already practicing on a system mapped to their milestones — instead of rebuilding the infrastructure from scratch every time.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/contact">

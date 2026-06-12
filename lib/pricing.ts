@@ -267,7 +267,7 @@ export const pricingPageData: PricingPageData = {
     {
       quote:
         "It was helpful to have time to think and reflect without feeling the pressure of a person across from you expecting a response.",
-      attribution: "PICU Fellow, Pilot Study Participant",
+      attribution: "Clinician, Pilot Study Participant",
     },
   ],
   trustLine:

@@ -389,7 +389,7 @@ export const remediationPageData: RemediationPageData = {
   ctaHeadline:
     "Remediation is inevitable. Rebuilding the process every time isn't.",
   ctaDescription:
-    "Training programs at University Hospitals Rainbow Babies & Children's, UT Southwestern, University of Chicago, University of Miami, and other institutions are already running structured communication practice on a system mapped to their milestones — with documentation their CCC can use.",
+    "Training programs across the country are already running structured communication practice on a system mapped to their milestones — with documentation their CCC can use.",
 
   // ---------------------------------------------------------------------------
   // Meta

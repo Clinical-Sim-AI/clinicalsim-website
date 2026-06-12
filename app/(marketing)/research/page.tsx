@@ -342,6 +342,9 @@ export default function ResearchPage() {
             summary="In a feasibility pilot (January–March 2026) with residents and advanced practice providers, perceived comfort with difficult conversations improved significantly after AI voice-simulation practice, and objective communication scores improved among repeat users. Each session generates structured, rubric-based feedback on empathy, clarity, and sensitive language. Full results are being prepared for peer-reviewed publication."
             badges={["Feasibility Pilot", "Presented at IPSSW 2026"]}
           />
+          <p className="text-sm text-cs-dark-gray font-light text-center mt-4">
+            Presented by Vinod Havalad, MD and Gillian Brennan, MD at the International Pediatric Simulation Symposium and Workshops (IPSSW), 2026.
+          </p>
         </div>
       </section>
 

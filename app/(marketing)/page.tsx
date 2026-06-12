@@ -159,7 +159,7 @@ export default function HomePage() {
             offers: {
               "@type": "Offer",
               availability: "https://schema.org/PreOrder",
-              description: "In use at academic medical centers, children's hospitals, and residency and fellowship programs nationwide, including University Hospitals Rainbow Babies & Children's, UT Southwestern, University of Chicago, and University of Miami",
+              description: "In use at academic medical centers, children's hospitals, and residency and fellowship programs nationwide",
             },
             publisher: {
               "@type": "Organization",
@@ -478,7 +478,7 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-light text-cs-dark-blue mb-4">
               What learners are saying
             </h2>
-            <p className="text-base text-cs-dark-gray font-light">From our pilot study with PICU fellows</p>
+            <p className="text-base text-cs-dark-gray font-light">From clinicians in our pilot study</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
@@ -489,7 +489,7 @@ export default function HomePage() {
                   It was helpful to have time to think and reflect without feeling the pressure of a person across from you expecting a response.
                 </p>
                 <cite className="text-base text-cs-dark-blue/70 font-normal not-italic border-l-4 border-cs-electric pl-4">
-                  PICU Fellow, Pilot Study Participant
+                  Clinician, Pilot Study Participant
                 </cite>
               </blockquote>
             </div>
@@ -501,7 +501,7 @@ export default function HomePage() {
                   Helpful to practice responses... and choose phrasing of the responses.
                 </p>
                 <cite className="text-base text-cs-dark-blue/70 font-normal not-italic border-l-4 border-cs-electric pl-4">
-                  PICU Fellow, Pilot Study Participant
+                  Clinician, Pilot Study Participant
                 </cite>
               </blockquote>
             </div>
