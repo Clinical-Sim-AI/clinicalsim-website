@@ -93,10 +93,10 @@ export function SiteHeader() {
     <header className="relative z-50 flex items-center justify-between px-4 py-4 md:px-12 md:py-6 bg-white/80 backdrop-blur-sm border-b border-white/20">
       <Link href="/" className="flex items-center" aria-label="ClinicalSim home">
         <Image
-          src="/brand/ClinicalSim_Logo_Lockup_Transparent.svg?v=2"
+          src="/brand/ClinicalSim_Logo_Lockup_Transparent.svg?v=3"
           alt="ClinicalSim"
-          width={1320}
-          height={280}
+          width={4410}
+          height={680}
           priority
           unoptimized
           className="h-9 w-auto"
