@@ -40,7 +40,6 @@ export async function GET() {
 
   const otherPages = [
     `\n## More\n`,
-    `- [Practice Conversations](${BASE_URL}/practice): Free AI simulation to practice difficult conversations firsthand, with milestone-aligned feedback mapped to ACGME ICS Milestones 2.0.`,
     `- [Research Collaboration](${BASE_URL}/research): Apply to collaborate on research in clinical communication, simulation-based education, and competency assessment.`,
     `- [Insights](${BASE_URL}/insights): Research and evidence on medical communication training, simulation technology, and clinical conversation outcomes.`,
   ].join("\n")
