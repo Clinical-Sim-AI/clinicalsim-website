@@ -10,7 +10,7 @@ const nextConfig = {
     return [
       {
         source: '/practice',
-        destination: 'https://app.clinicalsim.ai',
+        destination: 'https://platform.clinicalsim.ai',
         permanent: false,
       },
     ]

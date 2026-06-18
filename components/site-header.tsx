@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import { useState, useRef, useEffect } from "react"
 import { ChevronDown, Menu, X } from "lucide-react"
 import { BrandIcon } from "@/components/brand-icon"
+import { Button } from "@/components/ui/button"
 import { getAllAudiences } from "@/lib/audiences"
 import { getAllSolutions } from "@/lib/solutions"
 
@@ -221,6 +222,10 @@ export function SiteHeader() {
             {link.label}
           </Link>
         ))}
+
+        <Button asChild>
+          <a href="https://platform.clinicalsim.ai/sign-up">Sign Up</a>
+        </Button>
       </nav>
 
       {/* Mobile menu overlay */}
@@ -318,6 +323,15 @@ export function SiteHeader() {
                   {link.label}
                 </Link>
               ))}
+
+              <Button asChild className="w-full mt-4">
+                <a
+                  href="https://platform.clinicalsim.ai/sign-up"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Sign Up
+                </a>
+              </Button>
             </div>
           </nav>
         </div>
