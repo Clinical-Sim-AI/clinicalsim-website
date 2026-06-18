@@ -247,12 +247,12 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
                   </p>
                 </div>
                 <div className="flex-shrink-0">
-                  <Link href="/practice">
-                    <Button variant="accent" size="lg">
+                  <Button variant="accent" size="lg" asChild>
+                    <a href="https://platform.clinicalsim.ai">
                       Try It Yourself
                       <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </Link>
+                    </a>
+                  </Button>
                 </div>
               </div>
             </div>
