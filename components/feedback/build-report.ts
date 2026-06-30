@@ -357,7 +357,13 @@ export function buildFeedbackReport({
       title: g.rubricName,
       competencyCode: g.competencyCode,
       isPrimary: Boolean(
-        g.competencyCode && codes.has(g.competencyCode.toUpperCase()),
+        g.competencyCode &&
+          (() => {
+            // Normalize the same way the EPA set was built (hyphen-stripped),
+            // so "ICS-4" matches an associated EPA stored as "ICS4".
+            const code = parseLeadingCompetencyCode(g.competencyCode);
+            return code != null && codes.has(code);
+          })(),
       ),
       narrative: proj.fullFallback,
       narrativeIsFullFallback: proj.fullFallback != null,

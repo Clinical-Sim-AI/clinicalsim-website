@@ -14,7 +14,23 @@ type Props = {
 
 export function MilestoneTrack({ level, anchors, variant = "hero" }: Props) {
   const ordered = [...anchors].sort((a, b) => a.value - b.value);
-  const placedIndex = ordered.findIndex((a) => a.value === level);
+  // Exact match for integer levels; fall back to the nearest anchor so a
+  // fractional level (e.g. 3.5) still highlights/fills a segment instead of
+  // rendering a blank track.
+  const placedIndex = (() => {
+    const exact = ordered.findIndex((a) => a.value === level);
+    if (exact !== -1) return exact;
+    let nearest = -1;
+    let best = Infinity;
+    ordered.forEach((a, i) => {
+      const d = Math.abs(a.value - level);
+      if (d < best) {
+        best = d;
+        nearest = i;
+      }
+    });
+    return nearest;
+  })();
   const n = ordered.length;
   const markerLeft = n > 0 ? ((placedIndex + 0.5) / n) * 100 : 0;
 

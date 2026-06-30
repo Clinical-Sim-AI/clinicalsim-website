@@ -62,20 +62,36 @@ export default async function ExampleCasePage({ params }: Props) {
   return (
     <>
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://clinicalsim.ai" },
-            { "@type": "ListItem", position: 2, name: "Examples", item: "https://clinicalsim.ai/examples" },
-            {
-              "@type": "ListItem",
-              position: 3,
-              name: example.title,
-              item: `https://clinicalsim.ai/examples/${example.slug}`,
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: `${example.title}: Example Feedback`,
+            description:
+              example.summary ||
+              `See the exact learner feedback for the "${example.title}" simulation — assessment report, recording, and transcript.`,
+            url: `https://clinicalsim.ai/examples/${example.slug}`,
+            isPartOf: {
+              "@type": "WebSite",
+              name: "ClinicalSim.ai",
+              url: "https://clinicalsim.ai",
             },
-          ],
-        }}
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://clinicalsim.ai" },
+              { "@type": "ListItem", position: 2, name: "Examples", item: "https://clinicalsim.ai/examples" },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: example.title,
+                item: `https://clinicalsim.ai/examples/${example.slug}`,
+              },
+            ],
+          },
+        ]}
       />
 
       {/* Hero */}

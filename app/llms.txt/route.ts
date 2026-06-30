@@ -2,6 +2,7 @@ import { getAllPosts } from "@/lib/posts"
 import { getAllSolutions } from "@/lib/solutions"
 import { getAllAudiences } from "@/lib/audiences"
 import { getAllComparisons } from "@/lib/comparisons"
+import { getAllExamples } from "@/lib/examples"
 
 const BASE_URL = "https://clinicalsim.ai"
 
@@ -19,6 +20,15 @@ export async function GET() {
   const solutions = getAllSolutions()
   const audiences = getAllAudiences()
   const comparisons = getAllComparisons()
+  const examples = getAllExamples()
+
+  const exampleLines = [
+    `\n## Examples\n`,
+    `- [Examples](${BASE_URL}/examples): Real ClinicalSim encounters with the exact learner feedback a learner receives — the milestone-aligned assessment report, the recording, and the full transcript. No sign-in required.`,
+    ...examples.map(
+      (e) => `- [${e.title}](${BASE_URL}/examples/${e.slug}): ${e.summary}`
+    ),
+  ].join("\n")
 
   const solutionLines = [
     `\n## Use Cases\n`,
@@ -67,7 +77,7 @@ export async function GET() {
 
   const privacyLine = `\n\n- [Privacy Policy](${BASE_URL}/privacy): Privacy policy covering data collection, cookies, online advertising opt-out, and user rights.`
 
-  const body = `${HEADER}\n${solutionLines}\n${audienceLines}\n${otherPages}\n${comparisonLines}\n${glossaryLines}\n${postLines}${privacyLine}\n`
+  const body = `${HEADER}\n${solutionLines}\n${audienceLines}\n${exampleLines}\n${otherPages}\n${comparisonLines}\n${glossaryLines}\n${postLines}${privacyLine}\n`
 
   return new Response(body, {
     headers: {
