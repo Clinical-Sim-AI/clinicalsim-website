@@ -87,17 +87,9 @@ export default async function ExampleCasePage({ params }: Props) {
           >
             <ArrowLeft className="h-4 w-4" /> All examples
           </Link>
-          <span className="mt-6 inline-flex w-fit items-center rounded-full bg-cs-electric/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cs-electric">
-            Example feedback
-          </span>
-          <h1 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-light leading-tight text-white">
+          <h1 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-light leading-tight text-white">
             {example.title}
           </h1>
-          {example.role && (
-            <p className="mt-4 text-base md:text-lg text-cs-cloud font-light leading-relaxed max-w-2xl">
-              {example.role}
-            </p>
-          )}
           {duration && (
             <p className="mt-4 inline-flex items-center gap-1.5 text-sm text-cs-cloud/70">
               <Clock className="h-4 w-4" /> {duration} encounter
@@ -116,12 +108,20 @@ export default async function ExampleCasePage({ params }: Props) {
         <div className="mx-auto max-w-4xl space-y-8">
           <CaseHeader example={example} />
 
-          {/* Recording */}
-          <div>
-            <p className="mb-2 text-xs font-medium uppercase tracking-wide text-cs-dark-gray">
-              Recording
-            </p>
-            <ExampleAudioPlayer src={example.audio.src} />
+          {/* Recording — called out (light-blue panel + filled button) so it
+              isn't missed; hearing the encounter is much of the value. */}
+          <div className="rounded-2xl border border-cs-light-blue bg-cs-light-blue/20 p-4 sm:p-5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-cs-dark-blue">
+                  Listen to the recording
+                </p>
+                <p className="text-xs text-cs-slate">
+                  Hear the full{duration ? ` ${duration}` : ""} encounter
+                </p>
+              </div>
+              <ExampleAudioPlayer src={example.audio.src} />
+            </div>
           </div>
 
           {/* Transcript — collapsible, default closed (mirrors the app page, which
@@ -162,7 +162,7 @@ export default async function ExampleCasePage({ params }: Props) {
                   References
                 </span>
               </h2>
-              <MarkdownContent className="text-sm text-cs-dark-blue">
+              <MarkdownContent className="text-sm text-cs-dark-blue [overflow-wrap:anywhere]">
                 {example.references}
               </MarkdownContent>
             </div>

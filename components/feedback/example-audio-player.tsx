@@ -21,11 +21,15 @@ export function ExampleAudioPlayer({ src }: Props) {
   const [revealed, setRevealed] = useState(false);
 
   if (revealed) {
-    return <audio controls autoPlay src={src} className="w-full" />;
+    return <audio controls autoPlay src={src} className="w-full sm:w-80" />;
   }
 
   return (
-    <Button variant="outline" size="sm" onClick={() => setRevealed(true)}>
+    <Button
+      size="lg"
+      onClick={() => setRevealed(true)}
+      className="w-full shrink-0 shadow-sm sm:w-auto"
+    >
       <Play className="mr-2 h-4 w-4" />
       Play recording
     </Button>
