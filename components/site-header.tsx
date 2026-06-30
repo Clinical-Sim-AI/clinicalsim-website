@@ -81,6 +81,7 @@ export function SiteHeader() {
   }, [])
 
   const links = [
+    { href: "/examples", label: "Examples" },
     { href: "/about", label: "About" },
     { href: "/insights", label: "Insights" },
     { href: "/research", label: "Research" },
