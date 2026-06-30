@@ -31,3 +31,5 @@ next-env.d.ts
 .playwright-mcp/
 test-results/
 playwright-report/
+# macOS
+.DS_Store
