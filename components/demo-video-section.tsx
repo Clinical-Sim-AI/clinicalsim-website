@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils"
 export interface DemoVideoSectionProps extends React.HTMLAttributes<HTMLDivElement> {
   videoUrl?: string
   youtubeUrl?: string
+  /** Loom embed URL, e.g. https://www.loom.com/embed/<id>. Renders at the recording's native aspect ratio. */
+  loomUrl?: string
   thumbnailUrl?: string
   title?: string
   description?: string
@@ -23,6 +25,7 @@ const aspectRatioStyles = {
 export function DemoVideoSection({
   videoUrl,
   youtubeUrl,
+  loomUrl,
   thumbnailUrl = "/placeholder-video-thumbnail.jpg",
   title = "See ClinicalSim in Action",
   description,
@@ -62,13 +65,24 @@ export function DemoVideoSection({
       <div
         className={cn(
           "relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900",
-          aspectRatioStyles[aspectRatio],
-          !youtubeUrl && "group cursor-pointer"
+          !loomUrl && aspectRatioStyles[aspectRatio],
+          !youtubeUrl && !loomUrl && "group cursor-pointer"
         )}
-        onClick={!youtubeUrl ? handlePlay : undefined}
+        style={loomUrl ? { paddingBottom: "64.74820143884892%" } : undefined}
+        onClick={!youtubeUrl && !loomUrl ? handlePlay : undefined}
       >
+        {/* Loom iframe */}
+        {loomUrl && (
+          <iframe
+            src={loomUrl}
+            title="Loom video player"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+          />
+        )}
+
         {/* YouTube iframe */}
-        {youtubeUrl && (
+        {youtubeUrl && !loomUrl && (
           <iframe
             src={youtubeUrl}
             title="YouTube video player"
@@ -80,7 +94,7 @@ export function DemoVideoSection({
         )}
 
         {/* Video Element */}
-        {videoUrl && !youtubeUrl && (
+        {videoUrl && !youtubeUrl && !loomUrl && (
           <video
             ref={videoRef}
             className={cn(
@@ -96,7 +110,7 @@ export function DemoVideoSection({
         )}
 
         {/* Thumbnail with Play Button */}
-        {!isPlaying && !videoUrl && !youtubeUrl && (
+        {!isPlaying && !videoUrl && !youtubeUrl && !loomUrl && (
           <>
             <Image
               src={thumbnailUrl}
@@ -115,7 +129,7 @@ export function DemoVideoSection({
         )}
 
         {/* Coming Soon Overlay (if no video URL provided) */}
-        {!videoUrl && !youtubeUrl && (
+        {!videoUrl && !youtubeUrl && !loomUrl && (
           <div className="absolute inset-0 flex items-center justify-center bg-cs-dark-blue/90">
             <div className="text-center text-white p-8">
               <Play className="w-16 h-16 mx-auto mb-4 opacity-50" />

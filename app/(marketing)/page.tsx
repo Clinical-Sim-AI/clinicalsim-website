@@ -410,7 +410,7 @@ export default function HomePage() {
           <DemoVideoSection
             title="See ClinicalSim in Action"
             description="Watch how learners practice difficult conversations with AI-powered simulation"
-            youtubeUrl="https://www.youtube.com/embed/JQ_nAOQKyE0?si=10y8Et_MHyg9GKW8"
+            loomUrl="https://www.loom.com/embed/3eacd20486a74b5c80a4ab7ba60b0308"
           />
         </div>
       </section>
