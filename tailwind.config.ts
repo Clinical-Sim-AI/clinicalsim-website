@@ -22,10 +22,12 @@ const config: Config = {
   			'cs-dark-blue': '#061729',
   			'cs-electric':  '#79f0b8',
   			'cs-cloud':     '#e8e7e6',
+  			'cs-cloud-deep':'#dcdbda',
   			'cs-navy':      '#163b61',
   			'cs-light-blue':'#86d0eb',
   			'cs-dark-gray': '#8e9091',
   			'cs-gray':      '#c3c5c7',
+  			'cs-slate':     '#55606b',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

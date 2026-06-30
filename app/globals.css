@@ -89,6 +89,10 @@
     --cs-light-blue:#86d0eb;
     --cs-dark-gray: #8e9091;
     --cs-gray:      #c3c5c7;
+    /* Used by the ported product feedback UI (.cs-product) — matches the app's
+       brand palette so the showcase renders pixel-faithfully. */
+    --cs-cloud-deep:#dcdbda;
+    --cs-slate:     #55606b;
 
     /* Functional aliases */
     --cs-bg-default:        var(--cs-cloud);
@@ -212,5 +216,40 @@
   h1, h2, h3, h4, h5, h6 {
     font-kerning: normal;
     text-rendering: optimizeLegibility;
+  }
+}
+
+/*
+ * Scoped product theme for the example-feedback showcase (/examples/*).
+ *
+ * The ported feedback components are pixel-faithful to the app, which maps the
+ * shadcn semantic tokens differently than this marketing site does (e.g. the
+ * app's --primary is Electric, this site's is Dark Blue; the app's Badge "You"
+ * chip is electric, "AI" is navy). Re-declaring the semantic HSL vars on a
+ * scoped .cs-product container reproduces the app's rendering exactly WITHOUT
+ * disturbing the rest of the marketing site's theme. Values copied from the
+ * app's globals.css :root (resolved to this site's HSL var format). */
+@layer base {
+  .cs-product {
+    --background: 30 4.17% 90.59%;        /* Cloud — the app page ground */
+    --foreground: 210.85 74.46% 9.22%;    /* Dark Blue */
+    --card: 0 0% 100%;                    /* White */
+    --card-foreground: 210.85 74.46% 9.22%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210.85 74.46% 9.22%;
+
+    --primary: 151.77 79.86% 70.78%;      /* Electric */
+    --primary-foreground: 210.85 74.46% 9.22%;
+    --secondary: 210 63% 23%;             /* Navy */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 30 2.8% 85.9%;               /* Cloud-deep */
+    --muted-foreground: 210 11.5% 37.6%;  /* Slate */
+    --accent: 30 2.8% 85.9%;              /* Cloud-deep */
+    --accent-foreground: 210.85 74.46% 9.22%;
+
+    --border: 210 1.69% 77.25%;           /* Gray */
+    --input: 210 1.69% 77.25%;
+    --ring: 151.77 79.86% 70.78%;         /* Electric */
   }
 }
