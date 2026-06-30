@@ -15,6 +15,7 @@ const example: ExampleCase = {
     "Facilitate shared decision-making",
     "Apply motivational interviewing principles to reduce resistance"
   ],
+  "references": "- American Academy of Pediatrics. Recommended Child and Adolescent Immunization Schedule for Ages 18 Years or Younger, United States, 2026. Updated 2026. Available at: https://www.aap.org/immunizationschedule\n- Opel DJ, Heritage J, Taylor JA, et al. The architecture of provider-parent vaccine discussions at health supervision visits. Pediatrics. 2013;132(6):1037-1046.\n- Opel DJ, Mangione-Smith R, Robinson JD, et al. The influence of provider communication behaviors on parental vaccine acceptance and visit experience. Am J Public Health. 2015;105(10):1998-2004.\n- Kempe A, Saville AW, Albertin C, et al. Parental hesitancy about routine childhood and influenza vaccines: findings from a national survey. Pediatrics. 2020;146(1):e20193852.",
   "conversationId": "5de32433-8653-4f3f-af28-e99f61d4ef04",
   "recordedAt": "2026-06-28T17:41:30.925Z",
   "durationSeconds": 411,

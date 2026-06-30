@@ -5,6 +5,7 @@ import { ArrowLeft, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { JsonLd } from "@/components/json-ld"
 import { CaseHeader } from "@/components/feedback/case-header"
+import { MarkdownContent } from "@/components/feedback/markdown-content"
 import { FeedbackReport } from "@/components/feedback/feedback-report"
 import { ExampleAudioPlayer } from "@/components/feedback/example-audio-player"
 import { ConversationTranscript } from "@/components/feedback/conversation-transcript"
@@ -151,6 +152,21 @@ export default async function ExampleCasePage({ params }: Props) {
             </h2>
             <FeedbackReport {...example.report} />
           </div>
+
+          {/* References — the run version's evidence blob, appended after the
+              feedback (mirrors the learner /history page). Display-only. */}
+          {example.references && (
+            <div className="space-y-4 border-t border-cs-gray pt-8">
+              <h2 className="text-lg font-semibold text-cs-dark-blue">
+                <span className="inline-block border-b-[3px] border-cs-electric pb-1">
+                  References
+                </span>
+              </h2>
+              <MarkdownContent className="text-sm text-cs-dark-blue">
+                {example.references}
+              </MarkdownContent>
+            </div>
+          )}
         </div>
       </section>
 

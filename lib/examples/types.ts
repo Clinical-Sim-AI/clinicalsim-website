@@ -24,6 +24,9 @@ export interface ExampleCase {
   characterInteraction: string | null;
   /** Learning objectives (briefing.objectives). */
   objectives: string[];
+  /** The run version's `evidence` blob (markdown), shown to learners as the
+   *  "References" section. Null when the version has none. */
+  references: string | null;
   /** Source conversation id — provenance only, never shown. */
   conversationId: string;
   /** ISO timestamp the encounter was recorded. */
