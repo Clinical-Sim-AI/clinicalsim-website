@@ -83,7 +83,7 @@ const comparisons: Comparison[] = [
       {
         dimension: "Scoring & documentation",
         optionA:
-          "Every encounter rubric-scored and mapped to ACGME ICS Milestones 2.0, with a record generated automatically.",
+          "Every encounter rubric-scored and mapped to ACGME Milestones 2.0, with a record generated automatically.",
         optionB:
           "Rich, human-rated assessment; rigorous but resource-intensive to score and aggregate longitudinally.",
       },
@@ -119,7 +119,7 @@ const comparisons: Comparison[] = [
         question:
           "How does AI simulation keep assessment consistent?",
         answer:
-          "Every AI encounter uses an identical scenario and rubric, eliminating the inter-rater and portrayal variability that can occur across human raters. Scores are mapped to ACGME ICS Milestones 2.0 and recorded automatically, producing standardized, longitudinally comparable data.",
+          "Every AI encounter uses an identical scenario and rubric, eliminating the inter-rater and portrayal variability that can occur across human raters. Scores are mapped to ACGME Milestones 2.0 and recorded automatically, producing standardized, longitudinally comparable data.",
       },
     ],
   },

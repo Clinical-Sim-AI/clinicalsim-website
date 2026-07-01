@@ -254,7 +254,7 @@ export default function PricingPage() {
                     </p>
                     <p className="text-xs text-cs-dark-blue/70 font-light leading-relaxed">
                       We build custom scenarios grounded in validated frameworks
-                      (Calgary-Cambridge, SPIKES, ACGME ICS 2.0) — included for
+                      (Calgary-Cambridge, SPIKES, ACGME Milestones 2.0) — included for
                       founding programs.{" "}
                       <Link
                         href="/contact"

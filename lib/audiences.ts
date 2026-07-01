@@ -73,7 +73,7 @@ const audiences: Audience[] = [
     heroHeadline:
       "Your next remediation case doesn't have to consume 45 faculty hours",
     heroDescription:
-      "Your next remediation case will consume 29-45 faculty hours. The learner who needs the most practice will get the fewest repetitions, because every SP encounter takes weeks to schedule and costs $200-$500. ClinicalSim gives struggling learners unlimited, on-demand practice — breaking bad news, navigating angry patients, conducting informed consent — with real-time feedback mapped to ICS Milestones 2.0. Every session generates a timestamped, milestone-aligned record your CCC can actually use.",
+      "Your next remediation case will consume 29-45 faculty hours. The learner who needs the most practice will get the fewest repetitions, because every SP encounter takes weeks to schedule and costs $200-$500. ClinicalSim gives struggling learners unlimited, on-demand practice — breaking bad news, navigating angry patients, conducting informed consent — with real-time feedback mapped to ACGME Milestones 2.0. Every session generates a timestamped, milestone-aligned record your CCC can actually use.",
 
     painPoints: [
       {
@@ -140,7 +140,7 @@ const audiences: Audience[] = [
       {
         title: "Milestone-Aligned Assessment",
         description:
-          "Every practice session generates feedback mapped to ICS Milestones 2.0 (ICS-1: patient communication, ICS-2: interprofessional communication, ICS-3: communication within healthcare systems). Documentation your CCC can use at the next review.",
+          "Every practice session generates feedback mapped to the ICS subcompetencies of ACGME Milestones 2.0 (ICS-1: patient communication, ICS-2: interprofessional communication, ICS-3: communication within healthcare systems). Documentation your CCC can use at the next review.",
       },
       {
         title: "On-Demand, Not On-Schedule",
@@ -469,7 +469,7 @@ const audiences: Audience[] = [
       {
         title: "Objective Communication Data",
         description:
-          "Every practice session generates assessment data mapped to ICS Milestones 2.0. Not subjective impressions — structured, consistent, comparable data your committee can use alongside faculty evaluations.",
+          "Every practice session generates assessment data mapped to ACGME Milestones 2.0. Not subjective impressions — structured, consistent, comparable data your committee can use alongside faculty evaluations.",
       },
       {
         title: "Longitudinal Progress Tracking",

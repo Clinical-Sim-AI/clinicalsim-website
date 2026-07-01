@@ -73,7 +73,7 @@ export default async function OpenGraphImage() {
             opacity: 0.75,
           }}
         >
-          Voice AI simulation · ACGME ICS Milestones 2.0 · Pilot study
+          Voice AI simulation · ACGME Milestones 2.0 · Pilot study
         </div>
       </div>
     ),

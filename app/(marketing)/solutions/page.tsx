@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Use Cases | ClinicalSim.ai",
     description:
-      "One platform, many conversations: remediation, longitudinal curriculum, UME, and faculty development — all mapped to ACGME ICS Milestones 2.0.",
+      "One platform, many conversations: remediation, longitudinal curriculum, UME, and faculty development — all mapped to ACGME Milestones 2.0.",
     url: "https://clinicalsim.ai/solutions",
   },
   twitter: {

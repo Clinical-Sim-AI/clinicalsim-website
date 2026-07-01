@@ -23,14 +23,15 @@ export default function MarketingLayout({
               height: "512",
             },
             description:
-              "Clinical simulation platform purpose-built for communication remediation and training across medical education — medical school, residency, and fellowship. Built by simulation directors and communication researchers.",
+              "Clinical simulation platform purpose-built for communication remediation and training across medical education — medical school, residency, fellowship, and faculty development. Built by simulation directors and communication researchers.",
             foundingDate: "2024",
             knowsAbout: [
               "Medical communication training",
               "Clinical simulation",
               "ACGME Milestones 2.0",
               "Communication remediation",
-              "Graduate medical education",
+              "Undergraduate and graduate medical education",
+              "Faculty development",
             ],
           },
           {
@@ -39,7 +40,7 @@ export default function MarketingLayout({
             name: "ClinicalSim.ai",
             url: "https://clinicalsim.ai",
             description:
-              "Practice the conversations that matter most. AI clinical simulation purpose-built for communication remediation in graduate medical education, mapped to ACGME ICS Milestones 2.0.",
+              "Practice the conversations that matter most. AI clinical simulation to practice and measure clinical communication across the medical-education continuum — medical school, residency, fellowship, and faculty development — mapped to ACGME Milestones 2.0.",
             publisher: {
               "@type": "Organization",
               name: "ClinicalSim",

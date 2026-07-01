@@ -77,7 +77,7 @@ const PLATFORM_VALUE_PROPS: SolutionValueProp[] = [
   {
     title: "Milestone-Aligned Feedback",
     description:
-      "Every encounter is rubric-scored and mapped to ACGME ICS Milestones 2.0, with feedback that points to the specific behavior to change rather than a vague “be more empathic.”",
+      "Every encounter is rubric-scored and mapped to ACGME Milestones 2.0, with feedback that points to the specific behavior to change rather than a vague “be more empathic.”",
   },
   {
     title: "A Dashboard That Follows the Learner",
@@ -133,15 +133,15 @@ const solutions: Solution[] = [
     colorVariant: "accent",
     cardBullets: [
       "A gradual arc from PGY-1 to senior resident and fellow",
-      "Mapped to ACGME ICS 2.0 and ABP EPAs",
+      "Mapped to ACGME Milestones 2.0 and ABP EPAs",
       "A trackable dashboard that follows learners year over year",
     ],
     metaTitle: "Residency & Fellowship Communication Curriculum | ClinicalSim",
     metaDescription:
-      "A longitudinal communication curriculum for residency and fellowship. Cases progress across PGY years, mapped to ACGME ICS Milestones 2.0 and EPAs.",
+      "A longitudinal communication curriculum for residency and fellowship. Cases progress across PGY years, mapped to ACGME Milestones 2.0 and EPAs.",
     heroHeadline: "Communication that grows with clinical responsibility",
     heroDescription:
-      "Cases progress in clinical responsibility, cognitive load, and emotional intensity across PGY years. Every encounter is mapped to ACGME ICS Milestones 2.0 subcompetencies, ABP Entrustable Professional Activities, and the ICS guideline framework — so communication develops on a deliberate arc rather than by chance.",
+      "Cases progress in clinical responsibility, cognitive load, and emotional intensity across PGY years. Every encounter is mapped to ACGME Milestones 2.0 subcompetencies, ABP Entrustable Professional Activities, and the ICS guideline framework — so communication develops on a deliberate arc rather than by chance.",
     stagesHeading: "The arc across training",
     stagesIntro:
       "Increasing complexity, emotional intensity, and leadership demand from intern year through fellowship.",
@@ -171,7 +171,7 @@ const solutions: Solution[] = [
         question:
           "How is the curriculum mapped to ACGME milestones and EPAs?",
         answer:
-          "Each scenario is tagged to specific ACGME ICS Milestones 2.0 subcompetencies and, where applicable, to ABP Entrustable Professional Activities. Rubric scores trace back to a milestone or EPA descriptor, so a learner's progress reads in the same language your Clinical Competency Committee already uses.",
+          "Each scenario is tagged to specific ACGME Milestones 2.0 subcompetencies and, where applicable, to ABP Entrustable Professional Activities. Rubric scores trace back to a milestone or EPA descriptor, so a learner's progress reads in the same language your Clinical Competency Committee already uses.",
       },
       {
         question: "Does this replace bedside teaching and faculty feedback?",
