@@ -89,7 +89,7 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   heroH1: "The remediation toolkit program directors have been asking for.",
   heroSubtitle:
-    "AI clinical simulation for communication remediation — structured practice with real-time feedback, mapped to ACGME ICS Milestones 2.0, generating documentation your CCC can use.",
+    "AI clinical simulation for communication remediation — structured practice with real-time feedback, mapped to ACGME Milestones 2.0, generating documentation your CCC can use.",
   heroStats: [
     {
       value: "93%",
@@ -166,7 +166,7 @@ export const remediationPageData: RemediationPageData = {
     {
       title: "Milestone-Aligned Feedback",
       description:
-        "Real-time feedback mapped to ICS Milestones 2.0 (ICS-1, ICS-2, ICS-3), so learners know exactly where they stand.",
+        "Real-time feedback mapped to the ICS subcompetencies of ACGME Milestones 2.0 (ICS-1, ICS-2, ICS-3), so learners know exactly where they stand.",
       iconName: "BarChart3",
     },
     {
@@ -233,7 +233,7 @@ export const remediationPageData: RemediationPageData = {
       painPoint:
         "Subjective faculty reports with no standardized ICS assessment data to inform promotion decisions.",
       whatTheyGet:
-        "Structured, longitudinal data aligned to ICS Milestones 2.0 from every remediation session, giving your committee objective evidence for competency decisions.",
+        "Structured, longitudinal data aligned to ACGME Milestones 2.0 from every remediation session, giving your committee objective evidence for competency decisions.",
       iconName: "ClipboardCheck",
       colorVariant: "light-blue",
     },
@@ -361,13 +361,13 @@ export const remediationPageData: RemediationPageData = {
       question:
         "How does ClinicalSim map to ACGME milestones?",
       answer:
-        "ClinicalSim generates feedback and assessment data mapped directly to ACGME Interpersonal and Communication Skills (ICS) Milestones 2.0. This includes ICS-1 (patient- and family-centered communication), ICS-2 (interprofessional and team communication), and ICS-3 (communication within health systems). Each practice session produces structured data aligned to these milestone levels, so program directors and CCCs can track learner progress using the same framework they use for all other competency assessments. This replaces subjective narrative evaluations with consistent, longitudinal data.",
+        "ClinicalSim generates feedback and assessment data mapped directly to the Interpersonal and Communication Skills (ICS) subcompetencies of ACGME Milestones 2.0. This includes ICS-1 (patient- and family-centered communication), ICS-2 (interprofessional and team communication), and ICS-3 (communication within health systems). Each practice session produces structured data aligned to these milestone levels, so program directors and CCCs can track learner progress using the same framework they use for all other competency assessments. This replaces subjective narrative evaluations with consistent, longitudinal data.",
     },
     {
       question:
         "What documentation does ClinicalSim generate for CCCs?",
       answer:
-        "ClinicalSim generates timestamped, milestone-aligned reports from every practice session. Each report maps learner performance to specific ICS Milestones 2.0 levels, documents communication behaviors observed during the encounter, and tracks longitudinal progress across the remediation period. These reports are designed to be used directly by Clinical Competency Committees (CCCs) for promotion and remediation decisions, replacing subjective faculty observations with structured, reproducible assessment data. Currently, 1 in 5 GME stakeholders report not knowing how to assess ICS milestones (ACGME stakeholder survey data).",
+        "ClinicalSim generates timestamped, milestone-aligned reports from every practice session. Each report maps learner performance to specific ACGME Milestones 2.0 levels, documents communication behaviors observed during the encounter, and tracks longitudinal progress across the remediation period. These reports are designed to be used directly by Clinical Competency Committees (CCCs) for promotion and remediation decisions, replacing subjective faculty observations with structured, reproducible assessment data. Currently, 1 in 5 GME stakeholders report not knowing how to assess ICS milestones (ACGME stakeholder survey data).",
     },
     {
       question:

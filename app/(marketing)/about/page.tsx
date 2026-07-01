@@ -36,7 +36,7 @@ export default function AboutPage() {
             Practice the conversations that matter most.
           </h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">
-            ClinicalSim is a voice-based AI clinical simulation platform to practice and measure <span className="text-cs-electric font-medium">clinical communication</span> — structured practice with real-time feedback, mapped to ACGME ICS Milestones 2.0, across undergraduate medical education, residency and fellowship, remediation, and faculty development.
+            ClinicalSim is a voice-based AI clinical simulation platform to practice and measure <span className="text-cs-electric font-medium">clinical communication</span> — structured practice with real-time feedback, mapped to ACGME Milestones 2.0, across undergraduate medical education, residency and fellowship, remediation, and faculty development.
           </p>
         </div>
       </section>
@@ -112,7 +112,7 @@ export default function AboutPage() {
                   <Check className="w-5 h-5 text-white" />
                 </span>
                 <div>
-                  <h3 className="text-lg font-medium text-cs-navy">Real-time feedback mapped to ICS Milestones 2.0</h3>
+                  <h3 className="text-lg font-medium text-cs-navy">Real-time feedback mapped to ACGME Milestones 2.0</h3>
                   <p className="text-cs-dark-blue/70 font-light">ICS-1, ICS-2, ICS-3 assessment from every session</p>
                 </div>
               </div>

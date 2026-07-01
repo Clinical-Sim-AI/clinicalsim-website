@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     absolute: "AI Clinical Simulation for Medical Communication | ClinicalSim",
   },
   description:
-    "Voice-based AI simulation to practice and measure clinical communication at every stage of a medical career — from undergraduate medical education through residency, fellowship, and faculty development. Mapped to ACGME ICS Milestones 2.0.",
+    "Voice-based AI simulation to practice and measure clinical communication at every stage of a medical career — from undergraduate medical education through residency, fellowship, and faculty development. Mapped to ACGME Milestones 2.0.",
   openGraph: {
     title: "AI Clinical Simulation for Medical Communication",
     description:
@@ -68,13 +68,11 @@ export default function HomePage() {
     "History-taking",
   ]
 
-  // Clinical contexts the scenario library supports today.
-  const specialties = [
-    "Neonatal ICU (NICU)",
-    "Pediatric ICU (PICU)",
-    "Hematology/Oncology",
-    "Faculty development",
-    "and more",
+  // Stages of the medical-education continuum the platform serves.
+  const trainingLevels = [
+    "Undergraduate Medical Education",
+    "Graduate Medical Education",
+    "Faculty Development",
   ]
 
   const features = [
@@ -154,7 +152,7 @@ export default function HomePage() {
             applicationCategory: "HealthApplication",
             operatingSystem: "Web",
             description:
-              "Voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum — undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Rubric-scored practice mapped to ACGME ICS Milestones 2.0 for breaking bad news, goals-of-care, informed consent, error disclosure, and family meetings.",
+              "Voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum — undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Rubric-scored practice mapped to ACGME Milestones 2.0 for breaking bad news, goals-of-care, informed consent, error disclosure, and family meetings.",
             url: "https://clinicalsim.ai",
             offers: {
               "@type": "Offer",
@@ -197,7 +195,7 @@ export default function HomePage() {
           </p>
 
           <p className="text-lg md:text-xl text-white/85 font-light leading-relaxed mb-8 max-w-3xl mx-auto">
-            ClinicalSim practices and measures clinical communication across the medical-education continuum, with rubric scoring tied to ACGME ICS Milestones 2.0. In a feasibility pilot with residents and advanced practice providers, comfort with difficult conversations improved significantly and objective communication scores rose with repeated practice (presented at IPSSW 2026).
+            ClinicalSim practices and measures clinical communication across the medical-education continuum, with rubric scoring tied to ACGME Milestones 2.0. In a feasibility pilot with residents and advanced practice providers, comfort with difficult conversations improved significantly and objective communication scores rose with repeated practice (presented at IPSSW 2026).
           </p>
 
           <div className="space-y-3">
@@ -221,7 +219,7 @@ export default function HomePage() {
           <div className="border-l-4 border-cs-electric pl-6 md:pl-8">
             <h2 className="text-xl md:text-2xl font-light text-cs-navy mb-3">What is ClinicalSim?</h2>
             <p className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed">
-              ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication — the hardest competency to teach, train, and measure. The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to ACGME ICS Milestones 2.0 and documented feedback from every session.
+              ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication — the hardest competency to teach, train, and measure. The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to ACGME Milestones 2.0 and documented feedback from every session.
             </p>
           </div>
         </div>
@@ -245,10 +243,10 @@ export default function HomePage() {
           </ul>
 
           <p className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mt-10 mb-5">
-            Specialties &amp; settings
+            Across the training continuum
           </p>
           <ul className="flex flex-wrap justify-center gap-2.5 md:gap-3">
-            {specialties.map((item) => (
+            {trainingLevels.map((item) => (
               <li
                 key={item}
                 className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"

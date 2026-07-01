@@ -78,7 +78,7 @@ export const pricingPageData: PricingPageData = {
     "Structured, voice-based simulation for communication remediation and training — from medical school through fellowship. Backed by research with top academic medical institutions.",
 
   contextParagraph:
-    "93% of residency programs have faced communication remediation in the past three years. Each case consumes 29\u201345 faculty hours — and most programs still don\u2019t have a structured toolkit for it. ClinicalSim gives learners unlimited, private practice on the conversations they\u2019re struggling with, mapped to ACGME ICS Milestones 2.0 and scored with validated frameworks.",
+    "93% of residency programs have faced communication remediation in the past three years. Each case consumes 29\u201345 faculty hours — and most programs still don\u2019t have a structured toolkit for it. ClinicalSim gives learners unlimited, private practice on the conversations they\u2019re struggling with, mapped to ACGME Milestones 2.0 and scored with validated frameworks.",
   contextCta: "Pick the plan that fits how your learners train.",
 
   tiers: [
@@ -97,7 +97,7 @@ export const pricingPageData: PricingPageData = {
         "Unlimited voice-based practice sessions across 15+ clinical scenarios",
         "Goals of care, diagnosis disclosure, family meetings, de-escalation, and more",
         "Real-time AI patient conversations from any device",
-        "Structured feedback scored against Calgary-Cambridge and ACGME ICS Milestones 2.0",
+        "Structured feedback scored against Calgary-Cambridge and ACGME Milestones 2.0",
         "Individual performance dashboard with session-level data",
         "New scenarios added monthly",
       ],
@@ -127,7 +127,7 @@ export const pricingPageData: PricingPageData = {
       features: [
         "Faculty admin dashboard — program directors and administrators view every learner\u2019s performance, progress, and practice patterns in one place",
         "CCC-ready documentation — every session generates timestamped, milestone-aligned assessment data ready for Clinical Competency Committee review",
-        "ACGME ICS Milestone 2.0 reporting — structured competency tracking built in, not bolted on",
+        "ACGME Milestones 2.0 reporting — structured competency tracking built in, not bolted on",
         "Program-level analytics — aggregate data across your entire cohort to identify trends, gaps, and remediation progress",
         "Dedicated onboarding — we align scenarios to your curriculum and train your faculty team",
         "Custom scenario creation — included for founding programs",
@@ -201,7 +201,7 @@ export const pricingPageData: PricingPageData = {
 
   customScenariosHeadline: "Built for your program\u2019s clinical reality",
   customScenariosHowItWorks:
-    "You describe the conversation — delivering a difficult prognosis, navigating a family conflict, conducting a cognitive assessment, handling a challenging remediation case. We build the scenario, the rubric, and the scoring criteria using validated tools like Calgary-Cambridge, SPIKES, and ACGME ICS Milestones 2.0. Your learners practice on-demand, with structured feedback after every session.",
+    "You describe the conversation — delivering a difficult prognosis, navigating a family conflict, conducting a cognitive assessment, handling a challenging remediation case. We build the scenario, the rubric, and the scoring criteria using validated tools like Calgary-Cambridge, SPIKES, and ACGME Milestones 2.0. Your learners practice on-demand, with structured feedback after every session.",
   customScenariosComingSoon:
     "A self-service scenario builder. Input a clinical situation, and ClinicalSim pulls from a validated library of frameworks and assessment tools to generate the scenario, rubric, and feedback criteria automatically. Build and deploy custom encounters in minutes instead of weeks.",
   customScenariosFoundingNote:
@@ -283,7 +283,7 @@ export const pricingPageData: PricingPageData = {
       question:
         "What\u2019s the difference between Individual and Program?",
       answer:
-        "Individual gives you full access to practice scenarios and your own performance dashboard. Program adds the institutional layer: a faculty admin dashboard so program directors and administrators can view every learner\u2019s performance, CCC-ready documentation from every session, ACGME ICS Milestone 2.0 reporting, program-level analytics, dedicated onboarding, and custom scenario creation.",
+        "Individual gives you full access to practice scenarios and your own performance dashboard. Program adds the institutional layer: a faculty admin dashboard so program directors and administrators can view every learner\u2019s performance, CCC-ready documentation from every session, ACGME Milestones 2.0 reporting, program-level analytics, dedicated onboarding, and custom scenario creation.",
     },
     {
       question: "What scenarios are available?",
@@ -293,7 +293,7 @@ export const pricingPageData: PricingPageData = {
     {
       question: "How does the voice simulation work?",
       answer:
-        "Learners have a real-time spoken conversation with an AI-simulated patient from any device with a microphone. The simulation responds naturally and adapts to the learner\u2019s approach. After each session, ClinicalSim generates structured feedback scored against validated communication frameworks — Calgary-Cambridge, ACGME ICS Milestones 2.0 — with timestamped, CCC-ready documentation.",
+        "Learners have a real-time spoken conversation with an AI-simulated patient from any device with a microphone. The simulation responds naturally and adapts to the learner\u2019s approach. After each session, ClinicalSim generates structured feedback scored against validated communication frameworks — Calgary-Cambridge, ACGME Milestones 2.0 — with timestamped, CCC-ready documentation.",
     },
     {
       question: "Is there evidence this works?",

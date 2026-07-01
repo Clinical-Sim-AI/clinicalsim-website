@@ -191,7 +191,7 @@ export default function GlossaryPage() {
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
             ClinicalSim turns competency frameworks into on-demand, rubric-scored
-            communication practice mapped to ACGME ICS Milestones 2.0.
+            communication practice mapped to ACGME Milestones 2.0.
           </p>
           <Link href="/contact">
             <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-base font-medium transition-all duration-300 bg-cs-electric text-cs-dark-blue hover:bg-cs-electric/90 hover:shadow-lg h-14 px-10 font-bold">

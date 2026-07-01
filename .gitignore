@@ -31,3 +31,6 @@ next-env.d.ts
 .playwright-mcp/
 test-results/
 playwright-report/
+
+# blog post drafts (working docs, not part of the site build)
+/docs/blog-posts/
