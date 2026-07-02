@@ -51,7 +51,7 @@ export async function GET() {
   const otherPages = [
     `\n## More\n`,
     `- [Methodology](${BASE_URL}/methodology): How ClinicalSim builds cases, aligns them to ACGME Milestones 2.0 or the Foundational Competencies, applies validated communication frameworks like SPIKES and Calgary-Cambridge, and generates transcript-grounded, competency-based feedback.`,
-    `- [FAQ](${BASE_URL}/faq): Common questions about ClinicalSim's case development, standards alignment, scoring, and feedback methodology.`,
+    `- [FAQ](${BASE_URL}/faq): Common questions about ClinicalSim's AI clinical simulation, including how it compares to Step 2 CS and standardized patients, communication remediation, ACGME Milestone scoring and My Progress, CCC-ready documentation, privacy, and research.`,
     `- [Research Collaboration](${BASE_URL}/research): Apply to collaborate on research in clinical communication, simulation-based education, and competency assessment.`,
     `- [Insights](${BASE_URL}/insights): Research and evidence on medical communication training, simulation technology, and clinical conversation outcomes.`,
   ].join("\n")
