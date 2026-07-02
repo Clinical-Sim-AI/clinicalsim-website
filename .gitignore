@@ -34,3 +34,6 @@ playwright-report/
 
 # blog post drafts (working docs, not part of the site build)
 /docs/blog-posts/
+
+# macOS
+.DS_Store
