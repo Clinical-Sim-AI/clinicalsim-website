@@ -113,7 +113,7 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       <SectionDivider variant="diagonal-down" color="white" />
 
-      <section className="px-6 py-10 md:py-12 bg-white">
+      <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <StatHighlight
             value="93%"
@@ -133,7 +133,7 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       <SectionDivider variant="wave" color="white" />
 
-      <section id="roi-calculator" className="px-6 py-10 md:py-12 bg-white scroll-mt-20">
+      <section id="roi-calculator" className="px-6 py-8 md:py-10 bg-white scroll-mt-20">
         <ROICalculator />
         <div className="text-center mt-8">
           <a href="#plans">
@@ -152,7 +152,7 @@ export default function PricingPage() {
 
       <section
         id="plans"
-        className="px-6 py-10 md:py-12 bg-cs-cloud scroll-mt-20"
+        className="px-6 py-8 md:py-10 bg-cs-cloud scroll-mt-20"
       >
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 lg:gap-8 items-start">
@@ -393,7 +393,7 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       <SectionDivider variant="diagonal-up" color="white" />
 
-      <section className="px-6 pt-10 md:pt-12 pb-4 md:pb-6 bg-cs-cloud">
+      <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-cs-cloud">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 text-center">
             Standardized Patients vs.{" "}
@@ -493,7 +493,7 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       <SectionDivider variant="diagonal-down" color="white" />
 
-      <section className="px-6 py-10 md:py-12 bg-white">
+      <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {data.testimonials.map((testimonial, index) => (
@@ -524,7 +524,7 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       <SectionDivider variant="diagonal-up" color="white" />
 
-      <section className="px-6 py-10 md:py-12 bg-cs-cloud">
+      <section className="px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
             Frequently Asked{" "}

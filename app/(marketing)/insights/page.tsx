@@ -108,7 +108,7 @@ export default function InsightsPage() {
 
       {/* Featured Post */}
       {featuredPost && (
-        <section className="px-6 pt-10 md:pt-12 pb-4 md:pb-6 bg-white">
+        <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-white">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-8">Featured Article</h2>
             <Link href={`/insights/${featuredPost.slug}`}>
@@ -169,7 +169,7 @@ export default function InsightsPage() {
         <>
           <SectionDivider variant="wave" color="white" />
 
-          <section className="px-6 py-10 md:py-12 bg-cs-cloud">
+          <section className="px-6 py-8 md:py-10 bg-cs-cloud">
             <div className="max-w-5xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-8">All Articles</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -103,7 +103,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       />
 
       {/* Hero */}
-      <section className="relative px-6 pt-12 md:pt-20 pb-4 md:pb-6">
+      <section className="relative px-6 pt-8 md:pt-12 pb-4 md:pb-6">
         <div className="absolute inset-0 bg-cs-cloud -z-10" />
 
         <div className="max-w-4xl mx-auto">
@@ -183,7 +183,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
         <>
           <SectionDivider variant="diagonal-down" color="white" />
 
-          <section className="px-6 py-10 md:py-12 bg-white">
+          <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
@@ -234,7 +234,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
         <>
           <SectionDivider variant="wave" color="white" />
 
-          <section className="px-6 py-10 md:py-12 bg-cs-cloud">
+          <section className="px-6 py-8 md:py-10 bg-cs-cloud">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
@@ -272,7 +272,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
         <>
           <SectionDivider variant="diagonal-up" color="white" />
 
-          <section className="px-6 py-10 md:py-12 bg-white">
+          <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
                 Frequently Asked{" "}
@@ -309,7 +309,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {relatedPosts.length > 0 && (
         <>
           <SectionDivider variant="diagonal-down" color="white" />
-          <section className="px-6 py-10 md:py-12 bg-cs-cloud">
+          <section className="px-6 py-8 md:py-10 bg-cs-cloud">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-8">
                 Related Insights

@@ -161,7 +161,7 @@ export default function MethodologyPage() {
       />
 
       {/* Hero */}
-      <section className="relative px-6 pt-12 md:pt-20 pb-4 md:pb-6">
+      <section className="relative px-6 pt-8 md:pt-12 pb-4 md:pb-6">
         <div className="absolute inset-0 bg-cs-cloud -z-10" />
 
         <div className="max-w-4xl mx-auto">
@@ -211,7 +211,7 @@ export default function MethodologyPage() {
       <SectionDivider variant="diagonal-down" color="white" />
 
       {/* Purpose and scope */}
-      <section className="px-6 py-10 md:py-12 bg-white">
+      <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
             1. Purpose and{" "}
@@ -254,7 +254,7 @@ export default function MethodologyPage() {
       <SectionDivider variant="wave" color="cloud" />
 
       {/* How the methodology works */}
-      <section className="px-6 py-10 md:py-12 bg-cs-cloud">
+      <section className="px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
             2. How the methodology{" "}
@@ -469,7 +469,7 @@ export default function MethodologyPage() {
       <SectionDivider variant="curve" color="white" />
 
       {/* Commitment to accuracy */}
-      <section className="px-6 pt-10 md:pt-12 pb-4 md:pb-6 bg-white">
+      <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
             3. Commitment to{" "}
@@ -490,7 +490,7 @@ export default function MethodologyPage() {
       <SectionDivider variant="diagonal-up" color="cloud" />
 
       {/* References */}
-      <section className="px-6 pt-10 md:pt-12 pb-4 md:pb-6 bg-cs-cloud">
+      <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
             4. References
@@ -598,7 +598,7 @@ export default function MethodologyPage() {
       <SectionDivider variant="wave" color="white" />
 
       {/* CTA */}
-      <section className="px-6 py-10 md:py-12 bg-white text-center">
+      <section className="px-6 py-8 md:py-10 bg-white text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-4">
             Questions about how this{" "}

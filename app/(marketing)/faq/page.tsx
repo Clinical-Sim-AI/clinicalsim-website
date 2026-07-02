@@ -176,7 +176,7 @@ export default function FaqPage() {
       />
 
       {/* Hero */}
-      <section className="relative px-6 pt-12 md:pt-20 pb-4 md:pb-6">
+      <section className="relative px-6 pt-8 md:pt-12 pb-4 md:pb-6">
         <div className="absolute inset-0 bg-cs-cloud -z-10" />
 
         <div className="max-w-4xl mx-auto">
@@ -212,7 +212,7 @@ export default function FaqPage() {
       <SectionDivider variant="diagonal-down" color="white" />
 
       {/* FAQ categories */}
-      <section className="px-6 py-10 md:py-12 bg-white">
+      <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto space-y-12">
           {faqCategories.map((cat) => (
             <div key={cat.category}>
@@ -249,7 +249,7 @@ export default function FaqPage() {
       <SectionDivider variant="wave" color="cloud" />
 
       {/* CTA */}
-      <section className="px-6 py-10 md:py-12 bg-cs-cloud text-center">
+      <section className="px-6 py-8 md:py-10 bg-cs-cloud text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-4">
             Still have{" "}

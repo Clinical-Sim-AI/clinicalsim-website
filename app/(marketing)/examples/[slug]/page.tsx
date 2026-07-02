@@ -95,7 +95,7 @@ export default async function ExampleCasePage({ params }: Props) {
       />
 
       {/* Hero */}
-      <section className="relative px-6 py-10 md:py-12 bg-cs-dark-blue text-white">
+      <section className="relative px-6 py-8 md:py-10 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto">
           <Link
             href="/examples"
