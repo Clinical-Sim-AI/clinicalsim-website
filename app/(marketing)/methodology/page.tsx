@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { FeatureCard } from "@/components/feature-card"
+import type { BrandIconName } from "@/components/brand-icon"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { AuthorByline } from "@/components/author-byline"
@@ -31,45 +32,61 @@ export const metadata: Metadata = {
 const LAST_UPDATED = "2026-07-02"
 const AUTHOR_ID = "jacqueline-ponczek"
 
-const commitments = [
+const commitments: {
+  title: string
+  description: string
+  variant: "default" | "accent" | "navy" | "light-blue"
+  brandIcon: BrandIconName
+}[] = [
   {
     title: "Quality",
     description:
       "Every case is built from primary sources, written to a defined purpose, and reviewed by practicing physicians with strong academic backgrounds before release.",
-    variant: "accent" as const,
+    variant: "accent",
+    brandIcon: "badge-check",
   },
   {
     title: "Consistency",
     description:
       "The same scoring logic applies to every case, regardless of specialty, learner level, or which communication frameworks are applied alongside it.",
-    variant: "navy" as const,
+    variant: "navy",
+    brandIcon: "stack",
   },
   {
     title: "Alignment",
     description:
       "Every score traces to a published competency or a validated communication framework — never to an unexplained rating.",
-    variant: "default" as const,
+    variant: "default",
+    brandIcon: "align-bottom",
   },
 ]
 
-const frameworkTerms = [
+const frameworkTerms: {
+  title: string
+  description: string
+  variant: "default" | "accent" | "navy" | "light-blue"
+  brandIcon: BrandIconName
+}[] = [
   {
     title: "Competency framework",
     description:
       "The governing-body standard a case is assessed against — the ACGME Milestones 2.0 in graduate medical education, or the Foundational Competencies in undergraduate medical education.",
-    variant: "default" as const,
+    variant: "default",
+    brandIcon: "hat-graduation",
   },
   {
     title: "Communication framework",
     description:
       "A validated, published model of communication behavior, such as SPIKES or Calgary-Cambridge, applied to characterize how the learner communicated.",
-    variant: "accent" as const,
+    variant: "accent",
+    brandIcon: "chat-alt-checkmark",
   },
   {
     title: "Rubric",
     description:
       "The scored instrument that turns a framework into rated items — including a program's own internal or externally validated tools.",
-    variant: "light-blue" as const,
+    variant: "light-blue",
+    brandIcon: "list-unordered",
   },
 ]
 
@@ -144,7 +161,7 @@ export default function MethodologyPage() {
       />
 
       {/* Hero */}
-      <section className="relative px-6 py-12 md:py-20">
+      <section className="relative px-6 pt-12 md:pt-20 pb-4 md:pb-6">
         <div className="absolute inset-0 bg-cs-cloud -z-10" />
 
         <div className="max-w-4xl mx-auto">
@@ -227,6 +244,7 @@ export default function MethodologyPage() {
                 title={c.title}
                 description={c.description}
                 variant={c.variant}
+                brandIcon={c.brandIcon}
               />
             ))}
           </div>
@@ -293,6 +311,7 @@ export default function MethodologyPage() {
                 title={t.title}
                 description={t.description}
                 variant={t.variant}
+                brandIcon={t.brandIcon}
               />
             ))}
           </div>
@@ -450,7 +469,7 @@ export default function MethodologyPage() {
       <SectionDivider variant="curve" color="white" />
 
       {/* Commitment to accuracy */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 pt-12 md:pt-16 pb-4 md:pb-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
             3. Commitment to{" "}
