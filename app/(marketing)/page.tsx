@@ -587,6 +587,13 @@ export default function HomePage() {
             </Button>
           </Link>
           <p className="mt-4 text-sm text-white/70 font-light">
+            Have questions first?{" "}
+            <Link href="/faq" className="text-cs-electric hover:text-white font-medium transition-colors inline-flex items-center">
+              Read the FAQ
+              <ArrowRight className="w-3.5 h-3.5 ml-1" />
+            </Link>
+          </p>
+          <p className="mt-4 text-sm text-white/70 font-light">
             Are you a researcher?{" "}
             <Link href="/research" className="text-cs-electric hover:text-white font-medium transition-colors inline-flex items-center">
               Apply to collaborate
