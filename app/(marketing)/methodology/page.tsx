@@ -395,7 +395,10 @@ export default function MethodologyPage() {
                 Competency Committee review. Because the milestones are
                 formative and were not designed for high-stakes external
                 decisions, ClinicalSim treats milestone-aligned output
-                accordingly, as evidence that informs program judgment.
+                accordingly, as evidence that informs program judgment. With
+                that in mind, we do not provide a milestone score if the case
+                cannot achieve the level of complexity required to evaluate
+                through level 4.
               </p>
             </div>
 
