@@ -176,7 +176,7 @@ export default function FaqPage() {
       />
 
       {/* Hero */}
-      <section className="relative px-6 pt-8 md:pt-12 pb-4 md:pb-6">
+      <section className="relative px-6 pt-4 md:pt-6 pb-4 md:pb-6">
         <div className="absolute inset-0 bg-cs-cloud -z-10" />
 
         <div className="max-w-4xl mx-auto">
