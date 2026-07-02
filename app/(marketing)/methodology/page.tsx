@@ -490,7 +490,7 @@ export default function MethodologyPage() {
       <SectionDivider variant="diagonal-up" color="cloud" />
 
       {/* References */}
-      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
+      <section className="px-6 pt-12 md:pt-16 pb-4 md:pb-6 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
             4. References

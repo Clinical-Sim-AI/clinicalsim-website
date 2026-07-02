@@ -351,7 +351,7 @@ export default function ResearchPage() {
       <SectionDivider variant="wave" color="white" />
 
       {/* Conference Presentations Section */}
-      <section className="px-6 py-16 md:py-24 bg-white">
+      <section className="px-6 pt-16 md:pt-24 pb-4 md:pb-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">

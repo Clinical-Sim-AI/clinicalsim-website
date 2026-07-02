@@ -393,7 +393,7 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       <SectionDivider variant="diagonal-up" color="white" />
 
-      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
+      <section className="px-6 pt-12 md:pt-16 pb-4 md:pb-6 bg-cs-cloud">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 text-center">
             Standardized Patients vs.{" "}
