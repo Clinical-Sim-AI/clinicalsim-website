@@ -512,7 +512,7 @@ export default function FaqPage() {
                         </h3>
                         <ChevronRight className="w-5 h-5 text-cs-gray flex-shrink-0 transition-transform group-open:rotate-90" />
                       </summary>
-                      <div className="px-6 pb-5 pt-2 text-base text-cs-dark-blue/85 font-light leading-relaxed space-y-4">
+                      <div className="px-6 pb-5 pt-2 text-base text-cs-dark-blue font-light leading-relaxed space-y-4">
                         {item.answerNode ?? <p>{item.answer}</p>}
                       </div>
                     </details>
