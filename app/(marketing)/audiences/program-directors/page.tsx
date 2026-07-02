@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "93% of residency programs face remediation. ClinicalSim gives program directors structured AI practice with milestone-aligned feedback and CCC-ready documentation. 29-45 faculty hours per case — there's a better way.",
   openGraph: {
     title: "For Program Directors | ClinicalSim.ai",
-    description: "The remediation toolkit you told CERA you wanted. Structured practice mapped to ICS Milestones 2.0 with CCC-ready documentation.",
+    description: "The remediation toolkit you told CERA you wanted. Structured practice mapped to ACGME Milestones 2.0 with CCC-ready documentation.",
     url: "https://clinicalsim.ai/audiences/program-directors",
   },
   twitter: {

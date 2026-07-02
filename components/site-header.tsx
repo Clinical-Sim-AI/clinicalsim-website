@@ -14,15 +14,25 @@ export function SiteHeader() {
   const pathname = usePathname()
   const [audiencesOpen, setAudiencesOpen] = useState(false)
   const [solutionsOpen, setSolutionsOpen] = useState(false)
+  const [whoWeAreOpen, setWhoWeAreOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileAudiencesOpen, setMobileAudiencesOpen] = useState(false)
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false)
+  const [mobileWhoWeAreOpen, setMobileWhoWeAreOpen] = useState(false)
   const audiencesDropdownRef = useRef<HTMLDivElement>(null)
   const audiencesTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
   const solutionsDropdownRef = useRef<HTMLDivElement>(null)
   const solutionsTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
+  const whoWeAreDropdownRef = useRef<HTMLDivElement>(null)
+  const whoWeAreTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
   const audiences = getAllAudiences()
   const solutions = getAllSolutions()
+
+  const aboutItems = [
+    { href: "/about", label: "About Us" },
+    { href: "/methodology", label: "Methodology" },
+    { href: "/faq", label: "FAQ" },
+  ]
 
   const openAudiences = () => {
     if (audiencesTimeoutRef.current) clearTimeout(audiencesTimeoutRef.current)
@@ -42,6 +52,15 @@ export function SiteHeader() {
     solutionsTimeoutRef.current = setTimeout(() => setSolutionsOpen(false), 150)
   }
 
+  const openWhoWeAre = () => {
+    if (whoWeAreTimeoutRef.current) clearTimeout(whoWeAreTimeoutRef.current)
+    setWhoWeAreOpen(true)
+  }
+
+  const closeWhoWeAre = () => {
+    whoWeAreTimeoutRef.current = setTimeout(() => setWhoWeAreOpen(false), 150)
+  }
+
   // Close mobile menu on route change (derived state)
   const [prevPathname, setPrevPathname] = useState(pathname)
   if (pathname !== prevPathname) {
@@ -49,6 +68,7 @@ export function SiteHeader() {
     setMobileMenuOpen(false)
     setMobileAudiencesOpen(false)
     setMobileSolutionsOpen(false)
+    setMobileWhoWeAreOpen(false)
   }
 
   // Prevent body scroll when mobile menu is open
@@ -71,17 +91,21 @@ export function SiteHeader() {
       if (solutionsDropdownRef.current && !solutionsDropdownRef.current.contains(event.target as Node)) {
         setSolutionsOpen(false)
       }
+      if (whoWeAreDropdownRef.current && !whoWeAreDropdownRef.current.contains(event.target as Node)) {
+        setWhoWeAreOpen(false)
+      }
     }
     document.addEventListener("mousedown", handleClickOutside)
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
       if (audiencesTimeoutRef.current) clearTimeout(audiencesTimeoutRef.current)
       if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current)
+      if (whoWeAreTimeoutRef.current) clearTimeout(whoWeAreTimeoutRef.current)
     }
   }, [])
 
   const links = [
-    { href: "/about", label: "About" },
+    { href: "/examples", label: "Examples" },
     { href: "/insights", label: "Insights" },
     { href: "/research", label: "Research" },
     { href: "/contact", label: "Contact" },
@@ -89,6 +113,9 @@ export function SiteHeader() {
 
   const isAudiencesActive = pathname === "/audiences" || pathname?.startsWith("/audiences/")
   const isSolutionsActive = pathname === "/solutions" || pathname?.startsWith("/solutions/")
+  const isWhoWeAreActive = aboutItems.some(
+    (item) => pathname === item.href || pathname?.startsWith(item.href + "/")
+  )
 
   return (
     <header className="relative z-50 flex items-center justify-between px-4 py-4 md:px-12 md:py-6 bg-white/80 backdrop-blur-sm border-b border-white/20">
@@ -106,7 +133,7 @@ export function SiteHeader() {
 
       {/* Mobile hamburger button */}
       <button
-        className="md:hidden p-2 -mr-2 text-cs-dark-blue/85 hover:text-cs-dark-blue transition-colors"
+        className="xl:hidden p-2 -mr-2 text-cs-dark-blue/85 hover:text-cs-dark-blue transition-colors"
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
       >
@@ -114,7 +141,7 @@ export function SiteHeader() {
       </button>
 
       {/* Desktop navigation */}
-      <nav className="hidden md:flex items-center gap-4 md:gap-8">
+      <nav className="hidden xl:flex items-center gap-6 xl:gap-8 whitespace-nowrap">
         {/* Use Cases dropdown */}
         <div
           ref={solutionsDropdownRef}
@@ -209,6 +236,43 @@ export function SiteHeader() {
           )}
         </div>
 
+        {/* Who We Are dropdown */}
+        <div
+          ref={whoWeAreDropdownRef}
+          className="relative"
+          onMouseEnter={openWhoWeAre}
+          onMouseLeave={closeWhoWeAre}
+        >
+          <button
+            onClick={() => {
+              setWhoWeAreOpen(!whoWeAreOpen)
+            }}
+            className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
+              isWhoWeAreActive ? "border-b-2 border-cs-dark-blue" : ""
+            }`}
+          >
+            Who We Are
+            <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${whoWeAreOpen ? "rotate-180" : ""}`} />
+          </button>
+
+          {whoWeAreOpen && (
+            <div className="absolute top-full left-0 pt-2 w-56 z-50">
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
+              {aboutItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block px-4 py-2.5 text-sm text-cs-dark-blue/85 hover:bg-cs-cloud/70 transition-colors"
+                  onClick={() => setWhoWeAreOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+            </div>
+          )}
+        </div>
+
         {links.map((link) => (
           <Link
             key={link.href}
@@ -230,9 +294,9 @@ export function SiteHeader() {
 
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[65px] z-40 md:hidden">
+        <div className="fixed inset-0 top-[65px] md:top-[89px] z-40 xl:hidden">
           <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
-          <nav className="relative bg-white/95 backdrop-blur-sm border-b border-cs-gray/30 shadow-lg max-h-[calc(100dvh-65px)] overflow-y-auto">
+          <nav className="relative bg-white/95 backdrop-blur-sm border-b border-cs-gray/30 shadow-lg max-h-[calc(100dvh-65px)] md:max-h-[calc(100dvh-89px)] overflow-y-auto">
             <div className="px-4 py-3">
               {/* Use Cases accordion */}
               <div className="border-b border-cs-gray/30">
@@ -304,6 +368,35 @@ export function SiteHeader() {
                     >
                       View All
                     </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Who We Are accordion */}
+              <div className="border-b border-cs-gray/30">
+                <button
+                  onClick={() => {
+                    setMobileWhoWeAreOpen(!mobileWhoWeAreOpen)
+                  }}
+                  className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
+                    isWhoWeAreActive ? "text-cs-dark-blue" : ""
+                  }`}
+                >
+                  Who We Are
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileWhoWeAreOpen ? "rotate-180" : ""}`} />
+                </button>
+                {mobileWhoWeAreOpen && (
+                  <div className="pb-3 pl-2">
+                    {aboutItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block px-3 py-2.5 text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
                   </div>
                 )}
               </div>

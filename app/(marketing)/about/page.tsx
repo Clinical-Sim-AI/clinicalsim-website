@@ -36,7 +36,7 @@ export default function AboutPage() {
             Practice the conversations that matter most.
           </h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">
-            ClinicalSim is a voice-based AI clinical simulation platform to practice and measure <span className="text-cs-electric font-medium">clinical communication</span> — structured practice with real-time feedback, mapped to ACGME ICS Milestones 2.0, across undergraduate medical education, residency and fellowship, remediation, and faculty development.
+            ClinicalSim is a voice-based AI clinical simulation platform to practice and measure <span className="text-cs-electric font-medium">clinical communication</span> — structured practice with real-time feedback, mapped to ACGME Milestones 2.0, across undergraduate medical education, residency and fellowship, remediation, and faculty development.
           </p>
         </div>
       </section>
@@ -44,7 +44,7 @@ export default function AboutPage() {
       <SectionDivider variant="diagonal-down" color="white" />
 
       {/* Problem Statement Section */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">
             Communication is the hardest competency to teach, train, and measure.
@@ -85,13 +85,13 @@ export default function AboutPage() {
       <SectionDivider variant="wave" color="white" />
 
       {/* Our Approach Section */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 text-center">
             Structured practice that changes clinical communication.
           </h2>
 
-          <div className="bg-white/90 rounded-2xl p-8 md:p-10 shadow-xl border border-cs-gray/50 mb-8">
+          <div className="bg-white/90 rounded-2xl p-8 md:p-10 shadow-xl border border-cs-gray/50">
             <p className="text-lg md:text-xl text-cs-dark-blue/85 font-light leading-relaxed mb-8">
               You wouldn&apos;t teach a procedure without a sim lab. Communication deserves the same rigor. ClinicalSim provides structured, repeatable practice for the conversations that matter most — breaking bad news, navigating angry patients, conducting informed consent, leading goals-of-care discussions — for learners and the faculty who teach them.
             </p>
@@ -112,7 +112,7 @@ export default function AboutPage() {
                   <Check className="w-5 h-5 text-white" />
                 </span>
                 <div>
-                  <h3 className="text-lg font-medium text-cs-navy">Real-time feedback mapped to ICS Milestones 2.0</h3>
+                  <h3 className="text-lg font-medium text-cs-navy">Real-time feedback mapped to ACGME Milestones 2.0</h3>
                   <p className="text-cs-dark-blue/70 font-light">ICS-1, ICS-2, ICS-3 assessment from every session</p>
                 </div>
               </div>
@@ -154,7 +154,7 @@ export default function AboutPage() {
       <SectionDivider variant="wave" color="cloud" />
 
       {/* Who We Serve Section */}
-      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
+      <section className="px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">
             Built for every stakeholder across the training continuum

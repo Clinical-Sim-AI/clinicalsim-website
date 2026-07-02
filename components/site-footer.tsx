@@ -48,6 +48,12 @@ export function SiteFooter() {
               <Link href="/glossary" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Glossary
               </Link>
+              <Link href="/methodology" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Methodology
+              </Link>
+              <Link href="/faq" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                FAQ
+              </Link>
               <Link href="/contact" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Contact
               </Link>

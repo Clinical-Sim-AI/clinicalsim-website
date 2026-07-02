@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     absolute: "AI Clinical Simulation for Medical Communication | ClinicalSim",
   },
   description:
-    "Voice-based AI simulation to practice and measure clinical communication at every stage of a medical career — from undergraduate medical education through residency, fellowship, and faculty development. Mapped to ACGME ICS Milestones 2.0.",
+    "Voice-based AI simulation to practice and measure clinical communication at every stage of a medical career — from undergraduate medical education through residency, fellowship, and faculty development. Mapped to ACGME Milestones 2.0.",
   openGraph: {
     title: "AI Clinical Simulation for Medical Communication",
     description:
@@ -68,13 +68,11 @@ export default function HomePage() {
     "History-taking",
   ]
 
-  // Clinical contexts the scenario library supports today.
-  const specialties = [
-    "Neonatal ICU (NICU)",
-    "Pediatric ICU (PICU)",
-    "Hematology/Oncology",
-    "Faculty development",
-    "and more",
+  // Stages of the medical-education continuum the platform serves.
+  const trainingLevels = [
+    "Undergraduate Medical Education",
+    "Graduate Medical Education",
+    "Faculty Development",
   ]
 
   const features = [
@@ -154,7 +152,7 @@ export default function HomePage() {
             applicationCategory: "HealthApplication",
             operatingSystem: "Web",
             description:
-              "Voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum — undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Rubric-scored practice mapped to ACGME ICS Milestones 2.0 for breaking bad news, goals-of-care, informed consent, error disclosure, and family meetings.",
+              "Voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum — undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Rubric-scored practice mapped to ACGME Milestones 2.0 for breaking bad news, goals-of-care, informed consent, error disclosure, and family meetings.",
             url: "https://clinicalsim.ai",
             offers: {
               "@type": "Offer",
@@ -197,7 +195,7 @@ export default function HomePage() {
           </p>
 
           <p className="text-lg md:text-xl text-white/85 font-light leading-relaxed mb-8 max-w-3xl mx-auto">
-            ClinicalSim practices and measures clinical communication across the medical-education continuum, with rubric scoring tied to ACGME ICS Milestones 2.0. In a feasibility pilot with residents and advanced practice providers, comfort with difficult conversations improved significantly and objective communication scores rose with repeated practice (presented at IPSSW 2026).
+            ClinicalSim practices and measures clinical communication across the medical-education continuum, with rubric scoring tied to ACGME Milestones 2.0. In a feasibility pilot with residents and advanced practice providers, comfort with difficult conversations improved significantly and objective communication scores rose with repeated practice (presented at IPSSW 2026).
           </p>
 
           <div className="space-y-3">
@@ -221,7 +219,7 @@ export default function HomePage() {
           <div className="border-l-4 border-cs-electric pl-6 md:pl-8">
             <h2 className="text-xl md:text-2xl font-light text-cs-navy mb-3">What is ClinicalSim?</h2>
             <p className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed">
-              ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication — the hardest competency to teach, train, and measure. The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to ACGME ICS Milestones 2.0 and documented feedback from every session.
+              ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication — the hardest competency to teach, train, and measure. The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to ACGME Milestones 2.0 and documented feedback from every session.
             </p>
           </div>
         </div>
@@ -245,10 +243,10 @@ export default function HomePage() {
           </ul>
 
           <p className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mt-10 mb-5">
-            Specialties &amp; settings
+            Across the training continuum
           </p>
           <ul className="flex flex-wrap justify-center gap-2.5 md:gap-3">
-            {specialties.map((item) => (
+            {trainingLevels.map((item) => (
               <li
                 key={item}
                 className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
@@ -263,7 +261,7 @@ export default function HomePage() {
       <SectionDivider variant="diagonal-down" color="navy" />
 
       {/* The cost of communication — the stakes */}
-      <section className="px-6 py-12 md:py-16 bg-cs-navy text-white">
+      <section className="px-6 py-8 md:py-10 bg-cs-navy text-white">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-3">
             Communication isn&apos;t a soft skill. When it fails, the cost is <span className="text-cs-electric font-medium">measurable</span>.
@@ -351,7 +349,7 @@ export default function HomePage() {
       </section>
 
       {/* One Platform, Many Conversations - use cases as peers */}
-      <section className="px-6 py-8 md:py-12 bg-white">
+      <section className="px-6 pt-8 md:pt-12 pb-4 md:pb-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
@@ -449,7 +447,7 @@ export default function HomePage() {
            NOTE: the study is NOT yet published — findings were presented at IPSSW 2026
            and a manuscript is in preparation. Before uncommenting, fill in the real
            journal + year + paper link. Do NOT reintroduce a placeholder citation.
-      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
+      <section className="px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
@@ -572,7 +570,7 @@ export default function HomePage() {
       <SectionDivider variant="diagonal-down" color="navy" />
 
       {/* Final CTA Section */}
-      <section className="px-6 py-12 md:py-16 bg-cs-dark-blue text-white">
+      <section className="px-6 py-8 md:py-10 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             Ready to close the communication gap?
@@ -588,6 +586,13 @@ export default function HomePage() {
               Request a Pilot
             </Button>
           </Link>
+          <p className="mt-4 text-sm text-white/70 font-light">
+            Have questions first?{" "}
+            <Link href="/faq" className="text-cs-electric hover:text-white font-medium transition-colors inline-flex items-center">
+              Read the FAQ
+              <ArrowRight className="w-3.5 h-3.5 ml-1" />
+            </Link>
+          </p>
           <p className="mt-4 text-sm text-white/70 font-light">
             Are you a researcher?{" "}
             <Link href="/research" className="text-cs-electric hover:text-white font-medium transition-colors inline-flex items-center">

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Use Cases | ClinicalSim.ai",
     description:
-      "One platform, many conversations: remediation, longitudinal curriculum, UME, and faculty development — all mapped to ACGME ICS Milestones 2.0.",
+      "One platform, many conversations: remediation, longitudinal curriculum, UME, and faculty development — all mapped to ACGME Milestones 2.0.",
     url: "https://clinicalsim.ai/solutions",
   },
   twitter: {
@@ -82,7 +82,7 @@ export default function SolutionsPage() {
       <SectionDivider variant="diagonal-down" color="white" />
 
       {/* Use-case grid */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {solutions.map((solution) => (
@@ -102,7 +102,7 @@ export default function SolutionsPage() {
 
       {/* Final CTA */}
       <SectionDivider variant="diagonal-down" color="navy" />
-      <section className="px-6 py-12 md:py-16 bg-cs-dark-blue text-white">
+      <section className="px-6 py-8 md:py-10 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-6">
             See which use case fits your program
