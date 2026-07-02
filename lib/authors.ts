@@ -31,6 +31,14 @@ const authors: Author[] = [
     bio: "Dr. Lauren Rissman is a pediatric critical care physician specializing in palliative care, communication science, and disparities in critical illness. Her research focuses on scalable, evidence-based approaches to communication training for high-stakes clinical conversations.",
     colorVariant: "navy",
   },
+  {
+    id: "jacqueline-ponczek",
+    name: "Jacqueline Ponczek",
+    credentials: "MD, MS, FAAP",
+    title: "Methodology Advisor, ClinicalSim.ai",
+    bio: "Dr. Jacqueline Ponczek is a board-certified pediatrician and Clinical Assistant Professor of Pediatrics at Northwestern University Feinberg School of Medicine, practicing at Ann & Robert H. Lurie Children's Hospital of Chicago. She has spent over a decade designing and facilitating simulation-based clinical education — from bedside emergency simulations to resident bootcamps and medical student clinical-skills training — and is a Fellow of the American Academy of Pediatrics.",
+    colorVariant: "light-blue",
+  },
 ]
 
 export function getAuthorById(id: string): Author | undefined {

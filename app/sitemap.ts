@@ -64,6 +64,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${BASE_URL}/methodology`,
+      lastModified: new Date("2026-07-02"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/faq`,
+      lastModified: new Date("2026-07-02"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${BASE_URL}/compare`,
       lastModified: new Date("2026-06-09"),
       changeFrequency: "monthly",
