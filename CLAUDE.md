@@ -111,6 +111,33 @@ Pulled from each person's CV in `Clinical Sim AI LLC/Team/` (as of 2026-07-02). 
 - Escape special characters: `p<0.001` → `p&lt;0.001`
 - Follow established tag conventions (see Insights page for color coding)
 
+## Brand Voice & Anti-AI Writing
+
+All written copy on this site must read as human and on-brand, never as generated AI prose. This applies to page and hero text, section headlines, blog/MDX body, FAQ answers, `metadata` descriptions, alt text, and button labels. This is a healthcare/GME credibility brand, and copy that reads as AI slop actively undermines it.
+
+**Source of truth**: `/Users/benconway/Documents/Documents - Ben ClinicalSim Macbook Pro/Clinical Sim AI LLC/Claude-Workspace/context/brand-voice.md` (Ben's environment) plus the `humanizer` skill, which carries the full 25-pattern spec tuned to ClinicalSim's voice.
+
+**Before finalizing any user-facing prose, invoke the `humanizer` skill** and run its final em-dash scan. If the skill is unavailable, apply the condensed rules below. On voice, the skill wins over this file where they conflict. On factual claims, the Hallucination Prevention rules above override everything.
+
+### Non-negotiable rules (published copy)
+- **Zero em dashes and en dashes.** Replace with commas, periods, parentheses, or a rewrite. Use double hyphens (`--`) only where a dash is genuinely unavoidable. (This ban is for published content, not for this instructions file.)
+- **Kill AI vocabulary**: "Additionally", "Furthermore", "Moreover", "Subsequently", "Consequently", "delve", "crucial", "enhance", "foster", "garner", "robust", "nuanced", "seamless", "pivotal", "showcase", "underscore", abstract "landscape"/"tapestry", metaphorical "navigate". Use plain words.
+- **No copula avoidance**: use "is / are / has", not "serves as", "stands as", "boasts", "features", "offers", "represents".
+- **No forced triplets, no staccato fragment runs, no punchy question headers** ("The result?", "The takeaway?"). Lean toward flowing 20-30 word sentences with connectors ("that", "and", "so"); short sentences only for emphasis.
+- **No hype or empty verbs**: "revolutionizing", "cutting-edge", "state-of-the-art", "best-in-class", "game-changer", "leverage", "unlock", "empower", "synergy".
+- **No chatbot artifacts, hedging, or generic conclusions**: cut "I hope this helps", "Of course!", "quite / fairly / somewhat", "the future looks bright".
+- **Mechanics**: straight quotes (not curly), sentence-case headings, no emojis unless Ben asks, and don't over-hyphenate common compounds ("real time", "high quality", "data driven").
+- **Every claim gets a number, a name, or a source.** This ties into Hallucination Prevention above: when in doubt, leave it out.
+
+### Product & positioning language (keep consistent)
+- Say **"AI patients"**, never "bots", "virtual patients", or "chatbot" (the product is voice-based simulation).
+- Say **"high-stakes conversations"**, not "difficult conversations". Say **"communication training / remediation"**, not "soft skills".
+- Say **"evidence-based"**, not "clinically proven" or "validated". The RCT framing is **"among the first"**, not an overclaim.
+- **Never claim SP replacement**: "extend your SP program, don't replace it." Make the learner or program the subject of the sentence, not the AI ("clinicians build confidence through practice", not "AI helps clinicians build confidence").
+
+### Add soul
+Clean but sterile copy is also an AI tell. Vary the rhythm, take a point of view, and be specific rather than neutral. Voice test: would a program director take it seriously, and would it sound right if Ben said it out loud in a meeting?
+
 ## Design System (Updated May 2026)
 
 **Source of truth**: `/Users/benconway/Documents/Documents - Ben ClinicalSim Macbook Pro/Clinical Sim AI LLC/Claude-Workspace/context/brand-guidelines.md`. Read it before producing any visual or branded output. The guidelines override anything below if they conflict.
