@@ -143,6 +143,7 @@ export default function InsightsPage() {
                       return author ? (
                         <p className="text-sm text-cs-dark-blue/70 font-medium mb-4">
                           {author.name}
+                          {author.credentials ? `, ${author.credentials}` : ""}
                         </p>
                       ) : null
                     })()}
@@ -201,6 +202,7 @@ export default function InsightsPage() {
                         return author ? (
                           <p className="text-sm text-cs-dark-blue/70 font-medium mb-4">
                             {author.name}
+                            {author.credentials ? `, ${author.credentials}` : ""}
                           </p>
                         ) : null
                       })()}

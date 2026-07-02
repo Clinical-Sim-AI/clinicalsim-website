@@ -12,6 +12,7 @@ function buildAuthorSchema(post: Post) {
     return {
       "@type": "Person" as const,
       name: author.name,
+      ...(author.credentials ? { honorificSuffix: author.credentials } : {}),
       jobTitle: author.title,
       worksFor: {
         "@type": "Organization" as const,

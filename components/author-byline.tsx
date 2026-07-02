@@ -52,7 +52,10 @@ export function AuthorByline({
         {getInitials(author.name)}
       </div>
       <div>
-        <p className="text-sm font-medium text-cs-dark-blue">{author.name}</p>
+        <p className="text-sm font-medium text-cs-dark-blue">
+          {author.name}
+          {author.credentials ? `, ${author.credentials}` : ""}
+        </p>
         <p className="text-xs text-cs-dark-gray">{author.title}</p>
       </div>
     </div>
