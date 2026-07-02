@@ -83,6 +83,14 @@ The project uses shadcn/ui components which are:
 - **About page**: Emits Person JSON-LD for each team member automatically via `getAllAuthors()`
 - **`dateModified`**: Optional field on posts. Falls back to `date` in JSON-LD if not set. Update when making significant content edits.
 
+#### Author credential snapshot (source of truth for `lib/authors.ts`)
+Pulled from each person's CV in `Clinical Sim AI LLC/Team/` (as of 2026-07-02). Use these — don't re-open the CVs unless a name/title looks stale or a new author needs adding.
+- **Lauren Rissman, MD** — Attending Faculty Member, Pediatric Critical Care and Palliative Care, Advocate Children's Hospital (Park Ridge, IL); Assistant Clinical Professor, Wake Forest University School of Medicine
+- **Jacqueline Ponczek, MD, MS, FAAP** — Clinical Assistant Professor in Pediatrics (Primary Care–Outreach), Northwestern University Feinberg School of Medicine; Ann & Robert H. Lurie Children's Hospital of Chicago
+- **Vinod Havalad, MD** — Attending Physician; Program Director, Pediatric Simulation and Pediatric Critical Care Medicine Fellowship, Advocate Children's Hospital (Park Ridge, IL); Assistant Professor, Rosalind Franklin University of Medicine and Science; Adjunct Assistant Professor, Wake Forest University School of Medicine
+- **Gillian Brennan, MB BCh BAO** — Associate Professor of Pediatrics; Attending Neonatologist and Director of Neonatal Simulation, Section of Neonatology, University of Chicago; Program Director, Neonatology Fellowship
+- These are personal/academic titles from each CV, not ClinicalSim-specific role titles — the `title` field in `lib/authors.ts` may instead show their ClinicalSim role (e.g. "Chief Medical Officer, ClinicalSim") where one has been confirmed by Ben. Don't invent a ClinicalSim-specific title that isn't already in `lib/authors.ts` or confirmed by Ben.
+
 ### Citations in Blog Posts
 - **Component**: `components/references-section.tsx` — numbered academic citation list
 - **Type**: `Citation` interface in `lib/types.ts` (fields: `authors?`, `title`, `source`, `year`, `url?`, `doi?`)
