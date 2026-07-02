@@ -261,7 +261,7 @@ export default function HomePage() {
       <SectionDivider variant="diagonal-down" color="navy" />
 
       {/* The cost of communication — the stakes */}
-      <section className="px-6 py-12 md:py-16 bg-cs-navy text-white">
+      <section className="px-6 py-8 md:py-10 bg-cs-navy text-white">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-3">
             Communication isn&apos;t a soft skill. When it fails, the cost is <span className="text-cs-electric font-medium">measurable</span>.
@@ -447,7 +447,7 @@ export default function HomePage() {
            NOTE: the study is NOT yet published — findings were presented at IPSSW 2026
            and a manuscript is in preparation. Before uncommenting, fill in the real
            journal + year + paper link. Do NOT reintroduce a placeholder citation.
-      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
+      <section className="px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
@@ -570,7 +570,7 @@ export default function HomePage() {
       <SectionDivider variant="diagonal-down" color="navy" />
 
       {/* Final CTA Section */}
-      <section className="px-6 py-12 md:py-16 bg-cs-dark-blue text-white">
+      <section className="px-6 py-8 md:py-10 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             Ready to close the communication gap?

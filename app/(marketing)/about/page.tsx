@@ -44,7 +44,7 @@ export default function AboutPage() {
       <SectionDivider variant="diagonal-down" color="white" />
 
       {/* Problem Statement Section */}
-      <section className="px-6 pt-12 md:pt-16 pb-4 md:pb-6 bg-white">
+      <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">
             Communication is the hardest competency to teach, train, and measure.
@@ -85,7 +85,7 @@ export default function AboutPage() {
       <SectionDivider variant="wave" color="white" />
 
       {/* Our Approach Section */}
-      <section className="px-6 pt-12 md:pt-16 pb-4 md:pb-6 bg-white">
+      <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 text-center">
             Structured practice that changes clinical communication.
@@ -154,7 +154,7 @@ export default function AboutPage() {
       <SectionDivider variant="wave" color="cloud" />
 
       {/* Who We Serve Section */}
-      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
+      <section className="px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">
             Built for every stakeholder across the training continuum
