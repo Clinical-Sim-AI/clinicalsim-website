@@ -108,7 +108,7 @@ export default function InsightsPage() {
 
       {/* Featured Post */}
       {featuredPost && (
-        <section className="px-6 py-12 md:py-16 bg-white">
+        <section className="px-6 pt-12 md:pt-16 pb-4 md:pb-6 bg-white">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-8">Featured Article</h2>
             <Link href={`/insights/${featuredPost.slug}`}>

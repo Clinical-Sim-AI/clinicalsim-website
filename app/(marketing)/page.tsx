@@ -349,7 +349,7 @@ export default function HomePage() {
       </section>
 
       {/* One Platform, Many Conversations - use cases as peers */}
-      <section className="px-6 py-8 md:py-12 bg-white">
+      <section className="px-6 pt-8 md:pt-12 pb-4 md:pb-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">

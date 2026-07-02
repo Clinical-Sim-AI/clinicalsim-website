@@ -79,7 +79,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
         ]}
       />
       {/* Hero Section */}
-      <section className="relative px-6 py-12 md:py-20">
+      <section className="relative px-6 pt-12 md:pt-20 pb-4 md:pb-6">
         <div className="absolute inset-0 bg-cs-cloud -z-10" />
 
         <div className="max-w-4xl mx-auto">
@@ -231,7 +231,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
       {/* Practice Tool CTA — Program Directors only */}
       {audience.slug === "program-directors" && (
-        <section className="px-6 py-12 md:py-16 bg-cs-cloud">
+        <section className="px-6 pt-12 md:pt-16 pb-4 md:pb-6 bg-cs-cloud">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-cs-electric/20 transition-all duration-300">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
@@ -262,7 +262,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
       {/* Primary use-case CTA — all other audiences */}
       {audience.slug !== "program-directors" && (
-        <section className="px-6 py-12 md:py-16 bg-cs-cloud">
+        <section className="px-6 pt-12 md:pt-16 pb-4 md:pb-6 bg-cs-cloud">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               {primarySolution.title}

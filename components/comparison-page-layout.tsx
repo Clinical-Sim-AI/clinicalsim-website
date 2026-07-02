@@ -79,7 +79,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
       />
 
       {/* Hero + answer-first intro */}
-      <section className="relative px-6 py-12 md:py-20">
+      <section className="relative px-6 pt-12 md:pt-20 pb-4 md:pb-6">
         <div className="absolute inset-0 bg-cs-cloud -z-10" />
         <div className="max-w-4xl mx-auto">
           <nav className="flex items-center gap-2 text-sm text-cs-dark-gray mb-8">
