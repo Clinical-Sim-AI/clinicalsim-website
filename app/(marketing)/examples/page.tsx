@@ -101,7 +101,7 @@ export default function ExamplesPage() {
       <SectionDivider variant="diagonal-down" color="white" />
 
       {/* Example cards */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 py-10 md:py-12 bg-white">
         <div className="max-w-6xl mx-auto">
           {examples.length > 0 ? (
             <AsymmetricGrid layout="staggered">

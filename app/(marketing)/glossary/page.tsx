@@ -108,7 +108,7 @@ export default function GlossaryPage() {
       <SectionDivider variant="diagonal-down" color="white" />
 
       {/* Jump links */}
-      <section className="px-6 pt-12 md:pt-16 bg-white">
+      <section className="px-6 pt-10 md:pt-12 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-wrap gap-2">
             {terms.map((term) => (
@@ -125,7 +125,7 @@ export default function GlossaryPage() {
       </section>
 
       {/* Definition list */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 py-10 md:py-12 bg-white">
         <div className="max-w-4xl mx-auto">
           <dl className="space-y-10">
             {terms.map((term) => (

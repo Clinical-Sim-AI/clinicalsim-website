@@ -5,6 +5,8 @@ export interface SectionDividerProps extends React.HTMLAttributes<HTMLDivElement
   variant?: "diagonal-down" | "diagonal-up" | "wave" | "curve"
   color?: "cloud" | "white" | "dark-blue" | "navy"
   flip?: boolean
+  /** Divider height in px. Defaults to 40. Use a smaller value to tighten transitions. */
+  height?: number
 }
 
 const colorMap = {
@@ -18,6 +20,7 @@ export function SectionDivider({
   variant = "diagonal-down",
   color = "white",
   flip = false,
+  height = 40,
   className,
   ...props
 }: SectionDividerProps) {
@@ -49,7 +52,7 @@ export function SectionDivider({
   return (
     <div
       className={cn("relative w-full overflow-hidden", className)}
-      style={{ height: "60px" }}
+      style={{ height: `${height}px` }}
       {...props}
     >
       <svg

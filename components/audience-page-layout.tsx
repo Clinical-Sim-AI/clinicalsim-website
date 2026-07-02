@@ -133,7 +133,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
       <SectionDivider variant="diagonal-down" color="white" />
 
       {/* Pain Points - "What's at stake" */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 py-10 md:py-12 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
@@ -174,7 +174,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
       <SectionDivider variant="wave" color="white" />
 
       {/* Key Stats */}
-      <section className="px-6 py-12 md:py-16 bg-cs-cloud">
+      <section className="px-6 py-10 md:py-12 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
@@ -199,7 +199,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
       <SectionDivider variant="diagonal-up" color="white" />
 
       {/* Value Propositions */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 py-10 md:py-12 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light text-cs-dark-blue mb-4">
@@ -231,7 +231,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
       {/* Practice Tool CTA — Program Directors only */}
       {audience.slug === "program-directors" && (
-        <section className="px-6 pt-12 md:pt-16 pb-4 md:pb-6 bg-cs-cloud">
+        <section className="px-6 pt-10 md:pt-12 pb-4 md:pb-6 bg-cs-cloud">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-cs-electric/20 transition-all duration-300">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
@@ -262,7 +262,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
       {/* Primary use-case CTA — all other audiences */}
       {audience.slug !== "program-directors" && (
-        <section className="px-6 pt-12 md:pt-16 pb-4 md:pb-6 bg-cs-cloud">
+        <section className="px-6 pt-10 md:pt-12 pb-4 md:pb-6 bg-cs-cloud">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
               {primarySolution.title}
@@ -284,7 +284,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
       {/* Related Insights */}
       {relatedPosts.length > 0 && (
-        <section className="px-6 py-12 md:py-16 bg-white">
+        <section className="px-6 py-10 md:py-12 bg-white">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-8">
               Related Insights

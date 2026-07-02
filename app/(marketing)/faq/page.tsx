@@ -212,7 +212,7 @@ export default function FaqPage() {
       <SectionDivider variant="diagonal-down" color="white" />
 
       {/* FAQ categories */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 py-10 md:py-12 bg-white">
         <div className="max-w-4xl mx-auto space-y-12">
           {faqCategories.map((cat) => (
             <div key={cat.category}>
@@ -249,7 +249,7 @@ export default function FaqPage() {
       <SectionDivider variant="wave" color="cloud" />
 
       {/* CTA */}
-      <section className="px-6 py-12 md:py-16 bg-cs-cloud text-center">
+      <section className="px-6 py-10 md:py-12 bg-cs-cloud text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-4">
             Still have{" "}

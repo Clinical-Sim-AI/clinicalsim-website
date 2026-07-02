@@ -120,7 +120,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
       <SectionDivider variant="diagonal-down" color="white" />
 
       {/* Comparison table — real <table> markup for AI Overviews / Perplexity */}
-      <section className="px-6 py-12 md:py-16 bg-white">
+      <section className="px-6 py-10 md:py-12 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-8">
             Side-by-side <span className="text-cs-dark-blue font-medium">comparison</span>
@@ -174,7 +174,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
       {comparison.faqs && comparison.faqs.length > 0 && (
         <>
           <SectionDivider variant="wave" color="white" />
-          <section className="px-6 py-12 md:py-16 bg-cs-cloud">
+          <section className="px-6 py-10 md:py-12 bg-cs-cloud">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
                 Frequently Asked{" "}
@@ -211,7 +211,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
       {relatedPosts.length > 0 && (
         <>
           <SectionDivider variant="diagonal-up" color="white" />
-          <section className="px-6 py-12 md:py-16 bg-white">
+          <section className="px-6 py-10 md:py-12 bg-white">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-8">
                 Related Insights
