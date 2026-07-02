@@ -31,7 +31,7 @@ export function AuthorByline({
   if (isTeam) {
     return (
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-cs-electric/20 flex items-center justify-center">
+        <div className="w-10 h-10 shrink-0 rounded-full bg-cs-electric/20 flex items-center justify-center">
           <Users className="w-5 h-5 text-cs-dark-blue" />
         </div>
         <div>
@@ -47,7 +47,7 @@ export function AuthorByline({
   return (
     <div className="flex items-center gap-3">
       <div
-        className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium ${variantClasses[author.colorVariant]}`}
+        className={`w-10 h-10 shrink-0 rounded-full flex items-center justify-center text-sm font-medium ${variantClasses[author.colorVariant]}`}
       >
         {getInitials(author.name)}
       </div>
