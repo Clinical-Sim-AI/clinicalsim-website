@@ -218,6 +218,11 @@ All content on this site must be optimized for discovery by AI search systems (C
 - Root layout (`app/layout.tsx`) uses `metadataBase` and template titles (`%s | ClinicalSim.ai`)
 - Descriptions should include specific stats and source references where possible
 
+### Canonical Host (non-negotiable)
+- The canonical host is the non-www apex **`https://clinicalsim.ai`**. Every `canonical`, `openGraph.url`, and any hardcoded absolute URL (sitemap, llms.txt, JSON-LD) MUST use this host. Never emit a `www.clinicalsim.ai` URL.
+- Why: the site resolves on both www and apex. `next.config.mjs` permanently redirects `www.clinicalsim.ai` to the apex so the two don't compete. Emitting a www URL anywhere reintroduces the duplicate that Google flags as "Alternate page with proper canonical tag" and crawls as a separate www page.
+- When adding a new page, build absolute URLs from the `https://clinicalsim.ai` base string already used across `lib/` and `app/sitemap.ts`. Do not introduce a new base constant and do not prefix with `www.`.
+
 ### Structured Data (JSON-LD)
 - Use `components/json-ld.tsx` helper for all structured data
 - Marketing layout includes Organization + WebSite schemas

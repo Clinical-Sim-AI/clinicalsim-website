@@ -34,10 +34,10 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/",
       },
     ],
-    sitemap: [
-      "https://clinicalsim.ai/sitemap.xml",
-      "https://clinicalsim.ai/llms.txt",
-    ],
+    // Only declare the XML sitemap here. llms.txt is a plain-text index for LLM
+    // crawlers, not a sitemap, so listing it caused a sitemap parse error in
+    // Search Console.
+    sitemap: "https://clinicalsim.ai/sitemap.xml",
     host: "https://clinicalsim.ai",
   }
 }
