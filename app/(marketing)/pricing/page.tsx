@@ -93,10 +93,14 @@ export default function PricingPage() {
       {/* ------------------------------------------------------------------ */}
       <section className="relative px-6 py-16 md:py-24 overflow-hidden bg-cs-dark-blue text-white">
         <div className="relative max-w-4xl mx-auto text-center z-10">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
-            <span className="font-medium">{data.heroHeadline}</span>
+          <p className="inline-flex items-center gap-2 text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
+            <span className="h-1.5 w-1.5 rounded-full bg-cs-electric" aria-hidden="true" />
+            Plans &amp; Pricing
+          </p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 tracking-tight leading-[1.08] text-balance">
+            {data.heroHeadline}
           </h1>
-          <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto mb-8">
+          <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed max-w-2xl mx-auto mb-8">
             {data.heroSubheadline}
           </p>
           <a href="#roi-calculator">

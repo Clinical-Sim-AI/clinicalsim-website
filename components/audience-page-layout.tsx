@@ -92,7 +92,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             <span className="text-cs-dark-blue/85">{audience.title}</span>
           </nav>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-loose pb-3 mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6">
             {audience.heroHeadline}
           </h1>
 
@@ -106,11 +106,11 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             </p>
           )}
 
-          <p className="text-xl md:text-2xl text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+          <p className="text-xl md:text-2xl text-cs-dark-blue font-light leading-relaxed mb-4">
             For <span className="text-cs-dark-blue font-medium">{audience.title.toLowerCase()}</span> who need results they can measure.
           </p>
 
-          <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-8 max-w-3xl">
+          <p className="text-base md:text-lg text-cs-dark-blue font-light leading-relaxed mb-8 max-w-3xl">
             {audience.heroDescription}
           </p>
 

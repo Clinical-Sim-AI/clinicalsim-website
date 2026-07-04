@@ -97,7 +97,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
             <span className="text-cs-dark-blue/85">{comparison.title}</span>
           </nav>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight pb-3 mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6">
             {comparison.heroHeadline}
           </h1>
 
@@ -111,7 +111,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
             </p>
           )}
 
-          <p className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed max-w-3xl">
+          <p className="text-lg md:text-xl text-cs-dark-blue font-light leading-relaxed max-w-3xl">
             {comparison.intro}
           </p>
         </div>

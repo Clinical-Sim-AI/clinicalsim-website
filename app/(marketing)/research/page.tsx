@@ -134,7 +134,11 @@ export default function ResearchPage() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             {/* Research Info */}
             <div>
-              <h1 className="text-4xl md:text-5xl font-light mb-6">Research with ClinicalSim</h1>
+              <p className="inline-flex items-center gap-2 text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
+                <span className="h-1.5 w-1.5 rounded-full bg-cs-electric" aria-hidden="true" />
+                Research Collaboration
+              </p>
+              <h1 className="text-4xl md:text-5xl font-light tracking-tight leading-[1.08] text-balance mb-6">Research with ClinicalSim</h1>
               <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-cs-cloud">
                 We partner with researchers studying communication remediation, simulation-based education,
                 and competency assessment in graduate and undergraduate medical education. If you have a study idea that could use our platform,

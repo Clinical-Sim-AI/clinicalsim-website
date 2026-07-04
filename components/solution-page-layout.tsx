@@ -140,12 +140,12 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                 size={26}
               />
             </span>
-            <p className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray">
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray">
               {solution.shortTitle}
             </p>
           </div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight pb-3 mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6">
             {solution.heroHeadline}
           </h1>
 
@@ -159,7 +159,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
             </p>
           )}
 
-          <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-8 max-w-3xl">
+          <p className="text-lg md:text-xl text-cs-dark-blue font-light leading-relaxed mb-8 max-w-3xl">
             {solution.heroDescription}
           </p>
 

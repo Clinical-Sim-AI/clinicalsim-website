@@ -76,13 +76,13 @@ export default function AudiencesPage() {
       {/* Hero Section */}
       <section className="relative px-6 py-16 md:py-24 text-center bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto relative z-10">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-light leading-loose pb-3 mb-6 md:mb-8 text-white">
-            Built for Every Stakeholder in the Remediation Process
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
+            Built for every stakeholder in the remediation process
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-4 max-w-3xl mx-auto">
             From the program director managing a remediation case to the CCC reviewing milestone data, <span className="text-cs-electric font-medium">ClinicalSim serves every role.</span>
           </p>
-          <p className="text-base md:text-lg text-cs-cloud/80 font-light mb-8 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-cs-cloud font-light mb-8 max-w-2xl mx-auto">
             Structured practice, milestone-aligned feedback, and CCC-ready documentation — tailored to your specific priorities.
           </p>
         </div>
