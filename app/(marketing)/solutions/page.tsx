@@ -70,7 +70,7 @@ export default function SolutionsPage() {
       {/* Hero */}
       <section className="relative px-6 py-16 md:py-24 text-center bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-light leading-tight pb-3 mb-6 text-white">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
             One platform. <span className="text-cs-electric font-medium">Many conversations.</span>
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">

@@ -92,7 +92,7 @@ export default function GlossaryPage() {
             <span className="text-cs-cloud">Glossary</span>
           </nav>
 
-          <h1 className="text-4xl md:text-5xl font-light leading-tight pb-3 mb-6 text-white">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
             Medical Education{" "}
             <span className="text-cs-electric font-medium">Glossary</span>
           </h1>

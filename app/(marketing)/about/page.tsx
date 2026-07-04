@@ -30,18 +30,20 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative text-center px-6 py-16 md:py-24 bg-cs-dark-blue text-white">
-        <div className="max-w-4xl mx-auto relative z-10">
-          <h1 className="text-4xl md:text-5xl font-light mb-6 text-white">
+      <section className="relative px-6 py-20 md:py-28 bg-cs-dark-blue text-white">
+        <div className="max-w-3xl mx-auto relative z-10">
+          <p className="inline-flex items-center gap-2 text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
+            <span className="h-1.5 w-1.5 rounded-full bg-cs-electric" aria-hidden="true" />
+            About ClinicalSim
+          </p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
             Practice the conversations that matter most.
           </h1>
-          <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">
+          <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-2xl">
             ClinicalSim is a voice-based AI clinical simulation platform to practice and measure <span className="text-cs-electric font-medium">clinical communication</span> — structured practice with real-time feedback, mapped to ACGME Milestones 2.0, across undergraduate medical education, residency and fellowship, remediation, and faculty development.
           </p>
         </div>
       </section>
-
-      <SectionDivider variant="diagonal-down" color="white" />
 
       {/* Problem Statement Section */}
       <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-white">

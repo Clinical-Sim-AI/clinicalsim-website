@@ -81,7 +81,7 @@ export default function ExamplesPage() {
       {/* Hero */}
       <section className="relative px-6 py-16 md:py-24 text-center bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto relative z-10">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-light leading-loose pb-3 mb-6 md:mb-8 text-white">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
             See the feedback for yourself
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-4 max-w-3xl mx-auto">
@@ -91,7 +91,7 @@ export default function ExamplesPage() {
             </span>{" "}
             — the assessment report, the recording, and the full transcript.
           </p>
-          <p className="text-base md:text-lg text-cs-cloud/80 font-light max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-cs-cloud font-light max-w-2xl mx-auto">
             No sign-in, no demo call. Just the same feedback page, mapped to
             communication frameworks and ACGME milestones.
           </p>

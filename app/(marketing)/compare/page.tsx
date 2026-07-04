@@ -78,7 +78,7 @@ export default function CompareIndexPage() {
       {/* Hero */}
       <section className="relative text-center px-6 pt-20 pb-16 md:pt-28 md:pb-24 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto relative z-10">
-          <h1 className="text-4xl md:text-5xl font-light mb-6 leading-tight pb-3 text-white">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight leading-[1.08] text-balance text-white">
             Compare
           </h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed">

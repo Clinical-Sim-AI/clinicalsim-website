@@ -157,7 +157,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
             <span className="text-cs-dark-blue/85">Communication Remediation</span>
           </nav>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-loose pb-3 mb-4">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6">
             {data.heroH1}
           </h1>
 
@@ -171,7 +171,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
             </p>
           )}
 
-          <p className="text-lg md:text-xl text-cs-dark-blue/70 font-light leading-relaxed mb-10 max-w-3xl">
+          <p className="text-lg md:text-xl text-cs-dark-blue font-light leading-relaxed mb-10 max-w-3xl">
             {data.heroSubtitle}
           </p>
 

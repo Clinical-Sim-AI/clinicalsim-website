@@ -6,7 +6,6 @@ import { FeatureCard } from "@/components/feature-card"
 import { StatHighlight } from "@/components/stat-highlight"
 import { EvidenceShowcase } from "@/components/evidence-showcase"
 import { AsymmetricGrid } from "@/components/asymmetric-grid"
-import { SectionDivider } from "@/components/section-divider"
 import { AudienceCard } from "@/components/audience-card"
 import { RotatingText } from "@/components/rotating-text"
 import { getAllAudiences } from "@/lib/audiences"
@@ -119,7 +118,7 @@ export default function HomePage() {
       value: "93%",
       label: "of residency programs have faced remediation in the past 3 years",
       source: "CERA Survey, 267 Family Medicine PDs",
-      variant: "accent" as const,
+      variant: "blue" as const,
     },
     {
       value: "29-45",
@@ -131,13 +130,13 @@ export default function HomePage() {
       value: "50%",
       label: "of program directors want an accessible remediation toolkit",
       source: "CERA Survey",
-      variant: "accent" as const,
+      variant: "blue" as const,
     },
     {
       value: "16",
       label: "published studies exist on communication-specific remediation",
       source: "Literature review",
-      variant: "light-blue" as const,
+      variant: "navy" as const,
     }
   ]
 
@@ -180,93 +179,127 @@ export default function HomePage() {
         ]}
       />
       {/* Hero Section - Dark Blue per brand */}
-      <section className="relative flex flex-col items-center justify-center px-6 py-16 md:py-28 text-center bg-cs-dark-blue text-white">
-        <div className="max-w-4xl mx-auto relative z-10">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight pb-3 mb-6 md:mb-8 text-white">
-            Communication is a <span className="text-cs-electric font-medium">clinical procedure</span> — the one physicians perform most and practice least.
-          </h1>
+      <section className="relative overflow-hidden px-6 py-20 md:py-28 lg:py-32 bg-cs-dark-blue text-white">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+          {/* Left column — message + CTAs */}
+          <div className="relative z-10 max-w-2xl">
+            <p className="inline-flex items-center gap-2 text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
+              <span className="h-1.5 w-1.5 rounded-full bg-cs-electric" aria-hidden="true" />
+              AI Clinical Simulation
+            </p>
 
-          <p className="text-lg md:text-xl text-cs-cloud font-light mb-4">
-            Voice-based AI simulation for{" "}
-            <RotatingText
-              phrases={["breaking bad news", "goals-of-care discussions", "informed consent", "giving difficult feedback", "disclosing a medical error"]}
-              className="text-cs-electric font-medium"
-            />
-          </p>
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
+              Communication is a <span className="text-cs-electric font-medium">clinical procedure</span> — the one physicians perform most and practice least.
+            </h1>
 
-          <p className="text-lg md:text-xl text-white/85 font-light leading-relaxed mb-8 max-w-3xl mx-auto">
-            ClinicalSim practices and measures clinical communication across the medical-education continuum, with rubric scoring tied to ACGME Milestones 2.0. In a feasibility pilot with residents and advanced practice providers, comfort with difficult conversations improved significantly and objective communication scores rose with repeated practice (presented at IPSSW 2026).
-          </p>
+            <p className="text-lg md:text-xl text-cs-cloud font-light mb-8">
+              Voice-based AI simulation for{" "}
+              <RotatingText
+                phrases={["breaking bad news", "goals-of-care discussions", "informed consent", "giving difficult feedback", "disclosing a medical error"]}
+                className="text-cs-electric font-medium"
+              />
+            </p>
 
-          <div className="space-y-3">
-            <Link href="/contact">
-              <Button
-                variant="accent"
-                size="xl"
-              >
-                Request a Pilot
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Link href="/contact">
+                <Button variant="accent" size="xl" className="w-full sm:w-auto">
+                  Request a Pilot
+                  <ArrowRight />
+                </Button>
+              </Link>
+              <Link href="/research">
+                <Button
+                  size="xl"
+                  className="w-full sm:w-auto bg-transparent border border-white/25 text-white hover:bg-white/10 font-medium"
+                >
+                  See the evidence
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Right column — evidence panel */}
+          <div className="relative z-10 lg:justify-self-end w-full max-w-md">
+            <div className="rounded-2xl border border-white/10 bg-cs-navy/40 p-6 md:p-8 backdrop-blur-sm">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-cs-electric mb-6">
+                From our feasibility pilot
+              </p>
+              <dl className="space-y-6">
+                <div>
+                  <dt className="text-sm text-cs-cloud font-light mb-1">Comfort with difficult conversations</dt>
+                  <dd className="text-2xl md:text-3xl font-light text-white">Improved significantly</dd>
+                </div>
+                <div className="h-px bg-white/10" />
+                <div>
+                  <dt className="text-sm text-cs-cloud font-light mb-1">Objective communication scores</dt>
+                  <dd className="text-2xl md:text-3xl font-light text-white">Increased with repeated practice</dd>
+                </div>
+              </dl>
+              <p className="mt-6 pt-6 border-t border-white/10 text-sm text-cs-cloud font-light leading-relaxed">
+                Rubric scoring tied to ACGME Milestones 2.0, across residents and advanced practice providers.
+                <span className="block mt-2 text-cs-cloud/70">Presented at IPSSW 2026.</span>
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <SectionDivider variant="diagonal-down" color="white" />
-
-      {/* Definition Block - GEO citation magnet */}
-      <section className="px-6 py-8 md:py-10 bg-white">
-        <div className="max-w-3xl mx-auto">
-          <div className="border-l-4 border-cs-electric pl-6 md:pl-8">
-            <h2 className="text-xl md:text-2xl font-light text-cs-navy mb-3">What is ClinicalSim?</h2>
-            <p className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed">
-              ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication — the hardest competency to teach, train, and measure. The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to ACGME Milestones 2.0 and documented feedback from every session.
+      {/* Definition + scenarios — editorial two-column */}
+      <section className="px-6 py-16 md:py-24 bg-white">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16">
+          {/* Left — definition */}
+          <div className="max-w-xl">
+            <h2 className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
+              What is ClinicalSim?
+            </h2>
+            <p className="text-2xl md:text-3xl font-light tracking-tight leading-snug text-cs-navy text-balance">
+              ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication, the hardest competency to teach, train, and measure.
+            </p>
+            <p className="mt-6 text-base md:text-lg text-cs-dark-blue font-light leading-relaxed">
+              The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to ACGME Milestones 2.0 and documented feedback from every session.
             </p>
           </div>
+
+          {/* Right — scenarios */}
+          <div className="lg:border-l lg:border-cs-gray lg:pl-12 xl:pl-16">
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-5">
+              Conversations you can practice
+            </p>
+            <ul className="flex flex-wrap gap-2.5 md:gap-3">
+              {conversationTypes.map((type) => (
+                <li
+                  key={type}
+                  className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
+                >
+                  {type}
+                </li>
+              ))}
+            </ul>
+
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mt-10 mb-5">
+              Across the training continuum
+            </p>
+            <ul className="flex flex-wrap gap-2.5 md:gap-3">
+              {trainingLevels.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
-
-      {/* Conversation types + clinical contexts — explicit scenario list */}
-      <section className="px-6 pb-8 md:pb-10 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mb-5">
-            Conversations you can practice
-          </p>
-          <ul className="flex flex-wrap justify-center gap-2.5 md:gap-3">
-            {conversationTypes.map((type) => (
-              <li
-                key={type}
-                className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
-              >
-                {type}
-              </li>
-            ))}
-          </ul>
-
-          <p className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mt-10 mb-5">
-            Across the training continuum
-          </p>
-          <ul className="flex flex-wrap justify-center gap-2.5 md:gap-3">
-            {trainingLevels.map((item) => (
-              <li
-                key={item}
-                className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <SectionDivider variant="diagonal-down" color="navy" />
 
       {/* The cost of communication — the stakes */}
-      <section className="px-6 py-8 md:py-10 bg-cs-navy text-white">
+      <section className="px-6 py-16 md:py-24 bg-cs-navy text-white">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-light mb-3">
+          <h2 className="text-3xl md:text-4xl font-light tracking-tight text-balance mb-4">
             Communication isn&apos;t a soft skill. When it fails, the cost is <span className="text-cs-electric font-medium">measurable</span>.
           </h2>
-          <p className="text-base md:text-lg text-white/80 font-light max-w-2xl mx-auto mb-10">
+          <p className="text-base md:text-lg text-cs-cloud font-light max-w-2xl mx-auto mb-10">
             The conversations clinicians have the least time to practice are the ones with the highest stakes.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-3xl mx-auto">
@@ -288,16 +321,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionDivider variant="diagonal-up" color="white" />
-
       {/* Problem Statement Section - Full-width with stats */}
-      <section className="px-6 py-8 md:py-12 bg-white">
+      <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-              Communication is the hardest competency to teach, train, and <span className="text-cs-dark-blue font-medium">measure</span>.
+          <div className="text-center mb-12 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-balance text-cs-navy mb-4">
+              Communication is the hardest competency to teach, train, and measure.
             </h2>
-            <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
+            <p className="text-lg text-cs-dark-blue font-light max-w-2xl mx-auto">
               Since Step 2 CS retired in 2021, there&apos;s no scalable way to measure communication against ICS milestones, EPAs, or competency frameworks. The gap is sharpest in remediation, where it&apos;s impossible to ignore:
             </p>
           </div>
@@ -316,46 +347,63 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Now Section */}
-      <section className="px-6 py-8 md:py-12 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
-            Why <span className="text-cs-dark-blue font-medium">now</span>
-          </h2>
-          <div className="space-y-6">
-            {/* Card 1: Step 2 CS */}
-            <div className="border-l-4 border-cs-electric pl-6">
-              <h3 className="text-lg font-medium text-cs-dark-blue mb-2">Step 2 CS is gone.</h3>
-              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-                In 2021, USMLE permanently discontinued Step 2 CS — the only national standardized assessment of clinical communication skills. Programs now bear sole responsibility for communication assessment with inconsistent tools and no external benchmark.
-              </p>
-            </div>
-            {/* Card 2: Milestones 2.0 */}
-            <div className="border-l-4 border-cs-navy pl-6">
-              <h3 className="text-lg font-medium text-cs-dark-blue mb-2">Milestones 2.0 raised the bar.</h3>
-              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-                ACGME Harmonized Milestones 2.0 created a universal ICS framework across all specialties. For the first time, there&apos;s a standardized rubric — and a product can serve all programs with a common assessment standard.
-              </p>
-            </div>
-            {/* Card 3: No toolkit */}
-            <div className="border-l-4 border-cs-electric pl-6">
-              <h3 className="text-lg font-medium text-cs-dark-blue mb-2">No scalable remediation tool exists.</h3>
-              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-                93% of programs face remediation, but only 16 published studies address communication-specific remediation. The CERA survey confirmed: half of program directors said a remediation toolkit is the single thing that would help most. We built it.
-              </p>
-            </div>
+      {/* Why Now Section — editorial two-column */}
+      <section className="px-6 py-16 md:py-24 bg-cs-cloud">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
+          {/* Left — sticky heading */}
+          <div className="lg:sticky lg:top-24 lg:self-start max-w-sm">
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
+              The inflection point
+            </p>
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-navy mb-4">
+              Why now
+            </h2>
+            <p className="text-base text-cs-dark-blue font-light leading-relaxed">
+              Three shifts have converged to make communication assessment both measurable and mandatory, with no tool built for it until now.
+            </p>
           </div>
+
+          {/* Right — numbered reasons */}
+          <ol className="space-y-10">
+            {[
+              {
+                title: "Step 2 CS is gone.",
+                body: "In 2021, USMLE permanently discontinued Step 2 CS — the only national standardized assessment of clinical communication skills. Programs now bear sole responsibility for communication assessment with inconsistent tools and no external benchmark.",
+              },
+              {
+                title: "Milestones 2.0 raised the bar.",
+                body: "ACGME Harmonized Milestones 2.0 created a universal ICS framework across all specialties. For the first time, there's a standardized rubric — and a product can serve all programs with a common assessment standard.",
+              },
+              {
+                title: "No scalable remediation tool exists.",
+                body: "93% of programs face remediation, but only 16 published studies address communication-specific remediation. The CERA survey confirmed: half of program directors said a remediation toolkit is the single thing that would help most. We built it.",
+              },
+            ].map((reason, index) => (
+              <li key={reason.title} className="flex gap-5 md:gap-6">
+                <span
+                  className="flex-shrink-0 text-lg font-medium text-cs-electric tabular-nums pt-1"
+                  aria-hidden="true"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="border-l border-cs-navy/15 pl-5 md:pl-6">
+                  <h3 className="text-lg md:text-xl font-medium text-cs-dark-blue mb-2">{reason.title}</h3>
+                  <p className="text-base text-cs-dark-blue font-light leading-relaxed">{reason.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
       {/* One Platform, Many Conversations - use cases as peers */}
-      <section className="px-6 pt-8 md:pt-12 pb-4 md:pb-6 bg-white">
+      <section className="px-6 pt-16 md:pt-24 pb-8 md:pb-10 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
+          <div className="text-center mb-12 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-navy mb-4">
               One platform. <span className="text-cs-dark-blue font-medium">Many conversations.</span>
             </h2>
-            <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
+            <p className="text-lg text-cs-dark-blue font-light max-w-2xl mx-auto">
               The same engine, rubric, and dashboard across every stage of a medical career.
             </p>
           </div>
@@ -400,10 +448,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionDivider variant="wave" color="white" />
-
       {/* Demo Video Section */}
-      <section className="px-6 py-8 md:py-12 bg-cs-cloud">
+      <section className="px-6 py-16 md:py-24 bg-cs-cloud">
         <div className="max-w-5xl mx-auto">
           <DemoVideoSection
             title="See ClinicalSim in Action"
@@ -413,16 +459,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionDivider variant="diagonal-up" color="white" />
-
       {/* Features Section - Asymmetric Grid */}
-      <section className="px-6 py-8 md:py-12 bg-white">
+      <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-light text-cs-dark-blue mb-4">
+          <div className="text-center mb-12 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-dark-blue mb-4">
               Why ClinicalSim
             </h2>
-            <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
+            <p className="text-lg text-cs-dark-blue font-light max-w-2xl mx-auto">
               Built for the conversations clinicians face but rarely get to practice.
             </p>
           </div>
@@ -470,10 +514,10 @@ export default function HomePage() {
       */}
 
       {/* Testimonials Section - Pull-quote style (not cards) */}
-      <section className="px-6 py-8 md:py-12 bg-white">
+      <section className="px-6 py-16 md:py-24 bg-cs-cloud">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-light text-cs-dark-blue mb-4">
+          <div className="text-center mb-12 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-dark-blue mb-4">
               What learners are saying
             </h2>
             <p className="text-base text-cs-dark-gray font-light">From clinicians in our pilot study</p>
@@ -508,10 +552,10 @@ export default function HomePage() {
       </section>
 
       {/* Faculty Feedback */}
-      <section className="px-6 py-8 md:py-12 bg-white">
+      <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
+          <div className="text-center mb-12 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-navy mb-4">
               What faculty are saying
             </h2>
           </div>
@@ -533,13 +577,13 @@ export default function HomePage() {
       </section>
 
       {/* Audience Selector */}
-      <section className="px-6 py-8 md:py-12 bg-cs-cloud">
+      <section className="px-6 py-16 md:py-24 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
+          <div className="text-center mb-12 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-balance text-cs-navy mb-4">
               Built for every stakeholder across the <span className="text-cs-dark-blue font-medium">training continuum</span>
             </h2>
-            <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
+            <p className="text-lg text-cs-dark-blue font-light max-w-2xl mx-auto">
               See how ClinicalSim works for your role.
             </p>
           </div>
@@ -567,12 +611,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SectionDivider variant="diagonal-down" color="navy" />
-
       {/* Final CTA Section */}
-      <section className="px-6 py-8 md:py-10 bg-cs-dark-blue text-white">
+      <section className="px-6 py-20 md:py-28 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-balance mb-6">
             Ready to close the communication gap?
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">

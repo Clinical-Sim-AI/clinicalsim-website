@@ -118,7 +118,7 @@ export function SiteHeader() {
   )
 
   return (
-    <header className="relative z-50 flex items-center justify-between px-4 py-4 md:px-12 md:py-6 bg-white/80 backdrop-blur-sm border-b border-white/20">
+    <header className="relative z-50 flex items-center justify-between px-4 py-4 md:px-12 md:py-6 bg-white/80 backdrop-blur-sm border-b border-cs-gray/60">
       <Link href="/" className="flex items-center" aria-label="ClinicalSim home">
         <Image
           src="/brand/ClinicalSim_Logo_Lockup_Transparent.svg?v=3"
