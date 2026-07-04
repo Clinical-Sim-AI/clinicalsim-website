@@ -179,33 +179,67 @@ export default function HomePage() {
         ]}
       />
       {/* Hero Section - Dark Blue per brand */}
-      <section className="relative flex flex-col items-center justify-center px-6 py-20 md:py-32 text-center bg-cs-dark-blue text-white">
-        <div className="max-w-4xl mx-auto relative z-10">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light tracking-tight leading-[1.05] text-balance pb-3 mb-6 md:mb-8 text-white">
-            Communication is a <span className="text-cs-electric font-medium">clinical procedure</span> — the one physicians perform most and practice least.
-          </h1>
+      <section className="relative overflow-hidden px-6 py-20 md:py-28 lg:py-32 bg-cs-dark-blue text-white">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+          {/* Left column — message + CTAs */}
+          <div className="relative z-10 max-w-2xl">
+            <p className="inline-flex items-center gap-2 text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
+              <span className="h-1.5 w-1.5 rounded-full bg-cs-electric" aria-hidden="true" />
+              AI Clinical Simulation
+            </p>
 
-          <p className="text-lg md:text-xl text-cs-cloud font-light mb-4">
-            Voice-based AI simulation for{" "}
-            <RotatingText
-              phrases={["breaking bad news", "goals-of-care discussions", "informed consent", "giving difficult feedback", "disclosing a medical error"]}
-              className="text-cs-electric font-medium"
-            />
-          </p>
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
+              Communication is a <span className="text-cs-electric font-medium">clinical procedure</span> — the one physicians perform most and practice least.
+            </h1>
 
-          <p className="text-lg md:text-xl text-white/85 font-light leading-relaxed mb-8 max-w-3xl mx-auto">
-            ClinicalSim practices and measures clinical communication across the medical-education continuum, with rubric scoring tied to ACGME Milestones 2.0. In a feasibility pilot with residents and advanced practice providers, comfort with difficult conversations improved significantly and objective communication scores rose with repeated practice (presented at IPSSW 2026).
-          </p>
+            <p className="text-lg md:text-xl text-cs-cloud font-light mb-8">
+              Voice-based AI simulation for{" "}
+              <RotatingText
+                phrases={["breaking bad news", "goals-of-care discussions", "informed consent", "giving difficult feedback", "disclosing a medical error"]}
+                className="text-cs-electric font-medium"
+              />
+            </p>
 
-          <div className="space-y-3">
-            <Link href="/contact">
-              <Button
-                variant="accent"
-                size="xl"
-              >
-                Request a Pilot
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Link href="/contact">
+                <Button variant="accent" size="xl" className="w-full sm:w-auto">
+                  Request a Pilot
+                  <ArrowRight />
+                </Button>
+              </Link>
+              <Link href="/research">
+                <Button
+                  size="xl"
+                  className="w-full sm:w-auto bg-transparent border border-white/25 text-white hover:bg-white/10 font-medium"
+                >
+                  See the evidence
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Right column — evidence panel */}
+          <div className="relative z-10 lg:justify-self-end w-full max-w-md">
+            <div className="rounded-2xl border border-white/10 bg-cs-navy/40 p-6 md:p-8 backdrop-blur-sm">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-cs-electric mb-6">
+                From our feasibility pilot
+              </p>
+              <dl className="space-y-6">
+                <div>
+                  <dt className="text-sm text-cs-cloud font-light mb-1">Comfort with difficult conversations</dt>
+                  <dd className="text-2xl md:text-3xl font-light text-white">Improved significantly</dd>
+                </div>
+                <div className="h-px bg-white/10" />
+                <div>
+                  <dt className="text-sm text-cs-cloud font-light mb-1">Objective communication scores</dt>
+                  <dd className="text-2xl md:text-3xl font-light text-white">Rose with repeated practice</dd>
+                </div>
+              </dl>
+              <p className="mt-6 pt-6 border-t border-white/10 text-sm text-white/70 font-light leading-relaxed">
+                Rubric scoring tied to ACGME Milestones 2.0, across residents and advanced practice providers.
+                <span className="block mt-2 text-white/50">Presented at IPSSW 2026.</span>
+              </p>
+            </div>
           </div>
         </div>
       </section>
