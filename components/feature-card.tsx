@@ -77,7 +77,7 @@ export function FeatureCard({
         {title}
       </h3>
 
-      <p className="text-base md:text-lg text-cs-dark-blue/80 leading-relaxed">
+      <p className="text-base md:text-lg text-cs-dark-blue leading-relaxed">
         {description}
       </p>
     </div>
