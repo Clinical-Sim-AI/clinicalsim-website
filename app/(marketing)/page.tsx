@@ -232,7 +232,7 @@ export default function HomePage() {
                 <div className="h-px bg-white/10" />
                 <div>
                   <dt className="text-sm text-cs-cloud font-light mb-1">Objective communication scores</dt>
-                  <dd className="text-2xl md:text-3xl font-light text-white">Rose with repeated practice</dd>
+                  <dd className="text-2xl md:text-3xl font-light text-white">Increased with repeated practice</dd>
                 </div>
               </dl>
               <p className="mt-6 pt-6 border-t border-white/10 text-sm text-white/70 font-light leading-relaxed">
