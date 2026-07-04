@@ -235,9 +235,9 @@ export default function HomePage() {
                   <dd className="text-2xl md:text-3xl font-light text-white">Increased with repeated practice</dd>
                 </div>
               </dl>
-              <p className="mt-6 pt-6 border-t border-white/10 text-sm text-white/70 font-light leading-relaxed">
+              <p className="mt-6 pt-6 border-t border-white/10 text-sm text-cs-cloud font-light leading-relaxed">
                 Rubric scoring tied to ACGME Milestones 2.0, across residents and advanced practice providers.
-                <span className="block mt-2 text-white/50">Presented at IPSSW 2026.</span>
+                <span className="block mt-2 text-cs-cloud/70">Presented at IPSSW 2026.</span>
               </p>
             </div>
           </div>
@@ -249,11 +249,11 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16">
           {/* Left — definition */}
           <div className="max-w-xl">
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
+            <h2 className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
               What is ClinicalSim?
-            </p>
+            </h2>
             <p className="text-2xl md:text-3xl font-light tracking-tight leading-snug text-cs-navy text-balance">
-              A voice-based AI simulation platform for practicing and measuring clinical communication &mdash; the hardest competency to teach, train, and measure.
+              ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication, the hardest competency to teach, train, and measure.
             </p>
             <p className="mt-6 text-base md:text-lg text-cs-dark-blue font-light leading-relaxed">
               The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to ACGME Milestones 2.0 and documented feedback from every session.
@@ -359,7 +359,7 @@ export default function HomePage() {
               Why now
             </h2>
             <p className="text-base text-cs-dark-blue font-light leading-relaxed">
-              Three shifts have converged to make communication assessment both measurable and mandatory &mdash; with no tool built for it until now.
+              Three shifts have converged to make communication assessment both measurable and mandatory, with no tool built for it until now.
             </p>
           </div>
 
