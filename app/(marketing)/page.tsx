@@ -244,48 +244,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Definition Block - GEO citation magnet */}
-      <section className="px-6 pt-16 md:pt-20 pb-8 md:pb-10 bg-white">
-        <div className="max-w-3xl mx-auto">
-          <div className="border-l-2 border-cs-electric pl-6 md:pl-8">
-            <h2 className="text-xl md:text-2xl font-medium text-cs-navy mb-3">What is ClinicalSim?</h2>
-            <p className="text-base md:text-lg text-cs-dark-blue font-light leading-relaxed">
-              ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication — the hardest competency to teach, train, and measure. The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to ACGME Milestones 2.0 and documented feedback from every session.
+      {/* Definition + scenarios — editorial two-column */}
+      <section className="px-6 py-16 md:py-24 bg-white">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16">
+          {/* Left — definition */}
+          <div className="max-w-xl">
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
+              What is ClinicalSim?
+            </p>
+            <p className="text-2xl md:text-3xl font-light tracking-tight leading-snug text-cs-navy text-balance">
+              A voice-based AI simulation platform for practicing and measuring clinical communication &mdash; the hardest competency to teach, train, and measure.
+            </p>
+            <p className="mt-6 text-base md:text-lg text-cs-dark-blue font-light leading-relaxed">
+              The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to ACGME Milestones 2.0 and documented feedback from every session.
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Conversation types + clinical contexts — explicit scenario list */}
-      <section className="px-6 pt-10 md:pt-12 pb-16 md:pb-20 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mb-5">
-            Conversations you can practice
-          </p>
-          <ul className="flex flex-wrap justify-center gap-2.5 md:gap-3">
-            {conversationTypes.map((type) => (
-              <li
-                key={type}
-                className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
-              >
-                {type}
-              </li>
-            ))}
-          </ul>
+          {/* Right — scenarios */}
+          <div className="lg:border-l lg:border-cs-gray lg:pl-12 xl:pl-16">
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-5">
+              Conversations you can practice
+            </p>
+            <ul className="flex flex-wrap gap-2.5 md:gap-3">
+              {conversationTypes.map((type) => (
+                <li
+                  key={type}
+                  className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
+                >
+                  {type}
+                </li>
+              ))}
+            </ul>
 
-          <p className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mt-10 mb-5">
-            Across the training continuum
-          </p>
-          <ul className="flex flex-wrap justify-center gap-2.5 md:gap-3">
-            {trainingLevels.map((item) => (
-              <li
-                key={item}
-                className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mt-10 mb-5">
+              Across the training continuum
+            </p>
+            <ul className="flex flex-wrap gap-2.5 md:gap-3">
+              {trainingLevels.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -343,35 +347,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Now Section */}
+      {/* Why Now Section — editorial two-column */}
       <section className="px-6 py-16 md:py-24 bg-cs-cloud">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-navy mb-8 md:mb-10">
-            Why now
-          </h2>
-          <div className="space-y-6">
-            {/* Card 1: Step 2 CS */}
-            <div className="border-l-2 border-cs-electric pl-6">
-              <h3 className="text-lg font-medium text-cs-dark-blue mb-2">Step 2 CS is gone.</h3>
-              <p className="text-base text-cs-dark-blue font-light leading-relaxed">
-                In 2021, USMLE permanently discontinued Step 2 CS — the only national standardized assessment of clinical communication skills. Programs now bear sole responsibility for communication assessment with inconsistent tools and no external benchmark.
-              </p>
-            </div>
-            {/* Card 2: Milestones 2.0 */}
-            <div className="border-l-2 border-cs-navy pl-6">
-              <h3 className="text-lg font-medium text-cs-dark-blue mb-2">Milestones 2.0 raised the bar.</h3>
-              <p className="text-base text-cs-dark-blue font-light leading-relaxed">
-                ACGME Harmonized Milestones 2.0 created a universal ICS framework across all specialties. For the first time, there&apos;s a standardized rubric — and a product can serve all programs with a common assessment standard.
-              </p>
-            </div>
-            {/* Card 3: No toolkit */}
-            <div className="border-l-2 border-cs-electric pl-6">
-              <h3 className="text-lg font-medium text-cs-dark-blue mb-2">No scalable remediation tool exists.</h3>
-              <p className="text-base text-cs-dark-blue font-light leading-relaxed">
-                93% of programs face remediation, but only 16 published studies address communication-specific remediation. The CERA survey confirmed: half of program directors said a remediation toolkit is the single thing that would help most. We built it.
-              </p>
-            </div>
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
+          {/* Left — sticky heading */}
+          <div className="lg:sticky lg:top-24 lg:self-start max-w-sm">
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
+              The inflection point
+            </p>
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-navy mb-4">
+              Why now
+            </h2>
+            <p className="text-base text-cs-dark-blue font-light leading-relaxed">
+              Three shifts have converged to make communication assessment both measurable and mandatory &mdash; with no tool built for it until now.
+            </p>
           </div>
+
+          {/* Right — numbered reasons */}
+          <ol className="space-y-10">
+            {[
+              {
+                title: "Step 2 CS is gone.",
+                body: "In 2021, USMLE permanently discontinued Step 2 CS — the only national standardized assessment of clinical communication skills. Programs now bear sole responsibility for communication assessment with inconsistent tools and no external benchmark.",
+              },
+              {
+                title: "Milestones 2.0 raised the bar.",
+                body: "ACGME Harmonized Milestones 2.0 created a universal ICS framework across all specialties. For the first time, there's a standardized rubric — and a product can serve all programs with a common assessment standard.",
+              },
+              {
+                title: "No scalable remediation tool exists.",
+                body: "93% of programs face remediation, but only 16 published studies address communication-specific remediation. The CERA survey confirmed: half of program directors said a remediation toolkit is the single thing that would help most. We built it.",
+              },
+            ].map((reason, index) => (
+              <li key={reason.title} className="flex gap-5 md:gap-6">
+                <span
+                  className="flex-shrink-0 text-lg font-medium text-cs-electric tabular-nums pt-1"
+                  aria-hidden="true"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="border-l border-cs-navy/15 pl-5 md:pl-6">
+                  <h3 className="text-lg md:text-xl font-medium text-cs-dark-blue mb-2">{reason.title}</h3>
+                  <p className="text-base text-cs-dark-blue font-light leading-relaxed">{reason.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
