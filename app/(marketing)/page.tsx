@@ -8,6 +8,8 @@ import { EvidenceShowcase } from "@/components/evidence-showcase"
 import { AsymmetricGrid } from "@/components/asymmetric-grid"
 import { AudienceCard } from "@/components/audience-card"
 import { RotatingText } from "@/components/rotating-text"
+import { Reveal } from "@/components/reveal"
+import { CountUp } from "@/components/count-up"
 import { getAllAudiences } from "@/lib/audiences"
 import { getAllSolutions } from "@/lib/solutions"
 import { JsonLd } from "@/components/json-ld"
@@ -303,20 +305,24 @@ export default function HomePage() {
             The conversations clinicians have the least time to practice are the ones with the highest stakes.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-3xl mx-auto">
-            <div>
-              <div className="text-5xl md:text-6xl font-medium text-cs-electric mb-3">60%</div>
+            <Reveal>
+              <div className="text-5xl md:text-6xl font-medium text-cs-electric mb-3">
+                <CountUp value="60%" />
+              </div>
               <p className="text-base text-white/90 font-light leading-relaxed">
                 of hospital adverse events are linked to communication failures
               </p>
               <p className="text-xs text-white/50 mt-2">The Joint Commission, Sentinel Event Data</p>
-            </div>
-            <div>
-              <div className="text-5xl md:text-6xl font-medium text-cs-electric mb-3">40%</div>
+            </Reveal>
+            <Reveal delay={120}>
+              <div className="text-5xl md:text-6xl font-medium text-cs-electric mb-3">
+                <CountUp value="40%" />
+              </div>
               <p className="text-base text-white/90 font-light leading-relaxed">
                 of malpractice cases now involve a communication failure &mdash; up from 30%
               </p>
               <p className="text-xs text-white/50 mt-2">Candello 2025 Benchmarking Report</p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -335,13 +341,14 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {stats.map((stat, index) => (
-              <StatHighlight
-                key={index}
-                value={stat.value}
-                label={stat.label}
-                source={stat.source}
-                variant={stat.variant}
-              />
+              <Reveal key={index} delay={index * 100}>
+                <StatHighlight
+                  value={stat.value}
+                  label={stat.label}
+                  source={stat.source}
+                  variant={stat.variant}
+                />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -409,9 +416,9 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {solutions.map((solution) => (
+            {solutions.map((solution, index) => (
+              <Reveal key={solution.slug} delay={index * 80} className="h-full [&>a]:h-full">
               <AudienceCard
-                key={solution.slug}
                 brandIcon={solution.icon}
                 title={solution.title}
                 subtitle={solution.subtitle}
@@ -419,6 +426,7 @@ export default function HomePage() {
                 href={`/solutions/${solution.slug}`}
                 variant={solution.colorVariant}
               />
+              </Reveal>
             ))}
           </div>
 
@@ -473,15 +481,16 @@ export default function HomePage() {
 
           <AsymmetricGrid layout="staggered" gap="large">
             {features.map((feature, index) => (
-              <FeatureCard
-                key={index}
-                brandIcon={feature.brandIcon}
-                title={feature.title}
-                description={feature.description}
-                variant={feature.variant}
-                asymmetric
-                expandOnHover
-              />
+              <Reveal key={index} delay={(index % 3) * 100}>
+                <FeatureCard
+                  brandIcon={feature.brandIcon}
+                  title={feature.title}
+                  description={feature.description}
+                  variant={feature.variant}
+                  asymmetric
+                  expandOnHover
+                />
+              </Reveal>
             ))}
           </AsymmetricGrid>
         </div>
@@ -589,16 +598,17 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {audiences.map((audience) => (
-              <AudienceCard
-                key={audience.slug}
-                brandIcon={audience.icon}
-                title={audience.title}
-                subtitle={audience.subtitle}
-                bullets={audience.cardBullets}
-                href={`/audiences/${audience.slug}`}
-                variant={audience.colorVariant}
-              />
+            {audiences.map((audience, index) => (
+              <Reveal key={audience.slug} delay={(index % 3) * 80} className="h-full [&>a]:h-full">
+                <AudienceCard
+                  brandIcon={audience.icon}
+                  title={audience.title}
+                  subtitle={audience.subtitle}
+                  bullets={audience.cardBullets}
+                  href={`/audiences/${audience.slug}`}
+                  variant={audience.colorVariant}
+                />
+              </Reveal>
             ))}
           </div>
 
