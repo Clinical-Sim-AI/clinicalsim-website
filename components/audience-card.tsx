@@ -58,7 +58,7 @@ export function AudienceCard({
     <Link href={href} className="group block">
       <div
         className={cn(
-          "relative bg-white rounded-xl p-6 md:p-8",
+          "relative flex flex-col bg-white rounded-xl p-6 md:p-8",
           "border border-cs-gray transition-all duration-300 h-full",
           "hover:shadow-lg",
           className
@@ -73,7 +73,7 @@ export function AudienceCard({
           ) : null}
         </div>
 
-        <h3 className="text-xl md:text-2xl font-medium mb-2 text-cs-dark-blue group-hover:text-cs-navy transition-colors min-h-[5.25rem] md:min-h-[6rem]">
+        <h3 className="text-xl md:text-2xl font-medium mb-2 text-cs-dark-blue group-hover:text-cs-navy transition-colors">
           {title}
         </h3>
 
@@ -90,7 +90,7 @@ export function AudienceCard({
           ))}
         </ul>
 
-        <div className="flex items-center text-cs-dark-blue font-medium">
+        <div className="flex items-center text-cs-dark-blue font-medium mt-auto">
           Learn More
           <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
         </div>
