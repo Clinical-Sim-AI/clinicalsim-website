@@ -5,6 +5,7 @@ import { ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { FaqAnchorHandler } from "@/components/faq-anchor-handler"
 
 export const metadata: Metadata = {
   title: "FAQ: AI Clinical Simulation, Scoring, Privacy & Programs",
@@ -43,6 +44,13 @@ interface FaqEntry {
 interface FaqSection {
   category: string
   items: FaqEntry[]
+}
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
 }
 
 const faqSections: FaqSection[] = [
@@ -412,6 +420,7 @@ export default function FaqPage() {
 
   return (
     <>
+      <FaqAnchorHandler />
       <JsonLd
         data={[
           {
@@ -494,7 +503,11 @@ export default function FaqPage() {
       <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto space-y-12">
           {faqSections.map((section) => (
-            <div key={section.category}>
+            <div
+              key={section.category}
+              id={slugify(section.category)}
+              className="scroll-mt-24"
+            >
               <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-6">
                 {section.category}
               </h2>
