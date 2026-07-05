@@ -54,6 +54,9 @@ export function SiteFooter() {
               <Link href="/faq" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 FAQ
               </Link>
+              <Link href="/program-director-faq" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Program Director FAQ
+              </Link>
               <Link href="/contact" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Contact
               </Link>

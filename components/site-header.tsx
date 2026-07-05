@@ -32,6 +32,7 @@ export function SiteHeader() {
     { href: "/about", label: "About Us" },
     { href: "/methodology", label: "Methodology" },
     { href: "/faq", label: "FAQ" },
+    { href: "/program-director-faq", label: "Program Director FAQ" },
   ]
 
   const openAudiences = () => {
