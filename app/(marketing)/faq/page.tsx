@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { FaqAnchorHandler } from "@/components/faq-anchor-handler"
+import { CopyLinkButton } from "@/components/copy-link-button"
 
 export const metadata: Metadata = {
   title: "FAQ: AI Clinical Simulation, Scoring, Privacy & Programs",
@@ -192,14 +193,14 @@ const faqSections: FaqSection[] = [
               Every simulation you complete is graded against a rubric, either a
               custom rubric built for that case or a standardized framework like
               the ACGME Milestones. Grading produces a narrative writeup plus
-              scored fields: for milestone-based rubrics, that's a single level
+              scored fields: for milestone-based rubrics, that&apos;s a single level
               (1 to 5) representing the highest level you demonstrated on that
               competency during the encounter.
             </p>
             <p>Those per-attempt scores roll up into your progress in two places:</p>
             <ul className="list-disc space-y-3 pl-5">
               <li>
-                Assignment progress tracks whether you've completed what's been
+                Assignment progress tracks whether you&apos;ve completed what&apos;s been
                 assigned. If your program uses target scores, a simulation counts
                 as complete once one of your attempts meets the target for every
                 scored competency it covers; otherwise, any graded attempt marks
@@ -215,16 +216,16 @@ const faqSections: FaqSection[] = [
             </ul>
             <p>
               One nuance: not every case can surface every level of skill, since a
-              single encounter often can't call for the most advanced,
+              single encounter often can&apos;t call for the most advanced,
               longitudinal, or systems-level behaviors a competency describes.
-              When a competency's scenarios genuinely couldn't have let you show a
-              higher level than what's expected of you, that competency is still
-              shown to you so you get the feedback, but it's excluded from your
+              When a competency&apos;s scenarios genuinely couldn&apos;t have let you show a
+              higher level than what&apos;s expected of you, that competency is still
+              shown to you so you get the feedback, but it&apos;s excluded from your
               overall rolled-up score, so a strong performance on a capped case
               never reads as underperformance.
             </p>
             <p>
-              Your progress is personal to you. We don't show you how you compare
+              Your progress is personal to you. We don&apos;t show you how you compare
               to other learners.
             </p>
           </>
@@ -348,7 +349,7 @@ const faqSections: FaqSection[] = [
           "ClinicalSim stores a learner's voice recordings and encounter data so that practice history and progress are available to the learner and their faculty. Learners can request deletion of their data at any time. Full detail is in the privacy policy.",
         answerNode: (
           <p>
-            ClinicalSim stores a learner's voice recordings and encounter data so
+            ClinicalSim stores a learner&apos;s voice recordings and encounter data so
             that practice history and progress are available to the learner and
             their faculty. Learners can request deletion of their data at any
             time. Full detail is in the{" "}
@@ -379,7 +380,7 @@ const faqSections: FaqSection[] = [
             to researchers at no cost; for grant-funded studies we typically ask
             for a portion to cover our time. ClinicalSim has been used in research
             with the University of Chicago, Georgetown University, Johns Hopkins
-            University, Advocate Health System, and Norton Children's Hospital in
+            University, Advocate Health System, and Norton Children&apos;s Hospital in
             Louisville, Kentucky, with findings presented at IPSSW 2026 and
             peer-reviewed publications planned for later this year. See the{" "}
             <Link
@@ -508,8 +509,12 @@ export default function FaqPage() {
               id={slugify(section.category)}
               className="scroll-mt-24"
             >
-              <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-6">
+              <h2 className="flex items-center gap-2 text-2xl md:text-3xl font-light text-cs-navy mb-6">
                 {section.category}
+                <CopyLinkButton
+                  id={slugify(section.category)}
+                  label={`Copy link to ${section.category} section`}
+                />
               </h2>
               <div className="space-y-4">
                 {section.items.map((item) => (
@@ -523,7 +528,13 @@ export default function FaqPage() {
                         <h3 className="text-lg font-medium text-cs-dark-blue pr-4">
                           {item.question}
                         </h3>
-                        <ChevronRight className="w-5 h-5 text-cs-gray flex-shrink-0 transition-transform group-open:rotate-90" />
+                        <div className="flex items-center gap-1 flex-shrink-0">
+                          <CopyLinkButton
+                            id={item.id}
+                            label={`Copy link to "${item.question}"`}
+                          />
+                          <ChevronRight className="w-5 h-5 text-cs-gray transition-transform group-open:rotate-90" />
+                        </div>
                       </summary>
                       <div className="px-6 pb-5 pt-2 text-base text-cs-dark-blue font-light leading-relaxed space-y-4">
                         {item.answerNode ?? <p>{item.answer}</p>}
