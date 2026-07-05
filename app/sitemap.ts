@@ -76,6 +76,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${BASE_URL}/program-director-faq`,
+      lastModified: new Date("2026-07-05"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${BASE_URL}/compare`,
       lastModified: new Date("2026-06-09"),
       changeFrequency: "monthly",

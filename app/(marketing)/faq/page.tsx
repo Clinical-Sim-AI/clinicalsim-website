@@ -7,6 +7,7 @@ import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { FaqAnchorHandler } from "@/components/faq-anchor-handler"
 import { CopyLinkButton } from "@/components/copy-link-button"
+import { slugify } from "@/lib/utils"
 
 export const metadata: Metadata = {
   title: "FAQ: AI Clinical Simulation, Scoring, Privacy & Programs",
@@ -45,13 +46,6 @@ interface FaqEntry {
 interface FaqSection {
   category: string
   items: FaqEntry[]
-}
-
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
 }
 
 const faqSections: FaqSection[] = [
