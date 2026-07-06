@@ -64,9 +64,13 @@ const sections: PdFaqSection[] = [
   {
     question: "How should I read the feedback?",
     answer:
-      "Every encounter produces one feedback report, and every score in it traces back to a verbatim line from the transcript, not an unexplained rating. The report opens with an overall impression (strengths, priority gaps, top action items) and then gives targeted recommendations. For GME cases, that means a milestone placement on the Dreyfus scale, read against the specialty's own verbatim level descriptors. For UME cases, there's no numeric level since the Foundational Competencies weren't published with one. Instead the report records whether each competency was demonstrated and scores performance through whichever communication rubric was applied. Treat the milestone-aligned score as evidence for your Clinical Competency Committee discussion, not a stand-alone verdict. The ACGME milestones are formative and weren't designed for high-stakes decisions, so ClinicalSim doesn't use them that way either. The full standards-alignment logic, including how level descriptors and rubrics are applied, is documented on the methodology page.",
+      "How you read a report matters as much as what it says: treat it as evidence, not a verdict. Every encounter produces one feedback report, and every score in it traces back to a verbatim line from the transcript, not an unexplained rating. The report opens with an overall impression (strengths, priority gaps, top action items) and then gives targeted recommendations. For GME cases, that means a milestone placement on the Dreyfus scale, read against the specialty's own verbatim level descriptors. For UME cases, there's no numeric level since the Foundational Competencies weren't published with one. Instead the report records whether each competency was demonstrated and scores performance through whichever communication rubric was applied. Treat the milestone-aligned score as evidence for your Clinical Competency Committee discussion, not a stand-alone verdict. The ACGME milestones are formative and weren't designed for high-stakes decisions, so ClinicalSim doesn't use them that way either. The full standards-alignment logic, including how level descriptors and rubrics are applied, is documented on the methodology page.",
     node: (
       <>
+        <p className="font-medium text-cs-navy">
+          How you read a report matters as much as what it says: treat it
+          as evidence, not a verdict.
+        </p>
         <p>
           Every encounter produces one{" "}
           <Link href="/faq#feedback-report" className={linkClass}>

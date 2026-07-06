@@ -391,7 +391,7 @@ const faqSections: FaqSection[] = [
         id: "accuracy",
         question: "How does ClinicalSim ensure accuracy?",
         answer:
-          "ClinicalSim is committed to accuracy and to fidelity to the source documents behind every case. Each result is a transparent statement of the evidence in the encounter: it informs the learner and the reviewer, and it never replaces final human judgment.",
+          "Read every result as evidence, not a verdict. ClinicalSim is committed to accuracy and to fidelity to the source documents behind every case. Each result is a transparent statement of the evidence in the encounter: it informs the learner and the reviewer, and it never replaces final human judgment.",
       },
     ],
   },

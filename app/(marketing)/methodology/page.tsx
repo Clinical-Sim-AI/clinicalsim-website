@@ -480,6 +480,9 @@ export default function MethodologyPage() {
           </h2>
           <div className="rounded-xl bg-cs-navy px-6 py-6">
             <p className="text-base md:text-lg text-white font-light leading-relaxed">
+              <span className="font-medium">
+                Read every result as evidence, not a verdict.
+              </span>{" "}
               We are committed to accuracy and to fidelity to the source
               documents behind every case. Each result is a transparent
               statement of the evidence in the encounter: it informs the
