@@ -256,7 +256,7 @@ export default function HomePage() {
               ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication, the hardest competency to teach, train, and measure.
             </p>
             <p className="mt-6 text-base md:text-lg text-cs-dark-blue font-light leading-relaxed">
-              The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to ACGME Milestones 2.0 and documented feedback from every session.
+              The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to the competency framework that governs each stage, the ACGME Milestones 2.0 in graduate medical education and the AAMC Foundational Competencies in undergraduate medical education, plus documented feedback from every session.
             </p>
           </div>
 
