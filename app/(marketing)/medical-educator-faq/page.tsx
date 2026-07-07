@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   },
 }
 
-const LAST_UPDATED_ISO = "2026-07-06"
-const LAST_UPDATED_LABEL = "July 6, 2026"
+const LAST_UPDATED_ISO = "2026-07-07"
+const LAST_UPDATED_LABEL = "July 7, 2026"
 
 interface PdFaqSection {
   question: string
@@ -231,7 +231,7 @@ const sections: PdFaqSection[] = [
     question:
       "Clinical assessment is subjective and inconsistent: how does ClinicalSim help?",
     answer:
-      "A ClinicalSim encounter is, in effect, a direct observation of a clinical encounter scored on a structured tool, the same modality medical schools and residencies already rely on, from the mini-CEX to EPA-based workplace assessment. So the direct-observation literature applies to us directly, and it points to two well-documented problems that ClinicalSim is built to address. The first is that a single observation is not reliable, and reaching a defensible level takes many. Direct observation is nearly universal in undergraduate medical education (almost every student is observed at least once during core clerkships), but its frequency and quality are not well established (Kogan et al., 2009), and in practice learners are judged on far too few observations to be reliable. The second is that much of what a single score reflects is not the learner at all, it is the rater. In a seven-institution study of more than 53,000 assessments, less than 10% of score variance was attributable to the learner (Ryan et al., 2024). Different faculty watching the same encounter reach different conclusions, the well-described assessor-cognition problem (Gingerich et al., 2014). And the inconsistency does not stop at the individual score. The committees that weigh these data vary too. This is most visible in UME, where the LCME requires only a fair, timely process for decisions affecting a student's standing (Element 9.9) and prescribes no committee structure or meeting cadence, leaving those to each school, so how a progress or promotions committee is composed, and how often it meets, differ from one institution to the next. That variability is inherent to holistic human judgment. It is one more reason consistent, evidence-linked input matters. ClinicalSim speaks to all three. It removes the scheduling-and-staffing ceiling, so a learner can accumulate the many observations reliability actually requires, distributed over time, rather than the handful a rotation allows. And because the same rubric and scoring logic apply to every encounter, it removes the inter-rater variability that comes from many different human assessors scoring the same performance differently. Every score stays tied to verbatim evidence, and the output remains formative: it informs the Clinical Competency Committee or student progress committee, which continues to own the decision. To be clear about the boundary: we are not claiming ClinicalSim's scoring is more accurate or more valid than a faculty member's. We do not yet have the validation data to say that, and we will not until we do. What we can say plainly is that the platform solves the frequency problem and removes inter-rater noise, the two measured reasons single assessments fall short. Because a ClinicalSim encounter mirrors a direct-observation tool like the mini-CEX rather than an EPA entrustment scale, the relevant target is modest: on the order of four to five spaced encounters per skill (the range programs commonly use to document competence), rising toward eight for higher statistical reliability, set by the instrument rather than the training level and tuned by in-product performance. Because these figures come from real-patient, human-rated observation, we treat them as a guide for a simulated, single-scorer setting rather than an exact transfer.",
+      "A ClinicalSim encounter is, in effect, a direct observation of a clinical encounter scored on a structured tool, the same modality medical schools and residencies already rely on, from the mini-CEX to EPA-based workplace assessment. So the direct-observation literature applies to us directly, and it identifies two well-documented constraints on that modality generally, not on any individual faculty member's judgment. The first is that a single observation is not reliable, and reaching a defensible level takes many. Direct observation is nearly universal in undergraduate medical education (almost every student is observed at least once during core clerkships), but its frequency and quality are not well established (Kogan et al., 2009), and in practice learners are judged on far too few observations to be reliable, mostly because standardized-patient scheduling and faculty time cap how many a rotation can offer. The second is that a given score reflects the rater as well as the learner. In a seven-institution study of more than 53,000 assessments, less than 10% of score variance was attributable to the learner (Ryan et al., 2024). Different faculty watching the same encounter reach different conclusions, the well-described assessor-cognition problem (Gingerich et al., 2014), and that is a property of holistic human judgment applied across many raters, not a reflection on any one evaluator. And the inconsistency does not stop at the individual score. The committees that weigh these data vary too. This is most visible in UME, where the LCME requires only a fair, timely process for decisions affecting a student's standing (Element 9.9) and prescribes no committee structure or meeting cadence, leaving those to each school, so how a progress or promotions committee is composed, and how often it meets, differ from one institution to the next. That variability is inherent to holistic human judgment. It is one more reason consistent, evidence-linked input matters. ClinicalSim's structure speaks to the first two. Because there is no standardized-patient schedule or faculty roster capping how often a case can run, a learner can accumulate the observations reliability actually requires, distributed over time, rather than the handful a rotation allows. And because one consistent rubric and scoring process applies to every encounter, a learner's score does not shift depending on which faculty member happened to be observing, a consequence of being a single repeatable scorer, not a claim that the AI judges better than a trained clinician would. Every score stays tied to verbatim evidence, and the output remains formative: it informs the Clinical Competency Committee or student progress committee, which continues to own the decision. To be clear about the boundary: we are not claiming ClinicalSim's scoring is more accurate or more valid than a faculty member's. We do not have the validation data to say that, and we will not claim it until we do. What we can say plainly is that the platform adds observation capacity and holds scoring consistent across encounters, which speaks to the frequency and rater-variance findings above, not to whether the AI's judgment is better than a clinician's. Because a ClinicalSim encounter mirrors a direct-observation tool like the mini-CEX rather than an EPA entrustment scale, the relevant target is modest: on the order of four to five spaced encounters per skill (the range programs commonly use to document competence), rising toward eight for higher statistical reliability, set by the instrument rather than the training level and tuned by in-product performance. Because these figures come from real-patient, human-rated observation, we treat them as a guide for a simulated, single-scorer setting rather than an exact transfer.",
     node: (
       <>
         <p>
@@ -239,8 +239,9 @@ const sections: PdFaqSection[] = [
           clinical encounter scored on a structured tool, the same modality
           medical schools and residencies already rely on, from the mini-CEX
           to EPA-based workplace assessment. So the direct-observation
-          literature applies to us directly, and it points to two
-          well-documented problems that ClinicalSim is built to address.
+          literature applies to us directly, and it identifies two
+          well-documented constraints on that modality generally, not on any
+          individual faculty member&apos;s judgment.
         </p>
         <p>
           The first is that a single observation is not reliable, and reaching
@@ -249,13 +250,15 @@ const sections: PdFaqSection[] = [
           is observed at least once during core clerkships), but its frequency
           and quality are not well established (Kogan et al., 2009), and in
           practice learners are judged on far too few observations to be
-          reliable. The second is that much of what a single score reflects is
-          not the learner at all, it is the rater. In a seven-institution
-          study of more than 53,000 assessments, less than 10% of score
-          variance was attributable to the learner (Ryan et al., 2024).
-          Different faculty watching the same encounter reach different
+          reliable, mostly because standardized-patient scheduling and faculty
+          time cap how many a rotation can offer. The second is that a given
+          score reflects the rater as well as the learner. In a
+          seven-institution study of more than 53,000 assessments, less than
+          10% of score variance was attributable to the learner (Ryan et al.,
+          2024). Different faculty watching the same encounter reach different
           conclusions, the well-described assessor-cognition problem (Gingerich
-          et al., 2014).
+          et al., 2014), a property of holistic human judgment applied across
+          many raters, not a reflection on any one evaluator.
         </p>
         <p>
           And the inconsistency does not stop at the individual score. The
@@ -269,17 +272,19 @@ const sections: PdFaqSection[] = [
           one more reason consistent, evidence-linked input matters.
         </p>
         <p>
-          ClinicalSim speaks to all three. It removes the
-          scheduling-and-staffing ceiling, so a learner can accumulate the
-          many observations reliability actually requires, distributed over
-          time, rather than the handful a rotation allows. And because the
-          same rubric and scoring logic apply to every encounter, it removes
-          the inter-rater variability that comes from many different human
-          assessors scoring the same performance differently. Every score
-          stays tied to verbatim evidence, and the output remains formative:
-          it informs the Clinical Competency Committee or student progress
-          committee, which continues to own the decision (how each score is
-          made auditable and kept in human hands is covered in the{" "}
+          ClinicalSim&apos;s structure speaks to the first two. Because there
+          is no standardized-patient schedule or faculty roster capping how
+          often a case can run, a learner can accumulate the observations
+          reliability actually requires, distributed over time, rather than
+          the handful a rotation allows. And because one consistent rubric and
+          scoring process applies to every encounter, a learner&apos;s score
+          does not shift depending on which faculty member happened to be
+          observing, a consequence of being a single repeatable scorer, not a
+          claim that the AI judges better than a trained clinician would.
+          Every score stays tied to verbatim evidence, and the output remains
+          formative: it informs the Clinical Competency Committee or student
+          progress committee, which continues to own the decision (how each
+          score is made auditable and kept in human hands is covered in the{" "}
           <a href={`#${fairnessAnchor}`} className={linkClass}>
             question above
           </a>
@@ -288,19 +293,21 @@ const sections: PdFaqSection[] = [
         <p>
           To be clear about the boundary: we are not claiming
           ClinicalSim&apos;s scoring is more accurate or more valid than a
-          faculty member&apos;s. We do not yet have the validation data to say
-          that, and we will not until we do. What we can say plainly is that
-          the platform solves the frequency problem and removes inter-rater
-          noise, the two measured reasons single assessments fall short.
-          Because a ClinicalSim encounter mirrors a direct-observation tool
-          like the mini-CEX rather than an EPA entrustment scale, the relevant
-          target is modest: on the order of four to five spaced encounters per
-          skill (the range programs commonly use to document competence),
-          rising toward eight for higher statistical reliability, set by the
-          instrument rather than the training level and tuned by in-product
-          performance. Because these figures come from real-patient,
-          human-rated observation, we treat them as a guide for a simulated,
-          single-scorer setting rather than an exact transfer.
+          faculty member&apos;s. We do not have the validation data to say
+          that, and we will not claim it until we do. What we can say plainly
+          is that the platform adds observation capacity and holds scoring
+          consistent across encounters, which speaks to the frequency and
+          rater-variance findings above, not to whether the AI&apos;s judgment
+          is better than a clinician&apos;s. Because a ClinicalSim encounter
+          mirrors a direct-observation tool like the mini-CEX rather than an
+          EPA entrustment scale, the relevant target is modest: on the order
+          of four to five spaced encounters per skill (the range programs
+          commonly use to document competence), rising toward eight for
+          higher statistical reliability, set by the instrument rather than
+          the training level and tuned by in-product performance. Because
+          these figures come from real-patient, human-rated observation, we
+          treat them as a guide for a simulated, single-scorer setting rather
+          than an exact transfer.
         </p>
         <EvidenceDetail>
           <li>
@@ -357,8 +364,8 @@ const sections: PdFaqSection[] = [
             the seven-institution study, less than 10% of score variance was
             the learner. The rest was rater, context, and error (Ryan et al.,
             2024), consistent with the assessor-cognition literature (Gingerich
-            et al., 2014). A single, consistent scoring process removes the
-            rater facet by design.
+            et al., 2014). A single, consistent scoring process holds the
+            rater facet constant by design.
           </li>
         </EvidenceDetail>
       </>
