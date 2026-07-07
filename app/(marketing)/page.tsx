@@ -107,7 +107,7 @@ export default function HomePage() {
     },
     {
       brandIcon: "chat-square-heart" as const,
-      title: "Private, Judgment-Free Practice",
+      title: "Psychologically-Safe Practice",
       description: "Remediation carries stigma. ClinicalSim lets learners practice difficult conversations privately — no observers, no scheduling, no performance anxiety. Repeat as many times as needed in a low-stakes environment designed for growth.",
       variant: "navy" as const,
     }
