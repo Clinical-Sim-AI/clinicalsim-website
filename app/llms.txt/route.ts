@@ -52,7 +52,7 @@ export async function GET() {
     `\n## More\n`,
     `- [Methodology](${BASE_URL}/methodology): How ClinicalSim builds cases, aligns them to ACGME Milestones 2.0 or the Foundational Competencies, applies validated communication frameworks like SPIKES and Calgary-Cambridge, and generates transcript-grounded, competency-based feedback.`,
     `- [FAQ](${BASE_URL}/faq): Common questions about ClinicalSim's AI clinical simulation, including how it compares to Step 2 CS and standardized patients, communication remediation, ACGME Milestone scoring and My Progress, CCC-ready documentation, privacy, and research.`,
-    `- [Program Director FAQ](${BASE_URL}/program-director-faq): How to read a ClinicalSim feedback report, how many times a learner should run a scenario, spaced-practice cadence for skill acquisition, and how to prevent skill decay, grounded in mastery-learning and communication-training research.`,
+    `- [FAQ for Medical Educators](${BASE_URL}/medical-educator-faq): How to read a ClinicalSim feedback report, how GME and UME scoring differ, how the AI scores accurately and fairly, practice cadence and skill decay, and how to build cases into a rotation, clerkship, or remediation plan, grounded in the direct-observation and mastery-learning literature. For program directors, DIOs, clerkship and course directors, simulation leads, and learner-progress committees.`,
     `- [Research Collaboration](${BASE_URL}/research): Apply to collaborate on research in clinical communication, simulation-based education, and competency assessment.`,
     `- [Insights](${BASE_URL}/insights): Research and evidence on medical communication training, simulation technology, and clinical conversation outcomes.`,
   ].join("\n")

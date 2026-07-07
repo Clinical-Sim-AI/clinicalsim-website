@@ -76,8 +76,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/program-director-faq`,
-      lastModified: new Date("2026-07-05"),
+      url: `${BASE_URL}/medical-educator-faq`,
+      lastModified: new Date("2026-07-06"),
       changeFrequency: "monthly",
       priority: 0.7,
     },

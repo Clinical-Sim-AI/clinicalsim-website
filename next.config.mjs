@@ -24,6 +24,15 @@ const nextConfig = {
         destination: 'https://platform.clinicalsim.ai',
         permanent: false,
       },
+      // The Program Director FAQ was renamed to "FAQ for Medical Educators" and
+      // its slug moved from /program-director-faq to /medical-educator-faq.
+      // Permanently redirect the old path so inbound links and search-indexed
+      // URLs consolidate onto the new canonical.
+      {
+        source: '/program-director-faq',
+        destination: '/medical-educator-faq',
+        permanent: true,
+      },
     ]
   },
 }

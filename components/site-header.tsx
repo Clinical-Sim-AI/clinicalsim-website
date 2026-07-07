@@ -32,7 +32,7 @@ export function SiteHeader() {
     { href: "/about", label: "About Us" },
     { href: "/methodology", label: "Methodology" },
     { href: "/faq", label: "FAQ" },
-    { href: "/program-director-faq", label: "Program Director FAQ" },
+    { href: "/medical-educator-faq", label: "FAQ for Medical Educators" },
   ]
 
   const openAudiences = () => {
