@@ -5,6 +5,7 @@ import { ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { FaqAnchorHandler } from "@/components/faq-anchor-handler"
 import { CopyLinkButton } from "@/components/copy-link-button"
 import { slugify } from "@/lib/utils"
 
@@ -791,6 +792,7 @@ export default function ProgramDirectorFaqPage() {
 
   return (
     <>
+      <FaqAnchorHandler />
       <JsonLd
         data={[
           {
@@ -864,45 +866,37 @@ export default function ProgramDirectorFaqPage() {
 
       <SectionDivider variant="diagonal-down" color="white" />
 
-      {/* Jump links */}
-      <section className="px-6 pt-8 md:pt-10 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-wrap gap-2">
-            {sections.map((section) => (
-              <a
-                key={section.question}
-                href={`#${slugify(section.question)}`}
-                className="text-sm px-3 py-1.5 rounded-full font-medium border border-cs-gray/50 text-cs-dark-blue/80 hover:border-cs-electric/40 hover:text-cs-dark-blue transition-colors"
-              >
-                {section.question}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Sections */}
       <section className="px-6 py-8 md:py-10 bg-white">
-        <div className="max-w-4xl mx-auto space-y-14">
-          {sections.map((section) => (
-            <div
-              key={section.question}
-              id={slugify(section.question)}
-              className="scroll-mt-24"
-            >
-              <h2 className="flex items-start gap-2 text-2xl md:text-3xl font-light text-cs-navy mb-5">
-                <span>{section.question}</span>
-                <CopyLinkButton
-                  id={slugify(section.question)}
-                  label={`Copy link to "${section.question}"`}
-                  className="mt-2"
-                />
-              </h2>
-              <div className="text-base text-cs-dark-blue font-light leading-relaxed space-y-4">
-                {section.node}
+        <div className="max-w-4xl mx-auto space-y-4">
+          {sections.map((section) => {
+            const id = slugify(section.question)
+            return (
+              <div
+                key={section.question}
+                id={id}
+                className="border border-cs-gray/50 rounded-xl overflow-hidden scroll-mt-24"
+              >
+                <details className="group">
+                  <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-white hover:bg-gray-50 transition-colors">
+                    <h2 className="text-lg font-medium text-cs-dark-blue pr-4">
+                      {section.question}
+                    </h2>
+                    <div className="flex items-center gap-1 flex-shrink-0">
+                      <CopyLinkButton
+                        id={id}
+                        label={`Copy link to "${section.question}"`}
+                      />
+                      <ChevronRight className="w-5 h-5 text-cs-gray transition-transform group-open:rotate-90" />
+                    </div>
+                  </summary>
+                  <div className="px-6 pb-5 pt-2 text-base text-cs-dark-blue font-light leading-relaxed space-y-4">
+                    {section.node}
+                  </div>
+                </details>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </section>
 
