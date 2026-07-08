@@ -29,6 +29,7 @@ export default function MarketingLayout({
               "Medical communication training",
               "Clinical simulation",
               "ACGME Milestones 2.0",
+              "AAMC Foundational Competencies",
               "Communication remediation",
               "Undergraduate and graduate medical education",
               "Faculty development",
@@ -40,7 +41,7 @@ export default function MarketingLayout({
             name: "ClinicalSim.ai",
             url: "https://clinicalsim.ai",
             description:
-              "Practice the conversations that matter most. AI clinical simulation to practice and measure clinical communication across the medical-education continuum — medical school, residency, fellowship, and faculty development — mapped to ACGME Milestones 2.0.",
+              "Practice the conversations that matter most. AI clinical simulation to practice and measure clinical communication across the medical-education continuum — medical school, residency, fellowship, and faculty development — with feedback mapped to the framework appropriate to each stage, including ACGME Milestones 2.0 in graduate medical education.",
             publisher: {
               "@type": "Organization",
               name: "ClinicalSim",

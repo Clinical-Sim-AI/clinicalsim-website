@@ -8,11 +8,11 @@ const BASE_URL = "https://clinicalsim.ai"
 
 const HEADER = `# ClinicalSim.ai
 
-> Voice-based AI clinical simulation platform to practice and measure clinical communication at every stage of a medical career — undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Mapped to ACGME Milestones 2.0. Built by simulation directors and communication researchers.
+> Voice-based AI clinical simulation platform to practice and measure clinical communication at every stage of a medical career — undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Feedback is rubric-scored against the framework appropriate to each stage, including ACGME Milestones 2.0 for residents and fellows. Built by simulation directors and communication researchers.
 
 ## Pages
 
-- [Homepage](${BASE_URL}): Overview of ClinicalSim.ai — voice-based AI clinical simulation to practice the conversations that matter most across the medical-education continuum. Rubric-scored practice mapped to ACGME Milestones 2.0 with milestone-aligned documentation.
+- [Homepage](${BASE_URL}): Overview of ClinicalSim.ai — voice-based AI clinical simulation to practice the conversations that matter most across the medical-education continuum. Rubric-scored practice mapped to ACGME Milestones 2.0 for residents and fellows, with milestone-aligned documentation.
 - [About](${BASE_URL}/about): Why communication is the hardest competency to teach, train, and measure — and how structured, repeatable practice changes that. Built by leaders in simulation and clinical communication.`
 
 export async function GET() {

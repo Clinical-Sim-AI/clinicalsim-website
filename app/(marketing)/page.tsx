@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     absolute: "AI Clinical Simulation for Medical Communication | ClinicalSim",
   },
   description:
-    "Voice-based AI simulation to practice and measure clinical communication at every stage of a medical career — from undergraduate medical education through residency, fellowship, and faculty development. Mapped to ACGME Milestones 2.0.",
+    "Voice-based AI simulation to practice and measure clinical communication at every stage of a medical career — from undergraduate medical education through residency, fellowship, and faculty development. Rubric-scored feedback mapped to ACGME Milestones 2.0 for residents and fellows.",
   openGraph: {
     title: "AI Clinical Simulation for Medical Communication",
     description:
@@ -151,7 +151,7 @@ export default function HomePage() {
             applicationCategory: "HealthApplication",
             operatingSystem: "Web",
             description:
-              "Voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum — undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Rubric-scored practice mapped to ACGME Milestones 2.0 for breaking bad news, goals-of-care, informed consent, error disclosure, and family meetings.",
+              "Voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum — undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Rubric-scored practice for breaking bad news, goals-of-care, informed consent, error disclosure, and family meetings, mapped to ACGME Milestones 2.0 for residents and fellows.",
             url: "https://clinicalsim.ai",
             offers: {
               "@type": "Offer",
@@ -256,7 +256,7 @@ export default function HomePage() {
               ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication, the hardest competency to teach, train, and measure.
             </p>
             <p className="mt-6 text-base md:text-lg text-cs-dark-blue font-light leading-relaxed">
-              The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to the competency framework that governs each stage, the ACGME Milestones 2.0 in graduate medical education and the AAMC Foundational Competencies in undergraduate medical education, plus documented feedback from every session.
+              The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to the framework that fits each stage: the AAMC Foundational Competencies in undergraduate medical education, ACGME Milestones 2.0 in graduate medical education, and structured feedback frameworks like Pendleton and SBI for faculty development, plus documented feedback from every session.
             </p>
           </div>
 
