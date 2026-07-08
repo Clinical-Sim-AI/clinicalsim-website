@@ -381,7 +381,7 @@ export default function HomePage() {
             ].map((reason, index) => (
               <li key={reason.title} className="flex gap-5 md:gap-6">
                 <span
-                  className="flex-shrink-0 text-lg font-medium text-cs-electric tabular-nums pt-1"
+                  className="flex-shrink-0 text-lg font-medium text-cs-navy tabular-nums pt-1"
                   aria-hidden="true"
                 >
                   {String(index + 1).padStart(2, "0")}
