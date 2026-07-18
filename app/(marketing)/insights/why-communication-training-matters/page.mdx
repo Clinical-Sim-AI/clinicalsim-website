@@ -1,10 +1,7 @@
 import { ArticleLayout } from "@/components/article-layout"
-import { getPostBySlug } from "@/lib/posts"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
-export const metadata = {
-  title: "Why Communication Training Matters | ClinicalSim.ai",
-  description: "Communication failures are the leading driver of malpractice claims, yet most clinicians receive minimal structured training.",
-}
+export const metadata = getPostMetadata("why-communication-training-matters")
 
 <ArticleLayout post={getPostBySlug("why-communication-training-matters")}>
 

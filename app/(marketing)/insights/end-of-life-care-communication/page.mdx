@@ -1,10 +1,7 @@
 import { ArticleLayout } from "@/components/article-layout"
-import { getPostBySlug } from "@/lib/posts"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
-export const metadata = {
-  title: "End-of-Life Conversations: Practice Makes Progress | ClinicalSim.ai",
-  description: "EOL conversations are low-frequency, high-stakes events. Traditional training models cant provide the practice clinicians need.",
-}
+export const metadata = getPostMetadata("end-of-life-care-communication")
 
 <ArticleLayout post={getPostBySlug("end-of-life-care-communication")}>
 

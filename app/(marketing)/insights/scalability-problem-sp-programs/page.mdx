@@ -1,10 +1,7 @@
 import { ArticleLayout } from "@/components/article-layout"
-import { getPostBySlug } from "@/lib/posts"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
-export const metadata = {
-  title: "The Scalability Problem with Standardized Patient Programs | ClinicalSim.ai",
-  description: "Traditional SP encounters cost $150-300 each and can't scale to meet demand. Why AI augments rather than replaces existing simulation programs.",
-}
+export const metadata = getPostMetadata("scalability-problem-sp-programs")
 
 <ArticleLayout post={getPostBySlug("scalability-problem-sp-programs")}>
 

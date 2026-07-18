@@ -1,12 +1,9 @@
 import { ArticleLayout } from "@/components/article-layout"
-import { getPostBySlug } from "@/lib/posts"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 import { ReferencesSection } from "@/components/references-section"
 import { KeyTakeaway } from "@/components/key-takeaway"
 
-export const metadata = {
-  title: "The Faculty Hour Problem with Communication Remediation | ClinicalSim.ai",
-  description: "93% of residency programs face remediation, and communication is the hardest competency to fix. Each case consumes 25-75 faculty hours. Programs build their approach from scratch every time. The math doesn't work.",
-}
+export const metadata = getPostMetadata("faculty-hour-problem-communication-remediation")
 
 <ArticleLayout post={getPostBySlug("faculty-hour-problem-communication-remediation")}>
 

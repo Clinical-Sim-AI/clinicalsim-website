@@ -1,12 +1,9 @@
 import { ArticleLayout } from "@/components/article-layout"
-import { getPostBySlug } from "@/lib/posts"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 import { ReferencesSection } from "@/components/references-section"
 import { KeyTakeaway } from "@/components/key-takeaway"
 
-export const metadata = {
-  title: "What Programs Lost When Step 2 CS Disappeared | ClinicalSim.ai",
-  description: "USMLE Step 2 CS was permanently discontinued in 2021. Five years later, residency programs still have no standardized way to assess communication skills. Milestones 2.0 raised the bar, but gave programs no new tools to meet it.",
-}
+export const metadata = getPostMetadata("what-programs-lost-when-step-2-cs-disappeared")
 
 <ArticleLayout post={getPostBySlug("what-programs-lost-when-step-2-cs-disappeared")}>
 
