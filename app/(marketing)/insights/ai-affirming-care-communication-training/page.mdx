@@ -1,10 +1,7 @@
 import { ArticleLayout } from "@/components/article-layout"
-import { getPostBySlug } from "@/lib/posts"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
-export const metadata = {
-  title: "When Affirming Care Training Disappears, Simulation Has to Fill the Gap | ClinicalSim.ai",
-  description: "A new AI simulation approach presented at IPSS Rome tackles the growing gap in transgender communication training for pediatric residents, where 60% of programs lack direct clinical exposure.",
-}
+export const metadata = getPostMetadata("ai-affirming-care-communication-training")
 
 <ArticleLayout post={getPostBySlug("ai-affirming-care-communication-training")}>
 
