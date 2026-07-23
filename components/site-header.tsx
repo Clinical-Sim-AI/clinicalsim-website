@@ -163,7 +163,7 @@ export function SiteHeader() {
           </button>
 
           {solutionsOpen && (
-            <div className="absolute top-full left-0 pt-2 w-72 z-50">
+            <div className="dropdown-enter absolute top-full left-0 pt-2 w-72 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
               {solutions.map((solution) => (
                 <Link
@@ -210,7 +210,7 @@ export function SiteHeader() {
           </button>
 
           {audiencesOpen && (
-            <div className="absolute top-full left-0 pt-2 w-72 z-50">
+            <div className="dropdown-enter absolute top-full left-0 pt-2 w-72 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
               {audiences.map((audience) => (
                 <Link
@@ -257,7 +257,7 @@ export function SiteHeader() {
           </button>
 
           {whoWeAreOpen && (
-            <div className="absolute top-full left-0 pt-2 w-56 z-50">
+            <div className="dropdown-enter absolute top-full left-0 pt-2 w-56 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
               {aboutItems.map((item) => (
                 <Link

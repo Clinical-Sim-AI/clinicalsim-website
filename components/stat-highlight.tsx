@@ -1,5 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import { CountUp } from "@/components/count-up"
 
 export interface StatHighlightProps extends React.HTMLAttributes<HTMLDivElement> {
   value: string
@@ -40,7 +41,7 @@ export function StatHighlight({
           variantStyles[variant]
         )}
       >
-        {value}
+        <CountUp value={value} />
       </div>
 
       <p className="text-base md:text-lg text-cs-dark-blue font-normal leading-relaxed max-w-xs">
