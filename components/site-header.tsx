@@ -32,6 +32,21 @@ export function SiteHeader() {
   const audiences = getAllAudiences()
   const solutions = getAllSolutions()
 
+  // Hover-open is wired up only for pointers that genuinely hover. On a touch
+  // screen a tap fires mouseenter immediately before click, so the hover handler
+  // opened the menu and the click toggle shut it again in the same gesture,
+  // leaving the dropdowns impossible to open by tapping. That bites at xl and
+  // up, which includes iPad landscape at 1366px. Nothing works before hydration
+  // either way, so starting false costs nothing.
+  const [canHover, setCanHover] = useState(false)
+  useEffect(() => {
+    const query = window.matchMedia("(hover: hover) and (pointer: fine)")
+    setCanHover(query.matches)
+    const handleChange = (event: MediaQueryListEvent) => setCanHover(event.matches)
+    query.addEventListener("change", handleChange)
+    return () => query.removeEventListener("change", handleChange)
+  }, [])
+
   const aboutItems = [
     { href: "/about", label: "About Us" },
     { href: "/methodology", label: "Methodology" },
@@ -118,9 +133,20 @@ export function SiteHeader() {
         setHelpOpen(false)
       }
     }
+    // Escape closes any open dropdown. Focus stays on the trigger that opened
+    // it, so there is nothing to restore.
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key !== "Escape") return
+      setAudiencesOpen(false)
+      setSolutionsOpen(false)
+      setWhoWeAreOpen(false)
+      setHelpOpen(false)
+    }
     document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("keydown", handleEscape)
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
+      document.removeEventListener("keydown", handleEscape)
       if (audiencesTimeoutRef.current) clearTimeout(audiencesTimeoutRef.current)
       if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current)
       if (whoWeAreTimeoutRef.current) clearTimeout(whoWeAreTimeoutRef.current)
@@ -179,8 +205,8 @@ export function SiteHeader() {
         <div
           ref={solutionsDropdownRef}
           className="relative"
-          onMouseEnter={openSolutions}
-          onMouseLeave={closeSolutions}
+          onMouseEnter={canHover ? openSolutions : undefined}
+          onMouseLeave={canHover ? closeSolutions : undefined}
         >
           <button
             onClick={() => {
@@ -227,8 +253,8 @@ export function SiteHeader() {
         <div
           ref={audiencesDropdownRef}
           className="relative"
-          onMouseEnter={openAudiences}
-          onMouseLeave={closeAudiences}
+          onMouseEnter={canHover ? openAudiences : undefined}
+          onMouseLeave={canHover ? closeAudiences : undefined}
         >
           <button
             onClick={() => {
@@ -275,8 +301,8 @@ export function SiteHeader() {
         <div
           ref={whoWeAreDropdownRef}
           className="relative"
-          onMouseEnter={openWhoWeAre}
-          onMouseLeave={closeWhoWeAre}
+          onMouseEnter={canHover ? openWhoWeAre : undefined}
+          onMouseLeave={canHover ? closeWhoWeAre : undefined}
         >
           <button
             onClick={() => {
@@ -327,8 +353,8 @@ export function SiteHeader() {
         <div
           ref={helpDropdownRef}
           className="relative"
-          onMouseEnter={openHelp}
-          onMouseLeave={closeHelp}
+          onMouseEnter={canHover ? openHelp : undefined}
+          onMouseLeave={canHover ? closeHelp : undefined}
         >
           <button
             onClick={() => {
