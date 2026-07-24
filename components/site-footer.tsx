@@ -60,6 +60,12 @@ export function SiteFooter() {
               <Link href="/contact" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Contact
               </Link>
+              <Link href="/help" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Help Center
+              </Link>
+              <Link href="/help/release-notes" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Release Notes
+              </Link>
             </nav>
           </div>
 

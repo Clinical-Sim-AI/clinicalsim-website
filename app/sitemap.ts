@@ -4,6 +4,7 @@ import { getAllAudiences } from "@/lib/audiences"
 import { getAllSolutions } from "@/lib/solutions"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
+import { RELEASE_NOTES_UPDATED_ISO } from "@/lib/release-notes"
 
 const BASE_URL = "https://clinicalsim.ai"
 
@@ -92,6 +93,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-06-09"),
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/help`,
+      lastModified: new Date("2026-07-24"),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/help/release-notes`,
+      lastModified: new Date(RELEASE_NOTES_UPDATED_ISO),
+      changeFrequency: "weekly",
+      priority: 0.6,
     },
     {
       url: `${BASE_URL}/privacy`,

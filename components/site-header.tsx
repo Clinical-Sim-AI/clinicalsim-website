@@ -15,16 +15,20 @@ export function SiteHeader() {
   const [audiencesOpen, setAudiencesOpen] = useState(false)
   const [solutionsOpen, setSolutionsOpen] = useState(false)
   const [whoWeAreOpen, setWhoWeAreOpen] = useState(false)
+  const [helpOpen, setHelpOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileAudiencesOpen, setMobileAudiencesOpen] = useState(false)
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false)
   const [mobileWhoWeAreOpen, setMobileWhoWeAreOpen] = useState(false)
+  const [mobileHelpOpen, setMobileHelpOpen] = useState(false)
   const audiencesDropdownRef = useRef<HTMLDivElement>(null)
   const audiencesTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
   const solutionsDropdownRef = useRef<HTMLDivElement>(null)
   const solutionsTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
   const whoWeAreDropdownRef = useRef<HTMLDivElement>(null)
   const whoWeAreTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
+  const helpDropdownRef = useRef<HTMLDivElement>(null)
+  const helpTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
   const audiences = getAllAudiences()
   const solutions = getAllSolutions()
 
@@ -33,6 +37,11 @@ export function SiteHeader() {
     { href: "/methodology", label: "Methodology" },
     { href: "/faq", label: "FAQ" },
     { href: "/medical-educator-faq", label: "FAQ for Medical Educators" },
+  ]
+
+  const helpItems = [
+    { href: "/help", label: "Help Center" },
+    { href: "/help/release-notes", label: "Release Notes" },
   ]
 
   const openAudiences = () => {
@@ -62,6 +71,15 @@ export function SiteHeader() {
     whoWeAreTimeoutRef.current = setTimeout(() => setWhoWeAreOpen(false), 150)
   }
 
+  const openHelp = () => {
+    if (helpTimeoutRef.current) clearTimeout(helpTimeoutRef.current)
+    setHelpOpen(true)
+  }
+
+  const closeHelp = () => {
+    helpTimeoutRef.current = setTimeout(() => setHelpOpen(false), 150)
+  }
+
   // Close mobile menu on route change (derived state)
   const [prevPathname, setPrevPathname] = useState(pathname)
   if (pathname !== prevPathname) {
@@ -70,6 +88,7 @@ export function SiteHeader() {
     setMobileAudiencesOpen(false)
     setMobileSolutionsOpen(false)
     setMobileWhoWeAreOpen(false)
+    setMobileHelpOpen(false)
   }
 
   // Prevent body scroll when mobile menu is open
@@ -95,6 +114,9 @@ export function SiteHeader() {
       if (whoWeAreDropdownRef.current && !whoWeAreDropdownRef.current.contains(event.target as Node)) {
         setWhoWeAreOpen(false)
       }
+      if (helpDropdownRef.current && !helpDropdownRef.current.contains(event.target as Node)) {
+        setHelpOpen(false)
+      }
     }
     document.addEventListener("mousedown", handleClickOutside)
     return () => {
@@ -102,6 +124,7 @@ export function SiteHeader() {
       if (audiencesTimeoutRef.current) clearTimeout(audiencesTimeoutRef.current)
       if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current)
       if (whoWeAreTimeoutRef.current) clearTimeout(whoWeAreTimeoutRef.current)
+      if (helpTimeoutRef.current) clearTimeout(helpTimeoutRef.current)
     }
   }, [])
 
@@ -117,6 +140,7 @@ export function SiteHeader() {
   const isWhoWeAreActive = aboutItems.some(
     (item) => pathname === item.href || pathname?.startsWith(item.href + "/")
   )
+  const isHelpActive = pathname === "/help" || pathname?.startsWith("/help/")
 
   return (
     <header className="relative z-50 flex items-center justify-between px-4 py-4 md:px-12 md:py-6 bg-white/80 backdrop-blur-sm border-b border-cs-gray/60">
@@ -288,6 +312,43 @@ export function SiteHeader() {
           </Link>
         ))}
 
+        {/* Help dropdown */}
+        <div
+          ref={helpDropdownRef}
+          className="relative"
+          onMouseEnter={openHelp}
+          onMouseLeave={closeHelp}
+        >
+          <button
+            onClick={() => {
+              setHelpOpen(!helpOpen)
+            }}
+            className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
+              isHelpActive ? "border-b-2 border-cs-dark-blue" : ""
+            }`}
+          >
+            Help
+            <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${helpOpen ? "rotate-180" : ""}`} />
+          </button>
+
+          {helpOpen && (
+            <div className="absolute top-full left-0 pt-2 w-56 z-50">
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
+              {helpItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block px-4 py-2.5 text-sm text-cs-dark-blue/85 hover:bg-cs-cloud/70 transition-colors"
+                  onClick={() => setHelpOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+            </div>
+          )}
+        </div>
+
         <Button asChild>
           <a href="https://platform.clinicalsim.ai/sign-up">Sign Up</a>
         </Button>
@@ -417,6 +478,35 @@ export function SiteHeader() {
                   {link.label}
                 </Link>
               ))}
+
+              {/* Help accordion */}
+              <div className="border-b border-cs-gray/30">
+                <button
+                  onClick={() => {
+                    setMobileHelpOpen(!mobileHelpOpen)
+                  }}
+                  className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
+                    isHelpActive ? "text-cs-dark-blue" : ""
+                  }`}
+                >
+                  Help
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileHelpOpen ? "rotate-180" : ""}`} />
+                </button>
+                {mobileHelpOpen && (
+                  <div className="pb-3 pl-2">
+                    {helpItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block px-3 py-2.5 text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               <Button asChild className="w-full mt-4">
                 <a

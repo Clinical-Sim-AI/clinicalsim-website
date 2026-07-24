@@ -55,6 +55,8 @@ export async function GET() {
     `- [FAQ for Medical Educators](${BASE_URL}/medical-educator-faq): How to read a ClinicalSim feedback report, how GME and UME scoring differ, how the AI scores accurately and fairly, practice cadence and skill decay, and how to build cases into a rotation, clerkship, or remediation plan, grounded in the direct-observation and mastery-learning literature. For program directors, DIOs, clerkship and course directors, simulation leads, and learner-progress committees.`,
     `- [Research Collaboration](${BASE_URL}/research): Apply to collaborate on research in clinical communication, simulation-based education, and competency assessment.`,
     `- [Insights](${BASE_URL}/insights): Research and evidence on medical communication training, simulation technology, and clinical conversation outcomes.`,
+    `- [Help Center](${BASE_URL}/help): Getting-started videos, release notes, and support for ClinicalSim programs and learners.`,
+    `- [Release Notes](${BASE_URL}/help/release-notes): Plain-language log of what's new in ClinicalSim, newest first, covering learner- and program-facing changes and the work behind each release.`,
   ].join("\n")
 
   const glossaryLines = [
