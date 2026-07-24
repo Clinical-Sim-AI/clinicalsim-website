@@ -165,8 +165,16 @@ export function SiteHeader() {
         {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
 
-      {/* Desktop navigation */}
-      <nav className="hidden xl:flex items-center gap-6 xl:gap-8 whitespace-nowrap">
+      {/* Desktop navigation. Nine items at xl leaves the logo no breathing room
+          at 1280px exactly, so hold a tighter gap until 2xl has the width for it.
+          (A plain gap-6 would be dead weight here: the nav is hidden below xl.)
+
+          Each dropdown trigger carries aria-expanded so screen readers announce
+          open/closed state. No aria-controls: the panels are conditionally
+          rendered, so the reference would dangle whenever a menu is collapsed,
+          which is the default state. No role="menu" either, since these are
+          lists of links rather than an application menu. */}
+      <nav className="hidden xl:flex items-center gap-5 2xl:gap-8 whitespace-nowrap">
         {/* Use Cases dropdown */}
         <div
           ref={solutionsDropdownRef}
@@ -178,6 +186,7 @@ export function SiteHeader() {
             onClick={() => {
               setSolutionsOpen(!solutionsOpen)
             }}
+            aria-expanded={solutionsOpen}
             className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
               isSolutionsActive ? "border-b-2 border-cs-dark-blue" : ""
             }`}
@@ -225,6 +234,7 @@ export function SiteHeader() {
             onClick={() => {
               setAudiencesOpen(!audiencesOpen)
             }}
+            aria-expanded={audiencesOpen}
             className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
               isAudiencesActive ? "border-b-2 border-cs-dark-blue" : ""
             }`}
@@ -272,6 +282,7 @@ export function SiteHeader() {
             onClick={() => {
               setWhoWeAreOpen(!whoWeAreOpen)
             }}
+            aria-expanded={whoWeAreOpen}
             className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
               isWhoWeAreActive ? "border-b-2 border-cs-dark-blue" : ""
             }`}
@@ -323,6 +334,7 @@ export function SiteHeader() {
             onClick={() => {
               setHelpOpen(!helpOpen)
             }}
+            aria-expanded={helpOpen}
             className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
               isHelpActive ? "border-b-2 border-cs-dark-blue" : ""
             }`}
@@ -366,6 +378,7 @@ export function SiteHeader() {
                   onClick={() => {
                     setMobileSolutionsOpen(!mobileSolutionsOpen)
                   }}
+                  aria-expanded={mobileSolutionsOpen}
                   className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
                     isSolutionsActive ? "text-cs-dark-blue" : ""
                   }`}
@@ -403,6 +416,7 @@ export function SiteHeader() {
                   onClick={() => {
                     setMobileAudiencesOpen(!mobileAudiencesOpen)
                   }}
+                  aria-expanded={mobileAudiencesOpen}
                   className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
                     isAudiencesActive ? "text-cs-dark-blue" : ""
                   }`}
@@ -440,6 +454,7 @@ export function SiteHeader() {
                   onClick={() => {
                     setMobileWhoWeAreOpen(!mobileWhoWeAreOpen)
                   }}
+                  aria-expanded={mobileWhoWeAreOpen}
                   className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
                     isWhoWeAreActive ? "text-cs-dark-blue" : ""
                   }`}
@@ -485,6 +500,7 @@ export function SiteHeader() {
                   onClick={() => {
                     setMobileHelpOpen(!mobileHelpOpen)
                   }}
+                  aria-expanded={mobileHelpOpen}
                   className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
                     isHelpActive ? "text-cs-dark-blue" : ""
                   }`}
