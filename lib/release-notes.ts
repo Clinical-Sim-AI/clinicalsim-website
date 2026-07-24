@@ -9,15 +9,19 @@
 // leading segment in medium weight. Everything after it is plain text. See
 // `renderReleaseBullet` in the page component.
 //
-// To add a release: prepend a new object and update RELEASE_NOTES_UPDATED_ISO.
+// To add a release: prepend a new object. That's the whole job. `date` is the
+// single source for the displayed date, the "Last updated" line, the WebPage
+// dateModified, and the sitemap lastModified, so there is nothing else to bump.
 
 export interface Release {
-  /** Stable anchor id, e.g. "2026-07-24". */
+  /**
+   * Stable anchor id for deep links, normally the same as `date`. Ids must be
+   * unique across the page, so when two releases share a date give the second
+   * one a suffix ("2026-07-24-b"). Enforced by the check below.
+   */
   id: string
-  /** ISO date for JSON-LD / sitemap recency. */
+  /** ISO date, YYYY-MM-DD. Single source for every date this page renders. */
   date: string
-  /** Human-readable date shown in the UI. */
-  dateLabel: string
   /** Optional lead-in note for the release. */
   note?: string
   /** Learner- and program-facing changes. */
@@ -26,14 +30,22 @@ export interface Release {
   team: string[]
 }
 
-// Drives the visible "Last updated" line, WebPage dateModified, and sitemap.
-export const RELEASE_NOTES_UPDATED_ISO = "2026-07-24"
+// Renders "2026-07-24" as "July 24, 2026". Splits the parts by hand and formats
+// in UTC so the label can't slip a day for anyone west of Greenwich.
+export function formatReleaseDate(date: string): string {
+  const [year, month, day] = date.split("-").map(Number)
+  return new Date(Date.UTC(year, month - 1, day)).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  })
+}
 
 export const releases: Release[] = [
   {
     id: "2026-07-24",
     date: "2026-07-24",
-    dateLabel: "July 24, 2026",
     userFacing: [
       "**Browse the full case library in-app.** Program managers and above get a new Catalog page to explore every simulation on the platform, filter by specialty and competency, and grant their organization access to the cases they want to use.",
       "**A friendly nudge for new learners.** People who sign up but haven't run a simulation yet now get a short, encouraging \"run your first case\" email series. It's gently spaced out and stops the moment they complete their first simulation.",
@@ -50,7 +62,6 @@ export const releases: Release[] = [
   {
     id: "2026-07-23",
     date: "2026-07-23",
-    dateLabel: "July 23, 2026",
     userFacing: [
       "**Cleaner forgot-password screen.** Fixed spacing on the password-reset card.",
     ],
@@ -65,7 +76,6 @@ export const releases: Release[] = [
   {
     id: "2026-07-15",
     date: "2026-07-15",
-    dateLabel: "July 15, 2026",
     userFacing: [
       "**Manage invitations in bulk.** Org leads can now bulk-resend, copy invite links, and revoke invitations that are still pending, all from one place.",
     ],
@@ -77,7 +87,6 @@ export const releases: Release[] = [
   {
     id: "2026-07-14",
     date: "2026-07-14",
-    dateLabel: "July 14, 2026",
     userFacing: [
       "**Find the right simulation faster.** The dashboard now has search, tag filters, and a favorites star so you can pin the cases you run most.",
       "**Built for program directors.** The dashboard surfaces ACGME ICS Milestones and lets you drill down by specialty and then competency to focus on exactly what you're assessing.",
@@ -94,7 +103,6 @@ export const releases: Release[] = [
   {
     id: "2026-07-09",
     date: "2026-07-09",
-    dateLabel: "July 9, 2026",
     userFacing: [
       "**See your usage and engagement.** A new section on your Progress page shows how much you've practiced, time spent, your streak, and how your scores are improving over time.",
       "**A clearer Progress page.** The single \"overall level\" number is gone in favor of plain-language explanations of each chart, so the page tells a story instead of a score.",
@@ -111,7 +119,6 @@ export const releases: Release[] = [
   {
     id: "2026-07-05",
     date: "2026-07-05",
-    dateLabel: "July 5, 2026",
     userFacing: [
       "**Reminder emails are live.** ClinicalSim can now send helpful nudges, with notification preferences, a settings page, and a genuine one-click unsubscribe.",
       "**On-brand email.** Every email now carries the ClinicalSim visual treatment.",
@@ -126,7 +133,6 @@ export const releases: Release[] = [
   {
     id: "2026-07-02",
     date: "2026-07-02",
-    dateLabel: "July 2, 2026",
     userFacing: [
       "**Consistent conversation detail.** Your learner history now opens the same rich conversation and feedback view that org leads see.",
       "**Better citations.** The References field on simulations gained AMA-style citation guidance and a gentle (non-blocking) formatting check.",
@@ -141,7 +147,6 @@ export const releases: Release[] = [
   {
     id: "2026-07-01",
     date: "2026-07-01",
-    dateLabel: "July 1, 2026",
     userFacing: [
       "**More control over the public catalog.** Whether a simulation appears in the public catalog is now a dedicated setting, separate from its general visibility.",
       "**A smoother start for new sign-ups.** People who sign up without an organization now land in a shared trial space and \"graduate\" cleanly into a real organization when they join one.",
@@ -156,20 +161,18 @@ export const releases: Release[] = [
   {
     id: "2026-06-30",
     date: "2026-06-30",
-    dateLabel: "June 30, 2026",
     userFacing: [
       "**A polished public catalog.** The catalog was redesigned as a clean card grid, and each card's scenarios now expand for a closer look, without content spilling out of the card.",
     ],
     team: [
       "Admin simulations directory is now sortable by column and by most recently edited.",
-      "Fixed a cross-organization data-isolation issue, and sped up a batch of queries.",
+      "Tightened organization-level access controls, and sped up a batch of queries.",
       "Added an authoring rule that keeps AI patients sounding natural.",
     ],
   },
   {
     id: "2026-06-29",
     date: "2026-06-29",
-    dateLabel: "June 29, 2026",
     note: "This release covered about two weeks of work and was one of the largest of the period.",
     userFacing: [
       "**A redesigned Feedback Report.** Feedback now leads with a clear narrative and the key visual, in ClinicalSim's brand colors, with a readable legend, on-demand recording playback, de-duplicated evidence, and a \"How to read this feedback\" guide that explains when a competency couldn't be assessed.",
@@ -190,7 +193,6 @@ export const releases: Release[] = [
   {
     id: "2026-06-15",
     date: "2026-06-15",
-    dateLabel: "June 15, 2026",
     userFacing: [
       "**Organize simulations with tags.** A new tagging system (with bulk tagging) makes the growing library easier to navigate, and the learner dashboard now hides simulations that aren't published yet.",
       "**Structured briefings everywhere.** The structured briefing now renders even on older simulations that only had a prose description.",
@@ -204,7 +206,6 @@ export const releases: Release[] = [
   {
     id: "2026-06-09",
     date: "2026-06-09",
-    dateLabel: "June 9, 2026",
     userFacing: [
       "**A better history view.** Your simulation history is now a sortable, expandable table, with the option to delete entries individually or in bulk.",
       "**A sharper profile.** Specialty options are now scoped to clinical roles, with a searchable medical-school dropdown.",
@@ -215,3 +216,21 @@ export const releases: Release[] = [
     ],
   },
 ]
+
+// Anchor ids have to be unique: the copy-link buttons and the hash handler both
+// resolve by getElementById, so a duplicate silently sends readers to the wrong
+// release. Runs at module load, which means an authoring slip fails the build
+// rather than shipping.
+const seenReleaseIds = new Set<string>()
+for (const release of releases) {
+  if (seenReleaseIds.has(release.id)) {
+    throw new Error(
+      `lib/release-notes.ts: duplicate release id "${release.id}". Give the second one a suffix, e.g. "${release.id}-b".`
+    )
+  }
+  seenReleaseIds.add(release.id)
+}
+
+// The newest release dates the page: the visible "Last updated" line, the
+// WebPage dateModified, and the sitemap lastModified for /help/release-notes.
+export const RELEASE_NOTES_UPDATED_ISO = releases[0].date

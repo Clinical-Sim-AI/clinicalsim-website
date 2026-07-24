@@ -6,7 +6,11 @@ import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { FaqAnchorHandler } from "@/components/faq-anchor-handler"
 import { CopyLinkButton } from "@/components/copy-link-button"
-import { releases, RELEASE_NOTES_UPDATED_ISO } from "@/lib/release-notes"
+import {
+  releases,
+  formatReleaseDate,
+  RELEASE_NOTES_UPDATED_ISO,
+} from "@/lib/release-notes"
 
 export const metadata: Metadata = {
   title: "Release Notes: What's New in ClinicalSim",
@@ -27,8 +31,6 @@ export const metadata: Metadata = {
     canonical: "https://clinicalsim.ai/help/release-notes",
   },
 }
-
-const LAST_UPDATED_LABEL = "July 24, 2026"
 
 // Bullet strings may open with a **bold** lead-in; render that segment in
 // medium weight and leave the rest as plain text.
@@ -121,7 +123,7 @@ export default function ReleaseNotesPage() {
           </p>
 
           <p className="mt-6 text-sm text-cs-dark-gray">
-            Last updated {LAST_UPDATED_LABEL}
+            Last updated {formatReleaseDate(RELEASE_NOTES_UPDATED_ISO)}
           </p>
         </div>
       </section>
@@ -131,81 +133,84 @@ export default function ReleaseNotesPage() {
       {/* Releases */}
       <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto space-y-4">
-          {releases.map((release, index) => (
-            <div
-              key={release.id}
-              id={release.id}
-              className="border border-cs-gray/50 rounded-xl overflow-hidden scroll-mt-24"
-            >
-              <details className="group" open={index === 0}>
-                <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-white hover:bg-gray-50 transition-colors">
-                  <h2 className="text-lg md:text-xl font-medium text-cs-dark-blue pr-4">
-                    {release.dateLabel}
-                  </h2>
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <span className="text-sm text-cs-dark-gray font-light hidden sm:inline">
-                      {release.userFacing.length}{" "}
-                      {release.userFacing.length === 1 ? "highlight" : "highlights"}
-                    </span>
-                    <CopyLinkButton
-                      id={release.id}
-                      label={`Copy link to ${release.dateLabel} release`}
-                    />
-                    <ChevronRight className="w-5 h-5 text-cs-gray transition-transform group-open:rotate-90" />
+          {releases.map((release, index) => {
+            const dateLabel = formatReleaseDate(release.date)
+            return (
+              <div
+                key={release.id}
+                id={release.id}
+                className="border border-cs-gray/50 rounded-xl overflow-hidden scroll-mt-24"
+              >
+                <details className="group" open={index === 0}>
+                  <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-white hover:bg-gray-50 transition-colors">
+                    <h2 className="text-lg md:text-xl font-medium text-cs-dark-blue pr-4">
+                      {dateLabel}
+                    </h2>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <span className="text-sm text-cs-dark-gray font-light hidden sm:inline">
+                        {release.userFacing.length}{" "}
+                        {release.userFacing.length === 1 ? "highlight" : "highlights"}
+                      </span>
+                      <CopyLinkButton
+                        id={release.id}
+                        label={`Copy link to ${dateLabel} release`}
+                      />
+                      <ChevronRight className="w-5 h-5 text-cs-gray transition-transform group-open:rotate-90" />
+                    </div>
+                  </summary>
+
+                  <div className="px-6 pb-6 pt-1">
+                    {release.note && (
+                      <p className="text-sm text-cs-dark-blue/70 font-light italic mb-5">
+                        {release.note}
+                      </p>
+                    )}
+
+                    <ul className="space-y-3">
+                      {release.userFacing.map((item, i) => (
+                        <li
+                          key={i}
+                          className="flex gap-3 text-base text-cs-dark-blue font-light leading-relaxed"
+                        >
+                          <span
+                            aria-hidden
+                            className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-cs-navy"
+                          />
+                          <span>{renderReleaseBullet(item)}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {release.team.length > 0 && (
+                      <details className="group/team mt-5 rounded-lg bg-cs-cloud/40">
+                        <summary className="flex items-center gap-2 cursor-pointer px-4 py-3 text-sm font-medium text-cs-navy">
+                          <ChevronRight className="w-4 h-4 text-cs-dark-gray transition-transform group-open/team:rotate-90" />
+                          Behind the scenes
+                          <span className="font-light text-cs-dark-gray">
+                            ({release.team.length})
+                          </span>
+                        </summary>
+                        <ul className="space-y-2.5 px-4 pb-4 pt-1">
+                          {release.team.map((item, i) => (
+                            <li
+                              key={i}
+                              className="flex gap-3 text-sm text-cs-dark-blue/80 font-light leading-relaxed"
+                            >
+                              <span
+                                aria-hidden
+                                className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-cs-dark-gray"
+                              />
+                              <span>{renderReleaseBullet(item)}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    )}
                   </div>
-                </summary>
-
-                <div className="px-6 pb-6 pt-1">
-                  {release.note && (
-                    <p className="text-sm text-cs-dark-blue/70 font-light italic mb-5">
-                      {release.note}
-                    </p>
-                  )}
-
-                  <ul className="space-y-3">
-                    {release.userFacing.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex gap-3 text-base text-cs-dark-blue font-light leading-relaxed"
-                      >
-                        <span
-                          aria-hidden
-                          className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-cs-navy"
-                        />
-                        <span>{renderReleaseBullet(item)}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {release.team.length > 0 && (
-                    <details className="group/team mt-5 rounded-lg bg-cs-cloud/40">
-                      <summary className="flex items-center gap-2 cursor-pointer px-4 py-3 text-sm font-medium text-cs-navy">
-                        <ChevronRight className="w-4 h-4 text-cs-dark-gray transition-transform group-open/team:rotate-90" />
-                        Behind the scenes
-                        <span className="font-light text-cs-dark-gray">
-                          ({release.team.length})
-                        </span>
-                      </summary>
-                      <ul className="space-y-2.5 px-4 pb-4 pt-1">
-                        {release.team.map((item, i) => (
-                          <li
-                            key={i}
-                            className="flex gap-3 text-sm text-cs-dark-blue/80 font-light leading-relaxed"
-                          >
-                            <span
-                              aria-hidden
-                              className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-cs-dark-gray"
-                            />
-                            <span>{renderReleaseBullet(item)}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </details>
-                  )}
-                </div>
-              </details>
-            </div>
-          ))}
+                </details>
+              </div>
+            )
+          })}
         </div>
       </section>
 
