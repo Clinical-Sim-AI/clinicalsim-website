@@ -32,6 +32,21 @@ export function SiteHeader() {
   const audiences = getAllAudiences()
   const solutions = getAllSolutions()
 
+  // Hover-open is wired up only for pointers that genuinely hover. On a touch
+  // screen a tap fires mouseenter immediately before click, so the hover handler
+  // opened the menu and the click toggle shut it again in the same gesture,
+  // leaving the dropdowns impossible to open by tapping. That bites at xl and
+  // up, which includes iPad landscape at 1366px. Nothing works before hydration
+  // either way, so starting false costs nothing.
+  const [canHover, setCanHover] = useState(false)
+  useEffect(() => {
+    const query = window.matchMedia("(hover: hover) and (pointer: fine)")
+    setCanHover(query.matches)
+    const handleChange = (event: MediaQueryListEvent) => setCanHover(event.matches)
+    query.addEventListener("change", handleChange)
+    return () => query.removeEventListener("change", handleChange)
+  }, [])
+
   const aboutItems = [
     { href: "/about", label: "About Us" },
     { href: "/methodology", label: "Methodology" },
@@ -118,9 +133,20 @@ export function SiteHeader() {
         setHelpOpen(false)
       }
     }
+    // Escape closes any open dropdown. Focus stays on the trigger that opened
+    // it, so there is nothing to restore.
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key !== "Escape") return
+      setAudiencesOpen(false)
+      setSolutionsOpen(false)
+      setWhoWeAreOpen(false)
+      setHelpOpen(false)
+    }
     document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("keydown", handleEscape)
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
+      document.removeEventListener("keydown", handleEscape)
       if (audiencesTimeoutRef.current) clearTimeout(audiencesTimeoutRef.current)
       if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current)
       if (whoWeAreTimeoutRef.current) clearTimeout(whoWeAreTimeoutRef.current)
@@ -165,19 +191,28 @@ export function SiteHeader() {
         {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
 
-      {/* Desktop navigation */}
-      <nav className="hidden xl:flex items-center gap-6 xl:gap-8 whitespace-nowrap">
+      {/* Desktop navigation. Nine items at xl leaves the logo no breathing room
+          at 1280px exactly, so hold a tighter gap until 2xl has the width for it.
+          (A plain gap-6 would be dead weight here: the nav is hidden below xl.)
+
+          Each dropdown trigger carries aria-expanded so screen readers announce
+          open/closed state. No aria-controls: the panels are conditionally
+          rendered, so the reference would dangle whenever a menu is collapsed,
+          which is the default state. No role="menu" either, since these are
+          lists of links rather than an application menu. */}
+      <nav className="hidden xl:flex items-center gap-5 2xl:gap-8 whitespace-nowrap">
         {/* Use Cases dropdown */}
         <div
           ref={solutionsDropdownRef}
           className="relative"
-          onMouseEnter={openSolutions}
-          onMouseLeave={closeSolutions}
+          onMouseEnter={canHover ? openSolutions : undefined}
+          onMouseLeave={canHover ? closeSolutions : undefined}
         >
           <button
             onClick={() => {
               setSolutionsOpen(!solutionsOpen)
             }}
+            aria-expanded={solutionsOpen}
             className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
               isSolutionsActive ? "border-b-2 border-cs-dark-blue" : ""
             }`}
@@ -218,13 +253,14 @@ export function SiteHeader() {
         <div
           ref={audiencesDropdownRef}
           className="relative"
-          onMouseEnter={openAudiences}
-          onMouseLeave={closeAudiences}
+          onMouseEnter={canHover ? openAudiences : undefined}
+          onMouseLeave={canHover ? closeAudiences : undefined}
         >
           <button
             onClick={() => {
               setAudiencesOpen(!audiencesOpen)
             }}
+            aria-expanded={audiencesOpen}
             className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
               isAudiencesActive ? "border-b-2 border-cs-dark-blue" : ""
             }`}
@@ -265,13 +301,14 @@ export function SiteHeader() {
         <div
           ref={whoWeAreDropdownRef}
           className="relative"
-          onMouseEnter={openWhoWeAre}
-          onMouseLeave={closeWhoWeAre}
+          onMouseEnter={canHover ? openWhoWeAre : undefined}
+          onMouseLeave={canHover ? closeWhoWeAre : undefined}
         >
           <button
             onClick={() => {
               setWhoWeAreOpen(!whoWeAreOpen)
             }}
+            aria-expanded={whoWeAreOpen}
             className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
               isWhoWeAreActive ? "border-b-2 border-cs-dark-blue" : ""
             }`}
@@ -316,13 +353,14 @@ export function SiteHeader() {
         <div
           ref={helpDropdownRef}
           className="relative"
-          onMouseEnter={openHelp}
-          onMouseLeave={closeHelp}
+          onMouseEnter={canHover ? openHelp : undefined}
+          onMouseLeave={canHover ? closeHelp : undefined}
         >
           <button
             onClick={() => {
               setHelpOpen(!helpOpen)
             }}
+            aria-expanded={helpOpen}
             className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
               isHelpActive ? "border-b-2 border-cs-dark-blue" : ""
             }`}
@@ -366,6 +404,7 @@ export function SiteHeader() {
                   onClick={() => {
                     setMobileSolutionsOpen(!mobileSolutionsOpen)
                   }}
+                  aria-expanded={mobileSolutionsOpen}
                   className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
                     isSolutionsActive ? "text-cs-dark-blue" : ""
                   }`}
@@ -403,6 +442,7 @@ export function SiteHeader() {
                   onClick={() => {
                     setMobileAudiencesOpen(!mobileAudiencesOpen)
                   }}
+                  aria-expanded={mobileAudiencesOpen}
                   className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
                     isAudiencesActive ? "text-cs-dark-blue" : ""
                   }`}
@@ -440,6 +480,7 @@ export function SiteHeader() {
                   onClick={() => {
                     setMobileWhoWeAreOpen(!mobileWhoWeAreOpen)
                   }}
+                  aria-expanded={mobileWhoWeAreOpen}
                   className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
                     isWhoWeAreActive ? "text-cs-dark-blue" : ""
                   }`}
@@ -485,6 +526,7 @@ export function SiteHeader() {
                   onClick={() => {
                     setMobileHelpOpen(!mobileHelpOpen)
                   }}
+                  aria-expanded={mobileHelpOpen}
                   className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
                     isHelpActive ? "text-cs-dark-blue" : ""
                   }`}

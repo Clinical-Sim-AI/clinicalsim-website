@@ -33,9 +33,17 @@ export const metadata: Metadata = {
 }
 
 // Bullet strings may open with a **bold** lead-in; render that segment in
-// medium weight and leave the rest as plain text.
+// medium weight and leave the rest as plain text. Only a leading lead-in is
+// supported, so any other ** would reach the page as literal asterisks. Warn
+// during the build instead of letting that ship silently.
 function renderReleaseBullet(text: string) {
   const match = text.match(/^\*\*(.+?)\*\*(.*)$/s)
+  const remainder = match ? match[2] : text
+  if (remainder.includes("**")) {
+    console.warn(
+      `[release-notes] Unsupported "**" outside the leading lead-in; it will render as literal asterisks: ${text.slice(0, 80)}`
+    )
+  }
   if (match) {
     return (
       <>

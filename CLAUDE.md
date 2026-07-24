@@ -249,8 +249,8 @@ All content on this site must be optimized for discovery by AI search systems (C
 ### Infrastructure Files
 - `app/robots.ts` — Crawler rules; blocks GPTBot (training) while allowing search crawlers
 - `app/sitemap.ts` — Auto-generated from `lib/posts.ts`, `lib/solutions.ts`, `lib/audiences.ts`
-- `public/llms.txt` — Page index for LLM crawlers; update when adding/removing pages
-- When adding new pages, update `app/sitemap.ts` and `public/llms.txt`
+- `app/llms.txt/route.ts` — Page index for LLM crawlers, served at `/llms.txt`; update when adding/removing pages. There is no `public/llms.txt`; the route handler is the only source.
+- When adding new pages, update `app/sitemap.ts` and `app/llms.txt/route.ts`
 
 ### Solution Page Data (`lib/solutions.ts`)
 - `faqs` field: Array of `{ question, answer }` for FAQ section + FAQPage JSON-LD
