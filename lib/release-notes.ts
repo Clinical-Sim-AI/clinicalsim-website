@@ -44,6 +44,28 @@ export function formatReleaseDate(date: string): string {
 
 export const releases: Release[] = [
   {
+    id: "2026-07-28",
+    date: "2026-07-28",
+    userFacing: [
+      "**A clearer sidebar.** Your personal items (My Progress, My Assignments, My Conversations) are grouped together and set apart from your organization's shared tools, so it's easier to tell \"mine\" from \"ours\" at a glance. We also renamed \"History\" to \"My Conversations\" so it's obvious what you'll find there.",
+      "**A real Settings page.** Settings is now one place instead of two hard-to-find pages. You can change your password, see which version of our Privacy Policy and Terms you accepted and when, and manage your privacy preferences, including opting out of voice-data use for training and requesting deletion of your own voice recordings.",
+      "**Your simulation list now matches your assignments.** Members see only the simulations assigned to them through their program's projects, rather than everything their organization can access. If something you expect to see is missing, check with your project manager. It likely just needs to be assigned to you.",
+      "**My Assignments is now grouped by project.** If you're in more than one project, your simulations are grouped under each project's own header, with the due date and completion progress shown once instead of repeated on every card. Completed simulations tuck behind a \"show completed\" toggle so active work stays in view.",
+      "**A weekly progress email for project managers and org admins.** Each week, you'll get a summary for every project you manage: completed runs, time spent, and which competencies are trending up or need attention, plus a quick link to book time with our team.",
+    ],
+    team: [
+      "Fixed a crash in the admin content tools: the \"Save Draft\" comparison view (and similar diff views) could fail to render, and now works reliably.",
+      "The admin invitations page now shows expired invitations first by default, with count badges, so backlog is visible at a glance.",
+      "Closed a gap in our sign-in system that could have let certain account-management requests bypass our normal safeguards. No learner action needed.",
+      "Strengthened the safeguards in our content-sync tool (how we move simulations and rubrics from staging into production) so it can't act on stale information.",
+      "Fixed a broken experience for platform administrators who aren't part of an organization. They now see a clear message and working navigation instead of blank pages.",
+      "Added better diagnostics for voice-call connection failures, so our team can tell a network problem from an application problem and resolve reports faster.",
+      "Refined the \"Completed\" counts on our internal usage dashboard to filter out very short, abandoned sessions, so the numbers better reflect real activity.",
+      "Fixed a display bug on My Assignments where a simulation still being graded could show \"0 attempts\" even though the learner had completed it.",
+      "Added internal tooling and fixed a memory issue in our development environment, helping the team build and test changes more reliably.",
+    ],
+  },
+  {
     id: "2026-07-24",
     date: "2026-07-24",
     userFacing: [
