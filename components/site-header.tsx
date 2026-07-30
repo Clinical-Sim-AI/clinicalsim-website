@@ -3,12 +3,33 @@
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useSyncExternalStore } from "react"
 import { ChevronDown, Menu, X } from "lucide-react"
 import { BrandIcon } from "@/components/brand-icon"
 import { Button } from "@/components/ui/button"
 import { getAllAudiences } from "@/lib/audiences"
 import { getAllSolutions } from "@/lib/solutions"
+
+// Hover-open is wired up only for pointers that genuinely hover. On a touch
+// screen a tap fires mouseenter immediately before click, so the hover handler
+// opened the menu and the click toggle shut it again in the same gesture,
+// leaving the dropdowns impossible to open by tapping. That bites at the widths
+// that show the full nav, which includes iPad landscape at 1366px.
+//
+// Read through useSyncExternalStore rather than an effect that calls setState:
+// matchMedia is external state, and the server snapshot is false because there
+// is no pointer to ask about during SSR. Nothing works before hydration either
+// way, so starting false costs nothing.
+const HOVER_QUERY = "(hover: hover) and (pointer: fine)"
+
+function subscribeToHover(onChange: () => void) {
+  const query = window.matchMedia(HOVER_QUERY)
+  query.addEventListener("change", onChange)
+  return () => query.removeEventListener("change", onChange)
+}
+
+const getHoverSnapshot = () => window.matchMedia(HOVER_QUERY).matches
+const getHoverServerSnapshot = () => false
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -32,20 +53,7 @@ export function SiteHeader() {
   const audiences = getAllAudiences()
   const solutions = getAllSolutions()
 
-  // Hover-open is wired up only for pointers that genuinely hover. On a touch
-  // screen a tap fires mouseenter immediately before click, so the hover handler
-  // opened the menu and the click toggle shut it again in the same gesture,
-  // leaving the dropdowns impossible to open by tapping. That bites at xl and
-  // up, which includes iPad landscape at 1366px. Nothing works before hydration
-  // either way, so starting false costs nothing.
-  const [canHover, setCanHover] = useState(false)
-  useEffect(() => {
-    const query = window.matchMedia("(hover: hover) and (pointer: fine)")
-    setCanHover(query.matches)
-    const handleChange = (event: MediaQueryListEvent) => setCanHover(event.matches)
-    query.addEventListener("change", handleChange)
-    return () => query.removeEventListener("change", handleChange)
-  }, [])
+  const canHover = useSyncExternalStore(subscribeToHover, getHoverSnapshot, getHoverServerSnapshot)
 
   const aboutItems = [
     { href: "/about", label: "About Us" },
@@ -184,23 +192,28 @@ export function SiteHeader() {
 
       {/* Mobile hamburger button */}
       <button
-        className="xl:hidden p-2 -mr-2 text-cs-dark-blue/85 hover:text-cs-dark-blue transition-colors"
+        className="nav:hidden p-2 -mr-2 text-cs-dark-blue/85 hover:text-cs-dark-blue transition-colors"
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
       >
         {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
 
-      {/* Desktop navigation. Nine items at xl leaves the logo no breathing room
-          at 1280px exactly, so hold a tighter gap until 2xl has the width for it.
-          (A plain gap-6 would be dead weight here: the nav is hidden below xl.)
+      {/* Desktop navigation. Nine items measure ~1085px alongside the logo and
+          the header's md:px-12 padding once the labels drop to 14px with a 12px
+          gap, so the full bar comes in at the custom nav breakpoint (1120px in
+          tailwind.config.ts) rather than waiting for xl. Below that the labels
+          would collide with the logo, hence the hamburger. From xl there is
+          room for 16px labels and a 20px gap, and 2xl opens the gap further.
+          The 1120 threshold assumes these nine items: re-measure the bar and
+          adjust the breakpoint if an item is added, removed, or renamed.
 
           Each dropdown trigger carries aria-expanded so screen readers announce
           open/closed state. No aria-controls: the panels are conditionally
           rendered, so the reference would dangle whenever a menu is collapsed,
           which is the default state. No role="menu" either, since these are
           lists of links rather than an application menu. */}
-      <nav className="hidden xl:flex items-center gap-5 2xl:gap-8 whitespace-nowrap">
+      <nav className="hidden nav:flex items-center gap-3 text-sm xl:gap-5 xl:text-base 2xl:gap-8 whitespace-nowrap">
         {/* Use Cases dropdown */}
         <div
           ref={solutionsDropdownRef}
@@ -370,7 +383,10 @@ export function SiteHeader() {
           </button>
 
           {helpOpen && (
-            <div className="absolute top-full left-0 pt-2 w-56 z-50">
+            /* Right-aligned: Help is the last dropdown before the Sign Up
+               button, so a left-aligned 224px panel hangs past the viewport and
+               gives the page a horizontal scrollbar. */
+            <div className="absolute top-full right-0 pt-2 w-56 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
               {helpItems.map((item) => (
                 <Link
@@ -394,7 +410,7 @@ export function SiteHeader() {
 
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[65px] md:top-[89px] z-40 xl:hidden">
+        <div className="fixed inset-0 top-[65px] md:top-[89px] z-40 nav:hidden">
           <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
           <nav className="relative bg-white/95 backdrop-blur-sm border-b border-cs-gray/30 shadow-lg max-h-[calc(100dvh-65px)] md:max-h-[calc(100dvh-89px)] overflow-y-auto">
             <div className="px-4 py-3">
