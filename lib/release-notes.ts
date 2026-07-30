@@ -44,6 +44,27 @@ export function formatReleaseDate(date: string): string {
 
 export const releases: Release[] = [
   {
+    id: "2026-07-30",
+    date: "2026-07-30",
+    note: "This release is about seeing your work clearly: assignments organized by project, cohort progress on every project card, feedback-first conversation pages with a sticky jump nav, and filters on your conversation history.",
+    userFacing: [
+      "**Your assignments are now organized by project.** Learners assigned to more than one project used to see one undifferentiated pile of cards. My Assignments now groups everything under a project header with the project's color, its due date shown once, and a completion bar, with finished work collapsed per project so what's left to do stays front and center.",
+      "**Program leads can see cohort progress at a glance.** Each card on the Projects page now shows how many learners have completed the work and how many are overdue, plus the learner count and the project's default due date. The numbers match the project detail page exactly, so there's no reconciling two views.",
+      "**Feedback comes first on conversation pages.** The conversation detail pages now lead with your feedback instead of burying it below the briefing and transcript, and a sticky navigation bar jumps you straight to Feedback, Transcript, Briefing, EPAs, or References. Jumping lands the section right under the bar, keeps the chip highlighted, and briefly flashes where you landed so your eye doesn't have to hunt. We also removed a section that appeared twice on every page and made the expand/collapse arrows behave the same everywhere.",
+      "**A \"Run It Again\" button right after your feedback.** Repeat attempts are where skill gain shows up, and the moment you've just read what to work on is the natural time to try again. The learner feedback page now links straight back to that simulation's briefing (the button only appears while you're still able to run it).",
+      "**Find conversations faster.** My Conversations now has simulation and project filters matching the organization view, shows the project on each row, and loads noticeably faster because the list stopped downloading full transcripts behind the scenes. The per-row expander, which mostly repeated a link the row already had, is gone.",
+      "**Dropdown menus you can actually read.** Option panels used to be pinned to the width of the narrow filter button that opened them, cutting simulation names to about 24 characters (\"Adolescent Suicide Risk …\"). Panels across the app now grow to fit their content, and the filter pickers announce their current selection to screen readers instead of just their label.",
+      "**A clear message when a network blocks the voice connection.** Learners on hospital or corporate Wi-Fi sometimes have the voice connection cut off by a security filter before the session starts, and until now the error named no cause and suggested no action (one learner retried 21 times over three days). When we can tell that's what happened, the message now says so and explains what to do: try a different network, or ask IT to allow the voice service, with the connection test on the briefing page to confirm.",
+      "**Scores display against the rubric's real scale.** A rubric graded 1 to 3 could display out of 5, so a near-perfect performance read as 55% instead of 92%. Score bounds now come from the rubric's own rating anchors, so existing feedback displays correctly without regrading, and the editor can no longer produce a mismatched scale.",
+    ],
+    team: [
+      "Our own internal organization's runs no longer count in the customer-success roll-ups or the weekly digest, so enrolled learners, runs, time spent, and every health ratio now reflect real customers only. Internal orgs stay inspectable through their drill-down page, which carries an \"Internal\" badge, and an unreadable green in the metrics display was fixed along the way.",
+      "Added tests that pin the conversation status badge to the exact set of statuses the database allows, verified against the original bug, so a live conversation can never again show a raw internal value to a learner.",
+      "Fixed the browser-verification tooling so it runs on macOS, not just inside the dev container.",
+      "Corrected code comments that wrongly claimed deactivated simulations are hidden from the catalog. They stay visible (with their Inactive badge) but can't be run, and the comments now say so.",
+    ],
+  },
+  {
     id: "2026-07-28",
     date: "2026-07-28",
     userFacing: [
