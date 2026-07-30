@@ -192,7 +192,7 @@ export function SiteHeader() {
 
       {/* Mobile hamburger button */}
       <button
-        className="min-[1120px]:hidden p-2 -mr-2 text-cs-dark-blue/85 hover:text-cs-dark-blue transition-colors"
+        className="nav:hidden p-2 -mr-2 text-cs-dark-blue/85 hover:text-cs-dark-blue transition-colors"
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
       >
@@ -201,17 +201,19 @@ export function SiteHeader() {
 
       {/* Desktop navigation. Nine items measure ~1085px alongside the logo and
           the header's md:px-12 padding once the labels drop to 14px with a 12px
-          gap, so the full bar comes in at 1120px rather than waiting for xl.
-          Below that the labels would collide with the logo, hence the hamburger.
-          From xl there is room for 16px labels and a 20px gap, and 2xl opens the
-          gap further.
+          gap, so the full bar comes in at the custom nav breakpoint (1120px in
+          tailwind.config.ts) rather than waiting for xl. Below that the labels
+          would collide with the logo, hence the hamburger. From xl there is
+          room for 16px labels and a 20px gap, and 2xl opens the gap further.
+          The 1120 threshold assumes these nine items: re-measure the bar and
+          adjust the breakpoint if an item is added, removed, or renamed.
 
           Each dropdown trigger carries aria-expanded so screen readers announce
           open/closed state. No aria-controls: the panels are conditionally
           rendered, so the reference would dangle whenever a menu is collapsed,
           which is the default state. No role="menu" either, since these are
           lists of links rather than an application menu. */}
-      <nav className="hidden min-[1120px]:flex items-center gap-3 text-sm xl:gap-5 xl:text-base 2xl:gap-8 whitespace-nowrap">
+      <nav className="hidden nav:flex items-center gap-3 text-sm xl:gap-5 xl:text-base 2xl:gap-8 whitespace-nowrap">
         {/* Use Cases dropdown */}
         <div
           ref={solutionsDropdownRef}
@@ -408,7 +410,7 @@ export function SiteHeader() {
 
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[65px] md:top-[89px] z-40 min-[1120px]:hidden">
+        <div className="fixed inset-0 top-[65px] md:top-[89px] z-40 nav:hidden">
           <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
           <nav className="relative bg-white/95 backdrop-blur-sm border-b border-cs-gray/30 shadow-lg max-h-[calc(100dvh-65px)] md:max-h-[calc(100dvh-89px)] overflow-y-auto">
             <div className="px-4 py-3">
