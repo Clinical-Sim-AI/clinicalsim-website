@@ -184,23 +184,26 @@ export function SiteHeader() {
 
       {/* Mobile hamburger button */}
       <button
-        className="xl:hidden p-2 -mr-2 text-cs-dark-blue/85 hover:text-cs-dark-blue transition-colors"
+        className="min-[1120px]:hidden p-2 -mr-2 text-cs-dark-blue/85 hover:text-cs-dark-blue transition-colors"
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
       >
         {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
 
-      {/* Desktop navigation. Nine items at xl leaves the logo no breathing room
-          at 1280px exactly, so hold a tighter gap until 2xl has the width for it.
-          (A plain gap-6 would be dead weight here: the nav is hidden below xl.)
+      {/* Desktop navigation. Nine items measure ~1085px alongside the logo and
+          the header's md:px-12 padding once the labels drop to 14px with a 12px
+          gap, so the full bar comes in at 1120px rather than waiting for xl.
+          Below that the labels would collide with the logo, hence the hamburger.
+          From xl there is room for 16px labels and a 20px gap, and 2xl opens the
+          gap further.
 
           Each dropdown trigger carries aria-expanded so screen readers announce
           open/closed state. No aria-controls: the panels are conditionally
           rendered, so the reference would dangle whenever a menu is collapsed,
           which is the default state. No role="menu" either, since these are
           lists of links rather than an application menu. */}
-      <nav className="hidden xl:flex items-center gap-5 2xl:gap-8 whitespace-nowrap">
+      <nav className="hidden min-[1120px]:flex items-center gap-3 text-sm xl:gap-5 xl:text-base 2xl:gap-8 whitespace-nowrap">
         {/* Use Cases dropdown */}
         <div
           ref={solutionsDropdownRef}
@@ -370,7 +373,10 @@ export function SiteHeader() {
           </button>
 
           {helpOpen && (
-            <div className="absolute top-full left-0 pt-2 w-56 z-50">
+            /* Right-aligned: Help is the last dropdown before the Sign Up
+               button, so a left-aligned 224px panel hangs past the viewport and
+               gives the page a horizontal scrollbar. */
+            <div className="absolute top-full right-0 pt-2 w-56 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
               {helpItems.map((item) => (
                 <Link
@@ -394,7 +400,7 @@ export function SiteHeader() {
 
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[65px] md:top-[89px] z-40 xl:hidden">
+        <div className="fixed inset-0 top-[65px] md:top-[89px] z-40 min-[1120px]:hidden">
           <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
           <nav className="relative bg-white/95 backdrop-blur-sm border-b border-cs-gray/30 shadow-lg max-h-[calc(100dvh-65px)] md:max-h-[calc(100dvh-89px)] overflow-y-auto">
             <div className="px-4 py-3">
