@@ -44,6 +44,20 @@ export function formatReleaseDate(date: string): string {
 
 export const releases: Release[] = [
   {
+    id: "2026-07-31",
+    date: "2026-07-31",
+    note: "This release cleans up after a class of failure we hadn't handled: voice sessions that die at connect and leave nothing behind. Learners on an unsupported browser now find out before they start, sessions where nobody spoke no longer produce feedback or scores, and those empty sessions stop dragging down everyone's numbers.",
+    userFacing: [
+      "**We tell you up front if your browser can't run a voice session.** An older browser can break the microphone check the voice service depends on, and the session dies a few seconds after it starts. One learner hit this nine times in a row, and the error told them nothing useful. It read like a network problem, so they went looking at their Wi-Fi. The briefing page and the direct session link now check before you begin, and if your browser can't support voice you get a clear banner saying so with Start disabled. If a session does fail this way, the message names the real cause instead of sending you after your network.",
+      "**A session where you never spoke no longer pretends to be feedback.** When a session died at connect, the recording still went through the whole feedback pipeline, so it got graded, and your history showed \"Feedback ready\" on an encounter that never happened. Those sessions are now recognized as empty and skipped, which means no grading, no scored feedback, and a neutral \"No feedback\" label in your history. Open one and it says plainly that the session ended before any conversation took place. Feedback you already have is untouched.",
+      "**Your scores and progress no longer count sessions you never spoke in.** This is the change with the widest reach. Because those dead sessions were being graded and the grader had no dialogue to assess, they came back at the lowest possible level, and they counted. In our own testing, one in ten completed grades was one of these, spread across most learners, and every one pulled down that learner's competency levels, their improvement trend, and the peer comparison everyone else is measured against. They inflated the counts too: runs, active learners, simulations attempted, streaks, active days, repeat and completion rates. All of those now exclude sessions with no learner speech. This applies to past work as well as new, so the corrected numbers appear as soon as it's live, with nothing to re-run.",
+    ],
+    team: [
+      "Regrading an empty conversation from the admin tools is now refused outright, with a clear reason, before anything gets queued. The same junk grades can't be recreated by hand.",
+      "The rule for \"did the learner actually speak\" has to exist in two places, one deciding what gets graded and one deciding what gets counted, and they now share a single set of test cases that fails if they ever disagree. Two duplicate copies of the database-side rule landed on parallel branches and have been consolidated into one, with no change in behavior.",
+    ],
+  },
+  {
     id: "2026-07-30",
     date: "2026-07-30",
     note: "This release is about seeing your work clearly: assignments organized by project, cohort progress on every project card, feedback-first conversation pages with a sticky jump nav, and filters on your conversation history.",
