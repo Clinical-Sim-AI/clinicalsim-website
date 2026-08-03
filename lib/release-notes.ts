@@ -44,6 +44,29 @@ export function formatReleaseDate(date: string): string {
 
 export const releases: Release[] = [
   {
+    id: "2026-08-03",
+    date: "2026-08-03",
+    note: "This release makes the pre-session connection check genuinely useful for learners on locked-down hospital networks, and it moves our email sending onto faster, safer batched infrastructure behind the scenes.",
+    userFacing: [
+      '**The connection test now catches blocked networks, not just slow ones.** The "Test Your Connection" button on the simulation briefing page used to measure internet speed alone, so a learner whose hospital firewall was silently blocking the voice service would be told everything looked fine. The test now also checks whether your network can actually reach the voice service, and when it can\'t, it says so plainly and tells you exactly what to ask your IT team to allow (these blocks almost always come from a corporate firewall, VPN, or web filter). The check is advisory only: it never stops you from starting a session, it just lets you diagnose the problem in the moment instead of filing a support ticket.',
+    ],
+    team: [
+      "Campaign and broadcast emails now go out in batches of up to 100 per request instead of one at a time, so a broadcast to every verified user that used to take minutes now takes seconds. The bookkeeping around each batch also got tighter: a retry can never double-send, delivered recipients are recorded in a single database write, and any failure we can't attribute to a specific address is held for human review rather than guessed at.",
+      "Failed or inconclusive connection tests now report to our error monitoring, so a pattern like one organization failing repeatedly for a week surfaces on our side within days instead of waiting for a support ticket.",
+    ],
+  },
+  {
+    id: "2026-08-01",
+    date: "2026-08-01",
+    note: "An internal maintenance release: nothing visible changed in the product, but the email system got meaningfully safer ahead of the first live reminder sends.",
+    userFacing: [],
+    team: [
+      'Fixed a timing bug in the upcoming invitation-reminder email before its first live send. Reminders were keyed off when an invitation was first created, so an old invitation that an admin had just re-sent would get the "a few days ago you were invited" reminder the very next day. Reminders now key off when an invite email actually last went out, which means any resend resets the clock. A production dry run showed about 69% of the audience would have gotten a badly timed reminder, and because the campaign is still in dry-run mode, nothing incorrect ever reached an inbox.',
+      "The system that stops us from re-mailing addresses that bounce or mark us as spam now has full automated test coverage, and we fixed the pipeline configuration so those tests actually run on every change instead of silently skipping.",
+      "Repaired a safeguard test that pins exactly which data the history page loads (it keeps heavy transcript data out of a query that runs every few seconds), which had gone stale after a recent change.",
+    ],
+  },
+  {
     id: "2026-07-31",
     date: "2026-07-31",
     note: "This release cleans up after a class of failure we hadn't handled: voice sessions that die at connect and leave nothing behind. Learners on an unsupported browser now find out before they start, sessions where nobody spoke no longer produce feedback or scores, and those empty sessions stop dragging down everyone's numbers.",
