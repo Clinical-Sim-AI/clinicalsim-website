@@ -46,12 +46,14 @@ export const releases: Release[] = [
   {
     id: "2026-08-03",
     date: "2026-08-03",
-    note: "This release makes the pre-session connection check genuinely useful for learners on locked-down hospital networks, and it moves our email sending onto faster, safer batched infrastructure behind the scenes.",
+    note: "This release makes the pre-session connection check genuinely useful for learners on locked-down hospital networks, and it hardens the email and invitation machinery behind the scenes: faster batched sending, pending invitees visible and nudgeable from each organization's admin page, and invitation reminders that now survive a resend.",
     userFacing: [
       '**The connection test now catches blocked networks, not just slow ones.** The "Test Your Connection" button on the simulation briefing page used to measure internet speed alone, so a learner whose hospital firewall was silently blocking the voice service would be told everything looked fine. The test now also checks whether your network can actually reach the voice service, and when it can\'t, it says so plainly and tells you exactly what to ask your IT team to allow (these blocks almost always come from a corporate firewall, VPN, or web filter). The check is advisory only: it never stops you from starting a session, it just lets you diagnose the problem in the moment instead of filing a support ticket.',
     ],
     team: [
       "Campaign and broadcast emails now go out in batches of up to 100 per request instead of one at a time, so a broadcast to every verified user that used to take minutes now takes seconds. The bookkeeping around each batch also got tighter: a retry can never double-send, delivered recipients are recorded in a single database write, and any failure we can't attribute to a specific address is held for human review rather than guessed at.",
+      "Platform admins can now see and act on pending invitations right from an organization's metrics page: totals for sent, accepted, and outstanding invitations, plus the full pending list with resend, copy link, and revoke actions, individually or in bulk. Invited-but-not-yet-joined people used to be invisible on that page, and nudging one meant switching to a different screen. Expired invitations sort to the top, and resending one revives the same link with a fresh expiry.",
+      "Resending an invitation now earns the recipient a fresh signup reminder. Each invitation used to get at most one reminder ever, so someone an admin re-invited weeks later never heard from us again unless they acted on the resend itself. Now every resend re-enrolls the invitation for exactly one more reminder three days after the new invite email, and we verified against production data that nobody who was already reminded gets a duplicate. The \"expires in N days\" line in those reminders is also now computed in a way that can't drift with server timezones.",
       "Failed or inconclusive connection tests now report to our error monitoring, so a pattern like one organization failing repeatedly for a week surfaces on our side within days instead of waiting for a support ticket.",
     ],
   },
