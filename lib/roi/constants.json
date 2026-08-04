@@ -1,0 +1,855 @@
+{
+  "_meta": {
+    "name": "ClinicalSim ROI Calculator Constants",
+    "version": "2.0.0",
+    "date": "2026-08-03",
+    "supersedes": "roi-calculator-constants-v1-2026-08-03.json (v1.0.0), retained on disk so deprecated reduction_fraction results stay reproducible",
+    "companion_doc": "04-market-research/roi-calculator-assumptions-v2-2026-08-03.md",
+    "companion_spec": "10-tools/roi-calculator-build-spec-v2-2026-08-03.md",
+    "changeset": "10-tools/roi-calculator-changeset-v2-2026-08-03.md",
+    "confidence_scale": ["Confirmed", "Estimated", "Inferred", "UNSOURCED"],
+    "rules": [
+      "Never sum across bands A, B, and C.",
+      "Band B lines are separate non-additive cards with no total.",
+      "Every Band B line multiplies by a user-visible attribution factor.",
+      "Band C is documented, never priced. No dollar total, no dollar line.",
+      "Headline output is a break-even threshold, not an ROI multiple.",
+      "The calculator must be able to return a negative result.",
+      "Do not publish any figure tagged UNSOURCED."
+    ]
+  },
+
+  "faculty_hourly_value": {
+    "default": 145,
+    "low": 115,
+    "high": 210,
+    "unit": "USD/hour",
+    "basis_default": "fully loaded compensation / 2080 total annual hours",
+    "basis_high": "fully loaded compensation / 1456 clinical hours, use ONLY when a billable clinical assignment is displaced",
+    "arithmetic": "(205980 peds + 289846 IM)/2 = 247913; x 1.22 fringe = 302454; /2080 = 145.41",
+    "band_multiplier_note": "Derive the low and high multipliers as low/default and high/default from the three figures above. Do not hardcode 0.79 and 1.45 in application code.",
+    "fringe_rate": { "default": 0.22, "low": 0.152, "high": 0.31, "user_editable": true },
+    "hours_denominator": { "total": 2080, "clinical": 1456, "opm_statutory": 2087, "amspdc_benchmark": 2100 },
+    "by_specialty_assoc_prof_2080_basis": {
+      "pediatrics_general": 121,
+      "family_medicine": 140,
+      "pediatric_critical_care": 167,
+      "internal_medicine_general": 170,
+      "emergency_medicine": 177,
+      "obgyn": 181,
+      "neonatology": 187,
+      "surgery_general": 243
+    },
+    "by_specialty_assoc_prof_1456_basis": {
+      "pediatrics_general": 173,
+      "family_medicine": 200,
+      "pediatric_critical_care": 238,
+      "internal_medicine_general": 243,
+      "emergency_medicine": 253,
+      "obgyn": 259,
+      "neonatology": 267,
+      "surgery_general": 347
+    },
+    "clinical_basis_warning": "The 1456 denominator already excludes 360 hours of academic, teaching, administrative, and CME time. Applying it to hours that come out of that bucket double counts. Default to the 2080 basis and make the clinical basis opt-in.",
+    "regional_bias_disclosure": "MGMA figures are Eastern region only. The default is biased high by an unknown amount, plausibly 10 to 20 percent against national.",
+    "locums_cross_check_usd_hr_2025": {
+      "pediatrics": [105, 130],
+      "internal_medicine": [120, 145],
+      "family_medicine": [120, 145],
+      "emergency_medicine": [200, 300],
+      "obgyn": [150, 225]
+    },
+    "sources": [
+      { "id": "mgma2025acad", "cite": "MGMA 2025 Academic Compensation, 2024 data, Eastern region", "year": 2025, "confidence": "Confirmed", "caveat": "Eastern region only. Default biased high by an estimated 10-20% vs national." },
+      { "id": "olsen2021", "cite": "Olsen S et al., Defining Clinical Effort for Hospital-Based Pediatricians, J Pediatr 2021 (AMSPDC)", "year": 2021, "confidence": "Confirmed", "note": "Source of the 1456 clinical-hour denominator: 2080 - 176 vacation - 88 holiday - 360 academic/teaching/admin/CME" },
+      { "id": "aamcfsr2024", "cite": "AAMC Faculty Salary Report FY2024 Executive Summary, 156 schools", "year": 2024, "confidence": "Confirmed", "value": "mean MD clinical-science faculty total comp $387,884" },
+      { "id": "emoryfringe", "cite": "Emory OSP physician fringe rate FY26 15.20% federal", "year": 2026, "confidence": "Confirmed" },
+      { "id": "iowafringe", "cite": "University of Iowa clinical faculty fringe FY26 24.2%, House Staff 25.7%", "year": 2026, "confidence": "Confirmed" }
+    ],
+    "do_not_use": [
+      "Merritt Hawkins $2.1-2.4M revenue per physician. Attributed downstream revenue, ~100 hospitals, self-reported. Implies $1,010/hr.",
+      "Generic '$150 to $300 per physician hour'. No traceable primary source.",
+      "Aggregator wRVU tables (fastrvu, rvuedge, marithealth, residencyadvisor). No methodology, no license disclosure."
+    ]
+  },
+
+  "lever_a1_assessment_documentation": {
+    "label": "Competency assessment and documentation time",
+    "scope": "all trainees, twice yearly, ACGME-required",
+    "formula": "hours_current = trainees * hours_per_trainee_year; hours_addressable = hours_current * subcompetency_share * depth_of_substitution; value = hours_addressable * faculty_hourly_value",
+    "hours_per_trainee_year": {
+      "default": 6.7,
+      "low": 4.5,
+      "high": 8.5,
+      "confidence": "Estimated",
+      "certainty": "Medium-High",
+      "basis": "measured time-and-motion study at a real program, converted to an annual per-trainee figure",
+      "arithmetic": "23.5 faculty-hours per month x 12 = 282 faculty-hours per year / 42 trainees = 6.71",
+      "primary_source": {
+        "cite": "Goyal N, Folt J, Jaskulka B, Baliga S, Slezak M, Schultz LR, Vallee P. Assessment methods and resource requirements for milestone reporting by an emergency medicine clinical competency committee. Med Educ Online 2018;23(1):1538925",
+        "url": "https://scholarlycommons.henryford.com/emergencymedicine_articles/28/",
+        "confidence": "Confirmed",
+        "figures": {
+          "full_milestone_assessment_minutes": 80.9,
+          "ad_hoc_assessment_minutes": 5.3,
+          "faculty_hours_per_month": 23.5,
+          "trainees": 42,
+          "subcompetencies": 23
+        },
+        "caveat": "Single emergency medicine program. One specialty, one site. The band accounts for this."
+      },
+      "low_bound_basis": "the v1 component build (CCC deliberation + pre-meeting review + the required 1:1), which produced 4.5 and is retained as an independent cross-check rather than discarded",
+      "supersedes": "v1 default of 4.5, tagged Medium-Low and built from inference. Goyal is a measured figure and replaces it as the point estimate."
+    },
+    "shortcut_finding": {
+      "full_assessment_minutes": 80.9,
+      "ad_hoc_assessment_minutes": 5.3,
+      "agreement": "the 5.3-minute ad-hoc method agreed with the full method on only 8 of 23 subcompetencies",
+      "cite": "Goyal et al., Med Educ Online 2018",
+      "confidence": "Confirmed",
+      "why_it_matters": "This is arguably a stronger argument than the hours. Programs doing this properly spend 80 minutes per assessment. Programs going fast produce ratings that do not match what a careful process would produce. That is a defensibility problem, not a time problem, and it belongs in the Band C panel as well as here."
+    },
+    "in_scope_slice": {
+      "label": "the portion of assessment time an ICS and professionalism evidence platform can actually address",
+      "discount_1_subcompetency_share": {
+        "value": 0.30,
+        "basis": "roughly 6 to 7 of ~23 subcompetencies are ICS and professionalism",
+        "confidence": "Estimated",
+        "band_note": "No published band exists for this share, so it is held fixed in the one-dimension-at-a-time envelope."
+      },
+      "discount_2_depth_of_substitution": {
+        "default": 0.40,
+        "low": 0.30,
+        "high": 0.50,
+        "basis": "the platform shortens evidence gathering and defense, it does not remove the CCC meeting, the deliberation, or the ADS entry",
+        "supporting": "Nabors et al., Arch Med Sci 2017;13(1):201-209: CCC deliberation fell 25 to 9 minutes per resident after process redesign, but that was a full committee-process overhaul rather than a data feed",
+        "supporting_citation_note": "The v2 changeset gives this as Arch Med Sci 2016. The v1 form (2017;13(1):201-209) is kept here because it carries volume and pages. Confirm before publication.",
+        "confidence": "Inferred"
+      },
+      "addressable_hours_per_trainee_year": {
+        "default": 0.80,
+        "low": 0.60,
+        "high": 1.00,
+        "arithmetic": "6.7 x 0.30 x 0.40 = 0.80; low 6.7 x 0.30 x 0.30 = 0.60; high 6.7 x 0.30 x 0.50 = 1.01",
+        "confidence": "Estimated",
+        "usage_note": "Cross-check constant only. This band varies depth alone and holds hours at 6.7, so it cannot be the source of the displayed range. The displayed range is the spec 5.2 one-dimension-at-a-time envelope computed in model.ts."
+      },
+      "ui_requirement": "Show both discounts explicitly on the results panel. A program director who watches you voluntarily cut to 30% of 30% will trust the rest of the model more than one who sees a large round number."
+    },
+    "reduction_fraction": {
+      "deprecated": true,
+      "superseded_by": "in_scope_slice",
+      "default": 0.30,
+      "note": "Retained so v1 results can be reproduced. Do not use in new calculations."
+    },
+    "supporting_evidence": [
+      { "cite": "Goyal N et al., Med Educ Online 2018;23(1):1538925", "finding": "full versus ad-hoc milestone assessment: 80.9 min versus 5.3 min, with agreement on only 8 of 23 subcompetencies", "confidence": "Confirmed" },
+      { "cite": "Goyal N et al., Med Educ Online 2018;23(1):1538925", "finding": "semiannual milestone reporting for 42 trainees consumed 23.5 faculty-hours per month", "confidence": "Confirmed" },
+      { "cite": "Nabors et al., Arch Med Sci 2017;13(1):201-209", "finding": "CCC deliberation 25 to 9 min per resident after pre-meeting ratings plus in-meeting reconciliation, p<.001", "confidence": "Confirmed (abstract)" },
+      { "cite": "Yen & Lewis 2022 via Ellis et al., JGME 2024;16(6):662", "finding": "automated reports cut coordinator prep ~90%, faculty at least 50%", "confidence": "Confirmed in secondary" },
+      { "cite": "Friedman et al. 2016 via Ellis 2024", "finding": "30 min per resident per CCC member reviewing data; 5 min per resident dashboard build", "confidence": "Confirmed in secondary" },
+      { "cite": "Chen et al. 2017 via Ellis 2024", "finding": "anesthesiology CCC meeting 8h to 3.5h", "confidence": "Confirmed in secondary" },
+      { "cite": "Dougherty et al. 2022 via Ellis 2024", "finding": "general surgery CCC 126 to 106 min per meeting", "confidence": "Confirmed in secondary" },
+      { "cite": "Johna & Woodward 2015 via Ellis 2024", "finding": "45-60 min to 5-10 min per resident", "confidence": "Confirmed in secondary", "caveat": "Weakest of the set. Single program. Prefer Friedman's 30 min as the high anchor." }
+    ],
+    "acgme_requirements": {
+      "ccc_minimum_membership": "3 program faculty, at least 1 core faculty (CPR Residency 2026, 5.3.a)",
+      "review_frequency": "at least semiannually (5.3.c)",
+      "milestones_determination": "CCC must determine each resident's Milestones progress (5.3.d)",
+      "one_on_one_required": "PD or designee must meet with each resident and review the documented semiannual evaluation (5.1.c)",
+      "reporting_windows": "mid-year Nov-Dec, end-of-year May-Jun",
+      "im_milestones_v21_subcompetencies": 23,
+      "im_milestones_ics_subcompetencies": 3,
+      "milestone_determinations_per_trainee_per_year": 46
+    },
+    "excluded_by_design": {
+      "routine_evaluation_form_completion": "Real and probably larger than CCC burden, but minutes-per-form and forms-per-trainee-per-year are both UNSOURCED. Expose as user input with blank default."
+    },
+    "counter_evidence": "Fernald et al., PRiMER 2024: administrative burden was NOT a leading reason FM program directors left. Do not overclaim the PD-attrition angle."
+  },
+
+  "lever_a2_remediation_time": {
+    "label": "Remediation faculty time",
+    "formula": "cases = max(cases_per_program_floor, trainees * specialty_rate_per_100 / 100); comm_cases = cases * comm_share; hours_freed = comm_cases * hours_per_case * displacement_fraction; value = hours_freed * faculty_hourly_value",
+    "cases_per_trainee_year": { "default": 0.025, "low": 0.015, "high": 0.045, "confidence": "Estimated" },
+    "cases_per_program_floor": { "default": 1.0, "low": 0.8, "high": 1.2, "rationale": "cases per program per year are flat at 0.93-1.04 across a 2.7x range of program size. Scaling is sublinear." },
+    "specialty_rates_per_100_trainees_year": {
+      "family_medicine": 4.5,
+      "emergency_medicine": 2.5,
+      "pediatrics": 1.6,
+      "default_other": 2.5
+    },
+    "specialty_multipliers_vs_baseline": { "family_medicine": 1.8, "emergency_medicine": 1.0, "pediatrics": 0.65, "other": 1.0, "note": "Ship only the FM multiplier. Three data points do not support a full table." },
+    "comm_share": { "default": 0.45, "low": 0.25, "high": 0.57, "confidence": "Inferred", "label": "share of cases where a communication and professionalism tool is plausibly relevant" },
+    "hours_per_case": { "default": 30, "low": 20, "high": 50, "confidence": "Estimated" },
+    "displacement_fraction": { "default": 0.40, "low": 0.25, "high": 0.60, "confidence": "Inferred" },
+    "practice_unit_minutes": { "value": 20, "basis": "roughly 10 minutes of practice conversation and 10 of faculty-led feedback", "confidence": "Inferred" },
+    "peer_comparison_line": "93% of programs have handled at least one communication or professionalism remediation case in the past three years. Most program leaders rate their current approach no better than moderately effective.",
+    "mechanism": "Communication remediation runs on a roughly 20-minute unit, about 10 minutes of practice and 10 of faculty-led feedback. Faculty time does not scale, so the reps do not happen. The platform delivers practice and structured scoring on demand; faculty stay in the loop as coaches reviewing a dashboard. The value is hours redirected from facilitation to judgment, plus the reps the learner finally gets.",
+    "duration_months": { "default": 8, "low": 6, "high": 12 },
+    "success_rate": { "default": 0.90, "low": 0.60, "high": 0.91 },
+    "escalation_to_probation": 0.18,
+    "repeat_remediation_rate": 0.47,
+    "sources": [
+      { "cite": "Frazier et al., Family Medicine, Oct 2021 (CERA 2017)", "figures": "93% of FM programs had >=1 resident in remediation in 3 years; 267/503 PDs, 53% response; 91% success within 12 months", "confidence": "Confirmed" },
+      { "cite": "Rebedew et al., Family Medicine, Nov/Dec 2024", "figures": "professionalism 45.1% primary trigger (2023) vs 38.1% (2017), p=.10; medical knowledge 25.2%; 271/715 PDs, 37.9%; no size or program-type effect (p=.257)", "confidence": "Confirmed", "caveat": "Reports NO ICS percentage. Do not synthesize one." },
+      { "cite": "Silverberg et al., West J Emerg Med 2015;16(6):839-844", "figures": "90% of EM programs; 351 of 4,711 residents over 3 yrs; ICS 84/333 = 25.2%; professionalism 31.5%; MK 63.1%; mean duration 8 months; 59.9% successful, 31.3% ongoing, 8.7% unsuccessful; 126/158 PDs, 79.7%", "confidence": "Confirmed", "caveat": "Multi-select instrument, sums to 188.6%. Not comparable to FM single-select." },
+      { "cite": "Nelsen et al., Academic Pediatrics 2025;25:102776", "figures": "4.7% of pediatric residents remediated; 288 cases; 91% success (262/288); 99/195 programs, 50.8%", "confidence": "Confirmed (abstract)", "caveat": "Lookback period not stated in the free abstract." },
+      { "cite": "Guerrasio & Aagaard, J Gen Intern Med 2014;29(12):1607-1614", "figures": "mean 29.6 faculty hours (SD 29.3, median 18, range 2-100) for 53 clinical-reasoning learners; 20.4h face-to-face + 9.2h email", "confidence": "Confirmed", "caveat": "Remediation specialist contact only. Excludes planning, assessment, preparation, PD, CCC, coordinator, legal. A FLOOR." },
+      { "cite": "Guerrasio, Garrity, Aagaard, Acad Med 2014;89:352-358", "figures": "151 learners 2006-2012, 90% success; poor professionalism the only predictor of probation; each hour of faculty face time reduced odds of probation 3.1% and any negative outcome 2.6%", "confidence": "Confirmed (abstract)" },
+      { "cite": "DeKosky AS, Sedrak MS, Goren E, Dine CJ, Warburton KM, J Grad Med Educ 2018;10:325-330", "figures": "25-75 faculty hours to address efficiency and organizational skills", "confidence": "Confirmed as quoted in Chou 2019", "caveat": "ONE study, ONE deficit type. Not a literature-wide range." }
+    ],
+    "corrections": [
+      "'~45 hours average, Penn, PMC10076163' DOES NOT EXIST. PMC10076163 is Murano et al., Cureus 2023, Rutgers NJMS and Columbia, 12 trainees, no hours figure. Remove.",
+      "'Kalet & Chou 2019 literature range 25-75 hours' is a misreading. See DeKosky note above.",
+      "Gardner et al. 2018 '$3,400-$5,300 per remediation, 15.65-20.68 hours' has a broken citation chain (cited paper is about resident selection). Treat as untraceable."
+    ]
+  },
+
+  "lever_a3_extended_year": {
+    "label": "Extended or repeated training year",
+    "presentation": "BREAK-EVEN ONLY. Do not project prevented extensions as a dollar saving.",
+    "formula_breakeven": "extended_years_to_break_even = annual_contract_price / extended_year_total_cost",
+    "formula_expected": "expected_adverse_outcomes = remediation_cases * escalation_probability",
+    "escalation_probability": {
+      "default": 0.10,
+      "low": 0.05,
+      "high": 0.15,
+      "confidence": "Inferred",
+      "certainty": "Low-Medium",
+      "label": "probability a remediation case ends in a NON-ROUTINE OUTCOME. Extension is one of several. NOT an extension rate.",
+      "build": "Nelsen 2025 9.0% (26/288) + Guerrasio 2014 10% + Parsons COACH 13% = mean 10.7%, rounded down"
+    },
+    "extension_evidence": {
+      "status": "The direct national rate does not exist, and that absence is now CITED rather than merely unfound.",
+      "acgme_absence": {
+        "leaving_status_categories": ["transferred", "withdrawn", "dismissed", "deceased", "unsuccessfully completed"],
+        "finding": "None of the five categories captures extension, non-promotion, or being held back.",
+        "cite": "ACGME Cloud, Explore Public Data: Residents/Fellows (2025); corroborated in print by Omoruyi E, Russell GB, Montez KG, J Educ Eval Health Prof 2025;22:24, who read 14 years of Data Resource Books",
+        "url": "https://support.acgmecloud.org/hc/en-us/articles/31721959451031-Explore-Public-Data-Residents-Fellows",
+        "confidence": "Confirmed"
+      },
+      "per_remediation_case": {
+        "any_additional_training_time": {
+          "value": 0.18,
+          "low": 0.12,
+          "high": 0.25,
+          "cite": "Yao DC, Wright SM. National Survey of Internal Medicine Residency Program Directors Regarding Problem Residents. JAMA 2000;284(9):1099-1104",
+          "url": "https://jamanetwork.com/journals/jama/fullarticle/193039",
+          "confidence": "Confirmed",
+          "location_note": "This figure is in the Comment section of the full text, not the abstract, which is why earlier passes missed it.",
+          "full_outcome_breakdown": {
+            "finished_on_time": 0.57,
+            "required_additional_training_time": 0.18,
+            "transferred_within_specialty": 0.09,
+            "transferred_out": 0.10,
+            "left_medicine": 0.04
+          }
+        },
+        "repeats_a_full_clinical_year": {
+          "value": 0.065,
+          "low": 0.06,
+          "high": 0.10,
+          "cite": "Yaghoubian A, Galante J, Kaji A, et al. General Surgery Resident Remediation and Attrition: A Multi-institutional Study. Arch Surg 2012;147(9):829-833",
+          "url": "https://jamanetwork.com/journals/jamasurgery/fullarticle/1358529",
+          "confidence": "Confirmed",
+          "denominator": "7 of 107 remediated residents across 6 programs, 348 residents, 11 years"
+        }
+      },
+      "per_100_trainees_per_year": {
+        "any_extension": { "default": 1.0, "low": 0.6, "high": 1.3, "arithmetic": "5% remediation prevalence x 18% = 0.90; IM cross-check 6.9% x 18% = 1.24", "confidence": "Estimated" },
+        "full_repeat_year": { "default": 0.4, "low": 0.2, "high": 0.6, "arithmetic": "5% x 6.5% = 0.33; surgery cross-check 7/348 = 2.01% career / 5 yr = 0.40", "confidence": "Estimated" }
+      },
+      "labeling_requirement": "Call this a MODELED extension rate derived from published remediation prevalence times published per-case extension probability. Never call it an ACGME statistic or a measured national rate. The single most defensible customer-facing sentence is the raw 18%: when an internal medicine program formally intervenes on a struggling resident, roughly one in five ends up needing additional training time.",
+      "ui_rule": "The modeled extension rate renders as separately labelled context. Never place it in a ratio against the break-even threshold, never caption it as a share of the threshold, and never multiply it by a prevention rate.",
+      "board_certification_consequence": {
+        "after_probation": 0.639,
+        "matched_controls": 1.0,
+        "cite": "Guerrasio J, Brooks E, Rumack CM, Christensen A, Aagaard EM. Acad Med 2015, 102 of 3,091 trainees placed on probation 2002-2012",
+        "confidence": "Confirmed",
+        "note": "Probation is not just an expensive year. It changes career outcomes."
+      }
+    },
+    "leave_driven_extension_context": {
+      "is_a_lever": false,
+      "why_included": "Establishes that extended years are already routine, so the DIO is pricing something familiar rather than hypothetical.",
+      "rate_per_100_trainees_year": { "default": 1.0, "low": 0.5, "high": 1.5, "cite": "Baldwin DC Jr, Rowley BD, Daugherty SR, Bay RC, Acad Med 1995: 887 of 89,368 residents took extended leave (1.0%)", "confidence": "Confirmed for the source figure, Estimated as a current rate" },
+      "board_triggers": [
+        { "board": "American Board of Pediatrics", "rule": "4 weeks absence per year allowed; minimum 48 weeks of training required to be promoted to the next level; beyond 4 weeks the training level is extended", "url": "https://www.abp.org/content/absences-general-pediatrics-training", "confidence": "Confirmed" },
+        { "board": "American Board of Anesthesiology", "rule": "80 working days total across FCS-CA3, plus 40 on request; beyond that the ABA will require lengthening the total training time", "url": "https://www.theaba.org/wp-content/uploads/pdfs/Absence_Training_Policy.pdf", "confidence": "Confirmed" },
+        { "board": "American Board of Surgery", "rule": "48 weeks full-time clinical activity required per year; limited additional leave allowed before extension", "url": "https://www.absurgery.org/resources/abs-policies/policy-leave/", "confidence": "Confirmed" }
+      ],
+      "family_medicine_finding": {
+        "value": "more than 40% of program directors reported that 81% to 100% of female residents taking parental leave extend residency",
+        "cite": "Morris LE, Lindbloom E, Kruse RL, et al. Perceptions of Parenting Residents Among Family Medicine Residency Directors. Fam Med 2018;50(10):756-762, n=298 of 522 PDs",
+        "confidence": "Confirmed"
+      },
+      "acgme_mandate": {
+        "value": "6 weeks paid parental, caregiver, and medical leave from day one, effective 2022, with required disclosure of the impact of extended leave on program completion and board eligibility",
+        "confidence": "Confirmed"
+      }
+    },
+    "marginal_cost_per_extended_year": {
+      "default": 93000,
+      "low": 88000,
+      "high": 101000,
+      "pgy5_plus": 106000,
+      "confidence": "Estimated",
+      "certainty": "High",
+      "basis": "stipend + fringe only. RAND: adding or removing one resident-year at an existing program does not move GME infrastructure or IME cost.",
+      "arithmetic": "PGY-2 70499*1.25=88124; PGY-3 73301*1.27=93092; PGY-4 77593*1.30=100871; PGY-5 81807*1.30=106349"
+    },
+    "fully_loaded_average_context_only": { "default": 195000, "low": 190000, "high": 200000, "confidence": "Estimated", "warning": "NEVER use in an avoided-extended-year claim. Overstates the saving by roughly 2x." },
+    "resident_fringe_rate": { "default": 0.275, "low": 0.25, "high": 0.30, "sources": "RAND 30% mean benefits-to-stipend ratio; Univ of Iowa House Staff federally negotiated 25.5-26.0% FY24-FY26" },
+    "aamc_stipends_2025_07_01": {
+      "PGY1": 68166, "PGY2": 70499, "PGY3": 73301, "PGY4": 77593,
+      "PGY5": 81807, "PGY6": 84744, "PGY7": 89187, "PGY8": 94215,
+      "survey_base": "350 nonprofit ACGME sponsoring institutions, 114,361 residents and fellows",
+      "growth": "2.2% nominal, -0.48% real",
+      "chief_resident_premium": 5071,
+      "confidence": "Confirmed"
+    },
+    "unquantified_but_real": [
+      "Resident-specific allowances: licensure, DEA, board exam fees, education and meal stipends, device and EMR seat. RAND names the category, gives no value. Expose as user input with blank default.",
+      "Coverage bought because the extended trainee occupies a slot a new PGY-1 also needs. Unquantified.",
+      "Cost of recruiting a mid-cycle replacement, onboarding, or locums coverage of a vacant resident slot. UNSOURCED anywhere. Build from user inputs only."
+    ],
+    "attrition_context": {
+      "pediatric_residency_annual": 0.0171,
+      "pediatric_critical_care_fellowship_2020": 0.0104,
+      "neonatal_perinatal_fellowship_2020": 0.0115,
+      "general_surgery_annual": 0.033,
+      "general_surgery_5yr_compounded": 0.154,
+      "pediatric_unsuccessful_completion_per_1000": 0.30,
+      "source": "Omoruyi, Russell, Montez, J Educ Eval Health Prof 2025;22:24 (ACGME data); Sundel, Cairns, Kavic, J Surg Educ 2024",
+      "note": "ACGME publishes no extension, non-promotion, or probation field. Taxonomy is transfer, withdrawal, dismissal, unsuccessful completion, death."
+    },
+    "pediatric_readiness_hook": {
+      "finding": "fewer than 50% of pediatric subspecialty fellows met clinical EPA supervision thresholds for graduation at 2 years; 86-100% across subspecialties at 3 years",
+      "cite": "Pediatrics 2025;155(4):e2024068307",
+      "confidence": "Confirmed (abstract)",
+      "label": "readiness gap, NOT a documented extension"
+    },
+    "corrections": [
+      "$141,240 fully loaded resident-year: traces to Wang et al. 2022, Auctores Online, stated with no citation. DROP.",
+      "$142,635 ACS surgical figure: does not exist. ACS RISE cites $134,803. Likely drift from RAND's $142,627 (2008, 10-24 resident programs).",
+      "$150,000 THCGME rate: real but it is a FUNDING cap, not a cost, and now superseded by $160,000 (FY2025)."
+    ]
+  },
+
+  "lever_a4_gme_funding": {
+    "label": "Federal GME funding effect of an extended year",
+    "scope": "DIO lens only",
+    "funding_source_selector": ["medicare_under_cap", "medicare_over_cap", "chgme", "other"],
+    "pediatric_default_rule": "For pediatric specialties, default fundingSource to unset and prompt. Children's hospitals are mostly CHGME and running Medicare math on them is wrong.",
+    "rules_verified": {
+      "irp_definition": "minimum years required for board eligibility. 42 CFR 413.79(a)",
+      "irp_fixed_at_entry": "set by the program the resident was in on the first day of the first rotation after medical school graduation; constant across all IRIS submissions. CMS IRIS XML General Instructions",
+      "dgme_weight_inside_irp": 1.0,
+      "dgme_weight_beyond_irp": 0.5,
+      "primary_care_obgyn_exemption": false,
+      "ime_irp_weighting": "NONE. Residents count up to 1.0 FTE regardless. 42 CFR 412.105(f)(1)(iii)",
+      "cap_counted_on": "unweighted FTEs. 42 CFR 413.79(c)(1)",
+      "rolling_average_years": 3
+    },
+    "CRITICAL_CORRECTION": "The workspace ROI brief states primary care and OB/GYN stay at 1.0 FTE beyond the IRP. FALSE. 42 CFR 413.79(b)(2) says '.50 thereafter' with no specialty carve-out. Primary care and OB/GYN appear only in (a)(5) combined-program IRP, (c)(2) separate cap scaling, and (d)(3) separate rolling average.",
+    "sharp_facts": [
+      "IME applies no IRP weighting, so roughly 71% of Medicare GME dollars are indifferent to whether a resident has finished their initial residency period.",
+      "The cap counts unweighted FTEs, so a resident past their IRP consumes a full slot while generating half the DGME payment."
+    ],
+    "irp_years_by_specialty": { "pediatrics": 3, "internal_medicine": 3, "family_practice": 3, "obgyn": 4, "general_surgery": 5, "pediatric_subspecialty_fellowship": 0 },
+    "fy2023_federal_figures": {
+      "total_medicare_gme": 21200000000,
+      "dgme": 6100000000,
+      "ime": 15000000000,
+      "dgme_ftes_allo_osteo": 112230,
+      "dgme_ftes_all_disciplines": 116431,
+      "ime_ftes_allo_osteo": 119328,
+      "ime_ftes_all_disciplines": 124034,
+      "ime_share_of_total": 0.71,
+      "source": "CRS IF13088, Medicare Graduate Medical Education 2025",
+      "confidence": "Confirmed",
+      "caveat": "CRS Table 1 notes payments include all disciplines while FTE counts are allo/osteo only. Both denominators given."
+    },
+    "dgme_per_fte": { "low": 52392, "high": 54353, "placeholder": 52392, "confidence": "Estimated", "guidance": "Ship the field blank with 52392 as a placeholder. Do not default a PRA." },
+    "ime_per_fte": { "low": 120935, "high": 125706, "confidence": "Estimated" },
+    "dgme_forgone_weight_delta": 0.5,
+    "dgme_forgone_per_extended_year_under_cap": { "default": 26196, "high": 27176, "arithmetic": "0.5 * 52392", "confidence": "Estimated" },
+    "ime_forgone_per_extended_year": 0,
+    "total_forgone_over_cap": 0,
+    "share_of_fte_year_gme_value_lost": [0.144, 0.159],
+    "cap_position_gao_2018": {
+      "hospitals_analyzed": 962,
+      "over_at_least_one_cap_pct": 0.70,
+      "over_dgme_cap": 535,
+      "over_ime_cap": 619,
+      "over_both": 481,
+      "under_both": 102,
+      "dgme_ftes_trained_unfunded": 17051,
+      "dgme_ftes_trained": 100261,
+      "ime_ftes_trained_unfunded": 20364,
+      "source": "GAO-21-391",
+      "confidence": "Confirmed",
+      "citation_style": "70% in 2018 (GAO). Do not imply currency. GAO's Dec 2025 report still uses the 2018 figure."
+    },
+    "per_resident_payment_distribution_2018": {
+      "mean_per_funded_resident": 171000,
+      "p5": 68000,
+      "p95": 279000,
+      "median": "NOT PUBLISHED",
+      "source": "GAO-21-391 p.8 and fn.23",
+      "guidance": "Fourfold range. Let the DIO enter their own DGME payment per FTE. Do not default a PRA."
+    },
+    "cap_relief": {
+      "caa2021_sec126_total_slots": 1000,
+      "sec126_distributed_through_fy2025": 600,
+      "sec126_hospitals": 186,
+      "average_award_ftes": "fewer than two per annual distribution",
+      "caa2023_sec4122_slots": 200,
+      "sec4122_effective": "2026-07-01",
+      "new_slots_vs_unfunded_ftes": 0.07,
+      "verdict": "Does not materially change the over-cap picture."
+    },
+    "chgme": {
+      "fy2025_formula_payments": 367300000,
+      "quality_bonus_payments": 2200000,
+      "hospitals": 59,
+      "ftes_supported": 8390,
+      "per_fte_average": 43780,
+      "share_of_general_peds_residents": 0.55,
+      "share_of_peds_subspecialty": 0.56,
+      "weighting_applies": true,
+      "fixed_appropriation": true,
+      "guidance": "CHGME is a fixed pot divided among participants. A change in one hospital's weighted count shifts its SHARE, it does not create or destroy federal dollars. Frame as relative share, not absolute dollars forgone. DO NOT run the Medicare DGME arithmetic on a CHGME-funded site.",
+      "source": "HRSA BHW CHGME page; CRS R48636; 90 FR May 27 2025",
+      "confidence": "Confirmed"
+    },
+    "chgme_copy": "CHGME is a fixed appropriation rather than a per-resident entitlement, so a change in your weighted count moves your share of a pot that does not grow or shrink. That is why no dollar figure appears here.",
+    "over_cap_copy": "An additional resident FTE draws no Medicare GME support at all, so an extended year is funded entirely from clinical revenue.",
+    "under_cap_copy": "The three-year rolling average smooths when this lands in your cost report rather than removing it.",
+    "other_copy": "We do not model your funding stream. Enter your own per-FTE figure if you want it in the threshold.",
+    "other_streams": {
+      "medicaid_gme_ffs_fy2023": 4700000000,
+      "medicaid_gme_all_sfy2022": 7400000000,
+      "va_gme_fy2023": 2040000000,
+      "va_ftes": 11300,
+      "va_per_fte": 176699,
+      "thcgme_fy2023": 119300000,
+      "thcgme_per_fte_fy2025": 160000
+    }
+  },
+
+  "accreditation_risk": {
+    "scope": "Definitions, terminology precision, and the no-cost-data finding. All base rates, fees, requirements, machinery, and tail figures live in band_c_documented_properly, which is the single source of truth for anything rendered.",
+    "authoritative_block": "band_c_documented_properly",
+    "definitions": {
+      "citation": "A finding of failure to comply substantially with a particular requirement. Programs must respond to each citation through the ADS Annual Update.",
+      "area_for_improvement": "Communicates a concern, is considered less serious than a citation, and does not require a response.",
+      "adverse_action": "An accreditation action resulting from a determination of substantial non-compliance. Appealable statuses are Initial Accreditation with Warning, Continued Accreditation with Warning, Probationary Accreditation, Accreditation Withheld, Withdrawal, and Expedited Withdrawal.",
+      "source": "ACGME Glossary of Terms",
+      "confidence": "Confirmed"
+    },
+    "terminology_precision": [
+      "There is no status called 'Accreditation with Warning'. There are two: Initial Accreditation with Warning (Policy 17.30, one year) and Continued Accreditation with Warning (17.60).",
+      "Probation is formally Probationary Accreditation (17.70). It requires a confirmatory site visit, triggers annual review, and cannot exceed two consecutive annual reviews in that status.",
+      "Accreditation Withheld is a decision on an application, not a sanction on an operating program. Do not use it as a mid-ladder rung."
+    ],
+    "a_citation_is_not_an_adverse_action": {
+      "worked_example": "Internal Medicine AY2024-25: 79 programs cited, 339 citations, while 2,857 of 2,874 established IM programs (99.4%) still held plain Continued Accreditation.",
+      "confidence": "Confirmed"
+    },
+    "citation_finding_caveats": [
+      "The citations are about evaluation process, not assessment quality. The cited deficiencies are multiple and multisource evaluators, confidentiality of evaluations, end-of-rotation timeliness, faculty evaluation completion, portfolio existence, and verification of readiness for autonomous practice. A voice-AI platform addresses multisource evidence, timeliness, and defensible documentation of communication competencies. It does not address confidentiality architecture, faculty completion behavior, or evaluator diversity on its own.",
+      "Milestones reporting and CCC function are absent from frequent citation categories across all five specialty decks. Do not claim either.",
+      "Pediatrics is the exception and it is the core market. The panel is specialty-aware: show a specialty's own citation rank where it is published, stay silent where it is not."
+    ],
+    "no_cost_data_exists": {
+      "finding": "There is no published cost for a citation response, a Warning, or a Probation.",
+      "case_study": "The single peer-reviewed account of a program working through probation (University of Missouri, 16 citations, two-year turnaround, July 2008 to July 2010) reports the structural changes made and no hours and no dollars.",
+      "also_unsourced": [
+        "program coordinator hours per citation",
+        "legal fees for appeals beyond ACGME's own $10,000",
+        "consultant rates other than AAFP's published $750 for 90 minutes and $1,500 for 180 minutes",
+        "the count of Institutional Reviews per year",
+        "any study of resident or faculty attrition following an adverse action"
+      ],
+      "why_it_cannot_be_a_dollar_line": "An expected-value calculation needs P(event) x Cost(event) x Attribution. The first term is sourceable with unusual precision. The second does not exist. The third is structurally unmeasurable, because assessment is one of roughly twelve citation categories and the top category in most specialties is workload and faculty resourcing, which no training tool touches.",
+      "confidence": "Confirmed as an absence"
+    },
+    "do_not_use": [
+      "Rising ACGME compliance burden. Wrong and getting more wrong. Program 10-Year Accreditation Site Visits were discontinued in October 2023. The CLER program concluded in fall 2025 after four cycles and 13 years. Effective February 9, 2026 ACGME suspended enforcement of nine Common Program Requirements including 5.5.h, the program Self-Study, and 5.5.f. The direction of travel is deregulatory and a well-informed DIO will correct anyone who says otherwise.",
+      "CLER visit preparation as a recurring cost. The program no longer runs visits. The CLER national reports remain citable as evidence that ACGME treats teaming, professionalism, and supervision as first-order concerns. Preparation burden is not a live cost.",
+      "Program Self-Study as a burden ClinicalSim reduces. Enforcement suspended February 2026. The Annual Program Evaluation (5.5.g) is still required. Institutional Self-Study status for 2026 is unconfirmed and needs verification before any DIO-facing claim.",
+      "'Milestones reporting and CCC function are common citation areas.' Not sourceable. Neither appeared as a frequent citation or AFI theme across five specialty decks. They are the mechanisms reviewers examine, not what programs get cited for."
+    ],
+    "sources": [
+      "https://www.acgme.org/globalassets/pfassets/programrequirements/2026-prs/list-of-suspended-common-program-requirements-effective-february-2026.pdf",
+      "https://support.acgmecloud.org/hc/en-us/articles/38390456385815-Changes-to-Program-Self-Study-and-10-Year-Accreditation-Site-Visit-Dates",
+      "https://www.acgme.org/newsroom/e-communication/2025/december-22-2025/"
+    ]
+  },
+
+  "band_c_documented_properly": {
+    "is_priced": false,
+    "has_total": false,
+    "header": "Documented properly.",
+    "subhead": "We are not going to put a number on this one. If you have run a GMEC Special Review, you already know what it cost you.",
+    "rationale": "Base rates are published and precise. Cost of an adverse action is published nowhere, including in the only peer-reviewed probation case study. Attribution from a training tool to an avoided citation is not supportable. So: mechanism, frequency, and regulation numbers, with no dollar assigned.",
+    "blocks": [
+      "surviving_requirements",
+      "what_reviewers_examine",
+      "citation_rank_by_specialty",
+      "base_rates",
+      "institutional_machinery",
+      "public_confidential_asymmetry",
+      "hard_fees_collapsed",
+      "tail_scenario_collapsed"
+    ],
+    "surviving_requirements": ["5.1", "5.1.a", "5.1.a.1", "5.1.b", "5.1.c", "5.2", "5.2.c", "5.3.c", "5.3.d", "5.3.e"],
+    "surviving_requirements_detail": [
+      { "requirement": "5.1", "demands": "Direct observation and feedback each rotation", "artifact": "A timestamped record of each practice conversation with the transcript, the audio, and the rubric scores the encounter produced." },
+      { "requirement": "5.1.a", "demands": "Evaluation documented at completion of the assignment", "artifact": "A per-encounter report generated when the encounter ends, not reconstructed later from memory." },
+      { "requirement": "5.1.a.1", "demands": "Blocks longer than 3 months documented at least every 3 months", "artifact": "A dated series per learner, so any interval a reviewer picks already has evidence in it." },
+      { "requirement": "5.1.b", "demands": "Objective performance evaluation based on the Competencies and the specialty-specific Milestones", "artifact": "Rubric scores mapped to named ICS and professionalism subcompetencies, with the transcript line that produced each score." },
+      { "requirement": "5.1.c", "demands": "Program director reviews the documented semiannual evaluation with each resident", "artifact": "A per-learner history the PD opens in the 1:1, showing what changed between encounters rather than a single point rating." },
+      { "requirement": "5.2 / 5.2.c", "demands": "Final evaluation, including verification of readiness for autonomous practice", "artifact": "The full longitudinal record of communication performance, exportable, with dates and scores intact." },
+      { "requirement": "5.3.c / 5.3.d / 5.3.e", "demands": "CCC reviews all evaluations at least semiannually and determines each resident's Milestones progress", "artifact": "A CCC-facing view of every learner's ICS and professionalism evidence, assembled before the meeting rather than during it." }
+    ],
+    "requirements_source": "ACGME Common Program Requirements (Residency) 2026",
+    "requirements_url": "https://www.acgme.org/globalassets/pfassets/programrequirements/2026-prs/cprresidency_2026.pdf",
+    "what_reviewers_examine": {
+      "quote": "Site visitors may verify the information provided through spot checks of resident files and interviews as needed. Reviewers look for evidence of multiple methods and multiple evaluators as well as alignment between the methods of assessment and the skill being assessed, and a structured mechanism with ongoing monitoring by a designated individual to ensure timely completion.",
+      "cite": "ACGME, Guide to the Common Program Requirements, V.A.1 Resident Formative Evaluation Documentation",
+      "url": "https://www.acgme.org/globalassets/PDFs/commonguide/VA1_Evaluation_ResidentFormativeEval_Documentation.pdf",
+      "confidence": "Confirmed"
+    },
+    "citation_rank_by_specialty": {
+      "otolaryngology_hns": { "rank": 1, "detail": "Evaluation of Residents, 7 of 48 core citations", "afi_rank": 2 },
+      "internal_medicine": { "rank": 2, "of": 12, "detail": "inadequate evaluation: confidential, end-of-rotation, faculty" },
+      "diagnostic_radiology": { "rank": 5, "of": 5, "detail": "multisource evaluation, resident portfolio, end-of-rotation evaluations" },
+      "pmr": { "rank": null, "theme": "headline area-for-improvement theme", "detail": "infrequent verbal feedback, and lacking verification of the resident's ability to enter autonomous practice" },
+      "obgyn": { "rank": null, "theme": "named recurring theme", "detail": "feedback and evaluation gaps" },
+      "pediatrics": { "rank": null, "theme": null, "detail": "DOES NOT APPEAR in top citation themes. Render nothing for pediatrics." },
+      "source": "ACGME Review Committee 2026 AEC specialty update decks",
+      "ui_rule": "Render only the user's own specialty. Never show another specialty's rank.",
+      "general_statement": "Evaluation and assessment is among the top citation categories in multiple specialties, first in otolaryngology and second in internal medicine, and the cited deficiencies are documentation-process deficiencies rather than assessment-quality ones."
+    },
+    "base_rates": {
+      "total_programs": 13762,
+      "continued_accreditation": { "count": 12404, "share": 0.901 },
+      "initial_accreditation": { "count": 1134, "share": 0.082 },
+      "warning": { "count": 143, "share": 0.01 },
+      "probation": { "count": 30, "share": 0.002 },
+      "withdrawal": { "count": 51, "share": 0.004 },
+      "four_year_series": { "warning": [136, 130, 144, 143], "probation": [25, 28, 27, 30], "withdrawal": [34, 52, 50, 51] },
+      "sponsoring_institutions": 914,
+      "si_probation": 5,
+      "si_withdrawal": 3,
+      "random_site_visits": { "fy2024": 150, "fy2025": 200, "fy2026": 250, "adverse_rate_given_visit": 0.054, "adverse_rate_basis": "of 148 completed visits, 7 produced a Warning and 1 a Probation", "adverse_rate_confidence": "Estimated" },
+      "year": "AY2024-25",
+      "source": "ACGME Data Resource Book AY2024-2025 Table A.3; ACGME Annual Report 2024-2025 p.9",
+      "citation_note": "Cite the Data Resource Book, not the Annual Report. The Annual Report folds Warning into Continued Accreditation.",
+      "confidence": "Confirmed"
+    },
+    "institutional_machinery": [
+      { "requirement": "1.15.a.1", "text": "GMEC Special Review is mandatory for any program on Initial Accreditation with Warning, Continued Accreditation with Warning, or an adverse status, producing a timely report describing quality improvement goals, corrective actions, and the process for GMEC monitoring of outcomes including timelines." },
+      { "requirement": "1.14.a.3", "text": "The Annual Institutional Review must include each program's accreditation and recognition statuses and citations." },
+      { "requirement": "1.12.a", "text": "The GMEC must oversee the accreditation and recognition statuses of the Sponsoring Institution and each of its ACGME-accredited programs." }
+    ],
+    "institutional_machinery_source": "ACGME Institutional Requirements, effective 2025-09-03",
+    "institutional_machinery_url": "https://www.acgme.org/globalassets/pfassets/programrequirements/2025-reformatted-requirements/institutionalrequirements_2025_reformatted.pdf",
+    "renumbering_warning": "The Sept 2025 Institutional Requirements replaced Roman numerals with decimals. Old IV.O.2 is now 4.15.b, I.B.4.a.(1) is 1.12.a, I.B.6 is 1.15.a. Citing old numbers reads as out of date to a DIO.",
+    "asymmetry": {
+      "status_public": true,
+      "past_statuses_public": true,
+      "citations_public": false,
+      "citations_quote": "Due to confidentiality agreements with the Sponsoring Institutions the ACGME accredits, the ACGME is unable to share any citations resulting from a complaint, specifics regarding accreditation decisions, or correspondence.",
+      "applicant_disclosure": { "claim": "institutions on Probationary Accreditation must share that status with current residents, fellows and applicants", "confidence": "Inferred", "caveat": "From an institution restating ACGME's instruction, not retrievable ACGME policy text. Confirm with ACGME before using in marketing.", "render": false },
+      "known_gap": "No study links accreditation status to Match outcomes, applicant behavior, or SOAP. State this on the page."
+    },
+    "surviving_the_suspensions": {
+      "claim": "Every assessment requirement survived the February 2026 suspensions. The requirements ClinicalSim serves are the ones ACGME kept when it was cutting.",
+      "render": false,
+      "confidence": "Inferred",
+      "blocked_on": "The changeset names three of the nine suspended Common Program Requirements (5.5.h, the program Self-Study, and 5.5.f). The claim depends on none of the other six being a 5.1, 5.2, or 5.3 item. Read the suspended-requirements PDF before rendering.",
+      "url": "https://www.acgme.org/globalassets/pfassets/programrequirements/2026-prs/list-of-suspended-common-program-requirements-effective-february-2026.pdf"
+    },
+    "hard_fees": {
+      "annual_program_over_5_residents": 6200,
+      "annual_program_5_or_fewer": 5125,
+      "si_annual_pct_of_program_fees": 0.025,
+      "appeal": 10000,
+      "cancelled_site_visit": 3200,
+      "reapplication_after_withdrawal": 7380,
+      "year": 2026,
+      "scaling": "two-tier at 5 residents only. A 40-resident program pays the same annual fee as a 6-resident one.",
+      "url": "https://www.acgme.org/about/policies-and-related-materials/fees/",
+      "confidence": "Confirmed",
+      "framing": "These are the fees themselves, before a single hour of anyone's time. ClinicalSim does not claim to prevent them, and they are here only to give the rest of the panel a floor you can hold on to.",
+      "framing_internal": "A floor that excludes all labor. Not an ROI numerator."
+    },
+    "tail_scenario": {
+      "medicare_gme_per_resident_year": 171000,
+      "range": [68000, 279000],
+      "dollar_year": 2018,
+      "twelve_resident_example": 2050000,
+      "base_rate_to_show_adjacent": 0.004,
+      "cap_transfer_rule": "voluntary and at the home hospital's sole discretion, 42 CFR 413.79(h)(3)(ii). Closure creates no new funded slots.",
+      "hahnemann": { "year": 2019, "displaced": 571, "programs_closed": 34, "gme_slot_sale": 55000000, "per_slot": 100000, "stalking_horse_bid": 7500000, "absorbed_by_consortium": 265, "opposed_by": ["CMS", "DOJ"], "placement_cost_note": "The slot sale price was litigated in open court. What it cost to place the trainees was never published." },
+      "crozer": { "year": 2025, "residents_placed": 68, "cost_note": "68 or more residents placed across Penn, Jefferson, Temple, and Main Line. No cost figure published." },
+      "ui_rule": "Render the base rate in the same visual unit as the dollar figure so neither can be read without the other. Never multiply them."
+    }
+  },
+
+  "band_b_institutional": {
+    "presentation": "Separate non-additive cards. No total. Default attribution low or zero. One line beneath: 'These exposures overlap. A single poor discharge conversation can appear in three of them. Combined effect is smaller than the sum.'",
+    "phase": "Phase 3. Not implemented in the phase 1-2 build.",
+    "overlap_haircut": { "suggested_range": [0.4, 0.7], "confidence": "Inferred", "note": "No source quantifies the overlap. Label as an assumption if used." },
+    "primary_denominator": {
+      "field": "medicare_base_operating_drg_payments",
+      "why": "Bed count and total discharges are wrong denominators. They include non-Medicare volume and non-operating payments.",
+      "where_to_get_it": "CMS HRRP and VBP supplemental data files on the IPPS final rule page, or the Medicare cost report."
+    },
+
+    "vbp_communication": {
+      "formula": "base_operating_drg * 0.02 * 0.25 * 0.50",
+      "coefficient": 0.0025,
+      "upper_bound_with_consistency_points": 0.0035,
+      "example_on_100m": 250000,
+      "withhold_fy2026": 0.02,
+      "total_redistributed_fy2026": 1700000000,
+      "hospitals_fy2026": 2532,
+      "average_per_hospital": 671000,
+      "pce_domain_weight": 0.25,
+      "hcahps_dimensions_fy2026": 8,
+      "communication_dimensions": ["Communication with Nurses", "Communication with Doctors", "Communication about Medicines", "Discharge Information", "Care Transition"],
+      "non_communication_dimensions": ["Responsiveness of Staff", "Cleanliness and Quietness", "Overall Rating"],
+      "communication_share_of_domain_points": 0.5,
+      "two_sided": true,
+      "version_warning": "PCE drops to 6 HCAHPS dimensions FY2027-FY2029 and rises to 9 for FY2030. This coefficient is FY2026-only.",
+      "fy2026_thresholds_benchmarks": {
+        "communication_with_nurses": [76.41, 85.57],
+        "communication_with_doctors": [76.83, 85.93],
+        "communication_about_medicines": [58.06, 70.11],
+        "discharge_information": [85.54, 91.1],
+        "care_transition": [48.55, 60.85]
+      },
+      "one_point_nurse_comm_in_tps_points": 0.245,
+      "dollars_per_hcahps_point": "BLOCKED. Requires the FY2026 linear exchange function slope and mean national TPS, neither verified. Do not publish.",
+      "sources": "CMS FY2026 IPPS Final Rule Fact Sheet; FY2026 Hospital VBP Quick Reference Guide; HANYS VBP-2026; HFMA CMS-1833-P summary",
+      "confidence": "Confirmed on components, Estimated on the coefficient"
+    },
+
+    "hcahps_national_2026": {
+      "communication_with_nurses_topbox": 80,
+      "communication_with_doctors_topbox": 80,
+      "communication_about_medicines": 62,
+      "discharge_information": 87,
+      "overall_rating": 72,
+      "response_rate": 23,
+      "hospitals": 3958,
+      "period": "July 2024 - June 2025 discharges",
+      "doctor_comm_percentiles": { "p5": 71, "p10": 73, "p25": 76, "p50": 79, "p75": 84, "p90": 87, "p95": 90 },
+      "nurse_comm_percentiles": { "p5": 70, "p10": 73, "p25": 76, "p50": 80, "p75": 84, "p90": 88, "p95": 90 },
+      "confidence": "Confirmed"
+    },
+
+    "readmissions": {
+      "hrrp_max_penalty": 0.03,
+      "hrrp_average_penalty_fy2026_proposed": 0.0042,
+      "hrrp_average_penalty_fy2026_preliminary": [0.0033, 0.0035],
+      "hospitals_penalized_proposed": 2828,
+      "hospitals_penalized_pct_proposed": 0.828,
+      "hospitals_penalized_pct_preliminary": 0.782,
+      "penalized_1pct_or_more": 0.081,
+      "conflict_warning": "Two CMS releases disagree. Cite one and name it.",
+      "fy2022_anchor": { "total_penalties": 521000000, "hospitals": 2499, "average_penalty": 0.0064, "at_maximum": 39, "per_penalized_hospital": 209000 },
+      "cumulative": { "penalized_at_least_once": 2920, "eligible": 3139, "penalized_all_10_years": 1288, "never_penalized": 219 },
+      "cost_per_30day_readmission_medicare": 18100,
+      "cost_per_30day_readmission_all_payers": 17700,
+      "cost_vintage": "2020 dollars",
+      "ahrq_internal_conflict": "SB304 says $16,300, SB307 says $17,700. Pick one and say why.",
+      "per_readmission_hrrp_value": "DO NOT PUBLISH. HRRP is nonlinear, works off condition-specific excess readmission ratios, and is zero for hospitals already below their expected rate.",
+      "sources": "CMS HRRP; HFMA CMS-1833-P; Becker's / Advisory Board on Sept 2025 CMS preliminary file; KFF 2021; AHRQ HCUP SB307"
+    },
+
+    "discharge_evidence": {
+      "project_red": {
+        "cite": "Jack BW et al., Ann Intern Med 2009;150(3):178-187",
+        "irr": 0.695,
+        "ci": [0.515, 0.937],
+        "p": 0.009,
+        "rates": "0.314 vs 0.451 ED visits plus readmissions per person per 30 days",
+        "cost_reduction": 0.339,
+        "savings_per_person": 412,
+        "design": "single-site RCT, Boston Medical Center, 738 analyzed, mean age 49.9, 51% Black, 48% Medicaid",
+        "delivery_cost": "~1.5h nurse discharge advocate plus ~30 min pharmacist per patient",
+        "confidence": "Confirmed",
+        "presentation": "effect size from a specific population, NOT a multiplier for a hospital's own volume"
+      },
+      "teach_back_meta_analysis": {
+        "cite": "Oh et al., Patient Educ Couns 2023, PMID 36411152, doi 10.1016/j.pec.2022.107559",
+        "odds_ratio": "UNVERIFIED",
+        "status": "Citation Confirmed. Effect size, trial count, pooled sample, and designs all UNVERIFIED. ScienceDirect and PubMed blocked even the free abstract.",
+        "action": "DO NOT PUBLISH the ~0.40 OR until someone with journal access reads it. Highest-priority gap."
+      }
+    },
+
+    "safety_events": {
+      "guidance": "Use event-type-specific AHRQ costs. No credible generic 'serious safety event' cost figure exists.",
+      "ahrq_2017_incremental_cost_per_event_2015usd": {
+        "clabsi": 48108, "vap": 47238, "ssi": 28219, "vte": 17367,
+        "c_difficile": 17260, "cauti": 13793,
+        "pressure_ulcer": { "value": 14506, "warning": "CI crosses zero" },
+        "fall": { "value": 6694, "warning": "CI crosses zero" },
+        "adverse_drug_event": { "value": 5746, "warning": "CI crosses zero" }
+      },
+      "joint_commission_2024": {
+        "sentinel_events_reviewed": 1575,
+        "yoy_change": 0.12,
+        "falls": 776, "wrong_surgery": 127, "delay_in_treatment": 126, "suicide_self_harm": 122, "retained_object": 119,
+        "communication_contributing_factor_share": "single digits to low teens by event type"
+      },
+      "ipass": {
+        "cite": "Starmer AJ et al., NEJM 2014;371(19):1803-1812",
+        "medical_errors": [24.5, 18.8],
+        "medical_errors_reduction": 0.23,
+        "preventable_adverse_events": [4.7, 3.3],
+        "pae_reduction": 0.3,
+        "scale": "9 pediatric residency programs, 10,740 admissions, prospective pre-post",
+        "note": "no increase in handoff duration or reduction in bedside time",
+        "guidance": "Use the rate pairs, not the bare percentages. AHRQ PSNet and the press releases attribute 23% and 30% to different outcomes."
+      },
+      "DROP": [
+        "'Roughly 66% of sentinel events involve communication failure.' Untraceable and contradicted by current Joint Commission data.",
+        "'Up to 80% of serious errors involve a handoff.' Joint Commission Center press release, Oct 21 2010, word 'estimated', no primary study."
+      ]
+    },
+
+    "nurse_turnover": {
+      "cost_per_rn_turnover": 60090,
+      "cost_per_rn_turnover_label": "Cost per RN departure. (rnHeadcount / 100) x 60090 is the cost of ONE PERCENTAGE POINT of turnover, and must be labelled that way.",
+      "prior_year": 61110,
+      "turnover_rate": 0.176,
+      "all_staff_turnover_rate": 0.185,
+      "total_departures": 324090,
+      "value_per_percentage_point": 294976,
+      "implied_rn_base": 491,
+      "nsi_survey_rn_base_per_hospital": 498,
+      "average_annual_cost_per_hospital": 5190000,
+      "vacancy_rate": 0.086,
+      "unfilled_ftes_per_hospital": 43,
+      "days_to_fill": 78,
+      "national_shortage_positions": 158600,
+      "survey_base": "527 acute care hospitals, 40 states, 262,405 RNs",
+      "source": "2026 NSI National Health Care Retention and RN Staffing Report",
+      "confidence": "Confirmed",
+      "guidance": "Scale the per-point figure to the client's actual RN headcount rather than using $294,976 as-is."
+    },
+
+    "faculty_retention": {
+      "burnout_cost_per_employed_physician_per_year": 7600,
+      "burnout_cost_label": "Han et al. 2019 attributable cost of PHYSICIAN BURNOUT per employed physician per year. This is not a faculty retention figure and must not be labelled as one.",
+      "national_total": 4600000000,
+      "sensitivity_range": [2600000000, 6300000000],
+      "cite": "Han S, Shanafelt TD, Sinsky CA et al., Ann Intern Med 2019;170(11):784-790",
+      "confidence": "Confirmed (verbatim)",
+      "model_scope": "turnover and reduced clinical hours only. Excludes malpractice, error, quality, patient satisfaction.",
+      "provenance_note": "Replacement-cost inputs came from 2016 ASPR benchmarking and 2016 Merritt Hawkins data. The peer-reviewed number sits on industry inputs.",
+      "replacement_cost_per_departure": { "default": 500000, "low": 150000, "high": 1000000, "confidence": "Estimated" },
+      "low_band_build": "recruiter 30000 + sourcing 15000 + interviews 3000 + marketing 3000 + signing bonus 38215 + relocation 11284 + CME 3969 = 104468; plus vacancy coverage 559000 gross billings at 10% margin = 55900; total 160368",
+      "vacancy_coverage_margin_assumption": { "value": 0.1, "status": "UNSOURCED, inserted to avoid the gross-revenue error. Replace with the institution's own margin or with actual locums spend." },
+      "recruiting_incentives_2024_2025": { "signing_bonus": 38215, "relocation": 11284, "cme": 3969, "loan_forgiveness_offered": 117217, "source": "AMN Healthcare Review of Recruiting Incentives" },
+      "faculty_attrition_single_institution": { "overall": 0.115, "assistant": 0.152, "associate": 0.078, "full": 0.096, "clinician_educator_track": 0.089, "cite": "Myers et al., Univ of New Mexico, 2010-2022", "caveat": "Single institution. Do not publish as national." },
+      "pd_burnout": { "im_burnout_prevalence": 0.336, "im_considered_resigning": 0.451, "cite": "O'Connor et al., JGME 2022, 429 PDs, 83% of programs, 61.5% response", "confidence": "Confirmed" },
+      "pd_turnover_rate": "UNSOURCED. O'Connor et al., Am J Med 2019 likely reports it but was inaccessible.",
+      "attribution_factor": { "default": 0.1, "confidence": "Inferred", "label": "assumption, not a finding" },
+      "DO_NOT_USE": [
+        "AMN '$656,000 total cost of one physician search'. $581,000 of it is the replacement's salary and benefits, which you pay regardless. Double counts compensation.",
+        "AMA '$500,000 to more than $1 million per doctor'. No study citation; traces to an Atrius executive estimate in HFMA.",
+        "Mayo Clinic Proceedings '$86,336 per departing PCP'. That is payer-side excess downstream spending, not employer replacement cost."
+      ],
+      "attribution_chain_warning": "Four links: training improves skill (unaddressed), skill lowers burnout (cross-sectional only), burnout drives departure (strongest, OR 1.81 Sinsky 2017), departures cost money (softest input). No randomized or quasi-experimental study links communication or simulation training to physician retention."
+    },
+
+    "breaking_bad_news_burnout": {
+      "odds_ratio": 3.01,
+      "ci": [1.26, 7.19],
+      "p": 0.013,
+      "accurate_phrasing": "two to seven times the odds",
+      "cite": "Messerotti A, Banchelli F, Ferrari S et al., Health Qual Life Outcomes 2020;18:271",
+      "design": "cross-sectional, 226 physicians (211 evaluable), two Italian university hospitals, 60% response, 59% burnout prevalence",
+      "confidence": "Confirmed",
+      "caveat": "Cross-sectional, so the arrow may run the other way. Small n, wide CI, non-US.",
+      "protective_associations": { "good_at_breaking_bad_news": 0.32, "plans_encounter_in_advance": 0.43, "learns_from_literature": 0.21 }
+    },
+
+    "malpractice": {
+      "default_booked_benefit": 0,
+      "default_attribution": 0,
+      "illustrative_sensitivity": { "relative_reduction": [0.05, 0.1], "applied_to_share": 0.4, "effective_range_of_total_claims_cost": [0.02, 0.04], "starts_year": 2, "form": "frequency only, not severity" },
+      "presentation": "Separate, collapsed, clearly labeled 'illustrative liability exposure' panel, default state zero, Candello and Schaffer citations visible on the panel itself. Never in the headline.",
+      "candello_2025": {
+        "communication_factor_share_2014_2024": 0.4,
+        "communication_factor_share_2009_2013": 0.3,
+        "greater_odds_of_indemnity_payment": 0.39,
+        "provider_to_patient_share": 0.63,
+        "provider_to_provider_share": 0.45,
+        "average_indemnity_provider_patient": 338000,
+        "dataset": "over 73,000 closed and 64,000 asserted cases 2014-2024",
+        "denominator_caution": "40% is of ASSERTED cases 2014-2024; 30% is of cases FILED 2009-2013. Not like-for-like.",
+        "internal_conflict": "CRICO's Jan 2026 newsletter gives 60/34/6 ambulatory/inpatient/emergency; the Nov 2025 press release gives 52/41. Read the report before citing either."
+      },
+      "crico_2015": { "cases_filed": 23658, "communication_cases": 7149, "incurred_losses": 1700000000, "deaths": 1744, "avg_indemnity_general_medicine": 386000, "avg_indemnity_obstetrics": 944000, "avg_indemnity_nursing": 328000, "avg_indemnity_surgery": 372000, "avg_indemnity_all_communication": 433000, "provider_provider": 484000, "provider_patient": 381000, "confidence": "Confirmed from report PDF" },
+      "humphrey_2022": { "communication_share": 0.49, "sample": 498, "years": "2001-2011", "mean_cost_ratio": 1.54, "mean_cost_comm": 237600, "mean_cost_noncomm": 154100, "p": 0.005, "dropped_denied_dismissed": [0.54, 0.67], "handoff_involvement": 0.4, "avertable_with_handoff_tool": 0.77, "CORRECTION": "The claim 'over twice as likely to top $1M' is NOT in this paper. There is no $1M threshold analysis. Use the 1.54x cost ratio." },
+      "premium_credits": { "standard_filed": 0.05, "crico_ob_program": 0.1, "crico_anesthesia_2007": 0.19, "recommended_published_band": [0.05, 0.1], "carriers_verified": ["NY Reg 124 statutory ceiling 5%", "MLMIC 5%", "The Doctors Company 5% for 4 CME", "ProAssurance up to 5%", "Coverys 2.5% for 3 courses / 5.0% for 5", "COPIC 10% preferred status", "MedPro structure published, percentage not"], "qualification": "attendance plus a graded project or a post-test at 70-75%. NO carrier credits measured behavioral performance.", "vendor_warning": "A vendor cannot generate a credit. Every credit is filed by a carrier and approved by a state insurance department for a specific named program." },
+      "self_insured": { "reserve_reduction_mechanism": "NONE PUBLISHED", "explanation": "A reserve estimates the cost of claims from events that already happened. Training today cannot change those events. Prospective funding responds to emerging loss experience with a multi-year lag, and modest exposure counts often lack actuarial credibility.", "guidance": "Present avoided expected loss, labeled multi-year and uncertain. Keep out of any headline." },
+      "schaffer_2021": { "cite": "Obstet Gynecol 2021;138(2):246-252", "claim_rates_per_100_coverage_years": [11.2, 5.7], "relative_reduction": 0.49, "p": "<0.001", "two_year_window": [9.2, 5.4, 0.043], "one_year_window": [8.8, 5.3, 0.162], "one_year_significant": false, "dose_response": [6.3, 2.1, 1.3], "severity_effect": "none. No significant difference in indemnity paid, percent paid, or injury severity.", "design": "retrospective before-and-after, 292 self-selected ob-gyns, one carrier, 2002-2019, no control group, no secular-trend adjustment" },
+      "pettker_2014": { "cite": "AJOG 2014;211(4):319-325", "claims_per_1000_deliveries": [1.31, 0.64], "claim_reduction": 0.53, "payments_per_1000_deliveries": [1141638, 63470], "payment_reduction": 0.95, "program_cost_5yr": 810000, "stated_roi": "58:1 liability-side", "caveat": "Single institution, no external control, nine program elements, cannot isolate which worked. Attributing the 95% drop to communication training overreaches." },
+      "pattern_to_state": "The interventions that moved claims were multi-year, multi-component institutional programs, delivered mostly to attending physicians, in obstetrics. None was a standalone communication training tool and none was studied in residents.",
+      "trainee_claims": { "cite": "Myers LC et al., Acad Med 2020;95(8):1215-1222", "trainee_involved": 581, "controls": 2610, "drawn_from": 30973, "residents_share": 0.81, "named_as_defendant": [0.32, 0.09], "inadequate_supervision": 0.24, "procedure_related_share_of_those": 0.74, "specialty_odds": { "oral_surgery_dentistry": 7.99, "obgyn": 1.85, "ed": 1.65, "procedures": 1.58 }, "no_rate_available": "reports odds of trainee involvement, not claims per resident-year", "no_severity_finding": "trainee involvement was the outcome variable. Any claim that resident involvement makes claims more expensive is UNSUPPORTED." },
+      "resident_coverage": { "acgme_requirement": "Institutional Requirement IV.F.1 requires professional liability coverage including legal defense", "typical_structure": "institutional or affiliate policy at no cost to the trainee, prepaid tail on claims-made policies, moonlighting excluded", "representative_limits": "$1M/$3M to $30M per occurrence", "cost_per_resident_per_year": "UNSOURCED. Bundled into institutional or captive programs, not separately rate-filed. Get from a pilot institution under NDA." }
+    }
+  },
+
+  "claims_history_field": {
+    "include": false,
+    "reason": "Peer review privilege is state-created (49 states plus DC, not New Jersey), construed narrowly, with no federal document privilege under HCQIA. PSQIA-protected patient safety work product is disclosable only under enumerated exceptions with OCR penalties for reckless disclosure. No case law was found holding that a vendor web form waives the privilege, so do not assert that it does. The practical objection is stronger: a risk manager or general counsel who sees the field will not fill it in and will likely stop using the tool.",
+    "instead": "Ship national benchmarks as sourced defaults. Ask only for non-sensitive operational inputs. Offer an offline worksheet that computes locally in the browser with nothing transmitted, and say so on the page."
+  },
+
+  "privacy_copy": "Nothing you enter is sent anywhere. This calculator runs entirely in your browser.",
+
+  "deliberately_left_out": [
+    { "item": "Routine evaluation-form completion", "reason": "Real and probably larger than the CCC burden, but minutes-per-form and forms-per-trainee-per-year are both unsourced." },
+    { "item": "Resident replacement cost", "reason": "Nothing in RAND, ACGME, AAMC, HRSA, CRS, or the peer-reviewed literature prices recruiting a mid-cycle replacement or covering a vacant slot." },
+    { "item": "The teach-back effect size", "reason": "Citation confirmed, effect size unverified. It is the closest published proxy for what this product claims to move, and we will not publish it until someone reads the paper." },
+    { "item": "Standardized patient displacement", "reason": "Not the positioning and not honest. ClinicalSim extends an SP program rather than replacing it." },
+    { "item": "A dollar figure anywhere in Band C", "reason": "Base rates are precise, the cost of an adverse action is published nowhere, and attribution from a training tool to an avoided citation is not supportable." }
+  ],
+
+  "sp_comparison_context_only": {
+    "displacement_claim": false,
+    "sp_hourly_rate_us_2026": { "low": 20, "high": 32, "invasive_teaching_associate": [60, 115] },
+    "published_rate_cards": { "ucla": 32, "columbia": 30, "utah_chargeout": [26, 30], "baylor_onsite": 25.5, "ohio_assessment": 25, "penn": 23, "uc_riverside": 23, "salus": 22, "usc_floyd": [20, 25] },
+    "fully_loaded_per_encounter": { "internal_rates": 47.38, "external_rates": 67.48, "headline_range": [45, 70], "sp_pay_only": [10, 15], "unit": "USD per faculty-observed 15-20 minute encounter", "confidence": "Estimated", "basis": "University of Utah College of Nursing published fee schedule: room + SP + faculty facilitator, divided by 3 encounters per hour", "excludes": ["case development", "SP recruitment and turnover", "SP training amortization", "scheduling labor", "AV recording and review", "capital recovery"], "no_published_us_figure_exists": true },
+    "osce_totals": { "uk_brown_2015": { "total_gbp": 65328, "per_student_gbp": 353, "students": 185, "examiner_share": 0.412 }, "germany_rau_2011": { "personnel_eur": 12468, "per_student_eur": 86, "per_encounter_eur": 21.5, "examiner_share_of_personnel": 0.525, "sp_share": 0.119 }, "iran_2024": { "total_usd": 3749.61, "per_student_usd": 37.5, "warning": "SPs were unpaid volunteers and the facility was excluded. Do not place next to a US figure." } },
+    "economic_to_financial_multiplier": { "value": 1.7, "cite": "Ward EC et al., Int J Speech-Lang Pathol 2023;25(5), 21 iterations, 6 universities, 176 students", "meaning": "what it really costs once you count the time nobody invoices", "confidence": "Estimated from two Confirmed figures" },
+    "headline_fact": "Faculty and examiner time is the largest single cost line in every reachable OSCE cost study, at 41 to 53 percent of total.",
+    "commercial_pricing": { "vitaltalk_faculty_dev_list": 7210, "vitaltalk_faculty_dev_current": 6990, "vitaltalk_2session_virtual": [798, 997], "vitaltalk_per_learner_hour": [100, 125], "ach_fundamentals": 799, "vitaltalk_scale_aug_2025": { "institutions": 389, "faculty": 1533, "professionals_taught": 53000 }, "notes": ["The $7,210 deck figure VERIFIES as list price.", "It buys train-the-trainer capacity, not a trained clinician. Comparable unit is a faculty seat.", "Institutions with internal faculty deliver the downstream course free (e.g. ECU Health, 4 hours, 4 CME).", "Learner-to-faculty ratio is NOT published. The deck's 'about 6 learners per faculty' needs a source or should come out."] },
+    "unsourced_drop": "'$200K to $1M a year per hospital on communication or patient experience courses.' No source found. Drop.",
+    "honest_comparison": { "sp_advantages": ["a body to examine", "unscripted human affect", "social stakes of being observed", "first-person feedback from inside the role", "multi-person family and interprofessional scenarios", "established psychometric validity for high-stakes summative assessment"], "sp_limits": ["cannot run at 11pm", "cannot run 40 times for one learner", "cannot run identically for every learner", "cannot scale without adding SP hours linearly"] }
+  },
+
+  "skills_decay": {
+    "three_month_claim": { "status": "CONTRADICTED. Remove from deck slides 3 and 19.", "reason": "Fallowfield 2003 RCT measured 160 UK oncologists at 3 months and again 12 months later and found trained behaviors held." },
+    "fallowfield_2003": { "cite": "Fallowfield L, Jenkins V, Farewell V, Solis-Trapala I, Br J Cancer 2003;89(8):1445-1449", "design": "2x2 factorial RCT, 160 UK oncologists, 34 centers, 74 retained at 12 months, videotaped consultations coded with MIPS", "retained": { "interruptions": -0.81, "information_summarizing": 0.38, "open_and_focused_questions": "maintained" }, "decayed": { "empathic_expressions": -0.54, "p": 0.001 }, "confidence": "Confirmed", "usable_argument": "Empathy is the one thing that fades, and empathy under time pressure is exactly what repeated low-stakes practice is for." },
+    "tatel_ackerman_2025": { "cite": "Tatel CE, Ackerman PL, Procedural skill retention and decay: a meta-analytic review, Psychological Bulletin 2025", "scale": "457 reports, 1,344 effect sizes", "decay_rate_accuracy_sd_per_month": 0.08, "decay_rate_speed_sd_per_month": 0.06, "half_gains_lost_months": { "accuracy": 6.5, "mixed": 11, "speed": 13 }, "confidence": "Confirmed", "caveat": "Procedural skill, not communication skill. Say so." }
+  },
+
+  "internal_inconsistencies_to_resolve": [
+    { "issue": "Program price", "detail": "Deck says $25,000-$40,000. July ROI brief list math gives $17,400 for 50 residents and $20,880 for 60. The v2 build uses $50/user/month = $600/learner/year, user-editable, which makes the live /pricing page's published $29/user/month wrong. Separate decision." },
+    { "issue": "Value anchor", "detail": "Deck moved to faculty-time. pricing-page-content-v3.md still leads with 'replaces $27,000-$68,000 of SP spend' and ClinicalSim-Bottom-Up-Build-v1 is built on 'priced to displace, not to add'. Both need to move to the faculty-time anchor." },
+    { "issue": "Nabors citation year", "detail": "Change 1 gives Arch Med Sci 2016; the v1 JSON gives 2017;13(1):201-209. The v1 form is kept because it carries volume and pages. Confirm." }
+  ]
+}

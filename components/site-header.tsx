@@ -249,6 +249,16 @@ export function SiteHeader() {
                 </Link>
               ))}
               <div className="border-t border-cs-gray/30 mt-1 pt-1">
+                {/* The ROI calculator lives inside this dropdown rather than as
+                    a tenth top-level item: the bar is measured at nine and the
+                    nav breakpoint above assumes that count. */}
+                <Link
+                  href="/roi-calculator"
+                  className="block px-4 py-2.5 text-sm text-cs-dark-blue/85 hover:bg-cs-cloud/70 transition-colors"
+                  onClick={() => setSolutionsOpen(false)}
+                >
+                  ROI Calculator
+                </Link>
                 <Link
                   href="/solutions"
                   className="block px-4 py-2.5 text-sm font-medium text-cs-dark-blue hover:bg-cs-cloud/70 transition-colors"
@@ -441,6 +451,13 @@ export function SiteHeader() {
                         <span className="text-sm">{solution.title}</span>
                       </Link>
                     ))}
+                    <Link
+                      href="/roi-calculator"
+                      className="block px-3 py-2.5 text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      ROI Calculator
+                    </Link>
                     <Link
                       href="/solutions"
                       className="block px-3 py-2.5 text-sm font-medium text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors mt-1"
