@@ -270,7 +270,7 @@ export const remediationPageData: RemediationPageData = {
     {
       area: "Healthcare Technology",
       credentials: [
-        "HIPAA-compliant platform architecture",
+        "No real patient data, so no PHI exposure",
         "Voice-based AI simulation",
       ],
       colorVariant: "light-blue",

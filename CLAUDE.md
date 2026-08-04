@@ -78,8 +78,10 @@ The project uses shadcn/ui components which are:
   - **IMPORTANT**: When multiple agents work on this codebase, always pull latest changes before making commits to avoid conflicts with blog post additions
 
 ### Authorship (E-E-A-T)
-- **Author registry**: `lib/authors.ts` — 5 real team members + "ClinicalSim.ai Team" fallback
-- **Assigning an author to a post**: Add `authorId: "vinod-havalad"` (or any valid author ID) to the post entry in `lib/posts.ts`. Valid IDs: `vinod-havalad`, `lauren-rissman`, `gillian-brennan`, `ben-conway`, `will-meyer`
+- **Author registry**: `lib/authors.ts` — 6 real team members + "ClinicalSim.ai Team" fallback
+- **Assigning an author to a post**: Add `authorId: "vinod-havalad"` (or any valid author ID) to the post entry in `lib/posts.ts`. Valid IDs: `ben-conway`, `will-meyer`, `lauren-rissman`, `vinod-havalad`, `gillian-brennan`, `jacqueline-ponczek`
+- **`lib/authors.ts` is the ONLY source of valid IDs.** Before writing an `authorId`, grep the registry rather than trusting the list above; it has drifted before. An unrecognized ID fails silently, rendering as "ClinicalSim.ai Team" with no error.
+- **`authorId` and `reviewedBy` are factual claims about what a named person did.** Never assign either without that person's confirmation, and never attach a name to a post carrying unsourced or contested figures.
 - **Default behavior**: Posts without `authorId` (or with no match) render as "ClinicalSim.ai Team" with a Users icon
 - **Individual authors** render with colored initials avatar + name + title via `components/author-byline.tsx`
 - **JSON-LD**: Article schema automatically uses `Person` for individual authors and `Organization` for team posts

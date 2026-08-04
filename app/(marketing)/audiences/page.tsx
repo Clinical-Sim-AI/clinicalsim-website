@@ -8,16 +8,16 @@ import { JsonLd } from "@/components/json-ld"
 import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Who We Serve: Program Directors, DIOs, Sim Directors & CCCs",
-  description: "ClinicalSim serves every stakeholder in the remediation process — program directors seeking structured toolkits, DIOs standardizing remediation across programs, simulation center directors extending SP capacity, and CCCs needing milestone-aligned assessment data.",
+  title: "Who We Serve: GME Leaders, Sim Directors, Risk, Quality & CCCs",
+  description: "ClinicalSim serves the roles that own clinical communication: program directors and DIOs, simulation center directors, clinical competency committees, medical school leadership, faculty and clinician educators, risk and patient safety offices, and quality and patient experience leaders.",
   openGraph: {
     title: "Who ClinicalSim.ai Serves",
-    description: "Communication remediation tools for program directors, DIOs, simulation centers, and clinical competency committees.",
+    description: "Clinical communication practice and measurement for GME leadership, simulation centers, CCCs, faculty developers, risk offices, and quality and patient experience teams.",
     url: "https://clinicalsim.ai/audiences",
   },
   twitter: {
     title: "Who ClinicalSim.ai Serves",
-    description: "Communication remediation tools for program directors, DIOs, simulation centers, and CCCs.",
+    description: "Clinical communication practice and measurement for GME leadership, simulation centers, CCCs, risk offices, and quality teams.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/audiences",
@@ -34,9 +34,9 @@ export default function AudiencesPage() {
           {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            name: "Who We Serve: Program Directors, DIOs, Sim Directors & CCCs",
+            name: "Who We Serve: GME Leaders, Sim Directors, Risk, Quality & CCCs",
             description:
-              "ClinicalSim serves every stakeholder in the remediation process — program directors, DIOs, simulation center directors, and clinical competency committees.",
+              "ClinicalSim serves the roles that own clinical communication: program directors and DIOs, simulation center directors, clinical competency committees, medical school leadership, faculty and clinician educators, risk and patient safety offices, and quality and patient experience leaders.",
             url: "https://clinicalsim.ai/audiences",
             mainEntity: {
               "@type": "ItemList",
@@ -77,13 +77,13 @@ export default function AudiencesPage() {
       <section className="relative px-6 py-16 md:py-24 text-center bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
-            Built for every stakeholder in the remediation process
+            Built for every role that owns clinical communication
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-4 max-w-3xl mx-auto">
-            From the program director managing a remediation case to the CCC reviewing milestone data, <span className="text-cs-electric font-medium">ClinicalSim serves every role.</span>
+            From the program director managing a remediation case to the risk office reading claims data, <span className="text-cs-electric font-medium">the failure mode is the same conversation.</span>
           </p>
           <p className="text-base md:text-lg text-cs-cloud font-light mb-8 max-w-2xl mx-auto">
-            Structured practice, milestone-aligned feedback, and CCC-ready documentation — tailored to your specific priorities.
+            Structured practice, feedback scored against a published framework, and a timestamped record of every session, framed for what your seat is accountable for.
           </p>
         </div>
       </section>

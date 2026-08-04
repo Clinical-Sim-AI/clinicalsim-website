@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/about`,
-      lastModified: new Date("2026-03-16"),
+      lastModified: new Date("2026-08-04"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -48,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/audiences`,
-      lastModified: new Date("2026-03-16"),
+      lastModified: new Date("2026-08-04"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -69,6 +69,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-07-02"),
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/trust`,
+      lastModified: new Date("2026-08-04"),
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${BASE_URL}/faq`,

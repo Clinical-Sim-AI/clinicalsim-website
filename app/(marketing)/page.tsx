@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     absolute: "AI Clinical Simulation for Medical Communication | ClinicalSim",
   },
   description:
-    "Voice-based AI simulation to practice and measure clinical communication at every stage of a medical career — from undergraduate medical education through residency, fellowship, and faculty development. Rubric-scored feedback mapped to ACGME Milestones 2.0 for residents and fellows.",
+    "Communication is medicine's most performed procedure and its least measured. Voice-based AI simulation to practice and score it at every stage of a medical career, from undergraduate medical education through residency, fellowship, and faculty development, with rubric-scored feedback mapped to ACGME Milestones 2.0 for residents and fellows.",
   openGraph: {
     title: "AI Clinical Simulation for Medical Communication",
     description:
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ClinicalSim — AI Clinical Simulation for Medical Communication",
+        alt: "ClinicalSim, AI clinical simulation for medical communication",
       },
     ],
   },
@@ -78,7 +78,7 @@ export default function HomePage() {
     {
       brandIcon: "badge-check" as const,
       title: "Built for the Full Training Continuum",
-      description: "The same engine, rubric, and dashboard serve medical students, residents, fellows, and practicing faculty — from a first patient history to leading a goals-of-care meeting. Longitudinal curriculum, faculty development, and remediation all run on one platform.",
+      description: "The same engine, rubric, and dashboard serve medical students, residents, fellows, and practicing faculty, from a first patient history to leading a goals-of-care meeting. Longitudinal curriculum, faculty development, and remediation all run on one platform.",
       variant: "accent" as const,
     },
     {
@@ -94,50 +94,82 @@ export default function HomePage() {
       variant: "default" as const,
     },
     {
-      brandIcon: "people-connected" as const,
-      title: "Scale Across Your System",
-      description: "Deploy training across every program and training level — medical school through fellowship — without scheduling, logistics, or linear cost scaling. Works for a single program or an entire institution.",
+      brandIcon: "medal-star" as const,
+      title: "Built by the Physicians Who Write the Standards",
+      description: "Our cases and rubrics are authored by fellowship program directors, simulation directors, and a named author on the Society of Critical Care Medicine's 2026 End-of-Life Care Guidelines, so a learner is scored against the same judgment a program director would apply. ClinicalSim extends your standardized patient program rather than replacing it.",
       variant: "default" as const,
     },
     {
       brandIcon: "ribbon-check" as const,
       title: "CCC-Ready Documentation",
-      description: "Every practice session generates timestamped, milestone-aligned assessment data. Track learner progress longitudinally and generate documentation your Clinical Competency Committee can use at the next review.",
+      description: "The ACGME milestone set is a 32-page PDF that faculty score by hand, line by line, for every trainee, twice a year. Every ClinicalSim session returns those same milestones scored from the trainee's own words, with each rating citing a verbatim line from the transcript.",
       variant: "navy" as const,
     },
     {
       brandIcon: "chat-square-heart" as const,
       title: "Psychologically-Safe Practice",
-      description: "Remediation carries stigma. ClinicalSim lets learners practice difficult conversations privately — no observers, no scheduling, no performance anxiety. Repeat as many times as needed in a low-stakes environment designed for growth.",
+      description: "Remediation carries stigma. Learners practice high-stakes conversations privately, with no observers, no scheduling, and no performance anxiety, repeating a case as many times as they need in an environment designed for growth.",
       variant: "navy" as const,
     }
   ]
 
   const stats = [
     {
-      value: "93%",
-      label: "of residency programs have faced remediation in the past 3 years",
-      source: "CERA Survey, 267 Family Medicine PDs",
+      value: "22 of 27",
+      label: "program leaders have no objective way to track whether a flagged trainee improves",
+      source: "ClinicalSim national needs assessment, n=27, publication in progress",
       variant: "blue" as const,
+    },
+    {
+      value: "26 of 27",
+      label: "want to pilot an AI-driven remediation tool",
+      source: "ClinicalSim national needs assessment, n=27, publication in progress",
+      variant: "navy" as const,
     },
     {
       value: "29-45",
       label: "faculty hours consumed per remediation case",
-      source: "University of Colorado; Penn EIRC",
-      variant: "navy" as const,
-    },
-    {
-      value: "50%",
-      label: "of program directors want an accessible remediation toolkit",
-      source: "CERA Survey",
+      source: "Guerrasio and Aagaard 2014, mean 29.6",
       variant: "blue" as const,
     },
     {
-      value: "16",
-      label: "published studies exist on communication-specific remediation",
-      source: "Literature review",
+      value: "93%",
+      label: "of programs handled a communication remediation case in the past three years",
+      source: "CERA survey of family medicine program directors",
       variant: "navy" as const,
     }
+  ]
+
+  // The publicly sourced figures behind the $35B to $55B composite. Only
+  // figures cleared as public-safe appear here: the deck's per-pool estimates
+  // for safety events, readmissions, burnout, and unbilled conversations are
+  // components of an overlap-adjusted composite and are not published
+  // individually. Those four lines are named in prose instead.
+  const costLines = [
+    {
+      value: "40%",
+      label: "of malpractice cases now involve a communication failure, up from 30% a decade ago",
+      source: "Candello 2025 Benchmarking Report",
+      asterisk: false,
+    },
+    {
+      value: "$19.5B",
+      label: "a year in US nurse turnover, from 324,090 departures at $60,090 each",
+      source: "NSI 2026",
+      asterisk: true,
+    },
+    {
+      value: "$1.7B",
+      label: "redistributed annually through Medicare value-based purchasing, where patient experience is 25% of the score",
+      source: "CMS FY2026 IPPS final rule",
+      asterisk: false,
+    },
+    {
+      value: "$320-563M",
+      label: "a year in readmission penalties, hitting roughly three quarters of evaluated hospitals",
+      source: "KFF and Definitive Healthcare analyses of CMS data",
+      asterisk: false,
+    },
   ]
 
   return (
@@ -151,7 +183,7 @@ export default function HomePage() {
             applicationCategory: "HealthApplication",
             operatingSystem: "Web",
             description:
-              "Voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum — undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Rubric-scored practice for breaking bad news, goals-of-care, informed consent, error disclosure, and family meetings, mapped to ACGME Milestones 2.0 for residents and fellows.",
+              "Voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum, covering undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Rubric-scored practice for breaking bad news, goals-of-care, informed consent, error disclosure, and family meetings, mapped to ACGME Milestones 2.0 for residents and fellows.",
             url: "https://clinicalsim.ai",
             offers: {
               "@type": "Offer",
@@ -189,7 +221,7 @@ export default function HomePage() {
             </p>
 
             <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
-              Communication is a <span className="text-cs-electric font-medium">clinical procedure</span> — the one physicians perform most and practice least.
+              Medicine&apos;s most performed procedure is also its <span className="text-cs-electric font-medium">least measured</span>.
             </h1>
 
             <p className="text-lg md:text-xl text-cs-cloud font-light mb-8">
@@ -216,6 +248,10 @@ export default function HomePage() {
                 </Button>
               </Link>
             </div>
+
+            <p className="mt-8 text-sm text-cs-cloud/80 font-light">
+              In pilot at 20 or more academic medical centers and children&apos;s hospitals.
+            </p>
           </div>
 
           {/* Right column — evidence panel */}
@@ -258,6 +294,28 @@ export default function HomePage() {
             <p className="mt-6 text-base md:text-lg text-cs-dark-blue font-light leading-relaxed">
               The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to the framework that fits each stage: the AAMC Foundational Competencies in undergraduate medical education, ACGME Milestones 2.0 in graduate medical education, and structured feedback frameworks like Pendleton and SBI for faculty development, plus documented feedback from every session.
             </p>
+
+            <ul className="mt-7 space-y-3.5 border-t border-cs-gray pt-6">
+              <li className="text-base text-cs-dark-blue font-light leading-relaxed">
+                <span className="font-medium">Authored by named physicians.</span>{" "}
+                Fellowship program directors and simulation directors write the cases, and they put their names on them.
+              </li>
+              <li className="text-base text-cs-dark-blue font-light leading-relaxed">
+                <span className="font-medium">Anchored to a published framework.</span>{" "}
+                Every case maps to a specific published competency set or communication framework, not to a rubric we invented.
+              </li>
+              <li className="text-base text-cs-dark-blue font-light leading-relaxed">
+                <span className="font-medium">Traceable to the transcript.</span>{" "}
+                Every score cites a verbatim line from what the learner actually said, so a faculty member can check the rating against the evidence.
+              </li>
+            </ul>
+            <p className="mt-5 text-sm text-cs-dark-gray font-light">
+              All three are documented case by case on our{" "}
+              <Link href="/methodology" className="text-cs-dark-blue font-medium hover:text-cs-navy transition-colors">
+                methodology page
+              </Link>
+              .
+            </p>
           </div>
 
           {/* Right — scenarios */}
@@ -293,31 +351,56 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* The cost of communication — the stakes */}
+      {/* What communication failure already costs — the whole problem, not one line of it */}
       <section className="px-6 py-16 md:py-24 bg-cs-navy text-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-light tracking-tight text-balance mb-4">
-            Communication isn&apos;t a soft skill. When it fails, the cost is <span className="text-cs-electric font-medium">measurable</span>.
-          </h2>
-          <p className="text-base md:text-lg text-cs-cloud font-light max-w-2xl mx-auto mb-10">
-            The conversations clinicians have the least time to practice are the ones with the highest stakes.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-3xl mx-auto">
-            <div>
-              <div className="text-5xl md:text-6xl font-medium text-cs-electric mb-3">60%</div>
-              <p className="text-base text-white/90 font-light leading-relaxed">
-                of hospital adverse events are linked to communication failures
-              </p>
-              <p className="text-xs text-white/50 mt-2">The Joint Commission, Sentinel Event Data</p>
+        <div className="max-w-5xl mx-auto">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-balance mb-10">
+              Every line of the hospital budget already pays for communication failure.
+            </h2>
+            <div className="text-5xl md:text-7xl font-medium text-cs-electric tabular-nums leading-none">
+              $35B to $55B
             </div>
-            <div>
-              <div className="text-5xl md:text-6xl font-medium text-cs-electric mb-3">40%</div>
-              <p className="text-base text-white/90 font-light leading-relaxed">
-                of malpractice cases now involve a communication failure &mdash; up from 30%
-              </p>
-              <p className="text-xs text-white/50 mt-2">Candello 2025 Benchmarking Report</p>
-            </div>
+            <p className="mt-4 text-base md:text-lg text-cs-cloud font-light">
+              a year across US healthcare, on eight lines a CFO already answers for: malpractice, safety events, readmissions, patient-survey pay, nurse turnover, physician burnout, unbilled conversations, and the faculty hours spent remediating trainees.
+            </p>
+            <p className="mt-5 text-sm text-white/70 font-light max-w-xl mx-auto leading-relaxed">
+              That range is a composite of the communication-attributable share of each pool, adjusted for the overlap between them. It is not the sum of the figures below. Drawn from Candello 2025, AHRQ, CMS, NSI 2026, and Han et al., Annals of Internal Medicine 2019.
+            </p>
           </div>
+
+          <p className="mt-14 mb-8 text-sm font-medium uppercase tracking-[0.16em] text-cs-electric text-center">
+            Four of those lines, already priced in public data
+          </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
+            {costLines.map((line) => (
+              <div key={line.label}>
+                <div className="text-2xl md:text-3xl font-medium text-white tabular-nums leading-tight">
+                  {line.value}
+                  {line.asterisk && (
+                    <span className="text-cs-electric" aria-hidden="true">
+                      *
+                    </span>
+                  )}
+                </div>
+                <p className="mt-2.5 text-sm text-white/90 font-light leading-snug">
+                  {line.label}
+                </p>
+                <p className="mt-2 text-xs text-white/60 font-light leading-snug">
+                  {line.source}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-10 text-xs text-white/60 font-light">
+            * Communication is a leading driver of nurse turnover, not the sole cause.
+          </p>
+
+          <p className="mt-12 max-w-3xl text-lg md:text-xl text-cs-cloud font-light leading-relaxed">
+            Every one of those numbers prices the failure after it happens. The skill that causes it has never been measured, so it has never been priced.
+          </p>
         </div>
       </section>
 
@@ -328,8 +411,11 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-light tracking-tight text-balance text-cs-navy mb-4">
               Communication is the hardest competency to teach, train, and measure.
             </h2>
-            <p className="text-lg text-cs-dark-blue font-light max-w-2xl mx-auto">
-              Since Step 2 CS retired in 2021, there&apos;s no scalable way to measure communication against ICS milestones, EPAs, or competency frameworks. The gap is sharpest in remediation, where it&apos;s impossible to ignore:
+            <p className="text-lg text-cs-dark-blue font-light max-w-3xl mx-auto">
+              A resident learns to place a central line by watching one, doing one, and repeating it until a supervisor signs off. The same resident finishes training with 3 to 4 live practice conversations, even though health systems worldwide already spend around $3 billion a year on simulation. Since Step 2 CS retired in 2021, no program has a scalable way to score the conversation against ICS milestones or EPAs.
+            </p>
+            <p className="mt-5 text-sm text-cs-dark-gray font-light max-w-3xl mx-auto">
+              Practice volume from the ClinicalSim national needs assessment of GME program leaders, n=27, publication in progress. Simulation spend from healthcare simulation market reports, 2024.
             </p>
           </div>
 
@@ -359,7 +445,7 @@ export default function HomePage() {
               Why now
             </h2>
             <p className="text-base text-cs-dark-blue font-light leading-relaxed">
-              Three shifts have converged to make communication assessment both measurable and mandatory, with no tool built for it until now.
+              Four things changed at once, and together they made communication assessment both measurable and mandatory.
             </p>
           </div>
 
@@ -368,15 +454,19 @@ export default function HomePage() {
             {[
               {
                 title: "Step 2 CS is gone.",
-                body: "In 2021, USMLE permanently discontinued Step 2 CS — the only national standardized assessment of clinical communication skills. Programs now bear sole responsibility for communication assessment with inconsistent tools and no external benchmark.",
+                body: "In 2021, USMLE permanently discontinued Step 2 CS, the only national standardized assessment of clinical communication skills. Programs now bear sole responsibility for communication assessment with inconsistent tools and no external benchmark.",
               },
               {
                 title: "Milestones 2.0 raised the bar.",
-                body: "ACGME Harmonized Milestones 2.0 created a universal ICS framework across all specialties. For the first time, there's a standardized rubric — and a product can serve all programs with a common assessment standard.",
+                body: "Since 2022, Milestones 2.0 has required every program to grade each resident and fellow on interpersonal and communication skills twice a year, against a framework shared across specialties. The requirement is universal. The objective benchmark to meet it is not.",
               },
               {
-                title: "No scalable remediation tool exists.",
-                body: "93% of programs face remediation, but only 16 published studies address communication-specific remediation. The CERA survey confirmed: half of program directors said a remediation toolkit is the single thing that would help most. We built it.",
+                title: "Voice AI can hold the conversation now.",
+                body: "EHRs, secure messaging, and telehealth all scaled over the last decade while communication training stayed hand made, because no technology could hold a real clinical conversation with hesitations and emotion in it. It shows in the scores: doctor communication rose 0.8 points on HCAHPS between 2007 and 2019, the smallest gain of any domain (Beckett et al., Medical Care, 2024).",
+              },
+              {
+                title: "Programs asked for this.",
+                body: "In our national needs assessment of GME program leaders, 22 of 27 said they have no objective way to tell whether a flagged trainee is improving, 26 of 27 said they would pilot an AI-driven remediation tool, and none rated their current approach better than moderately effective (ClinicalSim, n=27, publication in progress).",
               },
             ].map((reason, index) => (
               <li key={reason.title} className="flex gap-5 md:gap-6">
@@ -393,6 +483,39 @@ export default function HomePage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* 1:1 to 1:many — capturing expert judgment instead of rationing it.
+           Navy, not white or cloud: the body sections strictly alternate white
+           and cloud, so a single insertion between why-now (cloud) and the
+           platform section (white) has to be a dark surface or every
+           background below it has to flip. */}
+      <section className="px-6 py-16 md:py-24 bg-cs-navy text-white">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-16 items-start">
+          <div className="lg:sticky lg:top-24 lg:self-start max-w-md">
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-electric mb-4">
+              What changes
+            </p>
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-balance">
+              One expert used to train one learner.
+            </h2>
+          </div>
+
+          <div className="lg:border-l lg:border-white/15 lg:pl-12 xl:pl-16">
+            <p className="text-base md:text-lg text-cs-cloud font-light leading-relaxed">
+              Communication is still taught the way it was fifty years ago, by an expert who watches, corrects, and makes you do it again. That method still dominates: in our national needs assessment of GME program leaders, 78% rely on direct observation by faculty, which is the most expert-hour-intensive approach there is, and the learner who needs the most repetitions is the one who gets the fewest.
+            </p>
+            <p className="mt-5 text-base md:text-lg text-cs-cloud font-light leading-relaxed">
+              Physicians who direct simulation and residency programs author the cases and the rubrics, so a program can give every learner unlimited scored practice against that judgment instead of rationing it. Faculty hours go to coaching the learners who need coaching rather than facilitating every encounter, which extends a standardized patient program rather than replacing it.
+            </p>
+            <p className="mt-8 text-2xl md:text-3xl font-light text-cs-electric">
+              The expert stays in the room.
+            </p>
+            <p className="mt-6 text-xs text-white/60 font-light">
+              Method prevalence from the ClinicalSim national needs assessment of GME program leaders, n=27, publication in progress.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -430,10 +553,10 @@ export default function HomePage() {
                   Looking ahead
                 </p>
                 <h3 className="text-2xl md:text-3xl font-light mb-2">
-                  The confidence–competence gap doesn&apos;t end at training.
+                  The gap between confidence and competence doesn&apos;t close at graduation.
                 </h3>
                 <p className="text-base text-white/85 font-light leading-relaxed">
-                  In one survey, the attendings furthest out from training reported the highest confidence in leading end-of-life conversations — and the least formal preparation for them. Confidence isn&apos;t evidence of skill; it&apos;s often the absence of feedback. The same practice that develops trainees can keep practicing clinicians sharp.
+                  Confidence isn&apos;t evidence of skill. It is often just the absence of feedback, which is why the clinicians furthest from their last observed encounter are the least likely to know where they stand. The same structured practice that develops trainees can keep practicing clinicians sharp.
                 </p>
               </div>
               <Link
@@ -614,11 +737,14 @@ export default function HomePage() {
       {/* Final CTA Section */}
       <section className="px-6 py-20 md:py-28 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
+          <p className="text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
+            Billions have gone into clinical AI. Almost none of it trains the human side of the conversation.
+          </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-balance mb-6">
-            Ready to close the communication gap?
+            Every clinician should get to practice the hardest conversations before they happen.
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            See how ClinicalSim helps your learners and faculty practice the conversations that matter most.
+            Programs at 20 or more institutions are running scored practice on the conversations their trainees report the least confidence having. Tell us about your program and we&apos;ll show you what a cohort looks like after one cycle.
           </p>
           <Link href="/contact">
             <Button
