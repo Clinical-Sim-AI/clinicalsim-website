@@ -4,7 +4,10 @@ import { Button } from "@/components/ui/button"
 import { StatHighlight } from "@/components/stat-highlight"
 import { SectionDivider } from "@/components/section-divider"
 import { AudienceCard } from "@/components/audience-card"
+import { AuthorByline } from "@/components/author-byline"
+import { JsonLd } from "@/components/json-ld"
 import { getAllAudiences } from "@/lib/audiences"
+import { getAllAuthors } from "@/lib/authors"
 import { Check, ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -24,11 +27,68 @@ export const metadata: Metadata = {
   },
 }
 
+const LAST_UPDATED = "2026-08-04"
+
 export default function AboutPage() {
   const audiences = getAllAudiences()
+  const team = getAllAuthors()
 
   return (
     <>
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "About ClinicalSim.ai",
+            description:
+              "ClinicalSim is a voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum, built by practicing physicians who run fellowship programs and simulation centers.",
+            url: "https://clinicalsim.ai/about",
+            dateModified: LAST_UPDATED,
+            isPartOf: {
+              "@type": "WebSite",
+              name: "ClinicalSim.ai",
+              url: "https://clinicalsim.ai",
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://clinicalsim.ai",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "About",
+                item: "https://clinicalsim.ai/about",
+              },
+            ],
+          },
+          ...team.map((author) => ({
+            "@context": "https://schema.org" as const,
+            "@type": "Person" as const,
+            name: author.name,
+            ...(author.credentials
+              ? { honorificSuffix: author.credentials }
+              : {}),
+            jobTitle: author.title,
+            description: author.bio,
+            worksFor: {
+              "@type": "Organization" as const,
+              name: "ClinicalSim.ai",
+              url: "https://clinicalsim.ai",
+            },
+            ...(author.sameAs && author.sameAs.length > 0
+              ? { sameAs: author.sameAs }
+              : {}),
+          })),
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative px-6 py-20 md:py-28 bg-cs-dark-blue text-white">
         <div className="max-w-3xl mx-auto relative z-10">
@@ -189,6 +249,32 @@ export default function AboutPage() {
       </section>
 
       <SectionDivider variant="diagonal-down" color="white" />
+
+      {/* Team */}
+      <section className="px-6 py-8 md:py-10 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">
+            The people who built it
+          </h2>
+          <p className="text-lg text-cs-dark-blue/70 font-light leading-relaxed text-center max-w-3xl mx-auto mb-10">
+            Practicing physicians who run fellowship programs and simulation centers, alongside founders who have shipped enterprise software before. The cases and rubrics are theirs.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {team.map((author) => (
+              <div
+                key={author.id}
+                className="bg-white/70 rounded-xl p-6 border border-cs-gray/50"
+              >
+                <AuthorByline authorId={author.id} />
+                <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed mt-4">
+                  {author.bio}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Final CTA Section */}
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">

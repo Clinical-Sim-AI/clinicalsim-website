@@ -743,8 +743,8 @@ const sections: PdFaqSection[] = [
         <p>
           For how learner data (transcripts and reports) is stored and handled,
           see our{" "}
-          <Link href="/privacy" className={linkClass}>
-            privacy policy
+          <Link href="/trust" className={linkClass}>
+            trust and compliance page
           </Link>
           , or{" "}
           <Link href="/contact" className={linkClass}>

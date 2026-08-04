@@ -19,7 +19,7 @@ export function SiteFooter() {
               />
             </Link>
             <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed">
-              Voice-based AI simulation for practicing and measuring clinical communication across the medical-education continuum — medical school, residency, fellowship, and faculty development. Built by simulation directors and communication researchers.
+              Voice-based AI simulation for practicing and measuring clinical communication across medical school, residency, fellowship, and faculty development. Built by practicing physicians who direct fellowship programs and simulation centers.
             </p>
           </div>
 
@@ -53,6 +53,9 @@ export function SiteFooter() {
               </Link>
               <Link href="/methodology" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Methodology
+              </Link>
+              <Link href="/trust" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Trust &amp; Compliance
               </Link>
               <Link href="/faq" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 FAQ

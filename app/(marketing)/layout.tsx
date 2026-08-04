@@ -23,7 +23,7 @@ export default function MarketingLayout({
               height: "512",
             },
             description:
-              "Clinical simulation platform purpose-built for communication remediation and training across medical education — medical school, residency, fellowship, and faculty development. Built by simulation directors and communication researchers.",
+              "Clinical simulation platform for practicing and measuring clinical communication, the most performed and least measured procedure in medicine. Used across medical school, residency, fellowship, communication remediation, and faculty development. Built by practicing physicians who direct fellowship programs and simulation centers.",
             foundingDate: "2024",
             knowsAbout: [
               "Medical communication training",
@@ -41,7 +41,7 @@ export default function MarketingLayout({
             name: "ClinicalSim.ai",
             url: "https://clinicalsim.ai",
             description:
-              "Practice the conversations that matter most. AI clinical simulation to practice and measure clinical communication across the medical-education continuum — medical school, residency, fellowship, and faculty development — with feedback mapped to the framework appropriate to each stage, including ACGME Milestones 2.0 in graduate medical education.",
+              "Practice the conversations that matter most. AI clinical simulation to practice and measure clinical communication across the medical-education continuum, covering medical school, residency, fellowship, and faculty development, with feedback mapped to the framework appropriate to each stage, including ACGME Milestones 2.0 in graduate medical education.",
             publisher: {
               "@type": "Organization",
               name: "ClinicalSim",

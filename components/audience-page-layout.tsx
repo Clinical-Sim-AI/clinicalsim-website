@@ -33,6 +33,24 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
       .map((slug) => getSolutionBySlug(slug))
       .find(Boolean) ?? getSolutionBySlug("remediation")!
 
+  // The `as const` assertions are load-bearing: without them schema-dts widens
+  // "@type" to string and WithContext<Thing> fails to typecheck.
+  const faqJsonLd =
+    audience.faqs && audience.faqs.length > 0
+      ? {
+          "@context": "https://schema.org" as const,
+          "@type": "FAQPage" as const,
+          mainEntity: audience.faqs.map((faq) => ({
+            "@type": "Question" as const,
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer" as const,
+              text: faq.answer,
+            },
+          })),
+        }
+      : null
+
   return (
     <>
       <JsonLd
@@ -76,6 +94,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
               },
             ],
           },
+          ...(faqJsonLd ? [faqJsonLd] : []),
         ]}
       />
       {/* Hero Section */}
@@ -311,6 +330,43 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             </div>
           </div>
         </section>
+      )}
+
+      {/* FAQs */}
+      {audience.faqs && audience.faqs.length > 0 && (
+        <>
+          <SectionDivider variant="wave" color="cloud" />
+          <section className="px-6 py-8 md:py-10 bg-cs-cloud">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
+                Questions we get{" "}
+                <span className="text-cs-dark-blue font-medium">from this seat</span>
+              </h2>
+              <div className="space-y-6">
+                {audience.faqs.map((faq, index) => (
+                  <div
+                    key={index}
+                    className="border border-cs-gray/50 rounded-xl overflow-hidden"
+                  >
+                    <details className="group">
+                      <summary className="flex items-center justify-between cursor-pointer px-6 py-5 bg-white hover:bg-gray-50 transition-colors">
+                        <h3 className="text-lg font-medium text-cs-dark-blue pr-4">
+                          {faq.question}
+                        </h3>
+                        <ChevronRight className="w-5 h-5 text-cs-gray flex-shrink-0 transition-transform group-open:rotate-90" />
+                      </summary>
+                      <div className="px-6 pb-5 pt-2">
+                        <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </details>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
       )}
 
       {/* Final CTA */}
