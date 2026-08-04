@@ -33,6 +33,17 @@ const nextConfig = {
         destination: '/medical-educator-faq',
         permanent: true,
       },
+      // /pricing was retired in August 2026. It was robots-disallowed and
+      // unlinked from every nav, so there is nothing to consolidate for search,
+      // but the URL went out in sales conversations. Send it to the calculator,
+      // which is the closest thing to what someone following an old link
+      // wanted. The robots disallow came off in the same change: a blocked path
+      // cannot be crawled, so it cannot be seen to redirect.
+      {
+        source: '/pricing',
+        destination: '/roi-calculator',
+        permanent: true,
+      },
     ]
   },
 }
