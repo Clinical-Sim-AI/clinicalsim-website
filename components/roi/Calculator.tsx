@@ -120,7 +120,15 @@ export function Calculator() {
     } catch {
       // Clipboard permission denied, or an insecure context. Put the link in
       // the address bar instead so it can still be copied by hand.
+      //
+      // replaceState does not fire popstate, so the useSyncExternalStore
+      // snapshot below stays on the old query string. That is what we want here
+      // (re-decoding would be a no-op that rebuilds the same inputs), but it
+      // does leave the subscriber's view of the URL stale, so keep
+      // `appliedSearch` in step or the next real popstate would re-apply this
+      // URL as if the reader had navigated to it.
       window.history.replaceState(null, "", url)
+      setAppliedSearch(`?${encodeInputs(inputs)}`)
     }
   }
 
@@ -138,7 +146,11 @@ export function Calculator() {
         onTraineesChange={changeTrainees}
       />
 
-      <RefinePanel inputs={inputs} onChange={patch} />
+      <RefinePanel
+        inputs={inputs}
+        onChange={patch}
+        facultyHourly={result.facultyHourly.point}
+      />
 
       <div
         id="roi-results"

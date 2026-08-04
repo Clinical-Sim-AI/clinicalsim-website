@@ -2,20 +2,49 @@
  * Typed, frozen access to the ROI constants.
  *
  * Rule 1 of the build spec: no number is hardcoded in application code. Every
- * figure loads from constants.json, and every read goes through
- * `readConstant`, which throws on a missing path, on anything the research
- * tagged unpublishable, and on the deprecated v1 reduction fraction.
+ * figure loads from the constants, and every read goes through `readConstant`,
+ * which throws on a missing path, on anything the research tagged
+ * unpublishable, and on the deprecated v1 reduction fraction.
  *
  * That is what makes acceptance tests 7 and 14 real rather than decorative:
  * a renderer that reaches for an unsourced figure fails loudly at the read.
+ *
+ * ## Why this imports the .public file
+ *
+ * The calculator is interactive, so `calculate()` runs in the browser, so
+ * whatever this module imports is downloadable by anyone who opens devtools.
+ * `constants.json` is the research file: unverified figures, "do not publish"
+ * instructions, competitor pricing, a Band B section that ships nothing, notes
+ * written for us rather than for a program director. Blocking those from
+ * rendering was never the same as keeping them private.
+ *
+ * So the browser gets `constants.public.json`, a generated subset holding only
+ * the paths in `referenced-paths.json` with research-only keys pruned. Roughly
+ * 18 KB instead of 75 KB, and nothing in it we would mind a customer reading.
+ * Regenerate with `pnpm roi:constants`; the tests fail if it drifts.
  */
 
-import raw from "./constants.json"
+import raw from "./constants.public.json"
 import type { SpecialtyId } from "./types"
 
 export type Constants = typeof raw
 
-export const CONSTANTS: Constants = Object.freeze(raw) as Constants
+/**
+ * Deep-frozen, not shallow. `Object.freeze` on the root still leaves every
+ * nested object writable, and this module hands callers direct references to
+ * nested arrays and objects (`sharp_facts`, `institutional_machinery`,
+ * `surviving_requirements_detail`), so a caller could mutate the constants for
+ * every later reader in the same page session.
+ */
+function deepFreeze<T>(value: T): T {
+  if (value && typeof value === "object" && !Object.isFrozen(value)) {
+    Object.freeze(value)
+    for (const child of Object.values(value)) deepFreeze(child)
+  }
+  return value
+}
+
+export const CONSTANTS: Constants = deepFreeze(raw) as Constants
 
 export const CONSTANTS_VERSION = raw._meta.version
 
@@ -78,7 +107,16 @@ function collectUnsourced(
 const unsourced = new Set<string>()
 collectUnsourced(raw, "", unsourced)
 
-/** Every constants path the research says must not be rendered. */
+/**
+ * Every path in the shipped constants that is tagged unpublishable.
+ *
+ * Expected to be empty, because the generator refuses to copy a blocked value
+ * into the public file in the first place, and `model.test.ts` asserts that it
+ * is. It is still computed here rather than deleted: this is the check that
+ * would catch a hand-edited public file, and the research-side audit (which
+ * does find blocked paths, and must keep finding them) lives in the tests where
+ * it can read `constants.json` off disk without shipping it.
+ */
 export const UNSOURCED_PATHS: ReadonlySet<string> = Object.freeze(unsourced)
 
 /**
@@ -116,6 +154,18 @@ export function readConstant<T = unknown>(path: string): T {
     throw new ConstantAccessError(
       `Constant "${path}" is tagged unsourced or unverified and must not be rendered.`
     )
+  }
+  // Reading an ancestor of a blocked path hands the caller the blocked value
+  // inside the returned object, which is how the five Band C hard fees used to
+  // get read: one `readConstant` on the parent, then a cast per field. An exact
+  // path match alone would not have caught a blocked child, and the value would
+  // have reached `formatCurrency`, which renders a missing number as "$0".
+  for (const blocked of UNSOURCED_PATHS) {
+    if (blocked.startsWith(`${path}.`) || blocked.startsWith(`${path}[`)) {
+      throw new ConstantAccessError(
+        `Constant "${path}" contains "${blocked}", which is tagged unsourced or unverified. Read the publishable fields individually instead of the parent.`
+      )
+    }
   }
   const value = resolve(path)
   if (value === undefined) {
