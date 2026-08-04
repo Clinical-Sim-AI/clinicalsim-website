@@ -5,7 +5,7 @@ import { readNumber } from "@/lib/roi/constants"
 import {
   formatCurrency,
   formatCurrencyRange,
-  formatHours,
+  formatNumber,
   formatPercent,
   formatYears,
 } from "@/lib/roi/format"
@@ -107,7 +107,7 @@ export function ExtendedYear({ result }: { result: Result }) {
         <p className="mt-3 text-sm font-light leading-relaxed text-cs-dark-gray">
           Applying published remediation prevalence to that per-case probability
           gives a modeled rate of about{" "}
-          {formatHours(lever.modeledExtensionRatePer100.point, 1)} extensions
+          {formatNumber(lever.modeledExtensionRatePer100.point, 1)} extensions
           per 100 trainees per year. That is a modeled figure derived from two
           published numbers. It is not an ACGME statistic, it is not a measured
           national rate, and we are not going to set it against the threshold

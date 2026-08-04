@@ -2,119 +2,129 @@
 
 import { ChevronRight } from "lucide-react"
 
-import { CONSTANTS_VERSION, readConstant } from "@/lib/roi/constants"
+import {
+  CONSTANTS_VERSION,
+  readConstant,
+  readString,
+} from "@/lib/roi/constants"
+import {
+  formatCurrency,
+  formatHours,
+  formatPercent,
+} from "@/lib/roi/format"
 import type { Result } from "@/lib/roi/types"
 
 type LeftOut = { item: string; reason: string }
 
-type Row = {
+/**
+ * The row metadata as it sits in the constants: what the figure is called, its
+ * unit, where it came from, the year, and the confidence tag.
+ *
+ * `source` is absent on the depth-of-substitution row, which composes its
+ * citation out of the same constant Band A cites, and on the faculty-hourly row,
+ * which has to interpolate the chosen basis and the user's fringe rate.
+ */
+type RowMeta = {
   figure: string
-  value: string
   unit: string
-  source: string
+  source?: string
+  source_suffix?: string
+  source_template?: string
+  basis_total?: string
+  basis_clinical?: string
   year: string
   confidence: string
 }
 
+type Row = RowMeta & { id: string; value: string; source: string }
+
 /**
- * Generated from the constants, never hand-maintained. If a figure moves in
- * the JSON it moves here, which is the only way a methodology table stays true
- * more than one release.
+ * Presentation order. The figures themselves, their sources, years, and
+ * confidence tags all come out of `methodology_rows` in the constants; this
+ * array decides only what order they appear in.
+ */
+const ROW_ORDER = [
+  "assessment_hours",
+  "subcompetency_share",
+  "depth_of_substitution",
+  "remediation_cases",
+  "comm_share",
+  "hours_per_case",
+  "displacement_fraction",
+  "faculty_hourly",
+  "marginal_cost",
+  "modeled_extensions",
+] as const
+
+/**
+ * Actually generated from the constants now.
+ *
+ * The docstring here used to claim that, while `source`, `year`, and
+ * `confidence` were hand-written literals in this file duplicating
+ * DEFAULT_SOURCES. Only `value` tracked the JSON, so the table could drift from
+ * the model it documents, which is the exact failure the claim promised to
+ * prevent. Every column except `value` is now read; `value` is computed,
+ * because it depends on the user's inputs.
  */
 function buildRows(result: Result): Row[] {
   const { inputs } = result
+  const meta = readConstant<Record<string, RowMeta>>("methodology_rows")
 
-  return [
-    {
-      figure: "Faculty hours per trainee per year on assessment",
-      value: String(inputs.assessmentHoursPerTrainee),
-      unit: "hours",
-      source:
-        "Goyal et al., Med Educ Online 2018. 23.5 faculty-hours a month across 42 trainees.",
-      year: "2018",
-      confidence: "Estimated",
-    },
-    {
-      figure: "ICS and professionalism share of subcompetencies",
-      value: `${(inputs.subcompetencyShare * 100).toFixed(0)}%`,
-      unit: "share",
-      source: "Roughly 6 to 7 of about 23 subcompetencies.",
-      year: "2026",
-      confidence: "Estimated",
-    },
-    {
-      figure: "Depth of substitution",
-      value: `${(inputs.depthOfSubstitution * 100).toFixed(0)}%`,
-      unit: "share",
-      source:
-        "Nabors et al., Arch Med Sci 2017. Discounted because that was a full committee-process overhaul rather than a data feed.",
-      year: "2017",
-      confidence: "Inferred",
-    },
-    {
-      figure: "Remediation cases resolved for this program",
-      value: result.remediationCasesUsed.point.toFixed(2),
-      unit: "cases per year",
-      source:
-        "Specialty rate per 100 trainees, floored at one case per program per year. Cases per program are flat at 0.93 to 1.04 across a 2.7x range of program size.",
-      year: "2015 to 2025",
-      confidence: "Estimated",
-    },
-    {
-      figure: "Communication or professionalism share of cases",
-      value: `${(inputs.commShare * 100).toFixed(0)}%`,
-      unit: "share",
-      source:
-        "Rebedew 2024 and Silverberg 2015. Rebedew reports no ICS percentage, so none was synthesized.",
-      year: "2024",
-      confidence: "Inferred",
-    },
-    {
-      figure: "Faculty hours per remediation case",
-      value: String(inputs.hoursPerCase),
-      unit: "hours",
-      source:
-        "Guerrasio & Aagaard 2014, mean 29.6 specialist contact hours. Excludes program director, CCC, coordinator, and legal time, so it is a floor.",
-      year: "2014",
-      confidence: "Estimated",
-    },
-    {
-      figure: "Share of remediation hours the platform absorbs",
-      value: `${(inputs.displacementFraction * 100).toFixed(0)}%`,
-      unit: "share",
-      source: "An assumption, labeled as one.",
-      year: "2026",
-      confidence: "Inferred",
-    },
-    {
-      figure: "Faculty hourly value",
-      value: `$${result.facultyHourly.point.toFixed(0)}`,
-      unit: "USD per hour",
-      source: `MGMA 2025 Academic Compensation, associate professor, ${
-        inputs.hourlyBasis === "clinical" ? "1,456 clinical" : "2,080 total"
-      } annual hours, ${(inputs.fringeRate * 100).toFixed(1)}% fringe. Eastern region only, so biased high by plausibly 10 to 20% against national.`,
-      year: "2025",
-      confidence: "Estimated",
-    },
-    {
-      figure: "Marginal cost of one extended training year",
-      value: `$${result.extendedYear.marginalCostPerYear.point.toLocaleString("en-US")}`,
-      unit: "USD",
-      source:
-        "AAMC stipends effective 1 July 2025 plus fringe. RAND: at an existing program, one more resident-year does not move GME infrastructure or IME cost.",
-      year: "2025",
-      confidence: "Estimated",
-    },
-    {
-      figure: "Modeled extensions per 100 trainees per year",
-      value: result.extendedYear.modeledExtensionRatePer100.point.toFixed(1),
-      unit: "extensions",
-      source:
-        "Published remediation prevalence times Yao & Wright's 18% per-case additional training time. A modeled figure, not an ACGME statistic. Context only, never a dollar claim.",
-      year: "2000 to 2025",
-      confidence: "Estimated",
-    },
-  ]
+  // Percentages, hours, and dollars all format differently, and the value is
+  // the one column that cannot come from a static file.
+  const values: Record<string, string> = {
+    assessment_hours: formatHours(inputs.assessmentHoursPerTrainee, 1),
+    subcompetency_share: formatPercent(inputs.subcompetencyShare),
+    depth_of_substitution: formatPercent(inputs.depthOfSubstitution),
+    remediation_cases: formatHours(result.remediationCasesUsed.point, 2),
+    comm_share: formatPercent(inputs.commShare),
+    hours_per_case: formatHours(inputs.hoursPerCase),
+    displacement_fraction: formatPercent(inputs.displacementFraction),
+    faculty_hourly: formatCurrency(result.facultyHourly.point),
+    marginal_cost: formatCurrency(
+      result.extendedYear.marginalCostPerYear.point
+    ),
+    modeled_extensions: formatHours(
+      result.extendedYear.modeledExtensionRatePer100.point,
+      1
+    ),
+  }
+
+  // One place the disputed Nabors year lives. The research file notes that the
+  // v2 changeset gives Arch Med Sci 2016 while the v1 form carries 2017 with
+  // volume and pages, and that it needs confirming before publication. Reading
+  // the same `supporting` string Band A cites means confirming it once fixes it
+  // everywhere rather than in whichever copy someone remembers.
+  const depthSupporting = readString(
+    "lever_a1_assessment_documentation.in_scope_slice.discount_2_depth_of_substitution.supporting"
+  )
+
+  const sourceFor = (id: string, row: RowMeta): string => {
+    if (id === "depth_of_substitution") {
+      return `${depthSupporting}. ${row.source_suffix ?? ""}`.trim()
+    }
+    if (id === "faculty_hourly" && row.source_template) {
+      return row.source_template
+        .replace(
+          "{basis}",
+          inputs.hourlyBasis === "clinical"
+            ? (row.basis_clinical ?? "")
+            : (row.basis_total ?? "")
+        )
+        .replace("{fringe}", formatPercent(inputs.fringeRate, 1))
+    }
+    return row.source ?? ""
+  }
+
+  return ROW_ORDER.map((id) => {
+    const row = meta[id]
+    return {
+      ...row,
+      id,
+      value: values[id],
+      source: sourceFor(id, row),
+    }
+  })
 }
 
 export function MethodologyDrawer({ result }: { result: Result }) {
@@ -152,7 +162,7 @@ export function MethodologyDrawer({ result }: { result: Result }) {
             </thead>
             <tbody className="divide-y divide-cs-gray/40">
               {rows.map((row) => (
-                <tr key={row.figure} className="align-top">
+                <tr key={row.id} className="align-top">
                   <td className="py-3 pr-4 text-sm font-medium text-cs-dark-blue">
                     {row.figure}
                   </td>

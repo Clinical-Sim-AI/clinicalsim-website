@@ -197,7 +197,6 @@ export type BandCPanel = {
       placementCostNote: string
     }
     crozer: { year: number; residentsPlaced: number; costNote: string }
-    uiRule: string
   }
 }
 
@@ -214,7 +213,6 @@ export type ExtendedYearResult = {
   modeledExtensionsAtThisSize: Range
   perCaseAdditionalTrainingTime: number
   perCaseFullRepeatYear: number
-  labeling: string
   /** Explicitly null. This lever does not project a dollar saving. */
   projectedSaving: null
 }
@@ -250,8 +248,21 @@ export type Result = {
   extendedYear: ExtendedYearResult
   funding: FundingResult | null
   perResidentPerYear: Range
+  /** Band A dollars per trainee. The DIO headline reads it. */
+  bandAPerTrainee: number
+  /**
+   * Contract price over Band A, in months. Above 12 it means faculty time alone
+   * does not cover a year, which the DIO headline says in words instead of
+   * printing a five-year payback on an annual subscription.
+   */
+  monthsToPayBackOnFacultyTime: number
   facultyHoursReturned: Range
-  /** Reps the program cannot currently schedule, at the 20-minute unit. */
+  /**
+   * The freed faculty hours re-expressed at the 20-minute practice unit. This is
+   * a unit conversion on the hours, not a claim about learner reps delivered:
+   * the platform's repetitions do not consume the faculty hours it frees, and
+   * nothing measures how many reps a program actually runs.
+   */
   practiceRepsDelivered: Range
   remediationCasesUsed: Range
   warnings: string[]

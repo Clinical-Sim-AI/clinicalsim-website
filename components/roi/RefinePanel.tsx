@@ -4,7 +4,6 @@ import { ChevronRight } from "lucide-react"
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { readNumber } from "@/lib/roi/constants"
 import {
   DEFAULT_SOURCES,
   PEER_COMPARISON_LINE,
@@ -60,16 +59,21 @@ function RangeField({
         max={max}
         step={step}
         value={value}
-        aria-label={label}
+        // No aria-label here. The visible <Label htmlFor> above is the accessible
+        // name, and an aria-label would override it, so a screen reader user and
+        // a sighted user would be working from different wording.
         aria-valuetext={display}
-        title={source}
+        aria-describedby={`${id}-source`}
         onChange={(event) => onChange(Number(event.target.value))}
         className="roi-range mt-2 h-2 w-full cursor-pointer appearance-none rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cs-dark-blue focus-visible:ring-offset-2"
         style={{
           background: `linear-gradient(to right, var(--cs-dark-blue) 0%, var(--cs-dark-blue) ${pct}%, var(--cs-gray) ${pct}%, var(--cs-gray) 100%)`,
         }}
       />
-      <p className="mt-1 text-xs font-light leading-relaxed text-cs-dark-gray">
+      <p
+        id={`${id}-source`}
+        className="mt-1 text-xs font-light leading-relaxed text-cs-dark-gray"
+      >
         {source}
       </p>
     </div>
@@ -113,18 +117,22 @@ const FUNDING_OPTIONS: { value: FundingSource | ""; label: string }[] = [
 export function RefinePanel({
   inputs,
   onChange,
+  facultyHourly,
 }: {
   inputs: Inputs
   onChange: (patch: Partial<Inputs>) => void
+  /**
+   * `result.facultyHourly.point`, the figure the model actually prices hours at.
+   *
+   * This used to re-read the specialty table here, which quietly disagreed with
+   * the model: `resolveFacultyHourly` rescales the table figure onto the user's
+   * own fringe rate, so moving the fringe slider to 30% left this panel showing
+   * $121 while every dollar on the page came off $129, and the methodology
+   * drawer showed the $129. Two answers to "value of one faculty hour" on one
+   * page is worse than either answer being wrong.
+   */
+  facultyHourly: number
 }) {
-  const resolvedHourly =
-    inputs.facultyHourlyOverride ??
-    readNumber(
-      `faculty_hourly_value.by_specialty_assoc_prof_${
-        inputs.hourlyBasis === "clinical" ? "1456" : "2080"
-      }_basis.${inputs.specialty}`
-    )
-
   return (
     <details className="group rounded-xl border border-cs-gray/60 bg-white">
       <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 md:px-6">
@@ -280,7 +288,7 @@ export function RefinePanel({
               min={0}
               step={1}
               className="mt-1.5 font-light"
-              value={inputs.facultyHourlyOverride ?? resolvedHourly}
+              value={inputs.facultyHourlyOverride ?? Math.round(facultyHourly)}
               onChange={(event) =>
                 onChange({
                   facultyHourlyOverride: Math.max(0, Number(event.target.value)),
@@ -288,8 +296,8 @@ export function RefinePanel({
               }
             />
             <p className="mt-1.5 text-xs font-light leading-relaxed text-cs-dark-gray">
-              Default is {formatCurrency(resolvedHourly)} an hour.{" "}
-              {DEFAULT_SOURCES.facultyHourly}
+              Default is {formatCurrency(facultyHourly)} an hour at your fringe
+              rate. {DEFAULT_SOURCES.facultyHourly}
               {inputs.facultyHourlyOverride !== null && (
                 <>
                   {" "}
@@ -318,12 +326,16 @@ export function RefinePanel({
           />
 
           <div>
-            <span className="text-sm font-light text-cs-dark-blue">
+            <span id="roi-basis-label" className="text-sm font-light text-cs-dark-blue">
               Which hours are we freeing?
             </span>
+            {/* A radiogroup, not a tablist. `role="tab"` promises a tabpanel
+                these buttons do not control, and a screen reader announces
+                "tab, 1 of 2" for what is a two-way choice between two values of
+                one field. */}
             <div
-              role="tablist"
-              aria-label="Faculty hourly basis"
+              role="radiogroup"
+              aria-labelledby="roi-basis-label"
               className="mt-2 flex gap-1 rounded-xl bg-cs-cloud p-1"
             >
               {(
@@ -337,8 +349,8 @@ export function RefinePanel({
                   <button
                     key={option.id}
                     type="button"
-                    role="tab"
-                    aria-selected={selected}
+                    role="radio"
+                    aria-checked={selected}
                     onClick={() =>
                       onChange({
                         hourlyBasis: option.id,

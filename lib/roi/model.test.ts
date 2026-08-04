@@ -7,7 +7,7 @@
  * visual polish recovers from.
  */
 
-import { readFileSync } from "node:fs"
+import { readFileSync, readdirSync } from "node:fs"
 import { join } from "node:path"
 import { describe, expect, it } from "vitest"
 
@@ -18,17 +18,21 @@ import {
   SPECIALTY_CITATION_MAP,
   UNSOURCED_PATHS,
   readConstant,
+  readNumber,
 } from "./constants"
 import { defaultInputs, listPrice } from "./defaults"
-import {
-  REFERENCED_CONSTANT_PATHS,
-  buildCitationRank,
-  calculate,
-  envelope,
-} from "./model"
+import { buildCitationRank, calculate, envelope } from "./model"
 import type { Inputs, Range, Result, SpecialtyId } from "./types"
+import {
+  buildPublicConstants,
+  isBlockedValue,
+  readManifest,
+  readResearch,
+  serialize,
+} from "../../scripts/roi-public-constants.mjs"
 
 const SOURCE_DIR = __dirname
+const REPO_ROOT = join(SOURCE_DIR, "..", "..")
 
 function readSource(file: string): string {
   return readFileSync(join(SOURCE_DIR, file), "utf8")
@@ -37,6 +41,50 @@ function readSource(file: string): string {
 const MODEL_SOURCE = readSource("model.ts")
 const CONSTANTS_SOURCE = readSource("constants.ts")
 const TYPES_SOURCE = readSource("types.ts")
+
+/** Every constants path the model and its renderers read. */
+const REFERENCED_CONSTANT_PATHS: readonly string[] = readManifest()
+
+/**
+ * The full research file, read off disk rather than imported.
+ *
+ * Importing it is the thing this whole arrangement exists to prevent: anything
+ * a module under lib/ or components/ imports ends up in the client bundle. Tests
+ * run in node, so they can read it freely.
+ */
+const RESEARCH = readResearch()
+
+/**
+ * Every renderer, concatenated. Tests 17 and 22 assert that no code path turns
+ * a base rate or a modeled extension rate into a dollar claim, and they do it by
+ * reading source text. Reading only model.ts left the components free to derive
+ * whatever they liked, and three of them were doing their own division.
+ */
+const RENDERER_SOURCE = (() => {
+  const dir = join(REPO_ROOT, "components/roi")
+  return readdirSync(dir)
+    .filter((f) => f.endsWith(".tsx"))
+    .map((f) => readFileSync(join(dir, f), "utf8"))
+    .join("\n")
+})()
+
+/**
+ * Comments stripped, for the checks that look for arithmetic operators.
+ *
+ * Without this, `result.extendedYear` on one line followed by a `//` comment on
+ * the next reads as a division: the `/` of the comment marker is a `/`. These
+ * files carry long explanatory comments that name the very fields being
+ * searched for, so scanning raw source produces false positives that would get
+ * "fixed" by deleting the explanations.
+ */
+function stripComments(source: string): string {
+  return source
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/(^|[^:])\/\/.*$/gm, "$1")
+}
+
+const RENDERER_CODE = stripComments(RENDERER_SOURCE)
+const CALCULATION_SOURCE = stripComments(`${MODEL_SOURCE}\n${RENDERER_SOURCE}`)
 
 /** The default worked case: PD lens, pediatrics, 50 trainees, $30,000. */
 function pdDefault(overrides: Partial<Inputs> = {}): Inputs {
@@ -66,6 +114,54 @@ function collectKeys(node: unknown, out: string[] = []): string[] {
     }
   }
   return out
+}
+
+/**
+ * Every path in `node` holding a value the research tagged unpublishable.
+ *
+ * This is the audit that used to live in constants.ts against the imported
+ * research file. It moved here when the browser stopped getting that file:
+ * auditing the research is a build-time job, and doing it at module load meant
+ * shipping the thing being audited.
+ */
+function collectBlockedPaths(node: unknown, path = "", out = new Set<string>()) {
+  if (isBlockedValue(node)) {
+    out.add(path)
+    return out
+  }
+  if (Array.isArray(node)) {
+    node.forEach((child, i) => collectBlockedPaths(child, `${path}[${i}]`, out))
+    return out
+  }
+  if (node && typeof node === "object") {
+    for (const [key, child] of Object.entries(node as Record<string, unknown>)) {
+      const childPath = path ? `${path}.${key}` : key
+      collectBlockedPaths(child, childPath, out)
+      // A sibling `<name>_status` of "UNSOURCED" poisons `<name>` too, which is
+      // how v1 marked the 1:1 review duration.
+      if (key.endsWith("_status") && isBlockedValue(child)) {
+        const sibling = key.slice(0, -"_status".length)
+        out.add(path ? `${path}.${sibling}` : sibling)
+      }
+      if (
+        (key === "confidence" || key === "status") &&
+        isBlockedValue(child) &&
+        path
+      ) {
+        out.add(path)
+      }
+    }
+  }
+  return out
+}
+
+/** Mirrors readConstant's rejection rule: the path itself, or any ancestor. */
+function pathIsGuarded(path: string, blocked: Set<string>): boolean {
+  if (blocked.has(path)) return true
+  for (const b of blocked) {
+    if (b.startsWith(`${path}.`) || b.startsWith(`${path}[`)) return true
+  }
+  return false
 }
 
 function everyRange(result: Result): Range[] {
@@ -195,6 +291,37 @@ describe("correctness", () => {
     expect(env.high).toBe(6) // 3 x 2, not 3 x 3
   })
 
+  it("14b. the faculty hourly figure is fringe-scaled, so nobody may re-read the table", () => {
+    // The specialty table is built at the default 22% fringe. RefinePanel used to
+    // read that table directly to show "Default is $X an hour", which meant the
+    // panel said $121 while every dollar on the page came off $129 as soon as
+    // the reader moved the fringe slider, and the methodology drawer agreed with
+    // the model rather than the panel. The fix was to pass
+    // `result.facultyHourly.point` in, so the only correct source is the model.
+    const tableFigure = readNumber(
+      "faculty_hourly_value.by_specialty_assoc_prof_2080_basis.pediatrics_general"
+    )
+    const defaultFringe = readNumber("faculty_hourly_value.fringe_rate.default")
+
+    expect(calculate(pdDefault()).facultyHourly.point).toBeCloseTo(tableFigure, 6)
+
+    const raised = calculate(pdDefault({ fringeRate: 0.3 }))
+    expect(raised.facultyHourly.point).toBeCloseTo(
+      (tableFigure * 1.3) / (1 + defaultFringe),
+      6
+    )
+    // The whole point: at a non-default fringe the model and the table disagree.
+    expect(raised.facultyHourly.point).not.toBeCloseTo(tableFigure, 1)
+
+    // So no renderer may reach for the table itself. The basis tables are read in
+    // exactly one place, resolveFacultyHourly.
+    expect(RENDERER_CODE).not.toContain("by_specialty_assoc_prof")
+    const modelReads = (
+      MODEL_SOURCE.match(/by_specialty_assoc_prof/g) ?? []
+    ).length
+    expect(modelReads).toBeLessThanOrEqual(2) // the two basis key literals
+  })
+
   it("15. Lever A1 uses 6.7 hours and the two-discount chain", () => {
     const result = calculate(pdDefault())
     const a1 = result.bandA[0]
@@ -257,8 +384,35 @@ describe("correctness", () => {
     }
 
     // And no code path multiplies the rate by a prevention rate to make dollars.
-    expect(MODEL_SOURCE).not.toMatch(/prevention[_A-Za-z]*\s*\*/)
-    expect(MODEL_SOURCE).not.toMatch(/preventedExtensions/)
+    // Renderers included: a component is a code path too, and BreakEven and
+    // Headline were both doing their own arithmetic when this only read the model.
+    expect(CALCULATION_SOURCE).not.toMatch(/prevention[_A-Za-z]*\s*\*/)
+    expect(CALCULATION_SOURCE).not.toMatch(/preventedExtensions/)
+    expect(CALCULATION_SOURCE).not.toMatch(/modeledExtension[_A-Za-z]*\s*[*/]/)
+  })
+
+  it("17b. the renderers format and branch, they do not derive", () => {
+    // Every ratio the page shows is a field on Result. This is a blunt check:
+    // no arithmetic operator applied to a Result field inside a component.
+    //
+    // It exists because tests 17 and 22 police the no-implied-arrow rules by
+    // reading source, so arithmetic that migrates into a renderer migrates out
+    // of their reach. Three ratios had already migrated.
+    const derivations = [
+      /result\.[A-Za-z.]+\s*[*/]/,
+      /\bbandATotal\.point\s*[*/]/,
+      /\bcontractPrice\s*[*/]/,
+      /1\s*\/\s*[A-Za-z]*[Ee]xtendedYears/,
+      /\blever\.[A-Za-z.]+\s*[*/]/,
+    ]
+    for (const pattern of derivations) {
+      const hit = RENDERER_CODE.match(pattern)
+      expect(hit?.[0] ?? null, `renderer derives a figure: ${hit?.[0]}`).toBeNull()
+    }
+
+    // And the fields that replaced those derivations are the ones being read.
+    expect(RENDERER_CODE).toContain("result.bandAPerTrainee")
+    expect(RENDERER_CODE).toContain("result.monthsToPayBackOnFacultyTime")
   })
 })
 
@@ -268,22 +422,111 @@ describe("correctness", () => {
 
 describe("guardrails", () => {
   it("7. no rendered figure resolves to an unsourced constant", () => {
-    expect(UNSOURCED_PATHS.size).toBeGreaterThan(0)
+    // The research file still has plenty tagged unpublishable. If this ever hits
+    // zero, either the research got sanitised or the audit stopped working, and
+    // both make the rest of this test vacuous.
+    const researchBlocked = collectBlockedPaths(RESEARCH)
+    expect(researchBlocked.size).toBeGreaterThan(0)
 
+    // None of them is something we read.
     for (const path of REFERENCED_CONSTANT_PATHS) {
-      expect(UNSOURCED_PATHS.has(path)).toBe(false)
+      expect(researchBlocked.has(path)).toBe(false)
       expect(() => readConstant(path)).not.toThrow()
     }
 
-    // And the guard actually bites.
-    for (const blocked of UNSOURCED_PATHS) {
-      expect(() => readConstant(blocked)).toThrow(ConstantAccessError)
+    // Nothing blocked survived into what ships, so the shipped file has nothing
+    // for the runtime guard to catch.
+    expect([...UNSOURCED_PATHS]).toEqual([])
+
+    // The guard still bites, on the exact path and on any ancestor of it. The
+    // ancestor case is the one that mattered: the five Band C hard fees used to
+    // be read as one parent object and cast per field, so a blocked child would
+    // have arrived as undefined and rendered as "$0".
+    const probe = {
+      published: 1,
+      nested: { fine: 2, bad: "UNSOURCED, needs a real source" },
     }
+    const probeBlocked = collectBlockedPaths(probe)
+    expect([...probeBlocked]).toContain("nested.bad")
+    expect(pathIsGuarded("nested.bad", probeBlocked)).toBe(true)
+    expect(pathIsGuarded("nested", probeBlocked)).toBe(true)
+    expect(pathIsGuarded("published", probeBlocked)).toBe(false)
 
     // The deprecated v1 reduction fraction is unreadable, by design.
     expect(() =>
       readConstant("lever_a1_assessment_documentation.reduction_fraction.default")
     ).toThrow(ConstantAccessError)
+  })
+
+  it("7b. the research file does not reach the browser", () => {
+    // Nothing the app builds may import the research file. constants.ts imports
+    // constants.public.json; if that ever flips back, everything below is moot
+    // because the whole 75 KB ships regardless of what renders.
+    expect(CONSTANTS_SOURCE).toContain('from "./constants.public.json"')
+    expect(CONSTANTS_SOURCE).not.toMatch(/from "\.\/constants\.json"/)
+
+    for (const source of [MODEL_SOURCE, RENDERER_SOURCE, TYPES_SOURCE]) {
+      expect(source).not.toContain("constants.json")
+    }
+
+    // The generated file is what the manifest says it should be. Adding a path
+    // without running `pnpm roi:constants` fails here rather than at runtime.
+    const regenerated = serialize(
+      buildPublicConstants(RESEARCH, REFERENCED_CONSTANT_PATHS)
+    )
+    const onDisk = readFileSync(
+      join(SOURCE_DIR, "constants.public.json"),
+      "utf8"
+    )
+    expect(onDisk).toBe(regenerated)
+
+    // And nothing in it reads as an instruction to us rather than a fact for a
+    // program director. These are the phrasings the research actually uses.
+    const shipped = onDisk
+    const leaks = [
+      "DO NOT",
+      "Do not publish",
+      "Do not use",
+      "Do not overclaim",
+      "Do not imply",
+      "Do not synthesize",
+      "UNSOURCED",
+      "UNVERIFIED",
+      "NOT PUBLISHED",
+      "NEVER PUBLISHED",
+      "under NDA",
+      "Confirm with ACGME",
+      "Confirm before publication",
+      "Highest-priority gap",
+      "Pick one and say why",
+      "needs verification",
+      "Ship only",
+      "Ship the field blank",
+    ]
+    for (const marker of leaks) {
+      expect(shipped, `research instruction leaked: ${marker}`).not.toContain(
+        marker
+      )
+    }
+
+    // Whole research sections that have no business in a browser at all.
+    const publicKeys = Object.keys(JSON.parse(shipped))
+    for (const section of [
+      "band_b_institutional",
+      "claims_history_field",
+      "accreditation_risk",
+      "sp_comparison_context_only",
+      "skills_decay",
+      "internal_inconsistencies_to_resolve",
+    ]) {
+      expect(publicKeys).not.toContain(section)
+      // ...and they are still in the research file, so this is a real exclusion
+      // rather than a section that quietly stopped existing.
+      expect(Object.keys(RESEARCH)).toContain(section)
+    }
+
+    // Worth keeping honest about the size, since that was the point.
+    expect(shipped.length).toBeLessThan(JSON.stringify(RESEARCH).length / 2)
   })
 
   it("8. bandBTotal does not exist as a type, a function, or a variable", () => {
@@ -329,14 +572,17 @@ describe("guardrails", () => {
   })
 
   it("11. malpractice defaults to zero dollars at attribution zero", () => {
-    // The card itself is phase 3, so this is asserted against the constants
-    // that will drive it.
-    expect(
+    // The card itself is phase 3, so this is asserted against the research that
+    // will drive it. Read off RESEARCH rather than through readConstant: Band B
+    // is not in the manifest, so it is not in what ships, which is the stronger
+    // version of this guarantee. A phase 3 that starts rendering it has to add
+    // the paths to the manifest first, and this test comes with it.
+    const malpractice = RESEARCH.band_b_institutional.malpractice
+    expect(malpractice.default_booked_benefit).toBe(0)
+    expect(malpractice.default_attribution).toBe(0)
+    expect(() =>
       readConstant("band_b_institutional.malpractice.default_booked_benefit")
-    ).toBe(0)
-    expect(
-      readConstant("band_b_institutional.malpractice.default_attribution")
-    ).toBe(0)
+    ).toThrow(ConstantAccessError)
     expect(calculate(pdDefault()).bandB).toEqual([])
   })
 
@@ -350,9 +596,13 @@ describe("guardrails", () => {
     for (const field of forbidden) {
       expect(MODEL_SOURCE).not.toContain(field)
       expect(TYPES_SOURCE).not.toContain(field)
+      expect(RENDERER_SOURCE).not.toContain(field)
     }
-    // Nothing in the model can transmit anything.
-    expect(MODEL_SOURCE).not.toMatch(/\bfetch\(|XMLHttpRequest|navigator\.send/)
+    // Nothing in the model or any renderer can transmit anything. The privacy
+    // line on the page is a factual claim, so it gets a test.
+    expect(CALCULATION_SOURCE).not.toMatch(
+      /\bfetch\(|XMLHttpRequest|navigator\.send|new WebSocket|EventSource/
+    )
 
     const result = calculate(pdDefault())
     const keys = collectKeys(result)
@@ -449,10 +699,10 @@ describe("guardrails", () => {
       expect(emitted.some((n) => Math.abs(n - value) < 1e-9)).toBe(false)
     }
 
-    expect(MODEL_SOURCE).not.toMatch(
+    expect(CALCULATION_SOURCE).not.toMatch(
       /medicareGmePerResidentYear\s*\*|baseRateToShowAdjacent\s*\*/
     )
-    expect(MODEL_SOURCE).not.toMatch(
+    expect(CALCULATION_SOURCE).not.toMatch(
       /\*\s*(tail\.)?baseRateToShowAdjacent|\*\s*(tail\.)?medicareGmePerResidentYear/
     )
   })
@@ -470,8 +720,10 @@ describe("guardrails", () => {
     }
 
     // Each one is on the do-not-use list rather than merely absent, and the
-    // Annual Program Evaluation is the requirement that did survive.
-    const doNotUse = readConstant<string[]>("accreditation_risk.do_not_use").join(
+    // Annual Program Evaluation is the requirement that did survive. The list
+    // itself is research: it tells us what not to say, so it is not in the
+    // manifest and does not ship.
+    const doNotUse = (RESEARCH.accreditation_risk.do_not_use as string[]).join(
       " "
     )
     expect(doNotUse).toContain("CLER")
@@ -523,26 +775,53 @@ describe("regression", () => {
     expect(result.bandATotal.point).toBeLessThan(12451)
   })
 
-  it("14. every constants key the model references exists in the JSON", () => {
+  it("14. every constants key anything reads exists in the shipped subset", () => {
     for (const path of REFERENCED_CONSTANT_PATHS) {
       expect(() => readConstant(path)).not.toThrow()
     }
 
-    // Every constants path spelled inside model.ts is in the manifest above,
+    // Every constants path spelled anywhere that reads them is in the manifest,
     // so the manifest cannot silently fall behind the code.
+    //
+    // This used to scan model.ts alone, which is why a build broke rather than a
+    // test: ExtendedYear.tsx reads the fully-loaded average directly, and
+    // defaults.ts reads six band defaults, and none of them were listed. Under
+    // the old arrangement an unlisted path still resolved, because the whole
+    // research file was present, so the omission was invisible. Now an unlisted
+    // path is an absent path.
+    const readers = [
+      ...readdirSync(SOURCE_DIR)
+        .filter((f) => f.endsWith(".ts") && !f.endsWith(".test.ts"))
+        .map((f) => join(SOURCE_DIR, f)),
+      ...readdirSync(join(REPO_ROOT, "components/roi"))
+        .filter((f) => f.endsWith(".tsx"))
+        .map((f) => join(REPO_ROOT, "components/roi", f)),
+    ]
+
     const spelled = new Set<string>()
-    for (const match of MODEL_SOURCE.matchAll(
-      /read(?:Constant|Number|String|Band)(?:<[^>]*>)?\(\s*(?:`([^`$]+)`|"([^"]+)")/g
-    )) {
-      const path = match[1] ?? match[2]
-      if (path) spelled.add(path)
+    for (const file of readers) {
+      for (const match of readFileSync(file, "utf8").matchAll(
+        /read(?:Constant|Number|String|Band)(?:<[^>]*>)?\(\s*(?:`([^`$]+)`|"([^"]+)")/g
+      )) {
+        const path = match[1] ?? match[2]
+        if (path) spelled.add(path)
+      }
     }
+
     expect(spelled.size).toBeGreaterThan(20)
+    const unlisted = [...spelled].filter(
+      (p) => !REFERENCED_CONSTANT_PATHS.includes(p)
+    )
+    expect(
+      unlisted,
+      `add these to referenced-paths.json and run pnpm roi:constants: ${unlisted.join(", ")}`
+    ).toEqual([])
     for (const path of spelled) {
       expect(() => readConstant(path)).not.toThrow()
     }
 
     // And the constants file is the v2 one.
     expect(CONSTANTS._meta.version).toBe("2.0.0")
+    expect(RESEARCH._meta.version).toBe("2.0.0")
   })
 })

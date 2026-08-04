@@ -4,6 +4,7 @@ import {
   formatCurrency,
   formatCurrencyRange,
   formatHours,
+  formatNumber,
   formatYears,
 } from "@/lib/roi/format"
 import type { Result } from "@/lib/roi/types"
@@ -36,7 +37,7 @@ export function BreakEven({
       <p className="text-2xl font-light leading-snug md:text-3xl lg:text-4xl">
         At{" "}
         <span className="font-medium text-cs-electric">
-          {formatHours(inputs.trainees)} trainees
+          {formatNumber(inputs.trainees)} trainees
         </span>
         , {formatCurrency(breakEven.contractPrice)} a year pays for itself if it
         frees{" "}
@@ -62,14 +63,13 @@ export function BreakEven({
         <div className="mt-6 border-t border-white/20 pt-6">
           <p className="text-base font-light leading-relaxed text-cs-cloud md:text-lg">
             Faculty time alone does not cover the contract at this program size.
-            The levers that would are the extended-year cost, which one avoided
-            case covers{" "}
-            <span className="font-medium text-white">
-              {formatYears(1 / Math.max(breakEven.extendedYearsNeeded, 1e-9))}{" "}
-              times
-            </span>{" "}
-            over, and the practice every trainee who is not in remediation gets,
-            which this calculator does not price.
+            {/* No claim about how many cases it takes. That depends on the
+                inputs (0.32 of a case at 50 trainees, closer to three at 400),
+                and the next paragraph prints the actual threshold, so asserting
+                a direction here would be wrong for half the program sizes. */}
+            What could cover it is the extended-year cost, quantified just
+            below, and the practice every trainee who is not in remediation
+            gets, which this calculator does not price.
           </p>
           <p className="mt-4 text-sm font-light leading-relaxed text-cs-cloud/80">
             One extended or repeated training year costs{" "}

@@ -820,6 +820,84 @@
 
   "privacy_copy": "Nothing you enter is sent anywhere. This calculator runs entirely in your browser.",
 
+  "list_price_per_learner_year": 600,
+  "list_price_label": "$50 per user per month billed annually",
+
+  "methodology_rows": {
+    "assessment_hours": {
+      "figure": "Faculty hours per trainee per year on assessment",
+      "unit": "hours",
+      "source": "Goyal et al., Med Educ Online 2018. 23.5 faculty-hours a month across 42 trainees.",
+      "year": "2018",
+      "confidence": "Estimated"
+    },
+    "subcompetency_share": {
+      "figure": "ICS and professionalism share of subcompetencies",
+      "unit": "share",
+      "source": "Roughly 6 to 7 of about 23 subcompetencies.",
+      "year": "2026",
+      "confidence": "Estimated"
+    },
+    "depth_of_substitution": {
+      "figure": "Depth of substitution",
+      "unit": "share",
+      "source_suffix": "Discounted because that was a full committee-process overhaul rather than a data feed.",
+      "year": "2017",
+      "confidence": "Inferred"
+    },
+    "remediation_cases": {
+      "figure": "Remediation cases resolved for this program",
+      "unit": "cases per year",
+      "source": "Specialty rate per 100 trainees, floored at one case per program per year. Cases per program are flat at 0.93 to 1.04 across a 2.7x range of program size.",
+      "year": "2015 to 2025",
+      "confidence": "Estimated"
+    },
+    "comm_share": {
+      "figure": "Communication or professionalism share of cases",
+      "unit": "share",
+      "source": "Rebedew 2024 and Silverberg 2015. Rebedew reports no ICS percentage, so none was synthesized.",
+      "year": "2024",
+      "confidence": "Inferred"
+    },
+    "hours_per_case": {
+      "figure": "Faculty hours per remediation case",
+      "unit": "hours",
+      "source": "Guerrasio and Aagaard 2014, mean 29.6 specialist contact hours. Excludes program director, CCC, coordinator, and legal time, so it is a floor.",
+      "year": "2014",
+      "confidence": "Estimated"
+    },
+    "displacement_fraction": {
+      "figure": "Share of remediation hours the platform absorbs",
+      "unit": "share",
+      "source": "An assumption, labeled as one.",
+      "year": "2026",
+      "confidence": "Inferred"
+    },
+    "faculty_hourly": {
+      "figure": "Faculty hourly value",
+      "unit": "USD per hour",
+      "source_template": "MGMA 2025 Academic Compensation, associate professor, {basis} annual hours, {fringe} fringe. Eastern region only, so biased high by plausibly 10 to 20% against national.",
+      "basis_total": "2,080 total",
+      "basis_clinical": "1,456 clinical",
+      "year": "2025",
+      "confidence": "Estimated"
+    },
+    "marginal_cost": {
+      "figure": "Marginal cost of one extended training year",
+      "unit": "USD",
+      "source": "AAMC stipends effective 1 July 2025 plus fringe. RAND: at an existing program, one more resident-year does not move GME infrastructure or IME cost.",
+      "year": "2025",
+      "confidence": "Estimated"
+    },
+    "modeled_extensions": {
+      "figure": "Modeled extensions per 100 trainees per year",
+      "unit": "extensions",
+      "source": "Published remediation prevalence times Yao and Wright's 18% per-case additional training time. A modeled figure, not an ACGME statistic. Context only, never a dollar claim.",
+      "year": "2000 to 2025",
+      "confidence": "Estimated"
+    }
+  },
+
   "deliberately_left_out": [
     { "item": "Routine evaluation-form completion", "reason": "Real and probably larger than the CCC burden, but minutes-per-form and forms-per-trainee-per-year are both unsourced." },
     { "item": "Resident replacement cost", "reason": "Nothing in RAND, ACGME, AAMC, HRSA, CRS, or the peer-reviewed literature prices recruiting a mid-cycle replacement or covering a vacant slot." },

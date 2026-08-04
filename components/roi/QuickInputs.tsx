@@ -3,7 +3,8 @@
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { SPECIALTIES } from "@/lib/roi/constants"
-import { formatCurrency } from "@/lib/roi/format"
+import { LIST_PRICE_LABEL, listPrice } from "@/lib/roi/defaults"
+import { formatCurrency, formatNumber } from "@/lib/roi/format"
 import type { Inputs, Lens, SpecialtyId } from "@/lib/roi/types"
 
 type QuickInputsProps = {
@@ -143,9 +144,9 @@ export function QuickInputs({
             }
           />
           <p className="mt-1.5 text-xs font-light text-cs-dark-gray">
-            List is $50 per user per month billed annually, so{" "}
-            {formatCurrency(inputs.trainees * 600)} at {inputs.trainees}{" "}
-            learners. Enter the figure you were quoted.
+            List is {LIST_PRICE_LABEL}, so {formatCurrency(listPrice(inputs.trainees))}{" "}
+            at {formatNumber(inputs.trainees)} learners. Enter the figure you
+            were quoted.
           </p>
         </div>
       </div>

@@ -353,9 +353,12 @@ export default function MethodologyPage() {
             Scoring follows the competency framework on which a case is
             built, and the unit of assessment is the individual competency
             the case exercises. Each applied communication framework or
-            program rubric is scored independently of the competency, and
-            may follow the framework&rsquo;s discrete steps, with a Likert
-            scale where finer resolution is useful. Because these
+            program rubric is scored independently of the competency. Where
+            an instrument publishes its own rating scale, we use it. Most
+            communication frameworks do not, and there we apply a
+            ClinicalSim scale to the framework&rsquo;s own steps and say so
+            in the case, so a score is never read as though the
+            framework&rsquo;s validation stood behind it. Because these
             frameworks are developmental, a given result carries different
             meaning at different stages of training and is always
             interpreted accordingly. All scores are presented together, with

@@ -16,10 +16,18 @@ import { specialtyRemediationRate } from "./model"
 import type { FundingSource, Inputs, Lens, SpecialtyId } from "./types"
 
 /**
- * $50 per user per month, billed annually. User-editable, because the price a
- * program is actually quoted is the number every ratio on the page depends on.
+ * User-editable, because the price a program is actually quoted is the number
+ * every ratio on the page depends on. Read from the constants rather than
+ * written here: list price appears in the quick-input helper text, in the
+ * methodology drawer, and in every prefilled contract figure, so a hardcoded
+ * copy is a hardcoded copy that will eventually disagree with the others.
  */
-export const LIST_PRICE_PER_LEARNER_YEAR = 600
+export const LIST_PRICE_PER_LEARNER_YEAR = readNumber(
+  "list_price_per_learner_year"
+)
+
+/** "$50 per user per month billed annually", for the helper text. */
+export const LIST_PRICE_LABEL = readString("list_price_label")
 
 export const DEFAULT_TRAINEES: Record<Lens, number> = { pd: 50, dio: 400 }
 export const DEFAULT_PROGRAMS = 12
@@ -93,8 +101,7 @@ export const DEFAULT_SOURCES: Record<string, string> = {
     "Guerrasio & Aagaard 2014 report a mean of 29.6 specialist contact hours, which excludes program director, CCC, coordinator, and legal time.",
   displacementFraction:
     "An assumption, labeled as one. The value is faculty hours redirected from facilitation to judgment, not deleted.",
-  contractPrice:
-    "$50 per user per month billed annually. Enter the figure you were quoted.",
+  contractPrice: `${LIST_PRICE_LABEL}. Enter the figure you were quoted.`,
   dgmePerFte:
     "Per-resident Medicare GME payments run $68,000 to $279,000 (GAO-21-391). A national average applied to a specific hospital will be wrong by a wide margin, so this field ships blank.",
 }

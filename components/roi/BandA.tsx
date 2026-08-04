@@ -1,11 +1,13 @@
 "use client"
 
 import { Citation, ConfidenceChip } from "@/components/roi/Citation"
+import { readString } from "@/lib/roi/constants"
 import {
   formatCurrency,
   formatCurrencyRange,
   formatHours,
   formatHoursRange,
+  formatNumber,
   formatPercent,
 } from "@/lib/roi/format"
 import type { BandALine, Result } from "@/lib/roi/types"
@@ -187,10 +189,16 @@ function AssessmentLine({
           caveat="Single emergency medicine program, one specialty, one site. The 4.5 to 8.5 band accounts for it."
           url="https://scholarlycommons.henryford.com/emergencymedicine_articles/28/"
         />
+        {/* Read, not retyped. The research file flags the year as unsettled (the
+            v2 changeset says Arch Med Sci 2016, the v1 form says 2017 and
+            carries volume and pages) and says to confirm before publication.
+            This chip and the methodology drawer now quote the same constant, so
+            confirming it is one edit rather than a hunt for every copy. */}
         <Citation
-          label="Nabors 2017"
-          source="Nabors C et al. Arch Med Sci 2017;13(1):201-209. CCC deliberation fell from 25 to 9 minutes per resident after pre-meeting ratings plus in-meeting reconciliation."
-          year={2017}
+          label="Nabors"
+          source={readString(
+            "lever_a1_assessment_documentation.in_scope_slice.discount_2_depth_of_substitution.supporting"
+          )}
           confidence="Confirmed"
           caveat="A full committee-process overhaul, not a data feed, which is why depth of substitution is discounted rather than taken at the published reduction."
         />
@@ -219,7 +227,7 @@ function RemediationLine({
             {formatHours(line.hoursCurrent.point)}
           </dd>
           <dd className="text-xs font-light text-cs-dark-gray">
-            {formatHours(result.remediationCasesUsed.point, 1)} cases a year at{" "}
+            {formatNumber(result.remediationCasesUsed.point, 1)} cases a year at{" "}
             {formatHours(result.inputs.hoursPerCase)} hours each.
           </dd>
         </div>
