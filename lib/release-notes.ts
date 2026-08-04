@@ -44,6 +44,18 @@ export function formatReleaseDate(date: string): string {
 
 export const releases: Release[] = [
   {
+    id: "2026-08-04",
+    date: "2026-08-04",
+    note: "This release brings milestone scoring in line with the paper ACGME worksheet: performance that falls short of Level 1 can now be recorded as exactly that, instead of being rounded up to a Level 1. It also gives our internal metrics dashboard a fixed set of all-time company totals.",
+    userFacing: [
+      '**Milestone ratings can now record "not yet at Level 1."** Every ACGME milestone worksheet includes a "Not Yet Completed Level 1" box for performance that could be assessed but fell short of Level 1, and physician reviewers of our Clinician Educator milestones asked for the same option here, with the specific request that a Level 1 must never stand in for it. Milestone rubrics can now offer that below-Level-1 rating, and everywhere scores appear (progress charts, cohort distributions, heatmaps) it shows as its own neutral gray band, deliberately not red, because falling short of Level 1 is a developmental starting point rather than a failure. Rubrics on the standard 1 to 5 scale look exactly as they did before.',
+    ],
+    team: [
+      "The internal metrics dashboard now opens with a fixed \"All time\" section: total users ever signed up (with how many sit in a live customer organization), all-time completed conversations of two minutes or more, total practice time in those conversations, and the count of live customer organizations. These are the numbers we set company goals against, so they're built to ignore the page's date-range and duration filters entirely; the existing period-scoped triage view below them is untouched.",
+      "Supporting the milestone change, several places in analytics quietly assumed every milestone scale starts at Level 1, and one of those assumptions would have silently switched off the scenario-ceiling feature for any rubric carrying the new floor rating. All of them now handle a below-Level-1 score correctly, with tests pinning the behavior.",
+    ],
+  },
+  {
     id: "2026-08-03",
     date: "2026-08-03",
     note: "This release makes the pre-session connection check genuinely useful for learners on locked-down hospital networks, and it hardens the email and invitation machinery behind the scenes: faster batched sending, pending invitees visible and nudgeable from each organization's admin page, and invitation reminders that now survive a resend.",
