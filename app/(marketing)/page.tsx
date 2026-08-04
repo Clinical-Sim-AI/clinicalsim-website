@@ -73,13 +73,13 @@ export default function HomePage() {
     {
       value: "81%",
       label: "of program leaders have no objective way to track whether a flagged trainee improves",
-      source: "ClinicalSim needs assessment survey*",
+      source: "ClinicalSim national needs assessment*",
       variant: "blue" as const,
     },
     {
       value: "96%",
       label: "want to pilot an AI-driven remediation tool",
-      source: "ClinicalSim needs assessment survey*",
+      source: "ClinicalSim national needs assessment*",
       variant: "navy" as const,
     },
     {
@@ -315,7 +315,7 @@ export default function HomePage() {
               A resident learns to place a central line by watching one, doing one, and repeating it until a supervisor signs off. The same resident finishes training with 3 to 4 live practice conversations, even though health systems worldwide already spend around $3 billion a year on simulation. Since Step 2 CS retired in 2021, no program has a scalable way to score the conversation against ICS milestones or EPAs.
             </p>
             <p className="mt-5 text-sm text-cs-dark-gray font-light max-w-3xl mx-auto">
-              Practice volume from the ClinicalSim needs assessment survey.* Simulation spend from healthcare simulation market reports, 2024.
+              Practice volume from the ClinicalSim national needs assessment.* Simulation spend from healthcare simulation market reports, 2024.
             </p>
           </div>
 
@@ -332,7 +332,7 @@ export default function HomePage() {
           </div>
 
           <p className="mt-8 text-sm text-cs-dark-gray font-light text-center max-w-3xl mx-auto">
-            * Based on the ClinicalSim needs assessment survey of pediatric residency and fellowship program leaders. Publication in progress.
+            * Based on the ClinicalSim national needs assessment of GME program leaders. Publication in progress.
           </p>
 
           {/* Institution-level exposure — a plain two-up strip rather than two
@@ -375,7 +375,7 @@ export default function HomePage() {
 
           <div className="lg:border-l lg:border-white/15 lg:pl-12 xl:pl-16">
             <p className="text-base md:text-lg text-cs-cloud font-light leading-relaxed">
-              Communication is still taught the way it was fifty years ago, by an expert who watches, corrects, and makes you do it again. That method still dominates: in our needs assessment survey, 78% of program leaders rely on direct observation by faculty, which is the most expert-hour-intensive approach there is, and the learner who needs the most repetitions is the one who gets the fewest.
+              Communication is still taught the way it was fifty years ago, by an expert who watches, corrects, and makes you do it again. That method still dominates: in our national needs assessment, 78% of program leaders rely on direct observation by faculty, which is the most expert-hour-intensive approach there is, and the learner who needs the most repetitions is the one who gets the fewest.
             </p>
             <p className="mt-5 text-base md:text-lg text-cs-cloud font-light leading-relaxed">
               Physicians who direct simulation and residency programs author the cases and the rubrics, so a program can give every learner unlimited scored practice against that judgment instead of rationing it. Faculty hours go to coaching the learners who need coaching rather than facilitating every encounter, which extends a standardized patient program rather than replacing it.
@@ -384,7 +384,7 @@ export default function HomePage() {
               The expert stays in the room.
             </p>
             <p className="mt-6 text-xs text-white/60 font-light">
-              Method prevalence from the ClinicalSim needs assessment survey of pediatric residency and fellowship program leaders. Publication in progress.
+              Method prevalence from the ClinicalSim national needs assessment of GME program leaders. Publication in progress.
             </p>
           </div>
         </div>
@@ -423,7 +423,7 @@ export default function HomePage() {
               },
               {
                 title: "Programs asked for this.",
-                body: "In our needs assessment survey, 81% of program leaders said they have no objective way to tell whether a flagged trainee is improving, and 96% said they would pilot an AI-driven remediation tool.",
+                body: "In our national needs assessment, 81% of program leaders said they have no objective way to tell whether a flagged trainee is improving, and 96% said they would pilot an AI-driven remediation tool.",
               },
             ].map((reason, index) => (
               <li key={reason.title} className="flex gap-5 md:gap-6">
@@ -443,7 +443,7 @@ export default function HomePage() {
         </div>
 
         <p className="max-w-6xl mx-auto mt-10 text-sm text-cs-dark-gray font-light">
-          Survey figures from the ClinicalSim needs assessment survey of pediatric residency and fellowship program leaders. Publication in progress.
+          Survey figures from the ClinicalSim national needs assessment of GME program leaders. Publication in progress.
         </p>
       </section>
 
