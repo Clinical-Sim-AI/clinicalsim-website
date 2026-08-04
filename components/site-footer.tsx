@@ -83,12 +83,6 @@ export function SiteFooter() {
                 Request a Pilot
               </Button>
             </Link>
-            <p className="text-sm text-cs-dark-gray font-light mt-2">
-              Or{" "}
-              <Link href="https://form.typeform.com/to/Zve4CKk2" target="_blank" rel="noopener noreferrer" className="text-cs-dark-blue hover:text-cs-navy transition-colors underline-offset-2 hover:underline">
-                join the waitlist
-              </Link>
-            </p>
           </div>
         </div>
 
