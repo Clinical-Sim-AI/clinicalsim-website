@@ -47,7 +47,7 @@ const trustFaqs: FaqItem[] = [
   {
     question: "What happens to a learner's voice recording?",
     answer:
-      "Learner voice data is consent-gated, learners can request erasure, and our AI vendors are contractually barred from training on the data. A recording exists to generate that learner's feedback.",
+      "Learner voice data is consent-gated and learners can request erasure. A recording exists to generate that learner's feedback.",
   },
   {
     question: "Can a program reproduce a score after the fact?",
@@ -254,9 +254,8 @@ export default function TrustPage() {
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
             Learners speak their side of the conversation out loud, which makes
             their voice data the one genuinely sensitive thing the platform
-            holds. Collection is consent-gated, learners can request erasure,
-            and our AI vendors are contractually barred from training on the
-            data.
+            holds. Collection is consent-gated, and learners can request
+            erasure.
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
             A learner&apos;s recording exists to generate that learner&apos;s

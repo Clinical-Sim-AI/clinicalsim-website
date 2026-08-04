@@ -340,14 +340,13 @@ const faqSections: FaqSection[] = [
         id: "voice-data",
         question: "What happens to a learner's voice recordings and data?",
         answer:
-          "ClinicalSim stores a learner's voice recordings and encounter data so that practice history and progress are available to the learner and their faculty. Collection is consent-gated, learners can request deletion of their data at any time, and our AI vendors are contractually barred from training on it. Full detail is on our trust and compliance page.",
+          "ClinicalSim stores a learner's voice recordings and encounter data so that practice history and progress are available to the learner and their faculty. Collection is consent-gated, and learners can request deletion of their data at any time. Full detail is on our trust and compliance page.",
         answerNode: (
           <p>
             ClinicalSim stores a learner&apos;s voice recordings and encounter data so
             that practice history and progress are available to the learner and
-            their faculty. Collection is consent-gated, learners can request
-            deletion of their data at any time, and our AI vendors are
-            contractually barred from training on it. Full detail is on our{" "}
+            their faculty. Collection is consent-gated, and learners can request
+            deletion of their data at any time. Full detail is on our{" "}
             <Link
               href="/trust"
               className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
@@ -357,12 +356,6 @@ const faqSections: FaqSection[] = [
             .
           </p>
         ),
-      },
-      {
-        id: "model-training",
-        question: "Does ClinicalSim use learner conversations to train AI models?",
-        answer:
-          "No. ClinicalSim does not use learner conversations to train AI models. What we are building, using real-world examples from practicing physicians, is a standard for what good, objective communication looks like.",
       },
       {
         id: "research",
