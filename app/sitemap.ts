@@ -112,12 +112,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.6,
     },
-    {
-      url: `${BASE_URL}/roi-calculator`,
-      lastModified: new Date("2026-08-04"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
+    // /roi-calculator is withheld from the sitemap while the page is unpublished.
+    // The route still builds; restore this entry when it goes public.
     {
       url: `${BASE_URL}/privacy`,
       lastModified: new Date("2026-03-16"),

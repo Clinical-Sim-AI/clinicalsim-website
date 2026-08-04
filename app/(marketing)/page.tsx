@@ -250,7 +250,7 @@ export default function HomePage() {
             </div>
 
             <p className="mt-8 text-sm text-cs-cloud/80 font-light">
-              In pilot at 20 or more academic medical centers and children&apos;s hospitals.
+              In pilot at 20+ academic medical centers and children&apos;s hospitals.
             </p>
           </div>
 
