@@ -235,7 +235,11 @@ export function SiteHeader() {
           </button>
 
           {solutionsOpen && (
-            <div className="absolute top-full left-0 pt-2 w-72 z-50">
+            /* w-max, not a fixed width: the nav sets whitespace-nowrap, which
+               cascades into these panels, so any label longer than the panel
+               spills past its right edge instead of wrapping. Sizing to the
+               longest item keeps the panel honest as titles get renamed. */
+            <div className="absolute top-full left-0 pt-2 w-max min-w-72 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
               {solutions.map((solution) => (
                 <Link
@@ -287,7 +291,8 @@ export function SiteHeader() {
           </button>
 
           {audiencesOpen && (
-            <div className="absolute top-full left-0 pt-2 w-72 z-50">
+            /* w-max for the same reason as the Use Cases panel above. */
+            <div className="absolute top-full left-0 pt-2 w-max min-w-72 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
               {audiences.map((audience) => (
                 <Link
@@ -335,7 +340,7 @@ export function SiteHeader() {
           </button>
 
           {whoWeAreOpen && (
-            <div className="absolute top-full left-0 pt-2 w-56 z-50">
+            <div className="absolute top-full left-0 pt-2 w-max min-w-56 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
               {aboutItems.map((item) => (
                 <Link
@@ -390,7 +395,7 @@ export function SiteHeader() {
             /* Right-aligned: Help is the last dropdown before the Sign Up
                button, so a left-aligned 224px panel hangs past the viewport and
                gives the page a horizontal scrollbar. */
-            <div className="absolute top-full right-0 pt-2 w-56 z-50">
+            <div className="absolute top-full right-0 pt-2 w-max min-w-56 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
               {helpItems.map((item) => (
                 <Link
