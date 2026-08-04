@@ -15,6 +15,14 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: "GME ROI Calculator for Program Directors and DIOs",
   description: DESCRIPTION,
+  // Unpublished pending review. noindex rather than a robots.txt Disallow: a
+  // Disallow would stop crawlers reading the page at all, and a crawler that
+  // cannot read the page never sees the noindex, so anything already linked
+  // externally can keep surfacing. Remove this block to publish.
+  robots: {
+    index: false,
+    follow: false,
+  },
   openGraph: {
     title: "GME ROI Calculator | ClinicalSim.ai",
     description: DESCRIPTION,
