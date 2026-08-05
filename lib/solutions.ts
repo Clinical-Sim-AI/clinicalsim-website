@@ -67,28 +67,61 @@ export interface Solution {
 }
 
 // Shared platform capabilities — these are product features (not statistics),
-// safe to reuse across solutions.
-const PLATFORM_VALUE_PROPS: SolutionValueProp[] = [
-  {
-    title: "On-Demand, Not On-Schedule",
-    description:
-      "Voice-based AI patient encounters available 24/7 from any device. No standardized patient to recruit, no sim center to book, no faculty observer required to practice.",
-  },
+// safe to reuse across solutions. The competency-framework claim differs by
+// audience (ACGME Milestones govern GME trainees only), so that value prop is
+// defined per audience below instead of shared.
+const ON_DEMAND_VALUE_PROP: SolutionValueProp = {
+  title: "On-Demand, Not On-Schedule",
+  description:
+    "Voice-based AI patient encounters available 24/7 from any device. No standardized patient to recruit, no sim center to book, no faculty observer required to practice.",
+}
+
+const DASHBOARD_VALUE_PROP: SolutionValueProp = {
+  title: "A Dashboard That Follows the Learner",
+  description:
+    "Longitudinal scores by subcompetency, learner-by-scenario heatmaps, and flags for anyone trending below benchmark — the same dashboard whether you track one learner or an entire cohort.",
+}
+
+const PRIVATE_REPETITION_VALUE_PROP: SolutionValueProp = {
+  title: "Private, Judgment-Free Repetition",
+  description:
+    "A low-stakes environment with no real patients and no social judgment gives learners permission to be imperfect while they build the skill — and makes the human feedback that follows land better.",
+}
+
+// For residency and fellowship (ACGME-accredited GME trainees).
+const GME_VALUE_PROPS: SolutionValueProp[] = [
+  ON_DEMAND_VALUE_PROP,
   {
     title: "Milestone-Aligned Feedback",
     description:
       "Every encounter is rubric-scored and mapped to ACGME Milestones 2.0, with feedback that points to the specific behavior to change rather than a vague “be more empathic.”",
   },
+  DASHBOARD_VALUE_PROP,
+  PRIVATE_REPETITION_VALUE_PROP,
+]
+
+// For medical students (UME is governed by LCME, not ACGME).
+const UME_VALUE_PROPS: SolutionValueProp[] = [
+  ON_DEMAND_VALUE_PROP,
   {
-    title: "A Dashboard That Follows the Learner",
+    title: "Feedback Aligned to UME Competencies",
     description:
-      "Longitudinal scores by subcompetency, learner-by-scenario heatmaps, and flags for anyone trending below benchmark — the same dashboard whether you track one learner or an entire cohort.",
+      "Every encounter is rubric-scored against the AAMC Foundational Competencies and Core EPAs for Entering Residency, with feedback that points to the specific behavior to change rather than a vague “be more empathic.”",
   },
+  DASHBOARD_VALUE_PROP,
+  PRIVATE_REPETITION_VALUE_PROP,
+]
+
+// For faculty and clinician educators (already-trained, not scored against a trainee milestone framework).
+const FACULTY_VALUE_PROPS: SolutionValueProp[] = [
+  ON_DEMAND_VALUE_PROP,
   {
-    title: "Private, Judgment-Free Repetition",
+    title: "Structured, Rubric-Scored Feedback",
     description:
-      "A low-stakes environment with no real patients and no social judgment gives learners permission to be imperfect while they build the skill — and makes the human feedback that follows land better.",
+      "Every encounter is rubric-scored against established feedback frameworks like Pendleton and SBI, with feedback that points to the specific behavior to change rather than a vague “be more empathic.”",
   },
+  DASHBOARD_VALUE_PROP,
+  PRIVATE_REPETITION_VALUE_PROP,
 ]
 
 const solutions: Solution[] = [
@@ -165,7 +198,7 @@ const solutions: Solution[] = [
           "Goals-of-care discussions, ICU escalation, and error disclosure involving harm. Learners lead family meetings and begin coaching juniors.",
       },
     ],
-    valueProps: PLATFORM_VALUE_PROPS,
+    valueProps: GME_VALUE_PROPS,
     faqs: [
       {
         question:
@@ -233,7 +266,7 @@ const solutions: Solution[] = [
           "Disclosing a serious new diagnosis with structure (SPIKES), responding to emotion, and outlining next steps clearly.",
       },
     ],
-    valueProps: PLATFORM_VALUE_PROPS,
+    valueProps: UME_VALUE_PROPS,
     faqs: [
       {
         question: "How does this fit a four-year UME curriculum?",
@@ -300,7 +333,7 @@ const solutions: Solution[] = [
           "Practice teach-back from the teacher's side, calibrating to the learner's level and protecting time for questions.",
       },
     ],
-    valueProps: PLATFORM_VALUE_PROPS,
+    valueProps: FACULTY_VALUE_PROPS,
     faqs: [
       {
         question: "Why would experienced faculty need communication practice?",

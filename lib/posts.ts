@@ -146,3 +146,35 @@ export function getAllPosts(): Post[] {
 export function getPostBySlug(slug: string): Post | undefined {
   return posts.find((post) => post.slug === slug)
 }
+
+const SITE_URL = "https://clinicalsim.ai"
+
+/**
+ * Build the full Metadata object for an insight post from its slug. Keeps every
+ * post's title, description, canonical, OpenGraph, and Twitter tags in sync with
+ * the registry in this file so MDX pages don't hand-maintain (and drift on) their
+ * own metadata. The title is the bare registry title; the root layout template
+ * ("%s | ClinicalSim.ai") appends the brand suffix once, so posts must NOT bake
+ * it in themselves.
+ */
+export function getPostMetadata(slug: string) {
+  const post = getPostBySlug(slug)
+  if (!post) return {}
+
+  const url = `${SITE_URL}/insights/${post.slug}`
+  return {
+    title: post.title,
+    description: post.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article" as const,
+      title: post.title,
+      description: post.description,
+      url,
+    },
+    twitter: {
+      title: post.title,
+      description: post.description,
+    },
+  }
+}

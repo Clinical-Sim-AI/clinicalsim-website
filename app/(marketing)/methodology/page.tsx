@@ -12,11 +12,11 @@ import { getAuthorById } from "@/lib/authors"
 export const metadata: Metadata = {
   title: "Methodology: Case Development, Standards Alignment & Feedback",
   description:
-    "How ClinicalSim.ai builds cases, anchors them to ACGME Milestones 2.0 or the Foundational Competencies, applies validated communication frameworks like SPIKES and Calgary-Cambridge, and generates transcript-grounded, competency-based feedback.",
+    "How ClinicalSim.ai builds cases, anchors them to the ACGME Milestones 2.0, the Foundational Competencies, or the ACGME Clinician Educator Milestones, applies validated communication frameworks like SPIKES and Calgary-Cambridge, and generates transcript-grounded, competency-based feedback.",
   openGraph: {
     title: "Methodology | ClinicalSim.ai",
     description:
-      "Case development, standards alignment, and feedback generation behind ClinicalSim's voice-based clinical simulation platform — quality, consistency, and alignment to published frameworks.",
+      "Case development, standards alignment, and feedback generation behind ClinicalSim's voice-based clinical simulation platform: quality, consistency, and alignment to published frameworks.",
     url: "https://clinicalsim.ai/methodology",
   },
   twitter: {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
 }
 
-const LAST_UPDATED = "2026-07-02"
+const LAST_UPDATED = "2026-08-03"
 const AUTHOR_ID = "jacqueline-ponczek"
 
 const commitments: {
@@ -55,7 +55,7 @@ const commitments: {
   {
     title: "Alignment",
     description:
-      "Every score traces to a published competency or a validated communication framework — never to an unexplained rating.",
+      "Every score traces to a published competency or a validated communication framework, never to an unexplained rating.",
     variant: "default",
     brandIcon: "align-bottom",
   },
@@ -70,7 +70,7 @@ const frameworkTerms: {
   {
     title: "Competency framework",
     description:
-      "The governing-body standard a case is assessed against — the ACGME Milestones 2.0 in graduate medical education, or the Foundational Competencies in undergraduate medical education.",
+      "The governing-body standard a case is assessed against: the ACGME Milestones 2.0 in graduate medical education, the Foundational Competencies in undergraduate medical education, and the ACGME Clinician Educator Milestones in faculty development.",
     variant: "default",
     brandIcon: "hat-graduation",
   },
@@ -84,7 +84,7 @@ const frameworkTerms: {
   {
     title: "Rubric",
     description:
-      "The scored instrument that turns a framework into rated items — including a program's own internal or externally validated tools.",
+      "The scored instrument that turns a framework into rated items, including a program's own internal or externally validated tools.",
     variant: "light-blue",
     brandIcon: "list-unordered",
   },
@@ -96,6 +96,13 @@ const dreyfusLevels = [
   "Level 3, Competent",
   "Level 4, Proficient (readiness for unsupervised practice)",
   "Level 5, Expert (aspirational)",
+]
+
+const facultyCaseTypes = [
+  "A student, resident, or fellow",
+  "Another faculty member",
+  "A patient or caregiver",
+  "Other healthcare staff",
 ]
 
 export default function MethodologyPage() {
@@ -182,7 +189,7 @@ export default function MethodologyPage() {
           <div className="flex items-center gap-4 mb-6">
             <AuthorByline authorId={AUTHOR_ID} />
             <span className="text-sm text-cs-dark-gray font-light">
-              Last updated: July 2026
+              Last updated: August 2026
             </span>
           </div>
 
@@ -201,7 +208,7 @@ export default function MethodologyPage() {
               <span className="font-medium">Key takeaway:</span> every
               ClinicalSim case is anchored to a specific, published
               competency or communication standard, and every score traces
-              to a verbatim excerpt from the encounter transcript — never to
+              to a verbatim excerpt from the encounter transcript, never to
               an unexplained rating.
             </p>
           </div>
@@ -280,7 +287,9 @@ export default function MethodologyPage() {
             its objectives; reviewers are practicing physicians with strong
             academic backgrounds and decades of collective experience,
             including program directors, simulation facilitators, and UME
-            and GME educators. Before release, each case is run repeatedly
+            and GME educators. Faculty development cases are also reviewed
+            by someone with faculty development or clinical teaching
+            expertise. Before release, each case is run repeatedly
             to confirm three things: that the AI character convincingly
             plays the role the case requires; that scoring and feedback
             perform as intended; and that what the case asks can be assessed
@@ -344,9 +353,12 @@ export default function MethodologyPage() {
             Scoring follows the competency framework on which a case is
             built, and the unit of assessment is the individual competency
             the case exercises. Each applied communication framework or
-            program rubric is scored independently of the competency, and
-            may follow the framework&rsquo;s discrete steps, with a Likert
-            scale where finer resolution is useful. Because these
+            program rubric is scored independently of the competency. Where
+            an instrument publishes its own rating scale, we use it. Most
+            communication frameworks do not, and there we apply a
+            ClinicalSim scale to the framework&rsquo;s own steps and say so
+            in the case, so a score is never read as though the
+            framework&rsquo;s validation stood behind it. Because these
             frameworks are developmental, a given result carries different
             meaning at different stages of training and is always
             interpreted accordingly. All scores are presented together, with
@@ -420,11 +432,10 @@ export default function MethodologyPage() {
                 crosswalk between them.
               </p>
               <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-                The Foundational Competencies are not published with the
-                milestones&rsquo; five-level scale, so for UME ClinicalSim
-                does not assign a numeric level; it records whether each
-                competency was demonstrated and scores performance through
-                the applied communication or skill rubric. Entrustment, the
+                For UME, ClinicalSim records each competency on three
+                points, demonstrated, partially demonstrated, or not
+                demonstrated, and scores performance through the applied
+                communication or skill rubric. Entrustment, the
                 pre-entrustable to entrustable judgment, remains a program
                 decision that this evidence informs.
               </p>
@@ -440,12 +451,45 @@ export default function MethodologyPage() {
               <h4 className="text-lg font-medium text-cs-dark-blue mb-3">
                 Faculty development
               </h4>
-              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-                The same case-building and assessment methods extend to the
-                conversations faculty are expected to model, including
-                delivering difficult feedback, navigating professionalism
-                concerns, and bedside or small-group teaching.
+              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+                Faculty cases assess a faculty member or other teaching
+                clinician, and the assessment is formative.
               </p>
+              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+                Cases align to the ACGME Clinician Educator Milestones, a
+                2022 joint initiative of the ACGME, the ACCME, the AAMC, and
+                the AACOM. Its 19 subcompetencies carry the same five
+                developmental levels as the ACGME Milestones used in graduate
+                medical education, and level descriptors are quoted verbatim
+                from the source.
+              </p>
+              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+                The Clinician Educator Milestones are guidance rather than an
+                accreditation requirement, in the ACGME&rsquo;s own words.
+                ClinicalSim treats faculty output the way it treats
+                milestone-aligned output in residency: evidence that informs
+                judgment, not a grade.
+              </p>
+              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+                A case scores only the subcompetencies a voice conversation
+                can actually show, usually one or two. That keeps a case from
+                taking on more than it can assess, and keeps every score to
+                something the platform can evidence.
+              </p>
+              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+                Cases are built in four types, according to who the faculty
+                member is talking to:
+              </p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 list-disc list-inside">
+                {facultyCaseTypes.map((type) => (
+                  <li
+                    key={type}
+                    className="text-sm text-cs-dark-blue/85 font-light"
+                  >
+                    {type}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
@@ -466,6 +510,26 @@ export default function MethodologyPage() {
             remediation, readiness for practice, readiness to perform a
             particular task, or familiarity with a given subject area.
           </p>
+
+          <h3 className="text-2xl font-medium text-cs-dark-blue mt-10 mb-4">
+            2.5 What a score claims, and what it does not
+          </h3>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+            The frameworks ClinicalSim applies were built for trained human
+            raters observing real encounters, and that is how their published
+            reliability was established. Scoring them with AI in a simulated
+            encounter is an extension beyond that context, so a
+            framework&rsquo;s reliability does not carry over to a ClinicalSim
+            score. Each score is a formative signal backed by verbatim
+            transcript evidence.
+          </p>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
+            We are testing that rather than asserting it. In our current
+            pilot, program directors review ClinicalSim output alongside their
+            own assessment of the same encounters, which is how we find out
+            where the platform holds up against the standard and where it
+            complements faculty judgment rather than substituting for it.
+          </p>
         </div>
       </section>
 
@@ -480,6 +544,9 @@ export default function MethodologyPage() {
           </h2>
           <div className="rounded-xl bg-cs-navy px-6 py-6">
             <p className="text-base md:text-lg text-white font-light leading-relaxed">
+              <span className="font-medium">
+                Read every result as evidence, not a verdict.
+              </span>{" "}
               We are committed to accuracy and to fidelity to the source
               documents behind every case. Each result is a transparent
               statement of the evidence in the encounter: it informs the
@@ -552,6 +619,30 @@ export default function MethodologyPage() {
 
             <div>
               <h3 className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mb-3">
+                Faculty development
+              </h3>
+              <ol className="space-y-2 list-decimal list-inside">
+                <li className="text-sm text-cs-dark-blue/70 leading-relaxed">
+                  The Clinician Educator Milestone Project. Version 1.1,
+                  August 2022. A joint initiative of the Accreditation Council
+                  for Graduate Medical Education, the Accreditation Council
+                  for Continuing Medical Education, the Association of
+                  American Medical Colleges, and the American Association of
+                  Colleges of Osteopathic Medicine.
+                </li>
+                <li className="text-sm text-cs-dark-blue/70 leading-relaxed">
+                  The Clinician Educator Supplemental Guide. Version 1.1,
+                  October 2025.
+                </li>
+                <li className="text-sm text-cs-dark-blue/70 leading-relaxed">
+                  ACGME. Use of Individual Milestones Data by External
+                  Entities for High-Stakes Decisions. October 2022.
+                </li>
+              </ol>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mb-3">
                 Communication frameworks (representative; full citations in
                 the ClinicalSim Frameworks Bibliography)
               </h3>
@@ -589,8 +680,18 @@ export default function MethodologyPage() {
                   updated 2023.
                 </li>
                 <li className="text-sm text-cs-dark-blue/70 leading-relaxed">
-                  Calgary-Cambridge. Kurtz S, Silverman J, Draper J. 2nd ed.
-                  Radcliffe; 2005.
+                  Calgary-Cambridge. Silverman J, Kurtz S, Draper J.{" "}
+                  <em>Skills for Communicating with Patients.</em> 3rd ed.
+                  Radcliffe Publishing; 2013. Companion volume: Kurtz S,
+                  Silverman J, Draper J.{" "}
+                  <em>
+                    Teaching and Learning Communication Skills in Medicine.
+                  </em>{" "}
+                  2nd ed. Radcliffe; 2005.
+                </li>
+                <li className="text-sm text-cs-dark-blue/70 leading-relaxed">
+                  R2C2. Sargeant J, Lockyer J, Mann K, et al.{" "}
+                  <em>Acad Med.</em> 2015;90(12):1698-1706.
                 </li>
               </ol>
             </div>

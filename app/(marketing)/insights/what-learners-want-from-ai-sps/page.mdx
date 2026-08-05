@@ -1,10 +1,7 @@
 import { ArticleLayout } from "@/components/article-layout"
-import { getPostBySlug } from "@/lib/posts"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
-export const metadata = {
-  title: "What Medical Learners Actually Want from AI Standardized Patients | ClinicalSim.ai",
-  description: "New CHI 2026 research reveals six requirements for AI-SP design, straight from the medical students who would use them.",
-}
+export const metadata = getPostMetadata("what-learners-want-from-ai-sps")
 
 <ArticleLayout post={getPostBySlug("what-learners-want-from-ai-sps")}>
 

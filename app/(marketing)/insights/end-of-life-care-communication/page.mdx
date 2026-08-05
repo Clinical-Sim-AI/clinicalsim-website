@@ -1,10 +1,7 @@
 import { ArticleLayout } from "@/components/article-layout"
-import { getPostBySlug } from "@/lib/posts"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
-export const metadata = {
-  title: "End-of-Life Conversations: Practice Makes Progress | ClinicalSim.ai",
-  description: "EOL conversations are low-frequency, high-stakes events. Traditional training models cant provide the practice clinicians need.",
-}
+export const metadata = getPostMetadata("end-of-life-care-communication")
 
 <ArticleLayout post={getPostBySlug("end-of-life-care-communication")}>
 
@@ -28,7 +25,7 @@ Recent developments in medical communication training continue to show the impor
 Our platform provides:
 - On-demand practice, available 24/7 on any device
 - Validated scenarios designed by clinical experts
-- Structured feedback aligned with ACGME milestones
+- Structured feedback scored against validated communication frameworks
 - Scalable deployment, from individual learners to entire health systems
 
 Want to improve communication training at your institution? [Contact us](/contact) to learn more.

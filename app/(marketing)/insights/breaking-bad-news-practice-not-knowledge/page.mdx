@@ -1,12 +1,9 @@
 import { ArticleLayout } from "@/components/article-layout"
-import { getPostBySlug } from "@/lib/posts"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 import { ReferencesSection } from "@/components/references-section"
 import { KeyTakeaway } from "@/components/key-takeaway"
 
-export const metadata = {
-  title: "Breaking Bad News Is a Practice Problem, Not a Knowledge Problem | ClinicalSim.ai",
-  description: "Residents who score well on written exams still freeze in real conversations. Only 17.6% of residents report formal training in breaking bad news, and the gap isn't knowledge, it's comfort. Communication skills improve through repetition and feedback in realistic scenarios, not lectures.",
-}
+export const metadata = getPostMetadata("breaking-bad-news-practice-not-knowledge")
 
 <ArticleLayout post={getPostBySlug("breaking-bad-news-practice-not-knowledge")}>
 

@@ -4,6 +4,7 @@ import { getAllAudiences } from "@/lib/audiences"
 import { getAllSolutions } from "@/lib/solutions"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
+import { RELEASE_NOTES_UPDATED_ISO } from "@/lib/release-notes"
 
 const BASE_URL = "https://clinicalsim.ai"
 
@@ -23,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/about`,
-      lastModified: new Date("2026-03-16"),
+      lastModified: new Date("2026-08-04"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -47,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/audiences`,
-      lastModified: new Date("2026-03-16"),
+      lastModified: new Date("2026-08-04"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -70,10 +71,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${BASE_URL}/trust`,
+      lastModified: new Date("2026-08-04"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${BASE_URL}/faq`,
       lastModified: new Date("2026-07-02"),
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/medical-educator-faq`,
+      lastModified: new Date("2026-07-06"),
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${BASE_URL}/compare`,
@@ -87,6 +100,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${BASE_URL}/help`,
+      lastModified: new Date("2026-07-24"),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/help/release-notes`,
+      lastModified: new Date(RELEASE_NOTES_UPDATED_ISO),
+      changeFrequency: "weekly",
+      priority: 0.6,
+    },
+    // /roi-calculator is withheld from the sitemap while the page is unpublished.
+    // The route still builds; restore this entry when it goes public.
     {
       url: `${BASE_URL}/privacy`,
       lastModified: new Date("2026-03-16"),

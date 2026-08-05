@@ -1,10 +1,7 @@
 import { ArticleLayout } from "@/components/article-layout"
-import { getPostBySlug } from "@/lib/posts"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
-export const metadata = {
-  title: "Where Medical Simulation Is Headed in 2026 | ClinicalSim.ai",
-  description: "From VR to AI voice agents, medical simulation technology is evolving rapidly. Heres what matters for 2026.",
-}
+export const metadata = getPostMetadata("healthcare-simulation-technology-trends")
 
 <ArticleLayout post={getPostBySlug("healthcare-simulation-technology-trends")}>
 
@@ -28,7 +25,7 @@ Recent developments in medical communication training continue to show the impor
 Our platform provides:
 - On-demand practice, available 24/7 on any device
 - Validated scenarios designed by clinical experts
-- Structured feedback aligned with ACGME milestones
+- Structured feedback scored against validated communication frameworks
 - Scalable deployment, from individual learners to entire health systems
 
 Want to improve communication training at your institution? [Contact us](/contact) to learn more.

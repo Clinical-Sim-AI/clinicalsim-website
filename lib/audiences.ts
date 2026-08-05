@@ -1,4 +1,5 @@
 import type { BrandIconName } from "@/components/brand-icon"
+import type { FaqItem } from "@/lib/types"
 
 export interface PainPoint {
   headline: string
@@ -46,6 +47,14 @@ export interface Audience {
 
   // Cross-links
   relevantSolutionSlugs: string[]
+
+  /**
+   * Optional FAQ block. When present it renders a Q/A section and emits
+   * FAQPage JSON-LD. Each answer must stand alone without its question and
+   * carry its own stat or source, per the GEO rules in CLAUDE.md. The JSON-LD
+   * answer text is the visible answer verbatim.
+   */
+  faqs?: FaqItem[]
 
   // CTA
   ctaHeadline: string
@@ -189,7 +198,7 @@ const audiences: Audience[] = [
     heroHeadline:
       "When the GMEC asks what you're doing about remediation consistency, there's an answer",
     heroDescription:
-      "Communication failures are behind 60% of hospital adverse events and $1.7 billion in malpractice costs annually. Your institution has no standardized system for remediating the trainees most likely to cause them. ClinicalSim provides structured, repeatable communication practice across all ACGME-accredited programs — with every session documented, every assessment mapped to ICS milestones, and every learner's progress tracked longitudinally.",
+      "Communication failure is a factor in 40% of malpractice cases, up from 30% a decade ago (Candello 2025), and communication breakdowns were linked to $1.7 billion in losses and 1,744 deaths over five years (CRICO 2015). Your institution has no standardized system for remediating the trainees most likely to cause them. ClinicalSim provides structured, repeatable communication practice across all ACGME-accredited programs, with every session documented, every assessment mapped to ICS milestones, and every learner's progress tracked longitudinally.",
 
     painPoints: [
       {
@@ -708,6 +717,302 @@ const audiences: Audience[] = [
       "eol-communication-training-measurement-gap",
       "why-communication-training-matters",
       "breaking-bad-news-practice-not-knowledge",
+    ],
+  },
+  {
+    slug: "risk-and-patient-safety",
+    title: "Risk & Patient Safety Leaders",
+    shortTitle: "Risk & Safety",
+    subtitle: "The claims data already points at the conversation",
+    icon: "chart-pipe-decrease",
+    colorVariant: "navy",
+
+    cardBullets: [
+      "Practice on the failure mode behind 40% of malpractice claims",
+      "A timestamped record of which clinician rehearsed which conversation",
+      "Extends the simulation program your carrier already recognizes",
+    ],
+
+    heroHeadline:
+      "Communication failure is a factor in 40% of malpractice cases, and it is the one you can rehearse",
+    heroDescription:
+      "Communication failure is a factor in 40% of malpractice cases, up from 30% a decade ago, and those claims carry 39% greater odds of closing with an indemnity payment (Candello 2025 Benchmarking Report). Average indemnity runs from $386,000 in general medicine to $944,000 in obstetrics before defense costs (CRICO 2015 specialty indemnity averages), and communication claims are more than twice as likely to top $1 million (Humphrey et al., Journal of Patient Safety 2022). OB claim rates dropped roughly 50% under CRICO's simulation-built obstetric safety program (Schaffer et al., Obstetrics and Gynecology 2021), so the behavior behind those claims does respond to structured practice. ClinicalSim extends the simulation program you already fund, adding unlimited voice-based practice on goals-of-care conversations, diagnosis disclosure, family meetings, and de-escalation, with a timestamped, rubric-scored record of every session.",
+    lastUpdated: "2026-08-04",
+
+    painPoints: [
+      {
+        headline: "The indemnity math on a single case",
+        description:
+          "Average indemnity on a communication-failure malpractice case runs from $386,000 in general medicine to $944,000 in obstetrics, and that is before defense costs. Communication claims are also more than twice as likely to top $1 million than other claims (Humphrey et al., Journal of Patient Safety 2022).",
+        stat: "$386K to $944K",
+        statSource:
+          "Average indemnity per communication-failure case, general medicine to obstetrics (CRICO 2015)",
+      },
+      {
+        headline: "The share of claims is rising",
+        description:
+          "Communication failure is a factor in 40% of malpractice cases, up from 30% a decade ago, and those claims carry 39% greater odds of closing with an indemnity payment. The one failure mode a risk office can train directly against is the one that keeps growing.",
+        stat: "40%",
+        statSource:
+          "Of malpractice cases involve a communication failure, up from 30% (Candello 2025)",
+      },
+      {
+        headline: "Sentinel events keep coming back to communication",
+        description:
+          "The Joint Commission has repeatedly named communication a leading root cause of sentinel events in Sentinel Event Alert 58. That alert is qualitative and attaches no percentage, which is part of why a risk office struggles to size the exposure and defend a training budget against it.",
+      },
+      {
+        headline: "Credit exists for courses, evidence of practice does not",
+        description:
+          "Carriers award premium credits of 5 to 19% for completing an approved risk-reduction course (CRICO and New York Regulation 124 premium programs). What most risk offices cannot produce is per-clinician evidence that practice actually happened, which conversations were rehearsed, and whether performance moved.",
+        stat: "5 to 19%",
+        statSource:
+          "Malpractice premium credit for an approved risk-reduction course (CRICO; NY Regulation 124)",
+      },
+    ],
+
+    stats: [
+      {
+        value: "$386K-$944K",
+        label:
+          "average indemnity per communication-failure case, general medicine to obstetrics, before defense costs",
+        source: "CRICO 2015 specialty indemnity averages",
+        variant: "navy",
+      },
+      {
+        value: "40%",
+        label:
+          "of malpractice cases involve a communication failure, up from 30% a decade ago",
+        source: "Candello 2025 Benchmarking Report",
+        variant: "blue",
+      },
+      {
+        value: "39%",
+        label:
+          "greater odds that a communication-failure claim closes with an indemnity payment",
+        source: "Candello 2025 Benchmarking Report",
+        variant: "navy",
+      },
+      {
+        value: "~50%",
+        label:
+          "drop in OB claim rates under CRICO's simulation-built obstetric safety program",
+        source: "Schaffer et al., Obstetrics and Gynecology 2021",
+        variant: "blue",
+      },
+    ],
+
+    valueProps: [
+      {
+        title: "Practice on the Conversations Claims Start In",
+        description:
+          "The library covers goals-of-care conversations, diagnosis disclosure, advance care planning, family meetings, and de-escalation. Clinicians practice by voice, on demand, from any device, and get feedback scored against published frameworks including SPIKES and Calgary-Cambridge.",
+      },
+      {
+        title: "A Record Per Clinician, Not a Sign-In Sheet",
+        description:
+          "An attendance list tells a carrier who sat in a room. Every ClinicalSim session generates a timestamped, rubric-scored record of which conversation a clinician rehearsed and how it scored, so a risk office can show practice at the individual level.",
+      },
+      {
+        title: "Extends the Simulation Program You Already Fund",
+        description:
+          "Simulation is what moved OB claim rates roughly 50% in CRICO's obstetric safety program (Schaffer et al., Obstetrics and Gynecology 2021). ClinicalSim adds the repetitions between scheduled standardized patient encounters and drills rather than standing in for them.",
+      },
+      {
+        title: "Volume Without New Scheduling",
+        description:
+          "A risk office can direct practice at the services carrying the most exposure without adding standardized patient hours or booking sim lab time, because sessions run from any device at any hour.",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "What does a communication-failure claim actually cost?",
+        answer:
+          "Average indemnity on a communication-failure malpractice case runs from $386,000 in general medicine to $944,000 in obstetrics, before defense costs (CRICO 2015 specialty indemnity averages). Communication failure is a factor in 40% of malpractice cases, up from 30% a decade ago, and those claims carry 39% greater odds of closing with an indemnity payment (Candello 2025 Benchmarking Report). Communication claims are also more than twice as likely to top $1 million (Humphrey et al., Journal of Patient Safety 2022).",
+      },
+      {
+        question:
+          "Is there evidence that communication training changes claim rates?",
+        answer:
+          "The closest published evidence is CRICO's obstetric safety program, built on simulation and team training, where OB claim rates dropped roughly 50% (Schaffer et al., Obstetrics and Gynecology 2021). ClinicalSim itself has not been studied against claim rates and should not be presented as if it had been. What the platform produces today is the practice volume and the per-clinician record a risk-reduction program needs.",
+      },
+      {
+        question: "Does ClinicalSim qualify for a malpractice premium credit?",
+        answer:
+          "Carriers award premium credits of 5 to 19% for completing an approved risk-reduction course (CRICO and New York Regulation 124 premium programs), and approval is the carrier's decision rather than ours. ClinicalSim holds no approved-course designation today. What it provides is the timestamped, per-clinician practice record a carrier review asks for.",
+      },
+      {
+        question: "Does this replace our standardized patient program?",
+        answer:
+          "No. Standardized patient encounters stay the high-stakes assessment, and ClinicalSim adds the repetitions in between, at whatever hour a clinician is free. The simulation-based programs that moved OB claim rates roughly 50% in CRICO's obstetric safety work (Schaffer et al., Obstetrics and Gynecology 2021) are the model this extends, not the thing it substitutes for.",
+      },
+      {
+        question: "Does any patient data enter the platform?",
+        answer:
+          "No. Every patient in every ClinicalSim case is synthetic, authored from the clinical literature rather than from patient records, so no protected health information enters the platform and there is nothing to de-identify. SOC 2 and HIPAA certification are on our funded roadmap and are not yet in place. Full detail is on our trust and compliance page.",
+      },
+    ],
+
+    relevantSolutionSlugs: ["faculty-development"],
+
+    ctaHeadline: "Put the failure mode behind 40% of claims into a simulator.",
+    ctaDescription:
+      "Request a pilot and see the per-clinician practice record a risk office can take into a carrier review.",
+
+    relatedPostSlugs: [
+      "why-communication-training-matters",
+      "hospital-communication-training-roi",
+    ],
+  },
+  {
+    slug: "quality-and-patient-experience",
+    title: "Quality & Patient Experience Leaders",
+    shortTitle: "Quality & Experience",
+    subtitle:
+      "Five of the eight HCAHPS measures Medicare pays on are communication measures",
+    icon: "chart-pie-quarter",
+    colorVariant: "blue",
+
+    cardBullets: [
+      "Practice on the five HCAHPS communication measures Medicare pays on",
+      "Teach-back and discharge conversations, rehearsed before the shift",
+      "A rubric-scored record for every clinician who practiced",
+    ],
+
+    heroHeadline:
+      "Patient experience is 25% of your value-based purchasing score, and communication carries most of it",
+    heroDescription:
+      "Medicare withholds 2% of base operating payments and redistributes about $1.7 billion a year through value-based purchasing, with patient experience worth 25% of the score (CMS FY2026 IPPS final rule). Five of the eight HCAHPS measures Medicare pays on are communication measures, roughly 15.6% of a hospital's total score (CMS). Doctor communication rose 0.8 points from 2007 to 2019, the smallest gain of any HCAHPS domain (Beckett et al., Medical Care 2024), so the domain carrying the most payment weight is the one that has moved least. ClinicalSim gives clinicians unlimited voice-based practice on the conversations those measures ask patients about, with a rubric-scored record of every session.",
+    lastUpdated: "2026-08-04",
+
+    painPoints: [
+      {
+        headline: "The payment weight sits on communication",
+        description:
+          "Medicare withholds 2% of base operating payments and redistributes about $1.7 billion a year through value-based purchasing. Patient experience is 25% of that score, and five of the eight HCAHPS measures Medicare pays on are communication measures, roughly 15.6% of the total.",
+        stat: "15.6%",
+        statSource:
+          "Share of a hospital's value-based purchasing score carried by HCAHPS communication measures (CMS)",
+      },
+      {
+        headline: "The domain that moved least",
+        description:
+          "Doctor communication rose 0.8 points from 2007 to 2019, the smallest gain of any HCAHPS domain. Twelve years of improvement work produced less movement here than anywhere else on the survey, which is what you would expect from a performance skill addressed with scripting rather than practice.",
+        stat: "0.8 points",
+        statSource:
+          "Doctor communication gain 2007 to 2019, the smallest HCAHPS gain (Beckett et al., Medical Care 2024)",
+      },
+      {
+        headline: "Readmission penalties reach most hospitals",
+        description:
+          "CMS readmission penalties run $320 million to $563 million a year and hit roughly three quarters of evaluated hospitals. A communication-centered discharge cut 30-day utilization about 30% in a randomized trial (Project RED, Annals of Internal Medicine 2009), and teach-back education cut heart failure readmissions with an odds ratio of 0.40 (meta-analysis, Patient Education and Counseling 2023).",
+        stat: "$320M-$563M",
+        statSource:
+          "Annual CMS readmission penalties, reaching roughly three quarters of evaluated hospitals (KFF and Definitive Healthcare)",
+      },
+      {
+        headline: "Adherence tracks with how the clinician talks",
+        description:
+          "Physician communication training raises the odds of patient adherence 1.62 times (Zolnierek and DiMatteo, Medical Care 2009), and the Joint Commission has repeatedly named communication a leading root cause of sentinel events in Sentinel Event Alert 58. Quality leaders know the mechanism. What has been missing is a way to give thousands of clinicians repetitions on it.",
+        stat: "1.62x",
+        statSource:
+          "Odds of patient adherence after physician communication training (Zolnierek and DiMatteo, Medical Care 2009)",
+      },
+    ],
+
+    stats: [
+      {
+        value: "25%",
+        label:
+          "of the Medicare value-based purchasing score is patient experience, funded by a 2% withhold",
+        source: "CMS FY2026 IPPS final rule",
+        variant: "navy",
+      },
+      {
+        value: "5 of 8",
+        label:
+          "HCAHPS measures Medicare pays on are communication measures, about 15.6% of the score",
+        source: "CMS",
+        variant: "blue",
+      },
+      {
+        value: "~30%",
+        label:
+          "lower 30-day utilization after a communication-centered discharge, in a randomized trial",
+        source: "Project RED, Annals of Internal Medicine 2009",
+        variant: "navy",
+      },
+      {
+        value: "OR 0.40",
+        label:
+          "heart failure readmissions after teach-back education",
+        source: "Meta-analysis, Patient Education and Counseling 2023",
+        variant: "blue",
+      },
+    ],
+
+    valueProps: [
+      {
+        title: "Practice on the Measures That Carry Payment Weight",
+        description:
+          "Five of the eight HCAHPS measures Medicare pays on are communication measures, about 15.6% of a hospital's value-based purchasing score (CMS). Clinicians rehearse those conversations by voice, on demand, with feedback scored against published communication frameworks such as Calgary-Cambridge. The scoring is framework-based and is not a prediction of a survey score.",
+      },
+      {
+        title: "Teach-Back, Rehearsed Before the Shift",
+        description:
+          "Teach-back education cut heart failure readmissions with an odds ratio of 0.40 in a 2023 meta-analysis (Patient Education and Counseling), and a communication-centered discharge cut 30-day utilization about 30% in a randomized trial (Project RED, Annals of Internal Medicine 2009). Clinicians run the sequence until it holds under time pressure.",
+      },
+      {
+        title: "A Record Per Clinician, Not a Completion Rate",
+        description:
+          "Every session generates a timestamped, rubric-scored record of which conversation a clinician practiced and how it went, so quality reporting can show practice at the individual and unit level instead of a course completion percentage.",
+      },
+      {
+        title: "Extends the Coaching and Simulation You Already Run",
+        description:
+          "ClinicalSim adds repetitions between scheduled standardized patient encounters, coaching rounds, and service excellence work rather than standing in for them. Coaches and faculty stay in the loop, reading a dashboard instead of facilitating every session.",
+      },
+    ],
+
+    faqs: [
+      {
+        question:
+          "How much of a hospital's Medicare payment depends on communication?",
+        answer:
+          "Medicare withholds 2% of base operating payments and redistributes about $1.7 billion a year through value-based purchasing, and patient experience is 25% of that score (CMS FY2026 IPPS final rule). Five of the eight HCAHPS measures Medicare pays on are communication measures, roughly 15.6% of a hospital's total value-based purchasing score (CMS).",
+      },
+      {
+        question: "Does communication training move readmissions?",
+        answer:
+          "A communication-centered discharge process cut 30-day hospital utilization by about 30% in a randomized trial (Project RED, Annals of Internal Medicine 2009), and teach-back education cut heart failure readmissions with an odds ratio of 0.40 in a 2023 meta-analysis (Patient Education and Counseling). CMS readmission penalties run $320 million to $563 million a year and reach roughly three quarters of evaluated hospitals (KFF and Definitive Healthcare analyses of CMS data). ClinicalSim itself has not been studied against readmission rates.",
+      },
+      {
+        question: "Why has HCAHPS communication been so hard to move?",
+        answer:
+          "Doctor communication rose 0.8 points from 2007 to 2019, the smallest gain of any HCAHPS domain (Beckett et al., Medical Care 2024). Communication is a performance skill, and the standard interventions have been scripting and reminders rather than repeated practice with feedback. Physician communication training raises the odds of patient adherence 1.62 times (Zolnierek and DiMatteo, Medical Care 2009), which points at practice rather than prompting as the lever.",
+      },
+      {
+        question: "Will this predict our HCAHPS scores?",
+        answer:
+          "No. ClinicalSim scores a conversation against published communication frameworks, not against HCAHPS items, and we claim no score-to-survey correlation. Benchmarking against outcome data is on our roadmap and is not available today.",
+      },
+      {
+        question: "Does any patient data enter the platform?",
+        answer:
+          "No. Every patient in every ClinicalSim case is synthetic, authored from the clinical literature rather than from patient records, so no protected health information enters the platform and there is nothing to de-identify. SOC 2 and HIPAA certification are on our funded roadmap and are not yet in place. Full detail is on our trust and compliance page.",
+      },
+    ],
+
+    relevantSolutionSlugs: ["faculty-development"],
+
+    ctaHeadline: "Give clinicians reps on the measures Medicare pays for.",
+    ctaDescription:
+      "Request a pilot and see the per-clinician practice record behind the five HCAHPS communication measures.",
+
+    relatedPostSlugs: [
+      "why-communication-training-matters",
+      "hospital-communication-training-roi",
     ],
   },
 ]

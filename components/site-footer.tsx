@@ -19,7 +19,7 @@ export function SiteFooter() {
               />
             </Link>
             <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed">
-              Voice-based AI simulation for practicing and measuring clinical communication across the medical-education continuum — medical school, residency, fellowship, and faculty development. Built by simulation directors and communication researchers.
+              Voice-based AI simulation for practicing and measuring clinical communication across medical school, residency, fellowship, and faculty development. Built by practicing physicians who direct fellowship programs and simulation centers.
             </p>
           </div>
 
@@ -51,11 +51,23 @@ export function SiteFooter() {
               <Link href="/methodology" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Methodology
               </Link>
+              <Link href="/trust" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Trust &amp; Compliance
+              </Link>
               <Link href="/faq" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 FAQ
               </Link>
+              <Link href="/medical-educator-faq" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                FAQ for Medical Educators
+              </Link>
               <Link href="/contact" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Contact
+              </Link>
+              <Link href="/help" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Help Center
+              </Link>
+              <Link href="/help/release-notes" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Release Notes
               </Link>
             </nav>
           </div>
@@ -71,12 +83,6 @@ export function SiteFooter() {
                 Request a Pilot
               </Button>
             </Link>
-            <p className="text-sm text-cs-dark-gray font-light mt-2">
-              Or{" "}
-              <Link href="https://form.typeform.com/to/Zve4CKk2" target="_blank" rel="noopener noreferrer" className="text-cs-dark-blue hover:text-cs-navy transition-colors underline-offset-2 hover:underline">
-                join the waitlist
-              </Link>
-            </p>
           </div>
         </div>
 

@@ -1,10 +1,7 @@
 import { ArticleLayout } from "@/components/article-layout"
-import { getPostBySlug } from "@/lib/posts"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
-export const metadata = {
-  title: "Six of 105: Why End-of-Life Communication Training Has a Measurement Problem | ClinicalSim.ai",
-  description: "A systematic review of 105 studies found only 6 with clear training objectives — none sharing the same outcomes. A pediatric intensivist and palliative care physician explains what this means for fellows learning to navigate the hardest conversations in medicine.",
-}
+export const metadata = getPostMetadata("eol-communication-training-measurement-gap")
 
 <ArticleLayout post={getPostBySlug("eol-communication-training-measurement-gap")}>
 

@@ -68,15 +68,20 @@ The project uses shadcn/ui components which are:
 - **Location**: `app/(marketing)/insights/[slug]/page.mdx`
 - **Registry**: `lib/posts.ts` - Must be updated when adding new posts
 - **Layout**: Posts use `components/article-layout.tsx` wrapper
+- **Metadata (REQUIRED pattern)**: An insight post's `export const metadata` MUST be `getPostMetadata("<slug>")` from `lib/posts.ts` — nothing else. That helper is the single source of the post's `title`, `description`, canonical, OpenGraph (`type: article`), and Twitter tags, derived from the registry entry.
+  - **Do NOT hand-write a `metadata` object in an MDX post.** Hand-written blocks have shipped with no `alternates.canonical` (breaks the every-page-needs-a-canonical rule) and with `title` baking in `| ClinicalSim.ai`, which the root layout template (`%s | ClinicalSim.ai`) then appends a second time, producing a double suffix in `<title>` and `og:title`.
+  - The registry `title` in `lib/posts.ts` is the bare title with **no** `| ClinicalSim.ai` suffix — the layout template adds it once.
 - **Workflow**: Blog posts may be created by separate agents/processes
   - Always check `lib/posts.ts` for the current list of posts
   - Verify new posts are registered in the posts array with metadata
-  - Ensure MDX files follow the ArticleLayout pattern
+  - Ensure MDX files follow the ArticleLayout pattern and use `getPostMetadata` (above)
   - **IMPORTANT**: When multiple agents work on this codebase, always pull latest changes before making commits to avoid conflicts with blog post additions
 
 ### Authorship (E-E-A-T)
-- **Author registry**: `lib/authors.ts` — 5 real team members + "ClinicalSim.ai Team" fallback
-- **Assigning an author to a post**: Add `authorId: "vinod-havalad"` (or any valid author ID) to the post entry in `lib/posts.ts`. Valid IDs: `vinod-havalad`, `lauren-rissman`, `gillian-brennan`, `ben-conway`, `will-meyer`
+- **Author registry**: `lib/authors.ts` — 6 real team members + "ClinicalSim.ai Team" fallback
+- **Assigning an author to a post**: Add `authorId: "vinod-havalad"` (or any valid author ID) to the post entry in `lib/posts.ts`. Valid IDs: `ben-conway`, `will-meyer`, `lauren-rissman`, `vinod-havalad`, `gillian-brennan`, `jacqueline-ponczek`
+- **`lib/authors.ts` is the ONLY source of valid IDs.** Before writing an `authorId`, grep the registry rather than trusting the list above; it has drifted before. An unrecognized ID fails silently, rendering as "ClinicalSim.ai Team" with no error.
+- **`authorId` and `reviewedBy` are factual claims about what a named person did.** Never assign either without that person's confirmation, and never attach a name to a post carrying unsourced or contested figures.
 - **Default behavior**: Posts without `authorId` (or with no match) render as "ClinicalSim.ai Team" with a Users icon
 - **Individual authors** render with colored initials avatar + name + title via `components/author-byline.tsx`
 - **JSON-LD**: Article schema automatically uses `Person` for individual authors and `Organization` for team posts
@@ -246,8 +251,8 @@ All content on this site must be optimized for discovery by AI search systems (C
 ### Infrastructure Files
 - `app/robots.ts` — Crawler rules; blocks GPTBot (training) while allowing search crawlers
 - `app/sitemap.ts` — Auto-generated from `lib/posts.ts`, `lib/solutions.ts`, `lib/audiences.ts`
-- `public/llms.txt` — Page index for LLM crawlers; update when adding/removing pages
-- When adding new pages, update `app/sitemap.ts` and `public/llms.txt`
+- `app/llms.txt/route.ts` — Page index for LLM crawlers, served at `/llms.txt`; update when adding/removing pages. There is no `public/llms.txt`; the route handler is the only source.
+- When adding new pages, update `app/sitemap.ts` and `app/llms.txt/route.ts`
 
 ### Solution Page Data (`lib/solutions.ts`)
 - `faqs` field: Array of `{ question, answer }` for FAQ section + FAQPage JSON-LD

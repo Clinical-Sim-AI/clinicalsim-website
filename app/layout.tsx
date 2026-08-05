@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     default: 'ClinicalSim.ai — Clinical Simulation for Communication Remediation & Training',
     template: '%s | ClinicalSim.ai',
   },
-  description: 'Practice the conversations that matter most. Clinical simulation purpose-built for communication remediation and training in medical education. Structured practice mapped to ACGME milestones with CCC-ready documentation. Built by simulation directors and communication researchers.',
+  description: 'Practice the conversations that matter most. Clinical simulation purpose-built for communication remediation and training in medical education. Structured, rubric-scored practice with milestone-aligned documentation for every stage of training. Built by simulation directors and communication researchers.',
   icons: {
     icon: '/favicon.svg?v=3',
     apple: '/apple-touch-icon.png?v=3',
