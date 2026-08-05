@@ -249,7 +249,7 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto">
           <DemoVideoSection
             title="See ClinicalSim in action"
-            description="Hear a learner work through a goals-of-care conversation with an AI patient, and see the rubric-scored feedback that follows."
+            description="Hear a learner work through a vaccine hesitancy conversation with an AI patient, and see the rubric-scored feedback that follows."
             loomUrl="https://www.loom.com/embed/3eacd20486a74b5c80a4ab7ba60b0308?t=0"
           />
         </div>
