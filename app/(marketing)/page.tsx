@@ -62,11 +62,34 @@ export default function HomePage() {
     "History-taking",
   ]
 
-  // Stages of the medical-education continuum the platform serves.
-  const trainingLevels = [
-    "Undergraduate Medical Education",
-    "Graduate Medical Education",
-    "Faculty Development",
+  // The stages of the medical-education continuum the platform serves, each
+  // paired with the published framework it is scored against. Split out of the
+  // definition paragraph so the mapping is scannable. Stage names are spelled
+  // out in full because AI search extracts these rows on their own.
+  const frameworkMap = [
+    { stage: "Undergraduate medical education", framework: "AAMC Foundational Competencies" },
+    { stage: "Graduate medical education, residency and fellowship", framework: "ACGME Milestones 2.0" },
+    { stage: "Faculty development", framework: "Pendleton and SBI feedback frameworks" },
+  ]
+
+  // The three claims that differentiate the platform. Each is documented case
+  // by case on the methodology page.
+  const differentiators = [
+    {
+      claim: "Authored by named physicians",
+      detail:
+        "Fellowship program directors and simulation directors write the cases, and they put their names on them.",
+    },
+    {
+      claim: "Anchored to a published framework",
+      detail:
+        "Every case maps to a specific published competency set or communication framework, not to a rubric we invented.",
+    },
+    {
+      claim: "Traceable to the transcript",
+      detail:
+        "Every score cites a verbatim line from what the learner actually said, so a faculty member can check the rating against the evidence.",
+    },
   ]
 
   const stats = [
@@ -232,36 +255,62 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Definition + scenarios — editorial two-column */}
+      {/* 3. Definition + proof + scenarios — stacked bands. Definition beside
+           the framework mapping, then the three differentiators as a 3-up row,
+           then the scenario list. */}
       <section className="px-6 py-16 md:py-24 bg-white">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16">
-          {/* Left — definition */}
-          <div className="max-w-xl">
-            <h2 className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
-              What is ClinicalSim?
-            </h2>
-            <p className="text-2xl md:text-3xl font-light tracking-tight leading-snug text-cs-navy text-balance">
-              ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication, the hardest competency to teach, train, and measure.
-            </p>
-            <p className="mt-6 text-base md:text-lg text-cs-dark-blue font-light leading-relaxed">
-              The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to the framework that fits each stage: the AAMC Foundational Competencies in undergraduate medical education, ACGME Milestones 2.0 in graduate medical education, and structured feedback frameworks like Pendleton and SBI for faculty development, plus documented feedback from every session.
-            </p>
+        <div className="max-w-6xl mx-auto">
+          {/* Band 1 — definition and framework mapping */}
+          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-start">
+            <div className="max-w-2xl">
+              <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
+                What is ClinicalSim?
+              </p>
+              <h2 className="text-2xl md:text-3xl font-light tracking-tight leading-snug text-cs-navy text-balance">
+                ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication, the hardest competency to teach, train, and measure.
+              </h2>
+              <p className="mt-6 text-base md:text-lg text-cs-dark-blue font-light leading-relaxed text-pretty">
+                The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to the framework that fits each stage.
+              </p>
+            </div>
 
-            <ul className="mt-7 space-y-3.5 border-t border-cs-gray pt-6">
-              <li className="text-base text-cs-dark-blue font-light leading-relaxed">
-                <span className="font-medium">Authored by named physicians.</span>{" "}
-                Fellowship program directors and simulation directors write the cases, and they put their names on them.
-              </li>
-              <li className="text-base text-cs-dark-blue font-light leading-relaxed">
-                <span className="font-medium">Anchored to a published framework.</span>{" "}
-                Every case maps to a specific published competency set or communication framework, not to a rubric we invented.
-              </li>
-              <li className="text-base text-cs-dark-blue font-light leading-relaxed">
-                <span className="font-medium">Traceable to the transcript.</span>{" "}
-                Every score cites a verbatim line from what the learner actually said, so a faculty member can check the rating against the evidence.
-              </li>
+            {/* Framework mapping — the dense paragraph, made scannable. Stage
+                above framework so the full stage names never collide. */}
+            <div className="w-full lg:pt-1">
+              <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
+                Across the training continuum
+              </p>
+              <dl className="border-t border-cs-gray">
+                {frameworkMap.map((item) => (
+                  <div key={item.stage} className="border-b border-cs-gray py-3.5">
+                    <dt className="text-sm font-medium text-cs-navy text-pretty">{item.stage}</dt>
+                    <dd className="mt-1 text-sm text-cs-dark-blue font-light text-pretty">
+                      Scored against {item.framework}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-4 text-sm text-cs-dark-gray font-light leading-relaxed">
+                Every session produces documented feedback.
+              </p>
+            </div>
+          </div>
+
+          {/* Band 2 — the three differentiators */}
+          <div className="mt-14 md:mt-16 border-t border-cs-gray pt-10 md:pt-12">
+            <ul className="grid gap-8 md:grid-cols-3 md:gap-10">
+              {differentiators.map((item) => (
+                <li key={item.claim}>
+                  <p className="text-base font-medium text-cs-navy leading-snug text-balance">
+                    {item.claim}
+                  </p>
+                  <p className="mt-2.5 text-sm md:text-base text-cs-dark-blue font-light leading-relaxed text-pretty">
+                    {item.detail}
+                  </p>
+                </li>
+              ))}
             </ul>
-            <p className="mt-5 text-sm text-cs-dark-gray font-light">
+            <p className="mt-8 text-sm text-cs-dark-gray font-light">
               All three are documented case by case on our{" "}
               <Link href="/methodology" className="text-cs-dark-blue font-medium hover:text-cs-navy transition-colors">
                 methodology page
@@ -270,8 +319,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Right — scenarios */}
-          <div className="lg:border-l lg:border-cs-gray lg:pl-12 xl:pl-16">
+          {/* Band 3 — scenarios. The training continuum lives in the framework
+              mapping above, so it is not repeated here. */}
+          <div className="mt-14 md:mt-16 border-t border-cs-gray pt-10 md:pt-12">
             <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-5">
               Conversations you can practice
             </p>
@@ -282,20 +332,6 @@ export default function HomePage() {
                   className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
                 >
                   {type}
-                </li>
-              ))}
-            </ul>
-
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mt-10 mb-5">
-              Across the training continuum
-            </p>
-            <ul className="flex flex-wrap gap-2.5 md:gap-3">
-              {trainingLevels.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
-                >
-                  {item}
                 </li>
               ))}
             </ul>
