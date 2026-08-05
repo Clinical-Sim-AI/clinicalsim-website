@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button"
 import { StatHighlight } from "@/components/stat-highlight"
 import { AudienceCard } from "@/components/audience-card"
 import { RotatingText } from "@/components/rotating-text"
+import { Reveal } from "@/components/reveal"
+import { CountUp } from "@/components/count-up"
 import { getAllSolutions } from "@/lib/solutions"
 import { JsonLd } from "@/components/json-ld"
 import { ArrowRight } from "lucide-react"
@@ -357,13 +359,14 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {stats.map((stat, index) => (
-              <StatHighlight
-                key={index}
-                value={stat.value}
-                label={stat.label}
-                source={stat.source}
-                variant={stat.variant}
-              />
+              <Reveal key={index} delay={index * 100}>
+                <StatHighlight
+                  value={stat.value}
+                  label={stat.label}
+                  source={stat.source}
+                  variant={stat.variant}
+                />
+              </Reveal>
             ))}
           </div>
 
@@ -378,10 +381,10 @@ export default function HomePage() {
               What the same failure already costs an institution
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
-              {exposureLines.map((line) => (
-                <div key={line.value}>
+              {exposureLines.map((line, index) => (
+                <Reveal key={line.value} delay={index * 120}>
                   <div className="text-3xl md:text-4xl font-medium text-cs-dark-blue tabular-nums leading-tight">
-                    {line.value}
+                    <CountUp value={line.value} />
                   </div>
                   <p className="mt-2.5 text-base text-cs-dark-blue font-light leading-snug">
                     {line.label}
@@ -389,7 +392,7 @@ export default function HomePage() {
                   <p className="mt-2 text-sm text-cs-dark-gray font-light">
                     {line.source}
                   </p>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -496,16 +499,17 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {solutions.map((solution) => (
-              <AudienceCard
-                key={solution.slug}
-                brandIcon={solution.icon}
-                title={solution.title}
-                subtitle={solution.subtitle}
-                bullets={solution.cardBullets}
-                href={`/solutions/${solution.slug}`}
-                variant={solution.colorVariant}
-              />
+            {solutions.map((solution, index) => (
+              <Reveal key={solution.slug} delay={index * 80} className="h-full [&>a]:h-full">
+                <AudienceCard
+                  brandIcon={solution.icon}
+                  title={solution.title}
+                  subtitle={solution.subtitle}
+                  bullets={solution.cardBullets}
+                  href={`/solutions/${solution.slug}`}
+                  variant={solution.colorVariant}
+                />
+              </Reveal>
             ))}
           </div>
 

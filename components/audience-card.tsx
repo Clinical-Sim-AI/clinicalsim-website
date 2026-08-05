@@ -59,13 +59,13 @@ export function AudienceCard({
       <div
         className={cn(
           "relative flex flex-col bg-white rounded-xl p-6 md:p-8",
-          "border border-cs-gray transition-all duration-300 h-full",
-          "hover:shadow-lg",
+          "border border-cs-gray transition-all duration-300 ease-out h-full",
+          "hover:shadow-lg hover:-translate-y-1",
           className
         )}
         {...props}
       >
-        <div className={cn("w-12 h-12 rounded-lg flex items-center justify-center mb-4", styles.iconBg)}>
+        <div className={cn("w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110", styles.iconBg)}>
           {brandIcon ? (
             <BrandIcon name={brandIcon} color={styles.brandIconColor} size={28} />
           ) : Icon ? (

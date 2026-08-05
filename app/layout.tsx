@@ -45,6 +45,12 @@ export default function RootLayout({
             __html: `!function(key) {if (window.reb2b) return;window.reb2b = {loaded: true};var s = document.createElement("script");s.async = true;s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);}("GOYPYHQZM0OX");`,
           }}
         />
+        {/* The scroll-reveal styles start at opacity 0 and only JS can add
+            .is-visible, so without JS every wrapped section would stay blank.
+            Hand those readers the content instead. */}
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
       </head>
       <body className="font-sans" suppressHydrationWarning={true}>
         {children}

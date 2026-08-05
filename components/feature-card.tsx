@@ -56,9 +56,9 @@ export function FeatureCard({
   return (
     <div
       className={cn(
-        "relative bg-white rounded-xl p-6 md:p-8",
-        "border transition-all duration-300",
-        expandOnHover && "hover:shadow-lg",
+        "group relative bg-white rounded-xl p-6 md:p-8",
+        "border transition-all duration-300 ease-out",
+        expandOnHover && "hover:shadow-lg hover:-translate-y-1",
         asymmetric ? "h-auto" : "h-full",
         styles.border,
         className

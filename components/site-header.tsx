@@ -239,7 +239,7 @@ export function SiteHeader() {
                cascades into these panels, so any label longer than the panel
                spills past its right edge instead of wrapping. Sizing to the
                longest item keeps the panel honest as titles get renamed. */
-            <div className="absolute top-full left-0 pt-2 w-max min-w-72 z-50">
+            <div className="dropdown-enter absolute top-full left-0 pt-2 w-max min-w-72 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
               {solutions.map((solution) => (
                 <Link
@@ -292,7 +292,7 @@ export function SiteHeader() {
 
           {audiencesOpen && (
             /* w-max for the same reason as the Use Cases panel above. */
-            <div className="absolute top-full left-0 pt-2 w-max min-w-72 z-50">
+            <div className="dropdown-enter absolute top-full left-0 pt-2 w-max min-w-72 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
               {audiences.map((audience) => (
                 <Link
@@ -340,7 +340,7 @@ export function SiteHeader() {
           </button>
 
           {whoWeAreOpen && (
-            <div className="absolute top-full left-0 pt-2 w-max min-w-56 z-50">
+            <div className="dropdown-enter absolute top-full left-0 pt-2 w-max min-w-56 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
               {aboutItems.map((item) => (
                 <Link
