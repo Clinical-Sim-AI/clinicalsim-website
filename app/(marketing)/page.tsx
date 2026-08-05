@@ -418,14 +418,14 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {solutions.map((solution, index) => (
               <Reveal key={solution.slug} delay={index * 80} className="h-full [&>a]:h-full">
-              <AudienceCard
-                brandIcon={solution.icon}
-                title={solution.title}
-                subtitle={solution.subtitle}
-                bullets={solution.cardBullets}
-                href={`/solutions/${solution.slug}`}
-                variant={solution.colorVariant}
-              />
+                <AudienceCard
+                  brandIcon={solution.icon}
+                  title={solution.title}
+                  subtitle={solution.subtitle}
+                  bullets={solution.cardBullets}
+                  href={`/solutions/${solution.slug}`}
+                  variant={solution.colorVariant}
+                />
               </Reveal>
             ))}
           </div>

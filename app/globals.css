@@ -52,17 +52,22 @@
   }
 
   /* Scroll-reveal: subtle fade + rise as content enters the viewport.
-     Applied via the <Reveal /> component, which toggles .is-visible. */
+     Applied via the <Reveal /> component, which toggles .is-visible.
+     The hidden state is undone in a <noscript> block in app/layout.tsx, since
+     only JS can add .is-visible. */
   .reveal {
     opacity: 0;
     transform: translateY(12px);
     transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
       transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    /* Only while the element still has motion ahead of it. Leaving will-change
+       on a dozen revealed cards pins compositor layers for nothing. */
     will-change: opacity, transform;
   }
   .reveal.is-visible {
     opacity: 1;
     transform: none;
+    will-change: auto;
   }
 
   /* ROI calculator range slider thumb */
@@ -96,10 +101,12 @@
     .dropdown-enter {
       animation: none;
     }
-    .reveal {
+    .reveal,
+    .reveal.is-visible {
       opacity: 1;
       transform: none;
       transition: none;
+      will-change: auto;
     }
   }
 }

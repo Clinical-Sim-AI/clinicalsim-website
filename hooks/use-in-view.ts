@@ -28,10 +28,14 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(
     if (!node) return
 
     // Respect reduced-motion and environments without IntersectionObserver.
+    // This has to happen after mount rather than during render: the server has
+    // neither matchMedia nor IntersectionObserver, so deciding in render would
+    // hand the client a different first paint than the HTML it hydrates.
     const prefersReduced =
       typeof window !== "undefined" &&
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
     if (prefersReduced || typeof IntersectionObserver === "undefined") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- see above
       setInView(true)
       return
     }
