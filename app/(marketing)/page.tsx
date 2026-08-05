@@ -62,18 +62,13 @@ export default function HomePage() {
     "History-taking",
   ]
 
-  // Stages of the medical-education continuum the platform serves.
-  const trainingLevels = [
-    "Undergraduate Medical Education",
-    "Graduate Medical Education",
-    "Faculty Development",
-  ]
-
-  // Each stage is scored against the published framework that fits it. Split
-  // out of the definition paragraph so the mapping is scannable.
+  // The stages of the medical-education continuum the platform serves, each
+  // paired with the published framework it is scored against. Split out of the
+  // definition paragraph so the mapping is scannable. Stage names are spelled
+  // out in full because AI search extracts these rows on their own.
   const frameworkMap = [
-    { stage: "Undergraduate", framework: "AAMC Foundational Competencies" },
-    { stage: "Graduate", framework: "ACGME Milestones 2.0" },
+    { stage: "Undergraduate medical education", framework: "AAMC Foundational Competencies" },
+    { stage: "Graduate medical education, residency and fellowship", framework: "ACGME Milestones 2.0" },
     { stage: "Faculty development", framework: "Pendleton and SBI feedback frameworks" },
   ]
 
@@ -260,8 +255,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Definition + proof + scenarios — stacked bands. Full-width intro,
-           then the three differentiators as a 3-up row, then the two lists. */}
+      {/* 3. Definition + proof + scenarios — stacked bands. Definition beside
+           the framework mapping, then the three differentiators as a 3-up row,
+           then the scenario list. */}
       <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto">
           {/* Band 1 — definition and framework mapping */}
@@ -278,20 +274,18 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Framework mapping — the dense paragraph, made scannable */}
+            {/* Framework mapping — the dense paragraph, made scannable. Stage
+                above framework so the full stage names never collide. */}
             <div className="w-full lg:pt-1">
               <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
-                Scored against
+                Across the training continuum
               </p>
               <dl className="border-t border-cs-gray">
                 {frameworkMap.map((item) => (
-                  <div
-                    key={item.stage}
-                    className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-cs-gray py-3.5"
-                  >
-                    <dt className="text-sm font-medium text-cs-navy">{item.stage}</dt>
-                    <dd className="text-sm text-cs-dark-blue font-light text-right">
-                      {item.framework}
+                  <div key={item.stage} className="border-b border-cs-gray py-3.5">
+                    <dt className="text-sm font-medium text-cs-navy text-pretty">{item.stage}</dt>
+                    <dd className="mt-1 text-sm text-cs-dark-blue font-light text-pretty">
+                      Scored against {item.framework}
                     </dd>
                   </div>
                 ))}
@@ -325,7 +319,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Band 3 — scenarios and the training continuum */}
+          {/* Band 3 — scenarios. The training continuum lives in the framework
+              mapping above, so it is not repeated here. */}
           <div className="mt-14 md:mt-16 border-t border-cs-gray pt-10 md:pt-12">
             <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-5">
               Conversations you can practice
@@ -337,20 +332,6 @@ export default function HomePage() {
                   className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
                 >
                   {type}
-                </li>
-              ))}
-            </ul>
-
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mt-12 mb-5">
-              Across the training continuum
-            </p>
-            <ul className="grid gap-3 sm:grid-cols-3 md:gap-4">
-              {trainingLevels.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-lg border border-cs-navy/20 bg-white px-5 py-4 text-base font-medium text-cs-navy text-balance"
-                >
-                  {item}
                 </li>
               ))}
             </ul>
