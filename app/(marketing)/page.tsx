@@ -558,7 +558,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Proof band — faculty first, then a learner. Faculty skepticism is
+      {/* 8. Proof band — faculty first, then learners. Faculty skepticism is
            the obstacle, so that quote leads. */}
       <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-5xl mx-auto">
@@ -590,6 +590,18 @@ export default function HomePage() {
                 </p>
                 <cite className="text-base text-cs-dark-blue/70 font-normal not-italic border-l-4 border-cs-dark-blue pl-4">
                   Clinician, Pilot Study Participant
+                </cite>
+              </blockquote>
+            </div>
+
+            <div className="relative mt-12 md:mt-16">
+              <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-cs-dark-blue/20 font-serif">&ldquo;</div>
+              <blockquote className="relative pl-8 pt-4">
+                <p className="text-xl md:text-2xl text-cs-dark-blue font-light leading-relaxed mb-4">
+                  I had to tell a patient&apos;s father that his daughter would need long-term oxygen support through a tracheostomy. Before speaking with him, I practiced the conversation on ClinicalSim. It gave me confidence and feedback on my tone and delivery. Having difficult conversations can be extremely stressful, but having the practice beforehand allowed me to give appropriate time for silence and empathy.
+                </p>
+                <cite className="text-base text-cs-dark-blue/70 font-normal not-italic border-l-4 border-cs-dark-blue pl-4">
+                  Nurse practitioner, Advocate Health
                 </cite>
               </blockquote>
             </div>
