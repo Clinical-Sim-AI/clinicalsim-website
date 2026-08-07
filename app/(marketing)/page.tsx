@@ -563,10 +563,9 @@ export default function HomePage() {
       <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12 md:mb-14">
-            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-navy mb-4">
-              What faculty and learners are saying
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-navy">
+              What clinicians are saying
             </h2>
-            <p className="text-base text-cs-dark-gray font-light">From our pilot study</p>
           </div>
 
           <div className="max-w-3xl mx-auto">
