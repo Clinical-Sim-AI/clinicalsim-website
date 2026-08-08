@@ -72,6 +72,7 @@ const audiences: Audience[] = [
     subtitle: "The remediation toolkit you told CERA you wanted",
     icon: "hat-graduation",
     colorVariant: "navy",
+    lastUpdated: "2026-08-07",
 
     cardBullets: [
       "20 structured encounters before your first coaching session",
@@ -80,17 +81,17 @@ const audiences: Audience[] = [
     ],
 
     heroHeadline:
-      "Your next remediation case doesn't have to consume 45 faculty hours",
+      "Your next remediation case doesn't have to start from scratch",
     heroDescription:
-      "Your next remediation case will consume 29-45 faculty hours. The learner who needs the most practice will get the fewest repetitions, because every SP encounter takes weeks to schedule and costs $200-$500. ClinicalSim gives struggling learners unlimited, on-demand practice — breaking bad news, navigating angry patients, conducting informed consent — with real-time feedback mapped to ACGME Milestones 2.0. Every session generates a timestamped, milestone-aligned record your CCC can actually use.",
+      "The learner who needs the most practice often gets the fewest repetitions because every standardized patient encounter takes coordination and faculty time. ClinicalSim gives struggling learners on-demand practice in breaking bad news, high-stakes patient encounters, and informed consent, with feedback mapped to ACGME Milestones 2.0. Every session generates a timestamped, milestone-aligned record your CCC can use.",
 
     painPoints: [
       {
         headline: "Faculty time consumed",
         description:
-          "Each remediation case absorbs 29-45 faculty hours in direct coaching, observation, and documentation. At $150-$300/hour clinical revenue, that's $5,000-$15,000 in opportunity cost per case.",
-        stat: "29-45 hrs",
-        statSource: "Per remediation case (University of Colorado; Penn EIRC)",
+          "One published clinical reasoning remediation program required a mean of 29.6 specialist contact hours, excluding program director, CCC, coordinator, and legal time.",
+        stat: "29.6 hrs",
+        statSource: "Guerrasio and Aagaard, J Gen Intern Med, 2014",
       },
       {
         headline: "No standardized tools",
@@ -121,9 +122,9 @@ const audiences: Audience[] = [
         variant: "navy",
       },
       {
-        value: "29-45",
-        label: "faculty hours consumed per remediation case",
-        source: "University of Colorado; Penn EIRC",
+        value: "29.6",
+        label: "mean specialist contact hours in one clinical reasoning remediation program",
+        source: "Guerrasio and Aagaard, J Gen Intern Med, 2014",
         variant: "accent",
       },
       {
@@ -144,7 +145,7 @@ const audiences: Audience[] = [
       {
         title: "Structured Practice Before Coaching",
         description:
-          "Give learners 20 structured encounters before their first coaching session. Breaking bad news, angry patient encounters, informed consent — each with milestone-aligned feedback. Faculty time goes to coaching, not facilitation.",
+          "Give learners 20 structured encounters before their first coaching session, including breaking bad news, high-stakes patient encounters, and informed consent. Faculty time goes to coaching instead of facilitating every repetition.",
       },
       {
         title: "Milestone-Aligned Assessment",
@@ -265,12 +266,12 @@ const audiences: Audience[] = [
       {
         title: "Documentation for Due Process",
         description:
-          "Every practice session generates a timestamped, milestone-aligned record. When remediation decisions are reviewed — by GMEC, by legal, by accreditation — the documentation exists.",
+          "Every practice session generates a timestamped, milestone-aligned record, so the documentation is available when GMEC, legal teams, or accreditors review a remediation decision.",
       },
       {
-        title: "Replace PACE-Level Costs",
+        title: "Keep practice inside the program",
         description:
-          "One institutional license replaces the cost of 3-6 external PACE referrals — and covers every program, every learner, every competency committee cycle. The economics are straightforward.",
+          "One institutional license can cover every program, learner, and competency committee cycle instead of sending each learner to a separate external assessment.",
       },
       {
         title: "Accreditation-Ready Infrastructure",
@@ -299,6 +300,7 @@ const audiences: Audience[] = [
     subtitle: "Extend your SP program, don't replace it",
     icon: "microscope",
     colorVariant: "blue",
+    lastUpdated: "2026-08-07",
 
     cardBullets: [
       "Assessment data your CCC can actually use from every session",
@@ -309,15 +311,15 @@ const audiences: Audience[] = [
     heroHeadline:
       "The practice volume struggling learners need, without the scheduling bottleneck",
     heroDescription:
-      "SP encounters are the gold standard for communication assessment. They're also $50-$500 per session, take weeks to schedule for individual remediation, and can't provide the practice volume struggling learners actually need. ClinicalSim isn't replacing your SP program. It's extending it. On-demand practice between scheduled encounters, with assessment data that validates what your center already does.",
+      "SP encounters remain the standard for high-stakes communication assessment, and they require actor time, space, faculty support, and scheduling. ClinicalSim extends your SP program with on-demand practice between scheduled encounters and assessment data that documents what learners do over time.",
 
     painPoints: [
       {
         headline: "SP encounters can't scale for remediation",
         description:
-          "Individual remediation requires high-volume, repeated practice. At $50-$500 per SP encounter and weeks of scheduling lead time, you can't give a single struggling learner the 20+ practice sessions they need.",
-        stat: "$50-$500",
-        statSource: "Per SP encounter (industry range)",
+          "Individual remediation requires repeated practice, but each live encounter requires a trained actor, space, faculty support, and scheduling. That makes frequent practice hard to provide through live simulation alone.",
+        stat: "On demand",
+        statSource: "Practice between scheduled SP encounters",
       },
       {
         headline: "Budget pressure on communication sim",
@@ -332,15 +334,14 @@ const audiences: Audience[] = [
       {
         headline: "Center value justification",
         description:
-          "Simulation center directors constantly justify their centers' existence and impact. Measurable communication outcomes at scale — documented, longitudinal, milestone-aligned — are the kind of data that makes that case.",
+          "Simulation center directors have to document their centers' use and impact. Longitudinal, milestone-aligned communication data gives them evidence that can support that work.",
       },
     ],
 
     stats: [
       {
-        value: "$50-$500",
-        label: "per SP encounter for communication assessment",
-        source: "Industry range",
+        value: "24/7",
+        label: "practice access between scheduled SP encounters",
         variant: "blue",
       },
       {
@@ -371,7 +372,7 @@ const audiences: Audience[] = [
       {
         title: "Assessment Data That Scales",
         description:
-          "Every AI practice session generates milestone-aligned assessment data — the same ICS milestones your CCC already evaluates against. Consistent across learners, aggregable over time, ready for committee review.",
+          "Every AI practice session generates assessment data against the same ICS milestones your CCC already uses. Programs can compare the results across attempts and bring them into committee review.",
       },
       {
         title: "The Volume Remediation Requires",
@@ -381,7 +382,7 @@ const audiences: Audience[] = [
       {
         title: "Justify Your Center's Impact",
         description:
-          "When you show the dean that your simulation infrastructure now generates measurable communication outcomes at scale — with documented improvement on validated milestones — that's a conversation worth having.",
+          "When you show the dean that your simulation infrastructure produces longitudinal communication data at scale, with assessment tied to the relevant milestones, you can document how learners use the program and how their performance changes.",
       },
     ],
 
@@ -392,7 +393,7 @@ const audiences: Audience[] = [
     ],
 
     ctaHeadline:
-      "Assessment data your CCC can actually use — from every practice session.",
+      "Assessment data from every practice session that your CCC can use.",
     ctaDescription:
       "Request a pilot and see how ClinicalSim extends your simulation center's communication training capacity.",
 
@@ -414,12 +415,12 @@ const audiences: Audience[] = [
     cardBullets: [
       "Milestone-aligned assessment data from structured practice sessions",
       "Longitudinal progress tracking across the remediation period",
-      "Objective data to complement faculty observations",
+      "Structured data to complement faculty observations",
     ],
 
     heroHeadline: "The assessment data you've been making decisions without",
     heroDescription:
-      "Clinical Competency Committees make high-stakes decisions about learner progression with limited communication assessment data. Faculty observations are subjective, inconsistent, and sparse. ClinicalSim generates structured, milestone-aligned assessment data from every practice session — giving your committee objective evidence of communication competency development over time.",
+      "Clinical Competency Committees make high-stakes decisions about learner progression with limited communication assessment data. ClinicalSim generates structured, milestone-aligned data from every practice session, giving your committee another source of evidence alongside faculty observation.",
 
     painPoints: [
       {
@@ -476,9 +477,9 @@ const audiences: Audience[] = [
 
     valueProps: [
       {
-        title: "Objective Communication Data",
+        title: "Structured communication data",
         description:
-          "Every practice session generates assessment data mapped to ACGME Milestones 2.0. Not subjective impressions — structured, consistent, comparable data your committee can use alongside faculty evaluations.",
+          "Every practice session generates assessment data mapped to ACGME Milestones 2.0. Your committee can use that structured, comparable record alongside faculty evaluations.",
       },
       {
         title: "Longitudinal Progress Tracking",
@@ -488,12 +489,12 @@ const audiences: Audience[] = [
       {
         title: "CCC-Ready Reports",
         description:
-          "Assessment data formatted for committee review. Timestamped sessions, milestone scores, progress trends — the documentation your committee needs to make and defend progression decisions.",
+          "Assessment data is formatted for committee review, with timestamped sessions, milestone scores, and progress trends that document the basis for a progression decision.",
       },
       {
         title: "Complement Faculty Assessment",
         description:
-          "ClinicalSim data doesn't replace faculty judgment. It supplements it with objective, repeatable assessment data that addresses the gaps in subjective observation.",
+          "ClinicalSim data doesn't replace faculty judgment. It supplements faculty observation with a repeatable assessment record from each practice session.",
       },
     ],
 
@@ -517,6 +518,7 @@ const audiences: Audience[] = [
     subtitle: "Sequence communication across all four years",
     icon: "book-opened",
     colorVariant: "blue",
+    lastUpdated: "2026-08-07",
 
     cardBullets: [
       "A four-year arc from history-taking to diagnosis disclosure",
@@ -525,9 +527,9 @@ const audiences: Audience[] = [
     ],
 
     heroHeadline:
-      "Communication should grow alongside clinical knowledge — not be left to chance",
+      "Communication should grow alongside clinical knowledge, not be left to chance",
     heroDescription:
-      "Medical students learn anatomy and pathophysiology on a deliberate sequence, but communication is often taught unevenly and assessed inconsistently. When Step 2 CS was discontinued in 2021, schools lost the only national standardized assessment of clinical communication. ClinicalSim lets you sequence scenarios across all four years — from structured history-taking to delivering a new diagnosis — with unlimited on-demand practice and a dashboard that follows each student through clerkships.",
+      "Medical students learn anatomy and pathophysiology on a deliberate sequence, but communication is often taught unevenly and assessed inconsistently. When Step 2 CS was discontinued in 2021, schools lost the only national standardized assessment of clinical communication. ClinicalSim lets you sequence scenarios across all four years, from structured history-taking to delivering a new diagnosis, with unlimited on-demand practice and a dashboard that follows each student through clerkships.",
 
     painPoints: [
       {
@@ -540,14 +542,14 @@ const audiences: Audience[] = [
       {
         headline: "Standardized-patient encounters don't scale",
         description:
-          "SP encounters are the gold standard, but at $50-$500 each and weeks of scheduling lead time, students can't get the repetition that builds real communication skill before clerkships.",
-        stat: "$50-$500",
-        statSource: "Per SP encounter (industry range)",
+          "SP encounters remain important for high-stakes assessment, but each session requires a trained actor, space, faculty support, and advance scheduling. That limits how often students can practice before clerkships.",
+        stat: "On demand",
+        statSource: "Practice between scheduled SP encounters",
       },
       {
         headline: "Communication is taught unevenly",
         description:
-          "Across a four-year curriculum, communication instruction is often fragmented — a workshop here, an OSCE there — with no continuous arc and no longitudinal view of how each student is progressing.",
+          "Across a four-year curriculum, communication instruction is often fragmented, a workshop here, an OSCE there, with no continuous arc and no longitudinal view of how each student is progressing.",
       },
       {
         headline: "Skills fade without practice",
@@ -559,7 +561,7 @@ const audiences: Audience[] = [
     stats: [
       {
         value: "2021",
-        label: "Step 2 CS — the national communication exam — was discontinued",
+        label: "Step 2 CS, the national communication exam, was discontinued",
         source: "USMLE / NBME",
         variant: "blue",
       },
@@ -584,7 +586,7 @@ const audiences: Audience[] = [
       {
         title: "A Four-Year Arc",
         description:
-          "Sequence scenarios so communication complexity rises with clinical knowledge — structured history-taking in the preclinical years, updating families on a plan in M3, and delivering a new diagnosis in M4.",
+          "Sequence scenarios so communication complexity rises with clinical knowledge: structured history-taking in the preclinical years, updating families on a plan in M3, and delivering a new diagnosis in M4.",
       },
       {
         title: "Practice Between SP Encounters",
@@ -594,12 +596,12 @@ const audiences: Audience[] = [
       {
         title: "A Dashboard Through Clerkships",
         description:
-          "Follow each student's communication trajectory across the four years — not a single OSCE score, but a longitudinal view of how the skill is developing.",
+          "Follow each student's communication trajectory across four years instead of relying on a single OSCE score.",
       },
       {
-        title: "Built on Validated Frameworks",
+        title: "Built on Published Frameworks",
         description:
-          "Scenarios and feedback draw on established communication frameworks — SPIKES, teach-back, and Calgary-Cambridge — so students learn structures they'll carry into residency.",
+          "Scenarios and feedback draw on published communication frameworks such as SPIKES, teach-back, and Calgary-Cambridge, so students learn structures they'll carry into residency.",
       },
     ],
 
@@ -634,13 +636,13 @@ const audiences: Audience[] = [
     heroHeadline:
       "Faculty have to model conversations no one trained them for",
     heroDescription:
-      "Attendings, fellows-as-teachers, and clinician educators are expected to give difficult feedback, address professionalism concerns, and teach at the bedside — conversations they were rarely formally trained to lead and almost never get objective feedback on. ClinicalSim turns the same engine and rubric that train residents toward the skills faculty are expected to demonstrate, in a private, low-stakes setting.",
+      "Attendings, fellows-as-teachers, and clinician educators are expected to give difficult feedback, address professionalism concerns, and teach at the bedside, even though they were rarely trained to lead those conversations. ClinicalSim gives faculty private practice with rubric-scored feedback on the skills they are expected to model.",
 
     painPoints: [
       {
         headline: "Faculty model skills they never practiced",
         description:
-          "Giving structured feedback, handling defensiveness, and running a professionalism conversation are learned skills — but most faculty picked them up by osmosis, without deliberate practice or feedback.",
+          "Giving structured feedback, handling defensiveness, and running a professionalism conversation are learned skills, but most faculty picked them up by osmosis, without deliberate practice or feedback.",
       },
       {
         headline: "Confidence is not competence",
@@ -649,14 +651,14 @@ const audiences: Audience[] = [
         statSource: "See our essay on the measurement gap",
       },
       {
-        headline: "No objective feedback loop",
+        headline: "No consistent feedback loop",
         description:
           "Once training ends, structured feedback on how a clinician actually communicates effectively stops. There is rarely a safe place to rehearse a hard feedback conversation before having it for real.",
       },
       {
         headline: "Professionalism conversations get avoided",
         description:
-          "Addressing a peer's lateness, disengagement, or underperformance is uncomfortable, so it's often deferred — and unaddressed concerns escalate into larger problems for the team and the program.",
+          "Addressing a peer's lateness, disengagement, or underperformance is uncomfortable, so it's often deferred, and unaddressed concerns escalate into larger problems for the team and the program.",
       },
     ],
 
@@ -678,7 +680,7 @@ const audiences: Audience[] = [
       },
       {
         value: "Every session",
-        label: "generates objective, rubric-scored feedback",
+        label: "generates structured, rubric-scored feedback",
         variant: "light-blue",
       },
     ],
@@ -687,7 +689,7 @@ const audiences: Audience[] = [
       {
         title: "Rehearse Difficult Feedback",
         description:
-          "Practice delivering corrective feedback to a learner with structure (Pendleton, SBI) and handling defensiveness — before the real conversation, not during it.",
+          "Practice delivering corrective feedback to a learner with structure (Pendleton, SBI) and handling defensiveness, before the real conversation, not during it.",
       },
       {
         title: "Navigate Professionalism Concerns",
@@ -697,7 +699,7 @@ const audiences: Audience[] = [
       {
         title: "Sharpen Bedside Teaching",
         description:
-          "Practice teach-back from the teacher's side — calibrating to the learner's level and protecting time for questions — with feedback on how it lands.",
+          "Practice teach-back from the teacher's side, calibrating to the learner's level and protecting time for questions, with feedback on how it lands.",
       },
       {
         title: "One Platform for Learners and Teachers",
@@ -711,7 +713,7 @@ const audiences: Audience[] = [
     ctaHeadline:
       "Give faculty the practice they never got.",
     ctaDescription:
-      "Request a pilot and see how attendings and clinician educators rehearse feedback, professionalism, and teaching conversations with objective feedback.",
+      "Request a pilot and see how attendings and clinician educators rehearse feedback, professionalism, and teaching conversations with rubric-scored feedback.",
 
     relatedPostSlugs: [
       "eol-communication-training-measurement-gap",

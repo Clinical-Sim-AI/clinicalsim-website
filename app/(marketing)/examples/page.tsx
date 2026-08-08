@@ -11,11 +11,11 @@ import { ArrowRight } from "lucide-react"
 export const metadata: Metadata = {
   title: "See It In Action: Example Simulation Feedback",
   description:
-    "Browse real ClinicalSim encounters and open the exact feedback a learner receives — the milestone-aligned assessment report, the recording, and the full transcript. No sign-in required.",
+    "Browse real ClinicalSim encounters and open the exact feedback a learner receives, including the milestone-aligned assessment report, recording, and full transcript. No sign-in required.",
   openGraph: {
     title: "See ClinicalSim Feedback In Action",
     description:
-      "Real example encounters with the exact learner feedback report, audio recording, and transcript — no sign-in required.",
+      "Real example encounters with the exact learner feedback report, audio recording, and transcript. No sign-in required.",
     url: "https://clinicalsim.ai/examples",
   },
   twitter: {
@@ -87,9 +87,9 @@ export default function ExamplesPage() {
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-4 max-w-3xl mx-auto">
             These are real encounters from the platform.{" "}
             <span className="text-cs-electric font-medium">
-              Open one and see exactly what a learner sees
+              Open one and see exactly what a learner sees:
             </span>{" "}
-            — the assessment report, the recording, and the full transcript.
+            the assessment report, the recording, and the full transcript.
           </p>
           <p className="text-base md:text-lg text-cs-cloud font-light max-w-2xl mx-auto">
             No sign-in, no demo call. Just the same feedback page, mapped to
@@ -124,8 +124,8 @@ export default function ExamplesPage() {
             This is what your learners would get
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            Every practice session generates feedback like this — on demand,
-            mapped to the milestones your CCC already uses.
+            Every practice session generates feedback like this, mapped to the
+            milestones your CCC already uses.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">

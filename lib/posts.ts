@@ -11,7 +11,7 @@ export interface Post {
   /**
    * Name of a credentialed clinical reviewer for "Medically reviewed by"
    * attribution on clinical posts. Populate only with a real reviewer who has
-   * actually reviewed the content — never fabricate. Optional reviewedDate is
+   * actually reviewed the content, never fabricate. Optional reviewedDate is
    * an ISO date string.
    */
   reviewedBy?: string
@@ -22,8 +22,9 @@ const posts: Post[] = [
   {
     slug: "eol-communication-training-measurement-gap",
     title: "Six of 105: Why End-of-Life Communication Training Has a Measurement Problem",
-    description: "A systematic review of 105 studies found only 6 with clear training objectives — none sharing the same outcomes. A pediatric intensivist and palliative care physician explains what this means for fellows learning to navigate the hardest conversations in medicine.",
+    description: "A pediatric intensivist and palliative care physician explains why end-of-life communication training needs shared objectives, consistent measures, and feedback tied to observable behavior.",
     date: "2026-06-09",
+    dateModified: "2026-07-18",
     author: "Lauren Rissman, MD",
     authorId: "lauren-rissman",
     readingTime: "8 min read",
@@ -34,6 +35,7 @@ const posts: Post[] = [
     title: "Breaking Bad News Is a Practice Problem, Not a Knowledge Problem",
     description: "Residents who score well on written exams still freeze in real conversations. Only 17.6% of residents report formal training in breaking bad news, and the gap isn't knowledge, it's comfort. Communication skills improve through repetition and feedback in realistic scenarios, not lectures.",
     date: "2026-05-19",
+    dateModified: "2026-07-18",
     author: "ClinicalSim Team",
     readingTime: "8 min read",
     tags: ["breaking-bad-news", "communication-training", "SPIKES", "Calgary-Cambridge", "Kalamazoo", "simulation", "deliberate-practice", "medical-education", "remediation"],
@@ -41,8 +43,9 @@ const posts: Post[] = [
   {
     slug: "what-programs-lost-when-step-2-cs-disappeared",
     title: "What Programs Lost When Step 2 CS Disappeared, and What Hasn't Replaced It",
-    description: "USMLE Step 2 CS was permanently discontinued in 2021. Five years later, residency programs still have no standardized way to assess communication skills. Milestones 2.0 raised the bar, but gave programs no new tools to meet it.",
+    description: "USMLE Step 2 CS was permanently discontinued in 2021 with no national successor for assessing clinical communication. This left programs to build local approaches around the expectations in Milestones 2.0.",
     date: "2026-05-11",
+    dateModified: "2026-07-18",
     author: "ClinicalSim Team",
     readingTime: "7 min read",
     tags: ["step-2-cs", "communication-assessment", "ACGME", "milestones", "medical-education", "residency", "USMLE"],
@@ -50,8 +53,9 @@ const posts: Post[] = [
   {
     slug: "faculty-hour-problem-communication-remediation",
     title: "The Faculty Hour Problem with Communication Remediation, and Why It Doesn't Scale",
-    description: "93% of residency programs face remediation, and communication is the hardest competency to fix. Each case consumes 25-75 faculty hours. Programs build their approach from scratch every time. The math doesn't work.",
+    description: "A published clinical reasoning remediation program required a mean of 29.6 specialist contact hours. Here is what that figure measures, what it leaves out, and how programs can separate practice from faculty coaching.",
     date: "2026-04-07",
+    dateModified: "2026-08-07",
     author: "ClinicalSim Team",
     readingTime: "7 min read",
     tags: ["communication-remediation", "faculty-time", "ACGME", "milestones", "medical-education", "residency"],
@@ -61,6 +65,7 @@ const posts: Post[] = [
     title: "When Affirming Care Training Disappears, Simulation Has to Fill the Gap",
     description: "A new AI simulation approach presented at IPSS Rome tackles the growing gap in transgender communication training for pediatric residents, where 60% of programs lack direct clinical exposure.",
     date: "2026-03-30",
+    dateModified: "2026-08-07",
     author: "ClinicalSim Team",
     readingTime: "6 min read",
     tags: ["ai", "simulation", "communication-training", "affirming-care", "pediatrics"],
@@ -68,8 +73,9 @@ const posts: Post[] = [
   {
     slug: "osce-case-design-guide",
     title: "How to Design Effective OSCE Cases: A Practical Guide for Medical Educators",
-    description: "Proven strategies for creating OSCE cases that assess clinical competence. Practical frameworks, common pitfalls, and validation methods.",
+    description: "Practical strategies for creating OSCE cases that assess clinical competence, with guidance on case structure, scoring, common pitfalls, and review.",
     date: "2026-03-04",
+    dateModified: "2026-08-07",
     author: "ClinicalSim Team",
     readingTime: "10 min read",
     tags: ["OSCE", "case design", "medical education", "assessment"],
@@ -77,8 +83,9 @@ const posts: Post[] = [
   {
     slug: "hospital-communication-training-roi",
     title: "The ROI of Communication Training: By the Numbers",
-    description: "The business case for communication training is clear: reduced malpractice risk, improved HCAHPS scores, and better outcomes.",
+    description: "Candello found communication factors in 40% of asserted malpractice cases from 2014 through 2024. A credible training business case starts with that exposure and keeps local costs, participation, and outcomes separate.",
     date: "2026-02-04",
+    dateModified: "2026-08-07",
     author: "ClinicalSim Team",
     readingTime: "5 min read",
     tags: ["ROI", "communication training", "hospital administration"],
@@ -86,8 +93,9 @@ const posts: Post[] = [
   {
     slug: "healthcare-simulation-technology-trends",
     title: "Where Medical Simulation Is Headed in 2026",
-    description: "From VR to AI voice agents, medical simulation technology is evolving rapidly. Heres what matters for 2026.",
+    description: "Medical simulation now includes voice-based AI patients alongside standardized patient, mannequin, and screen-based methods. The useful question is which practice or assessment job each method can do.",
     date: "2026-01-07",
+    dateModified: "2026-08-07",
     author: "ClinicalSim Team",
     readingTime: "5 min read",
     tags: ["simulation", "technology trends", "medical education"],
@@ -95,8 +103,9 @@ const posts: Post[] = [
   {
     slug: "breaking-bad-news-medical-training",
     title: "Breaking Bad News: The Skill No One Teaches",
-    description: "Breaking bad news is a core clinical skill — yet most clinicians have never practiced it before doing it for real.",
+    description: "SPIKES gives clinicians a six-step structure for breaking bad news. Repeated practice shows whether a learner can use that structure while responding to emotion, uncertainty, and questions.",
     date: "2025-10-07",
+    dateModified: "2026-08-07",
     author: "ClinicalSim Team",
     readingTime: "5 min read",
     tags: ["breaking bad news", "medical training", "communication"],
@@ -104,8 +113,9 @@ const posts: Post[] = [
   {
     slug: "what-learners-want-from-ai-sps",
     title: "What Medical Learners Actually Want from AI Standardized Patients",
-    description: "New CHI 2026 research reveals six key requirements for AI-SP design—straight from the medical students who would use them.",
+    description: "CHI 2026 research identifies six requirements for AI standardized patient design based on input from the medical students who would use them.",
     date: "2025-12-03",
+    dateModified: "2026-07-18",
     author: "ClinicalSim Team",
     readingTime: "6 min read",
     tags: ["research", "AI-SP", "medical education", "HCI"],
@@ -113,8 +123,9 @@ const posts: Post[] = [
   {
     slug: "end-of-life-care-communication",
     title: "End-of-Life Conversations: Practice Makes Progress",
-    description: "EOL conversations are low-frequency, high-stakes events. Traditional training models cant provide the practice clinicians need.",
+    description: "A systematic review found that end-of-life communication training can improve knowledge, self-efficacy, and simulated performance, while evidence for patient-level outcomes remains insufficient.",
     date: "2025-11-04",
+    dateModified: "2026-08-07",
     author: "ClinicalSim Team",
     readingTime: "5 min read",
     tags: ["end-of-life", "palliative care", "communication"],
@@ -122,8 +133,9 @@ const posts: Post[] = [
   {
     slug: "why-communication-training-matters",
     title: "Why Communication Training Matters",
-    description: "Communication failures are the leading driver of malpractice claims, yet most clinicians receive minimal structured training. The gap between what's at stake and how we prepare is wider than most realize.",
+    description: "Candello found that communication factors appeared in 40% of asserted malpractice cases from 2014 through 2024. Training gives clinicians a structured way to practice the conversations behind that exposure.",
     date: "2025-08-12",
+    dateModified: "2026-08-04",
     author: "ClinicalSim Team",
     readingTime: "5 min read",
     tags: ["communication", "malpractice", "training gap"],
@@ -131,8 +143,9 @@ const posts: Post[] = [
   {
     slug: "scalability-problem-sp-programs",
     title: "The Scalability Problem with Standardized Patient Programs",
-    description: "Traditional SP encounters cost $150-300 each and can't scale to meet demand. Why AI augments — rather than replaces — existing simulation programs.",
+    description: "Standardized patient encounters require actor training, delivery time, space, and faculty support. AI patients can add repeatable voice-based practice between live encounters without replacing them.",
     date: "2025-09-09",
+    dateModified: "2026-08-07",
     author: "ClinicalSim Team",
     readingTime: "5 min read",
     tags: ["standardized patients", "cost", "scalability"],

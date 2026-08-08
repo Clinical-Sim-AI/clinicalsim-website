@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `${example.title}: Example Feedback`
   const description =
     example.summary ||
-    `See the exact learner feedback for the "${example.title}" simulation — assessment report, recording, and transcript.`
+    `See the exact learner feedback for the "${example.title}" simulation, including the assessment report, recording, and transcript.`
   const url = `https://clinicalsim.ai/examples/${example.slug}`
 
   return {
@@ -69,7 +69,7 @@ export default async function ExampleCasePage({ params }: Props) {
             name: `${example.title}: Example Feedback`,
             description:
               example.summary ||
-              `See the exact learner feedback for the "${example.title}" simulation — assessment report, recording, and transcript.`,
+              `See the exact learner feedback for the "${example.title}" simulation, including the assessment report, recording, and transcript.`,
             url: `https://clinicalsim.ai/examples/${example.slug}`,
             isPartOf: {
               "@type": "WebSite",
@@ -112,19 +112,19 @@ export default async function ExampleCasePage({ params }: Props) {
             </p>
           )}
           <p className="mt-6 max-w-2xl text-sm text-cs-cloud/70 font-light">
-            This is a real, unedited encounter from the platform — the same
-            read-only feedback page a learner sees after a session.
+            This is a real, unedited encounter from the platform. The page below
+            is the same read-only feedback a learner sees after a session.
           </p>
         </div>
       </section>
 
-      {/* Product showcase — scoped .cs-product theme so the ported app UI renders
+      {/* Product showcase, scoped .cs-product theme so the ported app UI renders
           pixel-faithfully without disturbing the marketing site's theme. */}
       <section className="cs-product bg-cs-cloud px-4 py-10 sm:px-6 md:py-14">
         <div className="mx-auto max-w-4xl space-y-8">
           <CaseHeader example={example} />
 
-          {/* Recording — called out (light-blue panel + filled button) so it
+          {/* Recording, called out (light-blue panel + filled button) so it
               isn't missed; hearing the encounter is much of the value. */}
           <div className="rounded-2xl border border-cs-light-blue bg-cs-light-blue/20 p-4 sm:p-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -140,7 +140,7 @@ export default async function ExampleCasePage({ params }: Props) {
             </div>
           </div>
 
-          {/* Transcript — collapsible, default closed (mirrors the app page, which
+          {/* Transcript, collapsible, default closed (mirrors the app page, which
               leads with the feedback). */}
           <details className="rounded-md border border-cs-gray bg-white group">
             <summary className="flex cursor-pointer items-center gap-2 p-3 text-sm font-medium text-cs-dark-blue select-none [&::-webkit-details-marker]:hidden">
@@ -169,7 +169,7 @@ export default async function ExampleCasePage({ params }: Props) {
             <FeedbackReport {...example.report} />
           </div>
 
-          {/* References — the run version's evidence blob, appended after the
+          {/* References, the run version's evidence blob, appended after the
               feedback (mirrors the learner /history page). Display-only. */}
           {example.references && (
             <div className="space-y-4 border-t border-cs-gray pt-8">
@@ -193,7 +193,7 @@ export default async function ExampleCasePage({ params }: Props) {
             Your learners would get feedback like this
           </h2>
           <p className="text-base md:text-lg text-cs-dark-blue/70 font-light mb-8">
-            On demand, after every encounter — mapped to communication
+            Every encounter produces feedback mapped to communication
             frameworks and the ACGME milestones your CCC already uses.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -1,16 +1,20 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { JsonLd } from "@/components/json-ld"
+
+const PRIVACY_DESCRIPTION =
+  "ClinicalSim's privacy policy explains how we collect, use, and protect personal information from website visitors."
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "ClinicalSim privacy policy — how we collect, use, and protect your personal information when you visit our website.",
+  description: PRIVACY_DESCRIPTION,
   openGraph: {
-    title: "Privacy Policy — ClinicalSim.ai",
+    title: "Privacy Policy | ClinicalSim.ai",
     description: "How we collect, use, and protect your personal information.",
     url: "https://clinicalsim.ai/privacy",
   },
   twitter: {
-    title: "Privacy Policy — ClinicalSim.ai",
+    title: "Privacy Policy | ClinicalSim.ai",
     description: "How we collect, use, and protect your personal information.",
   },
   alternates: {
@@ -20,7 +24,43 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <section className="py-16 md:py-24">
+    <>
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Privacy Policy",
+            description: PRIVACY_DESCRIPTION,
+            url: "https://clinicalsim.ai/privacy",
+            dateModified: "2026-03-16",
+            isPartOf: {
+              "@type": "WebSite",
+              name: "ClinicalSim.ai",
+              url: "https://clinicalsim.ai",
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://clinicalsim.ai",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Privacy Policy",
+                item: "https://clinicalsim.ai/privacy",
+              },
+            ],
+          },
+        ]}
+      />
+      <section className="py-16 md:py-24">
       <div className="max-w-3xl mx-auto px-6 md:px-12">
         <h1 className="text-4xl md:text-5xl font-light text-cs-navy mb-4">Privacy Policy</h1>
         <p className="text-sm text-cs-dark-gray font-light mb-12">Last updated: March 16, 2026</p>
@@ -111,6 +151,7 @@ export default function PrivacyPolicyPage() {
           </p>
         </div>
       </div>
-    </section>
+      </section>
+    </>
   )
 }

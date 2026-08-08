@@ -105,6 +105,20 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
         data={[
           {
             "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Communication Remediation for Medical Education Programs",
+            description:
+              "AI clinical simulation for communication remediation with structured practice mapped to ACGME Milestones 2.0 and CCC-ready documentation.",
+            url: "https://clinicalsim.ai/solutions/remediation",
+            dateModified: data.lastUpdated,
+            isPartOf: {
+              "@type": "WebSite",
+              name: "ClinicalSim.ai",
+              url: "https://clinicalsim.ai",
+            },
+          },
+          {
+            "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
               {
@@ -450,8 +464,8 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-              Backed by{" "}
-              <span className="text-cs-dark-blue font-medium">rigorous evidence</span>
+              Published evidence on{" "}
+              <span className="text-cs-dark-blue font-medium">remediation</span>
             </h2>
           </div>
 

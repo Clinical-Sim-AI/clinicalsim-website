@@ -502,7 +502,7 @@ const sections: PdFaqSection[] = [
             applied training tasks, this is not merely a laboratory effect.
             Cepeda and colleagues&apos; synthesis (2006, 184 studies and 317
             experiments, Psychological Bulletin) reaches the same conclusion,
-            making distributed practice one of the most robust findings in
+            making distributed practice one of the best-established findings in
             learning science.
           </li>
           <li>

@@ -5,6 +5,7 @@ import type { MetadataRoute } from "next"
 // be repeated in every rule below or it only binds the wildcard.
 const AI_SEARCH_BOTS = [
   "OAI-SearchBot", // OpenAI search index (ChatGPT search)
+  "GPTBot", // OpenAI crawler used to improve foundation models
   "ChatGPT-User", // ChatGPT browsing on a user's behalf
   "PerplexityBot", // Perplexity search index
   "Claude-User", // Claude browsing on a user's behalf
@@ -25,12 +26,6 @@ export default function robots(): MetadataRoute.Robots {
         userAgent,
         allow: "/",
       })),
-      // GPTBot is OpenAI's training crawler (not search) — kept disallowed as a
-      // deliberate IP stance.
-      {
-        userAgent: "GPTBot",
-        disallow: "/",
-      },
     ],
     // Only declare the XML sitemap here. llms.txt is a plain-text index for LLM
     // crawlers, not a sitemap, so listing it caused a sitemap parse error in

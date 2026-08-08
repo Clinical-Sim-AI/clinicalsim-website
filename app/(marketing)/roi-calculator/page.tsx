@@ -46,7 +46,7 @@ export default function RoiCalculatorPage() {
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "GME ROI Calculator — ClinicalSim.ai",
+            name: "GME ROI Calculator: ClinicalSim.ai",
             description: DESCRIPTION,
             url: URL,
             isPartOf: {

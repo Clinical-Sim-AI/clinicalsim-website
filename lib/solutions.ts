@@ -66,7 +66,7 @@ export interface Solution {
   ctaDescription: string
 }
 
-// Shared platform capabilities — these are product features (not statistics),
+// Shared platform capabilities are product features, not statistics, and are
 // safe to reuse across solutions. The competency-framework claim differs by
 // audience (ACGME Milestones govern GME trainees only), so that value prop is
 // defined per audience below instead of shared.
@@ -79,13 +79,13 @@ const ON_DEMAND_VALUE_PROP: SolutionValueProp = {
 const DASHBOARD_VALUE_PROP: SolutionValueProp = {
   title: "A Dashboard That Follows the Learner",
   description:
-    "Longitudinal scores by subcompetency, learner-by-scenario heatmaps, and flags for anyone trending below benchmark — the same dashboard whether you track one learner or an entire cohort.",
+    "Longitudinal scores by subcompetency, learner-by-scenario heatmaps, and flags for anyone trending below benchmark, all in the same dashboard whether you track one learner or a cohort.",
 }
 
 const PRIVATE_REPETITION_VALUE_PROP: SolutionValueProp = {
   title: "Private, Judgment-Free Repetition",
   description:
-    "A low-stakes environment with no real patients and no social judgment gives learners permission to be imperfect while they build the skill — and makes the human feedback that follows land better.",
+    "A low-stakes environment with no real patients and no social judgment gives learners permission to be imperfect while they build the skill, and makes the human feedback that follows land better.",
 }
 
 // For residency and fellowship (ACGME-accredited GME trainees).
@@ -126,7 +126,7 @@ const FACULTY_VALUE_PROPS: SolutionValueProp[] = [
 
 const solutions: Solution[] = [
   // -------------------------------------------------------------------------
-  // Communication Remediation — bespoke page (RemediationPageLayout)
+  // Communication Remediation, bespoke page (RemediationPageLayout)
   // -------------------------------------------------------------------------
   {
     slug: "remediation",
@@ -136,13 +136,13 @@ const solutions: Solution[] = [
     icon: "chat-exclamation",
     colorVariant: "navy",
     customPage: true,
+    lastUpdated: "2026-08-07",
     cardBullets: [
       "Targeted, milestone-mapped practice for a struggling learner",
-      "Unlimited on-demand repetitions — no SP, no scheduling",
+      "Unlimited on-demand repetitions without SP scheduling",
       "CCC-ready documentation from every session",
     ],
-    metaTitle:
-      "Communication Remediation | ClinicalSim",
+    metaTitle: "Communication Remediation",
     metaDescription:
       "AI clinical simulation for communication remediation. Milestone-mapped practice and CCC-ready documentation for the learner on a remediation plan.",
     heroHeadline:
@@ -155,7 +155,7 @@ const solutions: Solution[] = [
   },
 
   // -------------------------------------------------------------------------
-  // Residency & Fellowship — longitudinal curriculum
+  // Residency & Fellowship, longitudinal curriculum
   // -------------------------------------------------------------------------
   {
     slug: "longitudinal-curriculum",
@@ -164,17 +164,18 @@ const solutions: Solution[] = [
     subtitle: "A longitudinal communication curriculum across PGY years",
     icon: "stack",
     colorVariant: "accent",
+    lastUpdated: "2026-08-07",
     cardBullets: [
       "A gradual arc from PGY-1 to senior resident and fellow",
       "Mapped to ACGME Milestones 2.0 and ABP EPAs",
       "A trackable dashboard that follows learners year over year",
     ],
-    metaTitle: "Residency & Fellowship Communication Curriculum | ClinicalSim",
+    metaTitle: "Residency & Fellowship Communication Curriculum",
     metaDescription:
       "A longitudinal communication curriculum for residency and fellowship. Cases progress across PGY years, mapped to ACGME Milestones 2.0 and EPAs.",
     heroHeadline: "Communication that grows with clinical responsibility",
     heroDescription:
-      "Cases progress in clinical responsibility, cognitive load, and emotional intensity across PGY years. Every encounter is mapped to ACGME Milestones 2.0 subcompetencies, ABP Entrustable Professional Activities, and the ICS guideline framework — so communication develops on a deliberate arc rather than by chance.",
+      "Cases progress in clinical responsibility, cognitive load, and emotional intensity across PGY years. Every encounter is mapped to ACGME Milestones 2.0 subcompetencies, ABP Entrustable Professional Activities, and the ICS guideline framework, so communication develops on a deliberate arc rather than by chance.",
     stagesHeading: "The arc across training",
     stagesIntro:
       "Increasing complexity, emotional intensity, and leadership demand from intern year through fellowship.",
@@ -189,7 +190,7 @@ const solutions: Solution[] = [
         label: "PGY-2",
         title: "Adapt under pressure",
         description:
-          "New diagnoses, parental disagreement, and communicating uncertainty. The learner moves from information delivery to the relational work of a difficult conversation.",
+          "New diagnoses, parental disagreement, and communicating uncertainty. The learner moves from information delivery to the relational work of a high-stakes conversation.",
       },
       {
         label: "PGY-3+ / Fellow",
@@ -232,14 +233,15 @@ const solutions: Solution[] = [
     subtitle: "From history-taking to delivering a diagnosis, across four years",
     icon: "student",
     colorVariant: "blue",
+    lastUpdated: "2026-08-07",
     cardBullets: [
       "A four-year arc from M1 history-taking to M4 diagnosis disclosure",
       "Communication grows alongside clinical knowledge",
       "A dashboard that follows students through clerkships",
     ],
-    metaTitle: "Undergraduate Medical Education (UME) Communication | ClinicalSim",
+    metaTitle: "Undergraduate Medical Education (UME) Communication",
     metaDescription:
-      "Sequence communication practice across all four years of medical school — from history-taking to delivering a new diagnosis — with a dashboard that follows students through clerkships.",
+      "Sequence communication practice across all four years of medical school, from history-taking through diagnosis disclosure, with a dashboard that follows students through clerkships.",
     heroHeadline: "Build communication skills alongside clinical knowledge",
     heroDescription:
       "Medical schools can sequence scenarios across the four years so communication grows alongside clinical knowledge. Each step builds on the last, with a dashboard that follows the student from the first history through clerkships.",
@@ -271,7 +273,7 @@ const solutions: Solution[] = [
       {
         question: "How does this fit a four-year UME curriculum?",
         answer:
-          "Scenarios are sequenced so that communication complexity rises with clinical knowledge — from structured history-taking in the preclinical years to delivering a new diagnosis in the clerkship years. A longitudinal dashboard follows each student across the four years.",
+          "Scenarios are sequenced so communication complexity rises with clinical knowledge, beginning with structured history-taking in the preclinical years and progressing to diagnosis disclosure during clerkships. A longitudinal dashboard follows each student across all four years.",
       },
       {
         question: "Can it support standardized-patient and OSCE preparation?",
@@ -299,17 +301,18 @@ const solutions: Solution[] = [
     subtitle: "The conversations faculty are expected to model",
     icon: "group",
     colorVariant: "light-blue",
+    lastUpdated: "2026-08-07",
     cardBullets: [
       "Practice giving difficult, specific feedback",
       "Navigate professionalism conversations with peers",
       "Rehearse bedside and small-group teaching",
     ],
-    metaTitle: "Faculty Development Communication Practice | ClinicalSim",
+    metaTitle: "Faculty Development Communication Practice",
     metaDescription:
-      "Attendings and clinician educators practice the conversations they're expected to model — giving feedback, professionalism concerns, and bedside teaching — with the same rubric-scored simulation.",
+      "Attendings and clinician educators practice the conversations they're expected to model, including feedback, professionalism concerns, and bedside teaching, with rubric-scored simulation.",
     heroHeadline: "Faculty have to model conversations no one trained them for",
     heroDescription:
-      "The platform isn't only for trainees. Attendings, fellows-as-teachers, and clinician educators practice the conversations they're expected to model — giving difficult feedback, navigating professionalism concerns, and teaching at the bedside — with the same rubric-scored simulation. Because confidence in these conversations is often the absence of feedback, not evidence of skill: in one survey, the attendings furthest out from training reported the highest confidence and the least formal preparation.",
+      "The platform isn't only for trainees. Attendings, fellows-as-teachers, and clinician educators practice giving difficult feedback, addressing professionalism concerns, and teaching at the bedside. They get rubric-scored feedback on conversations they are expected to model but rarely get to rehearse.",
     stagesHeading: "What faculty practice",
     stagesIntro:
       "The same rubric system that trains residents, turned toward the skills faculty are expected to demonstrate.",
@@ -324,7 +327,7 @@ const solutions: Solution[] = [
         label: "Professionalism",
         title: "Hard conversations with peers",
         description:
-          "Address lateness, disengagement, or a colleague performing below expectations — directly, but without damaging the working relationship.",
+          "Address lateness, disengagement, or a colleague performing below expectations directly, without damaging the working relationship.",
       },
       {
         label: "Teaching",
@@ -338,12 +341,12 @@ const solutions: Solution[] = [
       {
         question: "Why would experienced faculty need communication practice?",
         answer:
-          "Because confidence is not evidence of skill — it is largely the absence of feedback. Faculty are expected to model feedback, professionalism, and teaching conversations they were rarely formally trained to lead, and they almost never get objective, structured feedback on how they run them. The platform provides that feedback in a private, low-stakes setting.",
+          "Faculty are expected to model feedback, professionalism, and teaching conversations they were rarely trained to lead, and they almost never get structured feedback on how they run them. The platform gives them a private place to rehearse and review rubric-scored feedback.",
       },
       {
         question: "Does this use the same system as trainee scenarios?",
         answer:
-          "Yes. Faculty-development scenarios run on the same engine, rubric structure, and dashboard as the trainee-facing programs — so an institution can support learners and the faculty who teach them from one platform.",
+          "Yes. Faculty-development scenarios run on the same engine, rubric structure, and dashboard as the trainee-facing programs, so an institution can support learners and the faculty who teach them from one platform.",
       },
     ],
     relatedPostSlugs: [
@@ -353,7 +356,7 @@ const solutions: Solution[] = [
     ],
     ctaHeadline: "Give faculty the practice they never got.",
     ctaDescription:
-      "See how attendings and clinician educators rehearse feedback, professionalism, and teaching conversations with structured, objective feedback.",
+      "See how attendings and clinician educators rehearse feedback, professionalism, and teaching conversations with structured, rubric-scored feedback.",
   },
 ]
 

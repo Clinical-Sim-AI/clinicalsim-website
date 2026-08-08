@@ -7,11 +7,11 @@ const audience = getAudienceBySlug("medical-school-leadership")!
 export const metadata: Metadata = {
   title: "For Medical School & UME Leadership: Communication Across Four Years",
   description:
-    "Sequence communication practice across all four years of medical school — from history-taking to delivering a diagnosis. Since Step 2 CS ended in 2021, schools have had no scalable communication assessment. ClinicalSim provides unlimited practice with a dashboard that follows students through clerkships.",
+    "Sequence communication practice across all four years of medical school, from history-taking to delivering a diagnosis. Step 2 CS ended in 2021 with no national successor for assessing clinical communication. ClinicalSim adds on-demand practice with a dashboard that follows students through clerkships.",
   openGraph: {
     title: "For Medical School & UME Leadership | ClinicalSim.ai",
     description:
-      "A four-year communication arc — from history-taking to diagnosis disclosure — with unlimited practice between SP encounters and a longitudinal dashboard.",
+      "A four-year communication arc, from history-taking to diagnosis disclosure, with unlimited practice between SP encounters and a longitudinal dashboard.",
     url: "https://clinicalsim.ai/audiences/medical-school-leadership",
   },
   twitter: {

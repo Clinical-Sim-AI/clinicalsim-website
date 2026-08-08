@@ -1,38 +1,41 @@
 import { ArticleLayout } from "@/components/article-layout"
 import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 import { KeyTakeaway } from "@/components/key-takeaway"
+import { ReferencesSection } from "@/components/references-section"
 
 export const metadata = getPostMetadata("hospital-communication-training-roi")
 
 <ArticleLayout post={getPostBySlug("hospital-communication-training-roi")}>
 
-<KeyTakeaway stat="40%" statSource="of malpractice claims involve communication failures (Candello, 2025)">
-Communication failures drive 40% of malpractice claims (Candello, 2025), contributing to $1.7B in costs over a five-year period (CRICO, 2009-2013), and put $2-3M in HCAHPS-linked reimbursement at risk per mid-size academic medical center. That makes communication training one of the highest-ROI investments a health system can make.
+<KeyTakeaway stat="40%" statSource="of asserted malpractice cases involved a communication factor (Candello, 2014 to 2024)">
+Communication failures appear in 40% of asserted malpractice cases in Candello's national database, but that finding describes institutional exposure. It does not prove a return on investment for any single training product.
 </KeyTakeaway>
 
-## The Challenge
+## Start with the risk the source actually measured
 
-The business case for communication training is clear: reduced malpractice risk, improved HCAHPS scores, and better outcomes.
+Candello analyzed asserted medical professional liability cases from 2014 through 2024 and found that 40% involved a communication factor, up from 30% in its earlier 2009 through 2013 cohort. Communication-related cases also had 39% greater odds of closing with an indemnity payment.
 
-## Key Insights
+Those figures come from malpractice claims, not from a trial of ClinicalSim or communication training. They establish that communication failures are common in liability data and that the financial consequences reach beyond the training budget.
 
-- Modern training solutions need to reach all learners across a program, not a handful per rotation cycle.
-- Every trainee deserves the same quality of practice opportunity.
-- Validated feedback mechanisms are what drive real skill development.
-- Training should be available when and where learners need it.
+## Avoid the false precision of a universal ROI
 
-## The Research
+A hospital cannot calculate communication-training ROI from a national claim percentage alone. The local business case depends on who trains, which conversations they practice, how often they practice, and which outcomes the institution can measure without double counting.
 
-Recent research in medical communication training reinforces the value of structured, repeatable practice. Communication failures drive 40% of malpractice claims, and HCAHPS scores put millions in reimbursement at risk. Most programs still lack the infrastructure to train at the scale these numbers demand.
+The same discipline applies to HCAHPS reimbursement and standardized patient costs. A single national dollar estimate hides differences in hospital payment mix, actor wages, room use, faculty support, and program design. A credible analysis keeps those inputs separate and labels internal estimates as internal.
 
-## How ClinicalSim Helps
+## Measure what the program can observe
 
-Our platform provides:
-- On-demand practice, available 24/7 on any device
-- Validated scenarios designed by clinical experts
-- Structured feedback scored against validated communication frameworks
-- Scalable deployment, from individual learners to entire health systems
+A communication-training program can directly document participation, the cases completed, performance against a named framework, transcript evidence for each score, and change across repeated sessions. Claims, patient experience, and readmissions may matter to the institution, but a training program should not claim it caused those outcomes without an appropriate study design.
 
-Ready to improve communication training at your institution? [Contact us](/contact) to learn more.
+ClinicalSim produces a timestamped practice record and rubric-scored feedback from each encounter. That record gives education and quality leaders something concrete to review while longer-term outcome research continues.
+
+## The business case is stronger when it stays honest
+
+Communication risk is large enough without unsupported per-hospital reimbursement estimates or a composite savings headline. Start with the 40% Candello finding, define the local training population, and decide which outcomes can be measured prospectively. That gives a finance or quality team a model it can inspect instead of a number it has to trust on faith.
+
+<ReferencesSection references={[
+  { authors: "Candello", title: "2025 Benchmarking Report: Malpractice Risks from Communication Failures", source: "Candello, a division of CRICO", year: "2025", url: "https://www.candello.com/About/Press-Release-and-News/2025-Benchmarking-Report-Press-Release" },
+  { authors: "Candello", title: "Malpractice Risks in Communication Failures", source: "Candello, a division of CRICO", year: "2015", url: "https://www.candello.com/Insights/Candello-Reports/Communications-Report" },
+]} />
 
 </ArticleLayout>

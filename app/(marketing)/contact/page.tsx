@@ -10,7 +10,7 @@ import { ArrowRight } from "lucide-react"
 import { BrandIcon } from "@/components/brand-icon"
 
 export const metadata: Metadata = {
-  title: "Contact Us — Request a Pilot",
+  title: "Contact Us: Request a Pilot",
   description: "Contact ClinicalSim to request a pilot program, schedule a demo, or learn how AI voice simulation can improve medical communication training at your institution.",
   openGraph: {
     title: "Contact ClinicalSim.ai",
