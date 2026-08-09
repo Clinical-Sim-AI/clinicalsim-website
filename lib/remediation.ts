@@ -89,7 +89,7 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   heroH1: "The remediation toolkit program directors have been asking for.",
   heroSubtitle:
-    "AI clinical simulation for communication remediation — structured practice with real-time feedback, mapped to ACGME Milestones 2.0, generating documentation your CCC can use.",
+    "AI clinical simulation for communication remediation, with structured practice mapped to ACGME Milestones 2.0 and documentation your CCC can use.",
   heroStats: [
     {
       value: "93%",
@@ -99,10 +99,10 @@ export const remediationPageData: RemediationPageData = {
       variant: "accent",
     },
     {
-      value: "16",
+      value: "91%",
       label:
-        "published studies exist on communication-specific remediation",
-      source: "Literature review",
+        "of residents undergoing remediation were successful within 12 months",
+      source: "Frazier et al., Family Medicine, 2021",
       variant: "navy",
     },
     {
@@ -113,9 +113,9 @@ export const remediationPageData: RemediationPageData = {
       variant: "blue",
     },
     {
-      value: "29-45",
-      label: "faculty hours consumed per remediation case",
-      source: "University of Colorado; Penn EIRC",
+      value: "29.6",
+      label: "mean specialist contact hours in one clinical reasoning remediation program",
+      source: "Guerrasio and Aagaard, J Gen Intern Med, 2014",
       variant: "accent",
     },
   ],
@@ -125,25 +125,25 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   painPoints: [
     {
-      headline: "Faculty Time",
+      headline: "Faculty time",
       description:
-        "Each remediation case consumes 29-45 faculty hours — time pulled from clinical revenue, teaching, and research. At $150-$300/hr in clinical revenue opportunity cost, a single case costs $5,000-$15,000 in faculty time alone.",
-      stat: "29-45",
-      statLabel: "faculty hours per remediation case",
-      source: "University of Colorado; Penn EIRC",
+        "One published clinical reasoning remediation program required a mean of 29.6 specialist contact hours. That figure excluded program director, CCC, coordinator, and legal time, so it should not be treated as a general range for every remediation case.",
+      stat: "29.6",
+      statLabel: "mean specialist contact hours in one clinical reasoning program",
+      source: "Guerrasio and Aagaard, J Gen Intern Med, 2014",
       icon: "Clock",
     },
     {
-      headline: "SP Bottleneck",
+      headline: "SP bottleneck",
       description:
-        "Standardized patients cost $200-$500 per encounter and take weeks to schedule. Struggling learners need volume — repeated practice with feedback — but the SP model can't deliver it at the frequency remediation demands.",
-      stat: "$200-$500",
-      statLabel: "per SP encounter, with weeks to schedule",
-      source: "Simulation center industry benchmarks",
+        "Each standardized patient encounter requires a trained actor, space, faculty support, and scheduling. Struggling learners need repeated practice with feedback, which is hard to provide through live simulation alone.",
+      stat: "On demand",
+      statLabel: "practice between scheduled SP encounters",
+      source: "ClinicalSim platform availability",
       icon: "Users",
     },
     {
-      headline: "Documentation Gap",
+      headline: "Documentation gap",
       description:
         "There is no standardized assessment framework for communication remediation. Faculty write subjective narrative evaluations that vary by observer, and 1 in 5 GME stakeholders report they don't know how to assess ICS milestones.",
       stat: "1 in 5",
@@ -158,33 +158,33 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   features: [
     {
-      title: "On-Demand AI Patient Encounters",
+      title: "On-demand AI patient encounters",
       description:
-        "Structured practice scenarios purpose-built for communication remediation — available 24/7, no scheduling required.",
+        "Structured practice scenarios purpose-built for communication remediation, available 24/7 with no scheduling required.",
       iconName: "Mic",
     },
     {
-      title: "Milestone-Aligned Feedback",
+      title: "Milestone-aligned feedback",
       description:
         "Real-time feedback mapped to the ICS subcompetencies of ACGME Milestones 2.0 (ICS-1, ICS-2, ICS-3), so learners know exactly where they stand.",
       iconName: "BarChart3",
     },
     {
-      title: "Longitudinal Progress Tracking",
+      title: "Longitudinal progress tracking",
       description:
         "Track performance across the full remediation period, documenting improvement over time rather than relying on single snapshots.",
       iconName: "TrendingUp",
     },
     {
-      title: "CCC-Ready Documentation",
+      title: "CCC-ready documentation",
       description:
         "Every session generates structured, milestone-aligned reports your Clinical Competency Committee can use directly.",
       iconName: "FileText",
     },
     {
-      title: "Faculty Dashboard",
+      title: "Faculty dashboard",
       description:
-        "Monitor learner progress and session data without scheduling overhead — stay informed without sacrificing your clinical time.",
+        "Monitor learner progress and session data without attending every practice encounter, so faculty time stays focused on coaching and assessment.",
       iconName: "LayoutDashboard",
     },
   ],
@@ -198,9 +198,9 @@ export const remediationPageData: RemediationPageData = {
       headline:
         "20 structured practice encounters before your first coaching session.",
       painPoint:
-        "29-45 faculty hours per case with no standardized tools for communication-specific remediation.",
+        "Programs need a repeatable remediation structure and more practice than faculty calendars can provide.",
       whatTheyGet:
-        "A structured remediation pathway with milestone-aligned practice, longitudinal tracking, and CCC-ready documentation — without consuming your faculty's clinical time.",
+        "A structured remediation pathway with milestone-aligned practice and longitudinal, CCC-ready documentation between faculty coaching sessions.",
       iconName: "GraduationCap",
       colorVariant: "navy",
     },
@@ -220,7 +220,7 @@ export const remediationPageData: RemediationPageData = {
       headline:
         "Extend your SP program to unlimited practice volume.",
       painPoint:
-        "SPs cost $50-$500 per encounter and can't scale for individual remediation needs that require high-volume repetition.",
+        "Live encounters require actor time, faculty support, space, and scheduling, which limits the repetitions available for individual remediation.",
       whatTheyGet:
         "Unlimited AI-driven practice encounters that complement your existing SP program, extending your capacity without additional scheduling or staffing.",
       iconName: "Monitor",
@@ -233,7 +233,7 @@ export const remediationPageData: RemediationPageData = {
       painPoint:
         "Subjective faculty reports with no standardized ICS assessment data to inform promotion decisions.",
       whatTheyGet:
-        "Structured, longitudinal data aligned to ACGME Milestones 2.0 from every remediation session, giving your committee objective evidence for competency decisions.",
+        "Structured, longitudinal data aligned to ACGME Milestones 2.0 from every remediation session, giving your committee another source of evidence for competency decisions.",
       iconName: "ClipboardCheck",
       colorVariant: "light-blue",
     },
@@ -255,7 +255,7 @@ export const remediationPageData: RemediationPageData = {
       area: "Clinical Communication Research",
       credentials: [
         "Published communication skills researchers",
-        "Structured evaluation using validated frameworks",
+        "Structured evaluation using published frameworks",
       ],
       colorVariant: "accent",
     },
@@ -282,12 +282,13 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   evidence: {
     studyTitle:
-      "Enhancing Difficult Conversations in Pediatrics Using Artificial Intelligence",
-    journal: "Presented at IPSSW",
-    year: "2026",
+      "Resident Remediation in Family Medicine Residency Programs: A CERA Survey of Program Directors",
+    journal: "Family Medicine",
+    year: "2021",
     summary:
-      "In a feasibility pilot with residents and advanced practice providers, perceived comfort with difficult conversations improved significantly after AI voice-simulation practice, and objective communication scores improved among repeat users. Findings presented at IPSSW 2026; a manuscript is in preparation.",
-    badges: ["Feasibility Pilot", "Presented at IPSSW 2026"],
+      "Among 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years, 91% reported successful remediation within 12 months, and 50% selected an accessible remediation toolkit as the most important tool for improving the process.",
+    link: "https://doi.org/10.22454/FamMed.2021.546572",
+    badges: ["Peer reviewed", "CERA survey"],
   },
 
   outcomeStats: [
@@ -306,9 +307,9 @@ export const remediationPageData: RemediationPageData = {
       variant: "blue",
     },
     {
-      value: "29-45",
-      label: "faculty hours consumed per remediation case",
-      source: "University of Colorado; Penn EIRC",
+      value: "29.6",
+      label: "mean specialist contact hours in one clinical reasoning remediation program",
+      source: "Guerrasio and Aagaard, J Gen Intern Med, 2014",
       variant: "navy",
     },
   ],
@@ -319,28 +320,28 @@ export const remediationPageData: RemediationPageData = {
   pricingComparisons: [
     {
       method: "PACE Program",
-      costRange: "$15,000-$19,000 per learner",
+      costRange: "Published fees vary by service",
       scalability: "One learner at a time",
-      availability: "4-8 week wait",
+      availability: "Scheduled externally",
       documentation: "External report",
     },
     {
       method: "Faculty 1:1 Coaching",
-      costRange: "$5,000-$15,000 in opportunity cost",
+      costRange: "Varies by faculty role and time",
       scalability: "One learner per faculty member",
       availability: "Subject to faculty availability",
       documentation: "Subjective notes",
     },
     {
       method: "SP Encounters",
-      costRange: "$200-$500 per session",
-      scalability: "1-2 sessions typical",
-      availability: "Weeks to schedule",
+      costRange: "Actor, space, and faculty costs vary",
+      scalability: "Scheduled sessions",
+      availability: "Scheduling required",
       documentation: "Varies by program",
     },
     {
       method: "ClinicalSim",
-      costRange: "Fraction of alternatives",
+      costRange: "Institutional license",
       scalability: "Unlimited sessions for all learners",
       availability: "On-demand 24/7",
       documentation: "Milestone-aligned CCC-ready reports",
@@ -355,7 +356,7 @@ export const remediationPageData: RemediationPageData = {
     {
       question: "What is communication remediation in GME?",
       answer:
-        "Communication remediation in graduate medical education (GME) is a structured process for learners who have been identified as struggling with clinical communication skills, particularly interpersonal and communication skills (ICS) as defined by the ACGME. 93% of residency programs have encountered remediation in the past 3 years (CERA Survey, 267 Family Medicine PDs). ICS and professionalism are consistently among the hardest competencies to remediate because they require repeated practice with feedback — not just didactic instruction. Despite the prevalence of the problem, only 16 published studies address communication-specific remediation, and 50% of program directors report wanting an accessible remediation toolkit.",
+        "Communication remediation in graduate medical education (GME) is a structured process for learners who have been identified as struggling with clinical communication skills, particularly interpersonal and communication skills (ICS) as defined by the ACGME. In a CERA survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years, 91% reported successful remediation within 12 months, and 50% selected an accessible remediation toolkit as the most important tool for improving the process (Frazier et al., Family Medicine, 2021).",
     },
     {
       question:
@@ -373,13 +374,13 @@ export const remediationPageData: RemediationPageData = {
       question:
         "How does this compare to standardized patient encounters?",
       answer:
-        "Standardized patient (SP) encounters cost $200-$500 per session and typically take weeks to schedule. For remediation, where struggling learners need high-volume repetitive practice with feedback, the SP model creates a bottleneck: programs can usually provide only 1-2 SP encounters during a remediation period. ClinicalSim provides unlimited on-demand practice sessions at a fraction of the cost, available 24/7, with milestone-aligned feedback after every encounter. This isn't a replacement for SPs in high-stakes assessment — it's the volume practice layer that remediation requires but SPs can't deliver.",
+        "Standardized patient (SP) encounters remain important for high-stakes assessment, and each encounter requires actor time, space, faculty support, and scheduling. ClinicalSim adds on-demand practice between those encounters, with milestone-aligned feedback after every session. It extends an SP program by supplying repetition, and it does not replace live assessment.",
     },
     {
       question:
         "What is PACE and how does ClinicalSim compare?",
       answer:
-        "PACE (Program for Accelerated Curriculum in Education) and similar external remediation programs are intensive coaching interventions that cost $15,000-$19,000 per learner, serve one learner at a time, and typically have a 4-8 week wait. They provide an external report at conclusion. ClinicalSim operates differently: it provides structured, on-demand practice at a fraction of the cost, serves all learners in a program simultaneously, is available immediately, and generates milestone-aligned CCC-ready documentation from every session. ClinicalSim can be used as a standalone remediation tool or as a complement to external programs, providing the volume practice between coaching sessions.",
+        "PACE (Program for Accelerated Curriculum in Education) and similar external remediation programs provide intensive assessment or coaching for one learner at a time and issue an external report at the end. ClinicalSim provides structured, on-demand practice within the learner's home program and generates milestone-aligned documentation from every session. A program can use ClinicalSim on its own or between sessions with an external remediation service.",
     },
   ],
 
@@ -389,10 +390,10 @@ export const remediationPageData: RemediationPageData = {
   ctaHeadline:
     "Remediation is inevitable. Rebuilding the process every time isn't.",
   ctaDescription:
-    "Training programs across the country are already running structured communication practice on a system mapped to their milestones — with documentation their CCC can use.",
+    "Give learners structured communication practice mapped to their milestones, with documentation their CCC can use.",
 
   // ---------------------------------------------------------------------------
   // Meta
   // ---------------------------------------------------------------------------
-  lastUpdated: "2026-03-16",
+  lastUpdated: "2026-08-07",
 }

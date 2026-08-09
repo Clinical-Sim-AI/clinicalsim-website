@@ -8,6 +8,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `pnpm build` - Build for production
 - `pnpm start` - Start production server
 - `pnpm lint` - Run ESLint
+- `pnpm typecheck` - Run TypeScript without emitting files
+- `pnpm test` - Run the Vitest suite once
+
+Before handing off code or content changes, run `pnpm lint`, `pnpm typecheck`, `pnpm test`, and `pnpm build`. The production build does not replace the separate lint and type checks.
+
+## Testing and CI
+
+- Tests use Vitest and live beside the code they cover.
+- `lib/llms-coverage.test.ts` verifies that every indexable sitemap URL appears in `/llms.txt`. It also guards the complete hydroxyurea example summary against the previous truncation.
+- When adding or removing an indexable route, update both `app/sitemap.ts` and `app/llms.txt/route.ts`, then run the full test suite.
+- `.github/workflows/quality.yml` runs ESLint and TypeScript as separate GitHub checks on pull requests and pushes to `main`.
 
 ## Shell Commands
 
@@ -20,10 +31,10 @@ This applies to all shell commands including `git`, `ls`, `cat`, etc.
 
 ## Architecture Overview
 
-This is a Next.js 15 application using the App Router with a component-driven architecture built on shadcn/ui and Radix UI primitives.
+This is a Next.js 16 application using the App Router with a component-driven architecture built on shadcn/ui and Radix UI primitives.
 
 ### Key Technologies
-- **Framework**: Next.js 15 with App Router
+- **Framework**: Next.js 16 with App Router
 - **Styling**: Tailwind CSS with CSS variables for theming
 - **Components**: shadcn/ui components built on Radix UI primitives
 - **Icons**: Lucide React
@@ -59,8 +70,9 @@ The project uses shadcn/ui components which are:
 - `@/hooks` - Custom hooks
 
 ### Build Configuration
-- ESLint and TypeScript errors ignored during builds
-- Images unoptimized for static export compatibility
+- `next.config.mjs` sets `turbopack.root` to this repository so Next does not infer the parent directory from unrelated lockfiles.
+- Next build-time TypeScript validation remains disabled with `typescript.ignoreBuildErrors`. `pnpm typecheck` and the separate TypeScript CI job are required safeguards.
+- ESLint runs through `pnpm lint` and its own CI job.
 
 ## Content Management
 
@@ -87,6 +99,7 @@ The project uses shadcn/ui components which are:
 - **JSON-LD**: Article schema automatically uses `Person` for individual authors and `Organization` for team posts
 - **About page**: Emits Person JSON-LD for each team member automatically via `getAllAuthors()`
 - **`dateModified`**: Optional field on posts. Falls back to `date` in JSON-LD if not set. Update when making significant content edits.
+- The sitemap uses `dateModified ?? date` for insight posts, so registry dates must describe real content changes rather than the build date.
 
 #### Author credential snapshot (source of truth for `lib/authors.ts`)
 Pulled from each person's CV in `Clinical Sim AI LLC/Team/` (as of 2026-07-02). Use these — don't re-open the CVs unless a name/title looks stale or a new author needs adding.
@@ -232,8 +245,9 @@ All content on this site must be optimized for discovery by AI search systems (C
 - Use `components/json-ld.tsx` helper for all structured data
 - Marketing layout includes Organization + WebSite schemas
 - Blog posts include Article schema via `components/article-layout.tsx`
-- Solution pages include BreadcrumbList + FAQPage schemas via `components/solution-page-layout.tsx`
-- Standalone pages include WebPage + BreadcrumbList schemas (see `/practice` page for example)
+- Standard solution pages include WebPage, BreadcrumbList, and FAQPage schemas via `components/solution-page-layout.tsx`.
+- The bespoke remediation page includes the same page-level schema set via `components/remediation-page-layout.tsx`.
+- Standalone pages include WebPage and BreadcrumbList schemas. See `/privacy` or `/research` for examples.
 - **IMPORTANT**: Every new page MUST include appropriate JSON-LD structured data. This is a non-negotiable requirement — always add at minimum WebPage + BreadcrumbList schemas when creating new pages.
 
 ### Citation Magnets & Extractable Content
@@ -249,12 +263,21 @@ All content on this site must be optimized for discovery by AI search systems (C
 - FAQ answers should be independently understandable without reading the question
 
 ### Infrastructure Files
-- `app/robots.ts` — Crawler rules; blocks GPTBot (training) while allowing search crawlers
-- `app/sitemap.ts` — Auto-generated from `lib/posts.ts`, `lib/solutions.ts`, `lib/audiences.ts`
-- `app/llms.txt/route.ts` — Page index for LLM crawlers, served at `/llms.txt`; update when adding/removing pages. There is no `public/llms.txt`; the route handler is the only source.
+- `app/robots.ts`: Crawler rules explicitly allow both `OAI-SearchBot` and `GPTBot`.
+- `app/sitemap.ts`: Generated from the post, solution, audience, comparison, and example registries.
+- `app/llms.txt/route.ts`: Page index for LLM crawlers, served at `/llms.txt`. Update it when adding or removing pages. There is no `public/llms.txt`; the route handler is the only source.
 - When adding new pages, update `app/sitemap.ts` and `app/llms.txt/route.ts`
+- `lib/page-dates.ts`: Shared material change dates for static pages whose schema and sitemap dates must match. Update a value only when the public page changes materially.
 
 ### Solution Page Data (`lib/solutions.ts`)
 - `faqs` field: Array of `{ question, answer }` for FAQ section + FAQPage JSON-LD
 - `lastUpdated` field: ISO date string displayed in hero section
 - When modifying solution page content, update `lastUpdated` date
+- `metaTitle` must be a bare title with no `| ClinicalSim` suffix. The root layout adds `| ClinicalSim.ai` once.
+
+### Current evidence guardrails
+
+- The supported remediation time figure is a mean of 29.6 specialist contact hours in one clinical reasoning remediation program (Guerrasio and Aagaard, 2014). Do not turn it into a general 29-to-45-hour or 25-to-75-hour range.
+- Do not publish a single standardized patient per encounter cost range. Actor wages, space, faculty time, geography, and program design must remain separate unless a public method supports the total.
+- The University of Chicago coaching study and the Advocate Health feasibility study are separate records. Public outcomes remain withheld until the study owners confirm each title, author list, institution, sample, outcome, venue or manuscript status, and primary analysis.
+- Do not revise the founding story in `eol-communication-training-measurement-gap` until Ben and Lauren confirm the sequence and wording. Update the post, registry description, and `dateModified` together after confirmation.

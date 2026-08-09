@@ -6,7 +6,7 @@ const audience = getAudienceBySlug("simulation-center-directors")!
 
 export const metadata: Metadata = {
   title: "For Simulation Center Directors: Extend Your SP Program",
-  description: "SP encounters cost $50-$500 each and can't scale for individual remediation. ClinicalSim extends your SP program with on-demand practice volume, milestone-aligned assessment data, and measurable communication outcomes.",
+  description: "ClinicalSim extends standardized patient programs with on-demand communication practice between scheduled encounters and milestone-aligned assessment data from every session.",
   openGraph: {
     title: "For Simulation Center Directors | ClinicalSim.ai",
     description: "Extend your SP program with on-demand practice. Assessment data your CCC can use, at the volume struggling learners need.",

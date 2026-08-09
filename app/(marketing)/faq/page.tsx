@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/json-ld"
 import { FaqAnchorHandler } from "@/components/faq-anchor-handler"
 import { CopyLinkButton } from "@/components/copy-link-button"
 import { slugify } from "@/lib/utils"
+import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
   title: "FAQ: AI Clinical Simulation, Scoring, Privacy & Programs",
@@ -30,8 +31,8 @@ export const metadata: Metadata = {
 }
 
 // Visible + schema recency. Update whenever answers change.
-const LAST_UPDATED_ISO = "2026-07-02"
-const LAST_UPDATED_LABEL = "July 2, 2026"
+const LAST_UPDATED_ISO = PAGE_DATE_MODIFIED.faq
+const LAST_UPDATED_LABEL = "August 7, 2026"
 
 interface FaqEntry {
   id: string
@@ -56,7 +57,7 @@ const faqSections: FaqSection[] = [
         id: "what-is-clinicalsim",
         question: "What is ClinicalSim?",
         answer:
-          "ClinicalSim is a voice-based AI clinical simulation built for communication practice in medical education. Learners talk through high-stakes conversations, breaking bad news, goals-of-care discussions, informed consent, difficult family meetings, with an AI patient built for that case, and they get structured feedback grounded in validated communication rubrics and mapped to ACGME Milestones. Every case is written and reviewed by practicing clinicians, and learners can practice on demand from any device.",
+          "ClinicalSim is a voice-based AI clinical simulation built for communication practice in medical education. Learners talk through high-stakes conversations, including breaking bad news, goals-of-care discussions, informed consent, and high-stakes family meetings, with an AI patient built for that case. They get structured feedback grounded in published communication frameworks and mapped to ACGME Milestones when the learner is a resident or fellow. Every case is written and reviewed by practicing clinicians, and learners can practice on demand from any device.",
       },
       {
         id: "replaces-step-2-cs",
@@ -68,20 +69,20 @@ const faqSections: FaqSection[] = [
         id: "vs-standardized-patients",
         question: "How is ClinicalSim different from a standardized patient program?",
         answer:
-          "ClinicalSim supplements standardized patient (SP) programs, it does not replace them. SP encounters are the gold standard for high-stakes assessment, but they cost roughly $150 to $300 each, take scheduling and coordination, and give a learner only a handful of reps. ClinicalSim adds unlimited, on-demand practice in between those encounters, so SPs and faculty are freed for the high-stakes moments where physical presence matters.",
+          "ClinicalSim supplements standardized patient (SP) programs, it does not replace them. SP encounters remain the standard for high-stakes assessment, but each encounter requires actor time, space, faculty support, and scheduling. ClinicalSim adds on-demand practice between those encounters, so SPs and faculty can stay focused on the high-stakes moments where physical presence matters.",
       },
       {
         id: "vs-chatgpt",
         question:
-          "How is ClinicalSim different from using ChatGPT to practice difficult conversations?",
+          "How is ClinicalSim different from using ChatGPT to practice high-stakes conversations?",
         answer:
-          "Unlike a general chatbot, every ClinicalSim case is created and reviewed by expert clinicians, including palliative care physicians, with decades of combined practice. The encounters are structured and the feedback is grounded in validated communication rubrics, not improvised, and ClinicalSim runs robust checks so that scoring and feedback stay accurate and consistent from one learner to the next.",
+          "Unlike a general chatbot, every ClinicalSim case is created and reviewed by practicing clinicians. The encounters are structured, and the feedback is grounded in named, published communication frameworks rather than improvised. ClinicalSim also runs consistency checks so faculty can review how the scenario and scoring behave from one learner to the next.",
       },
       {
         id: "communication-remediation",
         question: "What is communication remediation, and how does ClinicalSim support it?",
         answer:
-          "Communication remediation is the structured practice and feedback a program uses to help a learner improve interpersonal and communication skills, often the hardest competencies to fix. Programs spend roughly 29 to 45 faculty hours per remediation case (University of Colorado, 29.6 mean, and Penn's EIRC, 45 average; Guerrasio et al., 2014), and 93% of residency programs have faced remediation in the past three years (CERA Survey). ClinicalSim supports remediation by giving learners repeated, on-demand practice with expert-built cases and by generating milestone-aligned feedback and CCC-ready documentation that program directors can act on, without consuming that faculty time.",
+          "Communication remediation is the structured practice and feedback a program uses to help a learner improve interpersonal and communication skills. In a CERA survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years, and 50% wanted an accessible remediation toolkit (Frazier et al., Family Medicine, 2021). ClinicalSim gives learners repeated, on-demand practice with physician-authored cases and produces milestone-aligned feedback and CCC-ready documentation that program directors can review.",
       },
     ],
   },
@@ -266,7 +267,7 @@ const faqSections: FaqSection[] = [
         id: "multiple-frameworks",
         question: "Can more than one communication framework apply to a single case?",
         answer:
-          "Yes. Each communication framework is drawn from a validated library with an approved citation and serves as a floor, not a ceiling. One or more may be applied to a case, each scored independently, and programs may add their own internal or externally validated rubrics. Because these frameworks and rubrics operate at different scopes, from whole-encounter structures to task-specific routines to discrete micro-skills, ClinicalSim selects those best suited to each case's communication task.",
+          "Yes. Each communication framework comes from a cited, published source and is a floor, not a ceiling. One or more may be applied to a case, each scored independently, and programs may add their own internal rubrics or externally validated instruments. Because these frameworks operate at different scopes, from whole-encounter structures to task-specific routines and discrete micro-skills, ClinicalSim selects those that fit each case's communication task.",
       },
       {
         id: "which-frameworks",

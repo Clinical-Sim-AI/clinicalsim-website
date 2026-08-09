@@ -8,7 +8,7 @@ import { getAllComparisons } from "@/lib/comparisons"
 export const metadata: Metadata = {
   title: "Compare Clinical Communication Training Approaches",
   description:
-    "Neutral, side-by-side comparisons of clinical communication training approaches — AI clinical simulation vs. standardized patients, and voice-based vs. text-based virtual patient simulation.",
+    "Neutral, side-by-side comparisons of clinical communication training approaches, including AI clinical simulation vs. standardized patients and voice-based vs. text-based AI patient simulation.",
   openGraph: {
     title: "Compare Communication Training Approaches | ClinicalSim.ai",
     description:
@@ -86,7 +86,7 @@ export default function CompareIndexPage() {
             <span className="text-cs-electric font-medium">
               clinical communication training
             </span>{" "}
-            — so you can see where each one fits.
+            so you can see where each one fits.
           </p>
         </div>
       </section>

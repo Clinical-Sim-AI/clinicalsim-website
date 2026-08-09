@@ -6,7 +6,7 @@ const example: ExampleCase = {
   "slug": "addressing-hydroxyurea-nonadherence-and-medical-mistrust",
   "title": "Addressing Hydroxyurea Nonadherence and Medical Mistrust",
   "role": "You are the Pediatric Hematology-Oncology fellow caring for Jordan, a 13-year-old with sickle cell disease.",
-  "summary": "Jordan Williams, a 13 year old with HbSS sickle cell disease, has recurrent vaso occlusive crises, has missed multiple hematology appointments, and takes hyd…",
+  "summary": "Jordan Williams is a 13 year old with HbSS sickle cell disease, recurrent vaso occlusive crises, missed hematology appointments, and inconsistent hydroxyurea use.",
   "scenario": "Jordan Williams, a 13-year-old with HbSS sickle cell disease, has recurrent vaso-occlusive crises, has missed multiple hematology appointments, and takes hydroxyurea inconsistently. You are meeting his mother, Monique, one-on-one in an outpatient hematology clinic exam room. Jordan is not present. Monique is his primary caregiver and decision-maker, and she carries deep mistrust of the healthcare system after encounters where Jordan's pain was treated as drug-seeking and she was treated as difficult. She has also seen hydroxyurea make Jordan feel sick. Your job is to understand the barriers to treatment, address her mistrust, engage Jordan's developing autonomy, and build a plan together.",
   "characterInteraction": "You will speak with Monique Williams, Jordan's mother — guarded and braced for judgment at first, forthright, and ready to defend her son and herself, but responsive to genuine respect and curiosity.",
   "objectives": [

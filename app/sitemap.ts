@@ -5,6 +5,7 @@ import { getAllSolutions } from "@/lib/solutions"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
 import { RELEASE_NOTES_UPDATED_ISO } from "@/lib/release-notes"
+import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 const BASE_URL = "https://clinicalsim.ai"
 
@@ -18,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
-      lastModified: new Date("2026-03-16"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.home),
       changeFrequency: "weekly",
       priority: 1,
     },
@@ -36,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/insights`,
-      lastModified: new Date("2026-02-14"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.insights),
       changeFrequency: "weekly",
       priority: 0.9,
     },
@@ -54,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/research`,
-      lastModified: new Date("2026-03-16"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.research),
       changeFrequency: "monthly",
       priority: 0.7,
     },
@@ -66,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/methodology`,
-      lastModified: new Date("2026-07-02"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.methodology),
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -78,7 +79,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/faq`,
-      lastModified: new Date("2026-07-02"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.faq),
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -162,7 +163,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${BASE_URL}/insights/${post.slug}`,
-    lastModified: new Date(post.date),
+    lastModified: new Date(post.dateModified ?? post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }))

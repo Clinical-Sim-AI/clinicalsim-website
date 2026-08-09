@@ -5,9 +5,10 @@ import { getAuthorById, TEAM_AUTHOR_ID } from "@/lib/authors"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { BookOpen } from "lucide-react"
+import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
-  title: "Insights — Research & Evidence for Medical Communication Training",
+  title: "Insights: Research & Evidence for Medical Communication Training",
   description: "Evidence-based insights on medical communication training, simulation technology, and the clinical conversations that drive patient outcomes. Research from ClinicalSim.",
   openGraph: {
     title: "Insights from ClinicalSim.ai",
@@ -30,10 +31,11 @@ export default function InsightsPage() {
     {
       "@context": "https://schema.org" as const,
       "@type": "CollectionPage" as const,
-      name: "Insights — Research & Evidence for Medical Communication Training",
+      name: "Insights: Research & Evidence for Medical Communication Training",
       description:
         "Evidence-based insights on medical communication training, simulation technology, and the clinical conversations that drive patient outcomes.",
       url: "https://clinicalsim.ai/insights",
+      dateModified: PAGE_DATE_MODIFIED.insights,
       mainEntity: {
         "@type": "ItemList" as const,
         itemListElement: posts.map((post, index) => ({

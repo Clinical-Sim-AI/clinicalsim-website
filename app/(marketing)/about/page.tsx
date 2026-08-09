@@ -105,7 +105,7 @@ export default function AboutPage() {
           </h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-2xl">
             ClinicalSim is a voice-based AI clinical simulation platform to practice and measure{" "}
-            <span className="text-cs-electric font-medium">clinical communication</span>. Learners hold real spoken encounters with AI patients, then get objective, competency-aligned feedback in minutes, at every stage of training and from any device.
+            <span className="text-cs-electric font-medium">clinical communication</span>. Learners hold real spoken encounters with AI patients, then get structured, competency-aligned feedback in minutes, at every stage of training and from any device.
           </p>
         </div>
       </section>
@@ -118,7 +118,7 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
             <p>
-              Communication is the hardest competency to teach, train, and measure. It&apos;s a clinical procedure, the one clinicians perform more than any other, and the one they get to rehearse the least. Telling a family news they feared, aligning on goals of care, earning the trust of a frightened patient: these moments happen once, in real time, with real people, and there has rarely been a way to practice them or an objective way to measure how they went. Faculty know a strong encounter when they see one, but seeing one means being in the room, and there are never enough hours or enough rooms.
+              Communication is the hardest competency to teach, train, and measure. It&apos;s a clinical procedure, the one clinicians perform more than any other, and the one they get to rehearse the least. Telling a family news they feared, aligning on goals of care, earning the trust of a frightened patient: these moments happen once, in real time, with real people, and there has rarely been a way to practice them or a consistent way to measure how they went. Faculty know a strong encounter when they see one, but seeing one means being in the room, and there are never enough hours or enough rooms.
             </p>
             <p>
               We built ClinicalSim to close that gap, and to make communication something every learner can practice on demand and every program can measure with the same rigor it brings to a written exam.
@@ -169,7 +169,7 @@ export default function AboutPage() {
               The gap shows up at every level of training. In undergraduate medical education, the discontinuation of Step 2 CS in 2021 left no standardized, scalable way to assess whether students can communicate before they reach residency. In graduate medical education, programs assemble practice and remediation one encounter at a time, spending scarce faculty hours with no guarantee that two learners are held to the same standard. And the faculty expected to teach and assess these skills rarely get structured practice or a shared standard to calibrate against themselves.
             </p>
             <p>
-              ClinicalSim gives each of them a repeatable way to practice, and gives programs objective, comparable evidence of where every learner stands.
+              ClinicalSim gives each of them a repeatable way to practice, and gives programs structured, comparable evidence of what each learner did.
             </p>
           </div>
 
@@ -187,9 +187,9 @@ export default function AboutPage() {
               variant="blue"
             />
             <StatHighlight
-              value="29-45"
-              label="faculty hours consumed per remediation case"
-              source="Guerrasio and Aagaard 2014, mean 29.6"
+              value="29.6"
+              label="mean specialist contact hours in one clinical reasoning remediation program"
+              source="Guerrasio and Aagaard, J Gen Intern Med, 2014"
               variant="navy"
             />
           </div>

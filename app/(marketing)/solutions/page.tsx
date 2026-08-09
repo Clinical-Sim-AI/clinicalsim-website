@@ -9,7 +9,7 @@ import { getAllSolutions } from "@/lib/solutions"
 export const metadata: Metadata = {
   title: "Use Cases: Communication Practice Across Medicine",
   description:
-    "One platform for clinical communication — remediation, a longitudinal residency and fellowship curriculum, undergraduate medical education, and faculty development. The same voice-based AI simulation and rubric across every stage of a medical career.",
+    "One platform for clinical communication: remediation, a longitudinal residency and fellowship curriculum, undergraduate medical education, and faculty development. The same voice-based AI simulation and rubric across every stage of a medical career.",
   openGraph: {
     title: "Use Cases | ClinicalSim.ai",
     description:
@@ -74,7 +74,7 @@ export default function SolutionsPage() {
             One platform. <span className="text-cs-electric font-medium">Many conversations.</span>
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">
-            ClinicalSim runs validated voice scenarios with rubric-scored feedback in minutes. The same engine and dashboard support communication at every stage of a medical career — from a first patient history to leading a family meeting.
+            ClinicalSim runs physician-authored voice scenarios with rubric-scored feedback in minutes. The same engine and dashboard support communication at every stage of a medical career, from a first patient history to leading a family meeting.
           </p>
         </div>
       </section>

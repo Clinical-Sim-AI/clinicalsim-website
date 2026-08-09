@@ -6,7 +6,7 @@ const audience = getAudienceBySlug("program-directors")!
 
 export const metadata: Metadata = {
   title: "For Program Directors: Communication Remediation Toolkit",
-  description: "93% of residency programs face remediation. ClinicalSim gives program directors structured AI practice with milestone-aligned feedback and CCC-ready documentation. 29-45 faculty hours per case — there's a better way.",
+  description: "In a CERA survey, 93% of family medicine programs reported resident remediation and 50% wanted an accessible toolkit. ClinicalSim provides structured practice with milestone-aligned feedback and CCC-ready documentation.",
   openGraph: {
     title: "For Program Directors | ClinicalSim.ai",
     description: "The remediation toolkit you told CERA you wanted. Structured practice mapped to ACGME Milestones 2.0 with CCC-ready documentation.",

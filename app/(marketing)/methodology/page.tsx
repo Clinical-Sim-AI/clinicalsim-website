@@ -8,6 +8,7 @@ import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { AuthorByline } from "@/components/author-byline"
 import { getAuthorById } from "@/lib/authors"
+import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
   title: "Methodology: Case Development, Standards Alignment & Feedback",
@@ -29,7 +30,6 @@ export const metadata: Metadata = {
   },
 }
 
-const LAST_UPDATED = "2026-08-03"
 const AUTHOR_ID = "jacqueline-ponczek"
 
 const commitments: {
@@ -119,7 +119,7 @@ export default function MethodologyPage() {
             description:
               "How ClinicalSim.ai builds cases, aligns them to governing-body competency frameworks and validated communication frameworks, and generates evidence-based feedback.",
             url: "https://clinicalsim.ai/methodology",
-            dateModified: LAST_UPDATED,
+            dateModified: PAGE_DATE_MODIFIED.methodology,
             author: author
               ? {
                   "@type": "Person",
@@ -326,8 +326,8 @@ export default function MethodologyPage() {
           </div>
 
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
-            Each communication framework is drawn from a validated library
-            with an approved citation and serves as a floor, not a ceiling:
+            Each communication framework comes from a cited, published source
+            and is a floor, not a ceiling:
             one or more may be applied to a case, each scored independently,
             and programs may add their own internal or externally validated
             rubrics. Because these frameworks and rubrics operate at

@@ -5,14 +5,17 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { FeatureCard } from "@/components/feature-card"
-import { EvidenceShowcase } from "@/components/evidence-showcase"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb, Presentation, MapPin, Calendar } from "lucide-react"
+
+const RESEARCH_DESCRIPTION =
+  "Explore ClinicalSim's conference presentations and apply to collaborate on research in clinical communication, simulation-based education, and competency assessment."
 
 export const metadata: Metadata = {
   title: "Research Collaboration",
-  description: "In a feasibility pilot with residents and advanced practice providers, comfort with difficult conversations improved significantly and objective communication scores rose with repeated practice; findings presented at IPSSW 2026. Explore ClinicalSim's research and conference presentations, or apply to collaborate.",
+  description: RESEARCH_DESCRIPTION,
   openGraph: {
     title: "Research with ClinicalSim.ai",
     description: "Apply to collaborate on research in medical communication training using AI voice simulation. Platform access, custom scenarios, and publication support provided.",
@@ -114,18 +117,39 @@ export default function ResearchPage() {
   return (
     <>
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "Research Collaboration — ClinicalSim.ai",
-          description: "Apply to collaborate with ClinicalSim on research in medical communication training using AI voice simulation.",
-          url: "https://clinicalsim.ai/research",
-          isPartOf: {
-            "@type": "WebSite",
-            name: "ClinicalSim.ai",
-            url: "https://clinicalsim.ai",
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Research Collaboration",
+            description: RESEARCH_DESCRIPTION,
+            url: "https://clinicalsim.ai/research",
+            dateModified: PAGE_DATE_MODIFIED.research,
+            isPartOf: {
+              "@type": "WebSite",
+              name: "ClinicalSim.ai",
+              url: "https://clinicalsim.ai",
+            },
           },
-        }}
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://clinicalsim.ai",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Research Collaboration",
+                item: "https://clinicalsim.ai/research",
+              },
+            ],
+          },
+        ]}
       />
 
       {/* Hero Section */}
@@ -326,33 +350,6 @@ export default function ResearchPage() {
       </section>
 
       <SectionDivider variant="diagonal-down" color="cloud" />
-
-      {/* Pilot Study Section */}
-      <section className="px-6 py-16 md:py-24 bg-cs-cloud">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-              Pilot study <span className="text-cs-dark-blue font-medium">findings</span>
-            </h2>
-            <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
-              A feasibility pilot with residents and advanced practice providers, using AI voice simulation with structured, objective scoring. Findings presented at IPSSW 2026; a manuscript is in preparation.
-            </p>
-          </div>
-
-          <EvidenceShowcase
-            studyTitle="Enhancing Difficult Conversations in Pediatrics Using Artificial Intelligence"
-            journal="Presented at IPSSW"
-            year="2026"
-            summary="In a feasibility pilot (January–March 2026) with residents and advanced practice providers, perceived comfort with difficult conversations improved significantly after AI voice-simulation practice, and objective communication scores improved among repeat users. Each session generates structured, rubric-based feedback on empathy, clarity, and sensitive language. Full results are being prepared for peer-reviewed publication."
-            badges={["Feasibility Pilot", "Presented at IPSSW 2026"]}
-          />
-          <p className="text-sm text-cs-dark-gray font-light text-center mt-4">
-            Presented by Vinod Havalad, MD and Gillian Brennan, MD at the International Pediatric Simulation Symposium and Workshops (IPSSW), 2026.
-          </p>
-        </div>
-      </section>
-
-      <SectionDivider variant="wave" color="white" />
 
       {/* Conference Presentations Section */}
       <section className="px-6 pt-16 md:pt-24 pb-4 md:pb-6 bg-white">

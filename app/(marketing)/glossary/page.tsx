@@ -8,7 +8,7 @@ import { getAllGlossaryTerms } from "@/lib/glossary"
 export const metadata: Metadata = {
   title: "Medical Education Glossary: CBME, EPAs, Milestones & More",
   description:
-    "Clear, sourced definitions of the medical-education and simulation terms that shape clinical communication training — competency-based medical education, EPAs, ACGME Milestones, OSCEs, standardized patients, and remediation.",
+    "Clear, sourced definitions of the medical education and simulation terms that shape clinical communication training: competency-based medical education, EPAs, ACGME Milestones, OSCEs, standardized patients, and remediation.",
   openGraph: {
     title: "Medical Education Glossary | ClinicalSim.ai",
     description:
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Medical Education Glossary | ClinicalSim.ai",
     description:
-      "Definitions of key medical-education and clinical-simulation terms — CBME, EPAs, Milestones, OSCEs, standardized patients, remediation.",
+      "Definitions of key medical education and clinical simulation terms: CBME, EPAs, Milestones, OSCEs, standardized patients, and remediation.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/glossary",
@@ -99,7 +99,7 @@ export default function GlossaryPage() {
           <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-3xl">
             Clear, self-contained definitions of the terms that shape
             competency-based medical education, clinical simulation, and
-            communication training — from EPAs and ACGME Milestones to
+            communication training, from EPAs and ACGME Milestones to
             standardized patients and remediation.
           </p>
         </div>

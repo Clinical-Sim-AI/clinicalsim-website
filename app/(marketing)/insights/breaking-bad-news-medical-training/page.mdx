@@ -1,33 +1,36 @@
 import { ArticleLayout } from "@/components/article-layout"
 import { getPostBySlug, getPostMetadata } from "@/lib/posts"
+import { KeyTakeaway } from "@/components/key-takeaway"
+import { ReferencesSection } from "@/components/references-section"
 
 export const metadata = getPostMetadata("breaking-bad-news-medical-training")
 
 <ArticleLayout post={getPostBySlug("breaking-bad-news-medical-training")}>
 
-## The Challenge
+<KeyTakeaway stat="6 steps" statSource="in the SPIKES protocol (Baile et al., 2000)">
+SPIKES gives clinicians a structure for breaking bad news, but a six-step protocol becomes useful only when a learner can carry it through a real conversation with emotion, uncertainty, and questions.
+</KeyTakeaway>
 
-Breaking bad news is a core clinical skill, yet most clinicians have never practiced it before doing it for real.
+## What SPIKES organizes
 
-## Key Insights
+Baile and colleagues described SPIKES as six linked tasks: set up the conversation, assess the patient's perception, ask how much information the patient wants, share knowledge, respond to emotion, and summarize the strategy. The protocol gives a learner a sequence to return to when the conversation becomes hard.
 
-- Modern training solutions need to reach all learners across a program, not a handful per rotation cycle.
-- Every trainee deserves the same quality of practice opportunity.
-- Validated feedback mechanisms are what drive real skill development.
-- Training should be available when and where learners need it.
+It does not turn the conversation into a script. A parent may interrupt before the diagnosis is complete. A patient may want less detail than the clinician expected. Emotion may need attention before the plan can continue. The learner still has to listen and adapt.
 
-## The Research
+## Practice should expose the missed move
 
-Recent research in medical communication training reinforces the value of structured, repeatable practice. Communication failures drive 40% of malpractice claims, and HCAHPS scores put millions in reimbursement at risk. Most programs still lack the infrastructure to train at the scale these numbers demand.
+A lecture can explain why a warning shot matters. Practice shows whether the learner actually used one, whether the diagnosis was stated in plain language, and whether the learner paused when emotion entered the conversation.
 
-## How ClinicalSim Helps
+The feedback should point to the exact moment. "Be more empathic" gives the learner nowhere to start. A transcript-grounded note can show that the learner moved from the diagnosis to treatment before acknowledging the parent's fear, and the next attempt can focus on that behavior.
 
-Our platform provides:
-- On-demand practice, available 24/7 on any device
-- Validated scenarios designed by clinical experts
-- Structured feedback scored against validated communication frameworks
-- Scalable deployment, from individual learners to entire health systems
+## Keep live assessment for the high-stakes decision
 
-Ready to improve communication training at your institution? [Contact us](/contact) to learn more.
+AI patients can provide repeated voice-based practice before an OSCE, a standardized patient session, or a coached clinical encounter. They do not replace the human judgment required for summative assessment.
+
+That division of labor gives learners more chances to practice while faculty and standardized patients stay focused on the encounters where their presence matters most. You can [review a recorded diagnosis-disclosure example](/examples/delivering-a-new-leukemia-diagnosis-to-a-family-in-the-emergency-department) with its transcript and SPIKES feedback.
+
+<ReferencesSection references={[
+  { authors: "Baile WF, Buckman R, Lenzi R, Glober G, Beale EA, Kudelka AP", title: "SPIKES-A six-step protocol for delivering bad news: application to the patient with cancer", source: "The Oncologist", year: "2000", doi: "10.1634/theoncologist.5-4-302" },
+]} />
 
 </ArticleLayout>

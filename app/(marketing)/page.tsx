@@ -10,17 +10,20 @@ import { CountUp } from "@/components/count-up"
 import { getAllSolutions } from "@/lib/solutions"
 import { JsonLd } from "@/components/json-ld"
 import { ArrowRight } from "lucide-react"
+import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 const DemoVideoSection = dynamic(
   () => import("@/components/demo-video-section").then((m) => ({ default: m.DemoVideoSection }))
 )
 
+const HOME_DESCRIPTION =
+  "Communication is medicine's most performed procedure and its least measured. Voice-based AI simulation to practice and score it at every stage of a medical career, from undergraduate medical education through residency, fellowship, and faculty development, with rubric-scored feedback mapped to ACGME Milestones 2.0 for residents and fellows."
+
 export const metadata: Metadata = {
   title: {
     absolute: "AI Clinical Simulation for Medical Communication | ClinicalSim",
   },
-  description:
-    "Communication is medicine's most performed procedure and its least measured. Voice-based AI simulation to practice and score it at every stage of a medical career, from undergraduate medical education through residency, fellowship, and faculty development, with rubric-scored feedback mapped to ACGME Milestones 2.0 for residents and fellows.",
+  description: HOME_DESCRIPTION,
   openGraph: {
     title: "AI Clinical Simulation for Medical Communication",
     description:
@@ -50,13 +53,13 @@ export default function HomePage() {
   const solutions = getAllSolutions()
 
   // Representative scenario types practiced on the platform (drawn from the
-  // scenario library — breaking bad news through error disclosure).
+  // scenario library, breaking bad news through error disclosure).
   const conversationTypes = [
     "Breaking bad news",
     "Goals-of-care discussions",
     "Informed consent",
     "Error disclosure",
-    "Difficult family meetings",
+    "High-stakes family meetings",
     "Delivering a new diagnosis",
     "Communicating uncertainty",
     "Giving difficult feedback",
@@ -108,9 +111,9 @@ export default function HomePage() {
       variant: "navy" as const,
     },
     {
-      value: "29-45",
-      label: "faculty hours consumed per remediation case",
-      source: "Guerrasio and Aagaard 2014, mean 29.6",
+      value: "29.6",
+      label: "mean specialist contact hours in one clinical reasoning remediation program",
+      source: "Guerrasio and Aagaard, J Gen Intern Med, 2014",
       variant: "blue" as const,
     },
     {
@@ -141,6 +144,19 @@ export default function HomePage() {
     <>
       <JsonLd
         data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "AI Clinical Simulation for Medical Communication",
+            description: HOME_DESCRIPTION,
+            url: "https://clinicalsim.ai",
+            dateModified: PAGE_DATE_MODIFIED.home,
+            isPartOf: {
+              "@type": "WebSite",
+              name: "ClinicalSim.ai",
+              url: "https://clinicalsim.ai",
+            },
+          },
           {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
@@ -178,7 +194,7 @@ export default function HomePage() {
       {/* 1. Hero Section - Dark Blue per brand */}
       <section className="relative overflow-hidden px-6 py-20 md:py-28 lg:py-32 bg-cs-dark-blue text-white">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
-          {/* Left column — message + CTAs */}
+          {/* Left column, message + CTAs */}
           <div className="relative z-10 max-w-2xl">
             <p className="inline-flex items-center gap-2 text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
               <span className="h-1.5 w-1.5 rounded-full bg-cs-electric" aria-hidden="true" />
@@ -204,12 +220,12 @@ export default function HomePage() {
                   <ArrowRight />
                 </Button>
               </Link>
-              <Link href="/research">
+              <Link href="/methodology">
                 <Button
                   size="xl"
                   className="w-full sm:w-auto bg-transparent border border-white/25 text-white hover:bg-white/10 font-medium"
                 >
-                  See the evidence
+                  See how scoring works
                 </Button>
               </Link>
             </div>
@@ -219,33 +235,32 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Right column — evidence panel */}
+          {/* Right column, evidence panel */}
           <div className="relative z-10 lg:justify-self-end w-full max-w-md">
             <div className="rounded-2xl border border-white/10 bg-cs-navy/40 p-6 md:p-8 backdrop-blur-sm">
               <p className="text-xs font-medium uppercase tracking-[0.16em] text-cs-electric mb-6">
-                From our feasibility pilot
+                What programs can inspect
               </p>
               <dl className="space-y-6">
                 <div>
-                  <dt className="text-sm text-cs-cloud font-light mb-1">Comfort with difficult conversations</dt>
-                  <dd className="text-2xl md:text-3xl font-light text-white">Improved significantly</dd>
+                  <dt className="text-sm text-cs-cloud font-light mb-1">Scoring evidence</dt>
+                  <dd className="text-2xl md:text-3xl font-light text-white">Traceable to the transcript</dd>
                 </div>
                 <div className="h-px bg-white/10" />
                 <div>
-                  <dt className="text-sm text-cs-cloud font-light mb-1">Objective communication scores</dt>
-                  <dd className="text-2xl md:text-3xl font-light text-white">Increased with repeated practice</dd>
+                  <dt className="text-sm text-cs-cloud font-light mb-1">Framework alignment</dt>
+                  <dd className="text-2xl md:text-3xl font-light text-white">Named on every case</dd>
                 </div>
               </dl>
               <p className="mt-6 pt-6 border-t border-white/10 text-sm text-cs-cloud font-light leading-relaxed">
-                Rubric scoring tied to ACGME Milestones 2.0, across residents and advanced practice providers.
-                <span className="block mt-2 text-cs-cloud/70">Presented at IPSSW 2026.</span>
+                Faculty can review the cited transcript evidence behind each score and see which published framework the case uses.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Demo video — sits directly under the hero so a program director can
+      {/* 2. Demo video, sits directly under the hero so a program director can
            see the product inside the first three screenfuls. */}
       <section className="px-6 py-16 md:py-24 bg-cs-cloud">
         <div className="max-w-5xl mx-auto">
@@ -257,12 +272,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Definition + proof + scenarios — stacked bands. Definition beside
+      {/* 3. Definition + proof + scenarios, stacked bands. Definition beside
            the framework mapping, then the three differentiators as a 3-up row,
            then the scenario list. */}
       <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto">
-          {/* Band 1 — definition and framework mapping */}
+          {/* Band 1, definition and framework mapping */}
           <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-start">
             <div className="max-w-2xl">
               <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
@@ -276,7 +291,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* Framework mapping — the dense paragraph, made scannable. Stage
+            {/* Framework mapping, the dense paragraph, made scannable. Stage
                 above framework so the full stage names never collide. */}
             <div className="w-full lg:pt-1">
               <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
@@ -298,7 +313,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Band 2 — the three differentiators */}
+          {/* Band 2, the three differentiators */}
           <div className="mt-14 md:mt-16 border-t border-cs-gray pt-10 md:pt-12">
             <ul className="grid gap-8 md:grid-cols-3 md:gap-10">
               {differentiators.map((item) => (
@@ -321,7 +336,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Band 3 — scenarios. The training continuum lives in the framework
+          {/* Band 3, scenarios. The training continuum lives in the framework
               mapping above, so it is not repeated here. */}
           <div className="mt-14 md:mt-16 border-t border-cs-gray pt-10 md:pt-12">
             <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-5">
@@ -341,7 +356,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. The gap — the problem, the four program-level stats, and the two
+      {/* 4. The gap, the problem, the four program-level stats, and the two
            institution-level exposure figures that used to sit in the cost section. */}
       <section className="px-6 py-16 md:py-24 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
@@ -374,7 +389,7 @@ export default function HomePage() {
             * Based on the ClinicalSim national needs assessment of GME program leaders. Publication in progress.
           </p>
 
-          {/* Institution-level exposure — a plain two-up strip rather than two
+          {/* Institution-level exposure, a plain two-up strip rather than two
                more stat cards, so the four numbers above stay dominant. */}
           <div className="mt-12 md:mt-16 border-t border-cs-navy/15 pt-10">
             <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-8">
@@ -399,7 +414,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. 1:1 to 1:many — capturing expert judgment instead of rationing it.
+      {/* 5. 1:1 to 1:many, capturing expert judgment instead of rationing it.
            Navy, sitting between the gap (cloud) and why now (white). */}
       <section className="px-6 py-16 md:py-24 bg-cs-navy text-white">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-16 items-start">
@@ -429,10 +444,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Why Now Section — editorial two-column */}
+      {/* 6. Why Now Section, editorial two-column */}
       <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
-          {/* Left — sticky heading */}
+          {/* Left, sticky heading */}
           <div className="lg:sticky lg:top-24 lg:self-start max-w-sm">
             <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
               The inflection point
@@ -445,7 +460,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Right — numbered reasons */}
+          {/* Right, numbered reasons */}
           <ol className="space-y-10">
             {[
               {
@@ -558,7 +573,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Proof band — faculty first, then learners. Faculty skepticism is
+      {/* 8. Proof band, faculty first, then learners. Faculty skepticism is
            the obstacle, so that quote leads. */}
       <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-5xl mx-auto">

@@ -1,33 +1,37 @@
 import { ArticleLayout } from "@/components/article-layout"
 import { getPostBySlug, getPostMetadata } from "@/lib/posts"
+import { KeyTakeaway } from "@/components/key-takeaway"
+import { ReferencesSection } from "@/components/references-section"
 
 export const metadata = getPostMetadata("end-of-life-care-communication")
 
 <ArticleLayout post={getPostBySlug("end-of-life-care-communication")}>
 
-## The Challenge
+<KeyTakeaway stat="20 studies" statSource="included in Chung et al.'s 2016 systematic review">
+End-of-life communication training can improve knowledge, self-efficacy, and performance in simulated encounters, but the evidence for patient-level outcomes remains insufficient.
+</KeyTakeaway>
 
-EOL conversations are low-frequency, high-stakes events. Traditional training models cant provide the practice clinicians need.
+## What a goals-of-care conversation has to accomplish
 
-## Key Insights
+A goals-of-care conversation is not a speech about code status. The clinician has to share prognostic information, learn how the patient wants decisions made, understand fears and priorities, discuss tradeoffs, and ask who should be involved. Bernacki and Block identified those tasks in their review of serious illness communication practices.
 
-- Training solutions need to reach all learners, not only those with access to live standardized patients
-- Every trainee deserves the same quality of practice opportunities
-- Validated feedback mechanisms support measurable skill development
-- Training should be available when and where learners need it
+That is a lot to manage while a patient or family is processing frightening information. A framework can help clinicians remember the work, but remembering the framework is different from carrying out the conversation in real time.
 
-## The Research
+## Training evidence is promising and limited
 
-Recent developments in medical communication training continue to show the importance of structured, repeatable practice. Communication failures drive 40% of malpractice claims, and HCAHPS scores put millions in reimbursement at risk.
+Chung and colleagues reviewed 20 studies of end-of-life communication training, including six randomized trials. Compared with usual teaching, training was associated with better self-efficacy, knowledge, and communication scores in standardized patient encounters. The authors rated the evidence from very low to low quality and found too little evidence to determine whether training changed patient-level outcomes.
 
-## How ClinicalSim Helps
+That is the honest evidence position. Programs have support for structured communication training, but they should measure learner behavior directly and avoid claiming that a training tool has improved clinical outcomes without a study designed to test that question.
 
-Our platform provides:
-- On-demand practice, available 24/7 on any device
-- Validated scenarios designed by clinical experts
-- Structured feedback scored against validated communication frameworks
-- Scalable deployment, from individual learners to entire health systems
+## Practice should produce evidence a coach can inspect
 
-Want to improve communication training at your institution? [Contact us](/contact) to learn more.
+A useful practice encounter gives the learner a specific case, a named communication framework, and feedback tied to what the learner said. Repetition matters because the learner can work on one behavior at a time, such as stating prognosis plainly, responding to emotion before moving to logistics, or checking whether the plan matches the family's priorities.
+
+ClinicalSim gives learners a private place to rehearse those conversations with AI patients and produces transcript-grounded feedback for review. Faculty and standardized patients still carry the coaching and high-stakes assessment that require human judgment.
+
+<ReferencesSection references={[
+  { authors: "Chung HO, Oczkowski SJW, Hanvey L, Mbuagbaw L, You JJ", title: "Educational interventions to train healthcare professionals in end-of-life communication: a systematic review and meta-analysis", source: "BMC Medical Education", year: "2016", doi: "10.1186/s12909-016-0653-x" },
+  { authors: "Bernacki RE, Block SD", title: "Communication about serious illness care goals: a review and synthesis of best practices", source: "JAMA Internal Medicine", year: "2014", doi: "10.1001/jamainternmed.2014.5271" },
+]} />
 
 </ArticleLayout>
