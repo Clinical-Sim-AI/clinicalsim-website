@@ -189,10 +189,11 @@ const audiences: Audience[] = [
     subtitle: "Standardize remediation infrastructure across every program",
     icon: "hospital",
     colorVariant: "accent",
+    lastUpdated: "2026-08-08",
 
     cardBullets: [
       "Standardized remediation documentation across every program",
-      "Costs less than a single PACE assessment",
+      "One communication remediation system across every program",
       "Every session creates a timestamped, milestone-aligned record",
     ],
 
@@ -221,11 +222,9 @@ const audiences: Audience[] = [
           "Of malpractice cases now involve a communication failure, up from 30% (Candello 2025 Benchmarking Report)",
       },
       {
-        headline: "PACE referrals are expensive and limited",
+        headline: "Repeated practice is hard to coordinate",
         description:
-          "External remediation referrals to PACE cost $15,000-$19,000 per learner. An institutional ClinicalSim license costs less than a single referral and covers every program, every learner, every competency committee cycle.",
-        stat: "$15K-$19K",
-        statSource: "Per PACE assessment (UC San Diego)",
+          "Communication remediation requires repeated practice, but each standardized patient encounter requires actor time, space, faculty support, and scheduling. That makes a consistent institutional approach difficult to sustain across every program.",
       },
     ],
 
@@ -244,9 +243,9 @@ const audiences: Audience[] = [
         variant: "navy",
       },
       {
-        value: "$15K-$19K",
-        label: "cost per external PACE remediation assessment",
-        source: "PACE at UC San Diego",
+        value: "ICS 1-3",
+        label: "milestone-aligned documentation from every practice session",
+        source: "ACGME Milestones 2.0",
         variant: "accent",
       },
       {
@@ -411,6 +410,7 @@ const audiences: Audience[] = [
     subtitle: "Milestone-aligned data for every learner review",
     icon: "ribbon-check",
     colorVariant: "light-blue",
+    lastUpdated: "2026-08-08",
 
     cardBullets: [
       "Milestone-aligned assessment data from structured practice sessions",
@@ -626,6 +626,7 @@ const audiences: Audience[] = [
     subtitle: "Practice the conversations faculty are expected to model",
     icon: "medal-star",
     colorVariant: "accent",
+    lastUpdated: "2026-08-08",
 
     cardBullets: [
       "Rehearse giving difficult, specific feedback",

@@ -6,15 +6,15 @@ const audience = getAudienceBySlug("dios-gme-leadership")!
 
 export const metadata: Metadata = {
   title: "For DIOs & GME Leadership: Standardized Remediation Infrastructure",
-  description: "Standardize communication remediation across every program in your institution. ClinicalSim costs less than a single PACE assessment ($15K-$19K per referral) and generates accreditation-ready documentation for every learner.",
+  description: "Standardize communication remediation across every program with milestone-aligned assessment records and longitudinal progress tracking for every learner.",
   openGraph: {
     title: "For DIOs & GME Leadership | ClinicalSim.ai",
-    description: "Standardize remediation documentation across every program. Costs less than a single PACE assessment with accreditation-ready infrastructure.",
+    description: "Standardize communication remediation and documentation across every program, with milestone-aligned records from each practice session.",
     url: "https://clinicalsim.ai/audiences/dios-gme-leadership",
   },
   twitter: {
     title: "For DIOs & GME Leadership | ClinicalSim.ai",
-    description: "Standardize communication remediation across programs. Less than a single PACE referral, with documentation for accreditation.",
+    description: "Standardize communication remediation across programs with milestone-aligned documentation and longitudinal progress tracking.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/audiences/dios-gme-leadership",

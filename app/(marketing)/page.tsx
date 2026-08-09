@@ -220,12 +220,12 @@ export default function HomePage() {
                   <ArrowRight />
                 </Button>
               </Link>
-              <Link href="/research">
+              <Link href="/methodology">
                 <Button
                   size="xl"
                   className="w-full sm:w-auto bg-transparent border border-white/25 text-white hover:bg-white/10 font-medium"
                 >
-                  See the evidence
+                  See how scoring works
                 </Button>
               </Link>
             </div>
