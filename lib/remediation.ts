@@ -87,14 +87,14 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   // Hero
   // ---------------------------------------------------------------------------
-  heroH1: "The remediation toolkit program directors have been asking for.",
+  heroH1: "The communication remediation toolkit program directors have been asking for",
   heroSubtitle:
-    "AI clinical simulation for communication remediation, with structured practice mapped to ACGME Milestones 2.0 and documentation your CCC can use.",
+    "Give a learner structured voice-based practice between coaching sessions. Each report maps the encounter to the relevant ACGME Milestones and cites the transcript evidence your CCC can review.",
   heroStats: [
     {
       value: "93%",
       label:
-        "of residency programs have faced remediation in the past 3 years",
+        "of 267 surveyed family medicine program directors reported at least one resident in remediation during the prior three years",
       source: "CERA Survey, 267 Family Medicine PDs",
       variant: "accent",
     },
@@ -145,10 +145,10 @@ export const remediationPageData: RemediationPageData = {
     {
       headline: "Documentation gap",
       description:
-        "There is no standardized assessment framework for communication remediation. Faculty write subjective narrative evaluations that vary by observer, and 1 in 5 GME stakeholders report they don't know how to assess ICS milestones.",
-      stat: "1 in 5",
-      statLabel: "GME stakeholders don't know how to assess ICS milestones",
-      source: "ACGME stakeholder survey data",
+        "Faculty observations can vary by observer and may be sparse across a remediation period. ClinicalSim adds a consistent record that a faculty member or CCC can inspect alongside those observations.",
+      stat: "Transcript",
+      statLabel: "evidence behind every score",
+      source: "ClinicalSim reporting method",
       icon: "FileWarning",
     },
   ],
@@ -166,7 +166,7 @@ export const remediationPageData: RemediationPageData = {
     {
       title: "Milestone-aligned feedback",
       description:
-        "Real-time feedback mapped to the ICS subcompetencies of ACGME Milestones 2.0 (ICS-1, ICS-2, ICS-3), so learners know exactly where they stand.",
+        "Feedback mapped to the relevant ICS subcompetencies of ACGME Milestones 2.0, with transcript evidence a learner and faculty member can review.",
       iconName: "BarChart3",
     },
     {
@@ -176,9 +176,9 @@ export const remediationPageData: RemediationPageData = {
       iconName: "TrendingUp",
     },
     {
-      title: "CCC-ready documentation",
+      title: "Evidence for CCC review",
       description:
-        "Every session generates structured, milestone-aligned reports your Clinical Competency Committee can use directly.",
+        "Every session generates a structured, milestone-aligned report your Clinical Competency Committee can review alongside other evidence.",
       iconName: "FileText",
     },
     {
@@ -194,46 +194,42 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   personas: [
     {
-      role: "Program Directors",
-      headline:
-        "20 structured practice encounters before your first coaching session.",
+      role: "Program directors",
+      headline: "More practice between coaching sessions",
       painPoint:
         "Programs need a repeatable remediation structure and more practice than faculty calendars can provide.",
       whatTheyGet:
-        "A structured remediation pathway with milestone-aligned practice and longitudinal, CCC-ready documentation between faculty coaching sessions.",
+        "A structured remediation pathway with milestone-aligned practice and longitudinal evidence for CCC review between faculty coaching sessions.",
       iconName: "GraduationCap",
       colorVariant: "navy",
     },
     {
-      role: "DIOs & GMEC",
-      headline:
-        "Standardized remediation infrastructure across all programs.",
+      role: "DIOs and GMECs",
+      headline: "Shared remediation standards across programs",
       painPoint:
-        "No consistent approach to communication remediation across programs, and documentation gaps create legal vulnerability.",
+        "Programs may use different approaches to communication remediation and document different kinds of evidence.",
       whatTheyGet:
-        "Institution-wide remediation infrastructure with consistent assessment standards, defensible documentation, and centralized oversight.",
+        "Shared case standards and a central view of practice reports, while each program director and CCC keeps authority over the plan.",
       iconName: "Building2",
       colorVariant: "accent",
     },
     {
-      role: "Simulation Centers",
-      headline:
-        "Extend your SP program to unlimited practice volume.",
+      role: "Simulation centers",
+      headline: "Extend your SP program with repeatable practice",
       painPoint:
         "Live encounters require actor time, faculty support, space, and scheduling, which limits the repetitions available for individual remediation.",
       whatTheyGet:
-        "Unlimited AI-driven practice encounters that complement your existing SP program, extending your capacity without additional scheduling or staffing.",
+        "AI patient practice that complements scheduled SP encounters without requiring another actor or room for each attempt.",
       iconName: "Monitor",
       colorVariant: "blue",
     },
     {
       role: "CCCs",
-      headline:
-        "Milestone-aligned assessment data from every practice session.",
+      headline: "Milestone-aligned evidence from every practice session",
       painPoint:
-        "Subjective faculty reports with no standardized ICS assessment data to inform promotion decisions.",
+        "Limited communication evidence across a remediation period.",
       whatTheyGet:
-        "Structured, longitudinal data aligned to ACGME Milestones 2.0 from every remediation session, giving your committee another source of evidence for competency decisions.",
+        "Structured, longitudinal data aligned to ACGME Milestones 2.0, giving your committee another source of evidence to review.",
       iconName: "ClipboardCheck",
       colorVariant: "light-blue",
     },
@@ -244,7 +240,7 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   teamCredentials: [
     {
-      area: "Simulation Medicine",
+      area: "Simulation medicine",
       credentials: [
         "Director of Simulation, Advocate Health System",
         "Director of Simulation, University of Chicago",
@@ -252,7 +248,7 @@ export const remediationPageData: RemediationPageData = {
       colorVariant: "navy",
     },
     {
-      area: "Clinical Communication Research",
+      area: "Clinical communication research",
       credentials: [
         "Published communication skills researchers",
         "Structured evaluation using published frameworks",
@@ -260,7 +256,7 @@ export const remediationPageData: RemediationPageData = {
       colorVariant: "accent",
     },
     {
-      area: "Graduate Medical Education",
+      area: "Graduate medical education",
       credentials: [
         "ACGME milestone alignment",
         "CCC documentation expertise",
@@ -268,9 +264,9 @@ export const remediationPageData: RemediationPageData = {
       colorVariant: "blue",
     },
     {
-      area: "Healthcare Technology",
+      area: "Healthcare technology",
       credentials: [
-        "No real patient data, so no PHI exposure",
+        "Synthetic cases written without patient records",
         "Voice-based AI simulation",
       ],
       colorVariant: "light-blue",
@@ -295,7 +291,7 @@ export const remediationPageData: RemediationPageData = {
     {
       value: "93%",
       label:
-        "of residency programs have faced remediation in the past 3 years",
+        "of 267 surveyed family medicine program directors reported at least one resident in remediation during the prior three years",
       source: "CERA Survey, 267 Family Medicine PDs",
       variant: "accent",
     },
@@ -319,21 +315,21 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   pricingComparisons: [
     {
-      method: "PACE Program",
+      method: "PACE program",
       costRange: "Published fees vary by service",
       scalability: "One learner at a time",
       availability: "Scheduled externally",
       documentation: "External report",
     },
     {
-      method: "Faculty 1:1 Coaching",
+      method: "Faculty 1:1 coaching",
       costRange: "Varies by faculty role and time",
       scalability: "One learner per faculty member",
       availability: "Subject to faculty availability",
-      documentation: "Subjective notes",
+      documentation: "Varies by program",
     },
     {
-      method: "SP Encounters",
+      method: "SP encounters",
       costRange: "Actor, space, and faculty costs vary",
       scalability: "Scheduled sessions",
       availability: "Scheduling required",
@@ -342,9 +338,9 @@ export const remediationPageData: RemediationPageData = {
     {
       method: "ClinicalSim",
       costRange: "Institutional license",
-      scalability: "Unlimited sessions for all learners",
+      scalability: "Repeatable sessions for assigned learners",
       availability: "On-demand 24/7",
-      documentation: "Milestone-aligned CCC-ready reports",
+      documentation: "Milestone-aligned reports for CCC review",
       highlight: true,
     },
   ],
@@ -362,13 +358,13 @@ export const remediationPageData: RemediationPageData = {
       question:
         "How does ClinicalSim map to ACGME milestones?",
       answer:
-        "ClinicalSim generates feedback and assessment data mapped directly to the Interpersonal and Communication Skills (ICS) subcompetencies of ACGME Milestones 2.0. This includes ICS-1 (patient- and family-centered communication), ICS-2 (interprofessional and team communication), and ICS-3 (communication within health systems). Each practice session produces structured data aligned to these milestone levels, so program directors and CCCs can track learner progress using the same framework they use for all other competency assessments. This replaces subjective narrative evaluations with consistent, longitudinal data.",
+        "ClinicalSim generates feedback mapped to the Interpersonal and Communication Skills subcompetencies of ACGME Milestones 2.0. Each practice session produces structured evidence that program directors and CCCs can review alongside faculty observations. It does not replace faculty judgment or the committee's decision.",
     },
     {
       question:
         "What documentation does ClinicalSim generate for CCCs?",
       answer:
-        "ClinicalSim generates timestamped, milestone-aligned reports from every practice session. Each report maps learner performance to specific ACGME Milestones 2.0 levels, documents communication behaviors observed during the encounter, and tracks longitudinal progress across the remediation period. These reports are designed to be used directly by Clinical Competency Committees (CCCs) for promotion and remediation decisions, replacing subjective faculty observations with structured, reproducible assessment data. Currently, 1 in 5 GME stakeholders report not knowing how to assess ICS milestones (ACGME stakeholder survey data).",
+        "ClinicalSim generates a timestamped report from every practice session. Each report maps observed behavior to relevant ACGME Milestones 2.0 levels, cites the learner's words, and tracks performance across the remediation period. A CCC can review the report alongside faculty observation and the other evidence it already uses. ClinicalSim does not replace faculty judgment or the committee's decision.",
     },
     {
       question:
@@ -388,12 +384,12 @@ export const remediationPageData: RemediationPageData = {
   // CTA
   // ---------------------------------------------------------------------------
   ctaHeadline:
-    "Remediation is inevitable. Rebuilding the process every time isn't.",
+    "Start the next remediation plan with a repeatable structure",
   ctaDescription:
-    "Give learners structured communication practice mapped to their milestones, with documentation their CCC can use.",
+    "Give the learner more practice, keep faculty time for coaching, and bring the CCC evidence from each session.",
 
   // ---------------------------------------------------------------------------
   // Meta
   // ---------------------------------------------------------------------------
-  lastUpdated: "2026-08-07",
+  lastUpdated: "2026-08-10",
 }

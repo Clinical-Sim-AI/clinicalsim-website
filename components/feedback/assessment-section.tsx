@@ -33,7 +33,7 @@ function MilestonePlacementView({ placement }: { placement: MilestonePlacement }
   return (
     <div className="space-y-4">
       <p className="text-xs text-cs-dark-gray">
-        Level placed from transcript evidence — not a self-report
+        Level placed from transcript evidence, not a self-report
       </p>
       <MilestoneTrack level={level} anchors={anchors} variant="hero" />
 
@@ -44,11 +44,11 @@ function MilestonePlacementView({ placement }: { placement: MilestonePlacement }
             <span className="font-semibold">
               This scenario can&rsquo;t fully assess this milestone.
             </span>{" "}
-            It assesses this milestone only through Level {ceiling} — the higher
-            levels turn on behaviors a single spoken encounter can&rsquo;t
-            surface, so a lower level here reflects the simulation&rsquo;s limits,
-            not a shortfall. Attempts on scenarios that can&rsquo;t reach your
-            expected level don&rsquo;t count toward your overall grade.
+            It assesses this milestone only through Level {ceiling}. The higher
+            levels depend on behaviors a single spoken encounter can&rsquo;t show,
+            so a lower level here reflects the simulation&rsquo;s limits, not a
+            shortfall. Attempts on scenarios that can&rsquo;t reach your expected
+            level don&rsquo;t count toward your overall grade.
           </p>
         </div>
       )}
@@ -66,7 +66,7 @@ function MilestonePlacementView({ placement }: { placement: MilestonePlacement }
 
       {reasoning && (
         <p className="border-l-[3px] border-cs-electric pl-3 text-[13px] italic leading-snug text-cs-dark-blue">
-          <span className="font-bold not-italic">Evidence — </span>
+          <span className="font-bold not-italic">Evidence: </span>
           {reasoning}
         </p>
       )}

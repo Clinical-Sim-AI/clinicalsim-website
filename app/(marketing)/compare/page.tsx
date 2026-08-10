@@ -6,17 +6,17 @@ import { JsonLd } from "@/components/json-ld"
 import { getAllComparisons } from "@/lib/comparisons"
 
 export const metadata: Metadata = {
-  title: "Compare Clinical Communication Training Approaches",
+  title: "Compare clinical communication training approaches",
   description:
-    "Neutral, side-by-side comparisons of clinical communication training approaches, including AI clinical simulation vs. standardized patients and voice-based vs. text-based AI patient simulation.",
+    "Practical comparisons of clinical communication training approaches, including AI clinical simulation vs. standardized patients and voice-based vs. text-based AI patient simulation.",
   openGraph: {
-    title: "Compare Communication Training Approaches | ClinicalSim.ai",
+    title: "Compare communication training approaches | ClinicalSim.ai",
     description:
       "Side-by-side comparisons of clinical communication training approaches across cost, scalability, realism, and assessment.",
     url: "https://clinicalsim.ai/compare",
   },
   twitter: {
-    title: "Compare Communication Training Approaches | ClinicalSim.ai",
+    title: "Compare communication training approaches | ClinicalSim.ai",
     description:
       "Side-by-side comparisons of clinical communication training approaches.",
   },
@@ -34,7 +34,7 @@ export default function CompareIndexPage() {
       "@type": "CollectionPage" as const,
       name: "Compare Clinical Communication Training Approaches",
       description:
-        "Neutral, side-by-side comparisons of clinical communication training approaches.",
+        "Practical comparisons of clinical communication training approaches.",
       url: "https://clinicalsim.ai/compare",
       mainEntity: {
         "@type": "ItemList" as const,
@@ -79,14 +79,10 @@ export default function CompareIndexPage() {
       <section className="relative text-center px-6 pt-20 pb-16 md:pt-28 md:pb-24 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight leading-[1.08] text-balance text-white">
-            Compare
+            Compare communication training methods
           </h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed">
-            Neutral, side-by-side comparisons of approaches to{" "}
-            <span className="text-cs-electric font-medium">
-              clinical communication training
-            </span>{" "}
-            so you can see where each one fits.
+            Practical comparisons of what each method can assess, what it requires to run, and where it fits in a communication curriculum.
           </p>
         </div>
       </section>
@@ -121,15 +117,14 @@ export default function CompareIndexPage() {
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-6">
-            Find the right fit for your program
+            Choose the method by the job
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            Request a pilot and see how ClinicalSim complements the assessment
-            tools you already rely on.
+            Tell us whether you need practice, coaching, or a high-stakes assessment. We will show you where ClinicalSim fits and where it does not.
           </p>
           <Link href="/contact">
             <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-base font-bold transition-all duration-300 bg-cs-electric text-cs-dark-blue hover:bg-cs-electric/90 hover:shadow-lg h-14 px-10">
-              Request a Pilot
+              Request a pilot
             </button>
           </Link>
         </div>

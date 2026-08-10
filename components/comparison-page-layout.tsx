@@ -119,7 +119,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
 
       <SectionDivider variant="diagonal-down" color="white" />
 
-      {/* Comparison table — real <table> markup for AI Overviews / Perplexity */}
+      {/* Comparison table with real <table> markup for AI Overviews / Perplexity */}
       <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-8">
@@ -177,8 +177,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
           <section className="px-6 py-8 md:py-10 bg-cs-cloud">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
-                Frequently Asked{" "}
-                <span className="text-cs-dark-blue font-medium">Questions</span>
+                Frequently asked questions
               </h2>
               <div className="space-y-6">
                 {comparison.faqs.map((faq, index) => (
@@ -207,14 +206,14 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
         </>
       )}
 
-      {/* Related Insights */}
+      {/* Related insights */}
       {relatedPosts.length > 0 && (
         <>
           <SectionDivider variant="diagonal-up" color="white" />
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-8">
-                Related Insights
+                Related insights
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {relatedPosts.map((post) => (
@@ -230,7 +229,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
                       {post!.description}
                     </p>
                     <div className="mt-3 flex items-center text-cs-dark-blue text-sm font-medium">
-                      Read More
+                      Read more
                       <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </Link>
@@ -254,7 +253,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
             <Link href="/compare">
@@ -264,7 +263,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
                 className="border-white/30 bg-transparent text-white hover:bg-white/10"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                All Comparisons
+                All comparisons
               </Button>
             </Link>
           </div>

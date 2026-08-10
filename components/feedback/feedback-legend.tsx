@@ -11,7 +11,7 @@ export const CEILING_EXCLUDED_BADGE = "Not in overall grade";
 
 /**
  * Collapsed-by-default key explaining the grading vocabulary a reader sees in a
- * grade narrative — how scores are written (value / max) and what the three
+ * grade narrative: how scores are written (value / max) and what the three
  * "Not assessable" tags mean.
  */
 const TAGS: { tag: string; meaning: string; example: string }[] = [
@@ -78,10 +78,9 @@ export function FeedbackLegend({ className }: Props) {
         </dl>
 
         <p>
-          <span className="font-semibold">&ldquo;Not assessable&rdquo;</span>{" "}
-          never lowers your score. It just means the format didn&rsquo;t give you
-          a fair chance to show that skill, so it sits to the side rather than
-          counting against you. That&rsquo;s different from{" "}
+          A <span className="font-semibold">not assessable</span> item does not
+          affect the score. The format did not give you a fair chance to show
+          that behavior, so the item is excluded. That is different from{" "}
           <span className="font-semibold">&ldquo;Not demonstrated,&rdquo;</span>{" "}
           where the moment was there and the skill didn&rsquo;t come through. Only
           the second one reflects on how the encounter went.
@@ -89,14 +88,14 @@ export function FeedbackLegend({ className }: Props) {
 
         <p>
           For ACGME milestones, some scenarios can only assess a competency up to
-          a certain level — the higher levels turn on behaviors a single spoken
+          a certain level because the higher levels turn on behaviors a single spoken
           encounter can&rsquo;t surface. When a scenario&rsquo;s ceiling is below
           Level {CEILING_MIN_FOR_OVERALL}, that milestone is still shown for its
           formative value but is{" "}
           <span className="font-semibold">
             &ldquo;{CEILING_EXCLUDED_BADGE}&rdquo;
           </span>{" "}
-          — it doesn&rsquo;t count toward the overall grade, so a case that
+          . It doesn&rsquo;t count toward the overall grade, so a case that
           can&rsquo;t fully exercise a competency never reads as a shortfall.
         </p>
       </div>

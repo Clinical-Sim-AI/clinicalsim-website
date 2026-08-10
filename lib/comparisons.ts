@@ -33,17 +33,17 @@ export interface Comparison {
 const comparisons: Comparison[] = [
   {
     slug: "ai-clinical-simulation-vs-standardized-patients",
-    title: "AI Clinical Simulation vs. Standardized Patients",
+    title: "AI clinical simulation vs. standardized patients",
     metaTitle:
-      "AI Clinical Simulation vs. Standardized Patients: A Comparison",
+      "AI clinical simulation vs. standardized patients: a comparison",
     metaDescription:
       "How AI clinical simulation and standardized patients (SPs) compare across cost, availability, scheduling, and scoring, and where each fits in a communication training program.",
     heroHeadline:
       "AI clinical simulation vs. standardized patients",
     intro:
-      "AI clinical simulation and standardized patients are complementary, not interchangeable. Programs use standardized patients for live, high-stakes assessment where human realism matters most. AI simulation adds on-demand deliberate practice between those encounters, with a consistent scenario and rubric, so learners arrive at SP encounters and OSCEs having already practiced.",
-    optionALabel: "AI Clinical Simulation",
-    optionBLabel: "Standardized Patients (SPs)",
+      "Standardized patients provide human realism for live coaching and high-stakes assessment. AI clinical simulation adds repeatable practice between those encounters. Compare availability, staffing, consistency, feedback, and the job each method does best.",
+    optionALabel: "AI clinical simulation",
+    optionBLabel: "Standardized patients (SPs)",
     rows: [
       {
         dimension: "Cost per encounter",
@@ -55,7 +55,7 @@ const comparisons: Comparison[] = [
       {
         dimension: "Scalability",
         optionA:
-          "Unlimited concurrent encounters; an entire cohort can practice at once.",
+          "Concurrent encounters without a separate actor or room for each learner.",
         optionB:
           "Bounded by the number of trained SPs, available rooms, and faculty observers.",
       },
@@ -69,7 +69,7 @@ const comparisons: Comparison[] = [
       {
         dimension: "Standardization",
         optionA:
-          "Identical scenario and rubric every time, with no inter-rater drift.",
+          "The same published case and rubric version, with evidence tied to each transcript.",
         optionB:
           "High human realism; portrayal and scoring can vary between individual SPs and raters.",
       },
@@ -81,21 +81,21 @@ const comparisons: Comparison[] = [
           "Requires coordinating SPs, rooms, and observers in advance.",
       },
       {
-        dimension: "Scoring & documentation",
+        dimension: "Scoring and documentation",
         optionA:
-          "Every encounter rubric-scored and mapped to ACGME Milestones 2.0, with a record generated automatically.",
+          "A rubric-scored report tied to the competency and communication frameworks named on the case.",
         optionB:
-          "Rich, human-rated assessment; rigorous but resource-intensive to score and aggregate longitudinally.",
+          "Human observation and feedback, with local staffing and documentation requirements.",
       },
       {
-        dimension: "Best-fit role",
+        dimension: "Best used for",
         optionA:
           "High-volume deliberate practice and remediation between high-stakes encounters.",
         optionB:
-          "Gold-standard high-stakes and summative assessment, including OSCEs.",
+          "Live coaching and high-stakes or summative assessment, including OSCEs.",
       },
     ],
-    lastUpdated: "2026-08-07",
+    lastUpdated: "2026-08-10",
     relatedSolutionSlugs: ["remediation", "undergraduate-medical-education"],
     relatedPostSlugs: [
       "scalability-problem-sp-programs",
@@ -119,28 +119,28 @@ const comparisons: Comparison[] = [
         question:
           "How does AI simulation keep assessment consistent?",
         answer:
-          "Every AI encounter uses an identical scenario and rubric, eliminating the inter-rater and portrayal variability that can occur across human raters. Scores are mapped to ACGME Milestones 2.0 and recorded automatically, producing standardized, longitudinally comparable data.",
+          "Each learner receives the same published case and rubric version. Every score cites transcript evidence, so faculty can inspect the rating. ClinicalSim does not claim that its ratings are more accurate or fairer than faculty judgment.",
       },
     ],
   },
   {
     slug: "voice-vs-text-virtual-patient-simulation",
-    title: "Voice-Based vs. Text-Based AI Patient Simulation",
+    title: "Voice-based vs. text-based AI patient simulation",
     metaTitle:
-      "Voice-Based vs. Text-Based AI Patient Simulation",
+      "Voice-based vs. text-based AI patient simulation",
     metaDescription:
       "How voice-based and text-based AI patient simulation compare for clinical communication training, including realism, skills assessed, accessibility, and where each format fits.",
     heroHeadline:
       "Voice-based vs. text-based AI patient simulation",
     intro:
-      "Text-based AI patients are useful for practicing clinical reasoning and information gathering, but spoken conversation is where most communication skill actually lives. Voice-based simulation lets learners practice tone, pacing, silence, and responses to emotion in real time, which more closely mirrors the encounters clinicians face at the bedside.",
-    optionALabel: "Voice-Based Simulation",
-    optionBLabel: "Text-Based Simulation",
+      "Voice practice can surface pacing, silence, tone, and real-time responses to emotion. Text gives learners more time to compose and makes written reasoning easy to review. Compare the skill each format can show, its accessibility needs, and where it fits.",
+    optionALabel: "Voice-based simulation",
+    optionBLabel: "Text-based simulation",
     rows: [
       {
         dimension: "Fidelity to real encounters",
         optionA:
-          "Spoken, real-time dialogue that mirrors an actual patient conversation.",
+          "Spoken, real-time dialogue that requires the learner to respond aloud.",
         optionB:
           "Typed exchange; useful but removed from the dynamics of live speech.",
       },
@@ -166,14 +166,14 @@ const comparisons: Comparison[] = [
           "Lower; typing allows time to compose and revise each response.",
       },
       {
-        dimension: "Best-fit role",
+        dimension: "Best used for",
         optionA:
           "Rehearsing high-stakes spoken conversations such as breaking bad news, goals of care, and error disclosure.",
         optionB:
           "Early reasoning practice, written documentation, and asynchronous review.",
       },
     ],
-    lastUpdated: "2026-08-07",
+    lastUpdated: "2026-08-10",
     relatedSolutionSlugs: ["remediation"],
     relatedPostSlugs: [
       "what-learners-want-from-ai-sps",

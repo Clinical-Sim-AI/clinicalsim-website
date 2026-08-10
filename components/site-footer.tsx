@@ -25,13 +25,13 @@ export function SiteFooter() {
 
           {/* Navigation */}
           <div className="space-y-4">
-            <h3 className="text-sm font-medium text-cs-dark-blue uppercase tracking-wider">Navigate</h3>
+            <h3 className="text-sm font-medium text-cs-dark-blue uppercase tracking-wider">Explore</h3>
             <nav className="flex flex-col gap-2">
               <Link href="/solutions/remediation" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
-                Communication Remediation
+                Communication remediation
               </Link>
               <Link href="/audiences" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
-                Who We Serve
+                Who we serve
               </Link>
               <Link href="/about" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 About
@@ -64,23 +64,23 @@ export function SiteFooter() {
                 Contact
               </Link>
               <Link href="/help" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
-                Help Center
+                Help center
               </Link>
               <Link href="/help/release-notes" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
-                Release Notes
+                Release notes
               </Link>
             </nav>
           </div>
 
           {/* CTA */}
           <div className="space-y-4">
-            <h3 className="text-sm font-medium text-cs-dark-blue uppercase tracking-wider">Get Started</h3>
+            <h3 className="text-sm font-medium text-cs-dark-blue uppercase tracking-wider">Get started</h3>
             <p className="text-sm text-cs-dark-blue/70 font-light">
               Piloting with medical schools, residency programs, and fellowships nationwide.
             </p>
             <Link href="/contact" className="inline-block pt-2">
               <Button variant="accent" size="lg">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
           </div>
@@ -91,7 +91,7 @@ export function SiteFooter() {
             &copy; {new Date().getFullYear()} ClinicalSim. All rights reserved.
           </p>
           <Link href="/privacy" className="text-sm text-cs-dark-gray hover:text-cs-dark-blue font-light transition-colors">
-            Privacy Policy
+            Privacy policy
           </Link>
         </div>
       </div>

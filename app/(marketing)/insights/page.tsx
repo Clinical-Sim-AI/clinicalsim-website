@@ -8,8 +8,8 @@ import { BookOpen } from "lucide-react"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
-  title: "Insights: Research & Evidence for Medical Communication Training",
-  description: "Evidence-based insights on medical communication training, simulation technology, and the clinical conversations that drive patient outcomes. Research from ClinicalSim.",
+  title: "Evidence and practical guidance for clinical communication training",
+  description: "Research summaries, implementation guides, and clear limits on what the evidence can support in clinical communication training.",
   openGraph: {
     title: "Insights from ClinicalSim.ai",
     description: "Evidence-based insights on medical communication training, simulation technology, and clinical conversation outcomes.",
@@ -99,9 +99,9 @@ export default function InsightsPage() {
       {/* Hero */}
       <section className="relative text-center px-6 pt-20 pb-16 md:pt-28 md:pb-24 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto relative z-10">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight leading-[1.08] text-balance text-white">Insights</h1>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight leading-[1.08] text-balance text-white">Evidence and practical guidance for clinical communication training</h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed">
-            Research, analysis, and perspectives on <span className="text-cs-electric font-medium">communication training</span> in medical education.
+            Research summaries, implementation guides, and clear limits on what the evidence can support. Written for the people who design, run, and assess medical education.
           </p>
         </div>
       </section>
@@ -112,7 +112,7 @@ export default function InsightsPage() {
       {featuredPost && (
         <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-white">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-8">Featured Article</h2>
+            <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-8">Featured article</h2>
             <Link href={`/insights/${featuredPost.slug}`}>
               <div className="group bg-white border-2 border-cs-electric/30 rounded-2xl p-8 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer">
                 <div className="flex items-start gap-4 mb-6">
@@ -174,7 +174,7 @@ export default function InsightsPage() {
 
           <section className="px-6 py-8 md:py-10 bg-cs-cloud">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-8">All Articles</h2>
+              <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-8">All articles</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {otherPosts.map((post) => (
                   <Link key={post.slug} href={`/insights/${post.slug}`}>
@@ -231,13 +231,13 @@ export default function InsightsPage() {
       {/* CTA Section */}
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-light mb-4">Want to stay updated?</h2>
+          <h2 className="text-3xl md:text-4xl font-light mb-4">Get new research and product updates</h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            Join our waitlist to receive updates on new research, features, and pilot opportunities.
+            We send new articles, pilot findings, and major product releases. No weekly filler.
           </p>
           <Link href="https://form.typeform.com/to/Zve4CKk2" target="_blank" rel="noopener noreferrer">
             <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-base font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-cs-electric text-white hover:bg-cs-electric/90 hover:shadow-lg hover:scale-105 h-14 px-10">
-              Join the Waitlist
+              Get updates
             </button>
           </Link>
         </div>

@@ -36,7 +36,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     term: "Entrustable Professional Activities (EPAs)",
     abbreviation: "EPA",
     definition:
-      "Entrustable Professional Activities are the units of professional work that a trainee can be trusted to perform once they have demonstrated the necessary competence. EPAs translate abstract competencies into concrete, observable tasks — such as obtaining a history or giving a patient a diagnosis — and are assessed through entrustment decisions about how much supervision a learner still requires.",
+      "Entrustable Professional Activities are the units of professional work that a trainee can be trusted to perform once they have demonstrated the necessary competence. EPAs translate abstract competencies into concrete, observable tasks, such as obtaining a history or giving a patient a diagnosis, and are assessed through entrustment decisions about how much supervision a learner still requires.",
     source: "AAMC",
     relatedSlugs: ["cbme", "milestones", "clinical-reasoning"],
   },

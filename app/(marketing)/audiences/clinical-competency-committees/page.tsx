@@ -5,16 +5,16 @@ import { AudiencePageLayout } from "@/components/audience-page-layout"
 const audience = getAudienceBySlug("clinical-competency-committees")!
 
 export const metadata: Metadata = {
-  title: "For Clinical Competency Committees: Milestone-Aligned Assessment Data",
-  description: "1 in 5 GME stakeholders don't know how to assess ICS milestones. ClinicalSim generates milestone-aligned communication data from every practice session, with longitudinal tracking and CCC-ready reports for progression decisions.",
+  title: "Clinical competency committees: communication evidence for CCC review",
+  description: "ClinicalSim practice reports map observed behavior to relevant milestones and cite the learner's words for review alongside faculty observation and other CCC evidence.",
   openGraph: {
-    title: "For Clinical Competency Committees | ClinicalSim.ai",
-    description: "Structured ICS milestone data from every practice session. Longitudinal tracking and CCC-ready reports for learner reviews.",
+    title: "Clinical competency committees | ClinicalSim.ai",
+    description: "Milestone-aligned practice reports with transcript evidence for review alongside a CCC's existing sources.",
     url: "https://clinicalsim.ai/audiences/clinical-competency-committees",
   },
   twitter: {
-    title: "For Clinical Competency Committees | ClinicalSim.ai",
-    description: "Milestone-aligned assessment data from every practice session. Longitudinal tracking for confident progression decisions.",
+    title: "Clinical competency committees | ClinicalSim.ai",
+    description: "Give your CCC another source of communication evidence without replacing faculty judgment.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/audiences/clinical-competency-committees",

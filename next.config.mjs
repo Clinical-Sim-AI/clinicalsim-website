@@ -36,6 +36,11 @@ const nextConfig = {
         destination: '/medical-educator-faq',
         permanent: true,
       },
+      {
+        source: '/insights/breaking-bad-news-medical-training',
+        destination: '/insights/breaking-bad-news-practice-not-knowledge',
+        permanent: true,
+      },
       // /pricing was retired in August 2026. It was robots-disallowed and
       // unlinked from every nav, so there is nothing to consolidate for search,
       // but the URL went out in sales conversations. Send it to the calculator,

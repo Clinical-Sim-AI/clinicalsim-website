@@ -13,6 +13,20 @@ import { getAllExamples, getExampleBySlug } from "@/lib/examples"
 
 type Props = { params: Promise<{ slug: string }> }
 
+const exampleDescriptions: Record<string, string> = {
+  "addressing-hydroxyurea-nonadherence-and-medical-mistrust":
+    "Review an unedited ClinicalSim encounter about hydroxyurea nonadherence and medical mistrust, including the recording, transcript, and framework-based feedback.",
+  "delivering-a-new-leukemia-diagnosis-to-a-family-in-the-emergency-department":
+    "Review an unedited ClinicalSim encounter in which a pediatric fellow delivers a new leukemia diagnosis, including the recording, transcript, and scored feedback.",
+  "pediatric-vaccine-hesitancy-counseling":
+    "Review an unedited ClinicalSim vaccine hesitancy encounter, including the recording, transcript, and feedback tied to the named communication frameworks.",
+}
+
+function getExampleDescription(slug: string, title: string): string {
+  return exampleDescriptions[slug]
+    ?? `Review an unedited ClinicalSim encounter about ${title.toLowerCase()}, including the recording, transcript, and framework-based feedback.`
+}
+
 export function generateStaticParams() {
   return getAllExamples().map((example) => ({ slug: example.slug }))
 }
@@ -37,9 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!example) return {}
 
   const title = `${example.title}: Example Feedback`
-  const description =
-    example.summary ||
-    `See the exact learner feedback for the "${example.title}" simulation, including the assessment report, recording, and transcript.`
+  const description = getExampleDescription(example.slug, example.title)
   const url = `https://clinicalsim.ai/examples/${example.slug}`
 
   return {
@@ -67,9 +79,7 @@ export default async function ExampleCasePage({ params }: Props) {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: `${example.title}: Example Feedback`,
-            description:
-              example.summary ||
-              `See the exact learner feedback for the "${example.title}" simulation, including the assessment report, recording, and transcript.`,
+            description: getExampleDescription(example.slug, example.title),
             url: `https://clinicalsim.ai/examples/${example.slug}`,
             isPartOf: {
               "@type": "WebSite",
@@ -112,13 +122,12 @@ export default async function ExampleCasePage({ params }: Props) {
             </p>
           )}
           <p className="mt-6 max-w-2xl text-sm text-cs-cloud/70 font-light">
-            This is a real, unedited encounter from the platform. The page below
-            is the same read-only feedback a learner sees after a session.
+            This is an unedited encounter from ClinicalSim. Review the same recording, transcript, and feedback report the learner received.
           </p>
         </div>
       </section>
 
-      {/* Product showcase, scoped .cs-product theme so the ported app UI renders
+      {/* Product display, scoped .cs-product theme so the ported app UI renders
           pixel-faithfully without disturbing the marketing site's theme. */}
       <section className="cs-product bg-cs-cloud px-4 py-10 sm:px-6 md:py-14">
         <div className="mx-auto max-w-4xl space-y-8">
@@ -190,16 +199,16 @@ export default async function ExampleCasePage({ params }: Props) {
       <section className="px-6 py-14 md:py-20 bg-white border-t border-cs-gray">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-4">
-            Your learners would get feedback like this
+            This is what a learner receives
           </h2>
           <p className="text-base md:text-lg text-cs-dark-blue/70 font-light mb-8">
-            Every encounter produces feedback mapped to communication
-            frameworks and the ACGME milestones your CCC already uses.
+            Every completed practice session produces a report tied to the
+            frameworks named on the case and the evidence in the transcript.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
             <Link href="/examples">

@@ -11,14 +11,14 @@ import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb, Presentation, MapPin, Calendar } from "lucide-react"
 
 const RESEARCH_DESCRIPTION =
-  "Explore ClinicalSim's conference presentations and apply to collaborate on research in clinical communication, simulation-based education, and competency assessment."
+  "ClinicalSim works with investigators studying clinical communication, simulation based education, and competency assessment. Review conference presentations and propose a study."
 
 export const metadata: Metadata = {
-  title: "Research Collaboration",
+  title: "Research with ClinicalSim",
   description: RESEARCH_DESCRIPTION,
   openGraph: {
     title: "Research with ClinicalSim.ai",
-    description: "Apply to collaborate on research in medical communication training using AI voice simulation. Platform access, custom scenarios, and publication support provided.",
+    description: "Propose a study in clinical communication, simulation based education, or competency assessment.",
     url: "https://clinicalsim.ai/research",
   },
   twitter: {
@@ -33,38 +33,38 @@ export const metadata: Metadata = {
 const benefits = [
   {
     icon: Laptop,
-    title: "Full Platform Access",
-    description: "Complimentary access to ClinicalSim for your study participants, including all simulation scenarios and feedback tools.",
+    title: "Platform access",
+    description: "Depending on the study, we can provide ClinicalSim access for study participants.",
     variant: "default" as const,
   },
   {
     icon: Lightbulb,
-    title: "Custom Scenario Development",
-    description: "We'll work with you to build tailored simulation scenarios that match your study design and clinical focus area.",
+    title: "Case development support",
+    description: "We can help develop cases that match the study question, population, and clinical focus.",
     variant: "accent" as const,
   },
   {
     icon: BarChart3,
-    title: "Data Collection Infrastructure",
-    description: "Built-in data capture for conversation transcripts, usage metrics, and structured outcome measures to support your analysis.",
+    title: "Structured data exports",
+    description: "Depending on the protocol and agreement, we can provide structured exports of transcripts, usage data, and scored outcomes.",
     variant: "navy" as const,
   },
   {
     icon: FileText,
-    title: "Publication Support",
-    description: "Co-authorship opportunities, statistical consultation, and support preparing manuscripts for peer-reviewed journals.",
+    title: "Study documentation",
+    description: "We can provide technical documentation about the platform, cases, and scoring method for manuscripts and study records.",
     variant: "light-blue" as const,
   },
   {
     icon: Users,
-    title: "Participant Management",
-    description: "Dedicated accounts, onboarding support, and technical assistance for study participants throughout the research period.",
+    title: "Participant onboarding",
+    description: "We can provide study accounts, onboarding, and technical support for participants.",
     variant: "default" as const,
   },
   {
     icon: FlaskConical,
-    title: "IRB & Study Design Guidance",
-    description: "Experience navigating IRB protocols for AI simulation research and input on study design considerations unique to this modality.",
+    title: "IRB documentation",
+    description: "We can provide technical documentation for an IRB submission. The study team remains responsible for the protocol and review process.",
     variant: "accent" as const,
   },
 ]
@@ -160,26 +160,26 @@ export default function ResearchPage() {
             <div>
               <p className="inline-flex items-center gap-2 text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
                 <span className="h-1.5 w-1.5 rounded-full bg-cs-electric" aria-hidden="true" />
-                Research Collaboration
+                Research collaboration
               </p>
               <h1 className="text-4xl md:text-5xl font-light tracking-tight leading-[1.08] text-balance mb-6">Research with ClinicalSim</h1>
               <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-cs-cloud">
-                We partner with researchers studying communication remediation, simulation-based education,
-                and competency assessment in graduate and undergraduate medical education. If you have a study idea that could use our platform,
-                we&apos;d love to hear from you.
+                We work with investigators studying clinical communication,
+                simulation based education, and competency assessment. Tell us
+                the question, population, and study design. We will tell you
+                whether the platform fits.
               </p>
 
               <div className="space-y-6">
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-xl font-medium mb-2">What We Provide</h3>
+                  <h3 className="text-xl font-medium mb-2">What we can provide</h3>
                   <p className="text-base font-light text-cs-cloud">
-                    Platform access, custom scenario development, data collection support,
-                    and co-authorship opportunities, all at no cost to your research team.
+                    Depending on the study, we can provide platform access, case development support, participant onboarding, structured data exports, and technical documentation for an IRB submission.
                   </p>
                 </div>
 
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-xl font-medium mb-2">Response Time</h3>
+                  <h3 className="text-xl font-medium mb-2">Response time</h3>
                   <p className="text-base font-light text-cs-cloud">
                     We review applications on a rolling basis and typically respond within{" "}
                     <span className="font-bold tracking-tight text-cs-electric">1-2 weeks</span>.
@@ -225,7 +225,7 @@ export default function ResearchPage() {
               {/* Institution */}
               <div>
                 <Label htmlFor="institution" className="text-white text-base font-normal mb-2 block">
-                  Affiliate Institution <span className="text-cs-dark-blue">*</span>
+                  Affiliate institution <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
                   name="institution"
@@ -239,7 +239,7 @@ export default function ResearchPage() {
               {/* Primary Specialty */}
               <div>
                 <Label htmlFor="specialty" className="text-white text-base font-normal mb-2 block">
-                  Primary Specialty <span className="text-cs-dark-blue">*</span>
+                  Primary specialty <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
                   name="specialty"
@@ -253,7 +253,7 @@ export default function ResearchPage() {
               {/* Study Idea */}
               <div>
                 <Label htmlFor="studyIdea" className="text-white text-base font-normal mb-2 block">
-                  Study Idea <span className="text-cs-dark-blue">*</span>
+                  Study idea <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Textarea
                   name="studyIdea"
@@ -268,7 +268,7 @@ export default function ResearchPage() {
               {/* Target Participants */}
               <div>
                 <Label htmlFor="targetParticipants" className="text-white text-base font-normal mb-2 block">
-                  Target Participants <span className="text-cs-dark-blue">*</span>
+                  Target participants <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
                   name="targetParticipants"
@@ -282,7 +282,7 @@ export default function ResearchPage() {
               {/* Estimated Number of Participants */}
               <div>
                 <Label htmlFor="participantCount" className="text-white text-base font-normal mb-2 block">
-                  Estimated Number of Participants <span className="text-cs-dark-blue">*</span>
+                  Estimated number of participants <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
                   name="participantCount"
@@ -296,7 +296,7 @@ export default function ResearchPage() {
               {/* Feedback Evaluation Tool */}
               <div>
                 <Label htmlFor="feedbackTool" className="text-white text-base font-normal mb-2 block">
-                  Feedback Evaluation Tool
+                  Feedback evaluation tool
                 </Label>
                 <Textarea
                   name="feedbackTool"
@@ -310,7 +310,7 @@ export default function ResearchPage() {
               {/* Pre-survey */}
               <div>
                 <Label htmlFor="preSurvey" className="text-white text-base font-normal mb-2 block">
-                  Pre-survey Details
+                  Pre-survey details
                 </Label>
                 <Textarea
                   name="preSurvey"
@@ -324,7 +324,7 @@ export default function ResearchPage() {
               {/* Post-survey */}
               <div>
                 <Label htmlFor="postSurvey" className="text-white text-base font-normal mb-2 block">
-                  Post-survey Details
+                  Post-survey details
                 </Label>
                 <Textarea
                   name="postSurvey"
@@ -342,7 +342,7 @@ export default function ResearchPage() {
                 size="lg"
                 className="w-full md:w-auto"
               >
-                Submit Application
+                Submit application
               </Button>
             </form>
           </div>
@@ -356,10 +356,10 @@ export default function ResearchPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-              Conference Presentations
+              Conference presentations
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
-              Our team has presented research on AI-driven communication training at leading medical education and simulation conferences.
+              Presentations at the International Pediatric Simulation Society Meeting, Pediatric Academic Societies Meeting, Critical Care Congress, and IPSSW.
             </p>
           </div>
 
@@ -410,7 +410,7 @@ export default function ResearchPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-              Why collaborate with <span className="text-cs-dark-blue font-medium">ClinicalSim</span>?
+              What a study team can request
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
               We handle the platform logistics so you can focus on the research.

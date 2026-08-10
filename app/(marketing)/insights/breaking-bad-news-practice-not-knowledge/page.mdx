@@ -1,25 +1,18 @@
 import { ArticleLayout } from "@/components/article-layout"
 import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 import { ReferencesSection } from "@/components/references-section"
-import { KeyTakeaway } from "@/components/key-takeaway"
 
 export const metadata = getPostMetadata("breaking-bad-news-practice-not-knowledge")
 
 <ArticleLayout post={getPostBySlug("breaking-bad-news-practice-not-knowledge")}>
 
-<KeyTakeaway stat="17.6%" statSource="of residents report formal training in breaking bad news (Mărginean et al., BMC Medical Education, 2026)">
-Breaking bad news fails at the bedside not because residents lack knowledge of frameworks like SPIKES, but because they lack practice, and the gap closes through structured, repeated rehearsal with feedback, not more lectures.
-</KeyTakeaway>
-
-Most residents can describe the SPIKES protocol from memory. Setting, Perception, Invitation, Knowledge, Emotions, Summary. They've read about it, taken notes on it, probably answered a board question about it. And then they walk into a room where a patient is waiting to hear that the biopsy came back positive, and everything they memorized evaporates.
-
-This isn't a knowledge failure. It's a practice failure. And the distinction matters because medical education keeps trying to solve it with the wrong tools.
+A framework can organize a breaking bad news conversation, but it cannot substitute for saying the words aloud. Learners still need repeated spoken practice, feedback, and another attempt before the conversation is real.
 
 ## The gap between knowing and doing
 
 A study published in *BMC Medical Education* surveyed residents across multiple specialties about their experience with breaking bad news. The numbers tell the story: 94.3% acknowledged that breaking bad news is an important clinical skill. But only 31.6% had any practical experience doing it, and just 17.6% reported receiving formal training (Mărginean et al., *BMC Medical Education*, 2026). A separate international survey across 40 countries found that only one-third of healthcare providers in intensive care units had received any formal training in delivering bad news (Alshami et al., *Healthcare*, 2020).
 
-So the vast majority of residents understand that this skill matters. They just haven't practiced it in any structured way before they're expected to perform it with real patients in real time.
+The studies point to a gap between recognizing the importance of the skill and receiving formal, practical training before using it with patients.
 
 The Brazilian neurology training data makes this even more concrete. Across residency programs in Brazil, 31% of neurology trainees had never attended a single lecture on communicating bad news, 66% had never done a simulated training exercise, and 61% had never received feedback on their communication in these conversations (Córdoba de Lima et al., *einstein (São Paulo)*, 2023). Program directors in that same study largely confirmed the problem: 59% acknowledged that feedback on breaking bad news wasn't standard practice, and 32% reported having no specific training at all.
 
@@ -28,6 +21,8 @@ These aren't programs that lack access to communication frameworks. Calgary-Camb
 ## Why frameworks alone don't transfer to the bedside
 
 The Kalamazoo Consensus Statement, developed in 1999 by 21 leaders in medical education and communication, identified seven essential elements of physician-patient communication: building a relationship, opening the discussion, gathering information, understanding the patient's perspective, sharing information, reaching agreement, and providing closure (Makoul, *Academic Medicine*, 2001). The Calgary-Cambridge Guide, developed by Kurtz and Silverman in 1996, structures the medical interview around 71 discrete skills (Kurtz and Silverman, *Medical Education*, 1996). The SPIKES protocol, published by Baile et al. in 2000, provides a six-step framework specifically for breaking bad news in oncology settings.
+
+SPIKES asks the clinician to set up the conversation, assess the patient's perception, ask how much information the patient wants, share knowledge, respond to emotion, and summarize the strategy. It gives the learner a sequence to return to, but the learner still has to listen and adapt when the conversation changes.
 
 These are good frameworks. They're evidence-based, widely adopted (a 2009 survey found Calgary-Cambridge used in 56% of UK medical schools, Gillard, Benson, and Silverman, *Medical Teacher*, 2009), and they give learners clear structure for conversations that would otherwise feel overwhelming.
 
@@ -41,7 +36,7 @@ Anders Ericsson's framework for deliberate practice identifies five components t
 
 In medical simulation, this model has been tested extensively. An overview of systematic reviews in *Patient Education and Counseling* found that simulation-based education with deliberate practice produces skill improvements that surpass traditional workshop and lecture formats for communication training (Berkhof et al., *Patient Education and Counseling*, 2011). The StatPearls overview of deliberate practice in medical simulation cites studies from independent research teams around the world showing that deliberate practice training outperforms traditional methods for clinical skill acquisition (Mitchell and Boyer, *StatPearls*, 2023).
 
-The emergency medicine breaking bad news study illustrates this at the micro level. When EM residents completed a simulation-based module using SPIKES, they rated the experience 4.73 out of 5 for usefulness on a Likert scale. More telling was what they found most useful: 43% said the simulation component was the most valuable part, compared to 14% for role play and 7% for lecture (Park et al., *Journal of Emergencies, Trauma, and Shock*, 2010). The residents themselves recognized that practice, not instruction, was what moved the needle.
+When emergency medicine residents completed a simulation-based module using SPIKES, they rated the experience 4.73 out of 5 for usefulness on a Likert scale. Forty-three percent said the simulation component was the most valuable part, compared with 14% for role play and 7% for lecture (Park et al., *Journal of Emergencies, Trauma, and Shock*, 2010).
 
 ## What residents are telling us
 
@@ -57,9 +52,9 @@ When residents struggle with breaking bad news, it typically surfaces through fa
 
 The ACGME's Milestones 2.0 framework includes harmonized Interpersonal and Communication Skills subcompetencies (ICS-1, ICS-2, ICS-3) that apply across all specialties. This is useful for naming what good communication looks like at each developmental level. But as a 2024 update in the *Journal of Graduate Medical Education* found, the transition from identifying a communication deficit to actually remediating it is where programs get stuck (Ehmann et al., *JGME*, 2024). Many specialties provide no guidance on how to assess progression through ICS milestones, and even fewer offer specific remediation protocols when residents fall behind.
 
-The result is that programs build remediation plans from scratch for each learner, consuming substantial faculty time per case. That's not a scalable system. It's a bottleneck that forces programs to choose between investing heavily in one struggling resident and maintaining their obligations to every other learner in the program.
+Programs often build remediation plans from scratch for each learner, which can consume substantial faculty time.
 
-And the data problem compounds the issue. Reliable assessment of a provider's communication skills requires repeated structured observations across many encounters. Most programs collect a handful of documented observations over the course of months. Clinical Competency Committees are making milestone decisions about communication skills based on a handful of subjective data points, because that's all they have.
+Communication assessment is stronger when a committee can review repeated observations across encounters. A practice transcript and framework-based report can add another source of evidence, but it does not replace faculty observation or the committee's judgment.
 
 ## What practice at scale actually looks like
 
@@ -67,7 +62,7 @@ If breaking bad news is a practice problem, then the solution has to involve pra
 
 Standardized patients can do this, and they do it well. But SP encounters require actor time, space, faculty support, and scheduling, which makes it hard to provide the volume that struggling learners need.
 
-What simulation-based communication training offers is the ability to compress the practice cycle. Instead of waiting weeks between SP encounters, a learner can run through a breaking bad news conversation multiple times in the same session, with structured feedback after each attempt. The frameworks are already there (SPIKES, Calgary-Cambridge, Kalamazoo). The assessment criteria are already defined (ACGME Milestones 2.0). What's been missing is the practice volume that turns framework knowledge into bedside performance.
+AI patient simulation can shorten the practice cycle. A learner can repeat a breaking bad news conversation, review structured feedback, and bring specific questions to the next faculty or SP session. The frameworks are already there, including SPIKES, Calgary-Cambridge, and Kalamazoo. The practical need is more chances to use them aloud.
 
 The research consistently points in the same direction. Communication skills improve with repetition and feedback in realistic scenarios. Lectures and mnemonics build awareness, and awareness is necessary. But awareness without practice produces residents who know exactly what they should do and freeze when it's time to do it.
 

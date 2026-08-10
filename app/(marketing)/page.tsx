@@ -2,11 +2,8 @@ import type { Metadata } from "next"
 import dynamic from "next/dynamic"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { StatHighlight } from "@/components/stat-highlight"
 import { AudienceCard } from "@/components/audience-card"
-import { RotatingText } from "@/components/rotating-text"
 import { Reveal } from "@/components/reveal"
-import { CountUp } from "@/components/count-up"
 import { getAllSolutions } from "@/lib/solutions"
 import { JsonLd } from "@/components/json-ld"
 import { ArrowRight } from "lucide-react"
@@ -17,17 +14,17 @@ const DemoVideoSection = dynamic(
 )
 
 const HOME_DESCRIPTION =
-  "Communication is medicine's most performed procedure and its least measured. Voice-based AI simulation to practice and score it at every stage of a medical career, from undergraduate medical education through residency, fellowship, and faculty development, with rubric-scored feedback mapped to ACGME Milestones 2.0 for residents and fellows."
+  "ClinicalSim gives learners voice-based practice with AI patients and gives faculty the transcript evidence behind each score. Cases are written by named physicians and mapped to published competency and communication frameworks."
 
 export const metadata: Metadata = {
   title: {
-    absolute: "AI Clinical Simulation for Medical Communication | ClinicalSim",
+    absolute: "AI clinical simulation for medical communication | ClinicalSim",
   },
   description: HOME_DESCRIPTION,
   openGraph: {
-    title: "AI Clinical Simulation for Medical Communication",
+    title: "AI clinical simulation for medical communication",
     description:
-      "Practice the conversations that matter most. Voice-based AI simulation for clinical communication across medical school, residency, fellowship, and faculty development.",
+      "Practice the conversations that matter most with AI patients and review rubric-scored feedback tied to the transcript.",
     url: "https://clinicalsim.ai",
     images: [
       {
@@ -39,9 +36,9 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "AI Clinical Simulation for Medical Communication",
+    title: "AI clinical simulation for medical communication",
     description:
-      "Voice-based AI simulation to practice the conversations that matter most, across every stage of a medical career.",
+      "Practice the conversations that matter most with AI patients and review feedback tied to the transcript.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -56,15 +53,15 @@ export default function HomePage() {
   // scenario library, breaking bad news through error disclosure).
   const conversationTypes = [
     "Breaking bad news",
-    "Goals-of-care discussions",
+    "Goals of care",
     "Informed consent",
     "Error disclosure",
     "High-stakes family meetings",
     "Delivering a new diagnosis",
     "Communicating uncertainty",
-    "Giving difficult feedback",
+    "Giving corrective feedback",
     "Professionalism conversations",
-    "History-taking",
+    "History taking",
   ]
 
   // The stages of the medical-education continuum the platform serves, each
@@ -81,62 +78,19 @@ export default function HomePage() {
   // by case on the methodology page.
   const differentiators = [
     {
-      claim: "Authored by named physicians",
+      claim: "Written and reviewed by named physicians",
       detail:
-        "Fellowship program directors and simulation directors write the cases, and they put their names on them.",
+        "Each case names the physician authors and reviewers responsible for its clinical and educational content.",
     },
     {
-      claim: "Anchored to a published framework",
+      claim: "Mapped to published frameworks",
       detail:
-        "Every case maps to a specific published competency set or communication framework, not to a rubric we invented.",
+        "Every case names the competency and communication frameworks used for feedback.",
     },
     {
-      claim: "Traceable to the transcript",
+      claim: "Every score tied to transcript evidence",
       detail:
-        "Every score cites a verbatim line from what the learner actually said, so a faculty member can check the rating against the evidence.",
-    },
-  ]
-
-  const stats = [
-    {
-      value: "81%",
-      label: "of program leaders have no objective way to track whether a flagged trainee improves",
-      source: "ClinicalSim national needs assessment*",
-      variant: "blue" as const,
-    },
-    {
-      value: "96%",
-      label: "want to pilot an AI-driven remediation tool",
-      source: "ClinicalSim national needs assessment*",
-      variant: "navy" as const,
-    },
-    {
-      value: "29.6",
-      label: "mean specialist contact hours in one clinical reasoning remediation program",
-      source: "Guerrasio and Aagaard, J Gen Intern Med, 2014",
-      variant: "blue" as const,
-    },
-    {
-      value: "93%",
-      label: "of programs handled a communication remediation case in the past three years",
-      source: "CERA survey of family medicine program directors",
-      variant: "navy" as const,
-    }
-  ]
-
-  // Institution-level exposure. Only publicly sourced, individually citable
-  // figures live here. The composite national-cost estimate is deliberately
-  // not on this page.
-  const exposureLines = [
-    {
-      value: "40%",
-      label: "of malpractice cases now involve a communication failure, up from 30% a decade ago",
-      source: "Candello 2025 Benchmarking Report",
-    },
-    {
-      value: "$320-563M",
-      label: "a year in readmission penalties, hitting roughly three quarters of evaluated hospitals",
-      source: "KFF and Definitive Healthcare analyses of CMS data",
+        "Every score cites the learner's words, so a faculty member can check the rating against the evidence.",
     },
   ]
 
@@ -147,7 +101,7 @@ export default function HomePage() {
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "AI Clinical Simulation for Medical Communication",
+            name: "AI clinical simulation for medical communication",
             description: HOME_DESCRIPTION,
             url: "https://clinicalsim.ai",
             dateModified: PAGE_DATE_MODIFIED.home,
@@ -166,11 +120,6 @@ export default function HomePage() {
             description:
               "Voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum, covering undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Rubric-scored practice for breaking bad news, goals-of-care, informed consent, error disclosure, and family meetings, mapped to ACGME Milestones 2.0 for residents and fellows.",
             url: "https://clinicalsim.ai",
-            offers: {
-              "@type": "Offer",
-              availability: "https://schema.org/PreOrder",
-              description: "In use at academic medical centers, children's hospitals, and residency and fellowship programs nationwide",
-            },
             publisher: {
               "@type": "Organization",
               name: "ClinicalSim",
@@ -198,7 +147,7 @@ export default function HomePage() {
           <div className="relative z-10 max-w-2xl">
             <p className="inline-flex items-center gap-2 text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
               <span className="h-1.5 w-1.5 rounded-full bg-cs-electric" aria-hidden="true" />
-              AI Clinical Simulation
+              AI clinical simulation
             </p>
 
             <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
@@ -206,40 +155,39 @@ export default function HomePage() {
             </h1>
 
             <p className="text-lg md:text-xl text-cs-cloud font-light mb-8">
-              Voice-based AI simulation for{" "}
-              <RotatingText
-                phrases={["breaking bad news", "goals-of-care discussions", "informed consent", "giving difficult feedback", "disclosing a medical error"]}
-                className="text-cs-electric font-medium"
-              />
+              Voice-based practice for breaking bad news, goals of care,
+              informed consent, and other high-stakes clinical conversations.
+              Learners speak with AI patients and receive rubric-scored
+              feedback tied to the transcript.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link href="/contact">
                 <Button variant="accent" size="xl" className="w-full sm:w-auto">
-                  Request a Pilot
+                  Request a pilot
                   <ArrowRight />
                 </Button>
               </Link>
-              <Link href="/methodology">
+              <Link href="/examples">
                 <Button
                   size="xl"
                   className="w-full sm:w-auto bg-transparent border border-white/25 text-white hover:bg-white/10 font-medium"
                 >
-                  See how scoring works
+                  See example feedback
                 </Button>
               </Link>
             </div>
 
             <p className="mt-8 text-sm text-cs-cloud/80 font-light">
-              In pilot at 20+ academic medical centers and children&apos;s hospitals.
+              In pilot at 20 or more academic medical centers and children&apos;s hospitals.
             </p>
           </div>
 
           {/* Right column, evidence panel */}
           <div className="relative z-10 lg:justify-self-end w-full max-w-md">
             <div className="rounded-2xl border border-white/10 bg-cs-navy/40 p-6 md:p-8 backdrop-blur-sm">
-              <p className="text-xs font-medium uppercase tracking-[0.16em] text-cs-electric mb-6">
-                What programs can inspect
+              <p className="text-xl font-medium text-cs-electric mb-6">
+                Faculty can inspect every score
               </p>
               <dl className="space-y-6">
                 <div>
@@ -284,10 +232,10 @@ export default function HomePage() {
                 What is ClinicalSim?
               </p>
               <h2 className="text-2xl md:text-3xl font-light tracking-tight leading-snug text-cs-navy text-balance">
-                ClinicalSim is a voice-based AI clinical simulation platform for practicing and measuring clinical communication, the hardest competency to teach, train, and measure.
+                ClinicalSim gives learners voice-based practice with AI patients and gives faculty the transcript evidence behind each score.
               </h2>
               <p className="mt-6 text-base md:text-lg text-cs-dark-blue font-light leading-relaxed text-pretty">
-                The same engine and dashboard serve medical students, residents, fellows, and faculty, with rubric-scored practice mapped to the framework that fits each stage.
+                Named physicians write and review each case. Every case names the competency and communication frameworks it uses.
               </p>
             </div>
 
@@ -356,152 +304,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. The gap, the problem, the four program-level stats, and the two
-           institution-level exposure figures that used to sit in the cost section. */}
-      <section className="px-6 py-16 md:py-24 bg-cs-cloud">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12 md:mb-14">
-            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-balance text-cs-navy mb-4">
-              Communication is the competency everyone remediates and no one has tools for.
-            </h2>
-            <p className="text-lg text-cs-dark-blue font-light max-w-3xl mx-auto">
-              A resident learns to place a central line by watching one, doing one, and repeating it until a supervisor signs off. The same resident finishes training with 3 to 4 live practice conversations, even though health systems worldwide already spend around $3 billion a year on simulation. Since Step 2 CS retired in 2021, no program has a scalable way to score the conversation against ICS milestones or EPAs.
-            </p>
-            <p className="mt-5 text-sm text-cs-dark-gray font-light max-w-3xl mx-auto">
-              Practice volume from the ClinicalSim national needs assessment.* Simulation spend from healthcare simulation market reports, 2024.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {stats.map((stat, index) => (
-              <Reveal key={index} delay={index * 100}>
-                <StatHighlight
-                  value={stat.value}
-                  label={stat.label}
-                  source={stat.source}
-                  variant={stat.variant}
-                />
-              </Reveal>
-            ))}
-          </div>
-
-          <p className="mt-8 text-sm text-cs-dark-gray font-light text-center max-w-3xl mx-auto">
-            * Based on the ClinicalSim national needs assessment of GME program leaders. Publication in progress.
-          </p>
-
-          {/* Institution-level exposure, a plain two-up strip rather than two
-               more stat cards, so the four numbers above stay dominant. */}
-          <div className="mt-12 md:mt-16 border-t border-cs-navy/15 pt-10">
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-8">
-              What the same failure already costs an institution
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
-              {exposureLines.map((line, index) => (
-                <Reveal key={line.value} delay={index * 120}>
-                  <div className="text-3xl md:text-4xl font-medium text-cs-dark-blue tabular-nums leading-tight">
-                    <CountUp value={line.value} />
-                  </div>
-                  <p className="mt-2.5 text-base text-cs-dark-blue font-light leading-snug">
-                    {line.label}
-                  </p>
-                  <p className="mt-2 text-sm text-cs-dark-gray font-light">
-                    {line.source}
-                  </p>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. 1:1 to 1:many, capturing expert judgment instead of rationing it.
-           Navy, sitting between the gap (cloud) and why now (white). */}
-      <section className="px-6 py-16 md:py-24 bg-cs-navy text-white">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-16 items-start">
-          <div className="lg:sticky lg:top-24 lg:self-start max-w-md">
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-electric mb-4">
-              What changes
-            </p>
-            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-balance">
-              One expert used to train one learner.
-            </h2>
-          </div>
-
-          <div className="lg:border-l lg:border-white/15 lg:pl-12 xl:pl-16">
-            <p className="text-base md:text-lg text-cs-cloud font-light leading-relaxed">
-              Communication is still taught the way it was fifty years ago, by an expert who watches, corrects, and makes you do it again. That method still dominates: in our national needs assessment, 78% of program leaders rely on direct observation by faculty, which is the most expert-hour-intensive approach there is, and the learner who needs the most repetitions is the one who gets the fewest.
-            </p>
-            <p className="mt-5 text-base md:text-lg text-cs-cloud font-light leading-relaxed">
-              Physicians who direct simulation and residency programs author the cases and the rubrics, so a program can give every learner unlimited scored practice against that judgment instead of rationing it. Faculty hours go to coaching the learners who need coaching rather than facilitating every encounter, which extends a standardized patient program rather than replacing it.
-            </p>
-            <p className="mt-8 text-2xl md:text-3xl font-light text-cs-electric">
-              The expert stays in the room.
-            </p>
-            <p className="mt-6 text-xs text-white/60 font-light">
-              Method prevalence from the ClinicalSim national needs assessment of GME program leaders. Publication in progress.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Why Now Section, editorial two-column */}
-      <section className="px-6 py-16 md:py-24 bg-white">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
-          {/* Left, sticky heading */}
-          <div className="lg:sticky lg:top-24 lg:self-start max-w-sm">
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
-              The inflection point
-            </p>
-            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-navy mb-4">
-              Why now
-            </h2>
-            <p className="text-base text-cs-dark-blue font-light leading-relaxed">
-              Four things changed at once, and together they made communication assessment both measurable and mandatory.
-            </p>
-          </div>
-
-          {/* Right, numbered reasons */}
-          <ol className="space-y-10">
-            {[
-              {
-                title: "Step 2 CS is gone.",
-                body: "In 2021, USMLE permanently discontinued Step 2 CS, the only national standardized assessment of clinical communication skills.",
-              },
-              {
-                title: "Milestones 2.0 raised the bar.",
-                body: "Since 2022, Milestones 2.0 has required every program to grade each resident and fellow on interpersonal and communication skills twice a year.",
-              },
-              {
-                title: "Voice AI can hold the conversation now.",
-                body: "No technology could hold a real clinical conversation with hesitations and emotion in it until recently, and it shows in the scores: doctor communication rose 0.8 points on HCAHPS between 2007 and 2019, the smallest gain of any domain (Beckett et al., Medical Care, 2024).",
-              },
-              {
-                title: "Programs asked for this.",
-                body: "In our national needs assessment, 81% of program leaders said they have no objective way to tell whether a flagged trainee is improving, and 96% said they would pilot an AI-driven remediation tool.",
-              },
-            ].map((reason, index) => (
-              <li key={reason.title} className="flex gap-5 md:gap-6">
-                <span
-                  className="flex-shrink-0 text-lg font-medium text-cs-navy tabular-nums pt-1"
-                  aria-hidden="true"
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div className="border-l border-cs-navy/15 pl-5 md:pl-6">
-                  <h3 className="text-lg md:text-xl font-medium text-cs-dark-blue mb-2">{reason.title}</h3>
-                  <p className="text-base text-cs-dark-blue font-light leading-relaxed">{reason.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <p className="max-w-6xl mx-auto mt-10 text-sm text-cs-dark-gray font-light">
-          Survey figures from the ClinicalSim national needs assessment of GME program leaders. Publication in progress.
-        </p>
-      </section>
-
-      {/* 7. One Platform, Many Conversations - use cases as peers */}
+      {/* 4. Use cases */}
       <section className="px-6 py-16 md:py-24 bg-cs-cloud">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 md:mb-14">
@@ -509,7 +312,7 @@ export default function HomePage() {
               One platform. <span className="text-cs-dark-blue font-medium">Many conversations.</span>
             </h2>
             <p className="text-lg text-cs-dark-blue font-light max-w-2xl mx-auto">
-              The same engine, rubric, and dashboard across every stage of a medical career.
+              One dashboard with case-specific frameworks for each learner, specialty, and task.
             </p>
           </div>
 
@@ -528,23 +331,22 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* The two product points that aren't already covered by the hero,
-               the definition section, or the expert section. */}
+          {/* Two details for faculty and program reviewers. */}
           <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 border-t border-cs-navy/15 pt-10">
             <div>
               <h3 className="text-xl md:text-2xl font-medium text-cs-dark-blue mb-3">
-                CCC-ready documentation
+                Evidence for CCC review
               </h3>
               <p className="text-base text-cs-dark-blue font-light leading-relaxed">
-                The ACGME milestone set is a 32-page PDF that faculty score by hand, line by line, for every trainee, twice a year. Every ClinicalSim session returns those same milestones scored from the trainee&apos;s own words, with each rating citing a verbatim line from the transcript.
+                Each report maps observed behavior to the relevant milestone and cites the learner&apos;s words. A CCC can review it alongside faculty observation and the other evidence it already uses.
               </p>
             </div>
             <div>
               <h3 className="text-xl md:text-2xl font-medium text-cs-dark-blue mb-3">
-                Psychologically safe practice
+                Private, repeatable practice
               </h3>
               <p className="text-base text-cs-dark-blue font-light leading-relaxed">
-                Remediation carries stigma. Learners practice high-stakes conversations privately, with no observers, no scheduling, and no performance anxiety, repeating a case as many times as they need in an environment designed for growth.
+                Learners practice high-stakes conversations privately, without a faculty observer in the encounter. They can repeat a case before sharing the report with a coach or program.
               </p>
             </div>
           </div>
@@ -573,7 +375,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Proof band, faculty first, then learners. Faculty skepticism is
+      {/* 5. Proof band, faculty first, then learners. Faculty skepticism is
            the obstacle, so that quote leads. */}
       <section className="px-6 py-16 md:py-24 bg-white">
         <div className="max-w-5xl mx-auto">
@@ -624,7 +426,7 @@ export default function HomePage() {
           <div className="text-center mt-12 md:mt-14">
             <Link href="/contact">
               <Button size="xl">
-                Request a Pilot
+                Request a pilot
                 <ArrowRight />
               </Button>
             </Link>
@@ -632,24 +434,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9. Final CTA Section */}
+      {/* 6. Final CTA section */}
       <section className="px-6 py-20 md:py-28 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
-            Billions have gone into clinical AI. Almost none of it trains the human side of the conversation.
-          </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-balance mb-6">
-            Every clinician should get to practice the hardest conversations before they happen.
+            Give learners practice before the conversation is real
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            Programs at 20 or more institutions are running scored practice on the conversations their trainees report the least confidence having. Tell us about your program and we&apos;ll show you what a cohort looks like after one cycle.
+            Tell us which learners and conversations matter most in your program. We will show you what one pilot cycle could look like.
           </p>
           <Link href="/contact">
             <Button
               variant="accent"
               size="xl"
             >
-              Request a Pilot
+              Request a pilot
             </Button>
           </Link>
           <p className="mt-4 text-sm text-white/70 font-light">
