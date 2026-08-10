@@ -9,19 +9,19 @@ import { getAllExamples } from "@/lib/examples"
 import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "See It In Action: Example Simulation Feedback",
+  title: "See it in action: example simulation feedback",
   description:
-    "Browse real ClinicalSim encounters and open the exact feedback a learner receives, including the milestone-aligned assessment report, recording, and full transcript. No sign-in required.",
+    "Browse unedited ClinicalSim encounters and open the feedback a learner receives, including the assessment report, recording, and full transcript. No sign-in required.",
   openGraph: {
-    title: "See ClinicalSim Feedback In Action",
+    title: "See ClinicalSim feedback in action",
     description:
-      "Real example encounters with the exact learner feedback report, audio recording, and transcript. No sign-in required.",
+      "Unedited example encounters with the learner feedback report, audio recording, and transcript. No sign-in required.",
     url: "https://clinicalsim.ai/examples",
   },
   twitter: {
-    title: "See ClinicalSim Feedback In Action",
+    title: "See ClinicalSim feedback in action",
     description:
-      "Real example encounters with the exact learner feedback report, recording, and transcript.",
+      "Unedited example encounters with the learner feedback report, recording, and transcript.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/examples",
@@ -38,9 +38,9 @@ export default function ExamplesPage() {
           {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            name: "Example Simulation Feedback",
+            name: "Example simulation feedback",
             description:
-              "Real ClinicalSim encounters with the exact learner feedback report, recording, and transcript.",
+              "Unedited ClinicalSim encounters with the learner feedback report, recording, and transcript.",
             url: "https://clinicalsim.ai/examples",
             mainEntity: {
               "@type": "ItemList",
@@ -85,15 +85,7 @@ export default function ExamplesPage() {
             See the feedback for yourself
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-4 max-w-3xl mx-auto">
-            These are real encounters from the platform.{" "}
-            <span className="text-cs-electric font-medium">
-              Open one and see exactly what a learner sees:
-            </span>{" "}
-            the assessment report, the recording, and the full transcript.
-          </p>
-          <p className="text-base md:text-lg text-cs-cloud font-light max-w-2xl mx-auto">
-            No sign-in, no demo call. Just the same feedback page, mapped to
-            communication frameworks and ACGME milestones.
+            These are unedited encounters from the platform. Open a case to review the assessment report, recording, and full transcript without signing in or booking a demo.
           </p>
         </div>
       </section>
@@ -121,16 +113,15 @@ export default function ExamplesPage() {
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
-            This is what your learners would get
+            This is what a learner receives
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            Every practice session generates feedback like this, mapped to the
-            milestones your CCC already uses.
+            Every completed practice session produces a report tied to the frameworks named on the case and the evidence in the transcript.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
             <Link href="/solutions/remediation">
@@ -139,7 +130,7 @@ export default function ExamplesPage() {
                 size="lg"
                 className="border-white/30 text-white bg-transparent hover:bg-white/10"
               >
-                Communication Remediation
+                Communication remediation
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>

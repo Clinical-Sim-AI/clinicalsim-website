@@ -5,16 +5,16 @@ import { AudiencePageLayout } from "@/components/audience-page-layout"
 const audience = getAudienceBySlug("program-directors")!
 
 export const metadata: Metadata = {
-  title: "For Program Directors: Communication Remediation Toolkit",
-  description: "In a CERA survey, 93% of family medicine programs reported resident remediation and 50% wanted an accessible toolkit. ClinicalSim provides structured practice with milestone-aligned feedback and CCC-ready documentation.",
+  title: "Program directors: a repeatable communication remediation structure",
+  description: "In a survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years. ClinicalSim adds structured practice and transcript evidence.",
   openGraph: {
-    title: "For Program Directors | ClinicalSim.ai",
-    description: "The remediation toolkit you told CERA you wanted. Structured practice mapped to ACGME Milestones 2.0 with CCC-ready documentation.",
+    title: "Program directors | ClinicalSim.ai",
+    description: "Give a learner repeatable practice between coaching sessions and bring transcript evidence to your CCC.",
     url: "https://clinicalsim.ai/audiences/program-directors",
   },
   twitter: {
-    title: "For Program Directors | ClinicalSim.ai",
-    description: "93% of programs face remediation. ClinicalSim provides structured practice with milestone-aligned feedback your CCC can use.",
+    title: "Program directors | ClinicalSim.ai",
+    description: "Structured practice, milestone-aligned reports, and transcript evidence for communication remediation.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/audiences/program-directors",

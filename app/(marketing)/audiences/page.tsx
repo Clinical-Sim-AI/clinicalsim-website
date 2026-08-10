@@ -8,15 +8,15 @@ import { JsonLd } from "@/components/json-ld"
 import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Who We Serve: GME Leaders, Sim Directors, Risk, Quality & CCCs",
+  title: "Who we serve: GME leaders, simulation directors, risk, quality, and CCCs",
   description: "ClinicalSim serves the roles that own clinical communication: program directors and DIOs, simulation center directors, clinical competency committees, medical school leadership, faculty and clinician educators, risk and patient safety offices, and quality and patient experience leaders.",
   openGraph: {
-    title: "Who ClinicalSim.ai Serves",
+    title: "Who ClinicalSim.ai serves",
     description: "Clinical communication practice and measurement for GME leadership, simulation centers, CCCs, faculty developers, risk offices, and quality and patient experience teams.",
     url: "https://clinicalsim.ai/audiences",
   },
   twitter: {
-    title: "Who ClinicalSim.ai Serves",
+    title: "Who ClinicalSim.ai serves",
     description: "Clinical communication practice and measurement for GME leadership, simulation centers, CCCs, risk offices, and quality teams.",
   },
   alternates: {
@@ -77,13 +77,10 @@ export default function AudiencesPage() {
       <section className="relative px-6 py-16 md:py-24 text-center bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
-            Built for every role that owns clinical communication
+            Clinical communication for every team responsible for it
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-4 max-w-3xl mx-auto">
-            From the program director managing a remediation case to the risk office reading claims data, <span className="text-cs-electric font-medium">the failure mode is the same conversation.</span>
-          </p>
-          <p className="text-base md:text-lg text-cs-cloud font-light mb-8 max-w-2xl mx-auto">
-            Structured practice, feedback scored against a published framework, and a timestamped record of every session, framed for what your seat is accountable for.
+            Program directors need a repeatable remediation plan. CCCs need evidence they can inspect. Simulation centers need more practice volume. Risk and quality teams need proof that clinicians practiced. ClinicalSim gives each team a view of the same sessions, framed for the decision it owns.
           </p>
         </div>
       </section>
@@ -122,7 +119,7 @@ export default function AudiencesPage() {
           </p>
           <Link href="/solutions/remediation">
             <Button variant="secondary" size="lg">
-              Learn about Communication Remediation
+              Learn about communication remediation
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>
@@ -141,12 +138,12 @@ export default function AudiencesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
             <Link href="/solutions/remediation">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-transparent hover:bg-white/10">
-                Communication Remediation
+                Communication remediation
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>

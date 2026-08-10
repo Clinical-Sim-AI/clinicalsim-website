@@ -13,17 +13,17 @@ import {
 } from "@/lib/release-notes"
 
 export const metadata: Metadata = {
-  title: "Release Notes: What's New in ClinicalSim",
+  title: "Release notes: what's new in ClinicalSim",
   description:
-    "Plain-language release notes for ClinicalSim, newest first. What reached the live product for learners and program leads, plus the behind-the-scenes work behind each release.",
+    "Plain-language release notes for ClinicalSim, newest first, focused on what changed and who will notice.",
   openGraph: {
-    title: "Release Notes | ClinicalSim.ai",
+    title: "Release notes | ClinicalSim.ai",
     description:
       "What's new in ClinicalSim, release by release: the redesigned feedback report and progress dashboard, the public case catalog, in-app support, usage metrics, and more.",
     url: "https://clinicalsim.ai/help/release-notes",
   },
   twitter: {
-    title: "Release Notes | ClinicalSim.ai",
+    title: "Release notes | ClinicalSim.ai",
     description:
       "What's new in ClinicalSim, release by release, in plain language. Newest first.",
   },
@@ -38,21 +38,24 @@ export const metadata: Metadata = {
 // during the build instead of letting that ship silently.
 function renderReleaseBullet(text: string) {
   const match = text.match(/^\*\*(.+?)\*\*(.*)$/s)
-  const remainder = match ? match[2] : text
+  const remainder = (match ? match[2] : text).trim()
   if (remainder.includes("**")) {
     console.warn(
       `[release-notes] Unsupported "**" outside the leading lead-in; it will render as literal asterisks: ${text.slice(0, 80)}`
     )
   }
+  const firstSentence = remainder.match(/^.*?[.!?](?:\s|$)/s)?.[0]?.trim()
+    ?? remainder
+
   if (match) {
     return (
       <>
-        <span className="font-medium text-cs-dark-blue">{match[1]}</span>
-        {match[2]}
+        <span className="font-medium text-cs-dark-blue">{match[1]}</span>{" "}
+        {firstSentence}
       </>
     )
   }
-  return text
+  return firstSentence
 }
 
 export default function ReleaseNotesPage() {
@@ -67,7 +70,7 @@ export default function ReleaseNotesPage() {
             "@type": "WebPage",
             name: "ClinicalSim.ai Release Notes",
             description:
-              "Plain-language release notes for ClinicalSim, newest first, covering learner- and program-facing changes and the behind-the-scenes work behind each release.",
+              "Plain-language release notes for ClinicalSim, newest first, focused on what changed and who will notice.",
             url: "https://clinicalsim.ai/help/release-notes",
             dateModified: RELEASE_NOTES_UPDATED_ISO,
             isPartOf: {
@@ -95,7 +98,7 @@ export default function ReleaseNotesPage() {
               {
                 "@type": "ListItem",
                 position: 3,
-                name: "Release Notes",
+                name: "Release notes",
                 item: "https://clinicalsim.ai/help/release-notes",
               },
             ],
@@ -117,7 +120,7 @@ export default function ReleaseNotesPage() {
               Help
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-cs-dark-blue/85">Release Notes</span>
+            <span className="text-cs-dark-blue/85">Release notes</span>
           </nav>
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight pb-3 mb-6 text-cs-dark-blue">
@@ -125,9 +128,7 @@ export default function ReleaseNotesPage() {
           </h1>
 
           <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed max-w-3xl">
-            Our latest releases, newest first. Open any release to see what
-            changed, and expand <span className="italic">Behind the scenes</span>{" "}
-            for the technical detail.
+            Our latest customer-visible changes, newest first. Each note explains what changed and who will notice.
           </p>
 
           <p className="mt-6 text-sm text-cs-dark-gray">
@@ -141,7 +142,7 @@ export default function ReleaseNotesPage() {
       {/* Releases */}
       <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto space-y-4">
-          {releases.map((release, index) => {
+          {releases.filter((release) => release.userFacing.length > 0).map((release, index) => {
             const dateLabel = formatReleaseDate(release.date)
             return (
               <div
@@ -168,12 +169,6 @@ export default function ReleaseNotesPage() {
                   </summary>
 
                   <div className="px-6 pb-6 pt-1">
-                    {release.note && (
-                      <p className="text-sm text-cs-dark-blue/70 font-light italic mb-5">
-                        {release.note}
-                      </p>
-                    )}
-
                     <ul className="space-y-3">
                       {release.userFacing.map((item, i) => (
                         <li
@@ -189,31 +184,6 @@ export default function ReleaseNotesPage() {
                       ))}
                     </ul>
 
-                    {release.team.length > 0 && (
-                      <details className="group/team mt-5 rounded-lg bg-cs-cloud/40">
-                        <summary className="flex items-center gap-2 cursor-pointer px-4 py-3 text-sm font-medium text-cs-navy">
-                          <ChevronRight className="w-4 h-4 text-cs-dark-gray transition-transform group-open/team:rotate-90" />
-                          Behind the scenes
-                          <span className="font-light text-cs-dark-gray">
-                            ({release.team.length})
-                          </span>
-                        </summary>
-                        <ul className="space-y-2.5 px-4 pb-4 pt-1">
-                          {release.team.map((item, i) => (
-                            <li
-                              key={i}
-                              className="flex gap-3 text-sm text-cs-dark-blue/80 font-light leading-relaxed"
-                            >
-                              <span
-                                aria-hidden
-                                className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-cs-dark-gray"
-                              />
-                              <span>{renderReleaseBullet(item)}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </details>
-                    )}
                   </div>
                 </details>
               </div>
@@ -242,7 +212,7 @@ export default function ReleaseNotesPage() {
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg">Talk to us</Button>
+              <Button size="lg">Talk with us</Button>
             </Link>
           </div>
         </div>

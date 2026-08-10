@@ -166,7 +166,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
             <Link href="/solutions">
@@ -238,10 +238,14 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-                  One platform, <span className="text-cs-dark-blue font-medium">one rubric</span>
+                  {solution.slug === "longitudinal-curriculum"
+                    ? "One record across training"
+                    : solution.slug === "undergraduate-medical-education"
+                      ? "One record across four years"
+                      : "One program view"}
                 </h2>
                 <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
-                  The same engine and dashboard that serve every other use case.
+                  The engine and dashboard stay consistent while each case uses the frameworks that fit the learner and task.
                 </p>
               </div>
 
@@ -275,8 +279,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
-                Frequently Asked{" "}
-                <span className="text-cs-dark-blue font-medium">Questions</span>
+                Frequently asked questions
               </h2>
               <div className="space-y-6">
                 {solution.faqs.map((faq, index) => (
@@ -305,14 +308,14 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
         </>
       )}
 
-      {/* Related Insights */}
+      {/* Related insights */}
       {relatedPosts.length > 0 && (
         <>
           <SectionDivider variant="diagonal-down" color="white" />
           <section className="px-6 py-8 md:py-10 bg-cs-cloud">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-8">
-                Related Insights
+                Related insights
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {relatedPosts.map((post) => (
@@ -328,7 +331,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                       {post!.description}
                     </p>
                     <div className="mt-3 flex items-center text-cs-dark-blue text-sm font-medium">
-                      Read More
+                      Read more
                       <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </Link>
@@ -351,7 +354,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
             <Link href="/solutions">

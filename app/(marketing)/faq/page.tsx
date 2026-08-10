@@ -11,9 +11,9 @@ import { slugify } from "@/lib/utils"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
-  title: "FAQ: AI Clinical Simulation, Scoring, Privacy & Programs",
+  title: "FAQ: AI clinical simulation, scoring, privacy, and programs",
   description:
-    "Answers to common questions about ClinicalSim: what it is, how it compares to Step 2 CS and standardized patients, communication remediation, ACGME Milestone scoring, My Progress, CCC-ready documentation, privacy, and research.",
+    "Answers to common questions about ClinicalSim: what it is, how it compares to Step 2 CS and standardized patients, communication remediation, ACGME Milestone scoring, My Progress, evidence for CCC review, privacy, and research.",
   openGraph: {
     title: "FAQ | ClinicalSim.ai",
     description:
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 // Visible + schema recency. Update whenever answers change.
 const LAST_UPDATED_ISO = PAGE_DATE_MODIFIED.faq
-const LAST_UPDATED_LABEL = "August 7, 2026"
+const LAST_UPDATED_LABEL = "August 10, 2026"
 
 interface FaqEntry {
   id: string
@@ -57,32 +57,32 @@ const faqSections: FaqSection[] = [
         id: "what-is-clinicalsim",
         question: "What is ClinicalSim?",
         answer:
-          "ClinicalSim is a voice-based AI clinical simulation built for communication practice in medical education. Learners talk through high-stakes conversations, including breaking bad news, goals-of-care discussions, informed consent, and high-stakes family meetings, with an AI patient built for that case. They get structured feedback grounded in published communication frameworks and mapped to ACGME Milestones when the learner is a resident or fellow. Every case is written and reviewed by practicing clinicians, and learners can practice on demand from any device.",
+          "ClinicalSim is a voice-based AI clinical simulation built for communication practice in medical education. Learners talk through high-stakes conversations with AI patients and receive rubric-scored feedback tied to the transcript. Named physicians write and review each case, and the report names the competency and communication frameworks it uses.",
       },
       {
         id: "replaces-step-2-cs",
         question: "Is ClinicalSim a replacement for Step 2 CS?",
         answer:
-          "No. ClinicalSim is not an assessment that replaces Step 2 CS. It is a place to practice, which is the piece most missing from communication training today. When Step 2 CS was discontinued in 2021, programs lost a shared way to practice and check communication skills, and ClinicalSim fills the practice gap rather than acting as a high-stakes exam.",
+          "No. USMLE discontinued Step 2 CS in 2021, and no national successor now assesses spoken clinical communication. ClinicalSim adds repeatable practice and formative evidence within a program. It is not a national exam or a replacement for human judgment.",
       },
       {
         id: "vs-standardized-patients",
         question: "How is ClinicalSim different from a standardized patient program?",
         answer:
-          "ClinicalSim supplements standardized patient (SP) programs, it does not replace them. SP encounters remain the standard for high-stakes assessment, but each encounter requires actor time, space, faculty support, and scheduling. ClinicalSim adds on-demand practice between those encounters, so SPs and faculty can stay focused on the high-stakes moments where physical presence matters.",
+          "ClinicalSim extends standardized patient (SP) programs and does not replace them. SP encounters remain important for live coaching and high-stakes assessment. ClinicalSim adds repeatable practice between those encounters, without requiring another actor or room for each attempt.",
       },
       {
         id: "vs-chatgpt",
         question:
           "How is ClinicalSim different from using ChatGPT to practice high-stakes conversations?",
         answer:
-          "Unlike a general chatbot, every ClinicalSim case is created and reviewed by practicing clinicians. The encounters are structured, and the feedback is grounded in named, published communication frameworks rather than improvised. ClinicalSim also runs consistency checks so faculty can review how the scenario and scoring behave from one learner to the next.",
+          "A general AI assistant can improvise a conversation. ClinicalSim uses physician-authored cases with fixed objectives, named frameworks, repeatable scoring logic, and transcript evidence a faculty member can review across learners.",
       },
       {
         id: "communication-remediation",
         question: "What is communication remediation, and how does ClinicalSim support it?",
         answer:
-          "Communication remediation is the structured practice and feedback a program uses to help a learner improve interpersonal and communication skills. In a CERA survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years, and 50% wanted an accessible remediation toolkit (Frazier et al., Family Medicine, 2021). ClinicalSim gives learners repeated, on-demand practice with physician-authored cases and produces milestone-aligned feedback and CCC-ready documentation that program directors can review.",
+          "Communication remediation is the structured practice and feedback a program uses to help a learner improve interpersonal and communication skills. In a CERA survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years, and 50% selected an accessible remediation toolkit as the most important tool for improving the process (Frazier et al., Family Medicine, 2021). ClinicalSim adds repeatable practice and transcript evidence for faculty and CCC review.",
       },
     ],
   },
@@ -91,15 +91,15 @@ const faqSections: FaqSection[] = [
     items: [
       {
         id: "psychologically-safe",
-        question: "Is ClinicalSim a private, psychologically safe place to practice?",
+        question: "Can learners practice privately?",
         answer:
-          "Yes, and it is one of the things learners tell us they value most. Practicing with ClinicalSim removes the fear of being judged by supervisors, seniors, or peers, which makes learners far more willing to practice and to make the mistakes that learning requires. That reflects a well-established idea in simulation: learning depends on a psychologically safe container where trainees can engage without threat to their standing (Rudolph, Raemer & Simon, Simulation in Healthcare, 2014).",
+          "Learners practice privately, without a faculty observer in the encounter. They can repeat a case before sharing the report with a coach or program.",
       },
       {
         id: "audio-only",
         question: "Why is ClinicalSim audio-only instead of video or avatars?",
         answer:
-          "ClinicalSim is audio-only on purpose, to avoid the uncanny valley. Programs that have tried AI avatars tell us learners are turned off by them, and the artificial faces get in the way of the conversation. We believe the first step in communication is knowing what to say, which frameworks to use and which words land, and once that foundation is solid a learner can build the layers on top of it, body language, eye contact, and presence.",
+          "Voice practice can surface pacing, silence, word choice, and real-time responses to emotion. It cannot assess eye contact, body language, or physical presence, so those skills remain part of live encounters and human review.",
       },
       {
         id: "devices-and-install",
@@ -117,7 +117,7 @@ const faqSections: FaqSection[] = [
         id: "languages",
         question: "What languages does ClinicalSim support?",
         answer:
-          "ClinicalSim currently supports English. Support for additional languages is on the roadmap, so learners can eventually practice across the range of languages their patients speak.",
+          "ClinicalSim currently supports English.",
       },
     ],
   },
@@ -128,13 +128,12 @@ const faqSections: FaqSection[] = [
         id: "how-cases-created",
         question: "How are ClinicalSim cases created?",
         answer:
-          "Every ClinicalSim case is built by expert clinicians to a defined purpose, then reviewed for accuracy, alignment, and fit before release. The full process, from clinical evidence base through validation, is documented on the methodology page.",
+          "Named physicians write and review each case for clinical accuracy, standards alignment, and fit with its learning objectives. The full process is documented on the methodology page.",
         answerNode: (
           <p>
-            Every ClinicalSim case is built by expert clinicians to a defined
-            purpose, then reviewed for accuracy, alignment, and fit before
-            release. The full process, from clinical evidence base through
-            validation, is documented on the{" "}
+            Named physicians write and review each case for clinical accuracy,
+            standards alignment, and fit with its learning objectives. The full
+            process is documented on the{" "}
             <Link
               href="/methodology"
               className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
@@ -149,20 +148,18 @@ const faqSections: FaqSection[] = [
         id: "build-own-scenarios",
         question: "Can learners and faculty build their own scenarios?",
         answer:
-          "Yes. Learners and faculty can build their own scenarios today in partnership with ClinicalSim staff, for the specific conversations they need to practice, such as discussing a new cancer diagnosis with a family that has limited English proficiency. Fully self-serve scenario creation is on the roadmap.",
+          "Faculty can work with ClinicalSim staff to develop a case for a specific learner group and communication objective. Case development support depends on the pilot or study scope.",
         answerNode: (
           <p>
-            Yes. Learners and faculty can build their own scenarios today in{" "}
             <Link
               href="/contact"
               className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
             >
-              partnership with ClinicalSim staff
+              Faculty can work with ClinicalSim staff
             </Link>
-            , for the specific conversations they need to practice, such as
-            discussing a new cancer diagnosis with a family that has limited
-            English proficiency. Fully self-serve scenario creation is on the
-            roadmap.
+            {" "}to develop a case for a specific learner group and communication
+            objective. Case development support depends on the pilot or study
+            scope.
           </p>
         ),
       },
@@ -170,7 +167,7 @@ const faqSections: FaqSection[] = [
         id: "case-ready",
         question: "How does ClinicalSim confirm a case is ready to release?",
         answer:
-          "Before release, each case is run repeatedly to confirm three things: that the AI character convincingly plays the role the case requires; that scoring and feedback perform as intended; and that what the case asks can be assessed within the limits of voice-based simulation. Refinements are made in coordination with ClinicalSim's clinical and technical leadership.",
+          "Before release, each case is run repeatedly to check the AI patient's role, the scoring and feedback, and whether the case gives learners a fair chance to show each assessed behavior. Clinical and technical reviewers revise the case before publication.",
       },
     ],
   },
@@ -181,62 +178,19 @@ const faqSections: FaqSection[] = [
         id: "my-progress",
         question: "What scores feed into My Progress?",
         answer:
-          "Every simulation you complete is graded against a rubric, either a custom rubric built for that case or a standardized framework like the ACGME Milestones. Grading produces a narrative writeup plus scored fields: for milestone-based rubrics, that's a single level (1 to 5) representing the highest level you demonstrated on that competency during the encounter. Those per-attempt scores roll up into your progress in two places. Assignment progress tracks whether you've completed what's been assigned: if your program uses target scores, a simulation counts as complete once one of your attempts meets the target for every scored competency it covers, otherwise any graded attempt marks it complete. Competency and milestone progress aggregates your scores on each competency across every simulation that touches it (using your best, most recent, or average score, depending on configuration) and compares that to the level expected for your training stage, showing you as on track, approaching, or below. One nuance: not every case can surface every level of skill, since a single encounter often can't call for the most advanced, longitudinal, or systems-level behaviors a competency describes. When a competency's scenarios genuinely couldn't have let you show a higher level than what's expected of you, that competency is still shown to you so you get the feedback, but it's excluded from your overall rolled-up score, so a strong performance on a capped case never reads as underperformance. Your progress is personal to you. We don't show you how you compare to other learners.",
-        answerNode: (
-          <>
-            <p>
-              Every simulation you complete is graded against a rubric, either a
-              custom rubric built for that case or a standardized framework like
-              the ACGME Milestones. Grading produces a narrative writeup plus
-              scored fields: for milestone-based rubrics, that&apos;s a single level
-              (1 to 5) representing the highest level you demonstrated on that
-              competency during the encounter.
-            </p>
-            <p>Those per-attempt scores roll up into your progress in two places:</p>
-            <ul className="list-disc space-y-3 pl-5">
-              <li>
-                Assignment progress tracks whether you&apos;ve completed what&apos;s been
-                assigned. If your program uses target scores, a simulation counts
-                as complete once one of your attempts meets the target for every
-                scored competency it covers; otherwise, any graded attempt marks
-                it complete.
-              </li>
-              <li>
-                Competency and milestone progress aggregates your scores on each
-                competency across every simulation that touches it (using your
-                best, most recent, or average score, depending on configuration)
-                and compares that to the level expected for your training stage,
-                showing you as on track, approaching, or below.
-              </li>
-            </ul>
-            <p>
-              One nuance: not every case can surface every level of skill, since a
-              single encounter often can&apos;t call for the most advanced,
-              longitudinal, or systems-level behaviors a competency describes.
-              When a competency&apos;s scenarios genuinely couldn&apos;t have let you show a
-              higher level than what&apos;s expected of you, that competency is still
-              shown to you so you get the feedback, but it&apos;s excluded from your
-              overall rolled-up score, so a strong performance on a capped case
-              never reads as underperformance.
-            </p>
-            <p>
-              Your progress is personal to you. We don&apos;t show you how you compare
-              to other learners.
-            </p>
-          </>
-        ),
+          "Each completed simulation produces scored fields from the case rubric and a narrative report. My Progress uses those scores to show assignment completion and competency trends, based on the program's configuration. A case that cannot assess performance above a certain level is excluded from the overall rollup when that ceiling would make strong performance look low. Learners do not see peer comparisons.",
       },
       {
         id: "evidence-capture",
         question: "How is evidence captured during a simulated encounter?",
         answer:
-          "Each encounter is a voice conversation between the learner and an AI role designed for the case, captured as a timestamped transcript. For every scored competency and framework step, the platform draws one or two verbatim excerpts that demonstrate the behavior, or documents its absence, so each score is traceable to the moment that supports it, rather than serving as an unexplained rating.",
+          "Each encounter is a voice conversation between the learner and an AI patient designed for the case, captured as a timestamped transcript. For every scored competency and framework step, the platform draws one or two verbatim excerpts that demonstrate the behavior, or documents its absence, so each score is traceable to the moment that supports it, rather than serving as an unexplained rating.",
       },
       {
         id: "gme-scoring",
         question: "How are graduate medical education (GME) cases scored?",
         answer:
-          "GME cases align to the specialty-specific ACGME Milestones 2.0, with milestone text quoted verbatim from each specialty's own document. Scoring reflects whichever subcompetencies the scenario exercises, most often interpersonal and communication skills and professionalism, plus systems-based practice or other domains where the encounter warrants, each scored on the Dreyfus scale (1 to 5), read against the milestone's verbatim level descriptors. The result is milestone-placed and ready for Clinical Competency Committee review.",
+          "GME cases use the specialty-specific ACGME Milestones 2.0 and quote the relevant descriptors from each specialty's document. The report scores only the subcompetencies the case gives the learner a fair chance to show. Faculty can use the report as one source of evidence in CCC review.",
       },
       {
         id: "ume-scoring",
@@ -261,13 +215,13 @@ const faqSections: FaqSection[] = [
         question:
           "What is the difference between a competency framework, a communication framework, and a rubric?",
         answer:
-          "A competency framework is the governing-body standard a case is assessed against, the ACGME Milestones 2.0 in graduate medical education, or the Foundational Competencies in undergraduate medical education. A communication framework is a validated, published model of communication behavior, such as SPIKES or Calgary-Cambridge. A rubric is the scored instrument that turns a framework into rated items, including a program's own internal or external tools. The competency score reflects the learner's developmental level, while communication frameworks capture the specific skills underlying communication technique.",
+          "A competency framework is the governing-body standard a case uses, such as the ACGME Milestones 2.0 in graduate medical education or the Foundational Competencies in undergraduate medical education. A communication framework is a published model of communication behavior, such as SPIKES or Calgary-Cambridge. A rubric turns the relevant framework into scored items for that case.",
       },
       {
         id: "multiple-frameworks",
         question: "Can more than one communication framework apply to a single case?",
         answer:
-          "Yes. Each communication framework comes from a cited, published source and is a floor, not a ceiling. One or more may be applied to a case, each scored independently, and programs may add their own internal rubrics or externally validated instruments. Because these frameworks operate at different scopes, from whole-encounter structures to task-specific routines and discrete micro-skills, ClinicalSim selects those that fit each case's communication task.",
+          "Yes. A case may use more than one communication framework when each one measures a different part of the task. Every framework names its published source, and programs may add their own rubrics. The report scores each framework separately.",
       },
       {
         id: "which-frameworks",
@@ -300,13 +254,13 @@ const faqSections: FaqSection[] = [
         id: "feedback-report",
         question: "What does a ClinicalSim feedback report include?",
         answer:
-          "Each encounter produces a single feedback report. Verbatim evidence is incorporated into the grading rubrics, justifying the level a learner reached or the specific step assessed. The report offers an overall impression (strengths, priority gaps, and top action items) and targeted recommendations. Depending on the case, it indicates where a learner sits developmentally and gives reviewers transcript-grounded evidence for decisions about progression, remediation, readiness for practice, readiness to perform a particular task, or familiarity with a given subject area.",
+          "Each encounter produces a report with rubric scores, strengths, priority gaps, and suggested next steps. Every scored item cites evidence from the transcript. The report is formative evidence for the learner and faculty reviewer, not a verdict or a substitute for human judgment.",
       },
       {
         id: "faculty-methodology",
         question: "Does ClinicalSim's methodology extend beyond trainees to faculty?",
         answer:
-          "Yes. The same case-building and assessment methods extend to the conversations faculty are expected to model, including delivering difficult feedback, navigating professionalism concerns, and bedside or small-group teaching.",
+          "Yes. Faculty can rehearse corrective feedback, professionalism concerns, bedside teaching, and peer conversations. They receive the same framework-based report and transcript evidence used in learner cases.",
       },
     ],
   },
@@ -317,20 +271,20 @@ const faqSections: FaqSection[] = [
         id: "who-is-it-for",
         question: "Who is ClinicalSim for, and which specialties does it cover?",
         answer:
-          "ClinicalSim is for all clinicians. The current focus is graduate and undergraduate medical education, with scenarios for faculty now expanding, and nursing and physician assistant training on the path ahead. The goal is to improve communication at every level of a medical institution.",
+          "ClinicalSim currently supports graduate medical education, undergraduate medical education, communication remediation, and faculty development. Cases and frameworks change with the learner, specialty, and conversation.",
       },
       {
         id: "faculty-monitoring",
         question: "How can faculty monitor learner progress without attending sessions?",
         answer:
-          "Faculty have full transparency into every learner's practice without needing to be in the room. They can see each learner's progress, listen to the simulations, read the transcripts, and review the feedback, so oversight does not depend on attendance.",
+          "Faculty with program access can review assigned learners' progress, recordings, transcripts, and feedback without attending the practice session. Program permissions determine which learner records each faculty member can see.",
       },
       {
         id: "ccc-review",
         question:
           "Can ClinicalSim output be used in Clinical Competency Committee (CCC) review?",
         answer:
-          "Yes. ClinicalSim automatically generates CCC-ready reports for remediation, scored against the milestones, that give program directors informative data points from a learner's encounters. This output is meant to inform the committee's judgment, with exact quotes, strengths, and areas for improvement, not to replace the in-person evaluations that faculty perform every day.",
+          "Yes. Each practice report maps observed behavior to the relevant milestone and cites the learner's words. A CCC can review it alongside faculty observation and the other evidence it already uses. The report does not replace faculty judgment or the committee's decision.",
       },
     ],
   },
@@ -341,20 +295,20 @@ const faqSections: FaqSection[] = [
         id: "voice-data",
         question: "What happens to a learner's voice recordings and data?",
         answer:
-          "ClinicalSim stores a learner's voice recordings and encounter data so that practice history and progress are available to the learner and their faculty. Collection is consent-gated, and learners can request deletion of their data at any time. Full detail is on our trust and compliance page.",
+          "ClinicalSim stores recordings, transcripts, account data, and program data to provide practice history and faculty review. Access depends on the learner's institutional arrangement. The trust and data handling page describes current collection, access, retention, and deletion practices.",
         answerNode: (
           <p>
-            ClinicalSim stores a learner&apos;s voice recordings and encounter data so
-            that practice history and progress are available to the learner and
-            their faculty. Collection is consent-gated, and learners can request
-            deletion of their data at any time. Full detail is on our{" "}
+            ClinicalSim stores recordings, transcripts, account data, and program
+            data to provide practice history and faculty review. Access depends
+            on the learner&apos;s institutional arrangement. The{" "}
             <Link
               href="/trust"
               className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
             >
-              trust and compliance page
+              trust and data handling page
             </Link>
-            .
+            {" "}describes current collection, access, retention, and deletion
+            practices.
           </p>
         ),
       },
@@ -362,23 +316,19 @@ const faqSections: FaqSection[] = [
         id: "research",
         question: "Can ClinicalSim be used for research?",
         answer:
-          "Yes. ClinicalSim actively supports research and provides the platform to researchers at no cost; for grant-funded studies we typically ask for a portion to cover our time. ClinicalSim has been used in research with the University of Chicago, Georgetown University, Johns Hopkins University, Advocate Health System, and Norton Children's Hospital in Louisville, Kentucky, with findings presented at IPSSW 2026 and peer-reviewed publications planned for later this year. See the research page to collaborate.",
+          "Yes. Depending on the study, ClinicalSim can provide platform access, case development support, participant onboarding, structured exports of study data, and technical documentation for an IRB submission. The research page explains how to propose a study.",
         answerNode: (
           <p>
-            Yes. ClinicalSim actively supports research and provides the platform
-            to researchers at no cost; for grant-funded studies we typically ask
-            for a portion to cover our time. ClinicalSim has been used in research
-            with the University of Chicago, Georgetown University, Johns Hopkins
-            University, Advocate Health System, and Norton Children&apos;s Hospital in
-            Louisville, Kentucky, with findings presented at IPSSW 2026 and
-            peer-reviewed publications planned for later this year. See the{" "}
+            Yes. Depending on the study, ClinicalSim can provide platform access,
+            case development support, participant onboarding, structured exports
+            of study data, and technical documentation for an IRB submission. The{" "}
             <Link
               href="/research"
               className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
             >
               research page
             </Link>{" "}
-            to collaborate.
+            explains how to propose a study.
           </p>
         ),
       },
@@ -386,7 +336,7 @@ const faqSections: FaqSection[] = [
         id: "accuracy",
         question: "How does ClinicalSim ensure accuracy?",
         answer:
-          "Read every result as evidence, not a verdict. ClinicalSim is committed to accuracy and to fidelity to the source documents behind every case. Each result is a transparent statement of the evidence in the encounter: it informs the learner and the reviewer, and it never replaces final human judgment.",
+          "Every score cites one or two excerpts from the transcript, so a reviewer can check the rating against what the learner said. ClinicalSim is testing score performance in pilots and does not claim that its ratings are more accurate or fairer than faculty judgment. The report is formative evidence that a faculty member or committee can accept, question, or override.",
       },
     ],
   },
@@ -418,7 +368,7 @@ export default function FaqPage() {
             "@type": "WebPage",
             name: "ClinicalSim.ai FAQ",
             description:
-              "Common questions about ClinicalSim's AI clinical simulation: the product, how it compares to Step 2 CS and standardized patients, communication remediation, ACGME Milestone scoring and My Progress, CCC-ready documentation, privacy, and research.",
+              "Common questions about ClinicalSim's AI clinical simulation: the product, how it compares to Step 2 CS and standardized patients, communication remediation, ACGME Milestone scoring and My Progress, evidence for CCC review, privacy, and research.",
             url: "https://clinicalsim.ai/faq",
             dateModified: LAST_UPDATED_ISO,
             isPartOf: {
@@ -468,10 +418,9 @@ export default function FaqPage() {
           </h1>
 
           <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed max-w-3xl">
-            What ClinicalSim is, how it compares to Step 2 CS and standardized
-            patients, how scoring and My Progress work, and how we handle
-            privacy and research. For the full picture of how cases are built
-            and scored, see our{" "}
+            What ClinicalSim is, how cases and scoring work, what programs can
+            do with the results, and how learner data is handled. For the full
+            picture of how cases are built and scored, see our{" "}
             <Link
               href="/methodology"
               className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
@@ -558,7 +507,7 @@ export default function FaqPage() {
             </Link>
             <Link href="/contact">
               <Button variant="default" size="lg">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
           </div>

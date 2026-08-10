@@ -3,19 +3,19 @@ import { RemediationPageLayout } from "@/components/remediation-page-layout"
 import { remediationPageData } from "@/lib/remediation"
 
 export const metadata: Metadata = {
-  title: "Communication Remediation for Medical Education Programs",
+  title: "Communication remediation for medical education programs",
   description:
-    "AI clinical simulation for communication remediation in GME, with practice mapped to ACGME Milestones 2.0 and CCC-ready documentation. In a CERA survey of 267 family medicine program directors, 93% reported resident remediation and 50% wanted an accessible toolkit.",
+    "AI patient practice for communication remediation in GME, with reports mapped to relevant ACGME Milestones 2.0. In a survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years.",
   openGraph: {
-    title: "Communication Remediation | ClinicalSim.ai",
+    title: "Communication remediation | ClinicalSim.ai",
     description:
-      "AI clinical simulation for communication remediation, with structured practice mapped to ACGME Milestones 2.0 and CCC-ready documentation.",
+      "Structured communication practice mapped to relevant ACGME Milestones 2.0, with transcript evidence for faculty and CCC review.",
     url: "https://clinicalsim.ai/solutions/remediation",
   },
   twitter: {
-    title: "Communication Remediation | ClinicalSim.ai",
+    title: "Communication remediation | ClinicalSim.ai",
     description:
-      "The remediation toolkit program directors have been asking for. Structured practice mapped to ACGME milestones with CCC-ready documentation.",
+      "Give learners structured voice-based practice between coaching sessions and bring transcript evidence to your CCC.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/solutions/remediation",

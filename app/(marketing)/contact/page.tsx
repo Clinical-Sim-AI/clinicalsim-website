@@ -10,16 +10,16 @@ import { ArrowRight } from "lucide-react"
 import { BrandIcon } from "@/components/brand-icon"
 
 export const metadata: Metadata = {
-  title: "Contact Us: Request a Pilot",
-  description: "Contact ClinicalSim to request a pilot program, schedule a demo, or learn how AI voice simulation can improve medical communication training at your institution.",
+  title: "Contact us: request a pilot",
+  description: "Tell ClinicalSim who would practice, which high-stakes conversations matter most, and what your program needs to measure.",
   openGraph: {
     title: "Contact ClinicalSim.ai",
-    description: "Request a pilot program or learn how AI voice simulation can improve medical communication training at your institution.",
+    description: "Tell us about the learners, conversations, and measures that matter to your program.",
     url: "https://clinicalsim.ai/contact",
   },
   twitter: {
     title: "Contact ClinicalSim.ai",
-    description: "Request a pilot program or schedule a demo.",
+    description: "Request a pilot or talk with us about your program.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/contact",
@@ -36,7 +36,7 @@ export default function ContactPage() {
             "@type": "ContactPage",
             name: "Contact ClinicalSim.ai",
             description:
-              "Request a pilot program, schedule a demo, or learn how AI voice simulation can improve medical communication training at your institution.",
+              "Tell ClinicalSim who would practice, which high-stakes conversations matter most, and what the program needs to measure.",
             url: "https://clinicalsim.ai/contact",
             mainEntity: {
               "@type": "Organization",
@@ -75,23 +75,25 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             {/* Contact Info */}
             <div>
-              <h1 className="text-4xl md:text-5xl font-light mb-6">Contact us</h1>
+              <h1 className="text-4xl md:text-5xl font-light mb-6">Tell us about your program</h1>
               <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-cs-cloud">
-                Interested in piloting structured communication remediation for your program? Whether you&apos;re in medical school, residency, or fellowship education, fill out some info and we&apos;ll be in touch shortly.
+                If you are considering a pilot, tell us who would practice,
+                which conversations matter most, and what you need to measure.
+                We usually reply within two business days.
               </p>
 
               <div className="space-y-6">
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-xl font-medium mb-2">Get in Touch</h3>
+                  <h3 className="text-xl font-medium mb-2">What to include</h3>
                   <p className="text-base font-light text-cs-cloud">
-                    Whether you&apos;re a program director exploring remediation tools, a DIO looking for institutional infrastructure, or a simulation center director seeking to extend your SP program, we&apos;d love to hear from you.
+                    Include your learner group, program size, and the communication problem you are trying to solve.
                   </p>
                 </div>
 
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-xl font-medium mb-2">Response Time</h3>
+                  <h3 className="text-xl font-medium mb-2">Response time</h3>
                   <p className="text-base font-light text-cs-cloud">
-                    We typically respond to all inquiries within <span className="font-bold tracking-tight text-cs-dark-blue">24-48 hours</span> during business days.
+                    We usually respond within two business days.
                   </p>
                 </div>
               </div>
@@ -112,7 +114,7 @@ export default function ContactPage() {
                   <div>
                     <Input
                       name="firstName"
-                      placeholder="First Name"
+                      placeholder="First name"
                       required
                       className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                     />
@@ -120,7 +122,7 @@ export default function ContactPage() {
                   <div>
                     <Input
                       name="lastName"
-                      placeholder="Last Name"
+                      placeholder="Last name"
                       required
                       className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                     />
@@ -139,7 +141,7 @@ export default function ContactPage() {
                   required
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
-                <p className="text-xs text-white/70 mt-2 font-light">We&apos;ll never share your email with anyone else.</p>
+                <p className="text-xs text-white/70 mt-2 font-light">We use this address to reply to your message.</p>
               </div>
 
               {/* Organization Field */}
@@ -149,7 +151,7 @@ export default function ContactPage() {
                 </Label>
                 <Input
                   name="organization"
-                  placeholder="Hospital, Medical School, etc."
+                  placeholder="Hospital, medical school, or program"
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
               </div>
@@ -162,11 +164,11 @@ export default function ContactPage() {
                 <Textarea
                   name="message"
                   rows={6}
-                  placeholder="Tell us about your program's communication training or remediation needs..."
+                  placeholder="Tell us who would practice, which conversations matter most, and what you need to measure."
                   required
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 resize-none rounded-lg"
                 />
-                <p className="text-xs text-white/70 mt-2 font-light">Include any specific questions or details about your program.</p>
+                <p className="text-xs text-white/70 mt-2 font-light">Include your learner group, program size, and the communication problem you are trying to solve.</p>
               </div>
 
               {/* Newsletter Checkbox */}
@@ -190,7 +192,7 @@ export default function ContactPage() {
                 size="lg"
                 className="w-full md:w-auto"
               >
-                Send Message
+                Request a pilot
               </Button>
             </form>
           </div>
@@ -200,9 +202,9 @@ export default function ContactPage() {
       {/* Additional Contact Information */}
       <section className="py-16 md:py-24 bg-cs-cloud">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
-          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">Other Ways to Connect</h2>
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">Other ways to work with us</h2>
           <p className="text-lg text-cs-dark-blue/70 font-light text-center mb-12 max-w-2xl mx-auto">
-            There are several ways to work with us beyond the contact form.
+            Request a pilot, propose a study, or tell us about a specific curriculum partnership.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -210,7 +212,7 @@ export default function ContactPage() {
               <div className="w-12 h-12 rounded-lg bg-cs-electric flex items-center justify-center mb-6">
                 <BrandIcon name="people-connected" color="dark" size={28} />
               </div>
-              <h3 className="text-xl font-medium text-cs-navy mb-3">Pilot Program</h3>
+              <h3 className="text-xl font-medium text-cs-navy mb-3">Pilot program</h3>
               <p className="text-cs-dark-blue/85 font-light leading-relaxed">
                 We&apos;re piloting with medical schools, residency programs, and fellowships looking to standardize communication
                 training and remediation with structured, milestone-aligned practice.
@@ -223,8 +225,7 @@ export default function ContactPage() {
               </div>
               <h3 className="text-xl font-medium text-cs-navy mb-3">Partnerships</h3>
               <p className="text-cs-dark-blue/85 font-light leading-relaxed">
-                We partner with medical schools, healthcare systems, and technology companies
-                working to improve patient care through better communication.
+                We consider case development and curriculum partnerships with medical schools and health systems. Tell us the learner group and work you want to share.
               </p>
             </div>
 
@@ -232,10 +233,10 @@ export default function ContactPage() {
               <div className="w-12 h-12 rounded-lg bg-cs-light-blue flex items-center justify-center mb-6">
                 <BrandIcon name="microscope" color="dark" size={28} />
               </div>
-              <h3 className="text-xl font-medium text-cs-navy mb-3">Research Collaboration</h3>
+              <h3 className="text-xl font-medium text-cs-navy mb-3">Research collaboration</h3>
               <p className="text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-                Are you a researcher in medical education or healthcare communication? We&apos;d love to explore
-                opportunities for collaboration and knowledge sharing.
+                We work with investigators studying clinical communication,
+                simulation based education, and competency assessment.
               </p>
               <Link
                 href="/research"

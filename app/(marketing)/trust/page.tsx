@@ -7,42 +7,37 @@ import { JsonLd } from "@/components/json-ld"
 import type { FaqItem } from "@/lib/types"
 
 export const metadata: Metadata = {
-  title: "Trust and Compliance: Synthetic Patients, No PHI, and What We Haven't Certified",
+  title: "Trust and data handling",
   description:
-    "ClinicalSim is a training and assessment tool, not a diagnostic device, so no FDA clearance is required. Every patient in every case is synthetic, authored from the clinical literature rather than patient records, so no protected health information enters the platform. SOC 2 and HIPAA certification are on our funded roadmap and are not yet in place.",
+    "ClinicalSim is intended for training and assessment. Learn how synthetic cases, learner recordings, transcripts, account data, and institutional data are handled.",
   openGraph: {
-    title: "Trust and Compliance | ClinicalSim.ai",
+    title: "Trust and data handling | ClinicalSim.ai",
     description:
-      "Synthetic patients, so no PHI and nothing to de-identify. Versioned and locked cases and rubrics. Consent-gated learner voice data. SOC 2 and HIPAA on the roadmap, not yet in place.",
+      "Synthetic cases, versioned rubrics, learner voice data, and clear product boundaries.",
     url: "https://clinicalsim.ai/trust",
   },
   twitter: {
-    title: "Trust and Compliance | ClinicalSim.ai",
+    title: "Trust and data handling | ClinicalSim.ai",
     description:
-      "What ClinicalSim does with data, and what it hasn't certified yet. Stated plainly, because a security questionnaire will ask.",
+      "What ClinicalSim does with learner recordings, transcripts, account data, and institutional data.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/trust",
   },
 }
 
-const LAST_UPDATED = "2026-08-04"
+const LAST_UPDATED = "2026-08-10"
 
 const trustFaqs: FaqItem[] = [
   {
-    question: "Does ClinicalSim need FDA clearance?",
+    question: "What is ClinicalSim's intended use?",
     answer:
-      "No. ClinicalSim is a training and assessment tool for clinician communication, not a diagnostic device, so no FDA clearance is required. The platform produces no patient-facing output and makes no diagnostic or treatment recommendation, and it is not a clinical documentation tool.",
+      "ClinicalSim is intended for clinician training and assessment. It produces no patient-facing output, makes no diagnostic or treatment recommendation, and does not create clinical documentation.",
   },
   {
-    question: "Does any protected health information enter the platform?",
+    question: "Does ClinicalSim use patient records to build cases?",
     answer:
-      "No. Every patient in every ClinicalSim case is synthetic, authored from the clinical literature rather than from patient records, so no protected health information enters the platform and there is nothing to de-identify.",
-  },
-  {
-    question: "Is ClinicalSim SOC 2 or HIPAA certified?",
-    answer:
-      "Not yet. SOC 2 and HIPAA certification are on our funded roadmap and are not in place today. The reason that matters less than it usually would is that the platform holds no protected health information, because every patient in every case is synthetic.",
+      "No. Every patient in a ClinicalSim case is synthetic and written from clinical literature rather than a patient record. The product still handles learner recordings, transcripts, account data, and institutional data, which require protection.",
   },
   {
     question: "What happens to a learner's voice recording?",
@@ -50,15 +45,15 @@ const trustFaqs: FaqItem[] = [
       "Learner voice data is consent-gated and learners can request erasure. A recording exists to generate that learner's feedback.",
   },
   {
-    question: "Can a program reproduce a score after the fact?",
+    question: "Can a program review the scoring materials after the fact?",
     answer:
-      "Yes. Published cases, rubrics, and scoring prompts are versioned and locked, so a program can point to the exact version a learner was assessed against and a score from months ago can be reproduced rather than reconstructed.",
+      "Yes. Published cases, rubrics, and scoring prompts are versioned and locked, so a program can identify the exact materials used for a learner's report.",
   },
   {
     question:
       "Does ClinicalSim price malpractice risk or benchmark our institution against others?",
     answer:
-      "No. Risk pricing and cross-institution benchmarking are later phases of our roadmap, not features available today. What the platform produces now is per-learner, timestamped, rubric-scored practice records.",
+      "No. ClinicalSim does not price malpractice risk or benchmark one institution against another. The platform produces timestamped practice records scored against expert-authored rubrics.",
   },
 ]
 
@@ -83,9 +78,9 @@ export default function TrustPage() {
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "ClinicalSim.ai Trust and Compliance",
+            name: "ClinicalSim.ai trust and data handling",
             description:
-              "How ClinicalSim handles data: a training and assessment tool rather than a diagnostic device, synthetic patients so no protected health information enters the platform, versioned and locked cases and rubrics, consent-gated learner voice data, and SOC 2 and HIPAA certification on the funded roadmap.",
+              "How ClinicalSim handles synthetic cases, learner recordings, transcripts, account data, and institutional data.",
             url: "https://clinicalsim.ai/trust",
             dateModified: LAST_UPDATED,
             publisher: {
@@ -112,7 +107,7 @@ export default function TrustPage() {
               {
                 "@type": "ListItem",
                 position: 2,
-                name: "Trust and Compliance",
+                name: "Trust and data handling",
                 item: "https://clinicalsim.ai/trust",
               },
             ],
@@ -131,12 +126,11 @@ export default function TrustPage() {
               Home
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-cs-dark-blue/85">Trust and Compliance</span>
+            <span className="text-cs-dark-blue/85">Trust and data handling</span>
           </nav>
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight pb-3 mb-4 text-cs-dark-blue">
-            Trust, data handling, and{" "}
-            <span className="font-medium">what we haven&apos;t certified yet</span>
+            Trust and <span className="font-medium">data handling</span>
           </h1>
 
           <p className="text-sm text-cs-dark-gray font-light mb-6">
@@ -144,19 +138,17 @@ export default function TrustPage() {
           </p>
 
           <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-4 max-w-3xl">
-            Hospital privacy offices, IRBs, and procurement teams all ask the
-            same handful of questions before a pilot starts. This page answers
-            them in one place, including the one answer that is a no.
+            ClinicalSim is intended for training and assessment. It does not
+            diagnose patients, recommend treatment, or create clinical
+            documentation. Every case uses a synthetic patient written from
+            clinical literature, not a patient record.
           </p>
 
           <div className="rounded-xl border-l-4 border-cs-electric bg-cs-dark-blue px-6 py-5 max-w-3xl">
             <p className="text-base md:text-lg text-white font-light leading-relaxed">
-              <span className="font-medium">Key takeaway:</span> every patient
-              in every ClinicalSim case is synthetic, authored from the clinical
-              literature rather than from patient records, so no protected
-              health information enters the platform and there is nothing to
-              de-identify. SOC 2 and HIPAA certification are on our funded
-              roadmap and are not yet in place.
+              Every case uses a synthetic patient. The product still handles
+              learner recordings, transcripts, account data, and institutional
+              data, so those records require protection.
             </p>
           </div>
         </div>
@@ -168,16 +160,14 @@ export default function TrustPage() {
       <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
-            1. What ClinicalSim is, in{" "}
-            <span className="text-cs-dark-blue font-medium">regulatory terms</span>
+            1. Intended use
           </h2>
 
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-            ClinicalSim is a training and assessment tool for clinician
-            communication, not a diagnostic device, so no FDA clearance is
-            required. The platform produces no patient-facing output, makes no
-            diagnostic or treatment recommendation, and is not a clinical
-            documentation tool.
+            ClinicalSim is intended for clinician training and assessment. The
+            platform produces no patient-facing output, makes no diagnostic or
+            treatment recommendation, and does not create clinical
+            documentation.
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
             What it produces is a rubric-scored record of how a clinician
@@ -199,15 +189,14 @@ export default function TrustPage() {
 
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
             Every patient in every ClinicalSim case is authored from the
-            clinical literature, not adapted from a real chart. There is no
-            de-identification step in our pipeline because there is nothing to
-            de-identify.
+            clinical literature, not adapted from a real chart. Case
+            development does not require a patient record or a
+            de-identification step.
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-            That decision predates any compliance argument. A case written from
-            the literature can be versioned, reviewed, and reasoned about by the
-            physicians who authored it, and a case derived from a real encounter
-            cannot. How cases get built is documented on our{" "}
+            A case written from the literature can be versioned and reviewed by
+            the physicians responsible for it. How cases get built is documented
+            on our{" "}
             <Link
               href="/methodology"
               className="text-cs-dark-blue font-medium hover:text-cs-navy transition-colors"
@@ -231,12 +220,9 @@ export default function TrustPage() {
 
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
             Once a case is published, its case text, its rubric, and its scoring
-            prompts are versioned and locked. A program can point to the exact
-            version a learner was assessed against, and a score from six months
-            ago can be reproduced rather than re-litigated. Nothing about a
-            published assessment changes underneath a learner after the fact,
-            which matters most in remediation, where a score may end up in a due
-            process file.
+            prompts are versioned and locked. A program can identify the exact
+            materials used for a learner&apos;s report and inspect the transcript
+            evidence behind the score.
           </p>
         </div>
       </section>
@@ -253,9 +239,9 @@ export default function TrustPage() {
 
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
             Learners speak their side of the conversation out loud, which makes
-            their voice data the one genuinely sensitive thing the platform
-            holds. Collection is consent-gated, and learners can request
-            erasure.
+            their voice data sensitive. The platform also handles transcripts,
+            account data, and institutional data. Voice collection is
+            consent-gated, and learners can request erasure.
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
             A learner&apos;s recording exists to generate that learner&apos;s
@@ -268,27 +254,17 @@ export default function TrustPage() {
 
       <SectionDivider variant="diagonal-up" color="white" />
 
-      {/* 5. What we have not certified */}
+      {/* 5. Product boundaries */}
       <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
-            5. What we{" "}
-            <span className="text-cs-dark-blue font-medium">haven&apos;t certified</span>
+            5. Product boundaries
           </h2>
 
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-            SOC 2 and HIPAA certification are on our funded roadmap and are not
-            in place today. We would rather write that here than let a vendor
-            security questionnaire assume otherwise, and the reason it matters
-            less than it usually would is section 2: the platform holds no
-            protected health information, because every patient is synthetic.
-          </p>
-          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-            Two other things we don&apos;t claim. ClinicalSim does not price
-            malpractice risk and does not benchmark one institution against
-            another, and both are later phases of our roadmap rather than
-            features you can buy. And ClinicalSim does not replace a
-            standardized patient program, it extends one.
+            ClinicalSim does not price malpractice risk or benchmark one
+            institution against another. It extends standardized patient
+            programs and does not replace live assessment.
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
             We also don&apos;t claim our scoring is more accurate or more valid
@@ -304,7 +280,7 @@ export default function TrustPage() {
       <section className="px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
-            6. Questions we get from{" "}
+            6. Questions from{" "}
             <span className="text-cs-dark-blue font-medium">
               privacy and procurement reviewers
             </span>
@@ -349,7 +325,7 @@ export default function TrustPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Contact us
+                Talk with us
               </Button>
             </Link>
             <Link href="/methodology">

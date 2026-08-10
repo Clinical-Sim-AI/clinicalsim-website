@@ -7,17 +7,17 @@ import { JsonLd } from "@/components/json-ld"
 import { getAllSolutions } from "@/lib/solutions"
 
 export const metadata: Metadata = {
-  title: "Use Cases: Communication Practice Across Medicine",
+  title: "Use cases: communication practice across medicine",
   description:
-    "One platform for clinical communication: remediation, a longitudinal residency and fellowship curriculum, undergraduate medical education, and faculty development. The same voice-based AI simulation and rubric across every stage of a medical career.",
+    "One platform for communication remediation, residency and fellowship curricula, undergraduate medical education, and faculty development, with frameworks that fit each learner and task.",
   openGraph: {
-    title: "Use Cases | ClinicalSim.ai",
+    title: "Use cases | ClinicalSim.ai",
     description:
       "One platform, many conversations: remediation and residency curriculum mapped to ACGME Milestones 2.0, plus UME and faculty development with feedback mapped to the framework that fits each.",
     url: "https://clinicalsim.ai/solutions",
   },
   twitter: {
-    title: "Use Cases | ClinicalSim.ai",
+    title: "Use cases | ClinicalSim.ai",
     description:
       "One platform for clinical communication across the medical-education continuum.",
   },
@@ -74,7 +74,7 @@ export default function SolutionsPage() {
             One platform. <span className="text-cs-electric font-medium">Many conversations.</span>
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">
-            ClinicalSim runs physician-authored voice scenarios with rubric-scored feedback in minutes. The same engine and dashboard support communication at every stage of a medical career, from a first patient history to leading a family meeting.
+            ClinicalSim supports communication remediation, longitudinal residency and fellowship curricula, undergraduate medical education, and faculty development. The platform stays the same while the cases and competency frameworks change with the learner.
           </p>
         </div>
       </section>
@@ -105,14 +105,14 @@ export default function SolutionsPage() {
       <section className="px-6 py-8 md:py-10 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-6">
-            See which use case fits your program
+            Find the use case that fits your program
           </h2>
           <p className="text-lg font-light mb-8 text-white/90">
-            One platform serves trainees, residents, students, and faculty.
+            Start with the learner group, the conversations they need to practice, and the evidence your faculty need to review.
           </p>
           <Link href="/contact">
             <Button variant="accent" size="xl">
-              Request a Pilot
+              Request a pilot
             </Button>
           </Link>
         </div>

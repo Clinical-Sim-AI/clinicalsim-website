@@ -13,7 +13,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL('https://clinicalsim.ai'),
   title: {
-    default: 'ClinicalSim.ai — Clinical Simulation for Communication Remediation & Training',
+    default: 'ClinicalSim.ai: clinical simulation for communication training',
     template: '%s | ClinicalSim.ai',
   },
   description: 'Practice the conversations that matter most. Clinical simulation purpose-built for communication remediation and training in medical education. Structured, rubric-scored practice with milestone-aligned documentation for every stage of training. Built by simulation directors and communication researchers.',

@@ -108,7 +108,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
             "@type": "WebPage",
             name: "Communication Remediation for Medical Education Programs",
             description:
-              "AI clinical simulation for communication remediation with structured practice mapped to ACGME Milestones 2.0 and CCC-ready documentation.",
+              "AI clinical simulation for communication remediation with structured practice mapped to ACGME Milestones 2.0 and evidence for CCC review.",
             url: "https://clinicalsim.ai/solutions/remediation",
             dateModified: data.lastUpdated,
             isPartOf: {
@@ -206,7 +206,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
             <Link href="#evidence">
@@ -633,7 +633,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <div className="text-center mt-10">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
           </div>
@@ -650,8 +650,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
-                Frequently Asked{" "}
-                <span className="text-cs-dark-blue font-medium">Questions</span>
+                Frequently asked questions
               </h2>
               <div className="space-y-6">
                 {data.faqs.map((faq, index) => (
@@ -696,7 +695,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
             <Link href="/solutions">
@@ -706,7 +705,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
                 className="border-white/30 bg-transparent text-white hover:bg-white/10"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                All Solutions
+                All solutions
               </Button>
             </Link>
           </div>

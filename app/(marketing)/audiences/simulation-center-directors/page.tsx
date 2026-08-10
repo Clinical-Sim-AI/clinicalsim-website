@@ -5,16 +5,16 @@ import { AudiencePageLayout } from "@/components/audience-page-layout"
 const audience = getAudienceBySlug("simulation-center-directors")!
 
 export const metadata: Metadata = {
-  title: "For Simulation Center Directors: Extend Your SP Program",
-  description: "ClinicalSim extends standardized patient programs with on-demand communication practice between scheduled encounters and milestone-aligned assessment data from every session.",
+  title: "Simulation center directors: extend your SP program",
+  description: "ClinicalSim adds repeatable voice-based practice between scheduled standardized patient encounters. Live assessment and coaching stay with people.",
   openGraph: {
-    title: "For Simulation Center Directors | ClinicalSim.ai",
-    description: "Extend your SP program with on-demand practice. Assessment data your CCC can use, at the volume struggling learners need.",
+    title: "Simulation center directors | ClinicalSim.ai",
+    description: "Give struggling learners more practice without adding another SP session.",
     url: "https://clinicalsim.ai/audiences/simulation-center-directors",
   },
   twitter: {
-    title: "For Simulation Center Directors | ClinicalSim.ai",
-    description: "Extend your SP program with on-demand practice volume and milestone-aligned assessment data from every session.",
+    title: "Simulation center directors | ClinicalSim.ai",
+    description: "Add voice-based practice between SP encounters, with transcript evidence for faculty review.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/audiences/simulation-center-directors",

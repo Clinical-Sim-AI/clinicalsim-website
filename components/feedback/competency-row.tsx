@@ -1,7 +1,7 @@
 /**
  * One ordinal competency on a communication section. The row is the scannable
  * headline (label + dot-bar = value / max); clicking it expands the drill-in
- * detail the model already produced — the transcript evidence, the verbatim
+ * detail the model already produced: the transcript evidence, the verbatim
  * anchor at the placed level, and the next-level growth edge.
  */
 "use client";
@@ -41,7 +41,7 @@ export function CompetencyRow({
           />
           <span className="flex-1 text-sm leading-tight text-cs-dark-gray">{label}</span>
           <span className="whitespace-nowrap rounded bg-cs-gray/60 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-cs-dark-gray">
-            Not assessed
+            Not assessable
           </span>
         </button>
 
@@ -51,8 +51,8 @@ export function CompetencyRow({
             className="space-y-2.5 border-t border-cs-gray/70 px-3.5 py-3"
           >
             <p className="text-[13px] leading-snug text-cs-dark-gray">
-              <span className="font-bold">Not assessed in this simulation — </span>
-              {reasoning} This doesn&apos;t count for or against your score.
+              <span className="font-bold">Not assessable in this simulation. </span>
+              {reasoning} This item does not affect your score.
             </p>
           </div>
         )}
@@ -103,7 +103,7 @@ export function CompetencyRow({
         >
           {reasoning && (
             <p className="border-l-[3px] border-cs-electric pl-3 text-[13px] leading-snug text-cs-dark-blue">
-              <span className="font-bold">Evidence — </span>
+              <span className="font-bold">Evidence: </span>
               {reasoning}
             </p>
           )}

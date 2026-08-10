@@ -68,7 +68,7 @@ const authors: Author[] = [
     name: "Jacqueline Ponczek",
     credentials: "MD, MS, FAAP",
     title: "VP of MedEd: Quality & Standards, ClinicalSim",
-    bio: "Dr. Jacqueline Ponczek is a board-certified pediatrician and simulation educator at Northwestern University Feinberg School of Medicine and Ann & Robert H. Lurie Children's Hospital of Chicago, where she has designed and led simulation curricula since 2020. She is a repeat recipient of Feinberg's Teaching Pin, a contributing author to McGraw Hill's Comprehensive Pediatric Hospital Medicine (2026), and a Fellow of the American Academy of Pediatrics.",
+    bio: "Dr. Jacqueline W. Ponczek is a board-certified pediatrician and a Clinical Assistant Professor of Pediatrics in primary care at Northwestern University Feinberg School of Medicine and Ann & Robert H. Lurie Children's Hospital of Chicago. Her background in hospital-based medicine informs the simulation curricula she has designed and led since 2020 for learners at every level, from medical students to practicing physicians. She is a repeat recipient of Feinberg's Teaching Pin and a contributing author to McGraw Hill's Comprehensive Pediatric Hospital Medicine (2026).",
     colorVariant: "light-blue",
   },
 ]

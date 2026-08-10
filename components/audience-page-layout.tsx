@@ -125,10 +125,6 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             </p>
           )}
 
-          <p className="text-xl md:text-2xl text-cs-dark-blue font-light leading-relaxed mb-4">
-            For <span className="text-cs-dark-blue font-medium">{audience.title.toLowerCase()}</span> who need results they can measure.
-          </p>
-
           <p className="text-base md:text-lg text-cs-dark-blue font-light leading-relaxed mb-8 max-w-3xl">
             {audience.heroDescription}
           </p>
@@ -136,15 +132,9 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
-            <p className="text-sm text-cs-dark-gray font-light self-center">
-              Or{" "}
-              <Link href="https://form.typeform.com/to/Zve4CKk2" target="_blank" rel="noopener noreferrer" className="text-cs-dark-blue hover:text-cs-dark-blue transition-colors">
-                join the waitlist
-              </Link>
-            </p>
           </div>
         </div>
       </section>
@@ -248,7 +238,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
       <SectionDivider variant="curve" color="cloud" />
 
-      {/* Practice Tool CTA — Program Directors only */}
+      {/* Practice tool CTA for program directors only */}
       {audience.slug === "program-directors" && (
         <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-cs-cloud">
           <div className="max-w-4xl mx-auto">
@@ -256,21 +246,21 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
                   <p className="text-sm font-medium text-cs-dark-blue uppercase tracking-wider mb-2">
-                    Free Early Access
+                    Example feedback
                   </p>
                   <h3 className="text-2xl md:text-3xl font-light text-cs-navy mb-2">
-                    Practice the conversation before you have it
+                    Review an unedited encounter
                   </h3>
                   <p className="text-base text-cs-dark-blue/70 font-light max-w-xl">
-                    Try remediation conversations yourself with our AI simulation — experience the feedback, the milestone-aligned assessment, and the documentation firsthand.
+                    Open the recording, transcript, and framework-based feedback without signing in or booking a demo.
                   </p>
                 </div>
                 <div className="flex-shrink-0">
                   <Button variant="accent" size="lg" asChild>
-                    <a href="https://platform.clinicalsim.ai">
-                      Try It Yourself
+                    <Link href="/examples">
+                      See example feedback
                       <ArrowRight className="w-4 h-4 ml-2" />
-                    </a>
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -279,7 +269,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
         </section>
       )}
 
-      {/* Primary use-case CTA — all other audiences */}
+      {/* Primary use-case CTA for all other audiences */}
       {audience.slug !== "program-directors" && (
         <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-cs-cloud">
           <div className="max-w-4xl mx-auto text-center">
@@ -301,12 +291,12 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
       <SectionDivider variant="diagonal-down" color="white" />
 
-      {/* Related Insights */}
+      {/* Related insights */}
       {relatedPosts.length > 0 && (
         <section className="px-6 py-8 md:py-10 bg-white">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-8">
-              Related Insights
+              Related insights
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {relatedPosts.map((post) => (
@@ -322,7 +312,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
                     {post!.description}
                   </p>
                   <div className="mt-3 flex items-center text-cs-dark-blue text-sm font-medium group-hover:text-cs-dark-blue transition-colors">
-                    Read More
+                    Read more
                     <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Link>
@@ -381,13 +371,13 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a Pilot
+                Request a pilot
               </Button>
             </Link>
             <Link href="/audiences">
               <Button variant="outline" size="lg" className="border-white/30 bg-transparent text-white hover:bg-white/10">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                All Audiences
+                All audiences
               </Button>
             </Link>
           </div>

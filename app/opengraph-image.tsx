@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og"
 
 export const runtime = "edge"
-export const alt = "ClinicalSim — AI Clinical Simulation"
+export const alt = "ClinicalSim: AI clinical simulation"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -73,7 +73,7 @@ export default async function OpenGraphImage() {
             opacity: 0.75,
           }}
         >
-          Voice AI simulation · Rubric-scored feedback · Pilot study
+          Voice-based AI patients · Rubric-scored feedback · Pilot study
         </div>
       </div>
     ),

@@ -46,9 +46,9 @@ export const releases: Release[] = [
   {
     id: "2026-08-04",
     date: "2026-08-04",
-    note: "This release brings milestone scoring in line with the paper ACGME worksheet: performance that falls short of Level 1 can now be recorded as exactly that, instead of being rounded up to a Level 1. It also gives our internal metrics dashboard a fixed set of all-time company totals.",
+    note: "This release adds a developmental rating below Level 1.",
     userFacing: [
-      '**Milestone ratings can now record "not yet at Level 1."** Every ACGME milestone worksheet includes a "Not Yet Completed Level 1" box for performance that could be assessed but fell short of Level 1, and physician reviewers of our Clinician Educator milestones asked for the same option here, with the specific request that a Level 1 must never stand in for it. Milestone rubrics can now offer that below-Level-1 rating, and everywhere scores appear (progress charts, cohort distributions, heatmaps) it shows as its own neutral gray band, deliberately not red, because falling short of Level 1 is a developmental starting point rather than a failure. Rubrics on the standard 1 to 5 scale look exactly as they did before.',
+      '**Milestone ratings can now record performance below Level 1.** Reports and progress views now show "Not yet at Level 1" when the evidence does not meet the Level 1 descriptor. The rating appears as a neutral developmental starting point and does not change rubrics that use the standard 1 to 5 scale.',
     ],
     team: [
       "The internal metrics dashboard now opens with a fixed \"All time\" section: total users ever signed up (with how many sit in a live customer organization), all-time completed conversations of two minutes or more, total practice time in those conversations, and the count of live customer organizations. These are the numbers we set company goals against, so they're built to ignore the page's date-range and duration filters entirely; the existing period-scoped triage view below them is untouched.",
@@ -288,7 +288,7 @@ export const releases: Release[] = [
     id: "2026-06-15",
     date: "2026-06-15",
     userFacing: [
-      "**Organize simulations with tags.** A new tagging system (with bulk tagging) makes the growing library easier to navigate, and the learner dashboard now hides simulations that aren't published yet.",
+      "**Organize simulations with tags.** A new tagging system (with bulk tagging) makes the growing library easier to search, and the learner dashboard now hides simulations that aren't published yet.",
       "**Structured briefings everywhere.** The structured briefing now renders even on older simulations that only had a prose description.",
     ],
     team: [

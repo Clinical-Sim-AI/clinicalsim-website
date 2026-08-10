@@ -5,19 +5,19 @@ import { AudiencePageLayout } from "@/components/audience-page-layout"
 const audience = getAudienceBySlug("risk-and-patient-safety")!
 
 export const metadata: Metadata = {
-  title: "For Risk & Patient Safety Leaders: Communication Claim Exposure",
+  title: "Risk and patient safety leaders: communication in malpractice claims",
   description:
-    "Communication failure is a factor in 40% of malpractice cases, up from 30% a decade ago (Candello 2025), with average indemnity of $386,000 to $944,000 before defense costs (CRICO 2015). ClinicalSim gives clinicians voice-based practice on those conversations, with a timestamped record of every session.",
+    "Candello found communication factors in 40% of asserted malpractice cases from 2014 through 2024. ClinicalSim provides voice-based practice records and has not been studied against claims.",
   openGraph: {
-    title: "For Risk & Patient Safety Leaders | ClinicalSim.ai",
+    title: "Risk and patient safety leaders | ClinicalSim.ai",
     description:
-      "40% of malpractice cases involve a communication failure. Practice the conversations claims start in, with a per-clinician record a carrier review can use.",
+      "Practice diagnosis disclosure, goals of care, family meetings, and de-escalation, with a timestamped record of each simulated encounter.",
     url: "https://clinicalsim.ai/audiences/risk-and-patient-safety",
   },
   twitter: {
-    title: "For Risk & Patient Safety Leaders | ClinicalSim.ai",
+    title: "Risk and patient safety leaders | ClinicalSim.ai",
     description:
-      "Average indemnity on a communication-failure case runs $386,000 to $944,000 before defense costs (CRICO 2015). That behavior is trainable.",
+      "ClinicalSim does not predict malpractice risk or claim outcomes. It provides simulated practice records for a risk reduction program to review.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/audiences/risk-and-patient-safety",

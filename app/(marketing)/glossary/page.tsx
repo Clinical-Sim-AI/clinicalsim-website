@@ -6,17 +6,17 @@ import { JsonLd } from "@/components/json-ld"
 import { getAllGlossaryTerms } from "@/lib/glossary"
 
 export const metadata: Metadata = {
-  title: "Medical Education Glossary: CBME, EPAs, Milestones & More",
+  title: "Medical education glossary: CBME, EPAs, milestones, and more",
   description:
     "Clear, sourced definitions of the medical education and simulation terms that shape clinical communication training: competency-based medical education, EPAs, ACGME Milestones, OSCEs, standardized patients, and remediation.",
   openGraph: {
-    title: "Medical Education Glossary | ClinicalSim.ai",
+    title: "Medical education glossary | ClinicalSim.ai",
     description:
       "Definitions of key medical-education and clinical-simulation terms: CBME, EPAs, Clinical Competency Committees, ACGME Milestones, OSCEs, standardized patients, and more.",
     url: "https://clinicalsim.ai/glossary",
   },
   twitter: {
-    title: "Medical Education Glossary | ClinicalSim.ai",
+    title: "Medical education glossary | ClinicalSim.ai",
     description:
       "Definitions of key medical education and clinical simulation terms: CBME, EPAs, Milestones, OSCEs, standardized patients, and remediation.",
   },
@@ -93,14 +93,10 @@ export default function GlossaryPage() {
           </nav>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
-            Medical Education{" "}
-            <span className="text-cs-electric font-medium">Glossary</span>
+            Medical education <span className="text-cs-electric font-medium">glossary</span>
           </h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-3xl">
-            Clear, self-contained definitions of the terms that shape
-            competency-based medical education, clinical simulation, and
-            communication training, from EPAs and ACGME Milestones to
-            standardized patients and remediation.
+            Plain language definitions of the frameworks, roles, and assessment methods used in clinical communication training. Each sourced term includes related concepts so readers can follow the system around it.
           </p>
         </div>
       </section>
@@ -187,15 +183,14 @@ export default function GlossaryPage() {
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-6">
-            Put these concepts into practice
+            Put the frameworks into practice
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            ClinicalSim turns competency frameworks into on-demand, rubric-scored
-            communication practice mapped to ACGME Milestones 2.0.
+            ClinicalSim maps voice-based practice to the competency framework that fits the learner&apos;s stage.
           </p>
           <Link href="/contact">
             <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-base font-medium transition-all duration-300 bg-cs-electric text-cs-dark-blue hover:bg-cs-electric/90 hover:shadow-lg h-14 px-10 font-bold">
-              Request a Pilot
+              Request a pilot
             </button>
           </Link>
         </div>
