@@ -11,9 +11,9 @@ import { getAuthorById } from "@/lib/authors"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
-  title: "Methodology: case development, standards alignment, and feedback",
+  title: "Methodology: Case Development, Standards Alignment & Feedback",
   description:
-    "How ClinicalSim.ai builds cases, names the competency and communication frameworks each case uses, and generates rubric-scored feedback tied to transcript evidence.",
+    "How ClinicalSim.ai builds cases, anchors them to the ACGME Milestones 2.0, the Foundational Competencies, or the ACGME Clinician Educator Milestones, applies validated communication frameworks like SPIKES and Calgary-Cambridge, and generates transcript-grounded, competency-based feedback.",
   openGraph: {
     title: "Methodology | ClinicalSim.ai",
     description:
@@ -39,23 +39,23 @@ const commitments: {
   brandIcon: BrandIconName
 }[] = [
   {
-    title: "Clinical review",
+    title: "Quality",
     description:
-      "Every case is built from primary sources, written to a defined purpose, and reviewed by physicians with relevant clinical, program leadership, or simulation education experience before release.",
+      "Every case is built from primary sources, written to a defined purpose, and reviewed by practicing physicians with strong academic backgrounds before release.",
     variant: "accent",
     brandIcon: "badge-check",
   },
   {
-    title: "Documented process",
+    title: "Consistency",
     description:
-      "Every case follows the same review process, names its frameworks, and ties each score to transcript evidence.",
+      "The same scoring logic applies to every case, regardless of specialty, learner level, or which communication frameworks are applied alongside it.",
     variant: "navy",
     brandIcon: "stack",
   },
   {
-    title: "Named standards",
+    title: "Alignment",
     description:
-      "Every case names the published competency and communication frameworks used for feedback.",
+      "Every score traces to a published competency or a validated communication framework, never to an unexplained rating.",
     variant: "default",
     brandIcon: "align-bottom",
   },
@@ -77,7 +77,7 @@ const frameworkTerms: {
   {
     title: "Communication framework",
     description:
-      "A published model of communication behavior, such as SPIKES or Calgary-Cambridge, applied to characterize how the learner communicated.",
+      "A validated, published model of communication behavior, such as SPIKES or Calgary-Cambridge, applied to characterize how the learner communicated.",
     variant: "accent",
     brandIcon: "chat-alt-checkmark",
   },
@@ -117,7 +117,7 @@ export default function MethodologyPage() {
             "@type": "WebPage",
             name: "ClinicalSim.ai Methodology",
             description:
-              "How ClinicalSim.ai builds cases, names the competency and communication frameworks each case uses, and generates feedback tied to transcript evidence.",
+              "How ClinicalSim.ai builds cases, aligns them to governing-body competency frameworks and validated communication frameworks, and generates evidence-based feedback.",
             url: "https://clinicalsim.ai/methodology",
             dateModified: PAGE_DATE_MODIFIED.methodology,
             author: author
@@ -181,9 +181,9 @@ export default function MethodologyPage() {
           </nav>
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight pb-3 mb-4 text-cs-dark-blue">
-            Methodology: case development,{" "}
+            Methodology: case creation,{" "}
             <span className="font-medium">standards alignment</span>, and
-            feedback
+            feedback generation
           </h1>
 
           <div className="flex items-center gap-4 mb-6">
@@ -194,17 +194,22 @@ export default function MethodologyPage() {
           </div>
 
           <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-4 max-w-3xl">
-            This page explains how ClinicalSim builds and reviews cases,
-            selects competency and communication frameworks, scores encounters,
-            and produces feedback.
+            This page outlines ClinicalSim case development, communication
+            and governing-body framework alignment, scoring, and how each
+            encounter generates high-quality, actionable feedback. A single
+            engine, rubric, and dashboard serve learners across the
+            medical-education continuum, and every session produces
+            timestamped, competency-based documentation for learners,
+            faculty, and program leadership.
           </p>
 
           <div className="rounded-xl border-l-4 border-cs-electric bg-cs-dark-blue px-6 py-5 max-w-3xl">
             <p className="text-base md:text-lg text-white font-light leading-relaxed">
-              Every case names the standard it uses. Every score cites evidence
-              from the transcript. The result is formative evidence for a
-              learner and faculty reviewer, not a verdict and not a substitute
-              for human judgment.
+              <span className="font-medium">Key takeaway:</span> every
+              ClinicalSim case is anchored to a specific, published
+              competency or communication standard, and every score traces
+              to a verbatim excerpt from the encounter transcript, never to
+              an unexplained rating.
             </p>
           </div>
         </div>
@@ -235,8 +240,8 @@ export default function MethodologyPage() {
             rely on it can trust it. Three commitments anchor it: quality,
             because every case is built from primary sources; consistency,
             because the same scoring logic applies to every case; and
-            alignment, because every case names the published competency and
-            communication frameworks it uses.
+            alignment, because every score traces to a published competency
+            or a validated communication framework.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -279,9 +284,10 @@ export default function MethodologyPage() {
             learning objectives and a clinical evidence base drawn from
             foundational and other applicable literature. Physicians then
             review each case for accuracy, content, alignment, and fit to
-            its objectives. Reviewers include program directors, simulation
-            educators, subject matter experts, and UME and GME educators.
-            Faculty development cases are also reviewed
+            its objectives; reviewers are practicing physicians with strong
+            academic backgrounds and decades of collective experience,
+            including program directors, simulation facilitators, and UME
+            and GME educators. Faculty development cases are also reviewed
             by someone with faculty development or clinical teaching
             expertise. Before release, each case is run repeatedly
             to confirm three things: that the AI character convincingly
@@ -336,13 +342,12 @@ export default function MethodologyPage() {
           </h3>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
             Each encounter is a voice conversation between the learner and
-            an AI patient designed for the case, captured as a timestamped
+            an AI role designed for the case, captured as a timestamped
             transcript. For every scored competency and framework step, the
             platform draws one or two verbatim excerpts that demonstrate the
             behavior, or documents its absence. Because each score is
-            traceable to the moment that supports it, a learner or faculty
-            reviewer can inspect the rating rather than accept an unexplained
-            number.
+            traceable to the moment that supports it, the output withstands
+            review rather than serving as an unexplained rating.
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
             Scoring follows the competency framework on which a case is
@@ -398,8 +403,8 @@ export default function MethodologyPage() {
                 ))}
               </ul>
               <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-                The result is available for Clinical Competency Committee
-                review. Because the milestones are
+                The result is milestone-placed and ready for Clinical
+                Competency Committee review. Because the milestones are
                 formative and were not designed for high-stakes external
                 decisions, ClinicalSim treats milestone-aligned output
                 accordingly, as evidence that informs program judgment. With
@@ -499,10 +504,11 @@ export default function MethodologyPage() {
             justifying the level a learner reached or the specific step
             assessed. The report then offers an overall impression
             (strengths, priority gaps, and top action items) and targeted
-            recommendations. Depending on the case, it describes where a
-            learner sits against the framework and gives the learner and
-            faculty reviewer transcript evidence they can accept, question,
-            or override.
+            recommendations. Depending on the case, it indicates where a
+            learner sits developmentally and provides reviewers with
+            transcript-grounded evidence for decisions about progression,
+            remediation, readiness for practice, readiness to perform a
+            particular task, or familiarity with a given subject area.
           </p>
 
           <h3 className="text-2xl font-medium text-cs-dark-blue mt-10 mb-4">
@@ -715,7 +721,7 @@ export default function MethodologyPage() {
             </Link>
             <Link href="/contact">
               <Button variant="default" size="lg">
-                Request a pilot
+                Request a Pilot
               </Button>
             </Link>
           </div>

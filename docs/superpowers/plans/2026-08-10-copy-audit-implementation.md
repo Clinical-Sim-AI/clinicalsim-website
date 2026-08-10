@@ -64,10 +64,10 @@
 - Modify: `app/(marketing)/audiences/page.tsx`
 - Modify: `app/(marketing)/research/page.tsx`
 - Modify: `app/(marketing)/glossary/page.tsx`
-- Modify: `app/(marketing)/methodology/page.tsx`
+- Leave unchanged: `app/(marketing)/methodology/page.tsx` (owner direction)
 - Modify: `app/(marketing)/trust/page.tsx`
 - Modify: `app/(marketing)/faq/page.tsx`
-- Modify: `app/(marketing)/medical-educator-faq/page.tsx`
+- Leave unchanged: `app/(marketing)/medical-educator-faq/page.tsx` (owner direction)
 - Modify: `app/(marketing)/compare/page.tsx`
 - Modify: `app/(marketing)/examples/page.tsx`
 - Modify: `app/(marketing)/help/page.tsx`
