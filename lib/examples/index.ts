@@ -2,11 +2,13 @@
 import type { ExampleCase } from "./types";
 import addressingHydroxyureaNonadherenceAndMedicalMistrust from "./addressing-hydroxyurea-nonadherence-and-medical-mistrust";
 import deliveringANewLeukemiaDiagnosisToAFamilyInTheEmergencyDepartment from "./delivering-a-new-leukemia-diagnosis-to-a-family-in-the-emergency-department";
+import informedConsentDiscussionForCentralVenousCatheterPlacementInThePicu from "./informed-consent-discussion-for-central-venous-catheter-placement-in-the-picu";
 import pediatricVaccineHesitancyCounseling from "./pediatric-vaccine-hesitancy-counseling";
 
 const examples: ExampleCase[] = [
   addressingHydroxyureaNonadherenceAndMedicalMistrust,
   deliveringANewLeukemiaDiagnosisToAFamilyInTheEmergencyDepartment,
+  informedConsentDiscussionForCentralVenousCatheterPlacementInThePicu,
   pediatricVaccineHesitancyCounseling,
 ];
 
