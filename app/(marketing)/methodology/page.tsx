@@ -7,7 +7,7 @@ import type { BrandIconName } from "@/components/brand-icon"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { AuthorByline } from "@/components/author-byline"
-import { getAuthorById } from "@/lib/authors"
+import { getAuthorById, getAuthorUrl } from "@/lib/authors"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
@@ -123,12 +123,19 @@ export default function MethodologyPage() {
             author: author
               ? {
                   "@type": "Person",
+                  // Same @id as the /about card and article bylines, so this
+                  // Person resolves to the one entity.
+                  "@id": getAuthorUrl(author.id),
+                  url: getAuthorUrl(author.id),
                   name: author.name,
                   honorificSuffix: author.credentials,
                   jobTitle: author.title,
                   worksFor: {
                     "@type": "Organization",
-                    name: "ClinicalSim.ai",
+                    // "ClinicalSim" to match the site-wide Organization node,
+                    // since the shared @id merges this Person with the /about
+                    // card and article bylines.
+                    name: "ClinicalSim",
                     url: "https://clinicalsim.ai",
                   },
                   ...(author.sameAs && author.sameAs.length > 0

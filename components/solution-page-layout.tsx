@@ -5,7 +5,7 @@ import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
-import { cn } from "@/lib/utils"
+import { cn, formatIsoMonth } from "@/lib/utils"
 import { type Solution } from "@/lib/solutions"
 import { getPostBySlug } from "@/lib/posts"
 
@@ -152,10 +152,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
           {solution.lastUpdated && (
             <p className="text-sm text-cs-gray font-light mb-4">
               Last updated:{" "}
-              {new Date(solution.lastUpdated).toLocaleDateString("en-US", {
-                month: "long",
-                year: "numeric",
-              })}
+              {formatIsoMonth(solution.lastUpdated)}
             </p>
           )}
 

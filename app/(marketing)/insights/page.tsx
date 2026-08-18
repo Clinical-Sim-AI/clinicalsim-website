@@ -6,6 +6,7 @@ import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { BookOpen } from "lucide-react"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { formatIsoDay } from "@/lib/utils"
 
 export const metadata: Metadata = {
   title: "Evidence and practical guidance for clinical communication training",
@@ -122,11 +123,7 @@ export default function InsightsPage() {
                   <div className="flex-1">
                     <div className="flex items-center gap-3 text-sm text-cs-dark-gray font-light mb-3">
                       <time dateTime={featuredPost.date}>
-                        {new Date(featuredPost.date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
+                        {formatIsoDay(featuredPost.date)}
                       </time>
                       <span>&middot;</span>
                       <span>{featuredPost.readingTime}</span>
@@ -180,13 +177,7 @@ export default function InsightsPage() {
                   <Link key={post.slug} href={`/insights/${post.slug}`}>
                     <div className="group h-full bg-white/90 border border-cs-gray/50 rounded-xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
                       <div className="flex items-center gap-3 text-sm text-cs-dark-gray font-light mb-4">
-                        <time dateTime={post.date}>
-                          {new Date(post.date).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                          })}
-                        </time>
+                        <time dateTime={post.date}>{formatIsoDay(post.date)}</time>
                         <span>&middot;</span>
                         <span>{post.readingTime}</span>
                       </div>

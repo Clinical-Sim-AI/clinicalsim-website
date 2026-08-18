@@ -9,6 +9,7 @@ import { type Audience } from "@/lib/audiences"
 import { getPostBySlug } from "@/lib/posts"
 import { getSolutionBySlug } from "@/lib/solutions"
 import { type BrandIconName } from "@/components/brand-icon"
+import { formatIsoMonth } from "@/lib/utils"
 
 const valuePropBrandIcons: Array<BrandIconName | null> = [
   "ribbon-check",
@@ -118,10 +119,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
           {audience.lastUpdated && (
             <p className="text-sm text-cs-gray font-light mb-4">
               Last updated:{" "}
-              {new Date(audience.lastUpdated).toLocaleDateString("en-US", {
-                month: "long",
-                year: "numeric",
-              })}
+              {formatIsoMonth(audience.lastUpdated)}
             </p>
           )}
 

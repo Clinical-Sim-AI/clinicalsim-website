@@ -13,7 +13,7 @@ import { SectionDivider } from "@/components/section-divider"
 import { AsymmetricGrid } from "@/components/asymmetric-grid"
 import { JsonLd } from "@/components/json-ld"
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
-import { cn } from "@/lib/utils"
+import { cn, formatIsoMonth } from "@/lib/utils"
 import type { RemediationPageData } from "@/lib/remediation"
 
 // ---------------------------------------------------------------------------
@@ -178,10 +178,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           {data.lastUpdated && (
             <p className="text-sm text-cs-gray font-light mb-4">
               Last updated:{" "}
-              {new Date(data.lastUpdated).toLocaleDateString("en-US", {
-                month: "long",
-                year: "numeric",
-              })}
+              {formatIsoMonth(data.lastUpdated)}
             </p>
           )}
 

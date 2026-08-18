@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { getAuthorById, TEAM_AUTHOR_ID } from "@/lib/authors"
+import { getAuthorById, getAuthorPath, TEAM_AUTHOR_ID } from "@/lib/authors"
 import { variantClasses, getInitials } from "@/components/author-byline"
 
 /**
@@ -35,7 +35,7 @@ export function AuthorBio({ authorId }: { authorId?: string }) {
             {author.bio}
           </p>
           <Link
-            href={`/about#${author.id}`}
+            href={getAuthorPath(author.id)}
             className="mt-4 inline-block text-sm font-medium text-cs-dark-blue underline underline-offset-4 decoration-cs-gray hover:decoration-cs-dark-blue transition-colors"
           >
             More about the team

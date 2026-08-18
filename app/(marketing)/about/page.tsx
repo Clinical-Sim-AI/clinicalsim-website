@@ -83,7 +83,10 @@ export default function AboutPage() {
             description: author.bio,
             worksFor: {
               "@type": "Organization" as const,
-              name: "ClinicalSim.ai",
+              // "ClinicalSim" to match the site-wide Organization node and the
+              // Article author worksFor, since the shared @id above merges this
+              // Person with the article byline Person.
+              name: "ClinicalSim",
               url: "https://clinicalsim.ai",
             },
             ...(author.sameAs && author.sameAs.length > 0
