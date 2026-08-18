@@ -117,3 +117,33 @@ or are unstable:
 
 `osce-case-design-guide` has zero references. The glossary now carries the verified Harden citation,
 so that post can borrow it, but that is Workstream 3 and untouched here.
+
+## 7. Post-review fixes
+
+A code review of the PR raised eight items. All eight are fixed in the review commit; nothing in
+section 4 or 5 above was changed, so the content decisions still stand as written.
+
+- The hub's `DefinedTermSet` JSON-LD was still emitting each term's full `definition` while the
+  visible hub showed only a teaser. That put every term page's most quotable passage back into the
+  hub's HTML, which is the exact duplication the split exists to prevent, and markup richer than the
+  visible page is a structured data violation. The schema now carries the teaser.
+- Gating the source line on `!hasPage` meant the hub showed zero attributions once all 40 terms had
+  pages, while the hero and the meta description both promise sourced definitions. Source is back on
+  the hub for all 38 terms that carry one, above the read-more link.
+- Twelve titles ran past Google's display budget, up to 81 characters, truncating the acronym people
+  search for. Titles now use the bare term, with a new optional `metaTitle` for the three that still
+  do not fit: `aspe`, `chse`, `osce`. A test asserts every rendered title, suffix included, is 60
+  characters or fewer.
+- `relatedLinks` hrefs were never checked against the route registries, so a typo would have shipped
+  a 404 from an indexable page. A test now resolves every href against the audience, comparison,
+  solution, post, and glossary registries plus a static path allowlist.
+- The breadcrumb JSON-LD leaf used the full term while the visible trail used the abbreviation. Both
+  now use the abbreviation.
+- Explainer and inPractice React keys were derived from the first 48 characters of the text, which
+  collides silently between two paragraphs with the same opening. Keyed by index.
+- `getGlossaryTeaser` fell back to the entire definition when the first sentence was under 60
+  characters, which would quietly reintroduce the hub duplication for a future term while still
+  passing the length assertion. It now adds sentences until the teaser reads as one, capped at two,
+  and a test asserts every teaser is shorter than its definition.
+- The hub's jump-link chips still pointed at `#slug` anchors, so clicking one landed on a teaser stub
+  and needed a second click. They link to the term page.

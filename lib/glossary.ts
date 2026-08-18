@@ -22,7 +22,14 @@ export interface GlossaryTerm {
 
   /** 110–155 chars, materially different from `definition`. Meta description. */
   metaDescription?: string
-  /** One-sentence hub teaser. Falls back to the first sentence of `definition`. */
+  /**
+   * Overrides the `<title>` when `term` is too long to survive the root layout's
+   * " | ClinicalSim.ai" suffix inside Google's ~60 character display budget.
+   * Keep the acronym: it is the query people actually type. Same convention as
+   * `metaTitle` in lib/solutions.ts, so it carries no site suffix of its own.
+   */
+  metaTitle?: string
+  /** Hub teaser. Falls back to the first sentence or two of `definition`. */
   teaser?: string
   /** Body paragraphs unique to the term page. Presence gates indexability. */
   explainer?: string[]
@@ -113,6 +120,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     relatedSlugs: ["standardized-patient", "standardized-patient-case", "chse"],
     metaDescription:
       "ASPE is the international body for standardized patient educators and author of the SP Standards of Best Practice. Here is what it covers.",
+    metaTitle: "ASPE: Standardized Patient Educators",
     explainer: [
       "ASPE holds the same position for SP methodology that SSH holds for simulation more broadly, and its five SOBP domains are the practical reference an SP program gets measured against: safe work environment, case development, SP training for role portrayal, feedback, and completion of assessment instruments, program management, and professional development. ASPE states that the standards were written to protect the growth, integrity, and safe application of SP-based education practices.",
       "The safe work environment domain is the one that surprises people new to SP work, because it treats the SP as a worker with real exposure rather than as a prop. Portraying a suicidal patient or a grieving parent repeatedly across a day of OSCE stations carries a cost, so a program that wants to keep its most experienced SPs has to plan for confidentiality, for recovery after emotionally heavy portrayals, and for the conditions under which an SP can stop.",
@@ -139,6 +147,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     relatedSlugs: ["aspe", "standardized-patient", "osce"],
     metaDescription:
       "What the CHSE credential is, who is eligible, and what the SSH exam blueprint actually tests, written for simulation and GME leaders.",
+    metaTitle: "CHSE: Healthcare Simulation Educator",
     explainer: [
       "SSH lists four eligibility criteria for the CHSE and a candidate has to meet all of them: participation in healthcare simulation in an educational role, focused simulation expertise with learners in undergraduate, graduate, allied health, or practitioner groups, a bachelor's degree or an equivalent combination of education and experience, and two years of documented continued use of simulation in healthcare education, research, or administration. Candidates without a bachelor's degree can ask the SSH Council for Certification to review an equivalency based on combined education and experience.",
       "Exam content comes from a blueprint that SSH rebuilt after an international practice analysis conducted between November 2022 and July 2023. The 2024 blueprint weights four domains: Professional Values, Capabilities, and Leadership at 20 percent, Healthcare and Simulation Knowledge and Practices at 28 percent, Educational Principles Applied to Simulation at 40 percent, and Simulation Resources and Environments at 12 percent. The weighting tells you what the credential is really about, because two fifths of the exam rests on educational principles rather than on equipment or logistics.",
@@ -739,6 +748,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     relatedSlugs: ["standardized-patient", "clinical-reasoning", "millers-pyramid", "deliberate-practice"],
     metaDescription:
       "What an OSCE is, where the station format came from in 1975, and how programs get more from one than a single annual score per learner.",
+    metaTitle: "OSCE: Objective Structured Clinical Exam",
     explainer: [
       "The format comes from a 1975 paper in the British Medical Journal by Harden, Stevenson, Downie, and Wilson, who had students rotate round a series of stations in a hospital ward while examiners scored them against check lists agreed in advance. The acronym as programs use it now, with the word clinical in it, arrived with Harden and Gleeson's 1979 paper in Medical Education, which set out station design and scoring in more detail.",
       "Objective and structured describe the design, not a claim that judgment has been removed. The task, the time limit, the patient portrayal, and the scoring criteria are all fixed before anyone walks in, so a difference in scores is more likely to reflect the learner than which examiner or which patient they happened to draw. Faculty still make judgments at every station, and the quality of an OSCE rests almost entirely on how well the cases and the rubrics were written.",
@@ -1162,14 +1172,37 @@ export function getIndexableGlossaryTerms(): IndexableGlossaryTerm[] {
 }
 
 /**
- * First sentence of the definition, for the hub index. The length guard stops an
- * abbreviation ("U.S.") from splitting into a stub; short results fall back to
- * the whole definition.
+ * Opening of the definition, for the hub index. Capped at two sentences, so the
+ * hub never republishes a whole definition and end up competing with the term
+ * page for the passage an AI crawler would quote.
+ *
+ * Sentence ends are located by offset rather than by matching sentence bodies,
+ * because a body pattern cannot span an abbreviation: "U.S." is a period the
+ * pattern has to reject, and rejecting it in the middle of a match drops the
+ * letter in front of it. A period is only a boundary when whitespace or the end
+ * of the string follows, so the slice runs straight through "U.S." instead.
  */
 export function getGlossaryTeaser(term: GlossaryTerm): string {
   if (term.teaser) return term.teaser
-  const match = term.definition.match(/^.*?[.!?](?=\s|$)/)
-  return match && match[0].length >= 60 ? match[0] : term.definition
+
+  const ends: number[] = []
+  const boundary = /[.!?](?=\s|$)/g
+  let hit: RegExpExecArray | null
+  while ((hit = boundary.exec(term.definition)) !== null) ends.push(hit.index + 1)
+  if (ends.length === 0) return term.definition
+
+  // One sentence when that already reads as one, otherwise two.
+  const end = ends[0] >= 60 ? ends[0] : (ends[1] ?? ends[0])
+  return term.definition.slice(0, end)
+}
+
+/**
+ * The `<title>` for a term page, without the root layout's " | ClinicalSim.ai"
+ * suffix. Shared by generateMetadata, the WebPage schema, and the length test so
+ * the three cannot disagree.
+ */
+export function getGlossaryPageTitle(term: GlossaryTerm): string {
+  return term.metaTitle ?? term.term
 }
 
 /**

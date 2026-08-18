@@ -1,16 +1,53 @@
 import { describe, expect, it } from "vitest"
 import {
   getAllGlossaryTerms,
+  getGlossaryPageTitle,
   getGlossaryTeaser,
   getGlossaryTermBySlug,
   getIndexableGlossaryTerms,
   getRelatedGlossaryTerms,
   type GlossaryTerm,
 } from "./glossary"
+import { getAllAudiences } from "./audiences"
+import { getAllComparisons } from "./comparisons"
+import { getAllPosts } from "./posts"
+import { getAllSolutions } from "./solutions"
 import { generateStaticParams } from "../app/(marketing)/glossary/[slug]/page"
 
 const terms = getAllGlossaryTerms()
 const indexable = getIndexableGlossaryTerms()
+
+/** Root layout template: `%s | ClinicalSim.ai`. */
+const TITLE_SUFFIX = " | ClinicalSim.ai"
+
+/**
+ * Every internal path a relatedLinks entry is allowed to point at. Built from the
+ * same registries the routes are, so a renamed slug fails here rather than
+ * shipping a 404 from an indexable page.
+ */
+const VALID_INTERNAL_PATHS = new Set<string>([
+  "/",
+  "/about",
+  "/audiences",
+  "/compare",
+  "/contact",
+  "/examples",
+  "/faq",
+  "/glossary",
+  "/help",
+  "/insights",
+  "/medical-educator-faq",
+  "/methodology",
+  "/research",
+  "/roi-calculator",
+  "/solutions",
+  "/trust",
+  ...getAllAudiences().map((a) => `/audiences/${a.slug}`),
+  ...getAllComparisons().map((c) => `/compare/${c.slug}`),
+  ...getAllSolutions().map((s) => `/solutions/${s.slug}`),
+  ...getAllPosts().map((p) => `/insights/${p.slug}`),
+  ...terms.map((t) => `/glossary/${t.slug}`),
+])
 
 /** Every string in a term that a reader can see. Code comments are exempt. */
 function visibleStrings(term: GlossaryTerm): string[] {
@@ -20,6 +57,7 @@ function visibleStrings(term: GlossaryTerm): string[] {
     term.abbreviation,
     term.teaser,
     term.metaDescription,
+    term.metaTitle,
     term.source,
     ...(term.explainer ?? []),
     ...(term.inPractice ?? []),
@@ -62,6 +100,22 @@ describe("glossary registry", () => {
       expect(teaser.length, `${term.slug} teaser is too short`).toBeGreaterThanOrEqual(60)
       expect(teaser, `${term.slug} teaser is unpunctuated`).toMatch(/[.!?]$/)
     }
+  })
+
+  it("keeps an abbreviation intact when cutting the teaser", () => {
+    // No registry term opens with an abbreviation today, and the offset-based
+    // sentence split exists precisely so that the first one to do so does not
+    // lose the letter in front of the period.
+    const teaser = getGlossaryTeaser({
+      slug: "fixture",
+      term: "Fixture",
+      definition:
+        "U.S. residency programs report milestone ratings to the ACGME twice a year. A second sentence follows it. And a third.",
+    })
+
+    expect(teaser).toBe(
+      "U.S. residency programs report milestone ratings to the ACGME twice a year."
+    )
   })
 
   it("never returns a term as its own relation", () => {
@@ -141,6 +195,43 @@ describe("indexable glossary terms", () => {
       expect(term.metaDescription, `${label} metaDescription breaks llms.txt`).not.toMatch(
         /[\n\r]|\]\(/
       )
+    }
+  })
+
+  it("keeps every term page title inside Google's display budget", () => {
+    // The root layout appends " | ClinicalSim.ai", so a long `term` pushes the
+    // acronym people actually search for past the truncation point. metaTitle is
+    // the escape hatch; this is what forces it to be used.
+    for (const term of indexable) {
+      const rendered = getGlossaryPageTitle(term) + TITLE_SUFFIX
+      expect(
+        rendered.length,
+        `${term.slug} renders a ${rendered.length} char title: ${rendered}`
+      ).toBeLessThanOrEqual(60)
+    }
+  })
+
+  it("points every relatedLinks entry at a route that exists", () => {
+    for (const term of indexable) {
+      for (const link of term.relatedLinks ?? []) {
+        const [path] = link.href.split("#")
+        expect(
+          VALID_INTERNAL_PATHS.has(path),
+          `${term.slug} links to ${link.href}, which is not a route on this site`
+        ).toBe(true)
+        expect(link.label.trim().length, `${term.slug} has an unlabelled link`).toBeGreaterThan(0)
+      }
+    }
+  })
+
+  it("keeps the hub teaser shorter than the full definition", () => {
+    // A teaser that equals the definition puts the term page's most quotable
+    // passage back on the hub, which is what this split exists to prevent.
+    for (const term of indexable) {
+      expect(
+        getGlossaryTeaser(term).length,
+        `${term.slug} teaser republishes its whole definition on the hub`
+      ).toBeLessThan(term.definition.length)
     }
   })
 

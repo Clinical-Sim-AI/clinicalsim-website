@@ -73,10 +73,16 @@ export default function GlossaryPage() {
       description:
         "Definitions of medical-education and clinical-simulation terms relevant to clinical communication training.",
       url: "https://clinicalsim.ai/glossary",
+      // The description has to match what this page shows. Emitting the full
+      // definition here would put the term page's most quotable passage back on
+      // the hub, which is the duplication the teaser refactor exists to avoid,
+      // and Google treats markup richer than the visible page as a violation.
       hasDefinedTerm: terms.map((term) => ({
         "@type": "DefinedTerm" as const,
         name: term.term,
-        description: term.definition,
+        description: isIndexableGlossaryTerm(term)
+          ? getGlossaryTeaser(term)
+          : term.definition,
         ...(term.abbreviation ? { termCode: term.abbreviation } : {}),
         url: isIndexableGlossaryTerm(term)
           ? `https://clinicalsim.ai/glossary/${term.slug}`
@@ -115,15 +121,25 @@ export default function GlossaryPage() {
       <section className="px-6 pt-8 md:pt-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-wrap gap-2">
-            {terms.map((term) => (
-              <a
-                key={term.slug}
-                href={`#${term.slug}`}
-                className="text-sm px-3 py-1.5 rounded-full font-medium border border-cs-gray/50 text-cs-dark-blue/80 hover:border-cs-electric/40 hover:text-cs-dark-blue transition-colors"
-              >
-                {term.abbreviation ?? term.term}
-              </a>
-            ))}
+            {terms.map((term) =>
+              isIndexableGlossaryTerm(term) ? (
+                <Link
+                  key={term.slug}
+                  href={`/glossary/${term.slug}`}
+                  className="text-sm px-3 py-1.5 rounded-full font-medium border border-cs-gray/50 text-cs-dark-blue/80 hover:border-cs-electric/40 hover:text-cs-dark-blue transition-colors"
+                >
+                  {term.abbreviation ?? term.term}
+                </Link>
+              ) : (
+                <a
+                  key={term.slug}
+                  href={`#${term.slug}`}
+                  className="text-sm px-3 py-1.5 rounded-full font-medium border border-cs-gray/50 text-cs-dark-blue/80 hover:border-cs-electric/40 hover:text-cs-dark-blue transition-colors"
+                >
+                  {term.abbreviation ?? term.term}
+                </a>
+              )
+            )}
           </div>
         </div>
       </section>
@@ -157,17 +173,7 @@ export default function GlossaryPage() {
                   </dt>
                   <dd className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed">
                     {hasPage ? getGlossaryTeaser(term) : term.definition}
-                    {hasPage && (
-                      <span className="block mt-3 text-sm">
-                        <Link
-                          href={`/glossary/${term.slug}`}
-                          className="font-medium text-cs-dark-blue hover:underline underline-offset-2"
-                        >
-                          Read the full definition
-                        </Link>
-                      </span>
-                    )}
-                    {!hasPage && term.source && (
+                    {term.source && (
                       <span className="block mt-3 text-sm text-cs-dark-gray font-light">
                         Source:{" "}
                         {term.sourceUrl ? (
@@ -182,6 +188,16 @@ export default function GlossaryPage() {
                         ) : (
                           term.source
                         )}
+                      </span>
+                    )}
+                    {hasPage && (
+                      <span className="block mt-3 text-sm">
+                        <Link
+                          href={`/glossary/${term.slug}`}
+                          className="font-medium text-cs-dark-blue hover:underline underline-offset-2"
+                        >
+                          Read the full definition
+                        </Link>
                       </span>
                     )}
                     {term.relatedSlugs && term.relatedSlugs.length > 0 && (

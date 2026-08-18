@@ -5,6 +5,7 @@ import { ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { JsonLd } from "@/components/json-ld"
 import {
+  getGlossaryPageTitle,
   getGlossaryTermBySlug,
   getIndexableGlossaryTerms,
   getRelatedGlossaryTerms,
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const term = getGlossaryTermBySlug(slug)
   if (!term || !isIndexableGlossaryTerm(term)) return {}
 
-  const title = `${term.term}: definition`
+  const title = getGlossaryPageTitle(term)
   const description = term.metaDescription
   const url = `${BASE_URL}/glossary/${term.slug}`
 
@@ -61,7 +62,7 @@ export default async function GlossaryTermPage({ params }: Props) {
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: `${term.term}: definition`,
+            name: getGlossaryPageTitle(term),
             description: term.metaDescription,
             url,
             dateModified: term.lastUpdated,
@@ -93,7 +94,8 @@ export default async function GlossaryTermPage({ params }: Props) {
               {
                 "@type": "ListItem",
                 position: 3,
-                name: term.term,
+                // Matches the visible trail below, which shows the abbreviation.
+                name: term.abbreviation ?? term.term,
                 item: url,
               },
             ],
@@ -148,9 +150,9 @@ export default async function GlossaryTermPage({ params }: Props) {
       <section className="px-6 py-12 md:py-16 bg-white">
         <div className="max-w-3xl mx-auto">
           <div className="space-y-5">
-            {term.explainer.map((paragraph) => (
+            {term.explainer.map((paragraph, i) => (
               <p
-                key={paragraph.slice(0, 48)}
+                key={i}
                 className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed"
               >
                 {paragraph}
@@ -164,9 +166,9 @@ export default async function GlossaryTermPage({ params }: Props) {
                 What this looks like in a program
               </h2>
               <ul className="space-y-3">
-                {term.inPractice.map((item) => (
+                {term.inPractice.map((item, i) => (
                   <li
-                    key={item.slice(0, 48)}
+                    key={i}
                     className="pl-5 border-l-2 border-l-cs-navy/30 text-base text-cs-dark-blue/85 font-light leading-relaxed"
                   >
                     {item}
