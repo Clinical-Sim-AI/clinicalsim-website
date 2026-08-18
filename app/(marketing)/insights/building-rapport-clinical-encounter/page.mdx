@@ -1,0 +1,70 @@
+import { ArticleLayout } from "@/components/article-layout"
+import { ReferencesSection } from "@/components/references-section"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
+
+export const metadata = getPostMetadata("building-rapport-clinical-encounter")
+
+<ArticleLayout post={getPostBySlug("building-rapport-clinical-encounter")}>
+
+Rapport gets talked about as if it were a temperament, something a clinician either brought with them into medicine or did not. The research on how encounters actually open says otherwise. In 112 recorded clinical encounters, clinicians elicited the patient's agenda in 40 of them, 36%, and in those 40 they interrupted the patient after a median of 11 seconds (Singh Ospina et al., Journal of General Internal Medicine 2019). Patients who were left alone to finish took a median of six seconds.
+
+Six seconds. The behavior that patients later describe as a good or bad manner is, in large part, a decision made inside that window, and a decision is something a program can train.
+
+## The first half minute is where it happens
+
+The Singh Ospina findings are worth reading closely because they separate two failures that usually get discussed as one. In 64% of the encounters the clinician never asked what the patient wanted to talk about. In the 36% where they did ask, they interrupted the answer 67% of the time. So the problem is not only that clinicians skip the invitation, it is that the invitation is often issued and then withdrawn before the patient can use it.
+
+Both failures make sense under time pressure. A clinician with a full clinic and an agenda of their own has a reason to steer. What the six-second figure adds is that the steering buys almost nothing: the patient who is allowed to finish is not going to talk for four minutes, and the interruption costs the one piece of information that would have organized the rest of the visit.
+
+## What the relationship actually changes
+
+The honest version of the evidence is that the patient-clinician relationship affects outcomes, and the effect is modest. Kelley, Kraft-Todd, Schapira, Kossowsky, and Riess pooled 13 randomized trials that deliberately manipulated the relationship and found a combined effect of d = 0.11 on healthcare outcomes (p = 0.02). Their own comparison for scale is useful and slightly deflating in both directions: aspirin's effect on myocardial infarction, in the trials they cite, was d = 0.06.
+
+Alongside that, physician communication training raises the odds of patient adherence 1.62 times (Zolnierek and DiMatteo, Medical Care 2009). Neither number supports a claim that better rapport transforms a hospital's results, and neither supports dismissing it as bedside softness. They support the ordinary conclusion that this is a clinical skill with a measurable effect, which is what you would want before spending curriculum time on it.
+
+There is also a payment argument for hospitals, though it should be made carefully. The HCAHPS nurse and doctor communication composites each ask how often staff treated the patient with courtesy and respect, listened carefully, and explained things in a way the patient could understand, and doctor communication rose 0.8 points from 2008 to 2019, the smallest gain of any HCAHPS domain (Beckett et al., Medical Care 2024). That study does not establish why the domain moved least. It does tell you that whatever hospitals have been doing about it has not been the thing that works.
+
+## Three hours of training moved patient ratings
+
+The strongest reason to treat rapport as a skill is that a randomized trial treated it as one and it responded. Riess and colleagues randomized 99 residents and fellows across surgery, medicine, anesthesiology, psychiatry, ophthalmology, and orthopedics to standard postgraduate education or the same education plus three 60-minute empathy training modules. The trained group improved more on patient-rated CARE scores, a difference of 2.2 (p = 0.04), and also improved on decoding facial expressions of emotion.
+
+Three hours is a small enough dose that the result is easy to under-read. It is not evidence that three hours is sufficient, and the trial does not tell us how long the change lasted. What it does rule out is the folk theory that some clinicians have this and others do not, which is the theory that keeps rapport out of curricula and out of remediation plans.
+
+## Write it as behavior or you cannot score it
+
+The Kalamazoo Consensus Statement puts building a relationship first among the seven essential elements of communication in medical encounters, and defines it as establishing trust, rapport, and an ongoing partnership (Makoul, Academic Medicine 2001). The statement treats it as something maintained across the visit rather than accomplished in the opening. That framing is right, and it is still too abstract to score.
+
+"Builds rapport" is not a rubric item. A rater cannot defend it, a learner cannot practice it, and a clinical competency committee cannot act on it. These are rubric items:
+
+- Lets the patient complete their opening statement without interruption.
+- Asks what the patient hoped to cover before setting the agenda.
+- Names the emotion the patient has expressed before adding information.
+- Returns, at least once, to the concern the patient raised first.
+
+Every one of those is visible in a transcript. Every one can be shown back to a learner as a specific sentence, or a specific missing sentence, which is the difference between feedback and a rating. Translating impressions into observable behavior is exactly what the Kalamazoo elements and the Calgary-Cambridge guide were built to do, and it is the step most local assessment tools skip.
+
+## Rapport gets harder in the conversations that matter
+
+The place programs usually practice rapport is a routine history, and that is the place it is easiest. In a goals of care conversation, a new cancer diagnosis, or a disclosure after an error, the same behaviors get much harder to produce: the silence a clinician has to leave is longer, the emotion arrives before the information, and the instinct to fill the gap with facts is strongest precisely when facts are not what is wanted.
+
+So the drill belongs inside the hard case, not beside it. A learner who can elicit an agenda in a sore throat encounter has not shown they can do it when a parent is crying. If the rubric item is going to be used to judge readiness for those conversations, the practice has to happen in them.
+
+## Where practice comes from
+
+The bottleneck is not knowing which behaviors to train. It is repetitions. A learner needs to try the opening of a hard conversation many times, get it wrong, hear why, and try again, and that is more attempts than most standardized patient schedules can absorb for any one learner.
+
+AI patients can carry that volume. Clinicians rehearse the opening 30 seconds of a goals of care conversation as often as they want, by voice, and each session leaves a transcript, so a coach can point to the interruption rather than describe it. The graded encounter, and the feedback that only a person in the room can give, still belong to standardized patients and faculty. Extend the SP program, do not replace it.
+
+[Review unedited ClinicalSim encounters](/examples), or read how we define [rapport](/glossary/rapport) and [bedside manner](/glossary/bedside-manner).
+
+<ReferencesSection references={[
+  { authors: "Singh Ospina N, Phillips KA, Rodriguez-Gutierrez R, et al.", title: "Eliciting the patient's agenda: secondary analysis of recorded clinical encounters", source: "Journal of General Internal Medicine", year: "2019", doi: "10.1007/s11606-018-4540-5" },
+  { authors: "Kelley JM, Kraft-Todd G, Schapira L, Kossowsky J, Riess H", title: "The influence of the patient-clinician relationship on healthcare outcomes: a systematic review and meta-analysis of randomized controlled trials", source: "PLoS ONE", year: "2014", doi: "10.1371/journal.pone.0094207" },
+  { authors: "Riess H, Kelley JM, Bailey RW, Dunn EJ, Phillips M", title: "Empathy training for resident physicians: a randomized controlled trial of a neuroscience-informed curriculum", source: "Journal of General Internal Medicine", year: "2012", doi: "10.1007/s11606-012-2063-z" },
+  { authors: "Makoul G", title: "Essential elements of communication in medical encounters: the Kalamazoo consensus statement", source: "Academic Medicine", year: "2001", doi: "10.1097/00001888-200104000-00021" },
+  { authors: "Zolnierek KB, DiMatteo MR", title: "Physician communication and patient adherence to treatment: a meta-analysis", source: "Medical Care", year: "2009", doi: "10.1097/MLR.0b013e31819a5acc" },
+  { authors: "Beckett MK, Quigley D, Cohea CW, et al.", title: "Trends in HCAHPS survey scores, 2008-2019: a quality improvement perspective", source: "Medical Care", year: "2024", doi: "10.1097/MLR.0000000000002001" },
+  { authors: "Silverman J, Kurtz S, Draper J", title: "Skills for Communicating with Patients", source: "Radcliffe Publishing, 3rd edition", year: "2013" },
+]} />
+
+</ArticleLayout>

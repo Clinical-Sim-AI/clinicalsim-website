@@ -874,7 +874,7 @@ const audiences: Audience[] = [
       "Five of eight HCAHPS measures tied to payment assess communication",
     heroDescription:
       "ClinicalSim gives clinicians voice-based practice in teach-back, discharge, diagnosis, and family conversations. Each session produces a rubric-scored record. ClinicalSim does not predict HCAHPS or readmission outcomes.",
-    lastUpdated: "2026-08-10",
+    lastUpdated: "2026-08-18",
 
     painPoints: [
       {
@@ -888,10 +888,10 @@ const audiences: Audience[] = [
       {
         headline: "The domain that moved least",
         description:
-          "Doctor communication rose 0.8 points from 2007 to 2019, the smallest gain of any HCAHPS domain (Beckett et al., Medical Care 2024). That finding does not identify the cause of the change.",
+          "Doctor communication rose 0.8 points from 2008 to 2019, the smallest gain of any HCAHPS domain (Beckett et al., Medical Care 2024). That finding does not identify the cause of the change.",
         stat: "0.8 points",
         statSource:
-          "Doctor communication gain 2007 to 2019, the smallest HCAHPS gain (Beckett et al., Medical Care 2024)",
+          "Doctor communication gain 2008 to 2019, the smallest HCAHPS gain (Beckett et al., Medical Care 2024)",
       },
       {
         headline: "Readmission penalties reach most hospitals",
@@ -967,6 +967,27 @@ const audiences: Audience[] = [
 
     faqs: [
       {
+        question: "What are the HCAHPS nurse communication measures?",
+        answer:
+          "Communication with Nurses is a three-item HCAHPS composite. It asks how often, during this hospital stay, nurses treated the patient with courtesy and respect, how often nurses listened carefully to the patient, and how often nurses explained things in a way the patient could understand (CMS HCAHPS survey questions). None of the three asks about clinical accuracy, so what the composite scores is respect, listening, and whether an explanation worked.",
+      },
+      {
+        question: "What are the HCAHPS doctor communication questions?",
+        answer:
+          "Communication with Doctors asks the same three questions as the nurse composite, about doctors: how often doctors treated the patient with courtesy and respect, how often doctors listened carefully, and how often doctors explained things in a way the patient could understand (CMS HCAHPS survey questions). Doctor communication rose 0.8 points from 2008 to 2019, the smallest gain of any HCAHPS domain (Beckett et al., Medical Care 2024).",
+      },
+      {
+        question:
+          "What share of a hospital's Total Performance Score is patient experience?",
+        answer:
+          "Patient experience is 25% of a hospital's Total Performance Score under Medicare's Hospital Value-Based Purchasing program, which is funded by a 2% withhold of base operating payments and redistributes about $1.7 billion a year (CMS FY2026 IPPS final rule). Five of the eight HCAHPS measures Medicare pays on are communication measures, roughly 15.6% of the total score (CMS).",
+      },
+      {
+        question: "How do hospitals improve HCAHPS communication scores?",
+        answer:
+          "HCAHPS arrives as a unit or hospital score, weeks after discharge, about the whole stay, so it cannot tell a hospital which clinician needs coaching. Acting on it takes a separate, per-clinician way to see and coach the behaviors the survey asks patients about, which are respect, listening, and explaining. The evidence supports the behaviors: a communication-centered discharge cut 30-day utilization about 30% in a randomized trial (Project RED, Annals of Internal Medicine 2009), and teach-back education cut heart failure readmissions with an odds ratio of 0.40 in a 2023 meta-analysis (Patient Education and Counseling). No study has tested ClinicalSim against HCAHPS scores, and we claim no score-to-survey correlation.",
+      },
+      {
         question:
           "How much of a hospital's Medicare payment depends on communication?",
         answer:
@@ -980,7 +1001,7 @@ const audiences: Audience[] = [
       {
         question: "Why has HCAHPS communication been so hard to move?",
         answer:
-          "Doctor communication rose 0.8 points from 2007 to 2019, the smallest gain of any HCAHPS domain (Beckett et al., Medical Care 2024). That study does not establish why the domain changed less than others. ClinicalSim has not been studied against HCAHPS outcomes.",
+          "Doctor communication rose 0.8 points from 2008 to 2019, the smallest gain of any HCAHPS domain (Beckett et al., Medical Care 2024). That study does not establish why the domain changed less than others. ClinicalSim has not been studied against HCAHPS outcomes.",
       },
       {
         question: "Will this predict our HCAHPS scores?",

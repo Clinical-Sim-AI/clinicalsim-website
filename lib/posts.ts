@@ -21,6 +21,16 @@ export interface Post {
 
 const posts: Post[] = [
   {
+    slug: "building-rapport-clinical-encounter",
+    title: "Building rapport is a set of behaviors, not a personality",
+    description:
+      "Clinicians elicited the patient's agenda in 36% of 112 recorded encounters and interrupted after a median of 11 seconds. Rapport lives in that half minute, and three hours of training moved patient ratings in a randomized trial.",
+    date: "2026-08-18",
+    author: "ClinicalSim Team",
+    readingTime: "8 min read",
+    tags: ["rapport", "communication-training", "Kalamazoo", "Calgary-Cambridge", "empathy", "assessment", "simulation", "medical-education"],
+  },
+  {
     slug: "eol-communication-training-measurement-gap",
     title: "Six of 105: Why End-of-Life Communication Training Has a Measurement Problem",
     description: "A systematic review of 105 studies found only 6 with clear training objectives — none sharing the same outcomes. A pediatric intensivist and palliative care physician explains what this means for fellows learning to navigate the hardest conversations in medicine.",

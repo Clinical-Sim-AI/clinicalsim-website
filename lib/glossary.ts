@@ -83,6 +83,36 @@ export const glossaryTerms: GlossaryTerm[] = [
     lastUpdated: "2026-08-18",
   },
   {
+    slug: "aidet",
+    term: "AIDET (Acknowledge, Introduce, Duration, Explanation, Thank You)",
+    abbreviation: "AIDET",
+    definition:
+      "AIDET is a five-step framework for how staff talk with patients and families, standing for Acknowledge, Introduce, Duration, Explanation, and Thank You. Studer Group, now part of Huron, created it as a foundational tactic for patient communication and is explicit that keywords matter but AIDET is not a script, so what gets standardized is which elements appear in every encounter rather than the sentences used. The stated aims are lower patient anxiety, better adherence, and better clinical outcomes, and hospitals apply it across nursing, medicine, technicians, environmental services, and food service rather than to physicians alone.",
+    source:
+      "Studer Group AIDET framework, described in Liang et al., Supportive Care in Cancer, 2025",
+    sourceUrl: "https://doi.org/10.1007/s00520-025-09570-y",
+    relatedSlugs: ["hcahps", "teach-back-method", "sbar", "bedside-manner", "rapport"],
+    metaTitle: "AIDET: what the five letters mean",
+    metaDescription:
+      "AIDET stands for Acknowledge, Introduce, Duration, Explanation, Thank You. What each step asks for, and how programs actually train it.",
+    explainer: [
+      "Each letter names something the patient can notice. Acknowledge is greeting the patient and whoever else is in the room before anything else happens. Introduce is your name, your role, and what you are there to do, which carries unusual weight in a teaching hospital where a patient meets residents, fellows, and attendings across one morning and often cannot say who is responsible for their care. Duration is a time estimate, for the procedure or for the wait. Explanation is what happens next and why, in words the patient can repeat. Thank You closes the encounter, frequently by thanking the family for their part in it.",
+      "The framework was built for consistency rather than for eloquence, and that is also where teaching it gets hard. A clinician who recites five steps in order sounds like a clinician reciting five steps, so the skill being trained is the judgment underneath: how much duration detail this particular patient needs, whether the explanation actually landed, and when the acknowledgment has to come before the agenda rather than after it. Teach-back sits naturally on top of the E, because it tests whether the explanation worked instead of whether it happened.",
+      "There is evidence that the framework trains better through practice than through lecture. Liang and colleagues studied 117 third-year postgraduate residents at Sun Yat-sen University Cancer Center, comparing conventional lecture-based teaching against situational simulation combined with AIDET, both three hours and both delivered by the same instructors, and reported higher SEGUE Framework scores in the simulation arm (22 versus 18, p < 0.001) and higher standardized patient CARE ratings (45 versus 43, p < 0.001). The comparison was simulation plus AIDET against a lecture at a single center, so it does not separate the framework from the teaching method that carried it.",
+      "AIDET's institutional pull comes from HCAHPS. The nurse and doctor communication sub-measures each ask how often staff treated the patient with courtesy and respect, listened carefully, and explained things in a way the patient could understand, which is close to what the A and the E ask a clinician to do. That alignment is why AIDET turns up in service excellence programs, and also why it is so often rolled out as an audit checklist. Programs that get more out of it treat the five steps as behaviors a coach can point to in a recording, rather than as boxes a staff member confirms they ticked.",
+    ],
+    inPractice: [
+      "Asking staff whether they used AIDET produces a completion rate. Scoring a recorded encounter against the five behaviors produces something a coach can work with.",
+      "The Introduce step does the most work in a teaching hospital, where role confusion is the patient's ordinary experience rather than an exception.",
+      "Teach-back is the check on Explanation, so programs that train AIDET without it can confirm the explanation was given and nothing about whether it worked.",
+    ],
+    relatedLinks: [
+      { href: "/audiences/quality-and-patient-experience", label: "Communication training for quality and patient experience teams" },
+      { href: "/solutions/faculty-development", label: "Faculty development for communication coaching" },
+    ],
+    lastUpdated: "2026-08-18",
+  },
+  {
     slug: "ask-tell-ask",
     term: "Ask-Tell-Ask",
     definition:
@@ -137,6 +167,33 @@ export const glossaryTerms: GlossaryTerm[] = [
     lastUpdated: "2026-08-18",
   },
   {
+    slug: "bedside-manner",
+    term: "Bedside Manner",
+    definition:
+      "Bedside manner is the everyday name for how a clinician conducts themselves with a patient: whether they greet the person, sit down, let the patient finish, respond to distress, and explain things the patient can repeat back. It is a lay term rather than a technical one, and the behaviors it points at are the ones formal frameworks name precisely, starting with the first of the seven essential elements in the Kalamazoo Consensus Statement, building a relationship, which asks the clinician to establish trust, rapport, and an ongoing partnership. Because bedside manner is observable behavior rather than personality, it can be taught, watched, and scored.",
+    source: "Makoul G, Academic Medicine, 2001 (Kalamazoo Consensus Statement)",
+    sourceUrl: "https://doi.org/10.1097/00001888-200104000-00021",
+    relatedSlugs: ["rapport", "aidet", "teach-back-method", "high-stakes-conversations", "hcahps"],
+    metaDescription:
+      "Bedside manner is a lay word for behaviors that frameworks name precisely. What it covers, whether it can be trained, and how to observe it.",
+    explainer: [
+      "The phrase is vague and the behaviors underneath it are not. When a patient says a physician had a poor bedside manner, they are usually describing something specific that happened: the doctor talked over them, stood in the doorway, answered a question they had not asked, or left before they could ask the one they had. Singh Ospina and colleagues coded 112 recorded clinical encounters and found the clinician elicited the patient's agenda in 40 of them, 36%, and in the encounters where the agenda was elicited the clinician interrupted in 67% of them, after a median of 11 seconds. Patients who were left to finish took a median of six seconds.",
+      "The relationship itself has a measurable effect on outcomes, though a modest one. Kelley, Kraft-Todd, Schapira, Kossowsky, and Riess pooled 13 randomized trials that manipulated the patient-clinician relationship and found a combined effect of d = 0.11 on healthcare outcomes (p = 0.02). The authors' own framing of that number is worth keeping: it is small, and it is on the same order as aspirin's effect on myocardial infarction in the trials they cite (d = 0.06). Nobody should promise a program that better bedside manner will transform its outcomes, and nobody should dismiss an effect that size either.",
+      "The more useful finding for a program is that this is trainable. Riess and colleagues randomized 99 residents and fellows across surgery, medicine, anesthesiology, psychiatry, ophthalmology, and orthopedics to standard postgraduate education or the same education plus three 60-minute empathy training modules, and the trained group showed a greater improvement in patient-rated CARE scores (difference 2.2, p = 0.04). Three hours is a small dose. The result argues against the folk theory that a clinician either has bedside manner or does not.",
+      "For assessment, the term has to be broken into items a rater can defend. \"Poor bedside manner\" is not a finding a clinical competency committee can act on, and it is not something a learner can practice. \"Interrupts the patient's opening statement\" and \"acknowledges the emotion before giving more information\" are, and both can be found in a transcript. That translation from impression to observable behavior is what published frameworks such as Calgary-Cambridge and the Kalamazoo essential elements exist to do.",
+    ],
+    inPractice: [
+      "A complaint about bedside manner is worth converting into two or three named behaviors before anyone designs a remediation plan around it.",
+      "Programs that score communication from a transcript can show a learner the sentence that caused the problem, which a summary rating cannot.",
+      "The opening 30 seconds of an encounter carry a disproportionate amount of what patients later describe as manner, so it is worth rehearsing on its own.",
+    ],
+    relatedLinks: [
+      { href: "/solutions/remediation", label: "Communication remediation for struggling learners" },
+      { href: "/examples", label: "Example simulation encounters" },
+    ],
+    lastUpdated: "2026-08-18",
+  },
+  {
     slug: "chse",
     term: "Certified Healthcare Simulation Educator (CHSE)",
     abbreviation: "CHSE",
@@ -146,8 +203,8 @@ export const glossaryTerms: GlossaryTerm[] = [
     sourceUrl: "https://www.ssih.org/chse",
     relatedSlugs: ["aspe", "standardized-patient", "osce"],
     metaDescription:
-      "What the CHSE credential is, who is eligible, and what the SSH exam blueprint actually tests, written for simulation and GME leaders.",
-    metaTitle: "CHSE: Healthcare Simulation Educator",
+      "The Certified Healthcare Simulation Educator (CHSE) is an SSH credential. Who is eligible, what the exam covers, and the three-year cycle.",
+    metaTitle: "Certified Healthcare Simulation Educator",
     explainer: [
       "SSH lists four eligibility criteria for the CHSE and a candidate has to meet all of them: participation in healthcare simulation in an educational role, focused simulation expertise with learners in undergraduate, graduate, allied health, or practitioner groups, a bachelor's degree or an equivalent combination of education and experience, and two years of documented continued use of simulation in healthcare education, research, or administration. Candidates without a bachelor's degree can ask the SSH Council for Certification to review an equivalency based on combined education and experience.",
       "Exam content comes from a blueprint that SSH rebuilt after an international practice analysis conducted between November 2022 and July 2023. The 2024 blueprint weights four domains: Professional Values, Capabilities, and Leadership at 20 percent, Healthcare and Simulation Knowledge and Practices at 28 percent, Educational Principles Applied to Simulation at 40 percent, and Simulation Resources and Environments at 12 percent. The weighting tells you what the credential is really about, because two fifths of the exam rests on educational principles rather than on equipment or logistics.",
@@ -256,8 +313,9 @@ export const glossaryTerms: GlossaryTerm[] = [
     source: "INACSL Healthcare Simulation Standards of Best Practice: The Debriefing Process (2021)",
     sourceUrl: "https://doi.org/10.1016/j.ecns.2021.08.011",
     relatedSlugs: ["prebriefing", "pearls-debriefing", "plus-delta-debriefing", "psychological-safety-in-simulation"],
+    metaTitle: "Debriefing in healthcare simulation",
     metaDescription:
-      "How the INACSL standard defines debriefing in healthcare simulation, the phases it names, and what faculty need to lead one well.",
+      "Debriefing is the facilitated conversation after a simulated encounter. How the INACSL standard defines it, its phases, and who leads it.",
     explainer: [
       "The INACSL standard treats debriefing as one of three related techniques that a program can use after a simulation, alongside feedback and guided reflection. Feedback is unidirectional, with information passing from a facilitator, a peer, a simulated person, or a device to the learner. Guided reflection asks the learner to explore the critical elements of the experience, sometimes through journaling or open discussion rather than a live conversation. Debriefing sits between them as a two-way exchange, and the standard is clear that no single technique is preferential, so many programs blend all three depending on the learner and the objective.",
       "A structured debrief moves through named phases. The standard describes a description phase, where learners are reminded of the objectives and the purpose of the conversation, a reaction or defuse phase, where learners say how the encounter felt, an analysis or discovery phase, where the facilitator explores the learner's thinking and surfaces knowledge gaps, and a summary or application phase, where the group names insights and decides how they transfer to patient care. Published frameworks order these differently. PEARLS opens with reactions before description, which is worth knowing if your faculty were trained on more than one model.",
@@ -312,7 +370,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     sourceUrl: "https://www.acgme.org/globalassets/pfassets/programrequirements/2025-reformatted-requirements/institutionalrequirements_2025_reformatted.pdf",
     relatedSlugs: ["gme", "ccc", "remediation", "milestones"],
     metaDescription:
-      "The DIO holds institutional authority over a Sponsoring Institution's ACGME-accredited programs, working with the GMEC. Duties and scope.",
+      "A Designated Institutional Official holds authority over a Sponsoring Institution's ACGME-accredited programs. Duties, scope, and GMEC role.",
     explainer: [
       "The ACGME Institutional Requirements state that a Sponsoring Institution must identify a designated institutional official, and that this individual, in collaboration with a Graduate Medical Education Committee, must have authority and responsibility for the oversight and administration of each of the institution's ACGME-accredited programs, as well as for ensuring compliance with the Institutional, Common, specialty-specific Program, and Recognition Requirements. The DIO and the GMEC are paired by design, so the role is oversight exercised through a committee rather than by one person acting alone.",
       "The specific duties named in the requirements are concrete. The DIO approves the program letters of agreement that govern the relationship between each program and each participating site providing a required rotation, oversees the Annual Update submissions for every program and for the institution, and, after GMEC approval, oversees applications for accreditation and recognition, voluntary withdrawals, and requests to change program complements. Separately, the institution must identify a governing body, which is the single entity holding authority over the Sponsoring Institution and its programs.",
@@ -470,6 +528,37 @@ export const glossaryTerms: GlossaryTerm[] = [
     lastUpdated: "2026-08-18",
   },
   {
+    slug: "hcahps",
+    term: "HCAHPS (Hospital Consumer Assessment of Healthcare Providers and Systems)",
+    abbreviation: "HCAHPS",
+    definition:
+      "HCAHPS is the national survey CMS uses to collect and publicly report how patients experienced their hospital stay, including how the hospital's clinicians communicated with them. The National Quality Forum endorsed the survey in May 2005, results appear on Care Compare, and they feed the Hospital Value-Based Purchasing program. Two of its publicly reported sub-measures are communication composites: Communication with Nurses and Communication with Doctors each combine three items asking how often staff treated the patient with courtesy and respect, listened carefully, and explained things in a way the patient could understand.",
+    source:
+      "CMS HCAHPS, Crosswalk of Updated HCAHPS Survey Questions into Publicly Reported Sub-Measures",
+    sourceUrl:
+      "https://hcahpsonline.org/globalassets/hcahps/updated-hcahps-survey/crosswalk-of-updated-hcahps-survey-questions-to-sub-measures-.pdf",
+    relatedSlugs: ["aidet", "teach-back-method", "bedside-manner", "rapport", "sbar"],
+    metaTitle: "HCAHPS: what the survey measures",
+    metaDescription:
+      "HCAHPS is the CMS patient experience survey behind value-based purchasing. The nurse and doctor communication items, and what they can show.",
+    explainer: [
+      "The communication composites are three questions each, and reading them plainly is the fastest way to understand what the survey rewards. For nurses: during this hospital stay, how often did nurses treat you with courtesy and respect, how often did nurses listen carefully to you, and how often did nurses explain things in a way you could understand. The doctor composite asks the identical three questions about doctors. Nothing in either composite asks about clinical accuracy, so what a hospital is being scored on there is respect, listening, and whether an explanation worked.",
+      "The payment weight is real and it sits mostly on communication. Medicare withholds 2% of base operating payments and redistributes about $1.7 billion a year through value-based purchasing, patient experience is 25% of that score (CMS FY2026 IPPS final rule), and five of the eight HCAHPS measures Medicare pays on are communication measures, roughly 15.6% of a hospital's total value-based purchasing score (CMS).",
+      "The survey itself is changing. CMS has published a crosswalk mapping the updated HCAHPS questions into the sub-measures that will be publicly reported on Care Compare and the Provider Data Catalog beginning with the October 2026 refresh, and the updated set adds sub-measures for Care Coordination and Restfulness of Hospital Environment alongside the existing composites. The three nurse communication items and the three doctor communication items carry through unchanged, which is a useful signal about how stable CMS considers that part of the instrument.",
+      "What HCAHPS cannot do is tell a hospital which clinician needs coaching. A patient answers about the whole stay, weeks after discharge, and the result arrives as a unit or hospital score rather than an individual one. That is one reason the domain has been so hard to move: doctor communication rose 0.8 points from 2008 to 2019, the smallest gain of any HCAHPS domain (Beckett et al., Medical Care 2024), and that study does not establish why. A program that wants to act on the score needs a separate, per-clinician way to see and coach the behavior the survey is asking patients about.",
+    ],
+    inPractice: [
+      "Hospitals that map their communication training to the six composite items can say which of the three behaviors, respect, listening, or explaining, each session actually rehearsed.",
+      "HCAHPS is a program-level signal on a lag, so pairing it with a per-clinician practice record is what makes it coachable.",
+      "No training vendor, ClinicalSim included, should promise a score change. Scoring a conversation against a published communication framework is not a prediction of a survey result.",
+    ],
+    relatedLinks: [
+      { href: "/audiences/quality-and-patient-experience", label: "Communication training for quality and patient experience teams" },
+      { href: "/insights/hospital-communication-training-roi", label: "The business case for hospital communication training" },
+    ],
+    lastUpdated: "2026-08-18",
+  },
+  {
     slug: "high-fidelity-simulation",
     term: "High-Fidelity Simulation",
     definition:
@@ -609,8 +698,9 @@ export const glossaryTerms: GlossaryTerm[] = [
     source: "SSH Healthcare Simulation Dictionary",
     sourceUrl: "https://www.ssih.org/healthcare-simulation-dictionary",
     relatedSlugs: ["task-trainer", "high-fidelity-simulation", "simulation-fidelity", "sim-lab"],
+    metaTitle: "Manikin in healthcare simulation",
     metaDescription:
-      "Manikin, defined for simulation programs: what these patient simulators do, how they differ from task trainers, and where they stop short.",
+      "Manikin, or mannequin, is a full or partial body patient simulator. What they do, how they differ from task trainers, where they stop.",
     explainer: [
       "Programs buy manikins to make physical care visible. A resident can feel a pulse disappear, watch a rhythm change on the monitor, and see whether the team started compressions in time, and none of that happens with a slide deck or a written case. That is why the manikin sits at the center of most code, airway, and crisis resource management curricula.",
       "The limit shows up the moment the learning objective moves from the body to the conversation. A manikin can deteriorate on cue, but it cannot hold a resident's gaze, ask what the scan means, or fall silent after hearing that treatment is not working. Programs that try to teach goals of care around a manikin usually end up with faculty speaking for the patient from the control room, which learners read as a script rather than a person.",
@@ -713,6 +803,34 @@ export const glossaryTerms: GlossaryTerm[] = [
     lastUpdated: "2026-08-18",
   },
   {
+    slug: "motivational-interviewing",
+    term: "Motivational Interviewing",
+    definition:
+      "Motivational interviewing is a collaborative, goal-oriented style of communication with particular attention to the language of change, used to strengthen a person's own motivation and commitment to a specific goal by drawing out and exploring their reasons for it in an atmosphere of acceptance and compassion. William Miller and Stephen Rollnick developed the method and set out its current form in the third edition of Motivational Interviewing: Helping People Change in 2013, organized around four processes: engaging, focusing, evoking, and planning. Its core skills are usually taught as OARS, meaning open questions, affirmations, reflections, and summaries.",
+    source:
+      "Miller WR and Rollnick S, Motivational Interviewing: Helping People Change, 3rd edition, 2013",
+    sourceUrl: "https://motivationalinterviewing.org/understanding-motivational-interviewing",
+    relatedSlugs: ["ask-tell-ask", "teach-back-method", "rapport", "high-stakes-conversations", "goals-of-care"],
+    metaDescription:
+      "Motivational interviewing as Miller and Rollnick define it: the four processes, the OARS skills, and why reflections are the hard part.",
+    explainer: [
+      "What makes motivational interviewing distinctive is what the clinician stops doing. The instinct when a patient is not taking a medication is to supply reasons they should, and MI treats that instinct, the righting reflex, as the thing to hold back, because arguments the clinician supplies tend to produce arguments the patient supplies against them. The clinician's job is to draw the reasons out of the patient and then help the patient hear their own.",
+      "The four processes describe a sequence without being a script. Engaging is establishing the working relationship the rest depends on. Focusing is negotiating what this conversation is actually about, which is often not what the visit was booked for. Evoking is where the specific work happens, exploring the patient's own motivation and their ambivalence rather than resolving it for them. Planning follows once the patient's reasons are on the table. A clinician can find themselves back in engaging halfway through planning, and that is normal rather than a failure.",
+      "Of the four OARS skills, reflections are the one that has to be trained. Asking open questions is a habit most clinicians can adopt in an afternoon, and affirmations and summaries follow. Reflecting well means saying back what the patient meant, not what they said, at a level that moves the conversation forward, and getting it slightly wrong is often more useful than getting it exactly right because the patient corrects you. That skill needs repetition with feedback, which is why MI training has always leaned on recorded practice and coding rather than lecture. The Motivational Interviewing Treatment Integrity code exists precisely because MI fidelity is judged from a recording rather than assumed from attendance.",
+      "For a graduate medical education program, MI is the natural companion to the high-stakes conversation curriculum rather than a competitor to it. Breaking bad news, goals of care, and error disclosure all involve moments where the clinician has to hold back the answer and let the patient speak, and MI is the method that names and drills that discipline. Its usual clinical home is behavior change, meaning adherence, substance use, weight, and smoking, but the underlying skill shows up in every conversation where the patient's own reasoning is the thing that has to move.",
+    ],
+    inPractice: [
+      "Programs that add MI usually find open questions arrive quickly and reflections do not, so the practice time belongs on reflections.",
+      "MI fidelity is coded from a recording. A curriculum that cannot produce recordings cannot tell whether its learners are doing MI or doing advice with a friendlier tone.",
+      "The righting reflex is the behavior to watch for in a debrief, because it is the one a well-intentioned clinician defaults to under time pressure.",
+    ],
+    relatedLinks: [
+      { href: "/solutions/longitudinal-curriculum", label: "Building practice into a longitudinal curriculum" },
+      { href: "/examples", label: "Example simulation encounters" },
+    ],
+    lastUpdated: "2026-08-18",
+  },
+  {
     slug: "moulage",
     term: "Moulage",
     definition:
@@ -720,6 +838,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     source: "Society for Simulation in Healthcare, Healthcare Simulation Dictionary",
     sourceUrl: "https://www.ssih.org/healthcare-simulation-dictionary",
     relatedSlugs: ["standardized-patient", "standardized-patient-case", "osce"],
+    metaTitle: "Moulage in healthcare simulation",
     metaDescription:
       "Moulage is the makeup, molds, and props that put a wound or a rash on a simulated patient. What it adds to a scenario, and what it costs.",
     explainer: [
@@ -747,7 +866,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     sourceUrl: "https://doi.org/10.1136/bmj.1.5955.447",
     relatedSlugs: ["standardized-patient", "clinical-reasoning", "millers-pyramid", "deliberate-practice"],
     metaDescription:
-      "What an OSCE is, where the station format came from in 1975, and how programs get more from one than a single annual score per learner.",
+      "An objective structured clinical examination scores learners at timed stations. Where the format came from in 1975, and how to get more from it.",
     metaTitle: "OSCE: Objective Structured Clinical Exam",
     explainer: [
       "The format comes from a 1975 paper in the British Medical Journal by Harden, Stevenson, Downie, and Wilson, who had students rotate round a series of stations in a hospital ward while examiners scored them against check lists agreed in advance. The acronym as programs use it now, with the word clinical in it, arrived with Harden and Gleeson's 1979 paper in Medical Education, which set out station design and scoring in more detail.",
@@ -878,6 +997,34 @@ export const glossaryTerms: GlossaryTerm[] = [
     lastUpdated: "2026-08-18",
   },
   {
+    slug: "rapport",
+    term: "Rapport (Clinical)",
+    definition:
+      "Rapport is the working trust and understanding between a clinician and a patient that the rest of the encounter depends on. The Kalamazoo Consensus Statement names building a relationship, meaning establishing trust, rapport, and an ongoing partnership, as the first of seven essential elements of communication in medical encounters, and treats it as something maintained across the whole visit rather than accomplished in the opening minute. Rapport is visible in behavior a third party can observe, including whether the clinician lets the patient finish, names what the patient appears to be feeling, and returns to the concern the patient actually raised.",
+    source: "Makoul G, Academic Medicine, 2001 (Kalamazoo Consensus Statement)",
+    sourceUrl: "https://doi.org/10.1097/00001888-200104000-00021",
+    relatedSlugs: ["bedside-manner", "ask-tell-ask", "high-stakes-conversations", "aidet", "motivational-interviewing"],
+    metaTitle: "Building rapport with patients",
+    metaDescription:
+      "Rapport is behavior, not chemistry. The Kalamazoo element it belongs to, what the evidence shows it changes, and how programs score it.",
+    explainer: [
+      "Treating rapport as a personality trait is what makes it untrainable, and the research on how encounters actually open argues against that reading. Singh Ospina and colleagues coded 112 recorded clinical encounters and found the clinician elicited the patient's agenda in 40 of them, 36%. In those 40, the clinician interrupted after a median of 11 seconds, and 67% of the time. Patients who were allowed to finish took a median of six seconds. Whatever rapport is, a good part of it is a set of decisions in the first half minute that a clinician can be taught to make differently.",
+      "The evidence that the relationship changes outcomes is real and modest. Kelley, Kraft-Todd, Schapira, Kossowsky, and Riess pooled 13 randomized trials that manipulated the patient-clinician relationship and reported a combined effect of d = 0.11 on healthcare outcomes (p = 0.02), and their own comparison for scale is aspirin's effect on myocardial infarction at d = 0.06. Separately, physician communication training raises the odds of patient adherence 1.62 times (Zolnierek and DiMatteo, Medical Care 2009). These are not transformation-sized numbers, and they are large enough to justify curriculum time.",
+      "Rapport is trainable in hours, not years. Riess and colleagues randomized 99 residents and fellows across six specialties to standard postgraduate education or the same education plus three 60-minute empathy training modules, and the trained group improved more on patient-rated CARE scores (difference 2.2, p = 0.04). What that trial does not settle is durability, and three hours of training is a floor rather than a program.",
+      "For assessment, rapport has to be written as behavior or it cannot be scored or coached. \"Builds rapport\" is not an item a rater can defend and not something a learner can practice. \"Lets the patient complete their opening statement without interruption\", \"names the emotion before adding information\", and \"returns to the concern the patient raised first\" are all three, and all three can be found in a transcript. That is the translation the Kalamazoo essential elements and the Calgary-Cambridge guide were built to make, and it is what turns a complaint about a learner's manner into a plan.",
+    ],
+    inPractice: [
+      "Rehearsing only the opening 30 seconds of an encounter is a cheap, high-yield drill, because that is where the agenda is either elicited or lost.",
+      "A rubric item that names an observable behavior can be coached. A rubric item that says builds rapport produces a rating nobody can explain to the learner.",
+      "Rapport gets harder, not easier, in the encounters that matter most, so it is worth practicing inside a goals of care or bad news case rather than only in a routine history.",
+    ],
+    relatedLinks: [
+      { href: "/insights/building-rapport-clinical-encounter", label: "How clinicians build rapport, and how programs can score it" },
+      { href: "/solutions/undergraduate-medical-education", label: "Communication skills in undergraduate medical education" },
+    ],
+    lastUpdated: "2026-08-18",
+  },
+  {
     slug: "remediation",
     term: "Remediation",
     definition:
@@ -902,6 +1049,37 @@ export const glossaryTerms: GlossaryTerm[] = [
       { href: "/solutions/remediation", label: "How communication remediation works with AI patients" },
       { href: "/insights/faculty-hour-problem-communication-remediation", label: "The faculty hour problem in remediation" },
       { href: "/audiences/clinical-competency-committees", label: "Documentation for competency committees" },
+    ],
+    lastUpdated: "2026-08-18",
+  },
+  {
+    slug: "sbar",
+    term: "SBAR (Situation, Background, Assessment, Recommendation)",
+    abbreviation: "SBAR",
+    definition:
+      "SBAR is a four-part structure for a clinical handoff or an urgent escalation: Situation, a concise statement of the problem; Background, the pertinent and brief history; Assessment, what you found and what you think; and Recommendation, what you want to happen. Michael Leonard, Doug Bonacum, and Suzanne Graham developed it at Kaiser Permanente of Colorado, and the Institute for Healthcare Improvement describes it as a concrete way to frame any conversation that needs a clinician's immediate attention and action. Haig and colleagues published an early hospital-wide implementation in the Joint Commission Journal on Quality and Patient Safety in 2006.",
+    source:
+      "Institute for Healthcare Improvement SBAR tool; Haig KM et al., Joint Commission Journal on Quality and Patient Safety, 2006",
+    sourceUrl:
+      "https://www.ihi.org/library/tools/sbar-tool-situation-background-assessment-recommendation",
+    relatedSlugs: ["interprofessional-education", "aidet", "psychological-safety-in-simulation", "high-stakes-conversations"],
+    metaTitle: "SBAR: Situation, Background, Assessment",
+    metaDescription:
+      "SBAR structures an urgent clinical escalation in four parts. What each part carries, why learners drop the R, and how to train it.",
+    explainer: [
+      "The part learners drop is the R. Situation, Background, and Assessment come naturally to anyone who has presented a patient, and then the call ends without a request, leaving the person on the other end to work out what was being asked for. IHI's own wording is blunt about it: the Recommendation is the action requested or recommended, what you want. A nurse who has to say out loud that they want the resident at the bedside now is doing something socially harder than reciting a history, and that is the skill SBAR exists to make routine.",
+      "This is why SBAR is a hierarchy tool as much as a communication tool. The structure gives a junior clinician a sanctioned script for stating an assessment and a request to someone more senior, which is exactly the moment where deference tends to soften a message into a hint. The Joint Commission has repeatedly named communication a leading root cause of sentinel events in Sentinel Event Alert 58, and the failures described there are frequently not missing information but information that was passed along too gently to prompt action.",
+      "SBAR faces the other clinician, which distinguishes it from the patient-facing frameworks it sits beside in a hospital's training catalog. AIDET, teach-back, and the Kalamazoo elements are about the encounter with the patient. SBAR is about the phone call, the escalation, and the handoff, and it belongs to the interprofessional side of a communication curriculum along with tools such as I-PASS and TeamSTEPPS. A program that trains only patient-facing skills leaves the escalations untouched, and those are where the deterioration gets missed.",
+      "The common failure mode is turning SBAR into a form. Once it becomes four boxes in the record, the exchange it was designed to structure stops happening, and staff complete the template after the call rather than using it during. It is a spoken protocol, so training it needs spoken repetition under something like real time pressure, with the recommendation said out loud to a person who might push back. That is difficult to schedule and is the reason most SBAR education stops at a laminated card.",
+    ],
+    inPractice: [
+      "Score the Recommendation separately. A learner who nails Situation, Background, and Assessment and never states a request has not completed an SBAR.",
+      "Escalation practice needs a listener who can push back, because the skill is holding the recommendation, not reciting it.",
+      "SBAR belongs with the interprofessional part of a communication curriculum, alongside I-PASS and TeamSTEPPS, rather than with the patient-facing frameworks.",
+    ],
+    relatedLinks: [
+      { href: "/audiences/risk-and-patient-safety", label: "Communication training for risk and patient safety teams" },
+      { href: "/methodology", label: "The frameworks ClinicalSim scores against" },
     ],
     lastUpdated: "2026-08-18",
   },
@@ -941,8 +1119,9 @@ export const glossaryTerms: GlossaryTerm[] = [
     source: "SSH Healthcare Simulation Dictionary (Simulation Environment)",
     sourceUrl: "https://www.ssih.org/healthcare-simulation-dictionary",
     relatedSlugs: ["in-situ-simulation", "manikin", "task-trainer", "high-fidelity-simulation"],
+    metaTitle: "Sim lab: inside a simulation center",
     metaDescription:
-      "Sim lab is the common name for a simulation facility, what SSH calls the simulation environment. What one holds and where its limits show.",
+      "Sim lab, or sim center, is a dedicated simulation facility. What SSH calls the simulation environment, what one holds, and its limits.",
     explainer: [
       "Two things make a room a sim lab rather than a classroom with a manikin in it. The first is control, meaning a space where a scenario can be run, paused, recorded, and reset with no real patient anywhere near it. The second is the debriefing room, because the learning happens in the conversation after the scenario, and a program with no dedicated place for that conversation tends to shorten or skip it.",
       "The safe atmosphere in the dictionary definition is a design requirement rather than a sentiment. Sightlines from hallways, who is allowed to watch a recording, whether performance data reaches the competency committee, and how the prebrief states all of that determine whether learners take the risks that make simulation worth running at all.",
