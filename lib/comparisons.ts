@@ -124,6 +124,106 @@ const comparisons: Comparison[] = [
     ],
   },
   {
+    slug: "ai-patient-simulation-vs-avatar-role-play-platforms",
+    title: "AI patient simulation vs. avatar role-play platforms",
+    metaTitle: "AI patient simulation vs. avatar role-play platforms",
+    metaDescription:
+      "How AI patient simulation and avatar-based role-play platforms compare for clinical communication training: who plays the other party, what the case content is drawn from, how performance is scored, and what evidence each produces.",
+    heroHeadline: "AI patient simulation vs. avatar role-play platforms",
+    intro:
+      "Both categories give learners a simulated conversation partner. Avatar role-play platforms were built for professional and interpersonal skills across industries and present a visual avatar. AI patient simulation is built for the clinical encounter, runs by voice, and scores against published clinical communication frameworks. Compare what each was designed to assess and what record it leaves behind.",
+    optionALabel: "AI patient simulation",
+    optionBLabel: "Avatar role-play platforms",
+    rows: [
+      {
+        dimension: "What the category was built for",
+        optionA:
+          "The clinical encounter, including breaking bad news, goals of care, informed consent, and family meetings.",
+        optionB:
+          "Interpersonal and professional conversations across industries, such as management, sales, and customer interactions, with healthcare as one vertical among several.",
+      },
+      {
+        dimension: "Who plays the other party",
+        optionA:
+          "An AI patient that responds to whatever the learner says, with no human operator in the session.",
+        optionB:
+          "An avatar, which depending on the platform is driven by software or by a trained specialist operating it live. Check which model a given product uses.",
+      },
+      {
+        dimension: "Scheduling",
+        optionA:
+          "On demand, including outside business hours, because no second person has to be present.",
+        optionB:
+          "On demand where the avatar is software-driven. Where a live operator is involved, sessions are booked like an SP encounter.",
+      },
+      {
+        dimension: "How the learner responds",
+        optionA:
+          "Spoken conversation in the learner's own words, on a browser and a microphone.",
+        optionB:
+          "Spoken or typed depending on the product, presented through a 2D or 3D avatar and sometimes a VR headset.",
+      },
+      {
+        dimension: "Where case content comes from",
+        optionA:
+          "Cases written from clinical literature and reviewed by clinicians, with the patient's history, affect, and response rules specified.",
+        optionB:
+          "Scenario libraries built for the platform's target skills. Clinical depth depends on whether the vendor authors clinical content and who reviews it.",
+      },
+      {
+        dimension: "What performance is scored against",
+        optionA:
+          "Published clinical communication frameworks such as SPIKES and Calgary-Cambridge, mapped to the ACGME Milestones, with every rating citing transcript evidence.",
+        optionB:
+          "The platform's own behavioral competency model. Ask whether it maps to the accreditation framework your program reports against.",
+      },
+      {
+        dimension: "What a program can put in front of a CCC",
+        optionA:
+          "A timestamped, rubric-scored record with the learner's actual words available for review.",
+        optionB:
+          "Varies. Completion and behavioral analytics are common; transcript-level evidence tied to a milestone is not a given.",
+      },
+      {
+        dimension: "Relationship to standardized patients",
+        optionA:
+          "Extends an SP program by carrying the repetitions between graded encounters. It does not replace them.",
+        optionB:
+          "Positioned as practice rather than assessment in most products, so the same rule applies.",
+      },
+    ],
+    lastUpdated: "2026-08-18",
+    relatedSolutionSlugs: ["remediation", "longitudinal-curriculum"],
+    relatedPostSlugs: [
+      "building-rapport-clinical-encounter",
+      "what-learners-want-from-ai-sps",
+    ],
+    faqs: [
+      {
+        question:
+          "What is the difference between AI patient simulation and an avatar role-play platform?",
+        answer:
+          "AI patient simulation is built for the clinical encounter: the case content comes from clinical literature, the learner speaks to an AI patient, and the session is scored against published clinical communication frameworks and mapped to the ACGME Milestones. Avatar role-play platforms were built for interpersonal and professional skills across industries and present a visual avatar, which in some products is operated live by a trained specialist. The practical questions for a program are who authored the clinical content, what framework the scoring rests on, and whether the learner's words are preserved for review.",
+      },
+      {
+        question:
+          "Can an avatar role-play platform be used for clinical communication training?",
+        answer:
+          "It depends on what the program needs the session to prove. For general interpersonal practice, an avatar platform can give learners repetitions. For a program that has to defend a competency judgment, the requirements are clinical case content with a documented source, scoring tied to a framework the program already reports against, and transcript evidence a reviewer can inspect. Ask any vendor in either category for those three things rather than for a demo.",
+      },
+      {
+        question: "Does clinical communication training need a VR headset?",
+        answer:
+          "The skill being trained in a high-stakes conversation is spoken: what the clinician says, when they pause, and how they respond to emotion. What matters most is whether the learner has to compose and say the words out loud under time pressure, which a browser and a microphone can require. Visual immersion may add value for procedural or environmental scenarios, and hardware also adds cost, distribution, and infection control questions that a program should price before committing.",
+      },
+      {
+        question: "Does either category replace standardized patients?",
+        answer:
+          "No. Both are practice formats. A trained standardized patient can tell a learner how one particular sentence landed and can improvise in ways no rubric anticipated, which is why the graded encounter and the human feedback should stay with SPs and faculty. Extend your SP program, do not replace it.",
+      },
+    ],
+  },
+  {
     slug: "voice-vs-text-virtual-patient-simulation",
     title: "Voice-based vs. text-based AI patient simulation",
     metaTitle:
