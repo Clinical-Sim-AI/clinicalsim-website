@@ -38,6 +38,9 @@ export default function MarketingLayout({
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
+            // Stable node id so per-article `isPartOf` references resolve to
+            // this WebSite rather than dangling.
+            "@id": "https://clinicalsim.ai/#website",
             name: "ClinicalSim.ai",
             url: "https://clinicalsim.ai",
             description:

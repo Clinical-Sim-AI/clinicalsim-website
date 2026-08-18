@@ -73,6 +73,16 @@ const authors: Author[] = [
   },
 ]
 
+/**
+ * Canonical entity URL for an author: their card on /about. Article author
+ * schema, the /about Person schema, and the visible bio block all point here so
+ * a crawler resolves the post author and the /about person to one entity.
+ * The fragment is the author `id`, which is already the card's DOM id.
+ */
+export function getAuthorUrl(id: string): string {
+  return `https://clinicalsim.ai/about#${id}`
+}
+
 export function getAuthorById(id: string): Author | undefined {
   return authors.find((author) => author.id === id)
 }

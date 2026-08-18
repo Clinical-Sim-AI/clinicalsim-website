@@ -6,6 +6,7 @@ import { AudienceCard } from "@/components/audience-card"
 import { Reveal } from "@/components/reveal"
 import { getAllSolutions } from "@/lib/solutions"
 import { JsonLd } from "@/components/json-ld"
+import { VideoObjectSchema } from "@/components/video-object-schema"
 import { ArrowRight } from "lucide-react"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
@@ -212,6 +213,16 @@ export default function HomePage() {
            see the product inside the first three screenfuls. */}
       <section className="px-6 py-16 md:py-24 bg-cs-cloud">
         <div className="max-w-5xl mx-auto">
+          {/* Fields read off Loom's oEmbed and share metadata for this video.
+              transcript is omitted until a real one exists. */}
+          <VideoObjectSchema
+            name="ClinicalSim demo: counseling vaccine hesitancy for a two-month-old"
+            description="A learner works through a vaccine hesitancy conversation with a ClinicalSim AI patient, then reviews the rubric-scored feedback and the transcript evidence behind each score."
+            thumbnailUrl="https://cdn.loom.com/sessions/thumbnails/3eacd20486a74b5c80a4ab7ba60b0308-1df353d4e4c664a3.gif"
+            uploadDate="2026-06-28"
+            embedUrl="https://www.loom.com/embed/3eacd20486a74b5c80a4ab7ba60b0308"
+            duration="PT9M22S"
+          />
           <DemoVideoSection
             title="See ClinicalSim in action"
             description="Hear a learner work through a vaccine hesitancy conversation with an AI patient, and see the rubric-scored feedback that follows."

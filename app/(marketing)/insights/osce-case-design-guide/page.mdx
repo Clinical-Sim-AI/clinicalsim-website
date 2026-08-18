@@ -1,4 +1,5 @@
 import { ArticleLayout } from "@/components/article-layout"
+import { ReferencesSection } from "@/components/references-section"
 import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
 export const metadata = getPostMetadata("osce-case-design-guide")
@@ -48,5 +49,13 @@ Use the pilot to revise the case, rubric, and rater guidance. A polished script 
 AI patients can add repeatable spoken practice before an OSCE. They are useful when learners need another attempt and faculty need transcript evidence to guide coaching. Standardized patients and faculty should keep the live assessment and human judgment that high-stakes decisions require.
 
 [Review unedited ClinicalSim encounters](/examples).
+
+<ReferencesSection references={[
+  { authors: "Cook DA, Brydges R, Ginsburg S, Hatala R", title: "A contemporary approach to validity arguments: a practical guide to Kane's framework", source: "Medical Education", year: "2015", doi: "10.1111/medu.12678" },
+  { authors: "Regehr G, MacRae H, Reznick RK, Szalay D", title: "Comparing the psychometric properties of checklists and global rating scales for assessing performance on an OSCE-format examination", source: "Academic Medicine", year: "1998", doi: "10.1097/00001888-199809000-00020" },
+  { authors: "Boursicot K, Kemp S, Wilkinson T, et al.", title: "Performance assessment: consensus statement and recommendations from the 2020 Ottawa Conference", source: "Medical Teacher", year: "2020", doi: "10.1080/0142159X.2020.1830052" },
+  { authors: "Lewis KL, Bohnert CA, Gammon WL, et al.", title: "The Association of Standardized Patient Educators (ASPE) Standards of Best Practice (SOBP)", source: "Advances in Simulation", year: "2017", doi: "10.1186/s41077-017-0043-4" },
+  { authors: "Pell G, Fuller R, Homer M, Roberts T", title: "How to measure the quality of the OSCE: a review of metrics. AMEE guide no. 49", source: "Medical Teacher", year: "2010", doi: "10.3109/0142159X.2010.507716" },
+]} />
 
 </ArticleLayout>

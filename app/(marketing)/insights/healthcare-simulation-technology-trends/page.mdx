@@ -1,4 +1,5 @@
 import { ArticleLayout } from "@/components/article-layout"
+import { ReferencesSection } from "@/components/references-section"
 import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
 export const metadata = getPostMetadata("healthcare-simulation-technology-trends")
@@ -23,7 +24,11 @@ These formats fit the job when the program needs to see what a learner chooses a
 
 Voice-based AI patients give learners a chance to practice pacing, silence, questions, and responses to emotion. The encounter can be repeated, and the transcript gives the learner and faculty a record to review.
 
-The report should name the framework used and connect each score to evidence in the transcript. It should remain formative evidence, not a verdict about clinical competence.
+The report should name the framework used and connect each score to evidence in the transcript. It should remain formative evidence, not a verdict about clinical competence. Across 109 studies, the BEME review found feedback named more often than any other feature:
+
+> "51 (47%) journal articles reported that educational feedback is the most important feature of simulation-based medical education."
+>
+> Issenberg SB, McGaghie WC, Petrusa ER, Lee Gordon D, Scalese RJ, Medical Teacher, 2005
 
 ## Live coaching
 
@@ -38,5 +43,13 @@ High-stakes decisions require a method designed and validated for that purpose, 
 ClinicalSim fits between live encounters: learners get repeatable voice-based practice, and faculty get transcript evidence they can accept, question, or override.
 
 [Compare communication training methods](/compare).
+
+<ReferencesSection references={[
+  { authors: "INACSL Standards Committee; Watts PI, McDermott DS, Alinier G, et al.", title: "Healthcare Simulation Standards of Best Practice: simulation design", source: "Clinical Simulation in Nursing", year: "2021", doi: "10.1016/j.ecns.2021.08.009" },
+  { authors: "Cook DA, Hatala R, Brydges R, et al.", title: "Technology-enhanced simulation for health professions education: a systematic review and meta-analysis", source: "JAMA", year: "2011", doi: "10.1001/jama.2011.1234" },
+  { authors: "Cook DA, Erwin PJ, Triola MM", title: "Computerized virtual patients in health professions education: a systematic review and meta-analysis", source: "Academic Medicine", year: "2010", doi: "10.1097/ACM.0b013e3181edfe13" },
+  { authors: "Issenberg SB, McGaghie WC, Petrusa ER, Lee Gordon D, Scalese RJ", title: "Features and uses of high-fidelity medical simulations that lead to effective learning: a BEME systematic review", source: "Medical Teacher", year: "2005", doi: "10.1080/01421590500046924" },
+  { authors: "Boursicot K, Kemp S, Wilkinson T, et al.", title: "Performance assessment: consensus statement and recommendations from the 2020 Ottawa Conference", source: "Medical Teacher", year: "2020", doi: "10.1080/0142159X.2020.1830052" },
+]} />
 
 </ArticleLayout>

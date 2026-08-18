@@ -1,17 +1,24 @@
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
-import { JsonLd } from "@/components/json-ld"
-import { AuthorByline } from "@/components/author-byline"
-import { getAuthorById, TEAM_AUTHOR_ID } from "@/lib/authors"
-import type { Post } from "@/lib/posts"
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { JsonLd } from "@/components/json-ld";
+import { AuthorByline } from "@/components/author-byline";
+import { AuthorBio } from "@/components/author-bio";
+import { getAuthorById, getAuthorUrl, TEAM_AUTHOR_ID } from "@/lib/authors";
+import type { Post } from "@/lib/posts";
 
 function buildAuthorSchema(post: Post) {
-  const author = post.authorId ? getAuthorById(post.authorId) : undefined
+  const author = post.authorId ? getAuthorById(post.authorId) : undefined;
 
   if (author && author.id !== TEAM_AUTHOR_ID) {
+    const profileUrl = getAuthorUrl(author.id);
     return {
       "@type": "Person" as const,
+      // Matches the @id on this person's /about card so a crawler resolves the
+      // post author and the team page entry to a single entity.
+      "@id": profileUrl,
+      url: profileUrl,
       name: author.name,
+      description: author.bio,
       ...(author.credentials ? { honorificSuffix: author.credentials } : {}),
       jobTitle: author.title,
       worksFor: {
@@ -23,22 +30,22 @@ function buildAuthorSchema(post: Post) {
       ...(author.sameAs && author.sameAs.length > 0
         ? { sameAs: author.sameAs }
         : {}),
-    }
+    };
   }
 
   return {
     "@type": "Organization" as const,
     name: "ClinicalSim",
     url: "https://clinicalsim.ai",
-  }
+  };
 }
 
 export function ArticleLayout({
   post,
   children,
 }: {
-  post: Post
-  children: React.ReactNode
+  post: Post;
+  children: React.ReactNode;
 }) {
   return (
     <section className="px-6 py-12 md:py-20">
@@ -73,6 +80,14 @@ export function ArticleLayout({
               url: "https://clinicalsim.ai/logo.svg",
             },
           },
+          image: "https://clinicalsim.ai/og-image.png",
+          ...(post.tags.length > 0 ? { keywords: post.tags.join(", ") } : {}),
+          isPartOf: {
+            "@type": "WebSite",
+            "@id": "https://clinicalsim.ai/#website",
+            name: "ClinicalSim.ai",
+            url: "https://clinicalsim.ai",
+          },
           mainEntityOfPage: {
             "@type": "WebPage",
             "@id": `https://clinicalsim.ai/insights/${post.slug}`,
@@ -92,6 +107,9 @@ export function ArticleLayout({
           <div className="flex items-center gap-3 text-sm text-cs-dark-gray font-light mb-4">
             <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString("en-US", {
+                // Registry dates are bare ISO days. Without an explicit
+                // zone, toLocaleDateString shifts them a day west of UTC.
+                timeZone: "UTC",
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -99,6 +117,24 @@ export function ArticleLayout({
             </time>
             <span>&middot;</span>
             <span>{post.readingTime}</span>
+            {post.dateModified && post.dateModified !== post.date && (
+              <>
+                <span>&middot;</span>
+                <span>
+                  Updated{" "}
+                  <time dateTime={post.dateModified}>
+                    {new Date(post.dateModified).toLocaleDateString("en-US", {
+                      // Registry dates are bare ISO days. Without an explicit
+                      // zone, toLocaleDateString shifts them a day west of UTC.
+                      timeZone: "UTC",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
+                </span>
+              </>
+            )}
           </div>
           <h1 className="text-3xl md:text-4xl font-light text-cs-dark-blue mb-4">
             {post.title}
@@ -118,6 +154,9 @@ export function ArticleLayout({
                   {" · "}
                   <time dateTime={post.reviewedDate}>
                     {new Date(post.reviewedDate).toLocaleDateString("en-US", {
+                      // Registry dates are bare ISO days. Without an explicit
+                      // zone, toLocaleDateString shifts them a day west of UTC.
+                      timeZone: "UTC",
                       year: "numeric",
                       month: "long",
                       day: "numeric",
@@ -129,10 +168,10 @@ export function ArticleLayout({
           )}
         </div>
 
-        <div className="border-t border-cs-gray/50 pt-8">
-          {children}
-        </div>
+        <div className="border-t border-cs-gray/50 pt-8">{children}</div>
+
+        <AuthorBio authorId={post.authorId} />
       </article>
     </section>
-  )
+  );
 }
