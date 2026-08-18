@@ -218,23 +218,94 @@ authority, not content, and the budget should shift entirely to section 8.
 
 ---
 
-## 8. The parallel track, which is the actual unlock
+## 8. Backlinks: the actual unlock, revised 2026-08-18 after pulling link data
 
-At Authority Score 2 with 40 referring domains, content quality is not the binding constraint.
-Backlink acquisition is, and it is outreach work rather than site work, so it sits outside every
-tranche above:
+At Authority Score 2 content quality is not the binding constraint. Backlinks are. Pulling the
+actual link profiles changed this section materially from the first draft, so read this version
+rather than the summary in section 1.
 
-- healthysimulation.com coverage (AS 38, 2,537 referring domains, and the most relevant single
-  domain in the category)
-- IPSSW and IMSH presentation and abstract pages, which produce .org and .edu links as a
-  byproduct of work the team is already doing
-- research partner institutional pages at the pilot sites, which are .edu links tied to real
-  collaborations rather than placements
+### 8.1 The 40 referring domains are spam, so the real baseline is zero
 
-None of the KD 30-plus targets in this report are realistically reachable until that number
-moves. The KD 6 to 26 targets are, which is why this tranche was scoped to them.
+Every one of the 40 referring domains to clinicalsim.ai is junk. The highest authority among them
+is `bye.fyi` at AS 21. The rest are auto-generated scraper and PBN networks: `analyticshaven.top`,
+`optimizeflow.top`, `atomizelink.icu`, `blogsphere.top`, `metamagic.top`, `creativeposts.top`,
+`dailymusings.top`, `casinooftheking.com`, `hotonlinegaming.com`, `plrdownloadshub.com`,
+`digitalseotool.com`, `newblogerseo.com`, `wecelebrities.com`. Almost all sit at AS 2 to 6 with
+exactly two backlinks each, and the first-seen dates cluster in the last few months, so the
+profile is still accruing.
 
----
+There is not one editorial link in the set. Two practical consequences: never read 40 referring
+domains as progress, because the honest baseline is zero, and do not spend time on a disavow file,
+because Google already discounts this class of link and it is not what is holding the domain back.
+
+### 8.2 VitalTalk is the model, and its authority is citations plus .edu curriculum pages
+
+VitalTalk reached AS 29 with what looks like no PR budget at all. Its profile is the one worth
+copying, because the organization is the closest analogue to ClinicalSim: clinician-led,
+evidence-first, selling into the same programs.
+
+| Source type | Domains, with link counts |
+| --- | --- |
+| Academic citation | nih.gov 19, springer.com 20, cambridge.org 6, biomedcentral.com 5, wiley.com 3, mdpi.com 4, nature.com, arxiv.org |
+| University curriculum and resource pages | upenn.edu 24, harvard.edu 12, umich.edu 12, utah.edu 10, yale.edu 4, stanford.edu 3, columbia.edu 3, cornell.edu, berkeley.edu, wisc.edu, osu.edu, usc.edu |
+| Clinical media | medscape.com 5, hopkinsmedicine.org |
+
+Those are two mechanisms, not two lists. The publisher links are reference-list citations in
+published papers. The .edu links are programs pointing learners at the resource they recommend.
+Both compound and neither can be bought.
+
+### 8.3 Body Interact shows that every deployment is a link
+
+Body Interact (AS 32) adds the customer pattern: `uniba.sk` 258 links, `carnet.hr` 15,
+`uaslp.mx` 12, `tec.mx` 10, `utoronto.ca` 5, plus `unam.mx`, `ulisboa.pt`, `ufsc.br`, `massey.ac.nz`,
+`unipr.it`, `unige.it`, `ucam.edu`. That is institutions linking from course, LMS, and library
+pages. It also holds `aacom.org` and `hosa.org`, both professional associations, and `laerdal.com`
+from a distribution relationship.
+
+The 258 figure is the important one. One satisfied institution that embeds the product in its
+course pages generates more links than any outreach campaign, and it only happens if somebody asks.
+
+### 8.4 Oxford Medical Simulation shows the fast, low-trust lever
+
+OMS reached AS 31 differently: `meta.com` 42 (Quest store listings),
+`welcometothejungle.com` 10 and `glassdoor.com` (job postings), `crunchbase.com`, `pitchbook.com`,
+`builtin.com`, `zoominfo.com`, `cbinsights.com`, `explodingtopics.com` (free company databases),
+and `prnewswire.com` feeding a single release out across seven Hearst television station domains
+at AS 55 to 62 (wesh, wbaltv, wlky, wmur, kmbc, kcci, wyff4). Also `memorialhermann.org`, a
+customer, and `roche.com`, a partner.
+
+None of that requires anyone's permission and none of it carries much trust per link. It is how a
+funded startup pads a profile quickly as a byproduct of hiring and announcing.
+
+### 8.5 The sequence
+
+**Tier 1, this month, needs nobody's approval.** Claim the free company listings (Crunchbase,
+PitchBook, Built In, ZoomInfo, CB Insights, LeadIQ). Post open roles where the posting itself is a
+link. Put one release through PR Newswire on the seed round or the research, which syndicates
+across the local television station groups. This moves the number off 2. It does not earn the
+links that matter, so do not mistake it for the strategy.
+
+**Tier 2, the compounding track, start now and expect years.** Publishing the Advocate feasibility
+study and the University of Chicago coaching study is the single highest-value backlink action
+available, because a PMC or Springer reference-list link is precisely what built VitalTalk's
+profile. The link strategy and the research roadmap are the same roadmap. IPSSW and IMSH abstracts
+run the same mechanism at lower cost and are already happening. MedEdPORTAL is worth a submission
+because it is a citation and an academic link at once. Then ask every pilot site to add ClinicalSim
+to the program's learner resources page: `upenn.edu` at 24 links and `uniba.sk` at 258 are what a
+satisfied institution looks like, and it is an ask rather than a negotiation. Professional bodies
+are the same shape, since AACOM and HOSA both link to Body Interact, so SSH, ASPE, and AAMC are the
+analogues to approach.
+
+**Tier 3, and a correction to my own first draft.** The earlier version of this report named
+healthysimulation.com coverage as the top backlink priority. The link data does not support that
+ranking. It appears nowhere in the top 55 referring domains by authority for Oxford Medical
+Simulation, nor in the top 40 for Body Interact or VitalTalk. It may still link out further down
+those profiles, and it remains the most relevant single publication in the category, so it is worth
+one email. It is not worth a campaign, and it should not have been listed first.
+
+**What not to do.** Do not buy links. The spam profile in 8.1 is what bought links look like, and
+it bought Authority Score 2. Do not expect content alone to move authority either; the ceiling
+finding in section 1 stands.
 
 ## Appendix: figures used in the new pages, and their sources
 
