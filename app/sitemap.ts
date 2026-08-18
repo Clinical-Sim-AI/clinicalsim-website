@@ -4,6 +4,7 @@ import { getAllAudiences } from "@/lib/audiences"
 import { getAllSolutions } from "@/lib/solutions"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
+import { getIndexableGlossaryTerms } from "@/lib/glossary"
 import { RELEASE_NOTES_UPDATED_ISO } from "@/lib/release-notes"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
@@ -15,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const solutions = getAllSolutions()
   const comparisons = getAllComparisons()
   const examples = getAllExamples()
+  const glossary = getIndexableGlossaryTerms()
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -61,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/glossary`,
-      lastModified: new Date("2026-08-10"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.glossary),
       changeFrequency: "monthly",
       priority: 0.7,
     },
@@ -161,6 +163,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
+  // Definitions change rarely and the hub stays the entry point, so term pages
+  // sit below it. Driven by getIndexableGlossaryTerms() so the sitemap and
+  // /llms.txt cannot disagree (lib/llms-coverage.test.ts enforces that).
+  const glossaryPages: MetadataRoute.Sitemap = glossary.map((term) => ({
+    url: `${BASE_URL}/glossary/${term.slug}`,
+    lastModified: new Date(term.lastUpdated),
+    changeFrequency: "yearly" as const,
+    priority: 0.5,
+  }))
+
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${BASE_URL}/insights/${post.slug}`,
     lastModified: new Date(post.dateModified ?? post.date),
@@ -174,6 +186,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...audiencePages,
     ...comparisonPages,
     ...examplePages,
+    ...glossaryPages,
     ...blogPages,
   ]
 }

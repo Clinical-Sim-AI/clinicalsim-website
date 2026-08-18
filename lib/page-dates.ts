@@ -4,6 +4,7 @@
  */
 export const PAGE_DATE_MODIFIED = {
   faq: "2026-08-10",
+  glossary: "2026-08-18",
   home: "2026-08-10",
   insights: "2026-08-10",
   methodology: "2026-08-04",

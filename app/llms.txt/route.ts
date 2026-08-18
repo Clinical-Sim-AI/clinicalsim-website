@@ -3,6 +3,7 @@ import { getAllSolutions } from "@/lib/solutions"
 import { getAllAudiences } from "@/lib/audiences"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
+import { getIndexableGlossaryTerms } from "@/lib/glossary"
 
 const BASE_URL = "https://clinicalsim.ai"
 
@@ -61,9 +62,15 @@ export async function GET() {
     `- [Release notes](${BASE_URL}/help/release-notes): A concise log of customer-visible ClinicalSim changes, newest first.`,
   ].join("\n")
 
+  const glossaryTermPages = getIndexableGlossaryTerms()
+
   const glossaryLines = [
     `\n## Glossary\n`,
-    `- [Glossary](${BASE_URL}/glossary): Clear, sourced definitions of key medical-education and clinical-simulation terms, including competency-based medical education (CBME), EPAs, ACGME Milestones, Clinical Competency Committees, OSCEs, standardized patients, deliberate practice, and remediation.`,
+    `- [Glossary](${BASE_URL}/glossary): Clear, sourced definitions of key medical-education and clinical-simulation terms, including competency-based medical education (CBME), EPAs, ACGME Milestones, Clinical Competency Committees, OSCEs, standardized patients, deliberate practice, and remediation. Terms listed below have their own page.`,
+    ...glossaryTermPages.map(
+      (term) =>
+        `- [${term.term}](${BASE_URL}/glossary/${term.slug}): ${term.metaDescription}`
+    ),
   ].join("\n")
 
   const comparisonLines = [

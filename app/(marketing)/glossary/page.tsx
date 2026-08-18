@@ -3,7 +3,12 @@ import Link from "next/link"
 import { ChevronRight } from "lucide-react"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
-import { getAllGlossaryTerms } from "@/lib/glossary"
+import {
+  getAllGlossaryTerms,
+  getGlossaryTeaser,
+  isIndexableGlossaryTerm,
+} from "@/lib/glossary"
+import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
   title: "Medical education glossary: CBME, EPAs, milestones, and more",
@@ -36,6 +41,7 @@ export default function GlossaryPage() {
       description:
         "Clear, sourced definitions of the medical-education and simulation terms that shape clinical communication training.",
       url: "https://clinicalsim.ai/glossary",
+      dateModified: PAGE_DATE_MODIFIED.glossary,
       isPartOf: {
         "@type": "WebSite" as const,
         name: "ClinicalSim.ai",
@@ -67,12 +73,20 @@ export default function GlossaryPage() {
       description:
         "Definitions of medical-education and clinical-simulation terms relevant to clinical communication training.",
       url: "https://clinicalsim.ai/glossary",
+      // The description has to match what this page shows. Emitting the full
+      // definition here would put the term page's most quotable passage back on
+      // the hub, which is the duplication the teaser refactor exists to avoid,
+      // and Google treats markup richer than the visible page as a violation.
       hasDefinedTerm: terms.map((term) => ({
         "@type": "DefinedTerm" as const,
         name: term.term,
-        description: term.definition,
+        description: isIndexableGlossaryTerm(term)
+          ? getGlossaryTeaser(term)
+          : term.definition,
         ...(term.abbreviation ? { termCode: term.abbreviation } : {}),
-        url: `https://clinicalsim.ai/glossary#${term.slug}`,
+        url: isIndexableGlossaryTerm(term)
+          ? `https://clinicalsim.ai/glossary/${term.slug}`
+          : `https://clinicalsim.ai/glossary#${term.slug}`,
       })),
     },
   ]
@@ -107,15 +121,25 @@ export default function GlossaryPage() {
       <section className="px-6 pt-8 md:pt-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-wrap gap-2">
-            {terms.map((term) => (
-              <a
-                key={term.slug}
-                href={`#${term.slug}`}
-                className="text-sm px-3 py-1.5 rounded-full font-medium border border-cs-gray/50 text-cs-dark-blue/80 hover:border-cs-electric/40 hover:text-cs-dark-blue transition-colors"
-              >
-                {term.abbreviation ?? term.term}
-              </a>
-            ))}
+            {terms.map((term) =>
+              isIndexableGlossaryTerm(term) ? (
+                <Link
+                  key={term.slug}
+                  href={`/glossary/${term.slug}`}
+                  className="text-sm px-3 py-1.5 rounded-full font-medium border border-cs-gray/50 text-cs-dark-blue/80 hover:border-cs-electric/40 hover:text-cs-dark-blue transition-colors"
+                >
+                  {term.abbreviation ?? term.term}
+                </Link>
+              ) : (
+                <a
+                  key={term.slug}
+                  href={`#${term.slug}`}
+                  className="text-sm px-3 py-1.5 rounded-full font-medium border border-cs-gray/50 text-cs-dark-blue/80 hover:border-cs-electric/40 hover:text-cs-dark-blue transition-colors"
+                >
+                  {term.abbreviation ?? term.term}
+                </a>
+              )
+            )}
           </div>
         </div>
       </section>
@@ -124,57 +148,92 @@ export default function GlossaryPage() {
       <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <dl className="space-y-10">
-            {terms.map((term) => (
-              <div
-                key={term.slug}
-                id={term.slug}
-                className="scroll-mt-24 border-l-4 border-l-cs-electric/40 pl-6"
-              >
-                <dt className="text-2xl font-medium text-cs-dark-blue mb-3">
-                  {term.term}
-                </dt>
-                <dd className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed">
-                  {term.definition}
-                  {term.source && (
-                    <span className="block mt-3 text-sm text-cs-dark-gray font-light">
-                      Source:{" "}
-                      {term.sourceUrl ? (
-                        <a
-                          href={term.sourceUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-cs-dark-blue hover:underline underline-offset-2"
+            {terms.map((term) => {
+              // Terms with written body copy live at their own URL; the hub shows
+              // a teaser so the two pages are not competing duplicates. Terms
+              // without body copy stay fully readable here.
+              const hasPage = isIndexableGlossaryTerm(term)
+              return (
+                <div
+                  key={term.slug}
+                  id={term.slug}
+                  className="scroll-mt-24 border-l-4 border-l-cs-electric/40 pl-6"
+                >
+                  <dt className="text-2xl font-medium text-cs-dark-blue mb-3">
+                    {hasPage ? (
+                      <Link
+                        href={`/glossary/${term.slug}`}
+                        className="hover:underline underline-offset-4"
+                      >
+                        {term.term}
+                      </Link>
+                    ) : (
+                      term.term
+                    )}
+                  </dt>
+                  <dd className="text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed">
+                    {hasPage ? getGlossaryTeaser(term) : term.definition}
+                    {term.source && (
+                      <span className="block mt-3 text-sm text-cs-dark-gray font-light">
+                        Source:{" "}
+                        {term.sourceUrl ? (
+                          <a
+                            href={term.sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-cs-dark-blue hover:underline underline-offset-2"
+                          >
+                            {term.source}
+                          </a>
+                        ) : (
+                          term.source
+                        )}
+                      </span>
+                    )}
+                    {hasPage && (
+                      <span className="block mt-3 text-sm">
+                        <Link
+                          href={`/glossary/${term.slug}`}
+                          className="font-medium text-cs-dark-blue hover:underline underline-offset-2"
                         >
-                          {term.source}
-                        </a>
-                      ) : (
-                        term.source
-                      )}
-                    </span>
-                  )}
-                  {term.relatedSlugs && term.relatedSlugs.length > 0 && (
-                    <span className="block mt-3 text-sm text-cs-dark-blue/70 font-light">
-                      Related:{" "}
-                      {term.relatedSlugs.map((relSlug, i) => {
-                        const rel = terms.find((t) => t.slug === relSlug)
-                        if (!rel) return null
-                        return (
-                          <span key={relSlug}>
-                            {i > 0 && ", "}
-                            <a
-                              href={`#${relSlug}`}
-                              className="text-cs-dark-blue hover:underline underline-offset-2"
-                            >
-                              {rel.abbreviation ?? rel.term}
-                            </a>
-                          </span>
-                        )
-                      })}
-                    </span>
-                  )}
-                </dd>
-              </div>
-            ))}
+                          Read the full definition
+                        </Link>
+                      </span>
+                    )}
+                    {term.relatedSlugs && term.relatedSlugs.length > 0 && (
+                      <span className="block mt-3 text-sm text-cs-dark-blue/70 font-light">
+                        Related:{" "}
+                        {term.relatedSlugs.map((relSlug, i) => {
+                          const rel = terms.find((t) => t.slug === relSlug)
+                          if (!rel) return null
+                          const label = rel.abbreviation ?? rel.term
+                          return (
+                            <span key={relSlug}>
+                              {i > 0 && ", "}
+                              {isIndexableGlossaryTerm(rel) ? (
+                                <Link
+                                  href={`/glossary/${relSlug}`}
+                                  className="text-cs-dark-blue hover:underline underline-offset-2"
+                                >
+                                  {label}
+                                </Link>
+                              ) : (
+                                <a
+                                  href={`#${relSlug}`}
+                                  className="text-cs-dark-blue hover:underline underline-offset-2"
+                                >
+                                  {label}
+                                </a>
+                              )}
+                            </span>
+                          )
+                        })}
+                      </span>
+                    )}
+                  </dd>
+                </div>
+              )
+            })}
           </dl>
         </div>
       </section>
