@@ -1,14 +1,14 @@
 import { Users } from "lucide-react"
 import { getAuthorById, TEAM_AUTHOR_ID } from "@/lib/authors"
 
-const variantClasses = {
+export const variantClasses = {
   accent: "bg-cs-electric text-cs-dark-blue",
   navy: "bg-cs-navy text-white",
   blue: "bg-cs-dark-blue text-white",
   "light-blue": "bg-cs-light-blue text-cs-dark-blue",
 }
 
-function getInitials(name: string): string {
+export function getInitials(name: string): string {
   return name
     .split(" ")
     .filter((part) => !part.includes(","))

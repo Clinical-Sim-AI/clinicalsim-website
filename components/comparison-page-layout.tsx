@@ -5,6 +5,7 @@ import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { type Comparison } from "@/lib/comparisons"
 import { getPostBySlug } from "@/lib/posts"
+import { formatIsoMonth } from "@/lib/utils"
 
 interface ComparisonPageLayoutProps {
   comparison: Comparison
@@ -104,10 +105,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
           {comparison.lastUpdated && (
             <p className="text-sm text-cs-gray font-light mb-4">
               Last updated:{" "}
-              {new Date(comparison.lastUpdated).toLocaleDateString("en-US", {
-                month: "long",
-                year: "numeric",
-              })}
+              {formatIsoMonth(comparison.lastUpdated)}
             </p>
           )}
 

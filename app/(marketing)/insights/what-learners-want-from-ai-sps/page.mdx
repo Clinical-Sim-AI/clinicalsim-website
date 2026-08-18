@@ -1,4 +1,5 @@
 import { ArticleLayout } from "@/components/article-layout"
+import { ReferencesSection } from "@/components/references-section"
 import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
 export const metadata = getPostMetadata("what-learners-want-from-ai-sps")
@@ -7,7 +8,11 @@ export const metadata = getPostMetadata("what-learners-want-from-ai-sps")
 
 Researchers from CUHK Shenzhen, Nankai University, and the MIT Media Lab interviewed 12 clinical-year medical students and ran three codesign workshops. The students named six requirements for an AI patient they would use. Their answers put feedback, case quality, and faculty involvement ahead of novelty.
 
-The sample is small and qualitative, so it should guide design questions rather than stand in for the preferences of all medical students.
+The sample is small and qualitative, so it should guide design questions rather than stand in for the preferences of all medical students. The authors state the headline finding plainly:
+
+> "Our findings position AI-SPs as tools for deliberate practice and show that instructional usability, rather than conversational realism alone, drives learner trust, engagement, and educational value."
+>
+> Gao Z, Zhu G, Luo H, et al., Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems, 2026
 
 ## Learners want the mode to match the goal
 
@@ -39,6 +44,8 @@ The researchers positioned AI patients as a complement to human standardized pat
 
 For ClinicalSim, the practical test is straightforward: does each case state its objective, use a named framework, and give the learner feedback that a faculty member can inspect?
 
-*Based on Gao, Z., et al. (2026), "It Talks Like a Patient, But Feels Different": Co-Designing AI Standardized Patients with Medical Learners, CHI 2026, Barcelona, Spain.*
+<ReferencesSection references={[
+  { authors: "Gao Z, Zhu G, Luo H, Pan DP, Tang H, Zhang B, Pei J, Li J, Wang B", title: "\"It Talks Like a Patient, But Feels Different\": Co-Designing AI Standardized Patients with Medical Learners", source: "Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems", year: "2026", doi: "10.1145/3772363.3798336" },
+]} />
 
 </ArticleLayout>

@@ -1,4 +1,5 @@
 import { ArticleLayout } from "@/components/article-layout"
+import { ReferencesSection } from "@/components/references-section"
 import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
 export const metadata = getPostMetadata("ai-affirming-care-communication-training")
@@ -13,7 +14,7 @@ A team presenting at IPSS Rome designed an AI patient scenario to give pediatric
 
 A multicenter cross-sectional study of OB-GYN and family medicine residents found that 62.4% had received no health education tailored to transgender patients. In the same study, 68.3% reported inadequate knowledge of the clinical implications of gender affirming hormone therapy, and 74.1% reported inadequate knowledge of gender affirming surgeries (*Healthcare*, 2025).
 
-An internal medicine study found that 97% of residents considered transgender medical issues relevant to their practice, while 45% reported prior education on the topic (*Journal of General Internal Medicine*, 2017). These samples do not describe every residency program, but they identify a consistent mismatch between expected clinical responsibility and available training.
+An internal medicine study found that 97% of residents considered transgender medical issues relevant to their practice, while 45% reported prior education on the topic (*Transgender Health*, 2017). These samples do not describe every residency program, but they identify a consistent mismatch between expected clinical responsibility and available training.
 
 ## Communication requires spoken practice
 
@@ -28,5 +29,11 @@ Gillian Brennan, MB BCh BAO, Vinod Havalad, MD, and colleagues developed a pedia
 The presentation describes a simulation design for a training gap. It does not establish effects on patient care, and the practice report does not replace faculty judgment.
 
 [Talk with us about research or curriculum design](/research).
+
+<ReferencesSection references={[
+  { authors: "Kopel J, Beck N, Almekdash MH, Varma S", title: "Trends in transgender healthcare curricula in graduate medical education", source: "Baylor University Medical Center Proceedings", year: "2023", doi: "10.1080/08998280.2023.2228140" },
+  { authors: "Uyaniklar OO, Altun H, Uncu Y", title: "Knowledge and attitudes of obstetrics and gynecology and family medicine residents regarding transgender and gender-diverse health: a multicenter cross-sectional study", source: "Healthcare", year: "2025", doi: "10.3390/healthcare13131596" },
+  { authors: "Johnston CD, Shearer LS", title: "Internal medicine resident attitudes, prior education, comfort, and knowledge regarding delivering comprehensive primary care to transgender patients", source: "Transgender Health", year: "2017", doi: "10.1089/trgh.2017.0007" },
+]} />
 
 </ArticleLayout>

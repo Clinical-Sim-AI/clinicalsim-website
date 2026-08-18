@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { AuthorByline } from "@/components/author-byline"
 import { JsonLd } from "@/components/json-ld"
-import { getAllAuthors } from "@/lib/authors"
+import { getAllAuthors, getAuthorUrl } from "@/lib/authors"
 import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -71,6 +71,10 @@ export default function AboutPage() {
           ...team.map((author) => ({
             "@context": "https://schema.org" as const,
             "@type": "Person" as const,
+            // Same @id the Article author schema uses, so a post byline and this
+            // card resolve to one person.
+            "@id": getAuthorUrl(author.id),
+            url: getAuthorUrl(author.id),
             name: author.name,
             ...(author.credentials
               ? { honorificSuffix: author.credentials }
@@ -79,7 +83,10 @@ export default function AboutPage() {
             description: author.bio,
             worksFor: {
               "@type": "Organization" as const,
-              name: "ClinicalSim.ai",
+              // "ClinicalSim" to match the site-wide Organization node and the
+              // Article author worksFor, since the shared @id above merges this
+              // Person with the article byline Person.
+              name: "ClinicalSim",
               url: "https://clinicalsim.ai",
             },
             ...(author.sameAs && author.sameAs.length > 0
@@ -187,7 +194,8 @@ export default function AboutPage() {
             {team.map((author) => (
               <div
                 key={author.id}
-                className="bg-white rounded-xl p-6 border border-cs-gray/50"
+                id={author.id}
+                className="bg-white rounded-xl p-6 border border-cs-gray/50 scroll-mt-28"
               >
                 <AuthorByline authorId={author.id} />
                 <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed mt-4">
