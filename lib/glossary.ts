@@ -1,5 +1,5 @@
 export interface GlossaryTerm {
-  /** Anchor id used in the URL fragment, e.g. "epa" -> /glossary#epa */
+  /** URL path segment: "epa" -> /glossary/epa. Also the hub anchor id. */
   slug: string
   /** Full term, e.g. "Entrustable Professional Activities (EPAs)" */
   term: string
@@ -15,6 +15,35 @@ export interface GlossaryTerm {
   sourceUrl?: string
   /** Slugs of related terms for cross-linking. */
   relatedSlugs?: string[]
+
+  // --- Fields below promote a term to its own indexable page. ---
+  // A term without them still renders in full on the /glossary hub; it simply
+  // does not get a standalone URL. See getIndexableGlossaryTerms().
+
+  /** 110–155 chars, materially different from `definition`. Meta description. */
+  metaDescription?: string
+  /** One-sentence hub teaser. Falls back to the first sentence of `definition`. */
+  teaser?: string
+  /** Body paragraphs unique to the term page. Presence gates indexability. */
+  explainer?: string[]
+  /** Optional "what this looks like in a program" bullets. */
+  inPractice?: string[]
+  /** Internal links off the glossary, so no term page is a dead end. */
+  relatedLinks?: { href: string; label: string }[]
+  /** ISO date. Drives sitemap lastModified and WebPage dateModified. */
+  lastUpdated?: string
+}
+
+/**
+ * A term that has earned its own page: it carries a distinct meta description,
+ * real body copy, and a date. Narrowing here rather than making the fields
+ * required on GlossaryTerm is what lets a term be hub-only, and it gives
+ * app/sitemap.ts a non-optional `lastUpdated` to build a Date from.
+ */
+export type IndexableGlossaryTerm = GlossaryTerm & {
+  metaDescription: string
+  explainer: string[]
+  lastUpdated: string
 }
 
 // Definitional vocabulary drawn from ACGME, AAMC, and SSH terminology. These
@@ -128,4 +157,51 @@ export function getAllGlossaryTerms(): GlossaryTerm[] {
 
 export function getGlossaryTermBySlug(slug: string): GlossaryTerm | undefined {
   return glossaryTerms.find((t) => t.slug === slug)
+}
+
+export function isIndexableGlossaryTerm(
+  term: GlossaryTerm
+): term is IndexableGlossaryTerm {
+  return Boolean(
+    term.metaDescription && term.explainer?.length && term.lastUpdated
+  )
+}
+
+/**
+ * The single source of truth for which terms have their own URL. app/sitemap.ts,
+ * app/llms.txt/route.ts, generateStaticParams, and the hub's DefinedTerm URLs all
+ * read from this, so they cannot drift apart.
+ */
+export function getIndexableGlossaryTerms(): IndexableGlossaryTerm[] {
+  return glossaryTerms.filter(isIndexableGlossaryTerm)
+}
+
+/**
+ * First sentence of the definition, for the hub index. The length guard stops an
+ * abbreviation ("U.S.") from splitting into a stub; short results fall back to
+ * the whole definition.
+ */
+export function getGlossaryTeaser(term: GlossaryTerm): string {
+  if (term.teaser) return term.teaser
+  const match = term.definition.match(/^.*?[.!?](?=\s|$)/)
+  return match && match[0].length >= 60 ? match[0] : term.definition
+}
+
+/**
+ * Declared relations unioned with reverse references. relatedSlugs is not
+ * symmetric in the registry (cbme names ccc; ccc does not name cbme), and on a
+ * low-authority domain that asymmetry decides which term pages get crawled.
+ */
+export function getRelatedGlossaryTerms(slug: string): GlossaryTerm[] {
+  const declared = getGlossaryTermBySlug(slug)?.relatedSlugs ?? []
+  const inbound = glossaryTerms
+    .filter((t) => t.relatedSlugs?.includes(slug))
+    .map((t) => t.slug)
+
+  const seen = new Set<string>()
+  return [...declared, ...inbound]
+    .filter((s) => s !== slug && !seen.has(s) && (seen.add(s), true))
+    .map((s) => getGlossaryTermBySlug(s))
+    .filter((t): t is GlossaryTerm => Boolean(t))
+    .slice(0, 5)
 }
