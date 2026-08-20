@@ -1,29 +1,60 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ChevronRight, FileText, MessageCircle } from "lucide-react"
+import { ChevronRight, FileText, MessageCircle, PlayCircle, ClipboardList } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 
 export const metadata: Metadata = {
-  title: "Help center: guides and release notes",
+  title: "Help center: answers, examples, and release notes",
   description:
-    "Guides for running a case, reading a feedback report, managing a program, and seeing what changed in ClinicalSim.",
+    "Where to find answers about ClinicalSim: unedited example encounters, how cases are built and scored, questions from learners and program leadership, and what changed in the product.",
   openGraph: {
     title: "Help center | ClinicalSim.ai",
     description:
-      "Guides, release notes, and support for ClinicalSim programs and learners.",
+      "Example encounters, case methodology, FAQs, release notes, and support for ClinicalSim programs and learners.",
     url: "https://clinicalsim.ai/help",
   },
   twitter: {
     title: "Help center | ClinicalSim.ai",
     description:
-      "Guides, release notes, and support for ClinicalSim.",
+      "Example encounters, case methodology, FAQs, and release notes for ClinicalSim.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/help",
   },
 }
+
+const startHere = [
+  {
+    href: "/examples",
+    icon: PlayCircle,
+    title: "See a full encounter",
+    body: "Four unedited encounters, each with the recording, the transcript, and the same feedback report the learner received. This is the fastest way to understand what a session produces.",
+    cta: "Review the examples",
+  },
+  {
+    href: "/methodology",
+    icon: ClipboardList,
+    title: "How cases are built and scored",
+    body: "Case development, the competency frameworks each case is anchored to, and how feedback is generated from what the learner actually said in the transcript.",
+    cta: "Read the methodology",
+  },
+  {
+    href: "/faq",
+    icon: MessageCircle,
+    title: "Questions about the product",
+    body: "What the practice session is like, how voice simulation works, what happens to a recording, and how programs get set up.",
+    cta: "Read the FAQ",
+  },
+  {
+    href: "/medical-educator-faq",
+    icon: FileText,
+    title: "Questions from program leadership",
+    body: "Scoring, the evidence behind the feedback, and what a clinical competency committee can do with the documentation from a session.",
+    cta: "Read the educator FAQ",
+  },
+]
 
 export default function HelpPage() {
   return (
@@ -35,7 +66,7 @@ export default function HelpPage() {
             "@type": "WebPage",
             name: "ClinicalSim.ai help center",
             description:
-              "The ClinicalSim help center: guides, release notes, and support for programs and learners.",
+              "Where to find answers about ClinicalSim: example encounters, case methodology, FAQs, release notes, and support for programs and learners.",
             url: "https://clinicalsim.ai/help",
             isPartOf: {
               "@type": "WebSite",
@@ -82,20 +113,57 @@ export default function HelpPage() {
           </h1>
 
           <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed max-w-3xl">
-            Guides for running a case, reading a feedback report, managing a program, and seeing what changed in the product.
+            Most questions about ClinicalSim come down to one of four things: what an
+            encounter actually looks like, how a case is built and scored, what the
+            feedback report contains, and how a program gets set up. The pages below
+            answer those, and if yours isn&apos;t here we&apos;d rather you just asked us.
           </p>
         </div>
       </section>
 
       <SectionDivider variant="diagonal-down" color="white" />
 
-      {/* Help cards */}
+      {/* Start here */}
       <section className="px-6 py-8 md:py-10 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-8">
+            Start here
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            {startHere.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group flex flex-col rounded-2xl border border-cs-gray/50 p-6 md:p-8 transition-colors hover:border-cs-navy/40 hover:bg-cs-cloud/30"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <item.icon className="w-6 h-6 text-cs-navy" />
+                  <h3 className="text-xl font-medium text-cs-dark-blue">
+                    {item.title}
+                  </h3>
+                </div>
+                <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed">
+                  {item.body}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-cs-dark-blue">
+                  {item.cta}
+                  <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider variant="diagonal-up" color="white" />
+
+      {/* Release notes and support */}
+      <section className="px-6 py-8 md:py-10 bg-cs-cloud/40">
         <div className="max-w-4xl mx-auto grid gap-6 md:grid-cols-2">
           {/* Release notes */}
           <Link
             href="/help/release-notes"
-            className="group flex flex-col rounded-2xl border border-cs-gray/50 p-6 md:p-8 transition-colors hover:border-cs-navy/40 hover:bg-cs-cloud/30"
+            className="group flex flex-col rounded-2xl border border-cs-gray/50 bg-white p-6 md:p-8 transition-colors hover:border-cs-navy/40"
           >
             <div className="flex items-center gap-3 mb-4">
               <FileText className="w-6 h-6 text-cs-navy" />
@@ -104,8 +172,9 @@ export default function HelpPage() {
               </h2>
             </div>
             <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed">
-              A concise log of customer-visible changes in ClinicalSim,
-              newest first.
+              A concise log of customer-visible changes in ClinicalSim, newest first.
+              Worth a look before a new cohort starts so you know what has moved since
+              the last one.
             </p>
             <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-cs-dark-blue">
               See what&apos;s new
@@ -114,7 +183,7 @@ export default function HelpPage() {
           </Link>
 
           {/* Support */}
-          <div className="flex flex-col rounded-2xl border border-cs-gray/50 p-6 md:p-8">
+          <div className="flex flex-col rounded-2xl border border-cs-gray/50 bg-white p-6 md:p-8">
             <div className="flex items-center gap-3 mb-4">
               <MessageCircle className="w-6 h-6 text-cs-navy" />
               <h2 className="text-xl font-medium text-cs-dark-blue">
@@ -122,17 +191,18 @@ export default function HelpPage() {
               </h2>
             </div>
             <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed mb-6 max-w-2xl">
-              Logged-in users can reach us anytime from the in-app support chat.
-              Prefer email, or want to talk about piloting ClinicalSim at your
-              program? Get in touch.
+              Logged-in users can reach us anytime from the in-app support chat. If a
+              learner ran into trouble mid-encounter, tell us which case it was and
+              roughly when, and we can look into it. For anything about piloting
+              ClinicalSim at your program, email is easier.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="mt-auto flex flex-col sm:flex-row gap-4">
               <Link href="/contact">
                 <Button size="lg">Talk with us</Button>
               </Link>
-              <Link href="/faq">
+              <Link href="/research">
                 <Button variant="secondary" size="lg">
-                  Read the FAQ
+                  See the research
                 </Button>
               </Link>
             </div>

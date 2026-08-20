@@ -5,7 +5,7 @@ import { AudiencePageLayout } from "@/components/audience-page-layout"
 const audience = getAudienceBySlug("dios-gme-leadership")!
 
 export const metadata: Metadata = {
-  title: "DIOs and GME leadership: shared communication remediation standards",
+  title: { absolute: "DIOs and GME leadership: shared communication remediation standards" },
   description: "Give programs shared case standards, milestone-aligned reports, and longitudinal practice records while each program director and CCC keeps authority over the remediation plan.",
   openGraph: {
     title: "DIOs and GME leadership | ClinicalSim.ai",

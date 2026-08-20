@@ -82,7 +82,9 @@ The project uses shadcn/ui components which are:
 - **Layout**: Posts use `components/article-layout.tsx` wrapper
 - **Metadata (REQUIRED pattern)**: An insight post's `export const metadata` MUST be `getPostMetadata("<slug>")` from `lib/posts.ts` — nothing else. That helper is the single source of the post's `title`, `description`, canonical, OpenGraph (`type: article`), and Twitter tags, derived from the registry entry.
   - **Do NOT hand-write a `metadata` object in an MDX post.** Hand-written blocks have shipped with no `alternates.canonical` (breaks the every-page-needs-a-canonical rule) and with `title` baking in `| ClinicalSim.ai`, which the root layout template (`%s | ClinicalSim.ai`) then appends a second time, producing a double suffix in `<title>` and `og:title`.
-  - The registry `title` in `lib/posts.ts` is the bare title with **no** `| ClinicalSim.ai` suffix — the layout template adds it once.
+  - The registry `title` in `lib/posts.ts` is the bare title with **no** `| ClinicalSim.ai` suffix. `getPostMetadata` emits it as `title: { absolute: post.title }`, so the root layout template does **not** append the brand suffix to insight posts. Post titles are full editorial headlines and the extra 17 characters pushed them past the 75-character limit Semrush's site audit flags.
+  - The registry `title` is also the visible `<h1>` (`components/article-layout.tsx`), so shortening one is an editorial change, not just a metadata change.
+  - **Title length is enforced by a test.** `lib/page-titles.test.ts` fails if any page renders a `<title>` over 75 characters, across `lib/posts.ts`, `lib/solutions.ts`, `lib/comparisons.ts`, `lib/examples/*`, and the hand-written `metadata` blocks in `app/(marketing)/**`. Google truncates nearer 60, so passing the test is not the same as fitting in the SERP.
 - **Workflow**: Blog posts may be created by separate agents/processes
   - Always check `lib/posts.ts` for the current list of posts
   - Verify new posts are registered in the posts array with metadata
@@ -273,7 +275,8 @@ All content on this site must be optimized for discovery by AI search systems (C
 - `faqs` field: Array of `{ question, answer }` for FAQ section + FAQPage JSON-LD
 - `lastUpdated` field: ISO date string displayed in hero section
 - When modifying solution page content, update `lastUpdated` date
-- `metaTitle` must be a bare title with no `| ClinicalSim` suffix. The root layout adds `| ClinicalSim.ai` once.
+- `metaTitle` must be a bare title with no `| ClinicalSim` suffix. Solution pages still use the root layout template, so the suffix is appended once and the bare `metaTitle` must leave room for its 17 characters.
+- Audiences, comparisons, examples, insight posts, and the standalone marketing pages (`/about`, `/faq`, `/glossary`, `/insights`, `/methodology`, `/audiences`) set `title: { absolute: ... }` and carry **no** brand suffix, because the template pushed them over the 75-character audit limit. `lib/examples/types.ts` has an optional `metaTitle` for cases whose title plus ": Example Feedback" runs long.
 
 ### Current evidence guardrails
 

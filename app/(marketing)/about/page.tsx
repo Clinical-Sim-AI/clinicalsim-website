@@ -8,7 +8,7 @@ import { getAllAuthors, getAuthorUrl } from "@/lib/authors"
 import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "About ClinicalSim.ai: AI clinical simulation for medical communication",
+  title: { absolute: "About ClinicalSim.ai: AI clinical simulation for medical communication" },
   description:
     "ClinicalSim gives learners voice-based practice with AI patients and gives faculty transcript evidence behind rubric-scored feedback.",
   openGraph: {

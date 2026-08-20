@@ -77,6 +77,9 @@ export function DemoVideoSection({
             src={loomUrl}
             title="Loom video player"
             allowFullScreen
+            // Sits just below the homepage hero, so without this the player's JS,
+            // CSS and poster all compete with the hero for LCP.
+            loading="lazy"
             className="absolute inset-0 w-full h-full"
           />
         )}

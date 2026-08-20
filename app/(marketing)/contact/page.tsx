@@ -91,10 +91,29 @@ export default function ContactPage() {
                 </div>
 
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-xl font-medium mb-2">Response time</h3>
-                  <p className="text-base font-light text-cs-cloud">
-                    We usually respond within two business days.
+                  <h3 className="text-xl font-medium mb-2">Rather look first?</h3>
+                  <p className="text-base font-light text-cs-cloud mb-4">
+                    The example encounters run a full session end to end, including the
+                    transcript and the feedback report the learner received. The
+                    methodology page covers how a case is built and what the scoring is
+                    anchored to.
                   </p>
+                  <div className="flex flex-wrap gap-x-6 gap-y-2">
+                    <Link
+                      href="/examples"
+                      className="inline-flex items-center text-sm font-medium text-cs-electric hover:text-white transition-colors"
+                    >
+                      See an example encounter
+                      <ArrowRight className="w-4 h-4 ml-1" />
+                    </Link>
+                    <Link
+                      href="/methodology"
+                      className="inline-flex items-center text-sm font-medium text-cs-electric hover:text-white transition-colors"
+                    >
+                      Read the methodology
+                      <ArrowRight className="w-4 h-4 ml-1" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -247,6 +266,21 @@ export default function ContactPage() {
               </Link>
             </div>
           </div>
+
+          <p className="mt-12 text-base text-cs-dark-blue/70 font-light leading-relaxed max-w-3xl mx-auto text-center">
+            If you are evaluating rather than buying, say so in the note. Program
+            directors usually want to see what a feedback report actually contains
+            before they talk about scope or pricing, and it is a shorter conversation
+            once you have read one. The{" "}
+            <Link href="/examples" className="text-cs-dark-blue underline underline-offset-2 hover:no-underline">
+              example encounters
+            </Link>{" "}
+            and the{" "}
+            <Link href="/medical-educator-faq" className="text-cs-dark-blue underline underline-offset-2 hover:no-underline">
+              FAQ for medical educators
+            </Link>{" "}
+            cover most of what comes up first.
+          </p>
         </div>
       </section>
     </>

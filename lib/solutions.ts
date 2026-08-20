@@ -284,7 +284,7 @@ const solutions: Solution[] = [
     relatedPostSlugs: [
       "osce-case-design-guide",
       "what-learners-want-from-ai-sps",
-      "breaking-bad-news-medical-training",
+      "breaking-bad-news-practice-not-knowledge",
     ],
     ctaHeadline: "Sequence communication across all four years.",
     ctaDescription:

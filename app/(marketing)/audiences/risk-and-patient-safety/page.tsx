@@ -5,7 +5,7 @@ import { AudiencePageLayout } from "@/components/audience-page-layout"
 const audience = getAudienceBySlug("risk-and-patient-safety")!
 
 export const metadata: Metadata = {
-  title: "Risk and patient safety leaders: communication in malpractice claims",
+  title: { absolute: "Risk and patient safety leaders: communication in malpractice claims" },
   description:
     "Candello found communication factors in 40% of asserted malpractice cases from 2014 through 2024. ClinicalSim provides voice-based practice records and has not been studied against claims.",
   openGraph: {

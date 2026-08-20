@@ -5,6 +5,7 @@ import type { ExampleCase } from "./types";
 const example: ExampleCase = {
   "slug": "delivering-a-new-leukemia-diagnosis-to-a-family-in-the-emergency-department",
   "title": "Delivering a New Leukemia Diagnosis to a Family in the Emergency Department",
+  "metaTitle": "Delivering a new leukemia diagnosis: example feedback",
   "role": "You are the Pediatric Hematology-Oncology fellow caring for Ethan, a previously healthy 7-year-old boy with new findings concerning for leukemia.",
   "summary": "Ethan Morales, a previously healthy 7 year old, came to the emergency department with two weeks of fatigue, bruising, intermittent fevers, and leg pain.",
   "scenario": "Ethan Morales, a previously healthy 7-year-old, came to the emergency department with two weeks of fatigue, bruising, intermittent fevers, and leg pain. His bloodwork shows **pancytopenia with circulating blasts**, concerning for acute lymphoblastic leukemia.\n\nThe diagnosis is **not yet confirmed** — a bone marrow biopsy is planned for the following morning to confirm it and guide treatment. Ethan's mother, Sofia, has been told only that the results are concerning. She has been waiting for hours.\n\nYou are meeting Sofia one-on-one in a quiet consultation room off the pediatric ED to disclose the likely diagnosis, explain the admission and the bone marrow biopsy, and support her through the news.",

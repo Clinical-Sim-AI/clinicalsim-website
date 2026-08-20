@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
+import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
@@ -39,12 +40,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={plusJakarta.variable}>
       <head>
-        {/* R2B visitor identification - hardcoded first-party script, safe for inline use */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `!function(key) {if (window.reb2b) return;window.reb2b = {loaded: true};var s = document.createElement("script");s.async = true;s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);}("GOYPYHQZM0OX");`,
-          }}
-        />
         {/* The scroll-reveal styles start at opacity 0 and only JS can add
             .is-visible, so without JS every wrapped section would stay blank.
             Hand those readers the content instead. */}
@@ -55,6 +50,12 @@ export default function RootLayout({
       <body className="font-sans" suppressHydrationWarning={true}>
         {children}
         <Analytics />
+        {/* R2B visitor identification. Hardcoded first-party key, safe inline. Runs
+            after hydration so it stops competing with the hero for the main thread;
+            it was previously an inline <script> in <head> on every page. */}
+        <Script id="reb2b" strategy="afterInteractive">
+          {`!function(key) {if (window.reb2b) return;window.reb2b = {loaded: true};var s = document.createElement("script");s.async = true;s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);}("GOYPYHQZM0OX");`}
+        </Script>
       </body>
     </html>
   )

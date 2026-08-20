@@ -128,21 +128,6 @@ export default function HomePage() {
           },
           {
             "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            name: "ClinicalSim",
-            applicationCategory: "HealthApplication",
-            operatingSystem: "Web",
-            description:
-              "Voice-based AI clinical simulation platform to practice and measure clinical communication across the medical-education continuum, covering undergraduate medical education, residency and fellowship, communication remediation, and faculty development. Rubric-scored practice for breaking bad news, goals-of-care, informed consent, error disclosure, and family meetings, mapped to ACGME Milestones 2.0 for residents and fellows.",
-            url: "https://clinicalsim.ai",
-            publisher: {
-              "@type": "Organization",
-              name: "ClinicalSim",
-              url: "https://clinicalsim.ai",
-            },
-          },
-          {
-            "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
               {

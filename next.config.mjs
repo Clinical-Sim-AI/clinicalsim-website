@@ -9,6 +9,11 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  images: {
+    // Defaults to webp only. AVIF first cuts the brand icon PNGs further, and
+    // Next falls back to webp for browsers that ask for it.
+    formats: ['image/avif', 'image/webp'],
+  },
   async redirects() {
     return [
       // Canonical host is the non-www apex (matches every canonical and

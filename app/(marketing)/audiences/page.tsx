@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/json-ld"
 import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Who we serve: GME leaders, simulation directors, risk, quality, and CCCs",
+  title: { absolute: "Who we serve: GME leaders, simulation directors, risk, quality, and CCCs" },
   description: "ClinicalSim serves the roles that own clinical communication: program directors and DIOs, simulation center directors, clinical competency committees, medical school leadership, faculty and clinician educators, risk and patient safety offices, and quality and patient experience leaders.",
   openGraph: {
     title: "Who ClinicalSim.ai serves",

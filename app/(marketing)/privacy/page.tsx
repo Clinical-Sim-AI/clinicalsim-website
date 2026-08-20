@@ -106,7 +106,7 @@ export default function PrivacyPolicyPage() {
           <p>
             When you visit or log in to our website, cookies and similar technologies may be used by our online data partners or vendors to associate these activities with other personal information they or others have about you, including by association with your email or home address. We (or service providers on our behalf) may then send communications and marketing to these email or home addresses. You may opt out of receiving this advertising by visiting{" "}
             <a href="https://app.retention.com/optout" target="_blank" rel="noopener noreferrer">
-              https://app.retention.com/optout
+              the Retention.com advertising opt-out page
             </a>
             .
           </p>
@@ -133,7 +133,7 @@ export default function PrivacyPolicyPage() {
             <li>
               Opt out of cookie-based advertising by visiting{" "}
               <a href="https://app.retention.com/optout" target="_blank" rel="noopener noreferrer">
-                https://app.retention.com/optout
+                the Retention.com advertising opt-out page
               </a>
             </li>
             <li>

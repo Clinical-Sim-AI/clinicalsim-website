@@ -11,7 +11,7 @@ import {
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
-  title: "Medical education glossary: CBME, EPAs, milestones, and more",
+  title: { absolute: "Medical education glossary: CBME, EPAs, milestones, and more" },
   description:
     "Clear, sourced definitions of the medical education and simulation terms that shape clinical communication training: competency-based medical education, EPAs, ACGME Milestones, OSCEs, standardized patients, and remediation.",
   openGraph: {

@@ -11,7 +11,7 @@ import { slugify } from "@/lib/utils"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
-  title: "FAQ: AI clinical simulation, scoring, privacy, and programs",
+  title: { absolute: "FAQ: AI clinical simulation, scoring, privacy, and programs" },
   description:
     "Answers to common questions about ClinicalSim: what it is, how it compares to Step 2 CS and standardized patients, communication remediation, ACGME Milestone scoring, My Progress, evidence for CCC review, privacy, and research.",
   openGraph: {

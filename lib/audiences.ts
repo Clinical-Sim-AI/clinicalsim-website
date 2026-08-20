@@ -177,7 +177,8 @@ const audiences: Audience[] = [
     relatedPostSlugs: [
       "scalability-problem-sp-programs",
       "osce-case-design-guide",
-      "breaking-bad-news-medical-training",
+      "breaking-bad-news-practice-not-knowledge",
+      "ai-affirming-care-communication-training",
     ],
   },
 
@@ -610,7 +611,7 @@ const audiences: Audience[] = [
     relatedPostSlugs: [
       "osce-case-design-guide",
       "what-learners-want-from-ai-sps",
-      "breaking-bad-news-medical-training",
+      "breaking-bad-news-practice-not-knowledge",
     ],
   },
 
