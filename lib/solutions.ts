@@ -132,35 +132,6 @@ const FACULTY_VALUE_PROPS: SolutionValueProp[] = [
 
 const solutions: Solution[] = [
   // -------------------------------------------------------------------------
-  // Communication Remediation, bespoke page (RemediationPageLayout)
-  // -------------------------------------------------------------------------
-  {
-    slug: "remediation",
-    title: "Communication remediation",
-    shortTitle: "Remediation",
-    subtitle: "Targeted practice for the learner on a remediation plan",
-    icon: "chat-exclamation",
-    colorVariant: "navy",
-    customPage: true,
-    lastUpdated: "2026-08-10",
-    cardBullets: [
-      "Targeted, milestone-mapped practice for a struggling learner",
-      "Repeatable, on-demand practice without SP scheduling",
-      "Reports with transcript evidence for CCC review",
-    ],
-    metaTitle: "Communication remediation",
-    metaDescription:
-      "AI clinical simulation for communication remediation. Milestone-mapped practice and transcript evidence for faculty and CCC review.",
-    heroHeadline:
-      "Communication remediation with evidence for the CCC",
-    heroDescription:
-      "Targeted, on-demand practice with milestone-aligned reports and transcript evidence for faculty and CCC review.",
-    ctaHeadline: "Start with a repeatable remediation structure",
-    ctaDescription:
-      "Review how structured practice and milestone-aligned feedback could fit a communication remediation plan.",
-  },
-
-  // -------------------------------------------------------------------------
   // Residency & Fellowship, longitudinal curriculum
   // -------------------------------------------------------------------------
   {
@@ -170,18 +141,18 @@ const solutions: Solution[] = [
     subtitle: "A longitudinal communication curriculum across PGY years",
     icon: "stack",
     colorVariant: "accent",
-    lastUpdated: "2026-08-10",
+    lastUpdated: "2026-08-20",
     cardBullets: [
       "A gradual arc from PGY-1 to senior resident and fellow",
       "Mapped to ACGME Milestones 2.0 and ABP EPAs",
       "A trackable dashboard that follows learners year over year",
     ],
-    metaTitle: "Residency and fellowship communication curriculum",
+    metaTitle: "Core communication curriculum for residency",
     metaDescription:
-      "A longitudinal communication curriculum for residency and fellowship. Cases progress across PGY years, mapped to ACGME Milestones 2.0 and EPAs.",
+      "A core communication curriculum for every resident and fellow, not a remediation add-on. Cases progress across PGY years, mapped to ACGME Milestones 2.0 and EPAs.",
     heroHeadline: "Communication practice that grows with clinical responsibility",
     heroDescription:
-      "Cases progress from clear information delivery to uncertainty, family meetings, and leadership. Each case uses the ACGME Milestones and communication framework that fit the learner, specialty, and task.",
+      "Every resident works the same sequence, from clear information delivery through uncertainty, family meetings, and leadership. Each case uses the ACGME Milestones and communication framework that fit the learner, specialty, and task.",
     stagesHeading: "The arc across training",
     stagesIntro:
       "Increasing complexity, emotional intensity, and leadership demand from intern year through fellowship.",
@@ -209,6 +180,12 @@ const solutions: Solution[] = [
     faqs: [
       {
         question:
+          "Is ClinicalSim a remediation tool or a core curriculum platform?",
+        answer:
+          "ClinicalSim is built to run as a core communication curriculum for every learner, with remediation as one high-intensity use of the same cases. The arc on this page is the deployment model: interns practice clear information delivery, PGY-2 residents work on uncertainty and family disagreement, and senior residents and fellows lead goals-of-care discussions and error disclosure. A program that starts with remediation is running a subset of that sequence, and the cases, rubrics, and reports are the same either way.",
+      },
+      {
+        question:
           "How is the curriculum mapped to ACGME milestones and EPAs?",
         answer:
           "Each scenario is tagged to specific ACGME Milestones 2.0 subcompetencies and, where applicable, to ABP Entrustable Professional Activities. Rubric scores trace back to a milestone or EPA descriptor, so a learner's progress reads in the same language your Clinical Competency Committee already uses.",
@@ -231,6 +208,7 @@ const solutions: Solution[] = [
       "deliberate-practice",
       "master-adaptive-learner",
       "millers-pyramid",
+      "family-meeting",
     ],
     ctaHeadline: "Build a communication curriculum that spans training.",
     ctaDescription:
@@ -388,10 +366,40 @@ const solutions: Solution[] = [
       "prebriefing",
       "ask-tell-ask",
       "psychological-safety-in-simulation",
+      "telehealth-communication",
     ],
     ctaHeadline: "Add communication practice to faculty development",
     ctaDescription:
       "Review cases for corrective feedback, professionalism concerns, and bedside teaching.",
+  },
+
+  // -------------------------------------------------------------------------
+  // Communication Remediation, bespoke page (RemediationPageLayout)
+  // -------------------------------------------------------------------------
+  {
+    slug: "remediation",
+    title: "Communication remediation",
+    shortTitle: "Remediation",
+    subtitle: "Targeted practice for the learner on a remediation plan",
+    icon: "chat-exclamation",
+    colorVariant: "navy",
+    customPage: true,
+    lastUpdated: "2026-08-10",
+    cardBullets: [
+      "Targeted, milestone-mapped practice for a struggling learner",
+      "Repeatable, on-demand practice without SP scheduling",
+      "Reports with transcript evidence for CCC review",
+    ],
+    metaTitle: "Communication remediation",
+    metaDescription:
+      "AI clinical simulation for communication remediation. Milestone-mapped practice and transcript evidence for faculty and CCC review.",
+    heroHeadline:
+      "Communication remediation with evidence for the CCC",
+    heroDescription:
+      "Targeted, on-demand practice with milestone-aligned reports and transcript evidence for faculty and CCC review.",
+    ctaHeadline: "Start with a repeatable remediation structure",
+    ctaDescription:
+      "Review how structured practice and milestone-aligned feedback could fit a communication remediation plan.",
   },
 ]
 

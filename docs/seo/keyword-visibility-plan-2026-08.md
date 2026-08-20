@@ -465,3 +465,103 @@ mistaken for content work:
   queries are phrased. The brand term is "high-stakes conversations" and the site should keep it.
   The gap between the two is worth a decision at some point, but it is a positioning question, not
   something to resolve by quietly changing copy.
+
+---
+
+## 12. Blockers resolved and sharpened, 2026-08-20
+
+Ben answered three of the four items left open by section 11 and PR #38.
+
+**SOC 2 and HIPAA: neither yet.** No page claims otherwise, so nothing on the site is wrong today.
+The report's finding was narrower than certification anyway: "no SOC2/HIPAA yet, limited public
+detail on trainee-data use and AI governance," and competitors read as more mature on governance
+even where their AI is weaker. `/trust` already documents synthetic cases, no PHI, consent-gated
+learner voice data, and versioned locked rubrics. Stating the current position plainly there, that
+ClinicalSim is not SOC 2 certified today and here is what it does instead, would answer the query
+honestly and is the kind of passage that gets cited. Publishing a compliance posture is a business
+decision rather than a content one, so it waits on Ben asking for it.
+
+**Telehealth: no cases in the product.** The `/solutions/telehealth-communication` page stays
+unbuilt. The `telehealth-communication` glossary term in PR #38 ships anyway, on the same footing
+as `manikin`, `moulage`, `task-trainer`, and `in-situ-simulation`: a definitional entry for a
+concept the product does not itself provide.
+
+**Nursing: the ask, in dependency order.** Two findings sharpen it considerably.
+
+The first is that `lib/examples/*` is auto-generated. Every file carries the header "AUTO-GENERATED
+by scripts/snapshot-example.mjs" and `lib/examples/types.ts` describes each case as a frozen
+snapshot of one real internal conversation, taken read-only against staging, carrying a real
+transcript and a real audio recording. A nursing example case therefore cannot be written at all.
+It requires a nursing encounter actually run in the product, then the snapshot script from the app
+repo. Earlier plans listed this as a content task and it is not one.
+
+The second is that the two nursing lanes have very different costs.
+
+- **Hospital-side nursing** has the evidence already. `/audiences/quality-and-patient-experience`
+  is built entirely on HCAHPS, and `lib/roi/constants.json` carries Communication with Nurses data.
+  That page says "clinicians" throughout and never says "nurse," and every stat on it is doctor
+  side: Beckett's 0.8 point gain is doctor communication, and Zolnierek and DiMatteo is physician
+  communication training. The one nurse-specific thing on the page is a single FAQ.
+- **Academic nursing** is a full build: a new `lib/audiences.ts` entry with its own sourced pain
+  points and stats, a framework decision, and eventually a case.
+
+**Corrected 2026-08-20, after checking the case briefings.** An earlier version of this section
+called hospital-side nursing close to free, on the assumption that a nurse could be the learner in
+an existing case. That assumption is wrong. `ExampleCase.role` carries the learner's role line from
+`briefing.role`, and all four published cases name a physician: "You are the Pediatric
+Hematology-Oncology fellow", "You are the Pediatric Critical Care Fellow", "You are a pediatrics
+resident". The learner role is written into the case, so a nurse cannot be dropped into one.
+
+That collapses the ask rather than expanding it. Both nursing lanes are blocked on the same single
+product fact, whether nurse-role cases exist, and the academic lane adds one more, the framework.
+Neither lane is blocked on effort.
+
+It also separates what can ship now from what cannot, and the split is not by lane:
+
+- **Publishable now, either lane:** anything that is not a capability claim. CMS's own published
+  figures about nurse communication say nothing about ClinicalSim, and definitional glossary terms
+  carrying the academic search demand say nothing about it either. Both can proceed in parallel.
+- **Blocked, either lane:** any page that says it is for nurses.
+
+The nurse communication tasks a case would have to cover are also different in kind from the four
+published cases, which is why this is a product question rather than a relabelling one: SBAR
+escalation to a physician, teach-back on discharge medications, explaining a delayed procedure to a
+family, and responding to a pain complaint. None of those is "delivering a leukemia diagnosis."
+
+What is needed, in the order that unblocks the most:
+
+1. **Whether nurse-role cases exist.** Promoted to first, ahead of the framework question, because
+   the role line is baked into every case briefing and nothing nurse-facing can be published
+   without it.
+2. **Which nursing framework does scoring map to, if any.** Gates any assessment claim, because
+   `/methodology` promises that every score traces to a published competency framework with level
+   descriptors quoted verbatim from the primary source, and the physician pages deliver on that.
+   The candidates are the AACN Essentials domains, the NCSBN Clinical Judgment Measurement Model,
+   and QSEN. "None yet, nursing cases score on the communication rubric only" is a usable answer.
+   It just changes what a nursing page is allowed to promise.
+3. **The nursing case list**: titles, who the learner is, and what each case assesses.
+4. **Which buyer first**, hospital-side or academic. The two win on different channels.
+   Hospital-side wins on sales and evidence: the buyer's budget is attached to a CMS payment
+   mechanism, the evidence is already in the repo, and there is no verbatim-framework problem
+   because the HCAHPS items are the framework and they are three public sentences. Academic wins on
+   search: the August keyword data put nursing demand almost entirely in academic terms, with
+   `nursing simulation` at 390 a month alongside `simulation in nursing education`, `nursing
+   simulation scenarios`, and `vsim for nursing`, while Magnet and nursing professional development
+   have much thinner demand. Pipeline argues hospital-side, organic visibility argues academic.
+5. **Whether any nursing site can be named publicly.**
+
+Shipped while those stay open, because neither needs product truth:
+
+- **`patient-simulator`** (590 a month, KD 12, the best single target on the August list), anchored
+  to Hayden, Smiley, Alexander, Kardong-Edgren, and Jeffries in the Journal of Nursing Regulation,
+  2014, the NCSBN randomized controlled study behind the 50 percent simulation substitution rule.
+  The entry separates the three things the term covers, manikin, screen-based case, and
+  conversational simulator, and says plainly which one ClinicalSim is and what it is useless for.
+- **`clinical-judgment-model`** (1900 a month, KD 28), anchored to Tanner in the Journal of Nursing
+  Education, 2006, and distinguishing Tanner's four phases from the NCSBN measurement model behind
+  the Next Generation NCLEX, which launched 2023-04-01. Two different models share the name and the
+  existing site had neither.
+
+Both citations were verified against primary sources. Both hang off
+`/audiences/simulation-center-directors`, the one audience page that genuinely spans nursing and
+medicine, which is what satisfies the orphan test in `lib/glossary.test.ts`.

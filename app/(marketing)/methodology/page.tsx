@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/json-ld"
 import { AuthorByline } from "@/components/author-byline"
 import { getAuthorById, getAuthorUrl } from "@/lib/authors"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import type { FaqItem } from "@/lib/types"
 
 export const metadata: Metadata = {
   title: { absolute: "Methodology: Case Development, Standards Alignment & Feedback" },
@@ -28,6 +29,60 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://clinicalsim.ai/methodology",
   },
+}
+
+/**
+ * Answers here are drawn from sections 2.1 through 2.5 below and claim nothing
+ * the page does not already say. The block exists because the scoring
+ * transparency question is the one this page answers best and the one an answer
+ * engine could not previously lift: rendered open rather than in a `details`
+ * accordion, and emitted as FAQPage, the same treatment `/glossary/osce` uses.
+ */
+const methodologyFaqs: FaqItem[] = [
+  {
+    question: "How does ClinicalSim's AI scoring work?",
+    answer:
+      "Each ClinicalSim encounter is a voice conversation between the learner and an AI patient built for that case, captured as a timestamped transcript. For every scored competency and framework step, the platform pulls one or two verbatim excerpts from that transcript showing the behavior, or documents that it was absent. Scoring follows the competency framework the case is anchored to, and the unit of assessment is the individual competency the case exercises. Any communication framework or program rubric applied alongside it is scored separately, so the two are never collapsed into one number.",
+  },
+  {
+    question: "Which competency frameworks does a ClinicalSim score map to?",
+    answer:
+      "ClinicalSim anchors each case to a published competency framework and quotes that framework's level descriptors verbatim from the primary source. Residency and fellowship cases use the specialty-specific ACGME Milestones 2.0, scored on the Dreyfus scale from 1 to 5. Medical school cases use the Foundational Competencies for Undergraduate Medical Education (AAMC, AACOM, and ACGME) and the AAMC Core Entrustable Professional Activities, recorded on three points as demonstrated, partially demonstrated, or not demonstrated. Faculty cases use the ACGME Clinician Educator Milestones. Published communication frameworks are then applied on top of the competency score, each scored independently, and a program can add its own internal or externally validated rubrics.",
+  },
+  {
+    question: "Can faculty see the evidence behind a ClinicalSim score?",
+    answer:
+      "Every score in a ClinicalSim report carries the verbatim transcript excerpt that produced it, so a reviewer reads the moment in the conversation rather than taking the rating on trust. The report presents all scores together with their evidence, adds an overall impression covering strengths, priority gaps, and top action items, and gives faculty transcript-grounded evidence for decisions about progression, remediation, or readiness.",
+  },
+  {
+    question: "What does a ClinicalSim score claim, and what does it not claim?",
+    answer:
+      "The communication frameworks ClinicalSim applies were built for trained human raters observing real encounters, and that is the context in which their published reliability was established. Scoring those frameworks with AI in a simulated encounter goes beyond that context, so a framework's published reliability does not transfer to a ClinicalSim score. Each score is a formative signal backed by verbatim transcript evidence, which is why this methodology asks a reader to treat every result as evidence rather than a verdict.",
+  },
+  {
+    question:
+      "Should AI-generated scores be used for promotion or remediation decisions?",
+    answer:
+      "ClinicalSim scores are formative and are not built to stand alone behind a decision about promotion or remediation. The ACGME milestones themselves were designed as formative tools rather than instruments for high-stakes external decisions, and ClinicalSim treats milestone-aligned output the same way, as evidence that informs program judgment. A competency committee weighs it alongside direct observation and faculty judgment, and the final judgment stays with people. ClinicalSim is testing that alignment rather than asserting it: in the current pilot, program directors assess the same encounters themselves and compare their own read against the platform's output.",
+  },
+  {
+    question: "Who writes and reviews ClinicalSim cases?",
+    answer:
+      "Every ClinicalSim case starts from a defined purpose, meaning the communication and clinical skills it should exercise and the competencies it should assess, and it is written to that purpose with explicit learning objectives and a clinical evidence base drawn from the literature. Practicing physicians then review it for accuracy, content, alignment, and fit to its objectives, among them program directors, simulation facilitators, and educators from both undergraduate and graduate medical education. Faculty development cases carry an additional review by someone with faculty development or clinical teaching expertise, and every case is run repeatedly before release.",
+  },
+]
+
+const faqJsonLd = {
+  "@context": "https://schema.org" as const,
+  "@type": "FAQPage" as const,
+  mainEntity: methodologyFaqs.map((faq) => ({
+    "@type": "Question" as const,
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer" as const,
+      text: faq.answer,
+    },
+  })),
 }
 
 const AUTHOR_ID = "jacqueline-ponczek"
@@ -171,6 +226,7 @@ export default function MethodologyPage() {
               },
             ],
           },
+          faqJsonLd,
         ]}
       />
 
@@ -574,11 +630,36 @@ export default function MethodologyPage() {
 
       <SectionDivider variant="diagonal-up" color="cloud" />
 
-      {/* References */}
+      {/* Common questions */}
       <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
-            4. References
+            4. Common{" "}
+            <span className="text-cs-dark-blue font-medium">questions</span>
+          </h2>
+
+          <div className="space-y-7">
+            {methodologyFaqs.map((faq) => (
+              <div key={faq.question}>
+                <h3 className="text-lg md:text-xl font-medium text-cs-dark-blue mb-2">
+                  {faq.question}
+                </h3>
+                <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
+                  {faq.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider variant="curve" color="white" />
+
+      {/* References */}
+      <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
+            5. References
           </h2>
 
           <div className="bg-white rounded-xl border border-cs-gray/50 p-6 md:p-8 space-y-8">
@@ -714,18 +795,18 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      <SectionDivider variant="wave" color="white" />
+      <SectionDivider variant="wave" color="cloud" />
 
       {/* CTA */}
-      <section className="px-6 py-8 md:py-10 bg-white text-center">
+      <section className="px-6 py-8 md:py-10 bg-cs-cloud text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-4">
             Questions about how this{" "}
             <span className="text-cs-dark-blue font-medium">works?</span>
           </h2>
           <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed mb-8">
-            See common questions about case development, scoring, and
-            feedback, or talk to us about piloting ClinicalSim at your
+            Read the wider FAQ for questions about pricing, rollout, and
+            program fit, or talk to us about piloting ClinicalSim at your
             program.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
