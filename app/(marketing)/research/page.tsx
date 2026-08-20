@@ -8,6 +8,7 @@ import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import type { FaqItem } from "@/lib/types"
 import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb, Presentation, MapPin, Calendar } from "lucide-react"
 
 const RESEARCH_DESCRIPTION =
@@ -113,6 +114,48 @@ const presentations = [
   },
 ]
 
+/**
+ * Every answer here restates something already on this page, principally the
+ * `benefits` list below. No outcome or effect claim belongs in this block: the
+ * pilot study results stay withheld until the study owners confirm them.
+ */
+const researchFaqs: FaqItem[] = [
+  {
+    question:
+      "Can ClinicalSim support a multi-site or multi-institution study of communication training?",
+    answer:
+      "ClinicalSim works with investigators studying clinical communication, simulation based education, and competency assessment, and the platform is browser-based, so participants at different institutions use the same cases and the same scoring without local installation. Depending on the protocol and the agreement, a study team can request structured exports of transcripts, usage data, and scored outcomes. Tell us the question, the population, and the design, and we will say whether the platform fits.",
+  },
+  {
+    question: "What can a study team request from ClinicalSim?",
+    answer:
+      "A study team can request platform access for participants, help developing cases that match the study question and population, structured data exports covering transcripts, usage, and scored outcomes, technical documentation about the platform and its scoring method for manuscripts and study records, participant onboarding and technical support, and technical documentation for an IRB submission.",
+  },
+  {
+    question: "Who is responsible for the IRB protocol and review?",
+    answer:
+      "The study team remains responsible for the protocol and the review process. ClinicalSim can supply technical documentation about the platform, the cases, and the scoring method for an IRB submission, which is the part an investigator cannot write without us, but the science and the ethical review stay with the investigators and their institution.",
+  },
+  {
+    question: "How does ClinicalSim decide which research proposals to take on?",
+    answer:
+      "Proposals are reviewed on a rolling basis, and the deciding question is whether the platform genuinely fits the study rather than whether the study flatters the platform. A proposal that needs a capability ClinicalSim does not have is better turned down than stretched. ClinicalSim team members have presented this work at the International Pediatric Simulation Symposium and Workshops, the Pediatric Academic Societies Meeting, and the Critical Care Congress, and the full presentation record is listed on this page.",
+  },
+]
+
+const faqJsonLd = {
+  "@context": "https://schema.org" as const,
+  "@type": "FAQPage" as const,
+  mainEntity: researchFaqs.map((faq) => ({
+    "@type": "Question" as const,
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer" as const,
+      text: faq.answer,
+    },
+  })),
+}
+
 export default function ResearchPage() {
   return (
     <>
@@ -149,6 +192,7 @@ export default function ResearchPage() {
               },
             ],
           },
+          faqJsonLd,
         ]}
       />
 
@@ -428,6 +472,25 @@ export default function ResearchPage() {
                 expandOnHover
               />
             ))}
+          </div>
+
+          <div className="mt-16 max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-light text-cs-navy mb-8">
+              Common questions from{" "}
+              <span className="text-cs-dark-blue font-medium">investigators</span>
+            </h2>
+            <div className="space-y-7">
+              {researchFaqs.map((faq) => (
+                <div key={faq.question}>
+                  <h3 className="text-lg md:text-xl font-medium text-cs-dark-blue mb-2">
+                    {faq.question}
+                  </h3>
+                  <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="text-center mt-12">
