@@ -481,6 +481,33 @@ export const glossaryTerms: GlossaryTerm[] = [
     lastUpdated: "2026-08-18",
   },
   {
+    slug: "family-meeting",
+    term: "Family Meeting",
+    definition:
+      "A family meeting is a scheduled conversation between the clinical team and a patient's family or surrogate decision makers, usually covering prognosis, the treatment options that remain, and what the patient would want in a situation where the patient cannot say so. In critical care it is often called the family conference, and it is the encounter where goals of care stop being an abstraction and get settled. Lautrette and colleagues tested a structured version of it in a randomized trial across 22 intensive care units in France, published in the New England Journal of Medicine in 2007, and families who received a proactive end of life conference and a bereavement brochure reported lower symptom scores on the Impact of Event Scale and the Hospital Anxiety and Depression Scale when interviewed 90 days after the death than families who received the customary conference.",
+    source: "Lautrette et al., New England Journal of Medicine, 2007",
+    sourceUrl: "https://doi.org/10.1056/NEJMoa063446",
+    relatedSlugs: ["goals-of-care", "high-stakes-conversations", "serious-illness-conversation-guide", "spikes-protocol"],
+    metaDescription:
+      "The scheduled conversation where a clinical team and a patient's family work out prognosis, remaining options, and what the patient would want.",
+    explainer: [
+      "The conference Lautrette's group tested gave the clinicians in the room five objectives, summarized by the mnemonic VALUE: value what the family members say, acknowledge their emotions, listen, understand who the patient is as a person, and elicit questions from the family. Four of the five are receptive rather than expressive, which is the half a checklist has the hardest time capturing.",
+      "A family meeting is difficult for reasons that have little to do with medical knowledge. The clinician is usually delivering information the family does not want, to people who have not slept, in a room where several relatives may disagree with each other and one of them may be the legal decision maker. The clinical content is often the easy part. The failure modes are procedural: opening with data before finding out what the family already understands, filling every silence, or answering a question about values with an answer about interventions.",
+      "The encounter is also where several distinct communication tasks collide inside one conversation. Breaking bad news, describing prognosis under real uncertainty, eliciting what matters to the patient, and making a recommendation are four different skills with four different published frameworks, and a single family meeting can require all of them in sequence. SPIKES covers the disclosure, and the Serious Illness Conversation Guide covers the values work, but nothing stitches them together except practice.",
+      "Where the family meeting is learned by watching one, the skill ends up dependent on whether a given rotation happened to have a good example and a senior willing to hand over the room. That is a poor way to distribute a competency that shows up in the intensive care unit, on the oncology service, and in the emergency department, and it is one reason a program can graduate a resident who has never led one.",
+    ],
+    inPractice: [
+      "Establish who is present and who holds decision-making authority before the medical content starts, since a meeting with five relatives and no identified surrogate rarely reaches a decision.",
+      "Give a resident the chance to lead a family meeting before they are the senior clinician in the room rather than after.",
+      "Score the receptive half of the encounter separately from information delivery, because a learner can be fluent on prognosis and still never find out what the family is afraid of.",
+    ],
+    relatedLinks: [
+      { href: "/solutions/longitudinal-curriculum", label: "Where family meetings sit in a residency communication curriculum" },
+      { href: "/examples", label: "Example simulated encounters and scoring" },
+    ],
+    lastUpdated: "2026-08-20",
+  },
+  {
     slug: "goals-of-care",
     term: "Goals of Care",
     abbreviation: "GOC",
@@ -1334,6 +1361,33 @@ export const glossaryTerms: GlossaryTerm[] = [
       { href: "/solutions/undergraduate-medical-education", label: "Communication skills in undergraduate medical education" },
     ],
     lastUpdated: "2026-08-18",
+  },
+  {
+    slug: "telehealth-communication",
+    term: "Telehealth Communication",
+    definition:
+      "Telehealth communication is the set of skills a clinician uses to run a clinical encounter by video or telephone, covering the work that a shared physical room otherwise does for free: establishing presence, finding out who else is within earshot, holding a silence without visual confirmation that the other person is still thinking, and checking understanding when body language is cropped to a head and shoulders. The AAMC published six telehealth competency domains across the learning continuum in 2021, which treats the format as something a clinician has to be trained and assessed in rather than as ordinary bedside skill delivered through a camera.",
+    source: "Bajra et al., Frontiers in Medicine, 2023",
+    sourceUrl: "https://doi.org/10.3389/fmed.2023.1222181",
+    relatedSlugs: ["bedside-manner", "rapport", "teach-back-method", "high-stakes-conversations"],
+    metaDescription:
+      "The skills for running a clinical encounter by video or phone, where presence, privacy, and understanding all have to be established out loud.",
+    explainer: [
+      "Bajra and colleagues put 133 third and fourth year medical students at Stanford through a telehealth curriculum and a set of telemedicine OSCEs between July 2020 and August 2021, and the results, published in Frontiers in Medicine in 2023, show where the skill actually breaks. Students scored 94 to 99 percent on the four webside manner items, so warmth and rapport carried over to video without much trouble. Confirming confidentiality happened in 21 percent of encounters, and reviewing the limitations of a video visit in 35 percent. The parts of the encounter that exist only because it is remote are the parts that got dropped.",
+      "That pattern makes sense once you list what the format takes away. A clinician standing in a room can see who else is present, read a relative's face at the edge of the bed, and let a pause sit without wondering whether the connection has frozen. On video each of those has to be done out loud. Asking who else is in the room is not a courtesy, it is the only way to know whether the patient can answer honestly.",
+      "High-stakes conversations raise the difficulty again. Delivering a serious diagnosis to a patient sitting alone in a parked car, or running a family meeting with relatives joining from three locations and one of them on a phone, changes the sequencing of the conversation rather than only its tone. The Stanford study is useful because it assessed the communication half rather than the technology, and its numbers suggest the communication half is where the training gap sits.",
+      "The skill is also not confined to trainees. Attendings who spent a career learning to read a room got the same abrupt shift to video, and the habits that make an experienced clinician good in person, the pause at the door and the read of a family's mood, are exactly the ones the format interferes with.",
+    ],
+    inPractice: [
+      "Ask who else is in the room every time, and expect the answer to change what the patient is willing to say.",
+      "State out loud what a video visit cannot do, since a patient who has not heard the limitation will assume the examination was complete.",
+      "Rehearse the silence. A pause that reads as thoughtful in person reads as a frozen screen on video, so clinicians fill it and talk over the answer they were waiting for.",
+    ],
+    relatedLinks: [
+      { href: "/solutions/faculty-development", label: "Communication practice for faculty and practicing clinicians" },
+      { href: "/examples", label: "Example simulated encounters and scoring" },
+    ],
+    lastUpdated: "2026-08-20",
   },
   {
     slug: "virtual-patient-simulation",

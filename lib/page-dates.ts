@@ -7,6 +7,6 @@ export const PAGE_DATE_MODIFIED = {
   glossary: "2026-08-18",
   home: "2026-08-10",
   insights: "2026-08-10",
-  methodology: "2026-08-04",
-  research: "2026-08-10",
+  methodology: "2026-08-20",
+  research: "2026-08-20",
 } as const
