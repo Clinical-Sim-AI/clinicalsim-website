@@ -73,7 +73,10 @@ acgme milestones
 healthcare simulation
 medical simulation software
 
---- TIER F: competitor brands, share of voice only (8) -------------------------
+--- TIER F: competitor brands, share of voice only (11) ------------------------
+shadow health
+kognito
+simchat
 simx
 full code medical simulation
 oxford medical simulation
@@ -82,6 +85,14 @@ body interact
 vsim for nursing
 sentinelu
 i-human patients
+
+The first three come from the Semrush Brand Performance report of 2026-08-20,
+which measured ChatGPT rather than Google and named Shadow Health (13.3% share
+of voice), Body Interact (10.8%), Kognito (10%), and SimChat (8.9%) as the four
+brands appearing alongside clinicalsim.ai. Three of them were missing from this
+list. Tracking a brand term here is a scoreboard only. The neutral comparison
+policy in lib/comparisons.ts stands, and no competitor is named anywhere on the
+site.
 
 --- DO NOT LOAD ----------------------------------------------------------------
 how to become a standardized patient, how much do standardized patients get paid

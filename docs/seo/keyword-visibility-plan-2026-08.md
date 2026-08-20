@@ -408,3 +408,60 @@ Not shipped:
 - **6.3** is gated on 6.1 showing movement, per the decision in that section.
 - **6.4** is still blocked on section 8. Nothing in `lib/` supports a nursing claim.
 - The tracking campaign still holds four keywords. See section 5.
+
+---
+
+## 11. The AI answer channel, from the Brand Performance report of 2026-08-20
+
+Semrush's Brand Performance report for clinicalsim.ai measures ChatGPT, not Google, and it tells
+a story that runs opposite to sections 2 and 3. Everything below is that report's own measurement
+of ChatGPT answers on 2026-08-20. None of it is a claim that belongs on the site.
+
+- Share of voice 21%, ahead of Shadow Health at 13.3%, Body Interact at 10.8%, Kognito at 10%,
+  and SimChat at 8.9%. 32 mentions.
+- Average position 1.03 against a field of 1.89 to 2.17, so when ChatGPT lists the category,
+  clinicalsim.ai is normally first.
+- Sentiment 94% favorable, 6% general, no unfavorable.
+- `clinicalsim.ai` is the fourth most cited domain across the whole non-branded question set with
+  31 citations, behind only pmc.ncbi.nlm.nih.gov, arxiv.org, and en.wikipedia.org.
+
+Two things follow for this plan.
+
+**The day 90 decision rule in section 9 needs a second reading.** It says that if the KD 0 to 12
+targets have not moved, the constraint is authority rather than content. That inference was drawn
+from Google alone. The AI channel shows the content is already being retrieved and cited, so a
+flat Google result at day 90 would mean the Google ranking system specifically is authority
+limited, not that the pages fail to answer the question. That distinction changes where the budget
+goes: backlinks for Google, more extractable pages for the answer engines. Do not collapse the two.
+
+**The same homepage concentration problem appears in both channels.** Only four clinicalsim.ai
+pages are cited at all, and the two named in the report are `/` (cited in 20 answers) and `/about`
+(7). Section 3 found `clinicalsim.ai/` holding 9 of the site's 11 keyword rows. The 46 glossary
+pages and the FAQ blocks shipped in 6.1 and 6.5 are the response to this in both channels, and the
+next AI visibility pull is the check on whether a term page or a solution page starts getting
+cited on its own.
+
+Corroborations, none of which unblock anything:
+
+- The report names nursing and pharmacy repeatedly as prompts where clinicalsim.ai does not appear
+  and competitors do. This is the same conclusion as section 4.2 reached from keyword volume, from
+  a different direction, and it does not resolve section 8 blocker 1. An AI visibility gap is not
+  source material for a capability claim.
+- "Are there simulation platforms specifically designed to complement, not replace, OSCEs and
+  standardized patients?" returns clinicalsim.ai at position 1 with 100% sentiment. The
+  extend-don't-replace framing is already load bearing in this channel, which supports keeping it
+  as the frame for 6.3 rather than softening it.
+- The report suggests seeding the phrase "virtual OSCE communication station". `virtual osce` is
+  already tier B, and a competitor whose entire positioning is OSCE practice with AI patients
+  (meksi.com) is being cited, so 6.3 has competition forming in it.
+
+Three of the report's recommendations are out of scope here and are recorded so they are not
+mistaken for content work:
+
+- Publishing outcome data. Blocked by the evidence guardrails in CLAUDE.md. The University of
+  Chicago and Advocate Health records stay withheld until the study owners confirm them.
+- Announcing a SOC 2 and HIPAA roadmap. A factual claim about compliance status, and Ben's call.
+- The report writes "difficult conversations" throughout because that is how the underlying
+  queries are phrased. The brand term is "high-stakes conversations" and the site should keep it.
+  The gap between the two is worth a decision at some point, but it is a positioning question, not
+  something to resolve by quietly changing copy.
