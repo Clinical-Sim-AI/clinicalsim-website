@@ -260,6 +260,33 @@ export const glossaryTerms: GlossaryTerm[] = [
     lastUpdated: "2026-08-18",
   },
   {
+    slug: "clinical-judgment-model",
+    term: "Clinical Judgment Model",
+    definition:
+      "A clinical judgment model describes how a nurse moves from noticing something about a patient to deciding what to do about it, and two different models carry the name. Tanner's Clinical Judgment Model, drawn from a review of nearly 200 studies and published in the Journal of Nursing Education in 2006, sets out four phases: noticing, interpreting, responding, and reflecting. The NCSBN Clinical Judgment Measurement Model is a separate instrument, built to score clinical judgment inside a standardized licensure examination, and it underpins the Next Generation NCLEX that launched on April 1, 2023. Tanner's model describes how judgment happens. The NCSBN model exists to measure it, and the two are not interchangeable.",
+    source: "Tanner, Journal of Nursing Education, 2006",
+    sourceUrl: "https://doi.org/10.3928/01484834-20060601-04",
+    relatedSlugs: ["clinical-reasoning", "cbme", "millers-pyramid", "debriefing", "deliberate-practice"],
+    metaDescription:
+      "Two models share this name: Tanner's four phases of noticing, interpreting, responding, and reflecting, and the NCSBN model behind the Next Gen NCLEX.",
+    explainer: [
+      "Tanner's most quoted conclusion is also the least comfortable one: clinical judgments are influenced more by what the nurse brings to the situation than by the objective data in front of them. Her other four conclusions run in the same direction. Sound judgment depends partly on knowing the patient and their usual pattern of responses, it is shaped by the culture of the unit as much as by the case, nurses use several reasoning patterns rather than one, and reflection is usually triggered by a judgment that has already broken down.",
+      "Three of the four phases are unobservable. Noticing, interpreting, and reflecting all happen inside the nurse's head, and responding is the only phase a preceptor can actually watch. That is the assessment problem in one sentence, and it is why so much nursing education effort goes into getting a learner to narrate their reasoning out loud, whether in debriefing, in think-aloud exercises, or in simulation.",
+      "The NCSBN model exists because a licensure examination cannot ask about the unobservable phases and then grade an opinion. Its scored layer breaks judgment into six components, recognizing cues, analyzing cues, prioritizing hypotheses, generating solutions, taking action, and evaluating outcomes, which is a measurement decomposition rather than an account of how nurses think. Programs teach to those six because the examination does, and that imports a structure into the classroom that was chosen for psychometric reasons.",
+      "Medicine calls a closely related thing clinical reasoning, and the two literatures developed largely apart. A nursing program and a residency program can therefore be teaching the same underlying skill under different names, with different frameworks and no shared vocabulary, and an interprofessional team on the same unit ends up reasoning together using two models neither side was taught.",
+    ],
+    inPractice: [
+      "Ask a learner to narrate the noticing and the interpreting, since responding is the only phase you can observe and it reveals the least about why they chose it.",
+      "Keep the measurement model and the teaching model separate. The six NCLEX components are a scoring decomposition and were not designed to structure a debrief.",
+      "If a program runs interprofessional simulation, settle on one vocabulary before the debriefing rather than during it.",
+    ],
+    relatedLinks: [
+      { href: "/audiences/simulation-center-directors", label: "Simulation programs that serve nursing and medicine together" },
+      { href: "/examples", label: "Example simulated encounters and scoring" },
+    ],
+    lastUpdated: "2026-08-20",
+  },
+  {
     slug: "clinical-reasoning",
     term: "Clinical Reasoning",
     definition:
@@ -947,6 +974,33 @@ export const glossaryTerms: GlossaryTerm[] = [
       { href: "/insights/osce-case-design-guide", label: "Designing OSCE cases that hold up" },
       { href: "/solutions/undergraduate-medical-education", label: "OSCE practice across four years of medical school" },
       { href: "/compare/ai-clinical-simulation-vs-standardized-patients", label: "AI patients and standardized patients compared" },
+    ],
+    lastUpdated: "2026-08-20",
+  },
+  {
+    slug: "patient-simulator",
+    term: "Patient Simulator",
+    definition:
+      "A patient simulator is any device or software that stands in for a patient so a learner can practice on it, which covers three things that are routinely treated as one category. A physical manikin breathes, has a pulse, and can deteriorate. A screen-based virtual patient presents a case the learner clicks through. A conversational simulator is one the learner talks to. The category carries the most regulatory weight in prelicensure nursing, where Hayden and colleagues ran a longitudinal randomized controlled study for the National Council of State Boards of Nursing and found that high-quality simulation could be substituted for up to 50 percent of traditional clinical hours across the prelicensure curriculum, published in the Journal of Nursing Regulation in 2014.",
+    source: "Hayden et al., Journal of Nursing Regulation, 2014",
+    sourceUrl: "https://www.journalofnursingregulation.com/article/s2155-8256(15)30062-4/fulltext",
+    relatedSlugs: ["manikin", "high-fidelity-simulation", "virtual-patient-simulation", "simulation-fidelity", "ai-standardized-patient", "task-trainer"],
+    metaDescription:
+      "Any manikin, screen-based case, or conversational system that stands in for a patient so a learner can practice on it. The three are not interchangeable.",
+    explainer: [
+      "The three kinds answer different questions, and procurement goes wrong when they are compared on price. A manikin can be intubated and can crash, which no software does. A screen-based case can put a decision tree in front of a hundred students at once, which no manikin does cheaply. A conversational simulator is the only one of the three that puts a learner's actual words on the record. Most simulation centers need more than one, and the useful question is which task each is answering rather than which is most advanced.",
+      "In prelicensure nursing the term usually means the manikin, because the manikin is what boards of nursing were being asked to approve as a substitute for clinical hours. The NCSBN study is why most state boards now permit some substitution, and its conditions matter as much as its headline number. The programs studied had trained faculty, dedicated equipment, and structured debriefing, so 50 percent describes what good simulation achieved under those conditions rather than what any simulation achieves.",
+      "Fidelity is the axis buyers reach for when comparing simulators, and it is less useful than it sounds. A high-fidelity manikin with no debriefing can teach less than a simpler encounter with a skilled debrief, because the learning sits in the reflection rather than in the equipment. Matching the simulator to the skill works better than ranking simulators: a task trainer for the procedure, a manikin for the deteriorating patient, a conversational simulator for the conversation.",
+      "ClinicalSim is the third kind. A learner speaks with an AI patient and the encounter produces a scored transcript, which makes it useful for a goals of care discussion and useless for a chest tube. It extends a simulation program rather than replacing the manikin or the standardized patient, and a center that already owns both is the one that gets the most out of adding it.",
+    ],
+    inPractice: [
+      "Establish which skill each simulator is being bought for before comparing prices, since a manikin and a conversational simulator are not competing for the same budget line.",
+      "Where a state board permits simulation substitution, read the conditions attached to the permission rather than the percentage.",
+      "Count debriefing capacity rather than simulator count. A program with more simulators than trained debriefers has bought the wrong thing.",
+    ],
+    relatedLinks: [
+      { href: "/audiences/simulation-center-directors", label: "How ClinicalSim fits a simulation center's existing equipment" },
+      { href: "/compare/ai-clinical-simulation-vs-standardized-patients", label: "AI clinical simulation compared with standardized patients" },
     ],
     lastUpdated: "2026-08-20",
   },
