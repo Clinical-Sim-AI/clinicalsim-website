@@ -61,6 +61,12 @@ export interface Solution {
 
   faqs?: SolutionFaq[]
   relatedPostSlugs?: string[]
+  /**
+   * Glossary slugs to link from this page. The only inbound path to a term page
+   * used to be the /glossary hub, so authority reaching a solution page stopped
+   * there. Hub-only terms are dropped at render time; list indexable ones.
+   */
+  glossarySlugs?: string[]
 
   ctaHeadline: string
   ctaDescription: string
@@ -218,6 +224,14 @@ const solutions: Solution[] = [
       "breaking-bad-news-practice-not-knowledge",
       "faculty-hour-problem-communication-remediation",
     ],
+    glossarySlugs: [
+      "cbme",
+      "milestones",
+      "epa",
+      "deliberate-practice",
+      "master-adaptive-learner",
+      "millers-pyramid",
+    ],
     ctaHeadline: "Build a communication curriculum that spans training.",
     ctaDescription:
       "Review a longitudinal sequence of milestone-mapped cases from intern year through fellowship.",
@@ -233,18 +247,18 @@ const solutions: Solution[] = [
     subtitle: "From history-taking to delivering a diagnosis, across four years",
     icon: "student",
     colorVariant: "blue",
-    lastUpdated: "2026-08-10",
+    lastUpdated: "2026-08-20",
     cardBullets: [
       "A four-year arc from M1 history-taking to M4 diagnosis disclosure",
-      "Communication grows alongside clinical knowledge",
+      "OSCE practice on demand between scheduled SP encounters",
       "A dashboard that follows students through clerkships",
     ],
-    metaTitle: "Undergraduate medical education (UME) communication",
+    metaTitle: "OSCE practice for medical students (UME)",
     metaDescription:
-      "Sequence communication practice across all four years of medical school, from history-taking through diagnosis disclosure, with a dashboard that follows students through clerkships.",
+      "Give medical students virtual OSCE practice between scheduled standardized patient encounters, sequenced across four years from the first history through diagnosis disclosure.",
     heroHeadline: "Build communication skills alongside clinical knowledge",
     heroDescription:
-      "Sequence practice from the first patient history through diagnosis disclosure and clerkship conversations. Each report uses the AAMC Foundational Competencies and the communication framework named on the case.",
+      "Sequence practice from the first patient history through diagnosis disclosure and clerkship conversations, including the communication stations students meet in an OSCE. Each report uses the AAMC Foundational Competencies and the communication framework named on the case.",
     stagesHeading: "A four-year progression",
     stagesIntro:
       "Communication competency sequenced to develop in step with the curriculum.",
@@ -276,15 +290,28 @@ const solutions: Solution[] = [
           "Scenarios are sequenced so communication complexity rises with clinical knowledge, beginning with structured history-taking in the preclinical years and progressing to diagnosis disclosure during clerkships. A longitudinal dashboard follows each student across all four years.",
       },
       {
-        question: "Can it support standardized-patient and OSCE preparation?",
+        question: "Can students use it to prepare for an OSCE?",
         answer:
-          "Yes. The platform gives students repeatable, on-demand practice between scheduled standardized patient encounters and OSCEs, while live assessment stays with faculty and the program.",
+          "Students get repeatable OSCE practice on demand between scheduled standardized patient encounters, rehearsing the communication tasks a station asks for: taking a focused history, explaining a diagnosis, and answering a family's questions. Scheduled SP encounters are limited by actor time, rooms, and faculty observers, so they can score a communication skill without giving a student the repetition needed to build one. Live assessment stays with faculty and the program. Extend your SP program, don't replace it.",
+      },
+      {
+        question: "What does a virtual OSCE station look like here?",
+        answer:
+          "A student opens a case, speaks with an AI patient by voice for about the length of a station, and gets a report scored against the rubric written for that case and the AAMC Foundational Competencies. The encounter is transcribed, so a student can read back what they actually said rather than what they remember saying, which is the part a hurried debrief after a real OSCE rarely reaches. Graded encounters stay with faculty.",
       },
     ],
     relatedPostSlugs: [
       "osce-case-design-guide",
       "what-learners-want-from-ai-sps",
       "breaking-bad-news-practice-not-knowledge",
+    ],
+    glossarySlugs: [
+      "osce",
+      "standardized-patient",
+      "ai-standardized-patient",
+      "virtual-patient-simulation",
+      "spikes-protocol",
+      "clinical-reasoning",
     ],
     ctaHeadline: "Sequence communication across all four years.",
     ctaDescription:
@@ -353,6 +380,14 @@ const solutions: Solution[] = [
       "eol-communication-training-measurement-gap",
       "why-communication-training-matters",
       "end-of-life-care-communication",
+    ],
+    glossarySlugs: [
+      "debriefing",
+      "pearls-debriefing",
+      "plus-delta-debriefing",
+      "prebriefing",
+      "ask-tell-ask",
+      "psychological-safety-in-simulation",
     ],
     ctaHeadline: "Add communication practice to faculty development",
     ctaDescription:

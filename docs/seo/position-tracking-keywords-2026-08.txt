@@ -1,0 +1,106 @@
+ClinicalSim.ai Position Tracking keyword load, 2026-08-20
+Campaign: 30880361_5324700  (clinicalsim.ai, database us)
+Source: docs/seo/keyword-visibility-plan-2026-08.md section 5
+
+HOW TO LOAD
+The Semrush MCP surface is read-only for Position Tracking, so this has to be
+pasted into the UI: Position Tracking > Settings > Keywords > add manually.
+Paste one tier at a time and tag the batch with the tier letter before moving
+on, so the visibility chart segments. Load in tier order and stop at a tier
+boundary if the keyword allowance runs out.
+
+TWO SETTINGS TO FIX WHILE YOU ARE IN THERE
+1. Location. The campaign reports "clinical simulation" at volume 30 against a
+   national 140, and requesting use_volume=national through the API does not
+   change it, so the campaign is scoped to something narrower than United
+   States. Set location to United States, device desktop.
+2. Remove "ai simulation". Zero national volume and the SERP is consumer AI
+   video tooling, not clinical simulation.
+
+Volume/KD in the comments are US national, pulled 2026-08-20.
+
+--- TIER A: toeholds (7) -------------------------------------------------------
+clinical simulation
+medical sim
+clinical simulations
+medsim ai
+ai clinical simulation
+ai standardized patient
+virtual standardized patient
+
+--- TIER B: OSCE targets (16) --------------------------------------------------
+objective clinical examination
+objective structured clinical examination
+what is an osce examination
+medical osce exam
+define objective structured clinical examination
+osce exams meaning
+define osce
+what is the osce exam
+whats an osce
+clinical osce
+what are osce exams
+osce practice
+what is osce exam
+virtual osce
+osce simulation
+ai osce
+
+--- TIER C: nursing and UME targets (7) ----------------------------------------
+patient simulator
+nursing simulation
+clinical judgment model
+simulation in nursing education
+nursing simulation scenarios
+nursing simulation software
+entrustable professional activities
+
+--- TIER D: category and commercial (6) ----------------------------------------
+virtual patient simulation
+standardized patient program
+competency tracking software
+communication coaching
+ai in medical education
+virtual patient
+
+--- TIER E: scoreboard only, above the KD ceiling (8) --------------------------
+osce
+osce exam
+osces
+standardized patient
+osce medical
+acgme milestones
+healthcare simulation
+medical simulation software
+
+--- TIER F: competitor brands, share of voice only (11) ------------------------
+shadow health
+kognito
+simchat
+simx
+full code medical simulation
+oxford medical simulation
+aquifer cases
+body interact
+vsim for nursing
+sentinelu
+i-human patients
+
+The first three come from the Semrush Brand Performance report of 2026-08-20,
+which measured ChatGPT rather than Google and named Shadow Health (13.3% share
+of voice), Body Interact (10.8%), Kognito (10%), and SimChat (8.9%) as the four
+brands appearing alongside clinicalsim.ai. Three of them were missing from this
+list. Tracking a brand term here is a scoreboard only. The neutral comparison
+policy in lib/comparisons.ts stands, and no competitor is named anywhere on the
+site.
+
+--- DO NOT LOAD ----------------------------------------------------------------
+how to become a standardized patient, how much do standardized patients get paid
+  (job seekers, and most of the volume on the head term)
+medhub (residency management software, different category)
+doctor games, hospital simulator, dr simulator game, medical simulation games
+  (consumer games polluting the virtual patient simulation related set)
+mock code, code scenarios (ACLS and code-blue drill, not communication)
+shared decision making, motivational interviewing training, iSBAR (head terms
+  belong to behavioral health counseling and nursing handoff)
+open rn, cna simulations (OER textbooks and CNA certification)

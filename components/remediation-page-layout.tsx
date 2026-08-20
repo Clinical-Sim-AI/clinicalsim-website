@@ -12,6 +12,7 @@ import { EvidenceShowcase } from "@/components/evidence-showcase"
 import { SectionDivider } from "@/components/section-divider"
 import { AsymmetricGrid } from "@/components/asymmetric-grid"
 import { JsonLd } from "@/components/json-ld"
+import { GlossaryTermLinks } from "@/components/glossary-term-links"
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
 import { cn, formatIsoMonth } from "@/lib/utils"
 import type { RemediationPageData } from "@/lib/remediation"
@@ -675,6 +676,8 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           </section>
         </>
       )}
+
+      <GlossaryTermLinks slugs={data.glossarySlugs} />
 
       {/* ----------------------------------------------------------------- */}
       {/* Final CTA                                                          */}

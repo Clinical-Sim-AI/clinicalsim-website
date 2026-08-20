@@ -56,6 +56,13 @@ export interface Audience {
    */
   faqs?: FaqItem[]
 
+  /**
+   * Glossary slugs to link from this page. The only inbound path to a term page
+   * used to be the /glossary hub, so authority reaching an audience page stopped
+   * there. Hub-only terms are dropped at render time; list indexable ones.
+   */
+  glossarySlugs?: string[]
+
   // CTA
   ctaHeadline: string
   ctaDescription: string
@@ -170,6 +177,13 @@ const audiences: Audience[] = [
       "cognitive-assessments",
     ],
 
+    glossarySlugs: [
+      "milestones",
+      "remediation",
+      "ccc",
+      "epa",
+      "high-stakes-conversations",
+    ],
     ctaHeadline: "Start with a repeatable remediation structure",
     ctaDescription:
       "Request a pilot and see how structured practice with milestone-aligned feedback fits your communication remediation plan.",
@@ -281,6 +295,13 @@ const audiences: Audience[] = [
 
     relevantSolutionSlugs: ["goals-of-care", "advance-care-planning"],
 
+    glossarySlugs: [
+      "dio",
+      "gme",
+      "cbme",
+      "milestones",
+      "remediation",
+    ],
     ctaHeadline: "Give every program the same starting point",
     ctaDescription:
       "Request a pilot and see how shared case standards and reviewable practice records could fit your GME office.",
@@ -390,6 +411,22 @@ const audiences: Audience[] = [
       "cognitive-assessments",
     ],
 
+    glossarySlugs: [
+      "sim-lab",
+      "simulation-fidelity",
+      "high-fidelity-simulation",
+      "hybrid-simulation",
+      "in-situ-simulation",
+      "manikin",
+      "task-trainer",
+      "moulage",
+      "embedded-participant",
+      "standardized-patient",
+      "standardized-patient-case",
+      "aspe",
+      "chse",
+      "ai-standardized-patient",
+    ],
     ctaHeadline: "See how ClinicalSim extends an SP program",
     ctaDescription:
       "Request a pilot and see how ClinicalSim extends your simulation center's communication training capacity.",
@@ -497,6 +534,13 @@ const audiences: Audience[] = [
 
     relevantSolutionSlugs: ["goals-of-care", "advance-care-planning"],
 
+    glossarySlugs: [
+      "ccc",
+      "milestones",
+      "epa",
+      "cbme",
+      "dreyfus-model",
+    ],
     ctaHeadline: "Add another source of communication evidence",
     ctaDescription:
       "Request a pilot and review the transcript evidence a ClinicalSim report can add to your committee's existing sources.",
@@ -603,6 +647,13 @@ const audiences: Audience[] = [
 
     relevantSolutionSlugs: ["undergraduate-medical-education"],
 
+    glossarySlugs: [
+      "osce",
+      "standardized-patient",
+      "millers-pyramid",
+      "cbme",
+      "interprofessional-education",
+    ],
     ctaHeadline:
       "Build communication skill across all four years.",
     ctaDescription:
@@ -706,6 +757,13 @@ const audiences: Audience[] = [
 
     relevantSolutionSlugs: ["faculty-development"],
 
+    glossarySlugs: [
+      "debriefing",
+      "pearls-debriefing",
+      "ask-tell-ask",
+      "deliberate-practice",
+      "psychological-safety-in-simulation",
+    ],
     ctaHeadline:
       "Give faculty the practice they never got.",
     ctaDescription:
@@ -847,6 +905,13 @@ const audiences: Audience[] = [
 
     relevantSolutionSlugs: ["faculty-development"],
 
+    glossarySlugs: [
+      "high-stakes-conversations",
+      "sbar",
+      "goals-of-care",
+      "serious-illness-conversation-guide",
+      "spikes-protocol",
+    ],
     ctaHeadline: "Add documented practice to your risk reduction program",
     ctaDescription:
       "Request a pilot and review the practice record ClinicalSim produces for each simulated encounter.",
@@ -1018,6 +1083,14 @@ const audiences: Audience[] = [
 
     relevantSolutionSlugs: ["faculty-development"],
 
+    glossarySlugs: [
+      "hcahps",
+      "aidet",
+      "bedside-manner",
+      "rapport",
+      "teach-back-method",
+      "motivational-interviewing",
+    ],
     ctaHeadline: "Add repeatable practice to communication training",
     ctaDescription:
       "Request a pilot and review the rubric-scored record ClinicalSim produces for each simulated encounter.",
