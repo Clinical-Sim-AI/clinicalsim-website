@@ -413,6 +413,8 @@ const audiences: Audience[] = [
 
     glossarySlugs: [
       "sim-lab",
+      "patient-simulator",
+      "clinical-judgment-model",
       "simulation-fidelity",
       "high-fidelity-simulation",
       "hybrid-simulation",
