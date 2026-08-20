@@ -497,25 +497,58 @@ repo. Earlier plans listed this as a content task and it is not one.
 
 The second is that the two nursing lanes have very different costs.
 
-- **Hospital-side nursing** is close to free. `/audiences/quality-and-patient-experience` is built
-  entirely on HCAHPS, and `lib/roi/constants.json` already carries Communication with Nurses data
-  marked Confirmed: national top box 80, the FY2026 value-based purchasing thresholds, and
-  `one_point_nurse_comm_in_tps_points` at 0.245. That page says "clinicians" and never says
-  "nurse." If a nurse can be the learner, this is a retarget of an existing page, not a build.
+- **Hospital-side nursing** has the evidence already. `/audiences/quality-and-patient-experience`
+  is built entirely on HCAHPS, and `lib/roi/constants.json` carries Communication with Nurses data.
+  That page says "clinicians" throughout and never says "nurse," and every stat on it is doctor
+  side: Beckett's 0.8 point gain is doctor communication, and Zolnierek and DiMatteo is physician
+  communication training. The one nurse-specific thing on the page is a single FAQ.
 - **Academic nursing** is a full build: a new `lib/audiences.ts` entry with its own sourced pain
   points and stats, a framework decision, and eventually a case.
 
+**Corrected 2026-08-20, after checking the case briefings.** An earlier version of this section
+called hospital-side nursing close to free, on the assumption that a nurse could be the learner in
+an existing case. That assumption is wrong. `ExampleCase.role` carries the learner's role line from
+`briefing.role`, and all four published cases name a physician: "You are the Pediatric
+Hematology-Oncology fellow", "You are the Pediatric Critical Care Fellow", "You are a pediatrics
+resident". The learner role is written into the case, so a nurse cannot be dropped into one.
+
+That collapses the ask rather than expanding it. Both nursing lanes are blocked on the same single
+product fact, whether nurse-role cases exist, and the academic lane adds one more, the framework.
+Neither lane is blocked on effort.
+
+It also separates what can ship now from what cannot, and the split is not by lane:
+
+- **Publishable now, either lane:** anything that is not a capability claim. CMS's own published
+  figures about nurse communication say nothing about ClinicalSim, and definitional glossary terms
+  carrying the academic search demand say nothing about it either. Both can proceed in parallel.
+- **Blocked, either lane:** any page that says it is for nurses.
+
+The nurse communication tasks a case would have to cover are also different in kind from the four
+published cases, which is why this is a product question rather than a relabelling one: SBAR
+escalation to a physician, teach-back on discharge medications, explaining a delayed procedure to a
+family, and responding to a pain complaint. None of those is "delivering a leukemia diagnosis."
+
 What is needed, in the order that unblocks the most:
 
-1. **Which nursing framework does scoring map to, if any.** This gates everything else, because
+1. **Whether nurse-role cases exist.** Promoted to first, ahead of the framework question, because
+   the role line is baked into every case briefing and nothing nurse-facing can be published
+   without it.
+2. **Which nursing framework does scoring map to, if any.** Gates any assessment claim, because
    `/methodology` promises that every score traces to a published competency framework with level
    descriptors quoted verbatim from the primary source, and the physician pages deliver on that.
    The candidates are the AACN Essentials domains, the NCSBN Clinical Judgment Measurement Model,
    and QSEN. "None yet, nursing cases score on the communication rubric only" is a usable answer.
    It just changes what a nursing page is allowed to promise.
-2. **The nursing case list**: titles, who the learner is, and what each case assesses.
-3. **Which buyer first**, hospital-side or academic, given the cost difference above.
-4. **Whether any nursing site can be named publicly.**
+3. **The nursing case list**: titles, who the learner is, and what each case assesses.
+4. **Which buyer first**, hospital-side or academic. The two win on different channels.
+   Hospital-side wins on sales and evidence: the buyer's budget is attached to a CMS payment
+   mechanism, the evidence is already in the repo, and there is no verbatim-framework problem
+   because the HCAHPS items are the framework and they are three public sentences. Academic wins on
+   search: the August keyword data put nursing demand almost entirely in academic terms, with
+   `nursing simulation` at 390 a month alongside `simulation in nursing education`, `nursing
+   simulation scenarios`, and `vsim for nursing`, while Magnet and nursing professional development
+   have much thinner demand. Pipeline argues hospital-side, organic visibility argues academic.
+5. **Whether any nursing site can be named publicly.**
 
 Shipped while those stay open, because neither needs product truth:
 
