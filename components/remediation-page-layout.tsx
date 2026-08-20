@@ -677,9 +677,9 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
         </>
       )}
 
-      {/* ----------------------------------------------------------------- */}
       <GlossaryTermLinks slugs={data.glossarySlugs} />
 
+      {/* ----------------------------------------------------------------- */}
       {/* Final CTA                                                          */}
       {/* ----------------------------------------------------------------- */}
       <SectionDivider variant="diagonal-down" color="cloud" />
