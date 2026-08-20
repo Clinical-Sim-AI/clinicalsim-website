@@ -55,6 +55,25 @@ export default async function GlossaryTermPage({ params }: Props) {
   const related = getRelatedGlossaryTerms(term.slug)
   const url = `${BASE_URL}/glossary/${term.slug}`
 
+  // FAQPage is what earns the People Also Ask placements, so it only goes on
+  // pages that actually carry a Q/A block. Answer text is the visible answer
+  // verbatim, matching the solution, comparison, and audience layouts.
+  const faqJsonLd =
+    term.faqs && term.faqs.length > 0
+      ? {
+          "@context": "https://schema.org" as const,
+          "@type": "FAQPage" as const,
+          mainEntity: term.faqs.map((faq) => ({
+            "@type": "Question" as const,
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer" as const,
+              text: faq.answer,
+            },
+          })),
+        }
+      : null
+
   return (
     <>
       <JsonLd
@@ -100,6 +119,7 @@ export default async function GlossaryTermPage({ params }: Props) {
               },
             ],
           },
+          ...(faqJsonLd ? [faqJsonLd] : []),
         ]}
       />
 
@@ -175,6 +195,26 @@ export default async function GlossaryTermPage({ params }: Props) {
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {term.faqs && term.faqs.length > 0 && (
+            <div className="mt-12">
+              <h2 className="text-xl md:text-2xl font-medium text-cs-dark-blue mb-6">
+                Common questions
+              </h2>
+              <div className="space-y-7">
+                {term.faqs.map((faq) => (
+                  <div key={faq.question}>
+                    <h3 className="text-base md:text-lg font-medium text-cs-navy mb-2">
+                      {faq.question}
+                    </h3>
+                    <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 

@@ -12,6 +12,7 @@ import { getAllAudiences } from "./audiences"
 import { getAllComparisons } from "./comparisons"
 import { getAllPosts } from "./posts"
 import { getAllSolutions } from "./solutions"
+import { remediationPageData } from "./remediation"
 import { generateStaticParams } from "../app/(marketing)/glossary/[slug]/page"
 
 const terms = getAllGlossaryTerms()
@@ -61,6 +62,7 @@ function visibleStrings(term: GlossaryTerm): string[] {
     term.source,
     ...(term.explainer ?? []),
     ...(term.inPractice ?? []),
+    ...(term.faqs ?? []).flatMap((faq) => [faq.question, faq.answer]),
     ...(term.relatedLinks ?? []).map((link) => link.label),
   ].filter((value): value is string => typeof value === "string")
 }
@@ -235,11 +237,88 @@ describe("indexable glossary terms", () => {
     }
   })
 
+  it("keeps FAQ answers extractable on their own", () => {
+    // The FAQ block exists to be lifted into an AI answer or a People Also Ask
+    // card, where the question is not shown alongside it. An answer that opens
+    // with "Yes" or a bare pronoun loses its subject the moment it is quoted.
+    for (const term of indexable) {
+      for (const faq of term.faqs ?? []) {
+        const label = `${term.slug} FAQ "${faq.question}"`
+
+        expect(faq.question.trim(), `${label} is not phrased as a question`).toMatch(
+          /\?$/
+        )
+        expect(
+          wordCount(faq.answer),
+          `${label} answers in ${wordCount(faq.answer)} words, want at least 40`
+        ).toBeGreaterThanOrEqual(40)
+        expect(faq.answer, `${label} opens without a subject`).not.toMatch(
+          /^(Yes|No|It|This|That|They|These|Those)\b/
+        )
+      }
+
+      // Duplicate questions would emit two FAQPage entries for one answer.
+      const questions = (term.faqs ?? []).map((faq) => faq.question)
+      expect(new Set(questions).size, `${term.slug} repeats an FAQ question`).toBe(
+        questions.length
+      )
+    }
+  })
+
   it("builds a static page for exactly the indexable terms", () => {
     // A forgotten filter in generateStaticParams would silently publish thin
     // pages without failing anything else.
     expect(generateStaticParams().map((p) => p.slug).sort()).toEqual(
       indexable.map((term) => term.slug).sort()
     )
+  })
+})
+
+/**
+ * Inbound links into the glossary. Every term page already links back out to a
+ * commercial page, but until the solution and audience registries carried
+ * glossarySlugs the only inbound path was the /glossary hub, so no authority
+ * reached a term page from anything that had any.
+ */
+describe("glossary inbound links", () => {
+  const inbound: { from: string; slugs: string[] }[] = [
+    ...getAllSolutions().map((s) => ({
+      from: `/solutions/${s.slug}`,
+      slugs: s.glossarySlugs ?? [],
+    })),
+    ...getAllAudiences().map((a) => ({
+      from: `/audiences/${a.slug}`,
+      slugs: a.glossarySlugs ?? [],
+    })),
+    { from: "/solutions/remediation", slugs: remediationPageData.glossarySlugs },
+  ]
+
+  it("only links glossary slugs that have their own page", () => {
+    for (const source of inbound) {
+      for (const slug of source.slugs) {
+        const term = getGlossaryTermBySlug(slug)
+        expect(term, `${source.from} links missing term ${slug}`).toBeDefined()
+        expect(
+          indexable.some((t) => t.slug === slug),
+          `${source.from} links hub-only term ${slug}, which renders nothing`
+        ).toBe(true)
+      }
+      expect(
+        new Set(source.slugs).size,
+        `${source.from} repeats a glossary slug`
+      ).toBe(source.slugs.length)
+    }
+  })
+
+  it("gives every term page an inbound link from outside the glossary", () => {
+    const linked = new Set(inbound.flatMap((source) => source.slugs))
+    const orphans = indexable
+      .map((term) => term.slug)
+      .filter((slug) => !linked.has(slug))
+
+    // A term page reachable only from the hub is one hop further from every
+    // page that has authority. Add the slug to glossarySlugs on whichever
+    // solution or audience page the term actually belongs to.
+    expect(orphans, `glossary terms with no inbound link: ${orphans.join(", ")}`).toEqual([])
   })
 })

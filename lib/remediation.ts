@@ -71,6 +71,13 @@ export interface RemediationPageData {
   // FAQs
   faqs: FaqItem[]
 
+  /**
+   * Glossary slugs to link from this page. The only inbound path to a term page
+   * used to be the /glossary hub, so authority reaching this page stopped here.
+   * Hub-only terms are dropped at render time; list indexable ones.
+   */
+  glossarySlugs: string[]
+
   // CTA
   ctaHeadline: string
   ctaDescription: string
@@ -378,6 +385,15 @@ export const remediationPageData: RemediationPageData = {
       answer:
         "PACE (Program for Accelerated Curriculum in Education) and similar external remediation programs provide intensive assessment or coaching for one learner at a time and issue an external report at the end. ClinicalSim provides structured, on-demand practice within the learner's home program and generates milestone-aligned documentation from every session. A program can use ClinicalSim on its own or between sessions with an external remediation service.",
     },
+  ],
+
+  glossarySlugs: [
+    "remediation",
+    "milestones",
+    "ccc",
+    "deliberate-practice",
+    "clinical-reasoning",
+    "high-stakes-conversations",
   ],
 
   // ---------------------------------------------------------------------------

@@ -1,3 +1,5 @@
+import type { FaqItem } from "@/lib/types"
+
 export interface GlossaryTerm {
   /** URL path segment: "epa" -> /glossary/epa. Also the hub anchor id. */
   slug: string
@@ -35,6 +37,14 @@ export interface GlossaryTerm {
   explainer?: string[]
   /** Optional "what this looks like in a program" bullets. */
   inPractice?: string[]
+  /**
+   * Optional FAQ block for a term whose search demand splits into several
+   * near-duplicate phrasings of the same question. When present it renders a
+   * Q/A section and emits FAQPage JSON-LD. Same shape as the FAQ blocks on
+   * solution, comparison, and audience pages. Each answer must stand alone
+   * without its question and carry its own stat or source, per CLAUDE.md.
+   */
+  faqs?: FaqItem[]
   /** Internal links off the glossary, so no term page is a dead end. */
   relatedLinks?: { href: string; label: string }[]
   /** ISO date. Drives sitemap lastModified and WebPage dateModified. */
@@ -879,11 +889,39 @@ export const glossaryTerms: GlossaryTerm[] = [
       "Train more than one examiner per station and compare their scores on the same recorded encounter before the exam counts for anything.",
       "Report station-level results to the competency committee rather than one composite score, since a learner who fails only the disclosure station needs something different from a learner who fails the physical exam stations.",
     ],
+    faqs: [
+      {
+        question: "What is an OSCE examination?",
+        answer:
+          "An OSCE is a clinical exam built from a series of short timed stations, each with one set task and a rubric written before anyone sits the exam. Harden, Stevenson, Downie, and Wilson described the format in the British Medical Journal in 1975 as an alternative to the traditional long case, where a learner's grade depended heavily on which patient and which examiner they happened to draw. Programs use it to make progression decisions about history taking, physical examination, clinical reasoning, and communication.",
+      },
+      {
+        question: "What does OSCE stand for in medicine?",
+        answer:
+          "OSCE stands for objective structured clinical examination. Objective means scoring against criteria fixed in advance rather than against an examiner's overall impression, and structured means every learner rotates through the same stations under the same time limit. Harden and Gleeson set the acronym in its current form in Medical Education in 1979, which is also where station design and scoring were first laid out in detail. It gets shortened to objective clinical examination often enough that the two phrases are used interchangeably, though the structure is the part doing the work.",
+      },
+      {
+        question: "What happens in a medical OSCE exam?",
+        answer:
+          "A learner reads a short task instruction outside the station, spends a fixed number of minutes inside with a standardized patient or a manikin, then moves on when the timer goes. Common tasks are taking a focused history, performing a physical examination, explaining a diagnosis or a procedure, and handling a conversation with a family. An examiner scores the station while it happens, against a checklist of required actions, a rating scale, or both. Stations are scored independently of each other, so a bad first station does not sink the whole exam.",
+      },
+      {
+        question: "How many stations does an OSCE have?",
+        answer:
+          "There is no standard number, and station count is a sampling decision rather than a convention. Reliability comes from sampling widely across stations, cases, and examiners rather than from making any one station longer, so a program running three or four stations should read any single station result as a weak signal about the learner. For scale, the USMLE Step 2 Clinical Skills examination used 12 standardized patient encounters of 15 minutes each, 10 of which counted toward the score, before the NBME and the Federation of State Medical Boards discontinued it on January 26, 2021. AMEE Guide 49 sets out the metrics programs use to check whether their own station set is holding up (Pell, Fuller, Homer, and Roberts, Medical Teacher, 2010).",
+      },
+      {
+        question: "How are OSCE stations scored?",
+        answer:
+          "Stations are scored with a checklist of required actions, a global rating scale, or both, and the choice changes what the score can support. Regehr, MacRae, Reznick, and Szalay compared the two on an OSCE format examination of surgical skills in Academic Medicine in 1998 and found that global rating scales completed by expert examiners had higher inter-station reliability, a Cronbach's alpha of 0.85 against 0.79 for checklists, and better construct validity, since a checklist rewards thoroughness rather than judgment. The usual compromise is a checklist for the actions that have to happen and a rating scale for communication quality or clinical reasoning.",
+      },
+    ],
     relatedLinks: [
       { href: "/insights/osce-case-design-guide", label: "Designing OSCE cases that hold up" },
+      { href: "/solutions/undergraduate-medical-education", label: "OSCE practice across four years of medical school" },
       { href: "/compare/ai-clinical-simulation-vs-standardized-patients", label: "AI patients and standardized patients compared" },
     ],
-    lastUpdated: "2026-08-18",
+    lastUpdated: "2026-08-20",
   },
   {
     slug: "pearls-debriefing",

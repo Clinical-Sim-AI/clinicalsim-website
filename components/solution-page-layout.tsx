@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { GlossaryTermLinks } from "@/components/glossary-term-links"
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
 import { cn, formatIsoMonth } from "@/lib/utils"
 import { type Solution } from "@/lib/solutions"
@@ -338,6 +339,8 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
           </section>
         </>
       )}
+
+      <GlossaryTermLinks slugs={solution.glossarySlugs} />
 
       {/* Final CTA */}
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">

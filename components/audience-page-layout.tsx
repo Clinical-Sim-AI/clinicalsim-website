@@ -5,6 +5,7 @@ import { StatHighlight } from "@/components/stat-highlight"
 import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { GlossaryTermLinks } from "@/components/glossary-term-links"
 import { type Audience } from "@/lib/audiences"
 import { getPostBySlug } from "@/lib/posts"
 import { getSolutionBySlug } from "@/lib/solutions"
@@ -356,6 +357,8 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
           </section>
         </>
       )}
+
+      <GlossaryTermLinks slugs={audience.glossarySlugs} />
 
       {/* Final CTA */}
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
