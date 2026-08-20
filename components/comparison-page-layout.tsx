@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
-import { type Comparison } from "@/lib/comparisons"
+import { getAllComparisons, type Comparison } from "@/lib/comparisons"
 import { getPostBySlug } from "@/lib/posts"
 import { formatIsoMonth } from "@/lib/utils"
 
@@ -15,6 +15,10 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
   const relatedPosts = (comparison.relatedPostSlugs ?? [])
     .map((slug) => getPostBySlug(slug))
     .filter(Boolean)
+
+  // Comparisons only ever linked back to the /compare hub, so each one carried a
+  // single incoming internal link. Linking the siblings fixes that.
+  const otherComparisons = getAllComparisons().filter((c) => c.slug !== comparison.slug)
 
   const faqJsonLd =
     comparison.faqs && comparison.faqs.length > 0
@@ -236,6 +240,34 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
             </div>
           </section>
         </>
+      )}
+
+      {/* Other comparisons */}
+      {otherComparisons.length > 0 && (
+        <section className="px-6 py-8 md:py-10 bg-cs-cloud/40 border-t border-cs-gray">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-8">
+              Other comparisons
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {otherComparisons.map((other) => (
+                <Link
+                  key={other.slug}
+                  href={`/compare/${other.slug}`}
+                  className="group block bg-white rounded-xl p-6 border border-cs-gray/50 hover:border-cs-electric/30 transition-all duration-300"
+                >
+                  <h3 className="text-lg font-medium text-cs-dark-blue group-hover:text-cs-navy transition-colors mb-2">
+                    {other.metaTitle}
+                  </h3>
+                  <div className="mt-3 flex items-center text-cs-dark-blue text-sm font-medium">
+                    Read the comparison
+                    <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
       )}
 
       {/* Final CTA */}

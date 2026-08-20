@@ -252,8 +252,11 @@ const sections: PdFaqSection[] = [
           and quality are not well established (Kogan et al., 2009), and in
           practice learners are judged on far too few observations to be
           reliable, mostly because standardized-patient scheduling and faculty
-          time cap how many a rotation can offer. The second is that a given
-          score reflects the rater as well as the learner. In a
+          time cap how many a rotation can offer.
+        </p>
+        <p>
+          The second is that a given score reflects the rater as well as the
+          learner. In a
           seven-institution study of more than 53,000 assessments, less than
           10% of score variance was attributable to the learner (Ryan et al.,
           2024). Different faculty watching the same encounter reach different
@@ -277,8 +280,11 @@ const sections: PdFaqSection[] = [
           is no standardized-patient schedule or faculty roster capping how
           often a case can run, a learner can accumulate the observations
           reliability actually requires, distributed over time, rather than
-          the handful a rotation allows. And because one consistent rubric and
-          scoring process applies to every encounter, a learner&apos;s score
+          the handful a rotation allows.
+        </p>
+        <p>
+          And because one consistent rubric and scoring process applies to
+          every encounter, a learner&apos;s score
           does not shift depending on which faculty member happened to be
           observing, a consequence of being a single repeatable scorer, not a
           claim that the AI judges better than a trained clinician would.
@@ -299,7 +305,10 @@ const sections: PdFaqSection[] = [
           is that the platform adds observation capacity and holds scoring
           consistent across encounters, which speaks to the frequency and
           rater-variance findings above, not to whether the AI&apos;s judgment
-          is better than a clinician&apos;s. Because a ClinicalSim encounter
+          is better than a clinician&apos;s.
+        </p>
+        <p>
+          Because a ClinicalSim encounter
           mirrors a direct-observation tool like the mini-CEX rather than an
           EPA entrustment scale, the relevant target is modest: on the order
           of four to five spaced encounters per skill (the range programs
@@ -324,8 +333,12 @@ const sections: PdFaqSection[] = [
             determination). Reaching a formal reliability of about 0.8 takes
             roughly eight mini-CEX encounters (Norcini et al., 2003;
             Moonen-van Loon et al., 2013, from 12,779 assessments across 953
-            residents). EPA entrustment scales are a different, lower-signal
-            instrument: they capture under 10% learner variance, so they need
+            residents).
+          </li>
+          <li>
+            <strong>Why EPA entrustment scales are not our benchmark.</strong>{" "}
+            They are a different, lower-signal instrument: they capture under
+            10% learner variance, so they need
             far more, 9 to 11 observations to reach only 0.7 in a UME clerkship
             (Dunne et al., 2022), and a median of 60 for reasonable
             reliability across a seven-institution sample (Ryan et al., 2024).

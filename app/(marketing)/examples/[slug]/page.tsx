@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, Clock } from "lucide-react"
+import { ArrowLeft, ArrowRight, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { JsonLd } from "@/components/json-ld"
 import { CaseHeader } from "@/components/feedback/case-header"
@@ -50,12 +50,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const example = getExampleBySlug(slug)
   if (!example) return {}
 
-  const title = `${example.title}: Example Feedback`
+  // Absolute so the root layout's "| ClinicalSim.ai" template does not push these
+  // past the 75-character title limit. metaTitle overrides for the long case names.
+  const title = example.metaTitle ?? `${example.title}: Example Feedback`
   const description = getExampleDescription(example.slug, example.title)
   const url = `https://clinicalsim.ai/examples/${example.slug}`
 
   return {
-    title,
+    title: { absolute: title },
     description,
     openGraph: { title: `${example.title} | ClinicalSim Example`, description, url },
     twitter: { title: `${example.title} | ClinicalSim Example`, description },
@@ -69,6 +71,10 @@ export default async function ExampleCasePage({ params }: Props) {
   if (!example) notFound()
 
   const duration = formatDuration(example.durationSeconds)
+  // Every example used to be reachable only from the /examples hub, which left each
+  // one with a single incoming internal link. Cross-linking the siblings fixes that
+  // and gives a reader somewhere to go that is not the CTA.
+  const otherExamples = getAllExamples().filter((e) => e.slug !== example.slug)
   const transcriptTurns = example.transcript.length
 
   return (
@@ -194,6 +200,37 @@ export default async function ExampleCasePage({ params }: Props) {
           )}
         </div>
       </section>
+
+      {/* Other examples */}
+      {otherExamples.length > 0 && (
+        <section className="px-6 py-12 md:py-16 bg-cs-cloud/40 border-t border-cs-gray">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-8">
+              Other examples
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {otherExamples.map((other) => (
+                <Link
+                  key={other.slug}
+                  href={`/examples/${other.slug}`}
+                  className="group block bg-white rounded-xl p-6 border border-cs-gray/50 hover:border-cs-electric/30 transition-all duration-300"
+                >
+                  <h3 className="text-lg font-medium text-cs-dark-blue group-hover:text-cs-navy transition-colors mb-2">
+                    {other.title}
+                  </h3>
+                  <p className="text-sm text-cs-dark-blue/70 font-light line-clamp-2">
+                    {other.summary}
+                  </p>
+                  <div className="mt-3 flex items-center text-cs-dark-blue text-sm font-medium">
+                    Review the encounter
+                    <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="px-6 py-14 md:py-20 bg-white border-t border-cs-gray">

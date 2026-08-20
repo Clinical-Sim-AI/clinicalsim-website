@@ -5,7 +5,7 @@ import { AudiencePageLayout } from "@/components/audience-page-layout"
 const audience = getAudienceBySlug("faculty-clinician-educators")!
 
 export const metadata: Metadata = {
-  title: "Faculty and clinician educators: practice the conversations you lead",
+  title: { absolute: "Faculty and clinician educators: practice the conversations you lead" },
   description:
     "Rehearse corrective feedback, professionalism concerns, and bedside teaching in private, then review the rubric and transcript before leading the conversation in person.",
   openGraph: {

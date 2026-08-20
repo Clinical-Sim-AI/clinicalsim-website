@@ -5,7 +5,7 @@ import { AudiencePageLayout } from "@/components/audience-page-layout"
 const audience = getAudienceBySlug("clinical-competency-committees")!
 
 export const metadata: Metadata = {
-  title: "Clinical competency committees: communication evidence for CCC review",
+  title: { absolute: "Clinical competency committees: communication evidence for CCC review" },
   description: "ClinicalSim practice reports map observed behavior to relevant milestones and cite the learner's words for review alongside faculty observation and other CCC evidence.",
   openGraph: {
     title: "Clinical competency committees | ClinicalSim.ai",

@@ -7,15 +7,6 @@
     text-wrap: balance;
   }
 
-  @keyframes slide-in-left {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-
   @keyframes fade-slide-out {
     from {
       opacity: 1;

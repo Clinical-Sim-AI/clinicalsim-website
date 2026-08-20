@@ -5,7 +5,7 @@ import { AudiencePageLayout } from "@/components/audience-page-layout"
 const audience = getAudienceBySlug("program-directors")!
 
 export const metadata: Metadata = {
-  title: "Program directors: a repeatable communication remediation structure",
+  title: { absolute: "Program directors: a repeatable communication remediation structure" },
   description: "In a survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years. ClinicalSim adds structured practice and transcript evidence.",
   openGraph: {
     title: "Program directors | ClinicalSim.ai",

@@ -9,7 +9,7 @@ import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { formatIsoDay } from "@/lib/utils"
 
 export const metadata: Metadata = {
-  title: "Evidence and practical guidance for clinical communication training",
+  title: { absolute: "Evidence and practical guidance for clinical communication training" },
   description: "Research summaries, implementation guides, and clear limits on what the evidence can support in clinical communication training.",
   openGraph: {
     title: "Insights from ClinicalSim.ai",

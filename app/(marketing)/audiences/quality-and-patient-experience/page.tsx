@@ -5,7 +5,7 @@ import { AudiencePageLayout } from "@/components/audience-page-layout"
 const audience = getAudienceBySlug("quality-and-patient-experience")!
 
 export const metadata: Metadata = {
-  title: "Quality and patient experience leaders: HCAHPS communication",
+  title: { absolute: "Quality and patient experience leaders: HCAHPS communication" },
   description:
     "Patient experience is 25% of the Medicare value-based purchasing score, and five of the eight HCAHPS measures Medicare pays on are communication measures, about 15.6% of the total (CMS FY2026 IPPS). ClinicalSim gives clinicians voice-based practice on those conversations, with a rubric-scored record of every session.",
   openGraph: {

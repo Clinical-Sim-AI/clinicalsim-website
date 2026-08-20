@@ -11,7 +11,7 @@ import { getAuthorById, getAuthorUrl } from "@/lib/authors"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
-  title: "Methodology: Case Development, Standards Alignment & Feedback",
+  title: { absolute: "Methodology: Case Development, Standards Alignment & Feedback" },
   description:
     "How ClinicalSim.ai builds cases, anchors them to the ACGME Milestones 2.0, the Foundational Competencies, or the ACGME Clinician Educator Milestones, applies validated communication frameworks like SPIKES and Calgary-Cambridge, and generates transcript-grounded, competency-based feedback.",
   openGraph: {
@@ -284,25 +284,29 @@ export default function MethodologyPage() {
           <h3 className="text-2xl font-medium text-cs-dark-blue mb-4">
             2.1 Building a case
           </h3>
-          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
             Every case begins with a defined purpose: the communication and
             clinical skills it should exercise and the competencies it
             should assess. Content is written to that purpose, with explicit
             learning objectives and a clinical evidence base drawn from
-            foundational and other applicable literature. Physicians then
-            review each case for accuracy, content, alignment, and fit to
-            its objectives; reviewers are practicing physicians with strong
-            academic backgrounds and decades of collective experience,
+            foundational and other applicable literature.
+          </p>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
+            Physicians then review each case for accuracy, content, alignment,
+            and fit to its objectives; reviewers are practicing physicians with
+            strong academic backgrounds and decades of collective experience,
             including program directors, simulation facilitators, and UME
             and GME educators. Faculty development cases are also reviewed
             by someone with faculty development or clinical teaching
-            expertise. Before release, each case is run repeatedly
-            to confirm three things: that the AI character convincingly
-            plays the role the case requires; that scoring and feedback
-            perform as intended; and that what the case asks can be assessed
-            within the limits of voice-based simulation. Refinements are
-            made in coordination with ClinicalSim&rsquo;s clinical and
-            technical leadership.
+            expertise.
+          </p>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
+            Before release, each case is run repeatedly to confirm three
+            things: that the AI character convincingly plays the role the case
+            requires; that scoring and feedback perform as intended; and that
+            what the case asks can be assessed within the limits of
+            voice-based simulation. Refinements are made in coordination with
+            ClinicalSim&rsquo;s clinical and technical leadership.
           </p>
 
           <h3 className="text-2xl font-medium text-cs-dark-blue mb-4">
@@ -360,19 +364,23 @@ export default function MethodologyPage() {
             Scoring follows the competency framework on which a case is
             built, and the unit of assessment is the individual competency
             the case exercises. Each applied communication framework or
-            program rubric is scored independently of the competency. Where
-            an instrument publishes its own rating scale, we use it. Most
-            communication frameworks do not, and there we apply a
+            program rubric is scored independently of the competency.
+          </p>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
+            Where an instrument publishes its own rating scale, we use it.
+            Most communication frameworks do not, and there we apply a
             ClinicalSim scale to the framework&rsquo;s own steps and say so
             in the case, so a score is never read as though the
-            framework&rsquo;s validation stood behind it. Because these
-            frameworks are developmental, a given result carries different
-            meaning at different stages of training and is always
+            framework&rsquo;s validation stood behind it.
+          </p>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
+            Because these frameworks are developmental, a given result carries
+            different meaning at different stages of training and is always
             interpreted accordingly. All scores are presented together, with
             their verbatim evidence, so the learner or reviewer sees a
             complete picture. What varies is the competency framework a case
-            is anchored to and how the competency itself is scored,
-            described by learner level below.
+            is anchored to and how the competency itself is scored, described
+            by learner level below.
           </p>
 
           <div className="space-y-6">

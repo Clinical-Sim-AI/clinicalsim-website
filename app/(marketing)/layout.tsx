@@ -55,7 +55,6 @@ export default function MarketingLayout({
       />
       <SiteHeader />
       <main className="relative">
-        <div className="absolute inset-0 bg-transparent"></div>
         <div className="relative">
           {children}
         </div>

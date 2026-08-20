@@ -32,9 +32,10 @@ const posts: Post[] = [
   },
   {
     slug: "eol-communication-training-measurement-gap",
-    title: "Six of 105: Why End-of-Life Communication Training Has a Measurement Problem",
+    title: "Six of 105: the measurement gap in end-of-life communication training",
     description: "A systematic review of 105 studies found only 6 with clear training objectives — none sharing the same outcomes. A pediatric intensivist and palliative care physician explains what this means for fellows learning to navigate the hardest conversations in medicine.",
     date: "2026-06-09",
+    dateModified: "2026-08-20",
     author: "Lauren Rissman, MD",
     authorId: "lauren-rissman",
     readingTime: "8 min read",
@@ -72,10 +73,10 @@ const posts: Post[] = [
   },
   {
     slug: "ai-affirming-care-communication-training",
-    title: "When clinical exposure shrinks, simulation can preserve affirming care practice",
+    title: "Simulation can preserve affirming care practice as exposure shrinks",
     description: "Sixty percent of surveyed residency program directors reported no rotation with direct clinical exposure to transgender patients. A team presenting at IPSS Rome designed an AI patient scenario for structured communication practice when clinical exposure is limited.",
     date: "2026-03-30",
-    dateModified: "2026-08-18",
+    dateModified: "2026-08-20",
     author: "ClinicalSim Team",
     readingTime: "6 min read",
     tags: ["ai", "simulation", "communication-training", "affirming-care", "pediatrics"],
@@ -179,9 +180,12 @@ const SITE_URL = "https://clinicalsim.ai"
  * Build the full Metadata object for an insight post from its slug. Keeps every
  * post's title, description, canonical, OpenGraph, and Twitter tags in sync with
  * the registry in this file so MDX pages don't hand-maintain (and drift on) their
- * own metadata. The title is the bare registry title; the root layout template
- * ("%s | ClinicalSim.ai") appends the brand suffix once, so posts must NOT bake
- * it in themselves.
+ * own metadata.
+ *
+ * The <title> is set as `absolute`, so the root layout template
+ * ("%s | ClinicalSim.ai") does NOT append the brand suffix. Post titles are full
+ * editorial headlines and the extra 17 characters pushed them past the 75-character
+ * limit Semrush flags. Registry titles stay bare -- never bake a suffix into one.
  */
 export function getPostMetadata(slug: string) {
   const post = getPostBySlug(slug)
@@ -189,7 +193,7 @@ export function getPostMetadata(slug: string) {
 
   const url = `${SITE_URL}/insights/${post.slug}`
   return {
-    title: post.title,
+    title: { absolute: post.title },
     description: post.description,
     alternates: { canonical: url },
     openGraph: {

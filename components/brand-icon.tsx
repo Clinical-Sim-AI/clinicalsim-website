@@ -77,6 +77,9 @@ export function BrandIcon({
   // is requested. This avoids gaps when the FFFFFF variant wasn't shipped.
   const src = `/brand/icons/noun-${name}-${id}-07172F.png`
   const filter = color === "white" ? "brightness(0) invert(1)" : undefined
+  // The masters are 1200x1200 and these render at 16-28px, so let next/image
+  // resize them. Rendering them unoptimized shipped ~93KB of PNG to paint four
+  // 28px icons on the homepage alone.
   return (
     <Image
       src={src}
@@ -85,7 +88,6 @@ export function BrandIcon({
       height={size}
       className={cn("inline-block", className)}
       style={filter ? { filter } : undefined}
-      unoptimized
     />
   )
 }

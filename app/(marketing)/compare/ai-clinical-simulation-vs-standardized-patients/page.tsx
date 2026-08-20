@@ -7,7 +7,7 @@ const comparison = getComparisonBySlug(
 )!
 
 export const metadata: Metadata = {
-  title: comparison.metaTitle,
+  title: { absolute: comparison.metaTitle },
   description: comparison.metaDescription,
   openGraph: {
     title: comparison.metaTitle,
