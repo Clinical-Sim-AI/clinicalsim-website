@@ -104,12 +104,14 @@ The project uses shadcn/ui components which are:
 - The sitemap uses `dateModified ?? date` for insight posts, so registry dates must describe real content changes rather than the build date.
 
 #### Author credential snapshot (source of truth for `lib/authors.ts`)
-Pulled from each person's CV in `Clinical Sim AI LLC/Team/` (as of 2026-07-02). Use these — don't re-open the CVs unless a name/title looks stale or a new author needs adding.
-- **Lauren Rissman, MD** — Attending Faculty Member, Pediatric Critical Care and Palliative Care, Advocate Children's Hospital (Park Ridge, IL); Assistant Clinical Professor, Wake Forest University School of Medicine
-- **Jacqueline Ponczek, MD, MS, FAAP** — Clinical Assistant Professor in Pediatrics (Primary Care–Outreach), Northwestern University Feinberg School of Medicine; Ann & Robert H. Lurie Children's Hospital of Chicago
-- **Vinod Havalad, MD** — Attending Physician; Program Director, Pediatric Simulation and Pediatric Critical Care Medicine Fellowship, Advocate Children's Hospital (Park Ridge, IL); Assistant Professor, Rosalind Franklin University of Medicine and Science; Adjunct Assistant Professor, Wake Forest University School of Medicine
-- **Gillian Brennan, MB BCh BAO** — Associate Professor of Pediatrics; Attending Neonatologist and Director of Neonatal Simulation, Section of Neonatology, University of Chicago; Program Director, Neonatology Fellowship
-- These are personal/academic titles from each CV, not ClinicalSim-specific role titles — the `title` field in `lib/authors.ts` may instead show their ClinicalSim role (e.g. "Chief Medical Officer, ClinicalSim") where one has been confirmed by Ben. Don't invent a ClinicalSim-specific title that isn't already in `lib/authors.ts` or confirmed by Ben.
+Pulled from the pitch deck team slide (as of 2026-08-22). Use these — don't re-open the CVs in `Clinical Sim AI LLC/Team/` unless a name/title looks stale or a new author needs adding; that folder is fallback only (see `[[author-credentials-source]]`).
+- **Ben Conway, CEO** — Second-time founder. Co-founded VNTANA, spent 14 years building it for customers including Johnson & Johnson and Pfizer, raising $18M+ along the way, and closed $8M+ in enterprise sales.
+- **Lauren Rissman, MD, Chief Medical Officer** — Pediatric intensivist and palliative care physician at Advocate Health Care. Named author on SCCM's 2026 End-of-Life Care Guidelines. Sits on the editorial board of Pediatric Critical Care Medicine.
+- **Will Meyer, CTO** — Co-founder of Troops, acquired by Salesforce. Spent two years architecting Salesforce AI infrastructure, including Slackbot.
+- **Vinod Havalad, MD, Chief Clinical Partnerships Officer** — Pediatric critical care physician and Pediatric Critical Care Fellowship Director at Advocate Children's Hospital, leading physician education there since 2012. PI of a national pediatric critical care simulation curriculum.
+- **Gillian Brennan, MB BCh BAO, VP of Clinical Research and Education** — Associate Professor of Pediatrics at the University of Chicago, Neonatology Fellowship Program Director, and Director of Neonatal Simulation. Fourteen years supervising more than 500 clinicians.
+- **Jacqueline Ponczek, MD, VP of MedEd, Quality and Standards** — Pediatrician and simulation educator at Northwestern Feinberg and Lurie Children's, leading simulation curricula since 2020. Repeat recipient of Feinberg's Teaching Pin.
+- The name/title lead-in on each line above is the ClinicalSim role already in `lib/authors.ts`; the rest is career credentials, not a separate title. Don't invent a ClinicalSim-specific title that isn't already in `lib/authors.ts` or confirmed by Ben.
 
 ### Citations in Blog Posts
 - **Component**: `components/references-section.tsx` — numbered academic citation list
