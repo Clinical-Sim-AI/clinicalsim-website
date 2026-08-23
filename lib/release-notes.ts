@@ -44,6 +44,92 @@ export function formatReleaseDate(date: string): string {
 
 export const releases: Release[] = [
   {
+    id: "2026-08-23",
+    date: "2026-08-23",
+    note: "Most of this release went into making the app tell you the truth about your own sessions, plus assigning learners to a project before they have accepted an invitation.",
+    userFacing: [
+      "**Session status you can trust.** When a session ended without the learner actually speaking, the app used to say feedback was on its way and then never deliver it, and the lists and the detail page could disagree with each other. Every place a session appears now says plainly that no feedback is coming for that attempt, in the same wording wherever you look: your own history, the organization and admin session lists, and the per-learner attempts view inside a project.",
+      "**Attempts that never connected now say \"Didn't start.\"** A simulation that got as far as asking for a microphone but never connected used to sit at \"In progress\" forever, counting toward a learner's assignment as though they were halfway through it. Those attempts now reach an honest end state with a plain-English reason, and the message matches what actually went wrong (a declined microphone prompt no longer tells you to call IT about the network). Dismiss the permission dialog and no half-finished attempt is recorded at all.",
+      "**Deleting an attempt while feedback is being prepared is now safe.** Tidying up your history mid-grading used to leave the attempt permanently marked failed, or stuck saying it was still processing when nothing was watching for it. Deleting now stops the work in progress, and nothing keeps grading a session you've removed.",
+      "**Feedback timing no longer depends on your device's clock.** If your laptop or phone clock ran fast, your feedback page could tell you grading had given up while it was in fact still running. The wait is now measured on our side, so what you see reflects what's happening.",
+      "**Add learners to a project before they've accepted their invitation.** You used to have to wait for each person to sign up and then assign them one at a time, which meant a whole incoming cohort landed on an empty page after signing up. You can now attach people who are still invited, individually or as a group, see them in a separate \"Waiting to join\" section, and they arrive with their simulations already assigned. Pasting an email that was already invited attaches that person to the project instead of quietly doing nothing, and a learner who genuinely has nothing assigned yet gets an explanation and a way to reach support.",
+      "**You'll hear about a new assignment right away.** When your program lead adds you to a project, you get an email immediately, naming the simulations you've been assigned, when they're due, and a link straight to your assignment list. If you were invited to ClinicalSim through that same project, the project is named in your invitation instead, so nobody gets two emails about one thing.",
+      "**The follow-up reminders now read as one conversation.** The later \"finish your simulations\" nudges open by reminding you when you were added to the project, and lead with the project's name, so all the mail about a given assignment sits together in your inbox.",
+    ],
+    team: [
+      "Roughly twenty sessions that had been stuck reading \"processing\" indefinitely in production corrected themselves the moment this shipped. No cleanup, no one-off script, and any future one settles on its own. An hourly background check also closes out attempts abandoned mid-connect, and it's careful not to mislabel a session that actually took place.",
+      "Errors now reach us instead of dying quietly. Every error the app records is reported to our monitoring, in the browser, on the site, and in the background workers, which previously reported nothing at all. Several paths that used to fail in complete silence (a simulation that never connects to the voice provider, feedback that never gets queued, a voice-deletion request that only partly succeeded) now raise an alert, and a sweep checks the database every fifteen minutes for learners stuck mid-flow, with a watchdog on every scheduled job so a sweep that stops running no longer looks identical to a healthy one. For the last month, every incident was found because a person went looking. No recordings or clinical content go to the monitoring tool, only identifiers and error shapes.",
+      "The organization and admin session lists and cohort views got noticeably lighter. They no longer send the full transcript of every session to the browser just to draw a list, and sorting by status now sorts by what the status column actually shows.",
+      "Fixed a real gap on the admin project pages: in an organization with more than fifty members, anyone past the fiftieth simply couldn't be added to a project, with nothing on screen to explain why.",
+      "A learner deleting their own session no longer registers as a system error, so alerting stays focused on genuine problems. The organization roster export also stopped losing pre-simulation survey answers from learners whose session failed to connect.",
+      "Our two databases now have the same locked-down configuration, written down in code. Staging and production had drifted apart because part of production's protection was switched on by hand rather than shipped through our normal update process, so it existed on one environment and in no reviewable form. Both are now converged on the stronger setting, every table is closed to outside access by default, new tables inherit that automatically, and one check confirms any environment's posture on demand. It runs on every code change, so the drift can't quietly return.",
+      "The Slack support bridge stopped doing unnecessary work and is now visible when something's wrong. Slack was sending us activity from every channel our bot belongs to, so harmless chatter in the metrics and signup channels landed on the support handler and logged warnings that looked like real failures. It now ignores other channels before touching the database. Three failure modes that used to return silently, most importantly a missing security credential that threw away every reply the team sent, now log clearly, and our internal status page shows the Slack connection, which channels are configured, and whether the bot is actually in the support channel. No tokens or secrets are ever displayed.",
+      "A whole tier of our automated tests was running nowhere. Thirty-four test files that need a real database only ran when someone happened to have one configured locally, so no continuous-integration job ever executed them, and fifteen tests across seven files had quietly broken. They cover the expensive things: keeping one organization's data invisible to another, the rules behind our internal metrics, voice-retention consent filtering, and email eligibility. The stale tests were repaired (no product bug, the tests were out of date) and they now run on every change. Separately, the browser-test setup step that intermittently hung for 25 minutes and then reported a fake failure now fails fast with the real cause named.",
+      "Our development tooling had been guessing at the project's root directory and getting it wrong, which affects how files are packaged for deployment. It's now pinned explicitly, with the reasoning recorded in place so nobody tidies it back into the version that builds green and then fails on the first real request.",
+      "Internal engineering documentation was reorganized so agents and new contributors read all of it. Three deep reference guides (LLM token accounting, voice-recording retention, and the consent-gated training export) became standalone documents, and the long-form duplicates came out of the main project guide. That also fixed a genuine problem: one of our coding assistants had been silently reading only the first third of that guide, dropping the sections on commit and pull-request discipline, the third-party vendor registry rule, and most of the privacy-relevant contracts.",
+    ],
+  },
+  {
+    id: "2026-08-18",
+    date: "2026-08-18",
+    userFacing: [
+      "**Your written feedback is complete, start to finish.** On simulations graded against very detailed rubrics, the narrative report could stop mid-sentence, sometimes losing the last few items and the overall impression, with no sign anything was missing. We found it, fixed the underlying limit, and added a check that refuses to hand you a half-written report.",
+      "**Surveys are much easier to read and finish.** The post-simulation survey has been rebuilt to match the rest of the app: numbered questions, clear \"required\" and \"optional\" labels, generous tap targets, plain-language errors that jump you to the field needing attention, and answers that survive a retry. It fits a phone screen without sideways scrolling, and finishing a post-simulation survey now lands you directly on that encounter's feedback instead of a dead end.",
+      "**Study and program teams can receive results on their own paper form.** For programs that assess presentations on an established observation checklist, we can now hand back each learner's attempt rendered on that exact form, one page per attempt, every behavior marked in its frequency band. Getting there meant sharpening the underlying assessment so it scores all 22 behaviors individually rather than four broad rollups, correctly recognizes a parent as the family, marks a genuinely absent participant as not applicable instead of scoring a zero-effort 1, and never invents a scoring scale of its own.",
+    ],
+    team: [
+      "The admin dashboard is navigable instead of a set of dead ends. Organization, learner, and simulation names across conversation details, grids, tables, and detail pages are now links to those records, with \"View conversations (N)\" backlinks and missing breadcrumbs filled in, so you can pivot from a run to the learner who did it without retyping a name into a search box. Row clicks still open the conversation as before, and none of these internal links leak onto org or learner pages.",
+      "We get warned before voice minutes run out. A check every six hours reads the remaining ElevenLabs credit balance and posts one Slack message plus one email when the pool newly drops past 20%, then 10%, then empty. One alert per step, re-arming itself each billing month, so a fast burn is one message rather than three. The admin status page shows the same numbers on demand. Configure the recipients in production only: staging and production share the account, so two configured environments would double-notify.",
+      "Rubrics in the admin list now sort by when they were last edited, newest first, with the original creation date kept in a tooltip. Much faster for finding what you or a collaborator touched most recently.",
+      "Production database credentials can no longer be picked up from a file sitting in someone's local checkout. The one operator script that writes to production reads its credential from the command line only, and says so plainly when it's missing. Staging convenience is unchanged. Our docs and our code now agree on the rule, and the rule is enforced rather than assumed.",
+    ],
+  },
+  {
+    id: "2026-08-10",
+    date: "2026-08-10",
+    userFacing: [
+      "**The pre-simulation survey loads reliably again.** A dropdown on the short survey that appears before a case could stop the page from loading at all. That's fixed, so you can answer the questions and get straight into the encounter.",
+    ],
+    team: [
+      "The Slack metrics dashboard posts its trend chart dependably. Slack takes a few seconds to register a newly shared image, so the update now waits for the image to settle and tries again before giving up. No more dashboards that appear and vanish a moment later.",
+      "The chart's labels and numbers render in the right typeface. The machine that draws the chart in the background was missing the font it needed, so the text came out wrong. The font now ships with it.",
+    ],
+  },
+  {
+    id: "2026-08-09",
+    date: "2026-08-09",
+    note: "Reliability work on the new Slack metrics dashboard. Nothing changes for learners or program leads.",
+    userFacing: [
+    ],
+    team: [
+      "Fixed the two failures that kept the Slack metrics dashboard from ever posting. The chart image is now accepted when it's sent to Slack, and it's shared into the dashboard message's own thread so it can be displayed, where before it stayed private and Slack refused to show it. Failed runs also clean up after themselves instead of leaving a stray, chartless message in the channel.",
+    ],
+  },
+  {
+    id: "2026-08-08",
+    date: "2026-08-08",
+    userFacing: [
+    ],
+    team: [
+      "The team's key business numbers now live in Slack. One pinned message mirrors the four headline metrics from the internal metrics page, refreshed as simulations are completed, alongside a 12-week trend chart of completed encounters that's redrawn each morning. It reuses the same metric definitions as the internal dashboard, so there's one source of truth rather than two, and any Slack hiccup is isolated from simulation processing and grading.",
+      "Announcement emails now require choosing an audience up front. Whoever sends a broadcast has to pick either all verified users or the leadership of active customer organizations, so a wide announcement can't reach the wrong group by omission.",
+    ],
+  },
+  {
+    id: "2026-08-07",
+    date: "2026-08-07",
+    userFacing: [
+      "**Your attempt history only shows sessions you actually started.** Opening a case briefing that begins with a short pre-survey used to create an attempt right away, so cases you looked at but never spoke in could linger as \"In progress\" on your history and count against your attempt totals. An attempt is now recorded only once the voice conversation genuinely begins, and the stray records from before have been cleaned up. Program directors see the same correction on their cohort views, progress reports, and exports.",
+      "**Bulk invitation actions work on any size list.** Resending or revoking invitations for a large group, including select-all over hundreds or thousands of pending invites, now works instead of failing with a technical error. The button shows live progress (\"Resending 100/250...\") so you can see how far along a large batch is, and your selection is no longer silently lost when you switch between the \"expired only\" and \"show all\" views.",
+    ],
+    team: [
+      "Grading got meaningfully cheaper without changing a single score. The large, unchanging instructions the grader reads on every pass are now reused between grades rather than paid for from scratch each time, worth roughly a third off our AI feedback bill. The grader reads word for word what it read before, so nothing about the feedback learners receive changes.",
+      "We now keep our own durable record of every AI request the platform makes: how large it was, which model answered, how long it took, and which conversation, organization, and simulation it belonged to. Before this we had only a rough seven-day window from a third-party tool, which is how we learned our costs were higher than they needed to be from a vendor email rather than from our own numbers.",
+      "A new internal cost page shows what we're spending on AI, broken out by day, by stage of grading (narrative feedback, score extraction, and the other behind-the-scenes uses), and by organization, plus how often the reused-instruction savings above are actually landing. Trial and internal organizations are deliberately included, since we pay for their usage too.",
+      "Pinned the version of one deployment tool used to push to production, after a new release of it started rejecting valid inputs and could have blocked a production deploy at the worst moment.",
+    ],
+  },
+  {
     id: "2026-08-04",
     date: "2026-08-04",
     note: "This release adds a developmental rating below Level 1.",
