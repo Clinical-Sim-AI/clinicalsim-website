@@ -44,6 +44,22 @@ export function formatReleaseDate(date: string): string {
 
 export const releases: Release[] = [
   {
+    id: "2026-08-24",
+    date: "2026-08-24",
+    note: "A short release, almost all of it about what you see in the minute after a simulation ends.",
+    userFacing: [
+      "**Your feedback page finishes on its own.** If you were already sitting on your feedback while grading wrapped up, you could be left looking at the grader's raw working notes: a duplicated score table, run-on sections, sometimes a total that didn't add up. It stayed that way until you reloaded. The page now waits for the finished report and switches to it the moment it lands. Program leads and admins reading someone else's session get the same fix.",
+      "**Attempts graded again show the right competencies.** When an attempt was re-graded against an updated version of a case, its scores were read against the old version's competency list, so competencies could disappear from the report when the two lists differed. Every score now appears against the competencies it was actually graded on.",
+      "**An internal label no longer shows up on cases.** A tag we use in-house to mark which cases are ready to publish had leaked onto 34 live simulations, appearing wherever tags appear: case cards, the catalog, filters. It means nothing to anyone outside our team. It can no longer reach the live app, and the stray labels are being cleared.",
+    ],
+    team: [
+      "The \"Ready for Prod\" marker can't be published now, by construction. It's filtered out when the promotion plan is computed, refused when a plan is applied (so a plan drawn up before this shipped can't smuggle it through), and excluded from the operator script that copies content between environments. A follow-up closed the quieter half of the same hole: the marker's id was still feeding the step that rewrites a case's whole tag set, which would have re-pinned it after the visible item was skipped. It stays visible in the authoring tool, which is the one place it belongs. Our internal docs also described that operator script as copying only marked cases. It doesn't. It copies every live published platform case, which badly understates what a run against production does.",
+      "Feedback pages now stop polling when they should. Grading saves in two passes and the page's \"are we done\" check only knew about the first, which is the bug above. Fixing it meant the org and admin views could have polled forever on an old session whose second pass never settled, so both now carry the time limit the learner page already had.",
+      "Rubric authoring refuses a name that would silently lose its category. The separator in a rubric's name is what generates its category, and with it the badge and the grouping in the rubric-type filter, but nothing enforced the convention. An ordinary hyphen wrote cleanly and left the category empty, with no error anywhere. It happened twice in one sitting last week and stayed invisible until someone went looking, and you can't correct it afterwards without renaming the rubric. The tool now refuses the wrong separator, suggests the corrected name, and prints the category a name will generate before anything is written.",
+      "Our database lockdown is verified on the environments that matter, not only locally. Every migration push to staging and production is followed by a read-only check of all ten security rules against that environment. It doesn't hold up the release, since configuration drift is worth an alert rather than a blocked deploy, and it warns loudly instead of passing quietly when it isn't configured to connect.",
+    ],
+  },
+  {
     id: "2026-08-23",
     date: "2026-08-23",
     note: "Most of this release went into making the app tell you the truth about your own sessions, plus assigning learners to a project before they have accepted an invitation.",
