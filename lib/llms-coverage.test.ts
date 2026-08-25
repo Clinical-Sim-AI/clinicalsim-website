@@ -20,7 +20,10 @@ describe("llms.txt coverage", () => {
       "addressing-hydroxyurea-nonadherence-and-medical-mistrust"
     )
 
-    expect(example?.summary).toContain("inconsistent hydroxyurea use")
-    expect(example?.summary).not.toContain("takes hyd...")
+    // The summary is re-snapshotted from staging, so assert on shape rather
+    // than wording: a complete sentence, never a truncated one.
+    expect(example?.summary).toBeTruthy()
+    expect(example?.summary).not.toMatch(/(\.\.\.|\u2026)/)
+    expect(example?.summary?.trim().endsWith(".")).toBe(true)
   })
 })
