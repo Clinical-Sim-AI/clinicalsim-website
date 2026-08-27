@@ -52,12 +52,17 @@ export const metadata: Metadata = {
  * in a single object keeps the visible player and the VideoObject JSON-LD in
  * lockstep when the video is swapped. uploadDate and duration come from Loom's
  * share-page metadata for this recording.
+ *
+ * uploadDate MUST be a full ISO 8601 datetime with a UTC offset. Search Console
+ * flagged the earlier date-only "2026-06-28" twice under Videos, as "missing a
+ * timezone" and as an invalid datetime value. Central time is the company
+ * default, so the offset is -05:00 in CDT and -06:00 in CST.
  */
 const DEMO_VIDEO = {
   embedUrl: "https://www.loom.com/embed/3eacd20486a74b5c80a4ab7ba60b0308",
   thumbnailUrl:
     "https://cdn.loom.com/sessions/thumbnails/3eacd20486a74b5c80a4ab7ba60b0308-1df353d4e4c664a3.gif",
-  uploadDate: "2026-06-28",
+  uploadDate: "2026-06-28T00:00:00-05:00",
   duration: "PT9M22S",
 }
 

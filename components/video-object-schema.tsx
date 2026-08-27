@@ -5,7 +5,11 @@ export interface VideoObjectSchemaProps {
   description: string
   /** Public URL of the thumbnail image. */
   thumbnailUrl: string
-  /** ISO 8601 date the video was published, e.g. "2026-06-09". */
+  /**
+   * ISO 8601 datetime the video was published, including a UTC offset, e.g.
+   * "2026-06-09T14:30:00-05:00". A date-only value is rejected by Google's
+   * video rich results as missing a timezone, so the offset is not optional.
+   */
   uploadDate: string
   /** Direct URL to the video file (contentUrl). */
   contentUrl?: string
