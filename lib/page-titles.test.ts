@@ -6,6 +6,7 @@ import { getAllExamples } from "./examples"
 import { getAllPosts, getPostBySlug } from "./posts"
 import { getAllSolutions } from "./solutions"
 import { getAllAudiences } from "./audiences"
+import { getAllHelpArticles } from "./help-articles"
 
 /** Root layout template: `%s | ClinicalSim.ai` (app/layout.tsx). */
 const TITLE_SUFFIX = " | ClinicalSim.ai"
@@ -99,6 +100,17 @@ describe("page titles", () => {
       expect(
         comparison.metaTitle.length,
         `${comparison.slug} renders a ${comparison.metaTitle.length} char title: ${comparison.metaTitle}`
+      ).toBeLessThanOrEqual(AUDIT_LIMIT)
+    }
+  })
+
+  it("keeps every help article title inside the audit limit", () => {
+    // getHelpArticleMetadata sets `title: { absolute }`, so the registry title is
+    // the whole rendered title. It is also the visible H1 in HelpArticleLayout.
+    for (const article of getAllHelpArticles()) {
+      expect(
+        article.title.length,
+        `${article.slug} renders a ${article.title.length} char title: ${article.title}`
       ).toBeLessThanOrEqual(AUDIT_LIMIT)
     }
   })

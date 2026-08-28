@@ -4,6 +4,7 @@ import { ChevronRight, FileText, MessageCircle, PlayCircle, ClipboardList } from
 import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { getAllHelpArticles } from "@/lib/help-articles"
 
 export const metadata: Metadata = {
   title: "Help center: answers, examples, and release notes",
@@ -57,6 +58,8 @@ const startHere = [
 ]
 
 export default function HelpPage() {
+  const guides = getAllHelpArticles()
+
   return (
     <>
       <JsonLd
@@ -152,6 +155,39 @@ export default function HelpPage() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Guides */}
+      <section className="px-6 pb-8 md:pb-12 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-4">
+            Guides
+          </h2>
+          <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed max-w-3xl mb-8">
+            Longer answers to the questions program leadership asks us most, written
+            out in full.
+          </p>
+          <ul className="divide-y divide-cs-gray/50 border-y border-cs-gray/50">
+            {guides.map((guide) => (
+              <li key={guide.slug}>
+                <Link
+                  href={`/help/${guide.slug}`}
+                  className="group flex items-start gap-4 py-6 transition-colors hover:bg-cs-cloud/30"
+                >
+                  <div className="flex-1">
+                    <h3 className="text-lg md:text-xl font-medium text-cs-dark-blue mb-2">
+                      {guide.title}
+                    </h3>
+                    <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed">
+                      {guide.teaser}
+                    </p>
+                  </div>
+                  <ChevronRight className="w-5 h-5 mt-1 shrink-0 text-cs-dark-gray transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
