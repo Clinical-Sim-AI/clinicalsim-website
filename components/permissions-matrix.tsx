@@ -21,7 +21,11 @@ const ROWS: { capability: string; cells: [Cell, Cell, Cell] }[] = [
     capability: "Choose which simulations a project uses",
     cells: [false, true, true],
   },
-  { capability: "Set due dates and targets", cells: [false, true, true] },
+  // Targets are gated behind NEXT_PUBLIC_PROJECT_TARGETS_ENABLED, which is
+  // unset in production (verified against Vercel 2026-08-29) and read as a
+  // strict equality against "true", so the setters refuse and the UI is
+  // hidden. Restore "and targets" here only if that flag is turned on.
+  { capability: "Set due dates", cells: [false, true, true] },
   {
     capability: "Invite new learners by email",
     cells: [
