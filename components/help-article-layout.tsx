@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { ArrowLeft, ChevronRight } from "lucide-react"
 import { JsonLd } from "@/components/json-ld"
 import { Button } from "@/components/ui/button"
@@ -15,7 +16,10 @@ export function HelpArticleLayout({
   children: React.ReactNode
 }) {
   const article = getHelpArticleBySlug(slug)
-  if (!article) return null
+  // An MDX page names its slug twice, here and in getHelpArticleMetadata, with
+  // nothing keeping the two in sync. Rendering nothing would ship a live 200
+  // with no title, canonical, or schema; 404 makes the typo visible instead.
+  if (!article) notFound()
 
   const url = `${SITE_URL}/help/${article.slug}`
 

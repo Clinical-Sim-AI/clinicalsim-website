@@ -5,7 +5,7 @@ import { getAllSolutions } from "@/lib/solutions"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
 import { getIndexableGlossaryTerms } from "@/lib/glossary"
-import { getAllHelpArticles } from "@/lib/help-articles"
+import { getAllHelpArticles, getHelpHubLastUpdated } from "@/lib/help-articles"
 import { RELEASE_NOTES_UPDATED_ISO } from "@/lib/release-notes"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
@@ -106,7 +106,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/help`,
-      lastModified: new Date("2026-08-28"),
+      // Derived, because the hub's guide list is registry-driven: a new guide
+      // changes the page whether or not anyone remembers to touch this file.
+      lastModified: new Date(getHelpHubLastUpdated()),
       changeFrequency: "monthly",
       priority: 0.6,
     },

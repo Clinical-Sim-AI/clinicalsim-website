@@ -69,3 +69,22 @@ export function getHelpArticleMetadata(slug: string) {
     },
   }
 }
+
+/**
+ * Baseline date for the /help hub itself, moved when the hub page changes for
+ * reasons other than its guide list.
+ */
+const HELP_HUB_BASE_DATE = "2026-08-28"
+
+/**
+ * The /help hub lists every guide, so publishing or revising one changes the
+ * hub. Taking the newest article date keeps the sitemap honest without a manual
+ * bump each time a guide lands.
+ */
+export function getHelpHubLastUpdated(): string {
+  return helpArticles.reduce(
+    (newest, article) =>
+      article.lastUpdated > newest ? article.lastUpdated : newest,
+    HELP_HUB_BASE_DATE
+  )
+}
