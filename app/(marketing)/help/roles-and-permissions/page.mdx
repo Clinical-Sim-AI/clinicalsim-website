@@ -1,4 +1,5 @@
 import { HelpArticleLayout } from "@/components/help-article-layout"
+import { HelpFigure } from "@/components/help-figure"
 import { PermissionsMatrix } from "@/components/permissions-matrix"
 import { getHelpArticleMetadata } from "@/lib/help-articles"
 
@@ -10,11 +11,25 @@ Everyone in your organization holds one role. The role decides two things: what 
 
 Most people in a program are Members. A handful run cohorts, so they're Project Managers. One or two run the whole account, so they're Admins.
 
+<HelpFigure
+  src="/help/roles-and-permissions/roles-nav-comparison.png"
+  alt="ClinicalSim's left navigation as it appears to an Admin, a Project Manager and a Member, side by side. The Admin has eleven entries including Members and Org settings, the Project Manager has nine and no member management, the Member has four."
+  width={768}
+  height={788}
+/>
+
 ## Member
 
 The people doing the practicing. Residents, fellows, students, faculty working through a remediation plan.
 
 A Member signs in and sees their assignments, their own transcripts, and their own feedback. That's the whole surface. They can start any simulation that a Project Manager or Admin has assigned to them, review what the grader said, and run it again.
+
+<HelpFigure
+  src="/help/roles-and-permissions/member-assignments.png"
+  alt="A learner's My Assignments page showing one project, one simulation still to start and one completed."
+  width={1440}
+  height={900}
+/>
 
 A Member cannot see another learner's results. Not their scores, not their transcripts, not whether they've finished. There's no setting that opens this up, and there's no view where one learner's work appears next to another's. Members also can't invite anyone or set up projects.
 
@@ -24,11 +39,25 @@ Their own history stays with them. If a project ends, or a simulation is retired
 
 The person who runs a cohort. In practice this is an APD, a chief resident, a clerkship director, or a simulation center coordinator.
 
-A Project Manager builds projects. They choose which simulations go in, set the due date, and add the learners. They can invite people who don't have an account yet by typing in email addresses, and those invitations always create Members. A Project Manager can't promote anyone.
+A Project Manager builds projects. They choose which simulations go in, set the due date, and add the learners. Adding people happens in one place. Existing members are picked from a list, and anyone without an account yet is typed in as an email address. Either way they arrive as Members, and a Project Manager can't promote anyone.
+
+<HelpFigure
+  src="/help/roles-and-permissions/pm-add-learners.png"
+  alt="The Add Learners dialog on a project, showing existing members to assign above an Invite by email field and an optional due date."
+  width={1440}
+  height={900}
+/>
 
 Once the project is running, they see how their cohort is doing: who has started, who has finished, the feedback each learner received, and the milestone data rolled up across the group. They can also run the simulations themselves, which most of them do before assigning anything.
 
 The boundary that matters: a Project Manager sees the projects they manage and nothing else. Another cohort's learners, transcripts, and milestone data are invisible to them, even inside the same institution. That's the point of the role. Someone can run their own residents without getting a window into the program next door.
+
+<HelpFigure
+  src="/help/roles-and-permissions/pm-managed-projects.png"
+  alt={`A Project Manager's project list, headed "Your Managed Projects", showing only the one cohort they manage.`}
+  width={1440}
+  height={900}
+/>
 
 Think about a residency where residents rotate through cardiology, the NICU, and everything else. You may want the NICU faculty to see the conversations their residents are practicing that month without opening up every other rotation in the institution. That's the line this role draws.
 
@@ -39,6 +68,13 @@ Two smaller limits. A Project Manager can't change anyone's role or remove a per
 Everything a Project Manager can do, minus the project boundary, plus control over who belongs to the organization.
 
 An Admin invites anyone to the organization and picks the role they arrive with, whether that's Member, Project Manager, or Admin. They change roles later, and they remove people who've left.
+
+<HelpFigure
+  src="/help/roles-and-permissions/admin-invite-role.png"
+  alt="The Invite Member dialog with three email addresses entered and the role dropdown open on Member, Project Manager and Admin."
+  width={1440}
+  height={900}
+/>
 
 An Admin sees the whole organization: every project, every learner, every transcript, and milestone data across all cohorts rather than one at a time. This is the view a program director or DIO usually wants, because it's the one that answers questions across programs instead of within a single project.
 
@@ -58,9 +94,11 @@ Owner has no column of its own because an Owner holds every Admin permission, pl
 
 Nothing crosses organizations. Every project, learner, transcript, and score belongs to one organization, and no role reaches outside it. A person belongs to one organization at a time.
 
+Membership and assignment are different things. Being in the organization gets someone an account. Being assigned to a project is what gives them simulations to run. A learner who belongs to your organization but sits in no project signs in to an empty catalog, which is almost always the explanation when someone says they can't find anything.
+
 Being a Project Manager is not the same as managing a project. The role grants the ability to build and run one, not a view into the cohorts other people already set up. To see one of those, a manager has to be added to it by name.
 
-Invitations only move access up. If you invite someone who's already in the organization at a higher role, they keep the higher one. Re-sending an invitation never quietly reduces what somebody could already do.
+Invitations only move access up. If you invite someone who's already in the organization at a higher role, they keep the higher one. Re-sending an invitation never quietly reduces what somebody could already do. Re-inviting someone who already has an open invitation doesn't send a second email either. The new project is added to the invitation they already have.
 
 Members always keep their own record. Removing a simulation from a project, or ending the project entirely, doesn't take away the feedback a learner has already earned.
 
