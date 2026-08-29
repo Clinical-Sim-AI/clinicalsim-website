@@ -5,6 +5,7 @@ import { getAllSolutions } from "@/lib/solutions"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
 import { getIndexableGlossaryTerms } from "@/lib/glossary"
+import { getAllHelpArticles } from "@/lib/help-articles"
 import { RELEASE_NOTES_UPDATED_ISO } from "@/lib/release-notes"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
@@ -105,7 +106,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/help`,
-      lastModified: new Date("2026-08-10"),
+      lastModified: new Date("2026-08-28"),
       changeFrequency: "monthly",
       priority: 0.6,
     },
@@ -173,6 +174,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }))
 
+  // Driven by the help-article registry so the sitemap and /llms.txt cannot
+  // disagree (lib/llms-coverage.test.ts enforces that). Same priority as the
+  // rest of /help.
+  const helpArticlePages: MetadataRoute.Sitemap = getAllHelpArticles().map(
+    (article) => ({
+      url: `${BASE_URL}/help/${article.slug}`,
+      lastModified: new Date(article.lastUpdated),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })
+  )
+
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${BASE_URL}/insights/${post.slug}`,
     lastModified: new Date(post.dateModified ?? post.date),
@@ -187,6 +200,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...comparisonPages,
     ...examplePages,
     ...glossaryPages,
+    ...helpArticlePages,
     ...blogPages,
   ]
 }

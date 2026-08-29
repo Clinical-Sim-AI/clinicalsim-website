@@ -4,6 +4,7 @@ import { getAllAudiences } from "@/lib/audiences"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
 import { getIndexableGlossaryTerms } from "@/lib/glossary"
+import { getAllHelpArticles } from "@/lib/help-articles"
 
 const BASE_URL = "https://clinicalsim.ai"
 
@@ -60,6 +61,11 @@ export async function GET() {
     `- [Contact](${BASE_URL}/contact): Request a pilot, ask a product question, or contact the ClinicalSim team.`,
     `- [Help center](${BASE_URL}/help): Guides, release notes, and support for ClinicalSim programs and learners.`,
     `- [Release notes](${BASE_URL}/help/release-notes): A concise log of customer-visible ClinicalSim changes, newest first.`,
+    // Mapped from the registry so this list and app/sitemap.ts cannot disagree.
+    ...getAllHelpArticles().map(
+      (article) =>
+        `- [${article.title}](${BASE_URL}/help/${article.slug}): ${article.description}`
+    ),
   ].join("\n")
 
   const glossaryTermPages = getIndexableGlossaryTerms()
