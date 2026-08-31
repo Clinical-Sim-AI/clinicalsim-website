@@ -50,6 +50,18 @@ const ROWS: { capability: string; cells: [Cell, Cell, Cell] }[] = [
       "For the whole organization",
     ],
   },
+  // A project_manager passes canManageProject only through their own
+  // project_manager_assignments row (server/routers/projects.ts:152), and the
+  // person being added must already hold project_manager or admin, so the
+  // eligibility limit is stated in the article prose rather than in this cell.
+  {
+    capability: "Add a co-manager to a project",
+    cells: [
+      false,
+      "On the projects they manage",
+      "On any project in the organization",
+    ],
+  },
   { capability: "Change someone's role", cells: [false, false, true] },
   {
     capability: "Remove someone from the organization",
@@ -81,7 +93,7 @@ function CellContent({ value }: { value: Cell }) {
 
 export function PermissionsMatrix() {
   return (
-    // Twelve rows by four columns does not fit a phone, so the table scrolls
+    // Thirteen rows by four columns does not fit a phone, so the table scrolls
     // sideways inside this wrapper with the capability column pinned.
     //
     // The pinned column steals viewport width without extending the scroll
