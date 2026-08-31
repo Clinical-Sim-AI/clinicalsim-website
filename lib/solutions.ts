@@ -72,6 +72,13 @@ export interface Solution {
   customPage?: boolean
 
   /**
+   * When true the lane keeps its page, its index card, and its sitemap entry, but it is left
+   * off the homepage use-case grid. This is a positioning call, not a publishing one: the
+   * homepage leads with what we are selling, and remediation is not it (Ben, 2026-08-31).
+   */
+  hideFromHomepage?: boolean
+
+  /**
    * When true the page still builds and renders at its URL, but it is withheld from every
    * surface that would publish it: the sitemap, /llms.txt, the header dropdown, and the
    * /solutions index. Pair it with `robots: { index: false }` on the route, the way
@@ -641,7 +648,7 @@ const solutions: Solution[] = [
     ],
     metaTitle: "Error disclosure, practiced and scored",
     metaDescription:
-      "97% of physicians say they would disclose a serious error; 5% have (Kaldjian, JGIM 2007). Accreditation already accepts a simulated disclosure as evidence of competence, and nobody scores it. Practice against your own disclosure policy.",
+      "97% of physicians say they would disclose a hypothetical minor-harm error; 5% have ever disclosed an actual major one (Kaldjian, JGIM 2007). ACGME Common Program Requirement 4.9.g names simulated disclosure, and nobody scores it. Practice against your own disclosure policy.",
     heroHeadline: "The hardest conversation in medicine, rehearsed first",
     heroDescription:
       "Most clinicians have their first real disclosure conversation with no practice behind it. ClinicalSim gives them a private one to get wrong first, scored against your institution's own disclosure elements with the words they used quoted under each score.",
@@ -683,7 +690,7 @@ const solutions: Solution[] = [
         label: "Support",
         title: "Emotional support, on both sides",
         description:
-          "Support for the patient and family, and the part institutions forget: at one academic health system, 175 of 1,160 staff reported a safety event in the prior year that caused them anxiety, depression, or concern about their own performance, and 68% of those received no institutional support.",
+          "Support for the patient and family, and the part institutions forget: the clinician who was involved. The element is not finished once the family has been offered something, because the person who delivered the disclosure carries the event too.",
       },
     ],
     valuePropsHeading: "What a program gets",
@@ -741,7 +748,7 @@ const solutions: Solution[] = [
       {
         question: "Does practice actually change the next disclosure?",
         answer:
-          "In the published evidence, yes, measured on the next simulated disclosure. A randomized trial of 146 PGY2 residents found that scored feedback on a simulated disclosure improved performance on the next one (mean 3.26 versus 3.14, P=.01), with the largest gain among residents who had never done a real disclosure (3.33 versus 3.09, P=.007) (White et al., JAMA Network Open, 2024). A pre-post study of 55 PGY1s doing two standardized-patient disclosures four weeks apart found self-efficacy rose from 119.6 to 150.3 (P&lt;.001) and external faculty ratings improved (P=.001) (Sukalich et al., Academic Medicine, 2014).",
+          "In the published evidence, yes, measured on the next simulated disclosure. A randomized trial of 146 PGY2 residents found that scored feedback on a simulated disclosure improved performance on the next one (mean 3.26 versus 3.14, P=.01), with the largest gain among residents who had never done a real disclosure (3.33 versus 3.09, P=.007) (White et al., JAMA Network Open, 2024). A pre-post study of 55 PGY1s doing two standardized-patient disclosures four weeks apart found self-efficacy rose from 119.6 to 150.3 (P<.001) and external faculty ratings improved (P=.001) (Sukalich et al., Academic Medicine, 2014).",
       },
       {
         question: "Does this count for our ACGME requirement?",
@@ -783,6 +790,7 @@ const solutions: Solution[] = [
     icon: "chat-exclamation",
     colorVariant: "navy",
     customPage: true,
+    hideFromHomepage: true,
     lastUpdated: "2026-08-10",
     cardBullets: [
       "Targeted, milestone-mapped practice for a struggling learner",
@@ -818,6 +826,16 @@ export function getSolutionBySlug(slug: string): Solution | undefined {
  */
 export function getPublishedSolutions(): Solution[] {
   return solutions.filter((s) => !s.unpublished)
+}
+
+/**
+ * The lanes the homepage use-case grid leads with.
+ *
+ * A subset of getPublishedSolutions(): everything here is fully published and linked from
+ * /solutions, it just does not lead the homepage. See `hideFromHomepage`.
+ */
+export function getHomepageSolutions(): Solution[] {
+  return getPublishedSolutions().filter((s) => !s.hideFromHomepage)
 }
 
 /** Solutions rendered by the generic SolutionPageLayout (excludes bespoke pages). */

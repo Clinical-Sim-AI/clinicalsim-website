@@ -30,10 +30,14 @@ export function nonEndorsementLine(orgs: string[]): string {
     throw new Error("nonEndorsementLine requires at least one organization")
   }
 
+  // Two names take a bare "or". Only three or more take the serial comma before it, otherwise
+  // the line renders as "approved by the ACGME, or the American Board of Pediatrics (ABP)".
   const named =
     orgs.length === 1
       ? orgs[0]
-      : `${orgs.slice(0, -1).join(", ")}, or ${orgs[orgs.length - 1]}`
+      : orgs.length === 2
+        ? `${orgs[0]} or ${orgs[1]}`
+        : `${orgs.slice(0, -1).join(", ")}, or ${orgs[orgs.length - 1]}`
 
   return `ClinicalSim is not endorsed by, affiliated with, or approved by ${named}. Scores map to published frameworks; they do not establish compliance with any standard, which a surveyor determines against the institution's own policy.`
 }

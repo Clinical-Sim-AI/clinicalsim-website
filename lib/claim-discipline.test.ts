@@ -87,6 +87,14 @@ describe("claim discipline", () => {
         if ((solution.nonEndorsementOrgs?.length ?? 0) === 0) {
           violations.push(`${solution.slug}: nonEndorsementOrgs must be non-empty`)
         }
+        // Declaring the boundary is only half of it. SolutionPageLayout is what renders
+        // ClaimBoundary, so a bespoke page would carry the fields and publish none of the
+        // sentences. Wire ClaimBoundary into the custom layout before setting customPage here.
+        if (solution.customPage) {
+          violations.push(
+            `${solution.slug}: customPage bypasses SolutionPageLayout, so ClaimBoundary never renders`,
+          )
+        }
       }
 
       expect(violations).toEqual([])
@@ -101,13 +109,20 @@ describe("claim discipline", () => {
         for (const entry of registry.entries) {
           for (const { path, text } of collectStrings(entry.value, entry.slug)) {
             for (const { pattern, why } of BANNED_CLAIM_PATTERNS) {
-              const match = text.match(pattern)
-              if (!match || match.index === undefined) continue
-              if (isNegated(text, match.index)) continue
-
-              violations.push(
-                `${registry.name} ${path}: "${match[0]}" — ${why}`,
+              // Every occurrence, not just the first: a negated first hit ("has not been shown
+              // to reduce claims") would otherwise mask a real claim later in the same string.
+              const global = new RegExp(
+                pattern.source,
+                pattern.flags.includes("g") ? pattern.flags : `${pattern.flags}g`,
               )
+              for (const match of text.matchAll(global)) {
+                if (match.index === undefined) continue
+                if (isNegated(text, match.index)) continue
+
+                violations.push(
+                  `${registry.name} ${path}: "${match[0]}" — ${why}`,
+                )
+              }
             }
           }
         }

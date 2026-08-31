@@ -36,17 +36,17 @@ const GROUPS: {
 export const metadata: Metadata = {
   title: "Use cases: communication practice across medicine",
   description:
-    "One platform for communication remediation, residency and fellowship curricula, undergraduate medical education, and faculty development, with frameworks that fit each learner and task.",
+    "Conversations we score, informed consent and error disclosure among them, and the programs we support: communication remediation, residency and fellowship curricula, undergraduate medical education, and faculty development.",
   openGraph: {
     title: "Use cases | ClinicalSim.ai",
     description:
-      "One platform, many conversations: remediation and residency curriculum mapped to ACGME Milestones 2.0, plus UME and faculty development with feedback mapped to the framework that fits each.",
+      "One platform, many conversations: informed consent and error disclosure scored against named elements, remediation and residency curriculum mapped to ACGME Milestones 2.0, plus UME and faculty development mapped to the framework that fits each.",
     url: "https://clinicalsim.ai/solutions",
   },
   twitter: {
     title: "Use cases | ClinicalSim.ai",
     description:
-      "One platform for clinical communication across the medical-education continuum.",
+      "Communication use cases organized two ways, by the conversation being scored and by the program running it.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/solutions",
@@ -65,7 +65,7 @@ export default function SolutionsPage() {
             "@type": "CollectionPage",
             name: "ClinicalSim Use Cases",
             description:
-              "Clinical communication practice across remediation, residency and fellowship, undergraduate medical education, and faculty development.",
+              "Clinical communication use cases organized two ways: by the conversation being scored, including informed consent and error disclosure, and by the program running it, including remediation, residency and fellowship, undergraduate medical education, and faculty development.",
             url: "https://clinicalsim.ai/solutions",
             isPartOf: {
               "@type": "WebSite",
@@ -101,7 +101,7 @@ export default function SolutionsPage() {
             One platform. <span className="text-cs-electric font-medium">Many conversations.</span>
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">
-            ClinicalSim supports communication remediation, longitudinal residency and fellowship curricula, undergraduate medical education, and faculty development. The platform stays the same while the cases and competency frameworks change with the learner.
+            ClinicalSim scores specific conversations, informed consent and error disclosure among them, and supports the programs that run them, from communication remediation and longitudinal residency curricula to undergraduate medical education and faculty development. The platform stays the same while the cases and competency frameworks change with the conversation and the learner.
           </p>
           <p className="mt-6 text-base md:text-lg text-cs-cloud/85 font-light max-w-3xl mx-auto">
             <Link
