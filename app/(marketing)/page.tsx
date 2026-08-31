@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { AudienceCard } from "@/components/audience-card"
 import { Reveal } from "@/components/reveal"
-import { getAllSolutions } from "@/lib/solutions"
+import { getHomepageSolutions } from "@/lib/solutions"
 import { JsonLd } from "@/components/json-ld"
 import { VideoObjectSchema } from "@/components/video-object-schema"
 import { ArrowRight } from "lucide-react"
@@ -67,7 +67,7 @@ const DEMO_VIDEO = {
 }
 
 export default function HomePage() {
-  const solutions = getAllSolutions()
+  const solutions = getHomepageSolutions()
 
   // Representative scenario types practiced on the platform (drawn from the
   // scenario library, breaking bad news through error disclosure).
@@ -381,9 +381,15 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          {/* Flex rather than a fixed column count. The registry keeps growing, and a
+              wrapped trailing row centers itself instead of hanging off the left edge. */}
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             {solutions.map((solution, index) => (
-              <Reveal key={solution.slug} delay={index * 80} className="h-full [&>a]:h-full">
+              <Reveal
+                key={solution.slug}
+                delay={index * 80}
+                className="w-full sm:w-[calc(50%-0.75rem)] md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] [&>a]:h-full"
+              >
                 <AudienceCard
                   brandIcon={solution.icon}
                   title={solution.title}

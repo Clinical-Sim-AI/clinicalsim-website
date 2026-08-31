@@ -5,6 +5,7 @@
 export const PAGE_DATE_MODIFIED = {
   evaluation: "2026-08-31",
   faq: "2026-08-31",
+  frameworks: "2026-08-31",
   glossary: "2026-08-18",
   home: "2026-08-10",
   insights: "2026-08-10",

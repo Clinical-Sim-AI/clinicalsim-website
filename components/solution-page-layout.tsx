@@ -5,6 +5,7 @@ import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { GlossaryTermLinks } from "@/components/glossary-term-links"
+import { ClaimBoundary } from "@/components/claim-boundary"
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
 import { cn, formatIsoMonth } from "@/lib/utils"
 import { type Solution } from "@/lib/solutions"
@@ -236,11 +237,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-                  {solution.slug === "longitudinal-curriculum"
-                    ? "One record across training"
-                    : solution.slug === "undergraduate-medical-education"
-                      ? "One record across four years"
-                      : "One program view"}
+                  {solution.valuePropsHeading ?? "One program view"}
                 </h2>
                 <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
                   The engine and dashboard stay consistent while each case uses the frameworks that fit the learner and task.
@@ -264,6 +261,55 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                   )
                 })}
               </div>
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* Frameworks this lane scores against */}
+      {solution.frameworks && solution.frameworks.length > 0 && (
+        <>
+          <SectionDivider variant="diagonal-up" color="white" />
+
+          <section className="px-6 py-8 md:py-10 bg-white">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
+                The frameworks behind the score
+              </h2>
+              <p className="text-lg text-cs-dark-blue/70 font-light mb-8 max-w-2xl">
+                Each of these publishes named elements. We score a spoken conversation against
+                those definitions as written, and quote the line that earned each score.
+              </p>
+
+              <div className="space-y-4">
+                {solution.frameworks.map((framework, index) => (
+                  <div
+                    key={index}
+                    className="border border-cs-gray/50 rounded-xl px-6 py-5"
+                  >
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
+                      <h3 className="text-lg font-medium text-cs-dark-blue">
+                        {framework.name}
+                      </h3>
+                      <span className="text-sm text-cs-dark-gray font-light">
+                        {framework.owner}
+                      </span>
+                    </div>
+                    <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
+                      {framework.note}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <p className="mt-6 text-base text-cs-dark-blue font-light">
+                <Link
+                  href="/frameworks"
+                  className="underline underline-offset-4 hover:text-cs-navy transition-colors"
+                >
+                  How scoring against a framework works, including the scope rule
+                </Link>
+              </p>
             </div>
           </section>
         </>
@@ -341,6 +387,13 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       )}
 
       <GlossaryTermLinks slugs={solution.glossarySlugs} />
+
+      <ClaimBoundary
+        nonEndorsementOrgs={solution.nonEndorsementOrgs}
+        showFormative={solution.claimBoundary?.formative}
+        showRaterValidation={solution.claimBoundary?.raterValidation}
+        note={solution.claimBoundary?.note}
+      />
 
       {/* Final CTA */}
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">

@@ -58,3 +58,15 @@ export const POSITIONING_LONG = `${POSITIONING_ONE_LINER} ${POSITIONING_SUPPORT}
  */
 export const POSITIONING_AUDIENCE =
   "It is used across medical school, residency, fellowship, communication remediation, and faculty development."
+
+/**
+ * The instrument claim, from the use case library brief (2026-08-31).
+ *
+ * This is what makes the product a category rather than a training tool, and it is the sentence
+ * /frameworks is built to be cited for. It is deliberately separate from POSITIONING_ONE_LINER:
+ * the one-liner describes what a learner and a faculty member each get, this describes what the
+ * thing is. Both are true; rewriting the one-liner into this is a positioning decision Ben has
+ * not made.
+ */
+export const MEASUREMENT_CLAIM =
+  "ClinicalSim measures a spoken clinical conversation against a named standard, person by person, with the clinician's own words quoted under every score."

@@ -8,7 +8,7 @@ import { ChevronDown, Menu, X } from "lucide-react"
 import { BrandIcon } from "@/components/brand-icon"
 import { Button } from "@/components/ui/button"
 import { getAllAudiences } from "@/lib/audiences"
-import { getAllSolutions } from "@/lib/solutions"
+import { getPublishedSolutions } from "@/lib/solutions"
 
 // Hover-open is wired up only for pointers that genuinely hover. On a touch
 // screen a tap fires mouseenter immediately before click, so the hover handler
@@ -51,7 +51,13 @@ export function SiteHeader() {
   const helpDropdownRef = useRef<HTMLDivElement>(null)
   const helpTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
   const audiences = getAllAudiences()
-  const solutions = getAllSolutions()
+  // Conversation pages first: they are what a buyer is looking for, and the learner-stage program
+  // pages read as a second, narrower list underneath. Relative order inside each group is the
+  // registry order.
+  const solutions = [...getPublishedSolutions()].sort((a, b) => {
+    if (a.category === b.category) return 0
+    return a.category === "conversation" ? -1 : 1
+  })
 
   const canHover = useSyncExternalStore(subscribeToHover, getHoverSnapshot, getHoverServerSnapshot)
 
@@ -170,7 +176,12 @@ export function SiteHeader() {
   ]
 
   const isAudiencesActive = pathname === "/audiences" || pathname?.startsWith("/audiences/")
-  const isSolutionsActive = pathname === "/solutions" || pathname?.startsWith("/solutions/")
+  // /frameworks lives inside this dropdown rather than as a tenth top-level item, so it lights
+  // the same nav trigger.
+  const isSolutionsActive =
+    pathname === "/solutions" ||
+    pathname?.startsWith("/solutions/") ||
+    pathname === "/frameworks"
   const isWhoWeAreActive = aboutItems.some(
     (item) => pathname === item.href || pathname?.startsWith(item.href + "/")
   )
@@ -257,6 +268,13 @@ export function SiteHeader() {
                     page. Restore it here (and in the mobile nav below) rather
                     than as a tenth top-level item: the bar is measured at nine
                     and the nav breakpoint above assumes that count. */}
+                <Link
+                  href="/frameworks"
+                  className="block px-4 py-2.5 text-sm text-cs-dark-blue/85 hover:bg-cs-cloud/70 transition-colors"
+                  onClick={() => setSolutionsOpen(false)}
+                >
+                  Scored against your framework
+                </Link>
                 <Link
                   href="/solutions"
                   className="block px-4 py-2.5 text-sm font-medium text-cs-dark-blue hover:bg-cs-cloud/70 transition-colors"
@@ -451,6 +469,13 @@ export function SiteHeader() {
                       </Link>
                     ))}
                     {/* ROI calculator link withheld; see the desktop dropdown above. */}
+                    <Link
+                      href="/frameworks"
+                      className="block px-3 py-2.5 text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Scored against your framework
+                    </Link>
                     <Link
                       href="/solutions"
                       className="block px-3 py-2.5 text-sm font-medium text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors mt-1"
