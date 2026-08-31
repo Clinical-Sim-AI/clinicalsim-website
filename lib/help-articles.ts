@@ -27,8 +27,8 @@ const helpArticles: HelpArticle[] = [
     description:
       "What Member, Project Manager, Admin, and Owner can each do in ClinicalSim, whose results they can see, and how to pick the right role for someone in your program.",
     teaser:
-      "Every person in your organization holds one role, and the role decides what they can change and whose results they can see. Covers Member, Project Manager, Admin, and Owner, with a table of what each one can do.",
-    lastUpdated: "2026-08-29",
+      "Every person in your organization holds one role, and the role decides what they can change and whose results they can see. Covers all four roles, with a table comparing what Members, Project Managers, and Admins can each do.",
+    lastUpdated: "2026-08-31",
   },
 ]
 
