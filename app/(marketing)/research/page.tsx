@@ -70,19 +70,31 @@ const benefits = [
   },
 ]
 
+/**
+ * Conference presentation record. Author lines, titles, venues and
+ * presentation types for the entries Brennan co-authored are verified against
+ * her CV (Team/Gillian Brennan/Gillian Brennan MB BCh BAO CV_may26.docx,
+ * supplied by Ben 2026-08-31), which is a primary source for her own author
+ * lines. This is the presentation record only. No study outcome appears on
+ * this page until the study owners confirm the record in writing.
+ */
 const presentations = [
   {
-    authors: "Brennan G, … Havalad V, et al.",
-    title: "Teaching Affirming Care in Challenging Times: An AI Approach for Transgender Communication Training",
-    venue: "International Pediatric Simulation Society Meeting",
+    authors:
+      "Lemelman M, Havalad V, Rissman L, Cangellaris O, Koskol A, Conway B, Brennan G",
+    title:
+      "Teaching Affirming Care in Challenging Times: An AI Approach to Transgender Communication Training",
+    venue: "International Pediatric Simulation Symposium and Workshops (IPSSW)",
+    type: "Oral Presentation",
     location: "Rome",
     date: "May 2026",
     year: "2026",
   },
   {
-    authors: "Havalad V, et al.",
+    authors: "Havalad V, Rissman L, Conway B, Brennan G",
     title: "Enhancing Difficult Conversations in Pediatrics Using Artificial Intelligence: A Hands-On Workshop for Designing AI-Driven Communication Training",
-    venue: "International Pediatric Simulation Society Meeting",
+    venue: "International Pediatric Simulation Symposium and Workshops (IPSSW)",
+    type: "Oral Presentation",
     location: "Rome",
     date: "May 2026",
     year: "2026",
@@ -403,7 +415,7 @@ export default function ResearchPage() {
               Conference presentations
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
-              Presentations at the International Pediatric Simulation Society Meeting, Pediatric Academic Societies Meeting, Critical Care Congress, and IPSSW.
+              Presentations at the International Pediatric Simulation Symposium and Workshops, the Pediatric Academic Societies Meeting, and the Critical Care Congress.
             </p>
           </div>
 

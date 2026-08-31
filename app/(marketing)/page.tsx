@@ -9,13 +9,13 @@ import { JsonLd } from "@/components/json-ld"
 import { VideoObjectSchema } from "@/components/video-object-schema"
 import { ArrowRight } from "lucide-react"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { POSITIONING_LONG, POSITIONING_ONE_LINER } from "@/lib/positioning"
 
 const DemoVideoSection = dynamic(
   () => import("@/components/demo-video-section").then((m) => ({ default: m.DemoVideoSection }))
 )
 
-const HOME_DESCRIPTION =
-  "ClinicalSim gives learners voice-based practice with AI patients and gives faculty the transcript evidence behind each score. Cases are written by named physicians and mapped to published competency and communication frameworks."
+const HOME_DESCRIPTION = POSITIONING_LONG
 
 export const metadata: Metadata = {
   title: {
@@ -143,6 +143,56 @@ export default function HomePage() {
               },
             ],
           },
+          {
+            // The product itself, which nothing on the site declared. Every
+            // field below restates published copy: featureList from /faq and
+            // /methodology, audience from lib/audiences.ts, browserRequirements
+            // from the /faq "devices-and-install" answer.
+            //
+            // Deliberately NO `offers` node. ClinicalSim publishes no list
+            // price, and a priceless Offer is worse than no Offer: Google reads
+            // it as an incomplete product listing rather than as restraint.
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "@id": "https://clinicalsim.ai/#software",
+            name: "ClinicalSim",
+            url: "https://clinicalsim.ai",
+            description: HOME_DESCRIPTION,
+            applicationCategory: "EducationalApplication",
+            applicationSubCategory: "Clinical simulation",
+            operatingSystem: "Web browser",
+            // `browserRequirements` is a WebApplication field, not a
+            // SoftwareApplication one, and schema-dts rejects it here.
+            softwareRequirements:
+              "A modern web browser with microphone access. No download or installation.",
+            inLanguage: "en",
+            isPartOf: { "@id": "https://clinicalsim.ai/#website" },
+            publisher: {
+              "@type": "Organization",
+              name: "ClinicalSim",
+              url: "https://clinicalsim.ai",
+            },
+            featureList: [
+              "Voice-based practice with AI patients",
+              "Rubric-scored feedback citing verbatim transcript evidence",
+              "Cases written and reviewed by named physicians",
+              "Feedback mapped to ACGME Milestones 2.0 and published communication frameworks",
+              "Longitudinal progress tracking across repeated attempts",
+              "Cohort progress views, progress reports, and exports for faculty",
+            ],
+            audience: {
+              "@type": "EducationalAudience",
+              educationalRole: "Clinician",
+              audienceType: [
+                "Program directors",
+                "DIOs and GME leadership",
+                "Simulation center directors",
+                "Clinical competency committees",
+                "Medical school and UME leadership",
+                "Faculty and clinician educators",
+              ],
+            },
+          },
         ]}
       />
       {/* 1. Hero Section - Dark Blue per brand */}
@@ -184,7 +234,7 @@ export default function HomePage() {
             </div>
 
             <p className="mt-8 text-sm text-cs-cloud/80 font-light">
-              In pilot at 20 or more academic medical centers and children&apos;s hospitals.
+              In pilot at 25 or more academic medical centers and children&apos;s hospitals.
             </p>
           </div>
 
@@ -247,7 +297,7 @@ export default function HomePage() {
                 What is ClinicalSim?
               </p>
               <h2 className="text-2xl md:text-3xl font-light tracking-tight leading-snug text-cs-navy text-balance">
-                ClinicalSim gives learners voice-based practice with AI patients and gives faculty the transcript evidence behind each score.
+                {POSITIONING_ONE_LINER}
               </h2>
               <p className="mt-6 text-base md:text-lg text-cs-dark-blue font-light leading-relaxed text-pretty">
                 Named physicians write and review each case. Every case names the competency and communication frameworks it uses.

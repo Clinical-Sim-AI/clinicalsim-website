@@ -319,8 +319,15 @@ export default function TrustPage() {
           </h2>
           <p className="text-lg font-light mb-8 text-white/90">
             We&apos;ll tell you what exists and what doesn&apos;t. You can also
-            read how cases get built on our methodology page, or how we handle
-            website data in our privacy policy.
+            read how cases get built on our methodology page, work through the
+            rest of the buying decision on{" "}
+            <Link
+              href="/evaluation"
+              className="text-cs-electric underline underline-offset-4 hover:text-white transition-colors"
+            >
+              evaluating ClinicalSim
+            </Link>
+            , or see how we handle website data in our privacy policy.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">

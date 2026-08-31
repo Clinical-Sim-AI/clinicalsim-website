@@ -95,7 +95,7 @@ const comparisons: Comparison[] = [
           "Live coaching and high-stakes or summative assessment, including OSCEs.",
       },
     ],
-    lastUpdated: "2026-08-10",
+    lastUpdated: "2026-08-31",
     relatedSolutionSlugs: ["remediation", "undergraduate-medical-education"],
     relatedPostSlugs: [
       "scalability-problem-sp-programs",
@@ -103,6 +103,17 @@ const comparisons: Comparison[] = [
       "what-learners-want-from-ai-sps",
     ],
     faqs: [
+      {
+        // Ben authorized this figure on 2026-08-31, reversing the standing
+        // CLAUDE.md ban on SP cost. Source: seed deck v10 slide 11, which
+        // attributes the range to the published UCLA and University of Utah
+        // rate cards. This is an hourly rate for SP time plus the program-year
+        // total derived from it, NOT an all-in cost per encounter, which stays
+        // unpublished because no public method supports the total.
+        question: "What does standardized patient time cost to run?",
+        answer:
+          "Two published university rate cards put fully loaded standardized patient time at roughly $123 to $177 an hour (UCLA and the University of Utah rate cards, as published at August 2026). For a 60-resident program that works out to roughly $27,000 to $68,000 a year, depending on how many encounters each resident gets. Read that as the SP-time component rather than the whole bill: faculty time, space, case development, and local geography sit on top of it and vary too much between programs to total honestly.",
+      },
       {
         question:
           "Does AI clinical simulation replace standardized patients?",
@@ -185,6 +196,13 @@ const comparisons: Comparison[] = [
           "Varies. Completion and behavioral analytics are common; transcript-level evidence tied to a milestone is not a given.",
       },
       {
+        dimension: "Whether two scores can be compared",
+        optionA:
+          "Every learner meets the same published case version graded against the same expert-authored rubric version, both versioned and locked, so two scores measure the same thing.",
+        optionB:
+          "Depends on whether the scenario and the scoring model are versioned and identical between learners. Ask before treating any two scores as comparable.",
+      },
+      {
         dimension: "Relationship to standardized patients",
         optionA:
           "Extends an SP program by carrying the repetitions between graded encounters. It does not replace them.",
@@ -192,7 +210,7 @@ const comparisons: Comparison[] = [
           "Positioned as practice rather than assessment in most products, so the same rule applies.",
       },
     ],
-    lastUpdated: "2026-08-18",
+    lastUpdated: "2026-08-31",
     relatedSolutionSlugs: ["remediation", "longitudinal-curriculum"],
     relatedPostSlugs: [
       "building-rapport-clinical-encounter",
@@ -215,6 +233,26 @@ const comparisons: Comparison[] = [
         question: "Does clinical communication training need a VR headset?",
         answer:
           "The skill being trained in a high-stakes conversation is spoken: what the clinician says, when they pause, and how they respond to emotion. What matters most is whether the learner has to compose and say the words out loud under time pressure, which a browser and a microphone can require. Visual immersion may add value for procedural or environmental scenarios, and hardware also adds cost, distribution, and infection control questions that a program should price before committing.",
+      },
+      {
+        // Deck slide 15's positive frame, which is category-level and names no
+        // competitor, so it clears the registry's header rule.
+        question:
+          "What makes an automated communication score comparable between two learners?",
+        answer:
+          "A score compares only when both learners met the same case, at the same version, graded against the same expert-authored rubric, at the same version. Conversation volume says nothing about measurement on its own: a platform can run thousands of encounters and still produce scores that cannot be set beside one another, because the scenario drifted or the scoring model changed in between. Ask any vendor whether cases and rubrics are versioned and locked, and whether two learners graded a month apart were graded by the same thing.",
+      },
+      {
+        // The narrow negative from deck slide 15, with its qualifiers intact
+        // and the review date printed, because a search cannot prove absence.
+        // Deliberately NOT claimed: that no competitor has validity evidence,
+        // that nobody has published reliability of any kind, or anything about
+        // a named product. Several vendors in adjacent categories do publish
+        // validity work on related constructs.
+        question:
+          "Has an automated communication score been shown to agree with expert human raters?",
+        answer:
+          "In ClinicalSim's own public review through 26 August 2026, we found no published method and result showing that an automated communication score agrees with blinded expert raters. That describes what we could find in the public record on that date rather than proving nothing exists, which is why the date is printed: a search cannot establish absence, and vendors in adjacent categories do publish validity work on related constructs. The gap applies to ClinicalSim as much as to anyone else, and it is why we call our own scores a formative signal rather than a validated measure.",
       },
       {
         question: "Does either category replace standardized patients?",

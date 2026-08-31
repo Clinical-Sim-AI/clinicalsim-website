@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/next'
+import { POSITIONING_LONG } from '@/lib/positioning'
 import './globals.css'
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -17,7 +18,12 @@ export const metadata: Metadata = {
     default: 'ClinicalSim.ai: clinical simulation for communication training',
     template: '%s | ClinicalSim.ai',
   },
-  description: 'Practice the conversations that matter most. Clinical simulation purpose-built for communication remediation and training in medical education. Structured, rubric-scored practice with milestone-aligned documentation for every stage of training. Built by simulation directors and communication researchers.',
+  // The fallback description for any page without its own. Sourced from
+  // lib/positioning.ts so it cannot drift from the Organization node, the
+  // WebSite node, /about, /faq, and the /llms.txt header. The previous wording
+  // claimed ClinicalSim was "built by simulation directors and communication
+  // researchers", a phrase that appeared nowhere else on the site.
+  description: POSITIONING_LONG,
   icons: {
     icon: '/favicon.svg?v=3',
     apple: '/apple-touch-icon.png?v=3',

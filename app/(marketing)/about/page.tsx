@@ -6,11 +6,11 @@ import { AuthorByline } from "@/components/author-byline"
 import { JsonLd } from "@/components/json-ld"
 import { getAllAuthors, getAuthorUrl } from "@/lib/authors"
 import { ArrowRight } from "lucide-react"
+import { POSITIONING_ONE_LINER } from "@/lib/positioning"
 
 export const metadata: Metadata = {
   title: { absolute: "About ClinicalSim.ai: AI clinical simulation for medical communication" },
-  description:
-    "ClinicalSim gives learners voice-based practice with AI patients and gives faculty transcript evidence behind rubric-scored feedback.",
+  description: POSITIONING_ONE_LINER,
   openGraph: {
     title: "About ClinicalSim.ai",
     description:

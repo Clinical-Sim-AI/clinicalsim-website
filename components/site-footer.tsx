@@ -54,6 +54,9 @@ export function SiteFooter() {
               <Link href="/methodology" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Methodology
               </Link>
+              <Link href="/evaluation" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Evaluating ClinicalSim
+              </Link>
               <Link href="/trust" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Trust &amp; Compliance
               </Link>

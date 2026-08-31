@@ -1,6 +1,12 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { JsonLd } from "@/components/json-ld"
+import {
+  CATEGORY_DEFINITION,
+  CATEGORY_LINE,
+  POSITIONING_AUDIENCE,
+  POSITIONING_LONG,
+} from "@/lib/positioning"
 
 export default function MarketingLayout({
   children,
@@ -22,8 +28,11 @@ export default function MarketingLayout({
               width: "512",
               height: "512",
             },
-            description:
-              "Clinical simulation platform for practicing and measuring clinical communication, the most performed and least measured procedure in medicine. Used across medical school, residency, fellowship, communication remediation, and faculty development. Built by practicing physicians who direct fellowship programs and simulation centers.",
+            // Company-level category statement, then the plain-language
+            // definition, then who uses it. An answer engine reads this node
+            // before it reads any page, so it carries the same sentence the
+            // homepage, /about, /faq, and /llms.txt carry.
+            description: `${CATEGORY_LINE} ${CATEGORY_DEFINITION} ${POSITIONING_AUDIENCE}`,
             foundingDate: "2024",
             knowsAbout: [
               "Medical communication training",
@@ -43,8 +52,7 @@ export default function MarketingLayout({
             "@id": "https://clinicalsim.ai/#website",
             name: "ClinicalSim.ai",
             url: "https://clinicalsim.ai",
-            description:
-              "Practice the conversations that matter most. AI clinical simulation to practice and measure clinical communication across the medical-education continuum, covering medical school, residency, fellowship, and faculty development, with feedback mapped to the framework appropriate to each stage, including ACGME Milestones 2.0 in graduate medical education.",
+            description: POSITIONING_LONG,
             publisher: {
               "@type": "Organization",
               name: "ClinicalSim",

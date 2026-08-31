@@ -9,6 +9,7 @@ import { FaqAnchorHandler } from "@/components/faq-anchor-handler"
 import { CopyLinkButton } from "@/components/copy-link-button"
 import { slugify } from "@/lib/utils"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { POSITIONING_ONE_LINER, POSITIONING_SUPPORT } from "@/lib/positioning"
 
 export const metadata: Metadata = {
   title: { absolute: "FAQ: AI clinical simulation, scoring, privacy, and programs" },
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
 
 // Visible + schema recency. Update whenever answers change.
 const LAST_UPDATED_ISO = PAGE_DATE_MODIFIED.faq
-const LAST_UPDATED_LABEL = "August 10, 2026"
+const LAST_UPDATED_LABEL = "August 31, 2026"
 
 interface FaqEntry {
   id: string
@@ -56,8 +57,9 @@ const faqSections: FaqSection[] = [
       {
         id: "what-is-clinicalsim",
         question: "What is ClinicalSim?",
-        answer:
-          "ClinicalSim is a voice-based AI clinical simulation built for communication practice in medical education. Learners talk through high-stakes conversations with AI patients and receive rubric-scored feedback tied to the transcript. Named physicians write and review each case, and the report names the competency and communication frameworks it uses.",
+        // Leads with the canonical sentence from lib/positioning.ts. This
+        // answer used to be a fourth competing description of the company.
+        answer: `${POSITIONING_ONE_LINER} It is a voice-based AI clinical simulation built for communication practice in medical education, so learners talk through high-stakes conversations with AI patients and get rubric-scored feedback tied to what they actually said. ${POSITIONING_SUPPORT}`,
       },
       {
         id: "replaces-step-2-cs",
@@ -289,6 +291,54 @@ const faqSections: FaqSection[] = [
     ],
   },
   {
+    // Added 2026-08-31. The methodology page's CTA has been sending readers
+    // here for "pricing, rollout, and program fit" while this page answered
+    // none of the three. Sources per answer: licensing is the structure of
+    // lib/roi/constants.public.json with no figure (Ben's decision, budget
+    // framing only); the rest restate /faq "devices-and-install",
+    // "encounter-length", "languages", /help/roles-and-permissions,
+    // lib/release-notes.ts 2026-08-03, lib/examples/*.ts, and /research.
+    category: "Cost, rollout, and program fit",
+    items: [
+      {
+        id: "how-licensed",
+        question: "How is ClinicalSim licensed, and how should a program budget for it?",
+        answer:
+          "ClinicalSim is an annual per-learner subscription, so it lands as operating expense rather than a capital purchase. In most academic medical centers that distinction matters more to how the decision gets routed than the size of the number does. What a program pays depends on how many learners it covers, which cases it needs, and the term, so there is no list price published here.",
+      },
+      {
+        id: "what-to-start",
+        question: "What does a program need in place to start?",
+        answer:
+          "A browser and a list of learners. ClinicalSim runs on any phone, tablet, or desktop with nothing to download and no app to install, and a typical encounter takes 3 to 10 minutes. Someone has to hold the Project Manager or Admin role to build a cohort, choose the cases, and invite learners, which can be done in bulk. There is no simulation center booking, no actor to recruit, and no room to reserve.",
+      },
+      {
+        id: "it-requirements",
+        question: "What does IT need to allow?",
+        answer:
+          "The voice service is the one thing a hospital network sometimes blocks. Firewalls, VPNs, and web filters can cut the voice connection before a session starts, which to a learner looks like a slow network rather than a block. The briefing page runs a connection test that checks whether the network can actually reach the voice service and, when it cannot, says so plainly and names what to ask IT to allow. The check is advisory and never stops a learner from starting.",
+      },
+      {
+        id: "who-owns-decision",
+        question: "Who inside an institution usually owns this decision?",
+        answer:
+          "Communication training rarely has one owner, which is why these purchases stall. The office that feels the problem, the office that holds the budget, and the office that has to defend the decision are often three different offices: program directors, DIOs and GME leadership, simulation center directors, clinical competency committees, medical school and UME leadership, faculty and clinician educators, risk and patient safety, and quality and patient experience. The evaluation page states the case for each of those roles and links to a page written in that role's own terms.",
+      },
+      {
+        id: "see-before-deciding",
+        question: "Can we see real ClinicalSim encounters before deciding?",
+        answer:
+          "Yes. Four complete encounters are published with the audio, the full transcript, and the entire scored report, with no sign-in and no form. They are deliberately unflattering: the informed consent encounter scored 22 out of 30 and the vaccine hesitancy encounter scored 17 out of 25, with the weak domains named and the learner's own words quoted as the reason. Reading one of those reports tells a program more than a demo does.",
+      },
+      {
+        id: "research-response-time",
+        question: "How quickly does ClinicalSim respond to a research proposal?",
+        answer:
+          "Research applications are reviewed on a rolling basis and ClinicalSim typically responds within 1 to 2 weeks. The deciding question is whether the platform genuinely fits the study rather than whether the study flatters the platform, so a proposal needing a capability ClinicalSim does not have is better turned down than stretched.",
+      },
+    ],
+  },
+  {
     category: "Data, privacy, and research",
     items: [
       {
@@ -426,6 +476,14 @@ export default function FaqPage() {
               className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
             >
               methodology page
+            </Link>
+            . For the questions behind a purchase, including evidence limits,
+            procurement, and licensing, see{" "}
+            <Link
+              href="/evaluation"
+              className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
+            >
+              evaluating ClinicalSim
             </Link>
             .
           </p>

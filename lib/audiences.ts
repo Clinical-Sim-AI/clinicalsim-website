@@ -79,7 +79,7 @@ const audiences: Audience[] = [
     subtitle: "Repeatable practice between coaching sessions",
     icon: "hat-graduation",
     colorVariant: "navy",
-    lastUpdated: "2026-08-10",
+    lastUpdated: "2026-08-31",
 
     cardBullets: [
       "Structured encounters between coaching sessions",
@@ -171,6 +171,29 @@ const audiences: Audience[] = [
       },
     ],
 
+    faqs: [
+      {
+        question: "How much faculty time does communication remediation take?",
+        answer:
+          "One published clinical reasoning remediation program required a mean of 29.6 specialist contact hours per learner (Guerrasio and Aagaard, J Gen Intern Med, 2014), and that figure excludes program director, CCC, coordinator, and legal time. It is a single program's mean rather than a benchmark, so treat it as the one published number available rather than a range to plan against.",
+      },
+      {
+        question: "How common is resident remediation, and are program directors trained for it?",
+        answer:
+          "In a CERA survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years, 25% reported receiving little to no training in how to remediate, and 50% said they want an accessible remediation toolkit. Communication and professionalism are the competencies that need faculty judgment and repeated observation, which is exactly what a program has least of.",
+      },
+      {
+        question: "What can a program director give a learner between coaching sessions?",
+        answer:
+          "Structured practice in the specific conversation the learner needs to improve, repeated as often as they need it, without booking a standardized patient or a room for each attempt. Each relevant report maps observed behavior to ACGME Milestones 2.0 and cites the learner's own words, so the program director stays the coach rather than the whole remediation infrastructure, and monitors progress through the faculty dashboard without attending every session.",
+      },
+      {
+        question: "Can a ClinicalSim report go into a Clinical Competency Committee review?",
+        answer:
+          "Yes. Each practice report maps observed behavior to the relevant ACGME Milestones 2.0 subcompetency and cites the transcript evidence behind the score, so a CCC can review it alongside faculty observation and the other evidence it already uses. The report does not replace faculty judgment or the committee's decision.",
+      },
+    ],
+
     relevantSolutionSlugs: [
       "goals-of-care",
       "advance-care-planning",
@@ -203,7 +226,7 @@ const audiences: Audience[] = [
     subtitle: "Standardize remediation infrastructure across every program",
     icon: "hospital",
     colorVariant: "accent",
-    lastUpdated: "2026-08-10",
+    lastUpdated: "2026-08-31",
 
     cardBullets: [
       "Shared remediation documentation across every program",
@@ -293,6 +316,24 @@ const audiences: Audience[] = [
       },
     ],
 
+    faqs: [
+      {
+        question: "How can a GME office standardize communication remediation across programs?",
+        answer:
+          "Programs that each build their own remediation approach give a GME office no way to see whether learners have a repeatable structure for practice and coaching. One platform provides consistent documentation across every program while each case still uses the milestone and communication frameworks that fit the specialty, learner, and task, so standardization happens in the record rather than by flattening clinical differences between programs.",
+      },
+      {
+        question: "What documentation does a GME office get from each practice session?",
+        answer:
+          "Every ClinicalSim practice session generates a timestamped record with feedback mapped to ACGME Milestones 2.0 interpersonal and communication skills subcompetencies (ICS 1 through 3) and the transcript evidence behind each score. A program director, CCC, or GMEC can review it alongside other evidence, which matters when a GME office has to reconstruct which practice a learner completed and what feedback they received.",
+      },
+      {
+        question: "Does ClinicalSim take authority away from a program director or CCC?",
+        answer:
+          "No. GME leaders can review participation and practice reports across programs, and each program director and CCC keeps authority over the remediation plan and the decision. ClinicalSim adds a comparable evidence source; it does not adjudicate anything.",
+      },
+    ],
+
     relevantSolutionSlugs: ["goals-of-care", "advance-care-planning"],
 
     glossarySlugs: [
@@ -319,7 +360,7 @@ const audiences: Audience[] = [
     subtitle: "Extend your SP program, don't replace it",
     icon: "microscope",
     colorVariant: "blue",
-    lastUpdated: "2026-08-10",
+    lastUpdated: "2026-08-31",
 
     cardBullets: [
       "Transcript evidence for faculty and CCC review",
@@ -405,6 +446,24 @@ const audiences: Audience[] = [
       },
     ],
 
+    faqs: [
+      {
+        question: "Does ClinicalSim replace a standardized patient program?",
+        answer:
+          "No. ClinicalSim extends a standardized patient program rather than replacing it. SP encounters keep the live coaching and the high-stakes assessment that need human presence, and ClinicalSim adds the repetitions in between. It is also audio only, so eye contact, body language, and physical presence stay with live encounters.",
+      },
+      {
+        question: "How does a simulation center provide the practice volume remediation requires?",
+        answer:
+          "Individual remediation requires repeated practice, and every live encounter requires a trained actor, space, faculty support, and scheduling, which is what caps how many repetitions a center can offer for one remediation plan. ClinicalSim runs on demand from any device, so a learner gets another attempt without another actor or room, and the center's SP capacity goes to the encounters that genuinely need a person.",
+      },
+      {
+        question: "How can a simulation center document its impact?",
+        answer:
+          "Simulation center directors have to show use and impact, and communication practice is usually the hardest part to evidence. ClinicalSim records which learners practiced, which cases they completed, and how their scores changed across repeated simulated encounters, with feedback mapped to ACGME Milestones 2.0 and transcript evidence behind each score.",
+      },
+    ],
+
     relevantSolutionSlugs: [
       "goals-of-care",
       "advance-care-planning",
@@ -447,7 +506,7 @@ const audiences: Audience[] = [
     subtitle: "Milestone-aligned evidence for CCC review",
     icon: "ribbon-check",
     colorVariant: "light-blue",
-    lastUpdated: "2026-08-10",
+    lastUpdated: "2026-08-31",
 
     cardBullets: [
       "Milestone-aligned assessment data from structured practice sessions",
@@ -534,6 +593,24 @@ const audiences: Audience[] = [
       },
     ],
 
+    faqs: [
+      {
+        question: "What communication evidence can a CCC review besides faculty observation?",
+        answer:
+          "Faculty observation stays central, but communication evidence is often sparse and hard to compare across a remediation period, and a learner may have only a few documented observations across several months. A ClinicalSim practice report adds a timestamped record that maps observed behavior to ACGME Milestones 2.0 and quotes the learner's own words as the evidence for each score, which is a form a committee can compare across attempts.",
+      },
+      {
+        question: "Can a committee see whether a learner's communication changed over time?",
+        answer:
+          "Yes. Repeated attempts at the same or related cases are recorded longitudinally, so a committee can compare multiple practice sessions across weeks or months and read the transcript evidence behind each score rather than inferring change from isolated encounters.",
+      },
+      {
+        question: "Does ClinicalSim replace faculty judgment in CCC review?",
+        answer:
+          "No. ClinicalSim supplements faculty observation with a repeatable assessment record from each practice session; the committee still decides how that report fits with its other evidence. ClinicalSim makes no claim that its scoring is more accurate or more valid than a faculty member's read.",
+      },
+    ],
+
     relevantSolutionSlugs: ["goals-of-care", "advance-care-planning"],
 
     glossarySlugs: [
@@ -560,7 +637,7 @@ const audiences: Audience[] = [
     subtitle: "Sequence communication across all four years",
     icon: "book-opened",
     colorVariant: "blue",
-    lastUpdated: "2026-08-10",
+    lastUpdated: "2026-08-31",
 
     cardBullets: [
       "A four-year arc from history-taking to diagnosis disclosure",
@@ -647,6 +724,24 @@ const audiences: Audience[] = [
       },
     ],
 
+    faqs: [
+      {
+        question: "How do medical schools assess spoken clinical communication now that Step 2 CS is gone?",
+        answer:
+          "USMLE Step 2 CS was permanently discontinued in 2021 (USMLE / NBME) and no national successor assesses spoken clinical communication, so schools have built local methods, usually around standardized patient encounters and OSCEs. Those stay the high-stakes assessment, and the gap most schools describe is repetition between them.",
+      },
+      {
+        question: "How can a school sequence communication practice across four years?",
+        answer:
+          "Sequence the scenarios so communication complexity rises with clinical knowledge: structured history-taking in the preclinical years, updating a family on a plan in M3, and delivering a new diagnosis in M4. Each student's simulated practice sits in one view across all four years, so a clerkship director can read it alongside OSCE results and other program evidence rather than reconstructing it per rotation.",
+      },
+      {
+        question: "Which communication frameworks do undergraduate medical education scenarios use?",
+        answer:
+          "Scenarios and feedback draw on published communication frameworks including SPIKES, teach-back, and Calgary-Cambridge, and every case names the framework it uses. Students learn structures they carry into residency rather than a scoring scheme local to one platform.",
+      },
+    ],
+
     relevantSolutionSlugs: ["undergraduate-medical-education"],
 
     glossarySlugs: [
@@ -675,7 +770,7 @@ const audiences: Audience[] = [
     subtitle: "Practice the conversations faculty are expected to model",
     icon: "medal-star",
     colorVariant: "accent",
-    lastUpdated: "2026-08-10",
+    lastUpdated: "2026-08-31",
 
     cardBullets: [
       "Rehearse giving specific corrective feedback",
@@ -754,6 +849,24 @@ const audiences: Audience[] = [
         title: "One platform for learners and teachers",
         description:
           "Faculty development scenarios use the same engine and dashboard as learner scenarios, with frameworks selected for the faculty conversation rather than a trainee milestone.",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "Where do faculty actually learn to give structured corrective feedback?",
+        answer:
+          "Mostly nowhere. Giving structured feedback, handling defensiveness, and running a professionalism conversation are learned skills, and most faculty picked them up by osmosis without deliberate practice or feedback on their own performance. ClinicalSim scenarios build in structured feedback frameworks (Pendleton, SBI) so a faculty member can rehearse the conversation before leading it rather than during it.",
+      },
+      {
+        question: "How can a faculty member prepare for a professionalism conversation with a peer?",
+        answer:
+          "Addressing a colleague's lateness, disengagement, or underperformance is uncomfortable, so it gets deferred, and deferred concerns grow into larger problems for the team and the program. Rehearsing the conversation produces a rubric-scored report with the transcript evidence behind each score, which a faculty member can read before deciding how to open the real conversation.",
+      },
+      {
+        question: "Is faculty practice private?",
+        answer:
+          "Yes. Faculty practice on demand from any device with no observer in the encounter, and they review the rubric and the transcript themselves before sharing anything with a coach or program. Faculty development scenarios use the same engine and dashboard as learner scenarios, with frameworks chosen for the faculty conversation rather than a trainee milestone.",
       },
     ],
 

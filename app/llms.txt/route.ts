@@ -5,13 +5,46 @@ import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
 import { getIndexableGlossaryTerms } from "@/lib/glossary"
 import { getAllHelpArticles } from "@/lib/help-articles"
+import {
+  CATEGORY_DEFINITION,
+  CATEGORY_LINE,
+  POSITIONING_ONE_LINER,
+} from "@/lib/positioning"
 
 const BASE_URL = "https://clinicalsim.ai"
 
+/**
+ * Facts, not just links. This file used to be roughly 100 URLs with one
+ * meta-description each, which gives an agent evaluating the company a table of
+ * contents and nothing to answer with. Every line below restates something
+ * already published on the site; the source page is named so a crawler and a
+ * human can both check it.
+ *
+ * lib/llms-coverage.test.ts asserts that every indexable sitemap URL appears
+ * here and places no constraint on extra content, so this block is safe. Keep
+ * it short: it is a summary, not a copy of the site.
+ */
+const KEY_FACTS = `## Key facts
+
+- **What it is.** ${CATEGORY_LINE} ${CATEGORY_DEFINITION}
+- **In one sentence.** ${POSITIONING_ONE_LINER}
+- **Intended use.** Clinician training and assessment. ClinicalSim produces no patient-facing output, makes no diagnostic or treatment recommendation, and creates no clinical documentation. (/trust)
+- **What it does not do.** It does not replace a standardized patient program, it extends one. It does not price malpractice risk or benchmark one institution against another. It is audio only, so it cannot assess eye contact, body language, or physical presence. (/trust, /faq)
+- **Patient data.** Every patient in every case is synthetic, written from the clinical literature rather than adapted from a chart, so case development needs no patient record and no de-identification step. The platform does handle learner recordings, transcripts, account data, and institutional data. Voice collection is consent-gated and learners can request erasure. (/trust)
+- **Frameworks.** Scoring is anchored to the ACGME Milestones 2.0 and to published communication frameworks including SPIKES, Calgary-Cambridge, SEGUE, NURSE, and REMAP, with Entrustable Professional Activities where a case uses them. Every case names the frameworks it uses and every score cites verbatim transcript evidence. (/methodology)
+- **Limits of the evidence.** Those frameworks were built for trained human raters observing real encounters, which is where their published reliability was established. A framework's reliability does not carry over to an AI score in a simulated encounter, so each score is a formative signal rather than a validated measure. ClinicalSim does not claim its scoring is more accurate or more valid than a faculty member's read. (/methodology, /trust)
+- **Who it serves.** Program directors, DIOs and GME leadership, simulation center directors, clinical competency committees, medical school and UME leadership, faculty and clinician educators, risk and patient safety leaders, and quality and patient experience leaders. (/audiences)
+- **Proof you can read without signing in.** Four complete encounters are published at ${BASE_URL}/examples with audio, the full transcript, and the entire scored report, no sign-in and no form. They are deliberately unflattering: 22 out of 30 on an informed consent encounter, 17 out of 25 on a vaccine hesitancy encounter, with the weak domains named and the learner's own words quoted as the reason.
+- **How it is licensed.** An annual per-learner subscription, so operating expense rather than a capital purchase. No list price is published; what a program pays depends on learner count, cases, and term. (/evaluation)
+- **Deployment.** Browser-based on any phone, tablet, or desktop with nothing to install. A typical encounter runs 3 to 10 minutes. English only. Four roles: Member, Project Manager, Admin, Owner. Nothing crosses organizations. IT may need to allow the voice service. (/faq, /help/roles-and-permissions)
+- **Contact.** ${BASE_URL}/contact for a pilot or a product question, ${BASE_URL}/research to propose a study (rolling review, typically a 1 to 2 week response).
+`
+
 const HEADER = `# ClinicalSim.ai
 
-> ClinicalSim gives learners voice-based practice with AI patients and gives faculty the transcript evidence behind each score. Named physicians write and review cases, and each case names the competency and communication frameworks it uses.
+> ${CATEGORY_LINE} ${POSITIONING_ONE_LINER} Named physicians write and review cases, and each case names the competency and communication frameworks it uses.
 
+${KEY_FACTS}
 ## Pages
 
 - [Homepage](${BASE_URL}): Voice-based practice with AI patients for high-stakes clinical conversations, with rubric-scored feedback tied to the transcript.
@@ -53,6 +86,7 @@ export async function GET() {
   const otherPages = [
     `\n## More\n`,
     `- [Methodology](${BASE_URL}/methodology): How ClinicalSim builds cases, names the competency and communication frameworks each case uses, and generates rubric-scored feedback tied to transcript evidence.`,
+    `- [Evaluating ClinicalSim](${BASE_URL}/evaluation): The questions behind the purchase, answered in one place: what ClinicalSim is intended for and what it is not, who inside an institution owns the decision, what the evidence establishes and what it does not, what a privacy or procurement reviewer will find, what it takes to run, how it is licensed, and what ClinicalSim will not claim.`,
     `- [Trust and data handling](${BASE_URL}/trust): ClinicalSim is intended for training and assessment and does not diagnose patients, recommend treatment, or create clinical documentation. Cases use synthetic patients written from clinical literature rather than patient records. The product handles learner recordings, transcripts, account data, and institutional data.`,
     `- [FAQ](${BASE_URL}/faq): Common questions about ClinicalSim's AI clinical simulation, including how it compares to Step 2 CS and standardized patients, communication remediation, ACGME Milestone scoring and My Progress, evidence for CCC review, privacy, and research.`,
     `- [FAQ for medical educators](${BASE_URL}/medical-educator-faq): How to read a feedback report, inspect transcript evidence, compare GME and UME scoring, choose a practice cadence, and use results in a rotation or remediation plan.`,

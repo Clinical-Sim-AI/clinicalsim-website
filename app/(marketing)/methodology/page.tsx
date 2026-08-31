@@ -805,14 +805,20 @@ export default function MethodologyPage() {
             <span className="text-cs-dark-blue font-medium">works?</span>
           </h2>
           <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed mb-8">
-            Read the wider FAQ for questions about pricing, rollout, and
-            program fit, or talk to us about piloting ClinicalSim at your
-            program.
+            Read the wider FAQ for questions about cost, rollout, and program
+            fit, or work through evaluating ClinicalSim for what the evidence
+            supports, what a procurement review will find, and how it is
+            licensed.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/faq">
               <Button variant="secondary" size="lg">
                 Read the FAQ
+              </Button>
+            </Link>
+            <Link href="/evaluation">
+              <Button variant="secondary" size="lg">
+                Evaluating ClinicalSim
               </Button>
             </Link>
             <Link href="/contact">

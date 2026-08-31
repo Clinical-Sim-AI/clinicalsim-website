@@ -1,0 +1,60 @@
+/**
+ * The canonical positioning strings.
+ *
+ * Why this file exists: the one-liner below was already written verbatim in four
+ * places (the homepage description and its "What is ClinicalSim?" h2, the
+ * /llms.txt header, and /about), but the three descriptions that sit ABOVE those
+ * in the metadata hierarchy each said something different. Root metadata claimed
+ * ClinicalSim was "built by simulation directors and communication researchers",
+ * a phrase used nowhere else on the site; Organization.description and
+ * WebSite.description each led with a third and fourth wording. An AI system
+ * reads the root default and the Organization node first, so the site's clearest
+ * sentence was the one it was least likely to see.
+ *
+ * Import from here rather than retyping. Anything that describes the company as
+ * a whole should use these.
+ */
+
+/**
+ * The company-level category statement. Deck slide 1 (seed deck v10,
+ * 2026-08-27) leads with this line, and the 2026-08-07 GEO audit listed it as a
+ * public candidate pending positioning approval.
+ *
+ * Never ship it alone. It is an abstraction, and an abstraction with no
+ * definition attached is exactly the kind of sentence an answer engine cannot
+ * quote. Pair it with CATEGORY_DEFINITION on first use.
+ */
+export const CATEGORY_LINE =
+  "The communication intelligence platform for clinicians."
+
+/**
+ * The plain-language unpacking of CATEGORY_LINE, from deck slide 3's three-part
+ * product definition. The third part is deliberately reconciled to the site's
+ * own wording ("named physicians write and review each case") rather than the
+ * deck's stronger phrasing about national standards.
+ */
+export const CATEGORY_DEFINITION =
+  "Learners speak aloud with an AI patient on any device, every encounter is scored against a recognized clinical rubric rather than only transcribed, and named physicians write and review each case."
+
+/**
+ * The canonical one-liner. Already the homepage h2 and the /llms.txt header
+ * blurb. Keep the wording identical everywhere it appears: repetition across
+ * pages is what makes a sentence extractable, and a near-variant reads to a
+ * retrieval system as a competing claim rather than the same one.
+ */
+export const POSITIONING_ONE_LINER =
+  "ClinicalSim gives learners voice-based practice with AI patients and gives faculty the transcript evidence behind each score."
+
+/** The sentence that follows the one-liner wherever there is room for two. */
+export const POSITIONING_SUPPORT =
+  "Named physicians write and review each case, and each case names the competency and communication frameworks it uses."
+
+/** One-liner plus support. The default for a meta description or a schema node. */
+export const POSITIONING_LONG = `${POSITIONING_ONE_LINER} ${POSITIONING_SUPPORT}`
+
+/**
+ * Who the platform is for. Kept here because Organization.description and the
+ * /llms.txt facts block should not drift from each other on this point.
+ */
+export const POSITIONING_AUDIENCE =
+  "It is used across medical school, residency, fellowship, communication remediation, and faculty development."

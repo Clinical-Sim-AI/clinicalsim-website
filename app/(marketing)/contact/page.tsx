@@ -279,7 +279,12 @@ export default function ContactPage() {
             <Link href="/medical-educator-faq" className="text-cs-dark-blue underline underline-offset-2 hover:no-underline">
               FAQ for medical educators
             </Link>{" "}
-            cover most of what comes up first.
+            cover most of what comes up first, and{" "}
+            <Link href="/evaluation" className="text-cs-dark-blue underline underline-offset-2 hover:no-underline">
+              evaluating ClinicalSim
+            </Link>{" "}
+            answers the procurement, evidence, and licensing questions before
+            you have to ask them.
           </p>
         </div>
       </section>
