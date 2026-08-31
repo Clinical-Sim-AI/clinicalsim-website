@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { AudienceCard } from "@/components/audience-card"
 import { Reveal } from "@/components/reveal"
-import { getAllSolutions } from "@/lib/solutions"
+import { getPublishedSolutions } from "@/lib/solutions"
 import { JsonLd } from "@/components/json-ld"
 import { VideoObjectSchema } from "@/components/video-object-schema"
 import { ArrowRight } from "lucide-react"
@@ -67,7 +67,7 @@ const DEMO_VIDEO = {
 }
 
 export default function HomePage() {
-  const solutions = getAllSolutions()
+  const solutions = getPublishedSolutions()
 
   // Representative scenario types practiced on the platform (drawn from the
   // scenario library, breaking bad news through error disclosure).

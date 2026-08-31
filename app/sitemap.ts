@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next"
 import { getAllPosts } from "@/lib/posts"
 import { getAllAudiences } from "@/lib/audiences"
-import { getAllSolutions } from "@/lib/solutions"
+import { getPublishedSolutions } from "@/lib/solutions"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
 import { getIndexableGlossaryTerms } from "@/lib/glossary"
@@ -14,7 +14,7 @@ const BASE_URL = "https://clinicalsim.ai"
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts()
   const audiences = getAllAudiences()
-  const solutions = getAllSolutions()
+  const solutions = getPublishedSolutions()
   const comparisons = getAllComparisons()
   const examples = getAllExamples()
   const glossary = getIndexableGlossaryTerms()
@@ -67,6 +67,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(PAGE_DATE_MODIFIED.glossary),
       changeFrequency: "monthly",
       priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/frameworks`,
+      lastModified: new Date(PAGE_DATE_MODIFIED.frameworks),
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: `${BASE_URL}/methodology`,

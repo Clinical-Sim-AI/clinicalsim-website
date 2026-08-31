@@ -1,5 +1,5 @@
 import { getAllPosts } from "@/lib/posts"
-import { getAllSolutions } from "@/lib/solutions"
+import { getPublishedSolutions } from "@/lib/solutions"
 import { getAllAudiences } from "@/lib/audiences"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
@@ -8,6 +8,7 @@ import { getAllHelpArticles } from "@/lib/help-articles"
 import {
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
+  MEASUREMENT_CLAIM,
   POSITIONING_ONE_LINER,
 } from "@/lib/positioning"
 
@@ -31,7 +32,7 @@ const KEY_FACTS = `## Key facts
 - **Intended use.** Clinician training and assessment. ClinicalSim produces no patient-facing output, makes no diagnostic or treatment recommendation, and creates no clinical documentation. (/trust)
 - **What it does not do.** It does not replace a standardized patient program, it extends one. It does not price malpractice risk or benchmark one institution against another. It is audio only, so it cannot assess eye contact, body language, or physical presence. (/trust, /faq)
 - **Patient data.** Every patient in every case is synthetic, written from the clinical literature rather than adapted from a chart, so case development needs no patient record and no de-identification step. The platform does handle learner recordings, transcripts, account data, and institutional data. Voice collection is consent-gated and learners can request erasure. (/trust)
-- **Frameworks.** Scoring is anchored to the ACGME Milestones 2.0 and to published communication frameworks including SPIKES, Calgary-Cambridge, SEGUE, NURSE, and REMAP, with Entrustable Professional Activities where a case uses them. Every case names the frameworks it uses and every score cites verbatim transcript evidence. (/methodology)
+- **Frameworks.** ${MEASUREMENT_CLAIM} The standard is whatever the customer already reports on: their own consent policy, escalation policy, or preceptor rubric, scored against their element definitions as written. Public frameworks scored against today include the ACGME Milestones 2.0, SPIKES, Calgary-Cambridge, SEGUE, NURSE, REMAP, Braddock's elements of informed decision making, the AHRQ CANDOR and SHARE material, TeamSTEPPS, and OPTION-12, with Entrustable Professional Activities where a case uses them. An element is scored only where the case gave the clinician a chance to show it. (/frameworks, /methodology)
 - **Limits of the evidence.** Those frameworks were built for trained human raters observing real encounters, which is where their published reliability was established. A framework's reliability does not carry over to an AI score in a simulated encounter, so each score is a formative signal rather than a validated measure. ClinicalSim does not claim its scoring is more accurate or more valid than a faculty member's read. (/methodology, /trust)
 - **Who it serves.** Program directors, DIOs and GME leadership, simulation center directors, clinical competency committees, medical school and UME leadership, faculty and clinician educators, risk and patient safety leaders, and quality and patient experience leaders. (/audiences)
 - **Proof you can read without signing in.** Four complete encounters are published at ${BASE_URL}/examples with audio, the full transcript, and the entire scored report, no sign-in and no form. They are deliberately unflattering: 22 out of 30 on an informed consent encounter, 17 out of 25 on a vaccine hesitancy encounter, with the weak domains named and the learner's own words quoted as the reason.
@@ -52,7 +53,7 @@ ${KEY_FACTS}
 
 export async function GET() {
   const posts = getAllPosts()
-  const solutions = getAllSolutions()
+  const solutions = getPublishedSolutions()
   const audiences = getAllAudiences()
   const comparisons = getAllComparisons()
   const examples = getAllExamples()
@@ -85,6 +86,7 @@ export async function GET() {
 
   const otherPages = [
     `\n## More\n`,
+    `- [Scored against your framework](${BASE_URL}/frameworks): Send your element definitions and get those definitions back as scores, per clinician, with the line that earned each score quoted underneath. States the scope rule, that an element is scored only where the case gave the clinician a chance to show it, and lists the public frameworks ClinicalSim scores against today.`,
     `- [Methodology](${BASE_URL}/methodology): How ClinicalSim builds cases, names the competency and communication frameworks each case uses, and generates rubric-scored feedback tied to transcript evidence.`,
     `- [Evaluating ClinicalSim](${BASE_URL}/evaluation): The questions behind the purchase, answered in one place: what ClinicalSim is intended for and what it is not, who inside an institution owns the decision, what the evidence establishes and what it does not, what a privacy or procurement reviewer will find, what it takes to run, how it is licensed, and what ClinicalSim will not claim.`,
     `- [Trust and data handling](${BASE_URL}/trust): ClinicalSim is intended for training and assessment and does not diagnose patients, recommend treatment, or create clinical documentation. Cases use synthetic patients written from clinical literature rather than patient records. The product handles learner recordings, transcripts, account data, and institutional data.`,
