@@ -688,7 +688,7 @@ const solutions: Solution[] = [
     subtitle: "Scoring the conversation behind the signature",
     icon: "badge-check",
     colorVariant: "navy",
-    lastUpdated: "2026-08-31",
+    lastUpdated: "2026-09-01",
     cardBullets: [
       "Scored element by element against your own consent policy",
       "Every score quotes the line the clinician actually said",
@@ -700,51 +700,45 @@ const solutions: Solution[] = [
     heroHeadline: "The signature is not the consent",
     heroDescription:
       "Consent is a procedure that every hospital documents and almost nobody observes. ClinicalSim scores a spoken consent conversation against the element definitions in your own policy, one score per element, with the line the clinician said quoted underneath.",
-    stagesHeading: "The seven elements of an informed decision",
+    stagesHeading: "The six elements in the ready to use consent rubric",
     stagesIntro:
-      "Braddock's elements, quoted as AHRQ publishes them. They are the scale researchers already use to score recorded surgical consent conversations, which is what makes them a workable spine for a rubric.",
+      "The current catalog case uses a six element rubric grounded in AMA Code of Medical Ethics Opinion 2.1.1 and the StatPearls review of informed consent.",
     stages: [
       {
         label: "1",
-        title: "The patient's role in the decision",
+        title: "Assess decision making capacity",
         description:
-          "Saying out loud that there is a decision here and that the patient has a part in making it. This is the element most often skipped entirely, because the conversation opens as an explanation rather than a choice.",
+          "Establish that the patient can understand the options, weigh their implications, and communicate a choice. When a surrogate decides, confirm that role and start from what they understand.",
       },
       {
         label: "2",
-        title: "The clinical issue and the suggested treatment",
+        title: "Explain the diagnosis and proposed intervention",
         description:
-          "Naming what is wrong and what is proposed, in words the patient uses rather than the words the chart uses. Surgeons do this reliably; it is the part of the conversation that rarely goes missing.",
+          "State the clinical problem in plain terms, then explain what is proposed and why the team recommends it.",
       },
       {
         label: "3",
-        title: "Alternatives, including doing nothing",
+        title: "Describe risks, benefits, and expected outcomes",
         description:
-          "Watchful waiting is an alternative. So is declining. In 90 recorded conversations before high-risk surgery, alternatives came up in 63% of discussions where the decision was still open and 27% where the operation was already booked (JACS, 2021).",
+          "Explain the material risks and expected benefits without minimizing harm or promising an outcome the clinician cannot know.",
       },
       {
         label: "4",
-        title: "Risks and benefits, compared across options",
+        title: "Discuss alternatives, including no treatment",
         description:
-          "Not a recitation of a complication list, but a comparison. The risks of the proposed operation set against the risks of the alternatives, in numbers the patient can hold onto.",
+          "Present reasonable alternatives as real choices and compare their risks, benefits, and likely outcomes with the proposed intervention.",
       },
       {
         label: "5",
-        title: "The uncertainties",
+        title: "Protect voluntariness",
         description:
-          "Saying plainly what the clinician does not know. A best case, a worst case, and an honest statement that nobody can say yet which one this patient will get.",
+          "Make clear that the patient or surrogate can decide without coercion, ask for time, or decline.",
       },
       {
         label: "6",
-        title: "Assessing what the patient understood",
+        title: "Confirm understanding, questions, and the decision",
         description:
-          "The element surgeons are least likely to reach. Asking the patient to say back, in their own words, what the operation will do and what could go wrong, then correcting what they got wrong.",
-      },
-      {
-        label: "7",
-        title: "Eliciting the patient's preference",
-        description:
-          "Asking what this patient wants, having given them what they needed to answer. Consent is the answer to that question rather than the signature that follows it.",
+          "Invite questions, use teach back to check the explanation, correct misunderstandings, and ask for the patient's decision.",
       },
     ],
     valuePropsHeading: "What a program gets",
@@ -768,29 +762,14 @@ const solutions: Solution[] = [
     ],
     frameworks: [
       {
-        name: "Braddock's elements of informed decision making",
-        owner: "Braddock et al., quoted verbatim by AHRQ",
-        note: "The seven elements above. Published in full and already used to score recorded consent conversations in the literature.",
-      },
-      {
-        name: "CMS well-designed informed consent process",
-        owner: "CMS interpretive guidelines, public domain",
-        note: "Material risks and benefits, treatment alternatives, the consequences of declining, who performs the operation and administers anesthesia, and whether residents or advanced practice providers perform important tasks.",
-      },
-      {
-        name: "American College of Surgeons, Statement on Principles II.A",
-        owner: "American College of Surgeons, revised 2016",
-        note: "Five items, including estimated mortality and morbidity, the more commonly known complications, and the roles of everyone who will participate.",
-      },
-      {
-        name: "AHRQ ten strategies for informed consent",
-        owner: "AHRQ, developed with The Joint Commission",
-        note: "Behavioral and named: health literacy universal precautions, removing language barriers, teach-back, offering choices, eliciting goals and values, using a decision aid.",
+        name: "Informed consent: Consent discussion",
+        owner: "AMA Code of Medical Ethics and StatPearls",
+        note: "The ready to use rubric above has six scored elements and is attached to the current PICU central line case.",
       },
       {
         name: "Your own consent policy",
         owner: "Yours",
-        note: "The one that matters commercially and in a survey. Send the policy and the procedure-specific form; we use their element definitions as written.",
+        note: "Send the approved policy and procedure specific form. We use their element definitions as written.",
       },
     ],
     faqs: [
@@ -825,12 +804,7 @@ const solutions: Solution[] = [
           "No. Nobody has published a validated rubric for scoring a live procedural consent conversation in clinical care, as opposed to research consent, and we are not going to describe ours as one. Scores are anchored to published element definitions and to verbatim transcript evidence, and agreement with faculty raters is unmeasured work that a pilot should do.",
       },
     ],
-    nonEndorsementOrgs: [
-      "The Joint Commission",
-      "the ACGME",
-      "AHRQ",
-      "the American College of Surgeons",
-    ],
+    nonEndorsementOrgs: ["the ACGME", "the American College of Surgeons"],
     claimBoundary: {
       formative: true,
       raterValidation: true,
@@ -869,7 +843,7 @@ const solutions: Solution[] = [
     subtitle: "Practicing the conversation before it is needed",
     icon: "chat-exclamation",
     colorVariant: "blue",
-    lastUpdated: "2026-08-31",
+    lastUpdated: "2026-09-01",
     cardBullets: [
       "Practice in private, before the first real disclosure",
       "Scored against your own disclosure policy, element by element",
@@ -877,49 +851,49 @@ const solutions: Solution[] = [
     ],
     metaTitle: "Error disclosure, practiced and scored",
     metaDescription:
-      "97% of physicians say they would disclose a hypothetical minor-harm error; 5% have ever disclosed an actual major one (Kaldjian, JGIM 2007). ACGME Common Program Requirement 4.9.g names simulated disclosure, and nobody scores it. Practice against your own disclosure policy.",
+      "97% of physicians say they would disclose a hypothetical minor-harm error; 5% have disclosed an actual major one (Kaldjian, JGIM 2007). Practice with AHRQ CANDOR or your own disclosure policy.",
     heroHeadline: "The hardest conversation in medicine, rehearsed first",
     heroDescription:
       "Most clinicians have their first real disclosure conversation with no practice behind it. ClinicalSim gives them a private one to get wrong first, scored against your institution's own disclosure elements with the words they used quoted under each score.",
     stagesHeading: "What a disclosure conversation has to carry",
     stagesIntro:
-      "The National Quality Forum's Safe Practice on disclosure names these in writing, and then says the skill should be developed and practiced. It does not say how anyone would know whether it was.",
+      "The ready to use rubric follows the disclosure checklist in AHRQ's CANDOR toolkit. It scores six parts of the conversation with the patient or family.",
     stages: [
       {
-        label: "Say it",
-        title: "An explicit statement of what happened",
+        label: "Prepare",
+        title: "Set the stage",
         description:
-          "In plain words, including what it means for this patient. The failing version is \"there was an issue with one of her medications and we are reviewing it.\" The passing version names the dose, names the harm, and says it was a mistake.",
+          "Confirm who should attend, what is known, who will lead the conversation, and what support the patient or family may need.",
+      },
+      {
+        label: "Listen",
+        title: "Hear the patient or family first",
+        description:
+          "Ask what they understand, invite questions, and respond to emotion before moving through the facts.",
       },
       {
         label: "Explain",
-        title: "Why it happened, and whether it was preventable",
+        title: "State the facts without blame or speculation",
         description:
-          "Naming what failed without hiding behind the system. \"The result got lost\" is a sentence with no subject in it, and families hear that.",
+          "Explain what happened and what it means for the patient. Separate confirmed facts from what the review has not established.",
       },
       {
-        label: "Regret",
-        title: "An explicit and empathic expression of regret",
+        label: "Apologize",
+        title: "Offer a sincere apology",
         description:
-          "The NQF language is specific: an expression of regret that the outcome was not as expected, distinct from an explanation and distinct from a finding of fault.",
+          "Acknowledge the harm or unexpected outcome directly and express regret in words that fit what is known.",
       },
       {
-        label: "Commit",
-        title: "A commitment to investigate and prevent recurrence",
+        label: "Plan",
+        title: "Explain consequences and next steps",
         description:
-          "Naming who is accountable for the review rather than promising that it will happen. The commitment is only worth as much as the person attached to it.",
+          "Describe the patient's care plan, immediate support, and what the organization will review next.",
       },
       {
-        label: "Close",
-        title: "Feedback of the investigation result",
+        label: "Follow up",
+        title: "Commit to follow up and documentation",
         description:
-          "Saying when the family will hear the outcome and from whom. This is the element that most often falls off the end of an otherwise good conversation.",
-      },
-      {
-        label: "Support",
-        title: "Emotional support, on both sides",
-        description:
-          "Support for the patient and family, and the part institutions forget: the clinician who was involved. The element is not finished once the family has been offered something, because the person who delivered the disclosure carries the event too.",
+          "Name who will return, when they will return, and how the conversation and open questions will be documented.",
       },
     ],
     valuePropsHeading: "What a program gets",
@@ -943,29 +917,14 @@ const solutions: Solution[] = [
     ],
     frameworks: [
       {
-        name: "NQF Safe Practice on disclosure",
-        owner: "National Quality Forum, public",
-        note: "The elements above, including the initial conversation within 24 hours where possible, and the statement that the skill should be developed and practiced.",
-      },
-      {
-        name: "AHRQ CANDOR",
-        owner: "AHRQ, public domain",
-        note: "Eight modules across three phases, including response and disclosure communication and care for the caregiver.",
-      },
-      {
-        name: "Video-based Communication Assessment rating scheme",
-        owner: "White et al., published in full",
-        note: "Six domains rated on a five-point scale: accountability, honesty, apology, empathy, caring, and overall response. The only published instrument that rates an actual disclosure performance rather than an attitude.",
-      },
-      {
-        name: "Seven Pillars",
-        owner: "University of Illinois, published",
-        note: "Pillar 3 is communication and disclosure, Pillar 7 is education and training.",
+        name: "AHRQ CANDOR: Disclosure communication",
+        owner: "Agency for Healthcare Research and Quality",
+        note: "The ready to use rubric applies the CANDOR disclosure checklist to the spoken encounter.",
       },
       {
         name: "Your own disclosure policy",
         owner: "Yours",
-        note: "The version that governs in practice. Institution-specific policies dominate this field, and they are what a clinician will be held to.",
+        note: "Send the approved policy or coaching script. We use its element definitions as written.",
       },
     ],
     faqs: [
@@ -995,11 +954,7 @@ const solutions: Solution[] = [
           "Designated Institutional Officials, quality officers, and the patient safety educators who already run disclosure training and have no way to show what it produced. It is about whether a clinician can hold the conversation competently, which is a training question rather than a risk-management one.",
       },
     ],
-    nonEndorsementOrgs: [
-      "the ACGME",
-      "the National Quality Forum (NQF)",
-      "AHRQ",
-    ],
+    nonEndorsementOrgs: ["the ACGME", "AHRQ"],
     claimBoundary: {
       formative: true,
       raterValidation: true,
@@ -1072,6 +1027,18 @@ export function getSolutionsByMarket(market: Market): Solution[] {
  */
 export function getHomepageSolutions(): Solution[] {
   return getPublishedSolutions().filter((s) => !s.hideFromHomepage)
+}
+
+export function getHomepageSolutionGroups(): Array<{
+  market: Market
+  solutions: Solution[]
+}> {
+  const homepageSolutions = getHomepageSolutions()
+
+  return (["health-system", "medical-education"] as const).map((market) => ({
+    market,
+    solutions: homepageSolutions.filter((solution) => solution.market === market),
+  }))
 }
 
 /** Solutions rendered by the generic SolutionPageLayout (excludes bespoke pages). */

@@ -26,4 +26,17 @@ describe("llms.txt coverage", () => {
     expect(example?.summary).not.toMatch(/(\.\.\.|\u2026)/)
     expect(example?.summary?.trim().endsWith(".")).toBe(true)
   })
+
+  it("does not claim unavailable frameworks are scored today", async () => {
+    const response = await getLlmsTxt()
+    const llmsTxt = await response.text()
+
+    for (const framework of [
+      "Braddock's elements of informed decision making",
+      "AHRQ SHARE",
+      "NQF Safe Practice on disclosure",
+    ]) {
+      expect(llmsTxt).not.toContain(framework)
+    }
+  })
 })

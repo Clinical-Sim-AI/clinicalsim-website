@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest"
 
 import { getAudiencesByMarket } from "./audiences"
-import { getSolutionsByMarket } from "./solutions"
+import { getHomepageSolutionGroups, getSolutionsByMarket } from "./solutions"
+import {
+  CATEGORY_DEFINITION,
+  POSITIONING_LONG,
+  POSITIONING_SUPPORT,
+} from "./positioning"
 
 describe("market positioning", () => {
   it("groups health system buyers separately from medical education buyers", () => {
@@ -46,5 +51,72 @@ describe("market positioning", () => {
       )
       expect(solution.claimBoundary?.noEmploymentUse, solution.slug).toBe(true)
     }
+  })
+
+  it("describes both scoring paths in shared positioning copy", () => {
+    for (const copy of [
+      CATEGORY_DEFINITION,
+      POSITIONING_SUPPORT,
+      POSITIONING_LONG,
+    ]) {
+      expect(copy).toMatch(/published clinical frameworks/i)
+      expect(copy).toMatch(/institution/i)
+      expect(copy).toMatch(/policy|service standard|script|rubric/i)
+    }
+  })
+
+  it("keeps the homepage use cases in separate buyer groups", () => {
+    expect(
+      getHomepageSolutionGroups().map((group) => ({
+        market: group.market,
+        slugs: group.solutions.map((solution) => solution.slug),
+      })),
+    ).toEqual([
+      {
+        market: "health-system",
+        slugs: [
+          "patient-experience",
+          "debriefing",
+          "informed-consent",
+          "error-disclosure",
+        ],
+      },
+      {
+        market: "medical-education",
+        slugs: [
+          "longitudinal-curriculum",
+          "undergraduate-medical-education",
+          "faculty-development",
+        ],
+      },
+    ])
+
+    expect(
+      getHomepageSolutionGroups().flatMap((group) =>
+        group.solutions.map((solution) => solution.slug),
+      ),
+    ).not.toContain("remediation")
+  })
+
+  it("names staging backed rubrics on consent and disclosure pages", () => {
+    const informedConsent = getSolutionsByMarket("health-system").find(
+      (solution) => solution.slug === "informed-consent",
+    )
+    const errorDisclosure = getSolutionsByMarket("health-system").find(
+      (solution) => solution.slug === "error-disclosure",
+    )
+
+    expect(informedConsent?.frameworks?.map((framework) => framework.name)).toContain(
+      "Informed consent: Consent discussion",
+    )
+    expect(errorDisclosure?.frameworks?.map((framework) => framework.name)).toContain(
+      "AHRQ CANDOR: Disclosure communication",
+    )
+    expect(informedConsent?.frameworks?.map((framework) => framework.name)).not.toContain(
+      "Braddock's elements of informed decision making",
+    )
+    expect(errorDisclosure?.frameworks?.map((framework) => framework.name)).not.toContain(
+      "NQF Safe Practice on disclosure",
+    )
   })
 })

@@ -1,24 +1,22 @@
 import type { Metadata } from "next"
 import dynamic from "next/dynamic"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { AudienceCard } from "@/components/audience-card"
-import { Reveal } from "@/components/reveal"
-import { getHomepageSolutions } from "@/lib/solutions"
-import { JsonLd } from "@/components/json-ld"
-import { VideoObjectSchema } from "@/components/video-object-schema"
 import { ArrowRight } from "lucide-react"
+import { AudienceCard } from "@/components/audience-card"
+import { JsonLd } from "@/components/json-ld"
+import { Reveal } from "@/components/reveal"
+import { Button } from "@/components/ui/button"
+import { VideoObjectSchema } from "@/components/video-object-schema"
+import { getFeaturedFrameworks } from "@/lib/frameworks"
+import { HOMEPAGE_PUBLIC_COPY } from "@/lib/homepage-content"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
-import {
-  CATEGORY_DEFINITION,
-  CATEGORY_LINE,
-  POSITIONING_LONG,
-  POSITIONING_ONE_LINER,
-  POSITIONING_SUPPORT,
-} from "@/lib/positioning"
+import { POSITIONING_LONG } from "@/lib/positioning"
+import { getHomepageSolutionGroups } from "@/lib/solutions"
 
 const DemoVideoSection = dynamic(
-  () => import("@/components/demo-video-section").then((m) => ({ default: m.DemoVideoSection }))
+  () => import("@/components/demo-video-section").then((module) => ({
+    default: module.DemoVideoSection,
+  })),
 )
 
 const HOME_DESCRIPTION = POSITIONING_LONG
@@ -30,8 +28,7 @@ export const metadata: Metadata = {
   description: HOME_DESCRIPTION,
   openGraph: {
     title: "Communication intelligence for health systems",
-    description:
-      "Healthcare teams practice with AI patients. ClinicalSim scores each encounter against the institution's standards and cites transcript evidence behind every score.",
+    description: HOME_DESCRIPTION,
     url: "https://clinicalsim.ai",
     images: [
       {
@@ -44,8 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Communication intelligence for health systems",
-    description:
-      "Healthcare teams practice with AI patients and leaders review the transcript evidence behind each score.",
+    description: HOME_DESCRIPTION,
     images: ["/og-image.png"],
   },
   alternates: {
@@ -54,15 +50,8 @@ export const metadata: Metadata = {
 }
 
 /**
- * The one demo recording the homepage shows. Keeping the Loom id and metadata
- * in a single object keeps the visible player and the VideoObject JSON-LD in
- * lockstep when the video is swapped. uploadDate and duration come from Loom's
- * share-page metadata for this recording.
- *
- * uploadDate MUST be a full ISO 8601 datetime with a UTC offset. Search Console
- * flagged the earlier date-only "2026-06-28" twice under Videos, as "missing a
- * timezone" and as an invalid datetime value. Central time is the company
- * default, so the offset is -05:00 in CDT and -06:00 in CST.
+ * The homepage demo recording. The visible player and VideoObject data share
+ * this object so a future video swap cannot leave stale schema behind.
  */
 const DEMO_VIDEO = {
   embedUrl: "https://www.loom.com/embed/3eacd20486a74b5c80a4ab7ba60b0308",
@@ -72,55 +61,25 @@ const DEMO_VIDEO = {
   duration: "PT9M22S",
 }
 
+const CONVERSATION_TYPES = [
+  "Patient service conversations",
+  "Clinical and educational debriefing",
+  "Breaking bad news",
+  "Goals of care",
+  "Informed consent",
+  "Error disclosure",
+  "High-stakes family meetings",
+  "Delivering a new diagnosis",
+  "Communicating uncertainty",
+  "Giving corrective feedback",
+  "Professionalism conversations",
+  "History taking",
+]
+
 export default function HomePage() {
-  const solutions = [...getHomepageSolutions()].sort((a, b) => {
-    if (a.market === b.market) return 0
-    return a.market === "health-system" ? -1 : 1
-  })
-
-  // Representative scenario types practiced on the platform (drawn from the
-  // scenario library, breaking bad news through error disclosure).
-  const conversationTypes = [
-    "Patient service conversations",
-    "Clinical and educational debriefing",
-    "Breaking bad news",
-    "Goals of care",
-    "Informed consent",
-    "Error disclosure",
-    "High-stakes family meetings",
-    "Delivering a new diagnosis",
-    "Communicating uncertainty",
-    "Giving corrective feedback",
-    "Professionalism conversations",
-    "History taking",
-  ]
-
-  // Four institutional uses, each paired with the standard it can score.
-  const frameworkMap = [
-    { stage: "Patient experience", framework: "Your service standards and scripts" },
-    { stage: "Risk and patient safety", framework: "Your policies and communication elements" },
-    { stage: "Graduate medical education", framework: "ACGME Milestones 2.0 and case frameworks" },
-    { stage: "Simulation and debriefing", framework: "The debriefing framework your institution teaches" },
-  ]
-
-  // The three capabilities that define the platform.
-  const differentiators = [
-    {
-      claim: "Your standard becomes the rubric",
-      detail:
-        "Institutions can add the service standards, policies, and rubrics they already use. Clinical cases name the physicians responsible for clinical review.",
-    },
-    {
-      claim: "Every score cites the transcript",
-      detail:
-        "Leaders can read the speaker's words behind each rating instead of treating the score as a black box.",
-    },
-    {
-      claim: "Reporting can follow the institution",
-      detail:
-        "Review an individual, a named cohort, or an anonymous unit view based on the access rules set before launch.",
-    },
-  ]
+  const featuredFrameworks = getFeaturedFrameworks()
+  const [healthSystemGroup, medicalEducationGroup] =
+    getHomepageSolutionGroups()
 
   return (
     <>
@@ -152,14 +111,6 @@ export default function HomePage() {
             ],
           },
           {
-            // The product itself, which nothing on the site declared. Every
-            // field below restates published copy: featureList from /faq and
-            // /methodology, audience from lib/audiences.ts, browserRequirements
-            // from the /faq "devices-and-install" answer.
-            //
-            // Deliberately NO `offers` node. ClinicalSim publishes no list
-            // price, and a priceless Offer is worse than no Offer: Google reads
-            // it as an incomplete product listing rather than as restraint.
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "@id": "https://clinicalsim.ai/#software",
@@ -169,8 +120,6 @@ export default function HomePage() {
             applicationCategory: "EducationalApplication",
             applicationSubCategory: "Clinical simulation",
             operatingSystem: "Web browser",
-            // `browserRequirements` is a WebApplication field, not a
-            // SoftwareApplication one, and schema-dts rejects it here.
             softwareRequirements:
               "A modern web browser with microphone access. No download or installation.",
             inLanguage: "en",
@@ -181,14 +130,12 @@ export default function HomePage() {
               url: "https://clinicalsim.ai",
             },
             featureList: [
-              "Voice-based practice with AI patients",
-              "Rubric-scored feedback citing verbatim transcript evidence",
+              "Voice based practice with AI patients",
+              "Ready to use cases based on published clinical frameworks",
+              "Institution supplied policies, service standards, scripts, and rubrics",
+              "Rubric scores with transcript evidence",
+              "Individual, cohort, and anonymous unit reporting",
               "Cases written and reviewed by named physicians",
-              "Institution-specific service standards and policy rubrics",
-              "Named cohort and anonymous unit reporting",
-              "Feedback mapped to ACGME Milestones 2.0 and published communication frameworks",
-              "Longitudinal progress tracking across repeated attempts",
-              "Cohort progress views, progress reports, and exports for faculty",
             ],
             audience: {
               "@type": "Audience",
@@ -207,28 +154,27 @@ export default function HomePage() {
           },
         ]}
       />
-      {/* 1. Hero Section - Dark Blue per brand */}
-      <section className="relative overflow-hidden px-6 py-20 md:py-28 lg:py-32 bg-cs-dark-blue text-white">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
-          {/* Left column, message + CTAs */}
+
+      <section className="relative overflow-hidden bg-cs-dark-blue px-6 py-20 text-white md:py-28 lg:py-32">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div className="relative z-10 max-w-2xl">
-            <p className="inline-flex items-center gap-2 text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
-              <span className="h-1.5 w-1.5 rounded-full bg-cs-electric" aria-hidden="true" />
-              Communication intelligence for health systems
+            <p className="mb-6 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-cs-electric md:text-sm">
+              <span
+                className="h-1.5 w-1.5 rounded-full bg-cs-electric"
+                aria-hidden="true"
+              />
+              {HOMEPAGE_PUBLIC_COPY.hero.eyebrow}
             </p>
 
-            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
-              Practice the conversation and see the evidence behind every score
+            <h1 className="mb-6 text-balance text-4xl font-light leading-[1.08] tracking-tight text-white md:text-5xl lg:text-[3.5rem]">
+              {HOMEPAGE_PUBLIC_COPY.hero.headline}
             </h1>
 
-            <p className="text-lg md:text-xl text-cs-cloud font-light mb-8">
-              Clinicians and patient facing staff speak with AI patients on any
-              device. ClinicalSim scores each encounter against the standards
-              your institution already uses and cites the transcript behind
-              every score.
+            <p className="mb-8 text-lg font-light text-cs-cloud md:text-xl">
+              {HOMEPAGE_PUBLIC_COPY.hero.body}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Link href="/contact">
                 <Button variant="accent" size="xl" className="w-full sm:w-auto">
                   Request a pilot
@@ -238,142 +184,129 @@ export default function HomePage() {
               <Link href="/examples">
                 <Button
                   size="xl"
-                  className="w-full sm:w-auto bg-transparent border border-white/25 text-white hover:bg-white/10 font-medium"
+                  className="w-full border border-white/25 bg-transparent font-medium text-white hover:bg-white/10 sm:w-auto"
                 >
                   See example feedback
                 </Button>
               </Link>
             </div>
 
-            <p className="mt-8 text-sm text-cs-cloud/80 font-light">
-              In pilot at 25 or more academic medical centers and children&apos;s hospitals.
+            <p className="mt-8 text-sm font-light text-cs-cloud/80">
+              {HOMEPAGE_PUBLIC_COPY.hero.pilot}
             </p>
           </div>
 
-          {/* Right column, evidence panel */}
-          <div className="relative z-10 lg:justify-self-end w-full max-w-md">
-            <div className="rounded-2xl border border-white/10 bg-cs-navy/40 p-6 md:p-8 backdrop-blur-sm">
-              <p className="text-xl font-medium text-cs-electric mb-6">
-                Leaders can inspect every score
-              </p>
-              <dl className="space-y-6">
-                <div>
-                  <dt className="text-sm text-cs-cloud font-light mb-1">Scoring evidence</dt>
-                  <dd className="text-2xl md:text-3xl font-light text-white">Traceable to the transcript</dd>
+          <div className="relative z-10 w-full max-w-md lg:justify-self-end">
+            <dl className="rounded-2xl border border-white/10 bg-cs-navy/40 p-6 backdrop-blur-sm md:p-8">
+              {HOMEPAGE_PUBLIC_COPY.evidencePanel.map((item, index) => (
+                <div
+                  key={item.label}
+                  className={index === 0 ? "" : "mt-6 border-t border-white/10 pt-6"}
+                >
+                  <dt className="mb-1 text-sm font-light text-cs-cloud">
+                    {item.label}
+                  </dt>
+                  <dd className="text-2xl font-light text-white md:text-3xl">
+                    {item.value}
+                  </dd>
                 </div>
-                <div className="h-px bg-white/10" />
-                <div>
-                  <dt className="text-sm text-cs-cloud font-light mb-1">Institution standard</dt>
-                  <dd className="text-2xl md:text-3xl font-light text-white">Scored as defined</dd>
-                </div>
-                <div className="h-px bg-white/10" />
-                <div>
-                  <dt className="text-sm text-cs-cloud font-light mb-1">Reporting</dt>
-                  <dd className="text-2xl md:text-3xl font-light text-white">Person, cohort, or unit</dd>
-                </div>
-              </dl>
-              <p className="mt-6 pt-6 border-t border-white/10 text-sm text-cs-cloud font-light leading-relaxed">
-                Institutions set access and reporting rules before launch. Formative scores are not intended for employment decisions.
-              </p>
-            </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>
 
-      {/* 2. Demo video, sits directly under the hero so a program director can
-           see the product inside the first three screenfuls. */}
-      <section className="px-6 py-16 md:py-24 bg-cs-cloud">
-        <div className="max-w-5xl mx-auto">
-          {/* Fields read off Loom's oEmbed and share metadata for this video
-              (DEMO_VIDEO above). transcript is omitted until a real one exists. */}
+      <section className="bg-cs-cloud px-6 py-16 md:py-24">
+        <div className="mx-auto max-w-5xl">
           <VideoObjectSchema
             name="ClinicalSim demo: counseling vaccine hesitancy for a two-month-old"
-            description="A learner works through a vaccine hesitancy conversation with a ClinicalSim AI patient, then reviews the rubric-scored feedback and the transcript evidence behind each score."
+            description="A learner works through a vaccine hesitancy conversation with a ClinicalSim AI patient, then reviews the rubric scores and cited transcript excerpts."
             thumbnailUrl={DEMO_VIDEO.thumbnailUrl}
             uploadDate={DEMO_VIDEO.uploadDate}
             embedUrl={DEMO_VIDEO.embedUrl}
             duration={DEMO_VIDEO.duration}
           />
           <DemoVideoSection
-            title="See ClinicalSim in action"
-            description="Hear a learner work through a vaccine hesitancy conversation with an AI patient, and see the rubric-scored feedback that follows."
+            title={HOMEPAGE_PUBLIC_COPY.demo.heading}
+            description={HOMEPAGE_PUBLIC_COPY.demo.body}
             loomUrl={`${DEMO_VIDEO.embedUrl}?t=0`}
           />
         </div>
       </section>
 
-      {/* 3. Definition + proof + scenarios, stacked bands. Definition beside
-           the framework mapping, then the three differentiators as a 3-up row,
-           then the scenario list. */}
-      <section className="px-6 py-16 md:py-24 bg-white">
-        <div className="max-w-6xl mx-auto">
-          {/* Band 1, definition and framework mapping */}
-          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-start">
-            <div className="max-w-2xl">
-              <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
-                ClinicalSim, defined
-              </p>
-              <h2 className="text-2xl md:text-3xl font-light tracking-tight leading-snug text-cs-navy text-balance">
-                {CATEGORY_LINE}
-              </h2>
-              <p className="mt-6 text-base md:text-lg text-cs-dark-blue font-light leading-relaxed text-pretty">
-                {CATEGORY_DEFINITION} {POSITIONING_SUPPORT}
-              </p>
-            </div>
-
-            {/* Framework mapping, the dense paragraph, made scannable. Stage
-                above framework so the full stage names never collide. */}
-            <div className="w-full lg:pt-1">
-              <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
-                Across the health system
-              </p>
-              <dl className="border-t border-cs-gray">
-                {frameworkMap.map((item) => (
-                  <div key={item.stage} className="border-b border-cs-gray py-3.5">
-                    <dt className="text-sm font-medium text-cs-navy text-pretty">{item.stage}</dt>
-                    <dd className="mt-1 text-sm text-cs-dark-blue font-light text-pretty">
-                      Scored against {item.framework}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-4 text-sm text-cs-dark-gray font-light leading-relaxed">
-                {POSITIONING_ONE_LINER}
-              </p>
-            </div>
+      <section className="bg-white px-6 py-16 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
+            <h2 className="text-balance text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
+              {HOMEPAGE_PUBLIC_COPY.scoring.heading}
+            </h2>
           </div>
 
-          {/* Band 2, the three differentiators */}
-          <div className="mt-14 md:mt-16 border-t border-cs-gray pt-10 md:pt-12">
-            <ul className="grid gap-8 md:grid-cols-3 md:gap-10">
-              {differentiators.map((item) => (
-                <li key={item.claim}>
-                  <p className="text-base font-medium text-cs-navy leading-snug text-balance">
-                    {item.claim}
-                  </p>
-                  <p className="mt-2.5 text-sm md:text-base text-cs-dark-blue font-light leading-relaxed text-pretty">
-                    {item.detail}
-                  </p>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-8 text-sm text-cs-dark-gray font-light">
-              All three are documented case by case on our{" "}
-              <Link href="/methodology" className="text-cs-dark-blue font-medium hover:text-cs-navy transition-colors">
-                methodology page
-              </Link>
-              .
+          <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+            <article className="rounded-2xl border border-cs-gray bg-white p-6 md:p-8">
+              <h3 className="mb-3 text-2xl font-medium text-cs-dark-blue">
+                {HOMEPAGE_PUBLIC_COPY.scoring.readyTitle}
+              </h3>
+              <p className="mb-6 font-light leading-relaxed text-cs-dark-blue">
+                {HOMEPAGE_PUBLIC_COPY.scoring.readyBody}
+              </p>
+              <ul className="grid gap-3 sm:grid-cols-2">
+                {featuredFrameworks.map((framework) => (
+                  <li
+                    key={framework.name}
+                    className="rounded-lg bg-cs-cloud px-4 py-3 text-sm font-medium text-cs-dark-blue"
+                  >
+                    {framework.homepageName ?? framework.name}
+                  </li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="rounded-2xl bg-cs-navy p-6 text-white md:p-8">
+              <h3 className="mb-3 text-2xl font-medium text-white">
+                {HOMEPAGE_PUBLIC_COPY.scoring.institutionTitle}
+              </h3>
+              <p className="font-light leading-relaxed text-cs-cloud">
+                {HOMEPAGE_PUBLIC_COPY.scoring.institutionBody}
+              </p>
+              <div className="mt-8 border-t border-white/15 pt-6">
+                <p className="text-lg font-medium text-cs-electric">
+                  Policy, service model, script, or rubric
+                </p>
+                <p className="mt-2 text-sm font-light leading-relaxed text-cs-cloud">
+                  We review which elements a spoken encounter can show before a pilot begins.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div className="mt-8 rounded-xl bg-cs-dark-blue px-6 py-5 text-center text-white md:px-8">
+            <p className="text-lg font-light">
+              {HOMEPAGE_PUBLIC_COPY.scoring.sharedLine}
             </p>
           </div>
 
-          {/* Band 3, scenarios. The training continuum lives in the framework
-              mapping above, so it is not repeated here. */}
-          <div className="mt-14 md:mt-16 border-t border-cs-gray pt-10 md:pt-12">
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-5">
-              Conversations you can practice
+          <div className="mt-6 flex flex-col items-start justify-center gap-3 text-sm sm:flex-row sm:items-center sm:gap-6">
+            <Link
+              href="/frameworks#ready-to-use-frameworks"
+              className="font-medium text-cs-dark-blue underline decoration-cs-gray underline-offset-4 transition-colors hover:text-cs-navy"
+            >
+              View the ready to use scoring catalog
+            </Link>
+            <Link
+              href="/frameworks#scoring-limits"
+              className="font-medium text-cs-dark-blue underline decoration-cs-gray underline-offset-4 transition-colors hover:text-cs-navy"
+            >
+              Read the scoring limits
+            </Link>
+          </div>
+
+          <div className="mt-14 border-t border-cs-gray pt-10 md:mt-16 md:pt-12">
+            <p className="mb-5 text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray">
+              {HOMEPAGE_PUBLIC_COPY.scoring.conversationsHeading}
             </p>
             <ul className="flex flex-wrap gap-2.5 md:gap-3">
-              {conversationTypes.map((type) => (
+              {CONVERSATION_TYPES.map((type) => (
                 <li
                   key={type}
                   className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
@@ -386,132 +319,123 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Use cases */}
-      <section className="px-6 py-16 md:py-24 bg-cs-cloud">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12 md:mb-14">
-            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-navy mb-4">
-              Start where communication already has an owner
+      <section className="bg-cs-cloud px-6 py-16 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 md:mb-14">
+            <h2 className="mb-4 text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
+              {HOMEPAGE_PUBLIC_COPY.buyers.healthSystemHeading}
             </h2>
-            <p className="text-lg text-cs-dark-blue font-light max-w-2xl mx-auto">
-              Patient experience, risk, safety, simulation, and medical education teams can begin with one use case and use the same platform as the work expands.
+            <p className="max-w-3xl text-lg font-light text-cs-dark-blue">
+              {HOMEPAGE_PUBLIC_COPY.buyers.healthSystemBody}
             </p>
           </div>
 
-          {/* Flex rather than a fixed column count. The registry keeps growing, and a
-              wrapped trailing row centers itself instead of hanging off the left edge. */}
-          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
-            {solutions.map((solution, index) => (
-              <Reveal
-                key={solution.slug}
-                delay={index * 80}
-                className="w-full sm:w-[calc(50%-0.75rem)] md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] [&>a]:h-full"
-              >
+          <div className="grid gap-6 md:grid-cols-2 md:gap-8">
+            {healthSystemGroup.solutions.map((solution, index) => (
+              <Reveal key={solution.slug} delay={index * 80} className="[&>a]:h-full">
                 <AudienceCard
                   brandIcon={solution.icon}
                   title={solution.title}
                   subtitle={solution.subtitle}
                   bullets={solution.cardBullets}
                   href={`/solutions/${solution.slug}`}
+                  ctaLabel="View use case"
                   variant={solution.colorVariant}
                 />
               </Reveal>
             ))}
           </div>
 
-          {/* Two details for system and program reviewers. */}
-          <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 border-t border-cs-navy/15 pt-10">
-            <div>
-              <h3 className="text-xl md:text-2xl font-medium text-cs-dark-blue mb-3">
-                Unit patterns without employee rankings
-              </h3>
-              <p className="text-base text-cs-dark-blue font-light leading-relaxed">
-                Institutions can use anonymous participant IDs and aggregate unit reports. Named access should follow the training policy and labor agreements set before staff participate.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl md:text-2xl font-medium text-cs-dark-blue mb-3">
-                Research exports without outcome claims
-              </h3>
-              <p className="text-base text-cs-dark-blue font-light leading-relaxed">
-                Structured aggregate exports can support an approved comparison with institution held patient experience data. ClinicalSim does not predict HCAHPS, Qualtrics, readmissions, claims, or safety events.
-              </p>
-            </div>
+          <div className="mb-12 mt-16 border-t border-cs-navy/15 pt-14 md:mb-14 md:mt-20 md:pt-16">
+            <h2 className="mb-4 text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
+              {HOMEPAGE_PUBLIC_COPY.buyers.medicalEducationHeading}
+            </h2>
+            <p className="max-w-3xl text-lg font-light text-cs-dark-blue">
+              {HOMEPAGE_PUBLIC_COPY.buyers.medicalEducationBody}
+            </p>
           </div>
 
-          <div className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t border-cs-navy/15 pt-8">
-            <p className="text-base text-cs-dark-blue font-light">
-              Built for patient experience, risk, safety, nursing education, simulation, and GME teams.
-            </p>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-              <Link
-                href="/insights/eol-communication-training-measurement-gap"
-                className="inline-flex items-center text-cs-dark-blue font-medium hover:text-cs-navy transition-colors whitespace-nowrap"
-              >
-                Read the essay
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-              <Link
-                href="/solutions"
-                className="inline-flex items-center text-cs-dark-blue font-medium hover:text-cs-navy transition-colors whitespace-nowrap"
-              >
-                Explore all use cases
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </div>
+          <div className="grid gap-6 md:grid-cols-3 md:gap-8">
+            {medicalEducationGroup.solutions.map((solution, index) => (
+              <Reveal key={solution.slug} delay={index * 80} className="[&>a]:h-full">
+                <AudienceCard
+                  brandIcon={solution.icon}
+                  title={solution.title}
+                  subtitle={solution.subtitle}
+                  bullets={solution.cardBullets}
+                  href={`/solutions/${solution.slug}`}
+                  ctaLabel="View use case"
+                  variant={solution.colorVariant}
+                />
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center md:mt-12">
+            <Link
+              href="/solutions"
+              className="inline-flex items-center font-medium text-cs-dark-blue transition-colors hover:text-cs-navy"
+            >
+              Explore all use cases
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* 5. Proof band, faculty first, then learners. Faculty skepticism is
-           the obstacle, so that quote leads. */}
-      <section className="px-6 py-16 md:py-24 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12 md:mb-14">
-            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-navy">
-              What clinicians are saying
+      <section className="bg-white px-6 py-16 md:py-24">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-12 text-center md:mb-14">
+            <h2 className="text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
+              {HOMEPAGE_PUBLIC_COPY.proofHeading}
             </h2>
           </div>
 
-          <div className="max-w-3xl mx-auto">
+          <div className="mx-auto max-w-3xl">
             <div className="relative">
-              <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-cs-dark-blue/20 font-serif">&ldquo;</div>
+              <div className="absolute -left-2 -top-2 text-6xl font-serif text-cs-dark-blue/20 md:-left-4">
+                &ldquo;
+              </div>
               <blockquote className="relative pl-8 pt-4">
-                <p className="text-2xl md:text-3xl text-cs-dark-blue font-light leading-relaxed mb-4">
+                <p className="mb-4 text-2xl font-light leading-relaxed text-cs-dark-blue md:text-3xl">
                   I just tried it out and it was like talking to a real patient.
                 </p>
-                <cite className="text-base text-cs-dark-blue/70 font-normal not-italic border-l-4 border-cs-dark-blue pl-4">
+                <cite className="border-l-4 border-cs-dark-blue pl-4 text-base font-normal not-italic text-cs-dark-blue/70">
                   Faculty, Johns Hopkins University School of Medicine
                 </cite>
               </blockquote>
             </div>
 
             <div className="relative mt-12 md:mt-16">
-              <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-cs-dark-blue/20 font-serif">&ldquo;</div>
+              <div className="absolute -left-2 -top-2 text-6xl font-serif text-cs-dark-blue/20 md:-left-4">
+                &ldquo;
+              </div>
               <blockquote className="relative pl-8 pt-4">
-                <p className="text-xl md:text-2xl text-cs-dark-blue font-light leading-relaxed mb-4">
+                <p className="mb-4 text-xl font-light leading-relaxed text-cs-dark-blue md:text-2xl">
                   It was helpful to have time to think and reflect without feeling the pressure of a person across from you expecting a response.
                 </p>
-                <cite className="text-base text-cs-dark-blue/70 font-normal not-italic border-l-4 border-cs-dark-blue pl-4">
+                <cite className="border-l-4 border-cs-dark-blue pl-4 text-base font-normal not-italic text-cs-dark-blue/70">
                   Clinician, Pilot Study Participant
                 </cite>
               </blockquote>
             </div>
 
             <div className="relative mt-12 md:mt-16">
-              <div className="absolute -left-2 md:-left-4 -top-2 text-6xl text-cs-dark-blue/20 font-serif">&ldquo;</div>
+              <div className="absolute -left-2 -top-2 text-6xl font-serif text-cs-dark-blue/20 md:-left-4">
+                &ldquo;
+              </div>
               <blockquote className="relative pl-8 pt-4">
-                <p className="text-xl md:text-2xl text-cs-dark-blue font-light leading-relaxed mb-4">
+                <p className="mb-4 text-xl font-light leading-relaxed text-cs-dark-blue md:text-2xl">
                   I had to tell a patient&apos;s father that his daughter would need long-term oxygen support through a tracheostomy. Before speaking with him, I practiced the conversation on ClinicalSim. It gave me confidence and feedback on my tone and delivery. Having difficult conversations can be extremely stressful, but having the practice beforehand allowed me to give appropriate time for silence and empathy.
                 </p>
-                <cite className="text-base text-cs-dark-blue/70 font-normal not-italic border-l-4 border-cs-dark-blue pl-4">
+                <cite className="border-l-4 border-cs-dark-blue pl-4 text-base font-normal not-italic text-cs-dark-blue/70">
                   Nurse practitioner, Advocate Health
                 </cite>
               </blockquote>
             </div>
           </div>
 
-          <div className="text-center mt-12 md:mt-14">
+          <div className="mt-12 text-center md:mt-14">
             <Link href="/contact">
               <Button size="xl">
                 Request a pilot
@@ -522,30 +446,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Final CTA section */}
-      <section className="px-6 py-20 md:py-28 bg-cs-dark-blue text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-balance mb-6">
-            Bring one team, one standard, and one reporting question
+      <section className="bg-cs-dark-blue px-6 py-20 text-white md:py-28">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="mb-6 text-balance text-3xl font-light tracking-tight md:text-4xl lg:text-5xl">
+            {HOMEPAGE_PUBLIC_COPY.closing.heading}
           </h2>
-          <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            We will map what a spoken encounter can score, what it cannot, and how the results should be reported before the pilot begins.
+          <p className="mb-8 text-lg font-light text-white/90 md:text-xl">
+            {HOMEPAGE_PUBLIC_COPY.closing.body}
           </p>
           <Link href="/contact">
-            <Button
-              variant="accent"
-              size="xl"
-            >
+            <Button variant="accent" size="xl">
               Request a pilot
             </Button>
           </Link>
-          <p className="mt-4 text-sm text-white/70 font-light">
-            Have questions first?{" "}
-            <Link href="/faq" className="text-cs-electric hover:text-white font-medium transition-colors inline-flex items-center">
-              Read the FAQ
-              <ArrowRight className="w-3.5 h-3.5 ml-1" />
-            </Link>
-          </p>
         </div>
       </section>
     </>

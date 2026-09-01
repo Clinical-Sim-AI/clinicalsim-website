@@ -5,6 +5,7 @@ import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
 import { getIndexableGlossaryTerms } from "@/lib/glossary"
 import { getAllHelpArticles } from "@/lib/help-articles"
+import { getFeaturedFrameworks } from "@/lib/frameworks"
 import {
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
@@ -15,6 +16,10 @@ import {
 } from "@/lib/positioning"
 
 const BASE_URL = "https://clinicalsim.ai"
+const featuredFrameworkNames = getFeaturedFrameworks().map(
+  (framework) => framework.homepageName ?? framework.name,
+)
+const FEATURED_FRAMEWORK_SUMMARY = `${featuredFrameworkNames.slice(0, -1).join(", ")}, and ${featuredFrameworkNames.at(-1)}`
 
 /**
  * Facts, not just links. This file used to be roughly 100 URLs with one
@@ -34,7 +39,7 @@ const KEY_FACTS = `## Key facts
 - **Intended use.** Clinician training and assessment. ClinicalSim produces no patient-facing output, makes no diagnostic or treatment recommendation, and creates no clinical documentation. (/trust)
 - **What it does not do.** It does not replace a standardized patient program, it extends one. It does not predict patient experience scores, readmissions, safety events, claims, or other clinical or business outcomes. It does not price malpractice risk or benchmark one institution against another. It is audio only, so it cannot assess eye contact, body language, or physical presence. (/trust, /faq, /solutions/patient-experience)
 - **Patient data.** Every patient in every case is synthetic, written from the clinical literature rather than adapted from a chart, so case development needs no patient record and no de-identification step. The platform does handle learner recordings, transcripts, account data, and institutional data. Voice collection is consent-gated and learners can request erasure. (/trust)
-- **Frameworks.** ${MEASUREMENT_CLAIM} The standard is whatever the customer already reports on: their own consent policy, escalation policy, or preceptor rubric, scored against their element definitions as written. Public frameworks scored against today include the ACGME Milestones 2.0, SPIKES, Calgary-Cambridge, SEGUE, NURSE, REMAP, Braddock's elements of informed decision making, the AHRQ CANDOR and SHARE material, TeamSTEPPS, and OPTION-12, with Entrustable Professional Activities where a case uses them. An element is scored only where the case gave the clinician a chance to show it. (/frameworks, /methodology)
+- **Frameworks.** ${MEASUREMENT_CLAIM} The standard is either a published rubric attached to a current case or the customer's own consent policy, escalation policy, preceptor rubric, or other approved standard. Ready to use examples include ${FEATURED_FRAMEWORK_SUMMARY}. An element is scored only where the case gave the clinician a chance to show it. (/frameworks, /methodology)
 - **Limits of the evidence.** Those frameworks were built for trained human raters observing real encounters, which is where their published reliability was established. A framework's reliability does not carry over to an AI score in a simulated encounter, so each score is a formative signal rather than a validated measure. ClinicalSim does not claim its scoring is more accurate or more valid than a faculty member's read. (/methodology, /trust)
 - **Who it serves.** ${POSITIONING_AUDIENCE} Buyers include patient experience, risk and patient safety, nursing education, simulation, GME, and UME leaders. (/audiences)
 - **Proof you can read without signing in.** Four complete encounters are published at ${BASE_URL}/examples with audio, the full transcript, and the entire scored report, no sign-in and no form. They are deliberately unflattering: 22 out of 30 on an informed consent encounter, 17 out of 25 on a vaccine hesitancy encounter, with the weak domains named and the learner's own words quoted as the reason.
@@ -50,7 +55,7 @@ const HEADER = `# ClinicalSim.ai
 ${KEY_FACTS}
 ## Pages
 
-- [Homepage](${BASE_URL}): Voice-based practice with AI patients for healthcare teams, scored against the institution's standards with transcript evidence behind every score.
+- [Homepage](${BASE_URL}): Voice based practice with AI patients. Teams can start with ready to use cases based on published clinical frameworks or add an institution's policy, service standard, script, or rubric.
 - [About](${BASE_URL}/about): How ClinicalSim began, why the platform extends beyond medical education, how it handles scoring evidence, and the team responsible for the work.`
 
 export async function GET() {
@@ -88,7 +93,7 @@ export async function GET() {
 
   const otherPages = [
     `\n## More\n`,
-    `- [Scored against your framework](${BASE_URL}/frameworks): Send your element definitions and get those definitions back as scores, per clinician, with the line that earned each score quoted underneath. States the scope rule, that an element is scored only where the case gave the clinician a chance to show it, and lists the public frameworks ClinicalSim scores against today.`,
+    `- [Published frameworks and institution standards](${BASE_URL}/frameworks): Start with ready to use cases based on published clinical frameworks or add an institution's policy, service standard, script, or rubric. Every score cites transcript evidence, and the page states the scope rule and scoring limits.`,
     `- [Methodology](${BASE_URL}/methodology): How ClinicalSim builds cases, names the competency and communication frameworks each case uses, and generates rubric-scored feedback tied to transcript evidence.`,
     `- [Evaluating ClinicalSim](${BASE_URL}/evaluation): The questions behind the purchase, answered in one place: what ClinicalSim is intended for and what it is not, who inside an institution owns the decision, what the evidence establishes and what it does not, what a privacy or procurement reviewer will find, what it takes to run, how it is licensed, and what ClinicalSim will not claim.`,
     `- [Trust and data handling](${BASE_URL}/trust): ClinicalSim is intended for training and assessment and does not diagnose patients, recommend treatment, or create clinical documentation. Cases use synthetic patients written from clinical literature rather than patient records. The product handles learner recordings, transcripts, account data, and institutional data.`,
