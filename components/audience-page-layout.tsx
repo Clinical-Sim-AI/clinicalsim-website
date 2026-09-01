@@ -12,15 +12,8 @@ import { getSolutionBySlug } from "@/lib/solutions"
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
 import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
+import { heroBadge, heroBadgeIconColor } from "@/lib/color-variants"
 import { cn, formatIsoMonth } from "@/lib/utils"
-
-/** Mirrors solution-page-layout's hero chip: `blue` would vanish on the band. */
-const heroBadge = {
-  accent: "bg-cs-electric text-cs-dark-blue",
-  navy: "bg-cs-navy text-white",
-  blue: "bg-cs-navy text-white",
-  "light-blue": "bg-cs-light-blue text-cs-dark-blue",
-}
 
 const valuePropBrandIcons: Array<BrandIconName | null> = [
   "ribbon-check",
@@ -132,12 +125,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             >
               <BrandIcon
                 name={audience.icon}
-                color={
-                  audience.colorVariant === "accent" ||
-                  audience.colorVariant === "light-blue"
-                    ? "dark"
-                    : "white"
-                }
+                color={heroBadgeIconColor(audience.colorVariant)}
                 size={26}
               />
             </span>

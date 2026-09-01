@@ -24,9 +24,12 @@ import {
 const WAVE_WIDTH = 1200
 const WAVE_HEIGHT = 200
 
-export const runtime = "edge"
-export const size = { width: 1200, height: 630 }
-export const contentType = "image/png"
+/**
+ * Card dimensions. Next only reads `size` / `contentType` / `runtime` off a
+ * route segment, so each opengraph-image.tsx declares its own; this copy exists
+ * only to size the ImageResponse below.
+ */
+const size = { width: 1200, height: 630 }
 
 /** Long editorial headlines need to step down a size or they overflow the card. */
 function titleFontSize(title: string): number {

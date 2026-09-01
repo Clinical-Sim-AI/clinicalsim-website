@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest"
 import {
   WAVE_OPACITY_CEILING,
+  WAVE_VIEWBOX_WIDTH,
+  waveBars,
+  waveGradientColor,
   waveInnerMarkup,
   waveSeed,
-  waveSvgDataUri,
 } from "./waveform"
 
 /**
@@ -107,12 +109,23 @@ describe("numeric safety", () => {
   }
 })
 
-describe("waveSvgDataUri", () => {
-  it("round-trips to a complete svg document for next/og", () => {
-    const uri = waveSvgDataUri({ seed: "osce-case-design-guide", align: "right" })
-    expect(uri.startsWith("data:image/svg+xml;base64,")).toBe(true)
-    const svg = Buffer.from(uri.split(",")[1], "base64").toString("utf8")
-    expect(svg.startsWith("<svg")).toBe(true)
-    expect(svg.endsWith("</svg>")).toBe(true)
+describe("gradient", () => {
+  /**
+   * The bars paint through `fill` inherited from a `<g>`, and an
+   * objectBoundingBox gradient resolves against the box of the element that
+   * paints it. Left on the default units every twelve-unit rect would redraw
+   * the whole ramp inside itself and the band would come out one flat teal.
+   */
+  it("measures the ramp in viewBox units, not per bar", () => {
+    const markup = waveInnerMarkup({ seed: "osce-case-design-guide", align: "right" })
+    expect(markup).toContain('gradientUnits="userSpaceOnUse"')
+    expect(markup).toContain(`x2="${WAVE_VIEWBOX_WIDTH}"`)
+  })
+
+  it("hands next/og the same ramp as a per-bar solid, since satori has no gradients", () => {
+    const bars = waveBars({ seed: "osce-case-design-guide", align: "center" })
+    expect(bars[0].color).toBe(waveGradientColor(0))
+    expect(bars[bars.length - 1].color).toBe(waveGradientColor(1))
+    expect(bars[0].color).not.toBe(bars[bars.length - 1].color)
   })
 })

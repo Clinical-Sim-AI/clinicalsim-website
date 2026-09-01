@@ -211,10 +211,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
               </Button>
             </Link>
             <Link href="#evidence">
-              <Button
-                size="lg"
-                className="border border-white/25 bg-transparent font-medium text-white hover:bg-white/10"
-              >
+              <Button variant="inverse" size="lg">
                 See a Remediation Session
               </Button>
             </Link>

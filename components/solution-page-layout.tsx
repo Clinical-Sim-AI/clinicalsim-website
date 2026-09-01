@@ -9,6 +9,7 @@ import { GlossaryTermLinks } from "@/components/glossary-term-links"
 import { ClaimBoundary } from "@/components/claim-boundary"
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
 import { WaveformBand } from "@/components/waveform-band"
+import { heroBadge, heroBadgeIconColor } from "@/lib/color-variants"
 import { cn, formatIsoMonth } from "@/lib/utils"
 import { type Solution } from "@/lib/solutions"
 import { getPostBySlug } from "@/lib/posts"
@@ -34,17 +35,6 @@ const stageBadge = {
   "light-blue": "bg-cs-light-blue text-cs-dark-blue",
 }
 
-/**
- * The hero band is dark blue, so the `blue` chip would be the same color as the
- * band it sits on. Every variant also gets a hairline ring, since navy on dark
- * blue is legible but weak without one. The pills further down the page keep
- * using `stageBadge`, which is why this is a second map rather than an edit.
- */
-const heroBadge = {
-  ...stageBadge,
-  blue: "bg-cs-navy text-white",
-}
-
 interface SolutionPageLayoutProps {
   solution: Solution
 }
@@ -65,6 +55,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
     (solution.valueProps?.length ?? 0) > 0,
     (solution.frameworks?.length ?? 0) > 0,
     (solution.faqs?.length ?? 0) > 0,
+    relatedPosts.length > 0,
   ]
   const underHero = (index: number) =>
     optionalBlocks.slice(0, index).some(Boolean) ? undefined : "bg-cs-dark-blue"
@@ -161,12 +152,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
             >
               <BrandIcon
                 name={solution.icon}
-                color={
-                  solution.colorVariant === "accent" ||
-                  solution.colorVariant === "light-blue"
-                    ? "dark"
-                    : "white"
-                }
+                color={heroBadgeIconColor(solution.colorVariant)}
                 size={26}
               />
             </span>
@@ -197,10 +183,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
               </Button>
             </Link>
             <Link href="/solutions">
-              <Button
-                size="lg"
-                className="border border-white/25 bg-transparent font-medium text-white hover:bg-white/10"
-              >
+              <Button variant="inverse" size="lg">
                 See all use cases
               </Button>
             </Link>
@@ -386,7 +369,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* Related insights */}
       {relatedPosts.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-down" color="white" />
+          <SectionDivider variant="diagonal-down" color="white" className={underHero(4)} />
           <section className="px-6 py-8 md:py-10 bg-cs-cloud">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-8">

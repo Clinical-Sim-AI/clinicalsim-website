@@ -4,7 +4,7 @@
  * The ClinicalSim mark is a waveform, so a handful of bands across the site
  * carry a low-opacity echo of it. Everything here is pure so the geometry can
  * be tested under vitest, which only collects `lib/**` (see vitest.config.mts),
- * and so `next/og` can reuse the same math through a data URI.
+ * and so `next/og` can reuse the same bar geometry for the per-article cards.
  */
 
 export type WaveVariant = "bars" | "flow" | "dots"
@@ -115,9 +115,20 @@ function resolve(opts: WaveOptions) {
   return { tone, variant, align, seedValue, opacity, cy, count, gradientId }
 }
 
+/**
+ * The ramp has to run across the whole band, so it is measured in viewBox units.
+ *
+ * With the default objectBoundingBox units a gradient resolves against the box
+ * of whichever element paints it, and the bars paint through `fill` inherited
+ * from a `<g>`. Every one of the 34 rects is about twelve units wide, so each
+ * would draw the full Electric-to-Light-Blue ramp inside its own sliver and the
+ * band would come out one flat teal. userSpaceOnUse also keeps the SVG in step
+ * with the OG card, which samples waveGradientColor() per bar.
+ */
 function gradientDefs(gradientId: string): string {
   return (
-    `<defs><linearGradient id="${gradientId}" x1="0" y1="0" x2="1" y2="0">` +
+    `<defs><linearGradient id="${gradientId}" gradientUnits="userSpaceOnUse"` +
+    ` x1="0" y1="0" x2="${WAVE_VIEWBOX_WIDTH}" y2="0">` +
     `<stop offset="0" stop-color="${GRADIENT_FROM}"/>` +
     `<stop offset="1" stop-color="${GRADIENT_TO}"/>` +
     `</linearGradient></defs>`
@@ -157,7 +168,7 @@ export function waveGradientColor(t: number): string {
  *
  * next/og rasterizes through resvg's wasm build, which does not resolve an
  * `<image>` whose href is itself an SVG, so an OG card has to lay the bars out
- * as elements of its own rather than pull in waveSvgDataUri.
+ * as divs of its own rather than pull in a rendered SVG.
  */
 export function waveBars(opts: WaveOptions = {}): WaveBar[] {
   const o = resolve({ ...opts, variant: "bars", tone: "dark" })
@@ -254,27 +265,4 @@ export function waveInnerMarkup(opts: WaveOptions = {}): string {
     default:
       return barsMarkup(resolved)
   }
-}
-
-/** A complete `<svg>` document string. */
-export function waveSvgMarkup(opts: WaveOptions = {}): string {
-  return (
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WAVE_VIEWBOX_WIDTH} ${WAVE_VIEWBOX_HEIGHT}"` +
-    ` width="${WAVE_VIEWBOX_WIDTH}" height="${WAVE_VIEWBOX_HEIGHT}" preserveAspectRatio="none">` +
-    waveInnerMarkup(opts) +
-    `</svg>`
-  )
-}
-
-/**
- * Base64 data URI. satori (which powers next/og) cannot render our component
- * tree, so OG images pull the wave in through an `<img src>` instead.
- */
-export function waveSvgDataUri(opts: WaveOptions = {}): string {
-  const svg = waveSvgMarkup(opts)
-  const encoded =
-    typeof btoa === "function"
-      ? btoa(svg)
-      : Buffer.from(svg, "utf8").toString("base64")
-  return `data:image/svg+xml;base64,${encoded}`
 }

@@ -194,10 +194,7 @@ export default function HomePage() {
                 </Button>
               </Link>
               <Link href="/examples">
-                <Button
-                  size="xl"
-                  className="w-full border border-white/25 bg-transparent font-medium text-white hover:bg-white/10 sm:w-auto"
-                >
+                <Button variant="inverse" size="xl" className="w-full sm:w-auto">
                   See example feedback
                 </Button>
               </Link>

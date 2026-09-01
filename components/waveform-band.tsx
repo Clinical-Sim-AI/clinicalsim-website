@@ -32,7 +32,7 @@ export function WaveformBand({ seed = "cta", className, children }: WaveformBand
         variant="bars"
         align="center"
         opacity={0.24}
-        className="inset-x-0 bottom-0 top-auto h-1/2"
+        className="bottom-0 top-auto h-1/2"
       />
       <div className="relative z-10">{children}</div>
     </section>
