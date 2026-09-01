@@ -4,49 +4,45 @@ import { Button } from "@/components/ui/button"
 import { AudienceCard } from "@/components/audience-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
-import { getPublishedSolutions } from "@/lib/solutions"
+import { getSolutionsByMarket } from "@/lib/solutions"
+import type { Market } from "@/lib/positioning"
 
 /**
- * Two taxonomies live on this hub, deliberately.
- *
- * Conversation pages come first because conversation type is what a buyer types: nobody searches
- * "solutions for DIOs", and the same conversation is bought by risk at one system and by surgical
- * education at another. Program pages are the original learner-stage pages and hold the site's
- * existing search equity, so they stay exactly as they are, below.
+ * The public library follows the two buying contexts that use the platform.
  */
 const GROUPS: {
-  category: "conversation" | "program"
+  market: Market
   heading: string
   intro: string
 }[] = [
   {
-    category: "conversation",
-    heading: "Conversations we score",
+    market: "health-system",
+    heading: "Health systems",
     intro:
-      "Organized by the conversation rather than the learner. Each one is scored against named elements, either a published framework or the institution's own policy.",
+      "Patient experience, debriefing, informed consent, and error disclosure, scored against the standards and policies the institution already uses.",
   },
   {
-    category: "program",
-    heading: "Programs we support",
+    market: "medical-education",
+    heading: "Medical education",
     intro:
-      "The same engine, organized around where a learner is rather than which conversation they are having.",
+      "Longitudinal curricula, undergraduate medical education, faculty development, and targeted remediation on the same platform.",
   },
 ]
 
 export const metadata: Metadata = {
-  title: "Use cases: communication practice across medicine",
+  title: "Communication intelligence use cases",
   description:
-    "Conversations we score, informed consent and error disclosure among them, and the programs we support: communication remediation, residency and fellowship curricula, undergraduate medical education, and faculty development.",
+    "ClinicalSim supports health systems and medical education with scored voice practice for patient experience, debriefing, safety conversations, curricula, and remediation.",
   openGraph: {
     title: "Use cases | ClinicalSim.ai",
     description:
-      "One platform, many conversations: informed consent and error disclosure scored against named elements, remediation and residency curriculum mapped to ACGME Milestones 2.0, plus UME and faculty development mapped to the framework that fits each.",
+      "One platform for patient experience, debriefing, safety conversations, medical education, and communication remediation.",
     url: "https://clinicalsim.ai/solutions",
   },
   twitter: {
     title: "Use cases | ClinicalSim.ai",
     description:
-      "Communication use cases organized two ways, by the conversation being scored and by the program running it.",
+      "Communication use cases for health systems and medical education.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/solutions",
@@ -54,8 +50,6 @@ export const metadata: Metadata = {
 }
 
 export default function SolutionsPage() {
-  const solutions = getPublishedSolutions()
-
   return (
     <>
       <JsonLd
@@ -65,7 +59,7 @@ export default function SolutionsPage() {
             "@type": "CollectionPage",
             name: "ClinicalSim Use Cases",
             description:
-              "Clinical communication use cases organized two ways: by the conversation being scored, including informed consent and error disclosure, and by the program running it, including remediation, residency and fellowship, undergraduate medical education, and faculty development.",
+              "Clinical communication use cases for health systems and medical education, including patient experience, debriefing, informed consent, error disclosure, curricula, and remediation.",
             url: "https://clinicalsim.ai/solutions",
             isPartOf: {
               "@type": "WebSite",
@@ -98,10 +92,10 @@ export default function SolutionsPage() {
       <section className="relative px-6 py-16 md:py-24 text-center bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
-            One platform. <span className="text-cs-electric font-medium">Many conversations.</span>
+            One platform for the conversations your institution needs to measure
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">
-            ClinicalSim scores specific conversations, informed consent and error disclosure among them, and supports the programs that run them, from communication remediation and longitudinal residency curricula to undergraduate medical education and faculty development. The platform stays the same while the cases and competency frameworks change with the conversation and the learner.
+            Teams practice with AI patients, each encounter is scored against the standard that fits the task, and every score cites the speaker&apos;s own words.
           </p>
           <p className="mt-6 text-base md:text-lg text-cs-cloud/85 font-light max-w-3xl mx-auto">
             <Link
@@ -116,17 +110,15 @@ export default function SolutionsPage() {
 
       <SectionDivider variant="diagonal-down" color="white" />
 
-      {/* Use-case grid, split by what the page is organized around */}
+      {/* Use case grid, split by market */}
       <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-6xl mx-auto space-y-14">
           {GROUPS.map((group) => {
-            const groupSolutions = solutions.filter(
-              (solution) => solution.category === group.category,
-            )
+            const groupSolutions = getSolutionsByMarket(group.market)
             if (groupSolutions.length === 0) return null
 
             return (
-              <div key={group.category}>
+              <div key={group.market}>
                 <div className="mb-8 max-w-3xl">
                   <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-3">
                     {group.heading}
@@ -160,10 +152,10 @@ export default function SolutionsPage() {
       <section className="px-6 py-8 md:py-10 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-6">
-            Find the use case that fits your program
+            Find the use case that fits your institution
           </h2>
           <p className="text-lg font-light mb-8 text-white/90">
-            Start with the learner group, the conversations they need to practice, and the evidence your faculty need to review.
+            Start with the team, the conversation they need to practice, and the evidence your leaders need to review.
           </p>
           <Link href="/contact">
             <Button variant="accent" size="xl">

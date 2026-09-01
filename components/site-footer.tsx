@@ -19,7 +19,7 @@ export function SiteFooter() {
               />
             </Link>
             <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed">
-              Voice-based AI simulation for practicing and measuring clinical communication across medical school, residency, fellowship, and faculty development. Built by practicing physicians who direct fellowship programs and simulation centers.
+              The communication intelligence platform for health systems. Healthcare teams practice with AI patients, and leaders review the transcript evidence behind each score.
             </p>
           </div>
 
@@ -27,8 +27,14 @@ export function SiteFooter() {
           <div className="space-y-4">
             <h3 className="text-sm font-medium text-cs-dark-blue uppercase tracking-wider">Explore</h3>
             <nav className="flex flex-col gap-2">
-              <Link href="/solutions/remediation" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
-                Communication remediation
+              <Link href="/solutions/patient-experience" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Patient experience
+              </Link>
+              <Link href="/solutions/debriefing" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                Debriefing
+              </Link>
+              <Link href="/solutions" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
+                All use cases
               </Link>
               <Link href="/audiences" className="text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue font-light transition-colors">
                 Who we serve
@@ -85,10 +91,10 @@ export function SiteFooter() {
           <div className="space-y-4">
             <h3 className="text-sm font-medium text-cs-dark-blue uppercase tracking-wider">Get started</h3>
             <p className="text-sm text-cs-dark-blue/70 font-light">
-              Piloting with medical schools, residency programs, and fellowships nationwide.
+              Start with one team, one standard, and one reporting question.
             </p>
             <Link href="/contact" className="inline-block pt-2">
-              <Button variant="accent" size="lg">
+              <Button size="lg">
                 Request a pilot
               </Button>
             </Link>

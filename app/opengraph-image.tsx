@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og"
 
 export const runtime = "edge"
-export const alt = "ClinicalSim: AI clinical simulation"
+export const alt = "ClinicalSim: communication intelligence for health systems"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -50,7 +50,7 @@ export default async function OpenGraphImage() {
               marginBottom: 28,
             }}
           >
-            Communication is a
+            Communication intelligence
           </div>
           <div
             style={{
@@ -61,7 +61,7 @@ export default async function OpenGraphImage() {
               letterSpacing: "-0.02em",
             }}
           >
-            clinical procedure.
+            for health systems.
           </div>
         </div>
 
@@ -73,7 +73,7 @@ export default async function OpenGraphImage() {
             opacity: 0.75,
           }}
         >
-          Voice-based AI patients · Rubric-scored feedback · Pilot study
+          AI patients · Your standards · Transcript evidence
         </div>
       </div>
     ),

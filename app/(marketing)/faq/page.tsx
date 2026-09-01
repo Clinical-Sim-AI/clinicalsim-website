@@ -9,10 +9,19 @@ import { FaqAnchorHandler } from "@/components/faq-anchor-handler"
 import { CopyLinkButton } from "@/components/copy-link-button"
 import { slugify } from "@/lib/utils"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
-import { POSITIONING_ONE_LINER, POSITIONING_SUPPORT } from "@/lib/positioning"
+import {
+  CATEGORY_DEFINITION,
+  CATEGORY_LINE,
+  POSITIONING_ONE_LINER,
+  POSITIONING_SUPPORT,
+} from "@/lib/positioning"
+import {
+  NO_EMPLOYMENT_USE_LIMITATION,
+  NO_OUTCOME_PREDICTION_LIMITATION,
+} from "@/lib/claim-discipline"
 
 export const metadata: Metadata = {
-  title: { absolute: "FAQ: AI clinical simulation, scoring, privacy, and programs" },
+  title: { absolute: "FAQ: communication intelligence, scoring, privacy, and programs" },
   description:
     "Answers to common questions about ClinicalSim: what it is, how it compares to Step 2 CS and standardized patients, communication remediation, ACGME Milestone scoring, My Progress, evidence for CCC review, privacy, and research.",
   openGraph: {
@@ -33,7 +42,7 @@ export const metadata: Metadata = {
 
 // Visible + schema recency. Update whenever answers change.
 const LAST_UPDATED_ISO = PAGE_DATE_MODIFIED.faq
-const LAST_UPDATED_LABEL = "August 31, 2026"
+const LAST_UPDATED_LABEL = "September 1, 2026"
 
 interface FaqEntry {
   id: string
@@ -59,7 +68,7 @@ const faqSections: FaqSection[] = [
         question: "What is ClinicalSim?",
         // Leads with the canonical sentence from lib/positioning.ts. This
         // answer used to be a fourth competing description of the company.
-        answer: `${POSITIONING_ONE_LINER} It is a voice-based AI clinical simulation built for communication practice in medical education, so learners talk through high-stakes conversations with AI patients and get rubric-scored feedback tied to what they actually said. ${POSITIONING_SUPPORT}`,
+        answer: `${CATEGORY_LINE} ${CATEGORY_DEFINITION} ${POSITIONING_ONE_LINER} ${POSITIONING_SUPPORT}`,
       },
       {
         id: "replaces-step-2-cs",
@@ -85,6 +94,39 @@ const faqSections: FaqSection[] = [
         question: "What is communication remediation, and how does ClinicalSim support it?",
         answer:
           "Communication remediation is the structured practice and feedback a program uses to help a learner improve interpersonal and communication skills. In a CERA survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years, and 50% selected an accessible remediation toolkit as the most important tool for improving the process (Frazier et al., Family Medicine, 2021). ClinicalSim adds repeatable practice and transcript evidence for faculty and CCC review.",
+      },
+    ],
+  },
+  {
+    category: "Health system use",
+    items: [
+      {
+        id: "patient-experience-training",
+        question: "How can a patient experience team use ClinicalSim?",
+        answer:
+          "A patient experience team can start with one unit and one behavior the institution already teaches, such as listening, explanation, teach back, or a service script. Staff practice with AI patients, and leaders can review named cohort or anonymous unit results with transcript evidence behind each score.",
+      },
+      {
+        id: "nonclinical-staff",
+        question: "Can nonclinical patient facing staff use ClinicalSim?",
+        answer:
+          "Yes. Environmental services, food service, transport, and other patient facing teams can use browser based cases designed for their role. Clinical content should stay limited to what that role would handle in practice.",
+      },
+      {
+        id: "anonymous-unit-reporting",
+        question: "Can leaders receive anonymous unit results?",
+        answer:
+          "Yes. An institution can use anonymous participant IDs and receive aggregate unit or cohort reports. Named completion records and named coaching access are separate choices that should follow the training policy and labor agreements set before launch.",
+      },
+      {
+        id: "patient-outcome-prediction",
+        question: "Does ClinicalSim predict HCAHPS, Qualtrics, or other patient outcomes?",
+        answer: NO_OUTCOME_PREDICTION_LIMITATION,
+      },
+      {
+        id: "employment-decisions",
+        question: "Can staff scores be used for employment decisions?",
+        answer: NO_EMPLOYMENT_USE_LIMITATION,
       },
     ],
   },

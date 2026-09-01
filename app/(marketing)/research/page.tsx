@@ -12,19 +12,19 @@ import type { FaqItem } from "@/lib/types"
 import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb, Presentation, MapPin, Calendar } from "lucide-react"
 
 const RESEARCH_DESCRIPTION =
-  "ClinicalSim works with investigators studying clinical communication, simulation based education, and competency assessment. Review conference presentations and propose a study."
+  "ClinicalSim works with investigators studying communication training, implementation, patient experience, workforce education, and competency assessment. Review presentations and propose a study."
 
 export const metadata: Metadata = {
   title: "Research with ClinicalSim",
   description: RESEARCH_DESCRIPTION,
   openGraph: {
     title: "Research with ClinicalSim.ai",
-    description: "Propose a study in clinical communication, simulation based education, or competency assessment.",
+    description: "Propose a study in communication training, implementation, patient experience, workforce education, or competency assessment.",
     url: "https://clinicalsim.ai/research",
   },
   twitter: {
     title: "Research with ClinicalSim.ai",
-    description: "Apply to collaborate on AI voice simulation research in medical communication training.",
+    description: "Apply to collaborate on communication training, implementation, patient experience, or competency research.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/research",
@@ -67,6 +67,37 @@ const benefits = [
     title: "IRB documentation",
     description: "We can provide technical documentation for an IRB submission. The study team remains responsible for the protocol and review process.",
     variant: "accent" as const,
+  },
+]
+
+const researchAreas = [
+  {
+    icon: Users,
+    title: "Implementation in a real unit",
+    description:
+      "Study reach, adoption, completion, staff experience, and the conditions required to keep the training in place after a pilot.",
+    variant: "accent" as const,
+  },
+  {
+    icon: BarChart3,
+    title: "Patient experience association",
+    description:
+      "Compare aggregate practice patterns with institution held Qualtrics or HCAHPS results under an approved protocol. The platform does not assume or predict a link.",
+    variant: "navy" as const,
+  },
+  {
+    icon: Laptop,
+    title: "Workforce training design",
+    description:
+      "Test role specific cases, access rules, anonymous reporting, and practice cadence for clinical and nonclinical patient facing staff.",
+    variant: "light-blue" as const,
+  },
+  {
+    icon: FileText,
+    title: "Time and cost",
+    description:
+      "Measure staff time, faculty time, completion, and the cost of adding browser based practice to an existing course or simulation program.",
+    variant: "default" as const,
   },
 ]
 
@@ -136,7 +167,7 @@ const researchFaqs: FaqItem[] = [
     question:
       "Can ClinicalSim support a multi-site or multi-institution study of communication training?",
     answer:
-      "ClinicalSim works with investigators studying clinical communication, simulation based education, and competency assessment, and the platform is browser-based, so participants at different institutions use the same cases and the same scoring without local installation. Depending on the protocol and the agreement, a study team can request structured exports of transcripts, usage data, and scored outcomes. Tell us the question, the population, and the design, and we will say whether the platform fits.",
+      "ClinicalSim works with investigators studying communication training, implementation, patient experience, workforce education, and competency assessment. The platform runs in a browser, so participants at different institutions can use the same cases and scoring without local installation. Depending on the protocol and agreement, a study team can request structured exports of transcripts, usage data, and scores. Tell us the question, population, and design, and we will say whether the platform fits.",
   },
   {
     question: "What can a study team request from ClinicalSim?",
@@ -220,10 +251,10 @@ export default function ResearchPage() {
               </p>
               <h1 className="text-4xl md:text-5xl font-light tracking-tight leading-[1.08] text-balance mb-6">Research with ClinicalSim</h1>
               <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-cs-cloud">
-                We work with investigators studying clinical communication,
-                simulation based education, and competency assessment. Tell us
-                the question, population, and study design. We will tell you
-                whether the platform fits.
+                We work with investigators studying communication training,
+                implementation, patient experience, workforce education, and
+                competency assessment. Tell us the question, population, and
+                study design. We will tell you whether the platform fits.
               </p>
 
               <div className="space-y-6">
@@ -407,6 +438,33 @@ export default function ResearchPage() {
 
       <SectionDivider variant="diagonal-down" color="cloud" />
 
+      <section className="px-6 py-16 md:py-24 bg-cs-cloud">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
+              Questions the platform can help study
+            </h2>
+            <p className="text-lg text-cs-dark-blue/70 font-light max-w-3xl mx-auto">
+              A simulation score is not a patient outcome. The research question must define what is measured, who can access it, and what comparison the protocol supports.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+            {researchAreas.map((area) => (
+              <FeatureCard
+                key={area.title}
+                icon={area.icon}
+                title={area.title}
+                description={area.description}
+                variant={area.variant}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider variant="diagonal-down" color="white" />
+
       {/* Conference Presentations Section */}
       <section className="px-6 pt-16 md:pt-24 pb-4 md:pb-6 bg-white">
         <div className="max-w-6xl mx-auto">
@@ -507,7 +565,7 @@ export default function ResearchPage() {
 
           <div className="text-center mt-12">
             <p className="text-cs-dark-blue/70 font-light">
-              Have questions before applying?{" "}
+              For questions before applying,{" "}
               <Link href="/contact" className="text-cs-dark-blue font-medium hover:text-cs-dark-blue transition-colors">
                 Get in touch
               </Link>

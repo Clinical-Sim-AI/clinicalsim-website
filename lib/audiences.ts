@@ -1,4 +1,5 @@
 import type { BrandIconName } from "@/components/brand-icon"
+import type { Market } from "@/lib/positioning"
 import type { FaqItem } from "@/lib/types"
 
 export interface PainPoint {
@@ -22,6 +23,7 @@ export interface AudienceStatItem {
 
 export interface Audience {
   slug: string
+  market: Market
   title: string
   shortTitle: string
   subtitle: string
@@ -74,6 +76,7 @@ export interface Audience {
 const audiences: Audience[] = [
   {
     slug: "program-directors",
+    market: "medical-education",
     title: "Program directors",
     shortTitle: "Program directors",
     subtitle: "Repeatable practice between coaching sessions",
@@ -221,6 +224,7 @@ const audiences: Audience[] = [
 
   {
     slug: "dios-gme-leadership",
+    market: "medical-education",
     title: "DIOs and GME leadership",
     shortTitle: "DIOs and GME",
     subtitle: "Standardize remediation infrastructure across every program",
@@ -355,6 +359,7 @@ const audiences: Audience[] = [
 
   {
     slug: "simulation-center-directors",
+    market: "medical-education",
     title: "Simulation center directors",
     shortTitle: "Simulation center directors",
     subtitle: "Extend your SP program, don't replace it",
@@ -501,6 +506,7 @@ const audiences: Audience[] = [
 
   {
     slug: "clinical-competency-committees",
+    market: "medical-education",
     title: "Clinical competency committees",
     shortTitle: "CCCs",
     subtitle: "Milestone-aligned evidence for CCC review",
@@ -632,6 +638,7 @@ const audiences: Audience[] = [
 
   {
     slug: "medical-school-leadership",
+    market: "medical-education",
     title: "Medical school and UME leadership",
     shortTitle: "Medical school (UME)",
     subtitle: "Sequence communication across all four years",
@@ -765,6 +772,7 @@ const audiences: Audience[] = [
 
   {
     slug: "faculty-clinician-educators",
+    market: "medical-education",
     title: "Faculty and clinician educators",
     shortTitle: "Faculty educators",
     subtitle: "Practice the conversations faculty are expected to model",
@@ -870,7 +878,7 @@ const audiences: Audience[] = [
       },
     ],
 
-    relevantSolutionSlugs: ["faculty-development"],
+    relevantSolutionSlugs: ["error-disclosure", "debriefing"],
 
     glossarySlugs: [
       "debriefing",
@@ -892,6 +900,7 @@ const audiences: Audience[] = [
   },
   {
     slug: "risk-and-patient-safety",
+    market: "health-system",
     title: "Risk and patient safety leaders",
     shortTitle: "Risk and safety",
     subtitle: "Communication factors in 40% of asserted malpractice cases",
@@ -1039,57 +1048,46 @@ const audiences: Audience[] = [
   },
   {
     slug: "quality-and-patient-experience",
+    market: "health-system",
     title: "Quality and patient experience leaders",
     shortTitle: "Quality and patient experience",
     subtitle:
-      "Five of the eight HCAHPS measures Medicare pays on are communication measures",
+      "Practice the service standards your institution already teaches",
     icon: "chart-pie-quarter",
     colorVariant: "blue",
 
     cardBullets: [
-      "Practice on the five HCAHPS communication measures Medicare pays on",
-      "Teach-back and discharge conversations, rehearsed before the shift",
-      "A rubric-scored record for every clinician who practiced",
+      "Start with one unit and one communication behavior",
+      "Score your service standards and scripts",
+      "Review named cohorts or anonymous unit results",
     ],
 
     heroHeadline:
-      "Five of eight HCAHPS measures tied to payment assess communication",
+      "Start with one unit, one standard, and one reporting question",
     heroDescription:
-      "ClinicalSim gives clinicians voice-based practice in teach-back, discharge, diagnosis, and family conversations. Each session produces a rubric-scored record. ClinicalSim does not predict HCAHPS or readmission outcomes.",
-    lastUpdated: "2026-08-18",
+      "Nurses, clinicians, and patient facing staff practice by voice with AI patients. Each report scores the encounter against your approved service standards and cites the transcript. ClinicalSim does not predict HCAHPS, Qualtrics, readmission, or other patient outcomes.",
+    lastUpdated: "2026-09-01",
 
     painPoints: [
       {
-        headline: "The payment weight sits on communication",
+        headline: "Choose one unit and one behavior",
         description:
-          "Medicare withholds 2% of base operating payments and redistributes about $1.7 billion a year through value-based purchasing. Patient experience is 25% of that score, and five of the eight HCAHPS measures Medicare pays on are communication measures, roughly 15.6% of the total.",
-        stat: "15.6%",
-        statSource:
-          "Share of a hospital's value-based purchasing score carried by HCAHPS communication measures (CMS)",
+          "A useful pilot begins with a defined group and a behavior the institution already teaches, such as listening, explaining, teach back, or asking permission before entering a room.",
       },
       {
-        headline: "The domain that moved least",
+        headline: "Use the standard already in place",
         description:
-          "Doctor communication rose 0.8 points from 2008 to 2019, the smallest gain of any HCAHPS domain (Beckett et al., Medical Care 2024). That finding does not identify the cause of the change.",
-        stat: "0.8 points",
-        statSource:
-          "Doctor communication gain 2008 to 2019, the smallest HCAHPS gain (Beckett et al., Medical Care 2024)",
+          "The rubric should use the hospital's approved service model, script, or policy. It can give credit for the intended behavior without demanding one exact sentence.",
       },
       {
-        headline: "Readmission penalties reach most hospitals",
+        headline: "Set privacy and access before launch",
         description:
-          "CMS readmission penalties run $320 million to $563 million a year and hit roughly three quarters of evaluated hospitals. A communication-centered discharge cut 30-day utilization about 30% in a randomized trial (Project RED, Annals of Internal Medicine 2009), and teach-back education cut heart failure readmissions with an odds ratio of 0.40 (meta-analysis, Patient Education and Counseling 2023).",
-        stat: "$320M-$563M",
-        statSource:
-          "Annual CMS readmission penalties, reaching roughly three quarters of evaluated hospitals (KFF and Definitive Healthcare)",
+          "Decide whether leaders need named completion records, named coaching reports, or anonymous unit results. Those choices should follow the institution's training policy and labor agreements.",
       },
       {
-        headline: "Adherence tracks with how the clinician talks",
+        headline: "Treat outcome comparison as research",
         description:
-          "Physician communication training raises the odds of patient adherence 1.62 times (Zolnierek and DiMatteo, Medical Care 2009), and the Joint Commission has repeatedly named communication a leading root cause of sentinel events in Sentinel Event Alert 58. Quality leaders know the mechanism. What has been missing is a way to give thousands of clinicians repetitions on it.",
-        stat: "1.62x",
-        statSource:
-          "Odds of patient adherence after physician communication training (Zolnierek and DiMatteo, Medical Care 2009)",
+          "An institution can compare aggregate practice data with its own patient experience results under an approved study plan. A simulation score is not a patient outcome and should not be described as one.",
       },
     ],
 
@@ -1126,28 +1124,43 @@ const audiences: Audience[] = [
 
     valueProps: [
       {
-        title: "Practice the conversations measured by HCAHPS",
+        title: "Your service standards, scored as written",
         description:
-          "Five of the eight HCAHPS measures Medicare pays on are communication measures, about 15.6% of a hospital's value-based purchasing score (CMS). Clinicians rehearse those conversations by voice, on demand, with feedback scored against published communication frameworks such as Calgary-Cambridge. The scoring is framework-based and is not a prediction of a survey score.",
+          "ClinicalSim can score the behaviors in an approved service model, script, or rubric and give credit when the speaker conveys the same intent in natural language.",
       },
       {
-        title: "Teach-back before the shift",
+        title: "Practice before the shift",
         description:
-          "A 2023 meta-analysis evaluated teach-back education, and Project RED evaluated a multi-part discharge intervention. Neither study tested ClinicalSim. AI patient cases can give learners spoken practice with teach-back and discharge conversations.",
+          "Nurses, clinicians, and patient facing staff can rehearse listening, explanation, teach back, and service conversations from a browser without booking a room or observer.",
       },
       {
-        title: "A record per clinician, not a completion rate",
+        title: "Named cohort or anonymous unit reports",
         description:
-          "Every session generates a timestamped, rubric-scored record of which conversation a clinician practiced and how it went, so quality reporting can show practice at the individual and unit level instead of a course completion percentage.",
+          "The institution can use participant IDs, limit named access, and review aggregate patterns by unit or cohort. The person who practiced can still see the transcript evidence behind the feedback.",
       },
       {
-        title: "Extends the coaching and simulation you already run",
+        title: "Structured exports for an approved study",
         description:
-          "ClinicalSim adds repetitions between scheduled standardized patient encounters, coaching rounds, and service excellence work rather than standing in for them. Coaches and faculty stay in the loop, reading a dashboard instead of facilitating every session.",
+          "Aggregate exports can support a comparison with institution held Qualtrics or HCAHPS data. ClinicalSim does not predict those scores or claim that practice changes them.",
       },
     ],
 
     faqs: [
+      {
+        question: "What does a one unit patient experience pilot look like?",
+        answer:
+          "Choose one unit, one group of staff, and one behavior the institution already teaches. Define the rubric, decide who can see names, run voice practice with AI patients, and review the aggregate pattern before choosing the next training topic.",
+      },
+      {
+        question: "Can results be anonymous for leaders?",
+        answer:
+          "Yes. An institution can use anonymous participant IDs and receive aggregate unit or cohort results. Named completion records and named coaching reports are separate choices that should follow the training policy and labor agreements set before launch.",
+      },
+      {
+        question: "Can ClinicalSim data be compared with Qualtrics results?",
+        answer:
+          "ClinicalSim can provide structured aggregate exports for an institution to compare with its own Qualtrics data under an approved study plan. It does not predict Qualtrics or HCAHPS scores, and no current evidence shows that a ClinicalSim score changes them.",
+      },
       {
         question: "What are the HCAHPS nurse communication measures?",
         answer:
@@ -1197,7 +1210,7 @@ const audiences: Audience[] = [
       },
     ],
 
-    relevantSolutionSlugs: ["faculty-development"],
+    relevantSolutionSlugs: ["patient-experience"],
 
     glossarySlugs: [
       "hcahps",
@@ -1207,9 +1220,9 @@ const audiences: Audience[] = [
       "teach-back-method",
       "motivational-interviewing",
     ],
-    ctaHeadline: "Add repeatable practice to communication training",
+    ctaHeadline: "Start with one team and one service standard",
     ctaDescription:
-      "Request a pilot and review the rubric-scored record ClinicalSim produces for each simulated encounter.",
+      "Bring the standard you already teach. We will map what a spoken encounter can score and define the reporting rules before the pilot begins.",
 
     relatedPostSlugs: [
       "why-communication-training-matters",
@@ -1220,6 +1233,10 @@ const audiences: Audience[] = [
 
 export function getAllAudiences(): Audience[] {
   return audiences
+}
+
+export function getAudiencesByMarket(market: Market): Audience[] {
+  return audiences.filter((audience) => audience.market === market)
 }
 
 export function getAudienceBySlug(slug: string): Audience | undefined {
