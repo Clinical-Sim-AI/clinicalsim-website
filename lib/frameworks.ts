@@ -1,91 +1,171 @@
-export interface PublishedFramework {
+export interface ReadyToUseFramework {
   name: string
+  homepageName?: string
   owner: string
   note: string
+  domain: string
+  stagingKey: string
   featured?: boolean
-  homepageName?: string
 }
 
 /**
- * Published frameworks with element level descriptions that can support a
- * spoken encounter rubric. A featured entry appears on the homepage.
- *
- * Deliberately excluded: the NCSBN Clinical Judgment Measurement Model, the
- * Lasater Clinical Judgment Rubric, the Casey Fink survey, the Patient
- * Activation Measure, and AIDET. Do not add them without a license or legal
- * approval.
+ * Scoring sources attached to at least one active, published simulation that
+ * appears in the staging catalog. Most staging keys are rubric slugs. The
+ * ACGME entry covers the specialty specific ICS set.
  */
-export const publishedFrameworks: PublishedFramework[] = [
+export const readyToUseFrameworks: ReadyToUseFramework[] = [
   {
-    name: "Braddock's elements of informed decision making",
-    homepageName: "Braddock's informed decision elements",
-    featured: true,
-    owner: "Published in JAMA, quoted verbatim by AHRQ",
-    note: "Seven elements, from discussing the patient's role in the decision through eliciting their preference. The scale researchers already use to score recorded surgical consent conversations.",
-  },
-  {
-    name: "CMS well-designed informed consent process",
-    owner: "CMS interpretive guidelines, public domain",
-    note: "Names the material risks, the alternatives, the consequences of declining, and who will perform which parts of the operation. Every element is a spoken behavior.",
-  },
-  {
-    name: "AHRQ ten strategies for informed consent",
-    owner: "AHRQ, developed with The Joint Commission",
-    note: "Prepare, use health literacy universal precautions, remove language barriers, use teach-back, offer choices, elicit goals and values, and seven more. Behavioral, named, and co-authored by the accreditor.",
-  },
-  {
-    name: "AHRQ SHARE approach",
-    homepageName: "AHRQ SHARE",
-    featured: true,
-    owner: "AHRQ, public domain",
-    note: "Five steps of shared decision making: seek participation, help explore and compare options, assess values, reach a decision together, evaluate the decision.",
-  },
-  {
-    name: "NQF Safe Practice on disclosure",
-    homepageName: "NQF Safe Practice on disclosure",
-    featured: true,
-    owner: "National Quality Forum, public",
-    note: "Names what a disclosure conversation contains, including an explicit expression of regret, a commitment to investigate, and feedback of the result. It also says the skill should be practiced.",
-  },
-  {
-    name: "AHRQ CANDOR",
-    owner: "AHRQ, public domain",
-    note: "Eight modules across three phases, including response and disclosure communication and care for the caregiver.",
-  },
-  {
-    name: "TeamSTEPPS Team Performance Observation Tool",
-    owner: "AHRQ, public domain",
-    note: "Twenty-five behavioral items across five sections, plus named speech acts a transcript can verify were said: SBAR, check-back, call-out, CUS, the two-challenge rule, DESC.",
-  },
-  {
-    name: "OPTION-12",
-    owner: "Elwyn et al., published in full",
-    note: "Twelve observer-rated shared decision making behaviors on a 0 to 100 scale. Observer-scored, so it works on a transcript.",
-  },
-  {
-    name: "Four Habits Coding Scheme",
-    owner: "Krupat et al., published in full",
-    note: "Twenty-three items on a five-point scale covering investing in the beginning, eliciting the patient's perspective, demonstrating empathy, and investing in the end.",
-  },
-  {
-    name: "HCAHPS and CG-CAHPS item wording",
-    owner: "CMS and AHRQ, public domain",
-    note: "The exact questions a hospital is measured on, including listening carefully, explaining things in a way the patient could understand, and describing medication side effects.",
-  },
-  {
-    name: "ACGME Milestones 2.0, interpersonal and communication skills",
+    name: "ACGME ICS Milestones 2.0",
     homepageName: "ACGME Milestones 2.0",
     featured: true,
-    owner: "ACGME, published per specialty",
-    note: "The subcompetency language a Clinical Competency Committee already uses. Cases map to it; scores read in the same words as the committee's own report.",
+    owner: "ACGME, published by specialty",
+    note: "Specialty specific interpersonal and communication skills subcompetencies. A case uses only the subcompetencies the learner can show in that encounter.",
+    domain: "Medical education",
+    stagingKey: "acgme-ics-milestones",
   },
   {
-    name: "CMS community health integration and navigation competencies",
-    owner: "CMS, CY2024 Physician Fee Schedule rule",
-    note: "Seven named competencies for auxiliary personnel, the first of which is patient and family communication. CMS names them and names no curriculum, assessment, or passing standard.",
+    name: "NURSE: Empathic responses to emotion",
+    homepageName: "NURSE",
+    featured: true,
+    owner: "Back, Arnold, Baile, Tulsky, Fryer-Edwards, and VitalTalk",
+    note: "Naming, understanding, respecting, supporting, and exploring. The rubric scores how a clinician responds when a patient or family member shows emotion.",
+    domain: "Serious news, emotion, and goals of care",
+    stagingKey: "nurse-empathic-responses",
+  },
+  {
+    name: "AHRQ CANDOR: Disclosure communication",
+    homepageName: "AHRQ CANDOR",
+    featured: true,
+    owner: "Agency for Healthcare Research and Quality",
+    note: "The disclosure checklist covers preparation, listening, an explanation without blame or speculation, apology, next steps, and follow up.",
+    domain: "Error disclosure",
+    stagingKey: "candor-disclosure-communication",
+  },
+  {
+    name: "Informed consent: Consent discussion",
+    homepageName: "Informed consent",
+    owner: "AMA Code of Medical Ethics and StatPearls",
+    note: "Six elements cover capacity, the proposed intervention, risks and benefits, alternatives, understanding, and a voluntary decision.",
+    domain: "Information, decisions, and consent",
+    stagingKey: "informed-consent-discussion",
+  },
+  {
+    name: "SPIKES: Six step protocol for delivering bad news",
+    homepageName: "SPIKES",
+    featured: true,
+    owner: "Baile and colleagues, The Oncologist, 2000",
+    note: "Six steps cover setting, perception, invitation, knowledge, emotion, and strategy and summary.",
+    domain: "Serious news, emotion, and goals of care",
+    stagingKey: "spikes-breaking-bad-news",
+  },
+  {
+    name: "REMAP: Goals of care conversation framework",
+    owner: "Childers, Back, Tulsky, and Arnold, 2017",
+    note: "Reframe the situation, expect emotion, map the future, align with values, and plan treatment around those values.",
+    domain: "Serious news, emotion, and goals of care",
+    stagingKey: "remap-goals-of-care",
+  },
+  {
+    name: "Serious Illness Conversation Guide",
+    owner: "Ariadne Labs",
+    note: "Five steps cover setup, understanding and information preferences, prognosis, goals and tradeoffs, and a recommendation with follow up.",
+    domain: "Serious news, emotion, and goals of care",
+    stagingKey: "serious-illness-conversation-guide",
+  },
+  {
+    name: "Ask, tell, ask and teach back",
+    owner: "VitalTalk and the Agency for Healthcare Research and Quality",
+    note: "Ask what the patient understands, explain in small pieces, ask what they heard, and use teach back to check the explanation.",
+    domain: "Information, decisions, and consent",
+    stagingKey: "ask-tell-ask-teach-back",
+  },
+  {
+    name: "Motivational Interviewing: MITI global ratings",
+    owner: "Miller and Rollnick; MITI 4.2.1 by Moyers, Manuel, and Ernst",
+    note: "The rubric uses the MITI global ratings for change talk, sustain talk, partnership, and empathy, with a fifth rating for OARS skills.",
+    domain: "Information, decisions, and consent",
+    stagingKey: "motivational-interviewing",
+  },
+  {
+    name: "Calgary-Cambridge Guide to the Medical Interview",
+    owner: "Kurtz, Silverman, and Draper",
+    note: "Five stages organize the visit, with providing structure and building the relationship scored throughout the encounter.",
+    domain: "Clinical interview and assessment",
+    stagingKey: "calgary-cambridge-medical-interview",
+  },
+  {
+    name: "KEECC-A: Kalamazoo communication checklist",
+    owner: "Makoul, 2001; adapted by Joyce and colleagues, 2010",
+    note: "Seven tasks cover rapport, the opening, information gathering, the patient's perspective, information sharing, agreement, and closure.",
+    domain: "Clinical interview and assessment",
+    stagingKey: "keecc-a-communication-checklist",
+  },
+  {
+    name: "SEGUE Framework: Communication skills",
+    owner: "Makoul, 2001",
+    note: "Five task sets follow the encounter from setting the stage through eliciting and giving information, understanding the patient, and closing.",
+    domain: "Clinical interview and assessment",
+    stagingKey: "segue-framework",
+  },
+  {
+    name: "HEEADSSS: Adolescent psychosocial screening",
+    owner: "Goldenring and Cohen; expanded by Goldenring and Rosen",
+    note: "Eight domains structure a private adolescent interview: home, education, eating, activities, drugs, sexuality, suicide and depression, and safety.",
+    domain: "Clinical interview and assessment",
+    stagingKey: "heeadsss-adolescent-psychosocial",
+  },
+  {
+    name: "SBAR: Structured communication",
+    owner: "Agency for Healthcare Research and Quality, TeamSTEPPS",
+    note: "Situation, background, assessment, and recommendation structure a concise clinical escalation or handoff.",
+    domain: "Team communication",
+    stagingKey: "sbar-structured-communication",
+  },
+  {
+    name: "I-PASS: Handoff communication",
+    owner: "I-PASS Study Group and Agency for Healthcare Research and Quality",
+    note: "Illness severity, patient summary, action list, situation awareness and contingency planning, and synthesis by the receiver structure a handoff.",
+    domain: "Team communication",
+    stagingKey: "i-pass-handoff",
+  },
+  {
+    name: "Interprofessional Collaborator Assessment Rubric",
+    owner: "Curran and colleagues",
+    note: "Six categories cover communication, collaboration, roles, patient and family centered work, team function, and conflict management.",
+    domain: "Team communication",
+    stagingKey: "icar-interprofessional-collaborator",
+  },
+  {
+    name: "TeamSTEPPS: Teamwork and communication competencies",
+    owner: "Agency for Healthcare Research and Quality and the US Department of Defense",
+    note: "The rubric scores communication, team leadership, situation monitoring, and mutual support when the case gives one speaker a chance to show them.",
+    domain: "Team communication",
+    stagingKey: "teamstepps-teamwork-communication",
+  },
+  {
+    name: "R2C2: Feedback and coaching conversation",
+    owner: "Sargeant and colleagues",
+    note: "Relationship, reactions, content, and coaching structure a feedback conversation between a supervisor and learner.",
+    domain: "Feedback and coaching",
+    stagingKey: "r2c2-feedback-coaching",
   },
 ]
 
-export function getFeaturedFrameworks(): PublishedFramework[] {
-  return publishedFrameworks.filter((framework) => framework.featured)
+export function getFeaturedFrameworks(): ReadyToUseFramework[] {
+  return readyToUseFrameworks.filter((framework) => framework.featured)
+}
+
+export function getFrameworksByDomain(): {
+  domain: string
+  frameworks: ReadyToUseFramework[]
+}[] {
+  const domains = new Map<string, ReadyToUseFramework[]>()
+
+  for (const framework of readyToUseFrameworks) {
+    const frameworks = domains.get(framework.domain) ?? []
+    frameworks.push(framework)
+    domains.set(framework.domain, frameworks)
+  }
+
+  return Array.from(domains, ([domain, frameworks]) => ({ domain, frameworks }))
 }

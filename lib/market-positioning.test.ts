@@ -97,4 +97,26 @@ describe("market positioning", () => {
       ),
     ).not.toContain("remediation")
   })
+
+  it("names staging backed rubrics on consent and disclosure pages", () => {
+    const informedConsent = getSolutionsByMarket("health-system").find(
+      (solution) => solution.slug === "informed-consent",
+    )
+    const errorDisclosure = getSolutionsByMarket("health-system").find(
+      (solution) => solution.slug === "error-disclosure",
+    )
+
+    expect(informedConsent?.frameworks?.map((framework) => framework.name)).toContain(
+      "Informed consent: Consent discussion",
+    )
+    expect(errorDisclosure?.frameworks?.map((framework) => framework.name)).toContain(
+      "AHRQ CANDOR: Disclosure communication",
+    )
+    expect(informedConsent?.frameworks?.map((framework) => framework.name)).not.toContain(
+      "Braddock's elements of informed decision making",
+    )
+    expect(errorDisclosure?.frameworks?.map((framework) => framework.name)).not.toContain(
+      "NQF Safe Practice on disclosure",
+    )
+  })
 })

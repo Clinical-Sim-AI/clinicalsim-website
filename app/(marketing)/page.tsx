@@ -291,7 +291,7 @@ export default function HomePage() {
               href="/frameworks#ready-to-use-frameworks"
               className="font-medium text-cs-dark-blue underline decoration-cs-gray underline-offset-4 transition-colors hover:text-cs-navy"
             >
-              View the published framework catalog
+              View the ready to use scoring catalog
             </Link>
             <Link
               href="/frameworks#scoring-limits"

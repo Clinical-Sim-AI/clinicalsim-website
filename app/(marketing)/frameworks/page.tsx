@@ -5,7 +5,10 @@ import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { ClaimBoundary } from "@/components/claim-boundary"
-import { publishedFrameworks } from "@/lib/frameworks"
+import {
+  getFrameworksByDomain,
+  readyToUseFrameworks,
+} from "@/lib/frameworks"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 const CANONICAL = "https://clinicalsim.ai/frameworks"
@@ -13,9 +16,9 @@ const CANONICAL = "https://clinicalsim.ai/frameworks"
 const NON_ENDORSEMENT_ORGS = [
   "the ACGME",
   "AHRQ",
-  "the National Quality Forum",
-  "The Joint Commission",
-  "the American College of Surgeons",
+  "VitalTalk",
+  "Ariadne Labs",
+  "the framework authors named above",
 ]
 
 const FAQS: { question: string; answer: string }[] = [
@@ -47,7 +50,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: "What if our framework is not on this list?",
     answer:
-      "Send it. The list names the public frameworks we can score against without anything from you, and it is not a limit. Most of what we score is institution-specific, because a surveyor checks whether staff followed your policy rather than whether your policy matches a national ideal.",
+      "Send it with the element definitions you use. This list names ready to use rubrics already attached to current catalog cases. It does not limit what an institution can add for a pilot.",
   },
 ]
 
@@ -72,6 +75,7 @@ export const metadata: Metadata = {
 }
 
 export default function FrameworksPage() {
+  const frameworkGroups = getFrameworksByDomain()
   const jsonLd = [
     {
       "@context": "https://schema.org" as const,
@@ -108,11 +112,11 @@ export default function FrameworksPage() {
     {
       "@context": "https://schema.org" as const,
       "@type": "DefinedTermSet" as const,
-      name: "Published communication frameworks used in ClinicalSim cases",
+      name: "Ready to use scoring sources in ClinicalSim cases",
       description:
-        "Published frameworks developed and used in health care or medical education that can support element level scoring of a spoken encounter.",
+        "Published frameworks and source based rubrics attached to current ClinicalSim catalog cases.",
       url: CANONICAL,
-      hasDefinedTerm: publishedFrameworks.map((framework) => ({
+      hasDefinedTerm: readyToUseFrameworks.map((framework) => ({
         "@type": "DefinedTerm" as const,
         name: framework.name,
         description: framework.note,
@@ -161,7 +165,7 @@ export default function FrameworksPage() {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="#ready-to-use-frameworks">
               <Button variant="accent" size="xl">
-                View published frameworks
+                View ready to use frameworks
               </Button>
             </Link>
             <Link href="#institution-standards">
@@ -185,30 +189,39 @@ export default function FrameworksPage() {
       >
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-            Ready to use framework catalog
+            Ready to use scoring catalog
           </h2>
           <p className="text-lg text-cs-dark-blue/70 font-light mb-8 max-w-3xl">
-            These published frameworks were developed and used in health care or medical education.
-            They name elements that can support a case rubric without an institution supplying its
-            own document.
+            Each item below has a published rubric attached to at least one current catalog case.
+            Choose the conversation first, then review its scoring source and limits before a pilot
+            begins.
           </p>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {publishedFrameworks.map((framework) => (
-              <article
-                key={framework.name}
-                className="border border-cs-gray/50 rounded-xl px-6 py-5"
-              >
-                <h3 className="text-lg font-medium text-cs-dark-blue mb-1">
-                  {framework.name}
+          <div className="space-y-10">
+            {frameworkGroups.map((group) => (
+              <section key={group.domain}>
+                <h3 className="mb-4 text-xl font-medium text-cs-navy">
+                  {group.domain}
                 </h3>
-                <p className="text-sm text-cs-dark-gray font-light mb-3">
-                  {framework.owner}
-                </p>
-                <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-                  {framework.note}
-                </p>
-              </article>
+                <div className="grid gap-4 md:grid-cols-2">
+                  {group.frameworks.map((framework) => (
+                    <article
+                      key={framework.stagingKey}
+                      className="rounded-xl border border-cs-gray/50 px-6 py-5"
+                    >
+                      <h4 className="mb-1 text-lg font-medium text-cs-dark-blue">
+                        {framework.name}
+                      </h4>
+                      <p className="mb-3 text-sm font-light text-cs-dark-gray">
+                        {framework.owner}
+                      </p>
+                      <p className="text-base font-light leading-relaxed text-cs-dark-blue/85">
+                        {framework.note}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         </div>
@@ -393,7 +406,7 @@ export default function FrameworksPage() {
           nonEndorsementOrgs={NON_ENDORSEMENT_ORGS}
           showFormative
           showRaterValidation
-          note="Naming a framework here describes what the engine can score against. It does not mean the framework's owner has reviewed, approved, or licensed anything, and it does not make an institution compliant with any standard."
+          note="A published rubric in ClinicalSim does not mean the framework's owner reviewed or approved ClinicalSim, and published human rater reliability does not validate an AI score."
         />
       </div>
 
@@ -404,8 +417,8 @@ export default function FrameworksPage() {
             Start with a ready to use case or bring your own standard
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            Tell us which conversation you need to train. We will show you the closest published
-            framework or explain how to add your institution&apos;s standard.
+            Tell us which conversation you need to train. We will show you the closest ready to use
+            case or explain how to add your institution&apos;s standard.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
