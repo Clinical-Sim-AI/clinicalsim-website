@@ -9,7 +9,13 @@ import { JsonLd } from "@/components/json-ld"
 import { VideoObjectSchema } from "@/components/video-object-schema"
 import { ArrowRight } from "lucide-react"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
-import { POSITIONING_LONG, POSITIONING_ONE_LINER } from "@/lib/positioning"
+import {
+  CATEGORY_DEFINITION,
+  CATEGORY_LINE,
+  POSITIONING_LONG,
+  POSITIONING_ONE_LINER,
+  POSITIONING_SUPPORT,
+} from "@/lib/positioning"
 
 const DemoVideoSection = dynamic(
   () => import("@/components/demo-video-section").then((m) => ({ default: m.DemoVideoSection }))
@@ -19,27 +25,27 @@ const HOME_DESCRIPTION = POSITIONING_LONG
 
 export const metadata: Metadata = {
   title: {
-    absolute: "AI clinical simulation for medical communication | ClinicalSim",
+    absolute: "Communication intelligence for health systems | ClinicalSim",
   },
   description: HOME_DESCRIPTION,
   openGraph: {
-    title: "AI clinical simulation for medical communication",
+    title: "Communication intelligence for health systems",
     description:
-      "Practice the conversations that matter most with AI patients and review rubric-scored feedback tied to the transcript.",
+      "Healthcare teams practice with AI patients. ClinicalSim scores each encounter against the institution's standards and cites transcript evidence behind every score.",
     url: "https://clinicalsim.ai",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ClinicalSim, AI clinical simulation for medical communication",
+        alt: "ClinicalSim, communication intelligence for health systems",
       },
     ],
   },
   twitter: {
-    title: "AI clinical simulation for medical communication",
+    title: "Communication intelligence for health systems",
     description:
-      "Practice the conversations that matter most with AI patients and review feedback tied to the transcript.",
+      "Healthcare teams practice with AI patients and leaders review the transcript evidence behind each score.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -67,11 +73,16 @@ const DEMO_VIDEO = {
 }
 
 export default function HomePage() {
-  const solutions = getHomepageSolutions()
+  const solutions = [...getHomepageSolutions()].sort((a, b) => {
+    if (a.market === b.market) return 0
+    return a.market === "health-system" ? -1 : 1
+  })
 
   // Representative scenario types practiced on the platform (drawn from the
   // scenario library, breaking bad news through error disclosure).
   const conversationTypes = [
+    "Patient service conversations",
+    "Clinical and educational debriefing",
     "Breaking bad news",
     "Goals of care",
     "Informed consent",
@@ -84,33 +95,30 @@ export default function HomePage() {
     "History taking",
   ]
 
-  // The stages of the medical-education continuum the platform serves, each
-  // paired with the published framework it is scored against. Split out of the
-  // definition paragraph so the mapping is scannable. Stage names are spelled
-  // out in full because AI search extracts these rows on their own.
+  // Four institutional uses, each paired with the standard it can score.
   const frameworkMap = [
-    { stage: "Undergraduate medical education", framework: "AAMC Foundational Competencies" },
-    { stage: "Graduate medical education, residency and fellowship", framework: "ACGME Milestones 2.0" },
-    { stage: "Faculty development", framework: "Pendleton and SBI feedback frameworks" },
+    { stage: "Patient experience", framework: "Your service standards and scripts" },
+    { stage: "Risk and patient safety", framework: "Your policies and communication elements" },
+    { stage: "Graduate medical education", framework: "ACGME Milestones 2.0 and case frameworks" },
+    { stage: "Simulation and debriefing", framework: "The debriefing framework your institution teaches" },
   ]
 
-  // The three claims that differentiate the platform. Each is documented case
-  // by case on the methodology page.
+  // The three capabilities that define the platform.
   const differentiators = [
     {
-      claim: "Written and reviewed by named physicians",
+      claim: "Your standard becomes the rubric",
       detail:
-        "Each case names the physician authors and reviewers responsible for its clinical and educational content.",
+        "Institutions can add the service standards, policies, and rubrics they already use. Clinical cases name the physicians responsible for clinical review.",
     },
     {
-      claim: "Mapped to published frameworks",
+      claim: "Every score cites the transcript",
       detail:
-        "Every case names the competency and communication frameworks used for feedback.",
+        "Leaders can read the speaker's words behind each rating instead of treating the score as a black box.",
     },
     {
-      claim: "Every score tied to transcript evidence",
+      claim: "Reporting can follow the institution",
       detail:
-        "Every score cites the learner's words, so a faculty member can check the rating against the evidence.",
+        "Review an individual, a named cohort, or an anonymous unit view based on the access rules set before launch.",
     },
   ]
 
@@ -121,7 +129,7 @@ export default function HomePage() {
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "AI clinical simulation for medical communication",
+            name: "Communication intelligence for health systems",
             description: HOME_DESCRIPTION,
             url: "https://clinicalsim.ai",
             dateModified: PAGE_DATE_MODIFIED.home,
@@ -176,14 +184,18 @@ export default function HomePage() {
               "Voice-based practice with AI patients",
               "Rubric-scored feedback citing verbatim transcript evidence",
               "Cases written and reviewed by named physicians",
+              "Institution-specific service standards and policy rubrics",
+              "Named cohort and anonymous unit reporting",
               "Feedback mapped to ACGME Milestones 2.0 and published communication frameworks",
               "Longitudinal progress tracking across repeated attempts",
               "Cohort progress views, progress reports, and exports for faculty",
             ],
             audience: {
-              "@type": "EducationalAudience",
-              educationalRole: "Clinician",
+              "@type": "Audience",
               audienceType: [
+                "Patient experience leaders",
+                "Risk and patient safety leaders",
+                "Nursing education leaders",
                 "Program directors",
                 "DIOs and GME leadership",
                 "Simulation center directors",
@@ -202,18 +214,18 @@ export default function HomePage() {
           <div className="relative z-10 max-w-2xl">
             <p className="inline-flex items-center gap-2 text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
               <span className="h-1.5 w-1.5 rounded-full bg-cs-electric" aria-hidden="true" />
-              AI clinical simulation
+              Communication intelligence for health systems
             </p>
 
             <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
-              Medicine&apos;s most performed procedure is also its <span className="text-cs-electric font-medium">least measured</span>.
+              Practice the conversation and see the evidence behind every score
             </h1>
 
             <p className="text-lg md:text-xl text-cs-cloud font-light mb-8">
-              Voice-based practice for breaking bad news, goals of care,
-              informed consent, and other high-stakes clinical conversations.
-              Learners speak with AI patients and receive rubric-scored
-              feedback tied to the transcript.
+              Clinicians and patient facing staff speak with AI patients on any
+              device. ClinicalSim scores each encounter against the standards
+              your institution already uses and cites the transcript behind
+              every score.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -242,7 +254,7 @@ export default function HomePage() {
           <div className="relative z-10 lg:justify-self-end w-full max-w-md">
             <div className="rounded-2xl border border-white/10 bg-cs-navy/40 p-6 md:p-8 backdrop-blur-sm">
               <p className="text-xl font-medium text-cs-electric mb-6">
-                Faculty can inspect every score
+                Leaders can inspect every score
               </p>
               <dl className="space-y-6">
                 <div>
@@ -251,12 +263,17 @@ export default function HomePage() {
                 </div>
                 <div className="h-px bg-white/10" />
                 <div>
-                  <dt className="text-sm text-cs-cloud font-light mb-1">Framework alignment</dt>
-                  <dd className="text-2xl md:text-3xl font-light text-white">Named on every case</dd>
+                  <dt className="text-sm text-cs-cloud font-light mb-1">Institution standard</dt>
+                  <dd className="text-2xl md:text-3xl font-light text-white">Scored as defined</dd>
+                </div>
+                <div className="h-px bg-white/10" />
+                <div>
+                  <dt className="text-sm text-cs-cloud font-light mb-1">Reporting</dt>
+                  <dd className="text-2xl md:text-3xl font-light text-white">Person, cohort, or unit</dd>
                 </div>
               </dl>
               <p className="mt-6 pt-6 border-t border-white/10 text-sm text-cs-cloud font-light leading-relaxed">
-                Faculty can review the cited transcript evidence behind each score and see which published framework the case uses.
+                Institutions set access and reporting rules before launch. Formative scores are not intended for employment decisions.
               </p>
             </div>
           </div>
@@ -294,13 +311,13 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-start">
             <div className="max-w-2xl">
               <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
-                What is ClinicalSim?
+                ClinicalSim, defined
               </p>
               <h2 className="text-2xl md:text-3xl font-light tracking-tight leading-snug text-cs-navy text-balance">
-                {POSITIONING_ONE_LINER}
+                {CATEGORY_LINE}
               </h2>
               <p className="mt-6 text-base md:text-lg text-cs-dark-blue font-light leading-relaxed text-pretty">
-                Named physicians write and review each case. Every case names the competency and communication frameworks it uses.
+                {CATEGORY_DEFINITION} {POSITIONING_SUPPORT}
               </p>
             </div>
 
@@ -308,7 +325,7 @@ export default function HomePage() {
                 above framework so the full stage names never collide. */}
             <div className="w-full lg:pt-1">
               <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray mb-4">
-                Across the training continuum
+                Across the health system
               </p>
               <dl className="border-t border-cs-gray">
                 {frameworkMap.map((item) => (
@@ -321,7 +338,7 @@ export default function HomePage() {
                 ))}
               </dl>
               <p className="mt-4 text-sm text-cs-dark-gray font-light leading-relaxed">
-                Every session produces documented feedback.
+                {POSITIONING_ONE_LINER}
               </p>
             </div>
           </div>
@@ -374,10 +391,10 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 md:mb-14">
             <h2 className="text-3xl md:text-4xl font-light tracking-tight text-cs-navy mb-4">
-              One platform. <span className="text-cs-dark-blue font-medium">Many conversations.</span>
+              Start where communication already has an owner
             </h2>
             <p className="text-lg text-cs-dark-blue font-light max-w-2xl mx-auto">
-              One dashboard with case-specific frameworks for each learner, specialty, and task.
+              Patient experience, risk, safety, simulation, and medical education teams can begin with one use case and use the same platform as the work expands.
             </p>
           </div>
 
@@ -402,29 +419,29 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Two details for faculty and program reviewers. */}
+          {/* Two details for system and program reviewers. */}
           <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 border-t border-cs-navy/15 pt-10">
             <div>
               <h3 className="text-xl md:text-2xl font-medium text-cs-dark-blue mb-3">
-                Evidence for CCC review
+                Unit patterns without employee rankings
               </h3>
               <p className="text-base text-cs-dark-blue font-light leading-relaxed">
-                Each report maps observed behavior to the relevant milestone and cites the learner&apos;s words. A CCC can review it alongside faculty observation and the other evidence it already uses.
+                Institutions can use anonymous participant IDs and aggregate unit reports. Named access should follow the training policy and labor agreements set before staff participate.
               </p>
             </div>
             <div>
               <h3 className="text-xl md:text-2xl font-medium text-cs-dark-blue mb-3">
-                Private, repeatable practice
+                Research exports without outcome claims
               </h3>
               <p className="text-base text-cs-dark-blue font-light leading-relaxed">
-                Learners practice high-stakes conversations privately, without a faculty observer in the encounter. They can repeat a case before sharing the report with a coach or program.
+                Structured aggregate exports can support an approved comparison with institution held patient experience data. ClinicalSim does not predict HCAHPS, Qualtrics, readmissions, claims, or safety events.
               </p>
             </div>
           </div>
 
           <div className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t border-cs-navy/15 pt-8">
             <p className="text-base text-cs-dark-blue font-light">
-              Built for program directors, DIOs, simulation centers, and clinical competency committees.
+              Built for patient experience, risk, safety, nursing education, simulation, and GME teams.
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
               <Link
@@ -509,10 +526,10 @@ export default function HomePage() {
       <section className="px-6 py-20 md:py-28 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-balance mb-6">
-            Give learners practice before the conversation is real
+            Bring one team, one standard, and one reporting question
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            Tell us which learners and conversations matter most in your program. We will show you what one pilot cycle could look like.
+            We will map what a spoken encounter can score, what it cannot, and how the results should be reported before the pilot begins.
           </p>
           <Link href="/contact">
             <Button

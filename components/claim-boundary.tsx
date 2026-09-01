@@ -1,5 +1,7 @@
 import {
   FORMATIVE_USE_LIMITATION,
+  NO_EMPLOYMENT_USE_LIMITATION,
+  NO_OUTCOME_PREDICTION_LIMITATION,
   RATER_VALIDATION_LIMITATION,
   nonEndorsementLine,
 } from "@/lib/claim-discipline"
@@ -15,6 +17,10 @@ interface ClaimBoundaryProps {
   showFormative?: boolean
   /** Render the rater-validation limitation. Required on every conversation page. */
   showRaterValidation?: boolean
+  /** Render the limit on patient, safety, claims, and business outcome prediction. */
+  showOutcomePredictionLimit?: boolean
+  /** Render the limit on employment and other high stakes uses. */
+  showEmploymentUseLimit?: boolean
   /** One lane-specific sentence, for a boundary the shared constants do not cover. */
   note?: string
 }
@@ -30,6 +36,8 @@ export function ClaimBoundary({
   nonEndorsementOrgs,
   showFormative,
   showRaterValidation,
+  showOutcomePredictionLimit,
+  showEmploymentUseLimit,
   note,
 }: ClaimBoundaryProps) {
   const lines: string[] = []
@@ -42,6 +50,12 @@ export function ClaimBoundary({
   }
   if (showRaterValidation) {
     lines.push(RATER_VALIDATION_LIMITATION)
+  }
+  if (showOutcomePredictionLimit) {
+    lines.push(NO_OUTCOME_PREDICTION_LIMITATION)
+  }
+  if (showEmploymentUseLimit) {
+    lines.push(NO_EMPLOYMENT_USE_LIMITATION)
   }
   if (note) {
     lines.push(note)

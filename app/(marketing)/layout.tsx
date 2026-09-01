@@ -35,6 +35,10 @@ export default function MarketingLayout({
             description: `${CATEGORY_LINE} ${CATEGORY_DEFINITION} ${POSITIONING_AUDIENCE}`,
             foundingDate: "2024",
             knowsAbout: [
+              "Patient experience communication",
+              "Health system service standards",
+              "Clinical and educational debriefing",
+              "Healthcare workforce education",
               "Medical communication training",
               "Clinical simulation",
               "ACGME Milestones 2.0",

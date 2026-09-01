@@ -4,11 +4,11 @@
  */
 export const PAGE_DATE_MODIFIED = {
   evaluation: "2026-08-31",
-  faq: "2026-08-31",
+  faq: "2026-09-01",
   frameworks: "2026-08-31",
   glossary: "2026-08-18",
-  home: "2026-08-10",
+  home: "2026-09-01",
   insights: "2026-08-10",
   methodology: "2026-08-20",
-  research: "2026-08-31",
+  research: "2026-09-01",
 } as const

@@ -7,8 +7,8 @@ import { useState, useRef, useEffect, useSyncExternalStore } from "react"
 import { ChevronDown, Menu, X } from "lucide-react"
 import { BrandIcon } from "@/components/brand-icon"
 import { Button } from "@/components/ui/button"
-import { getAllAudiences } from "@/lib/audiences"
-import { getPublishedSolutions } from "@/lib/solutions"
+import { getAudiencesByMarket } from "@/lib/audiences"
+import { getSolutionsByMarket } from "@/lib/solutions"
 
 // Hover-open is wired up only for pointers that genuinely hover. On a touch
 // screen a tap fires mouseenter immediately before click, so the hover handler
@@ -50,14 +50,20 @@ export function SiteHeader() {
   const whoWeAreTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
   const helpDropdownRef = useRef<HTMLDivElement>(null)
   const helpTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
-  const audiences = getAllAudiences()
-  // Conversation pages first: they are what a buyer is looking for, and the learner-stage program
-  // pages read as a second, narrower list underneath. Relative order inside each group is the
-  // registry order.
-  const solutions = [...getPublishedSolutions()].sort((a, b) => {
-    if (a.category === b.category) return 0
-    return a.category === "conversation" ? -1 : 1
-  })
+  const audienceGroups = [
+    { label: "Health systems", items: getAudiencesByMarket("health-system") },
+    {
+      label: "Medical education",
+      items: getAudiencesByMarket("medical-education"),
+    },
+  ]
+  const solutionGroups = [
+    { label: "Health systems", items: getSolutionsByMarket("health-system") },
+    {
+      label: "Medical education",
+      items: getSolutionsByMarket("medical-education"),
+    },
+  ]
 
   const canHover = useSyncExternalStore(subscribeToHover, getHoverSnapshot, getHoverServerSnapshot)
 
@@ -252,16 +258,26 @@ export function SiteHeader() {
                longest item keeps the panel honest as titles get renamed. */
             <div className="dropdown-enter absolute top-full left-0 pt-2 w-max min-w-72 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
-              {solutions.map((solution) => (
-                <Link
-                  key={solution.slug}
-                  href={`/solutions/${solution.slug}`}
-                  className="flex items-center gap-3 px-4 py-2.5 hover:bg-cs-cloud/70 transition-colors"
-                  onClick={() => setSolutionsOpen(false)}
+              {solutionGroups.map((group, groupIndex) => (
+                <div
+                  key={group.label}
+                  className={groupIndex > 0 ? "border-t border-cs-gray/30 mt-1 pt-1" : ""}
                 >
-                  <BrandIcon name={solution.icon} size={16} className="shrink-0" />
-                  <span className="text-sm text-cs-dark-blue/85">{solution.title}</span>
-                </Link>
+                  <p className="px-4 pt-2 pb-1 text-xs font-medium uppercase tracking-[0.12em] text-cs-dark-gray">
+                    {group.label}
+                  </p>
+                  {group.items.map((solution) => (
+                    <Link
+                      key={solution.slug}
+                      href={`/solutions/${solution.slug}`}
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-cs-cloud/70 transition-colors"
+                      onClick={() => setSolutionsOpen(false)}
+                    >
+                      <BrandIcon name={solution.icon} size={16} className="shrink-0" />
+                      <span className="text-sm text-cs-dark-blue/85">{solution.title}</span>
+                    </Link>
+                  ))}
+                </div>
               ))}
               <div className="border-t border-cs-gray/30 mt-1 pt-1">
                 {/* The ROI calculator link is withheld pending a review of the
@@ -312,16 +328,26 @@ export function SiteHeader() {
             /* w-max for the same reason as the Use Cases panel above. */
             <div className="dropdown-enter absolute top-full left-0 pt-2 w-max min-w-72 z-50">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
-              {audiences.map((audience) => (
-                <Link
-                  key={audience.slug}
-                  href={`/audiences/${audience.slug}`}
-                  className="flex items-center gap-3 px-4 py-2.5 hover:bg-cs-cloud/70 transition-colors"
-                  onClick={() => setAudiencesOpen(false)}
+              {audienceGroups.map((group, groupIndex) => (
+                <div
+                  key={group.label}
+                  className={groupIndex > 0 ? "border-t border-cs-gray/30 mt-1 pt-1" : ""}
                 >
-                  <BrandIcon name={audience.icon} size={16} className="shrink-0" />
-                  <span className="text-sm text-cs-dark-blue/85">{audience.title}</span>
-                </Link>
+                  <p className="px-4 pt-2 pb-1 text-xs font-medium uppercase tracking-[0.12em] text-cs-dark-gray">
+                    {group.label}
+                  </p>
+                  {group.items.map((audience) => (
+                    <Link
+                      key={audience.slug}
+                      href={`/audiences/${audience.slug}`}
+                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-cs-cloud/70 transition-colors"
+                      onClick={() => setAudiencesOpen(false)}
+                    >
+                      <BrandIcon name={audience.icon} size={16} className="shrink-0" />
+                      <span className="text-sm text-cs-dark-blue/85">{audience.title}</span>
+                    </Link>
+                  ))}
+                </div>
               ))}
               <div className="border-t border-cs-gray/30 mt-1 pt-1">
                 <Link
@@ -457,16 +483,23 @@ export function SiteHeader() {
                 </button>
                 {mobileSolutionsOpen && (
                   <div className="pb-3 pl-2">
-                    {solutions.map((solution) => (
-                      <Link
-                        key={solution.slug}
-                        href={`/solutions/${solution.slug}`}
-                        className="flex items-center gap-3 px-3 py-2.5 text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <BrandIcon name={solution.icon} size={16} className="shrink-0" />
-                        <span className="text-sm">{solution.title}</span>
-                      </Link>
+                    {solutionGroups.map((group) => (
+                      <div key={group.label}>
+                        <p className="px-3 pt-3 pb-1 text-xs font-medium uppercase tracking-[0.12em] text-cs-dark-gray">
+                          {group.label}
+                        </p>
+                        {group.items.map((solution) => (
+                          <Link
+                            key={solution.slug}
+                            href={`/solutions/${solution.slug}`}
+                            className="flex items-center gap-3 px-3 py-2.5 text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <BrandIcon name={solution.icon} size={16} className="shrink-0" />
+                            <span className="text-sm">{solution.title}</span>
+                          </Link>
+                        ))}
+                      </div>
                     ))}
                     {/* ROI calculator link withheld; see the desktop dropdown above. */}
                     <Link
@@ -503,16 +536,23 @@ export function SiteHeader() {
                 </button>
                 {mobileAudiencesOpen && (
                   <div className="pb-3 pl-2">
-                    {audiences.map((audience) => (
-                      <Link
-                        key={audience.slug}
-                        href={`/audiences/${audience.slug}`}
-                        className="flex items-center gap-3 px-3 py-2.5 text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <BrandIcon name={audience.icon} size={16} className="shrink-0" />
-                        <span className="text-sm">{audience.title}</span>
-                      </Link>
+                    {audienceGroups.map((group) => (
+                      <div key={group.label}>
+                        <p className="px-3 pt-3 pb-1 text-xs font-medium uppercase tracking-[0.12em] text-cs-dark-gray">
+                          {group.label}
+                        </p>
+                        {group.items.map((audience) => (
+                          <Link
+                            key={audience.slug}
+                            href={`/audiences/${audience.slug}`}
+                            className="flex items-center gap-3 px-3 py-2.5 text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <BrandIcon name={audience.icon} size={16} className="shrink-0" />
+                            <span className="text-sm">{audience.title}</span>
+                          </Link>
+                        ))}
+                      </div>
                     ))}
                     <Link
                       href="/audiences"

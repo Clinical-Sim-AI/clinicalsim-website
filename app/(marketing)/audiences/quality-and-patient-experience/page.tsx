@@ -5,19 +5,19 @@ import { AudiencePageLayout } from "@/components/audience-page-layout"
 const audience = getAudienceBySlug("quality-and-patient-experience")!
 
 export const metadata: Metadata = {
-  title: { absolute: "Quality and patient experience leaders: HCAHPS communication" },
+  title: { absolute: "Patient experience communication training for health systems" },
   description:
-    "Patient experience is 25% of the Medicare value-based purchasing score, and five of the eight HCAHPS measures Medicare pays on are communication measures, about 15.6% of the total (CMS FY2026 IPPS). ClinicalSim gives clinicians voice-based practice on those conversations, with a rubric-scored record of every session.",
+    "Start with one unit and one service standard. Staff practice with AI patients, and leaders review named cohorts or anonymous unit results with transcript evidence behind each score.",
   openGraph: {
     title: "Quality and patient experience leaders | ClinicalSim.ai",
     description:
-      "Five of the eight HCAHPS measures tied to payment assess communication. ClinicalSim provides voice-based practice and does not predict HCAHPS outcomes.",
+      "Staff practice against the service standards the institution already uses. ClinicalSim provides named cohort or anonymous unit reports and does not predict patient outcomes.",
     url: "https://clinicalsim.ai/audiences/quality-and-patient-experience",
   },
   twitter: {
     title: "Quality and patient experience leaders | ClinicalSim.ai",
     description:
-      "Practice teach-back, discharge, diagnosis, and family conversations with a rubric-scored record from each simulated encounter.",
+      "Practice listening, explanation, teach back, and service behaviors with transcript evidence behind each score.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/audiences/quality-and-patient-experience",

@@ -1,4 +1,5 @@
 import type { BrandIconName } from "@/components/brand-icon"
+import type { Market } from "@/lib/positioning"
 
 export interface SolutionStage {
   /** Short label for the stage, e.g. "PGY-1", "M1/M2", "Giving feedback" */
@@ -40,12 +41,15 @@ export interface SolutionFramework {
 export interface SolutionClaimBoundary {
   formative: boolean
   raterValidation: boolean
+  noOutcomePrediction?: boolean
+  noEmploymentUse?: boolean
   /** A lane-specific boundary the shared constants do not cover. */
   note?: string
 }
 
 export interface Solution {
   slug: string
+  market: Market
   title: string
   shortTitle: string
   subtitle: string
@@ -191,6 +195,7 @@ const solutions: Solution[] = [
   // -------------------------------------------------------------------------
   {
     slug: "longitudinal-curriculum",
+    market: "medical-education",
     category: "program",
     title: "Residency and fellowship",
     shortTitle: "Residency and fellowship",
@@ -281,6 +286,7 @@ const solutions: Solution[] = [
   // -------------------------------------------------------------------------
   {
     slug: "undergraduate-medical-education",
+    market: "medical-education",
     category: "program",
     title: "Undergraduate medical education",
     shortTitle: "Medical school (UME)",
@@ -364,6 +370,7 @@ const solutions: Solution[] = [
   // -------------------------------------------------------------------------
   {
     slug: "faculty-development",
+    market: "medical-education",
     category: "program",
     title: "Faculty development",
     shortTitle: "Faculty development",
@@ -438,7 +445,225 @@ const solutions: Solution[] = [
   },
 
   // -------------------------------------------------------------------------
-  // Communication Remediation, bespoke page (RemediationPageLayout)
+  // Patient experience
+  // -------------------------------------------------------------------------
+  {
+    slug: "patient-experience",
+    market: "health-system",
+    category: "program",
+    title: "Patient experience and service standards",
+    shortTitle: "Patient experience",
+    subtitle: "Practice the behaviors behind listening, explanation, and respect",
+    icon: "chat-square-heart",
+    colorVariant: "accent",
+    lastUpdated: "2026-09-01",
+    cardBullets: [
+      "Score the service standards your institution already teaches",
+      "Quote the words behind each score",
+      "Review named cohorts or anonymous unit reports",
+    ],
+    metaTitle: "Patient experience communication training",
+    metaDescription:
+      "Nurses, clinicians, and patient facing staff practice with AI patients. ClinicalSim scores each encounter against your service standards and cites the transcript behind every score.",
+    heroHeadline: "Practice against the service standards your hospital already uses",
+    heroDescription:
+      "Nurses, clinicians, and patient facing staff speak with AI patients by voice. Each report scores the encounter against your approved standards and cites the words behind the score. ClinicalSim does not predict HCAHPS, Qualtrics, readmission, or other patient outcomes.",
+    stagesHeading: "Start with one unit and one behavior",
+    stagesIntro:
+      "A focused pilot can test whether staff show the behavior in simulation before an institution studies any link to patient feedback.",
+    stages: [
+      {
+        label: "Define",
+        title: "Use the standard already in place",
+        description:
+          "Add the service script, listening behavior, explanation standard, or teach back step your team already teaches. The rubric can recognize the intended behavior without demanding one exact sentence.",
+      },
+      {
+        label: "Practice",
+        title: "Give staff a patient conversation to rehearse",
+        description:
+          "Staff open a case in a browser, speak with an AI patient, and review their report. No app download, room booking, or faculty observer is required for practice.",
+      },
+      {
+        label: "Review",
+        title: "See the pattern without turning training into discipline",
+        description:
+          "Leaders can review named cohorts or anonymous unit results, while the person who practiced can see the transcript evidence behind the feedback.",
+      },
+    ],
+    valuePropsHeading: "What a patient experience team gets",
+    valueProps: [
+      {
+        title: "Your standards, scored as written",
+        description:
+          "ClinicalSim can score the behaviors in an approved service model, script, or rubric and give credit when the speaker conveys the same intent in natural language.",
+      },
+      {
+        title: "Evidence behind the score",
+        description:
+          "Each rating cites the words used in the encounter, so a coach can see what happened without listening to every recording.",
+      },
+      {
+        title: "Unit and cohort reporting",
+        description:
+          "Institutions can review named cohorts or anonymized unit results and use the pattern to choose the next training topic.",
+      },
+      {
+        title: "A clean research boundary",
+        description:
+          "Structured aggregate exports can support an approved comparison with institution held patient experience data. ClinicalSim does not treat that comparison as an established product outcome.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can ClinicalSim score our service scripts and standards?",
+        answer:
+          "Yes. The institution supplies the approved script, service model, or rubric, and ClinicalSim scores the defined behavior. The report can give credit for the intended meaning rather than require one exact sentence.",
+      },
+      {
+        question: "Can nurses and nonclinical staff use the same platform?",
+        answer:
+          "Yes. Nurses, environmental services staff, food service staff, transport staff, and other patient facing teams can use browser based cases designed for their role. Clinical content should stay limited to what that role would handle in practice.",
+      },
+      {
+        question: "Can leaders review results without seeing employee names?",
+        answer:
+          "Yes. An institution can use anonymous participant IDs and receive aggregate unit or cohort reports. Access to named reports should follow the institution's training policy and labor agreements.",
+      },
+      {
+        question: "Does ClinicalSim integrate with Qualtrics or predict HCAHPS?",
+        answer:
+          "ClinicalSim can provide structured aggregate exports for an institution to compare with its own Qualtrics or HCAHPS data under an approved study plan. It does not predict those scores, and no current evidence shows that a ClinicalSim score changes them.",
+      },
+      {
+        question: "Can these scores be used for employment decisions?",
+        answer:
+          "No. ClinicalSim output is formative and should not decide hiring, discipline, compensation, credentialing, privileging, or licensure. A health system pilot should set access, retention, and reporting rules before staff participate.",
+      },
+    ],
+    claimBoundary: {
+      formative: true,
+      raterValidation: true,
+      noOutcomePrediction: true,
+      noEmploymentUse: true,
+    },
+    glossarySlugs: ["teach-back-method"],
+    ctaHeadline: "Start with one team and one service standard",
+    ctaDescription:
+      "Bring the standard you already teach. We will map what a spoken encounter can score and define the reporting rules before the pilot begins.",
+  },
+
+  // -------------------------------------------------------------------------
+  // Clinical and educational debriefing
+  // -------------------------------------------------------------------------
+  {
+    slug: "debriefing",
+    market: "health-system",
+    category: "program",
+    title: "Clinical and educational debriefing",
+    shortTitle: "Debriefing",
+    subtitle: "Practice leading a debrief before the real event",
+    icon: "people-connected",
+    colorVariant: "light-blue",
+    lastUpdated: "2026-09-01",
+    cardBullets: [
+      "Rehearse clinical event and educational debriefs",
+      "Score against the framework your institution teaches",
+      "Track completion without turning practice scores into employment records",
+    ],
+    metaTitle: "Clinical and educational debriefing practice",
+    metaDescription:
+      "Clinicians and simulation faculty practice leading debriefs with AI participants. Reports score the encounter against the institution's framework and cite transcript evidence.",
+    heroHeadline: "Give debriefers a place to practice the conversation",
+    heroDescription:
+      "Clinicians and simulation faculty rehearse clinical event or educational debriefs with AI participants. The report scores the encounter against the institution's framework and cites the transcript. It does not assess the safety event itself.",
+    stagesHeading: "A debriefing program that can extend beyond the classroom",
+    stagesIntro:
+      "Teach the framework in person, then give each debriefer a repeatable place to practice and review the conversation.",
+    stages: [
+      {
+        label: "Learn",
+        title: "Teach one shared framework",
+        description:
+          "The institution defines the structure, behaviors, and boundaries it expects in a clinical event or educational debrief.",
+      },
+      {
+        label: "Rehearse",
+        title: "Lead the debrief by voice",
+        description:
+          "The debriefer speaks with AI participants who respond to the questions, pacing, and psychological safety created in the conversation.",
+      },
+      {
+        label: "Review",
+        title: "Use evidence for coaching and completion",
+        description:
+          "The participant reviews the report, and the institution can track who completed the training. Scores remain formative unless a separate validation plan supports another use.",
+      },
+    ],
+    valuePropsHeading: "What a debriefing program gets",
+    valueProps: [
+      {
+        title: "Clinical and educational cases",
+        description:
+          "Build separate practice for a clinical event debrief, a simulation debrief, or the basic skills both share.",
+      },
+      {
+        title: "Your framework in the rubric",
+        description:
+          "The report scores the structure and behaviors your institution teaches, with transcript evidence for each rating.",
+      },
+      {
+        title: "Practice after the course",
+        description:
+          "Participants can return from any browser after the in person session, without scheduling another faculty observer or simulation room.",
+      },
+      {
+        title: "Completion and cohort reporting",
+        description:
+          "Leaders can confirm who completed the training and review aggregate cohort patterns without using formative scores for employment decisions.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can the same program cover clinical event and educational debriefing?",
+        answer:
+          "Yes. The shared skills can sit in one program, while separate cases and rubrics address the different purpose, participants, and boundaries of each type of debrief.",
+      },
+      {
+        question: "Can we use our own debriefing framework?",
+        answer:
+          "Yes. The institution defines the framework and the behavior expected at each step. ClinicalSim scores the simulated conversation against those definitions and cites the transcript.",
+      },
+      {
+        question: "Can we track who completed the training?",
+        answer:
+          "Yes. An institution can receive a completion list without using the participant's formative score as an employment record. Named score access should follow the training policy set before launch.",
+      },
+      {
+        question: "Does a ClinicalSim debrief assess the real safety event?",
+        answer:
+          "No. It assesses the simulated debriefing conversation. It does not investigate the event, determine cause, judge clinical care, or replace the institution's patient safety process.",
+      },
+    ],
+    claimBoundary: {
+      formative: true,
+      raterValidation: true,
+      noOutcomePrediction: true,
+      noEmploymentUse: true,
+    },
+    glossarySlugs: [
+      "debriefing",
+      "pearls-debriefing",
+      "plus-delta-debriefing",
+      "psychological-safety-in-simulation",
+    ],
+    ctaHeadline: "Build the practice that follows your debriefing course",
+    ctaDescription:
+      "Bring the framework you teach. We will map it to a case, a rubric, and the completion report your institution needs.",
+  },
+
+  // -------------------------------------------------------------------------
+  // Informed consent
   // -------------------------------------------------------------------------
   // Lane 1 of the use case library (brief 2026-08-31). The strongest lane and the emptiest market:
   // following the informed consent policy was the single most cited patient rights finding in
@@ -456,6 +681,7 @@ const solutions: Solution[] = [
   //     and the 68.2% consent-delegation figure are deliberately absent.
   {
     slug: "informed-consent",
+    market: "health-system",
     category: "conversation",
     title: "Informed consent",
     shortTitle: "Informed consent",
@@ -608,6 +834,8 @@ const solutions: Solution[] = [
     claimBoundary: {
       formative: true,
       raterValidation: true,
+      noOutcomePrediction: true,
+      noEmploymentUse: true,
       note: "Practicing consent conversations in simulation has not been shown to reduce claims, reduce survey findings, improve patient recall, or change any accreditation score, and this page does not claim it does. The closest published attempt improved interns' confidence discussing benefits without moving total confidence (Journal of Surgical Education, 2023).",
     },
     relatedPostSlugs: ["breaking-bad-news-practice-not-knowledge"],
@@ -634,6 +862,7 @@ const solutions: Solution[] = [
   // Open item Ben still owes an answer on: retention and legal hold for practice recordings.
   {
     slug: "error-disclosure",
+    market: "health-system",
     category: "conversation",
     title: "Disclosing a medical error",
     shortTitle: "Error disclosure",
@@ -774,6 +1003,8 @@ const solutions: Solution[] = [
     claimBoundary: {
       formative: true,
       raterValidation: true,
+      noOutcomePrediction: true,
+      noEmploymentUse: true,
       note: "ClinicalSim has no evidence of any effect on malpractice claims, indemnity, defense cost, or time to resolution, and makes no such claim. The published evidence in this lane measures performance on the next simulated disclosure, which is what this page describes.",
     },
     relatedPostSlugs: ["breaking-bad-news-practice-not-knowledge"],
@@ -783,6 +1014,7 @@ const solutions: Solution[] = [
   },
   {
     slug: "remediation",
+    market: "medical-education",
     category: "program",
     title: "Communication remediation",
     shortTitle: "Remediation",
@@ -826,6 +1058,10 @@ export function getSolutionBySlug(slug: string): Solution | undefined {
  */
 export function getPublishedSolutions(): Solution[] {
   return solutions.filter((s) => !s.unpublished)
+}
+
+export function getSolutionsByMarket(market: Market): Solution[] {
+  return getPublishedSolutions().filter((solution) => solution.market === market)
 }
 
 /**

@@ -6,28 +6,32 @@ import { AuthorByline } from "@/components/author-byline"
 import { JsonLd } from "@/components/json-ld"
 import { getAllAuthors, getAuthorUrl } from "@/lib/authors"
 import { ArrowRight } from "lucide-react"
-import { POSITIONING_ONE_LINER } from "@/lib/positioning"
+import {
+  CATEGORY_LINE,
+  POSITIONING_LONG,
+  POSITIONING_ONE_LINER,
+} from "@/lib/positioning"
 
 export const metadata: Metadata = {
-  title: { absolute: "About ClinicalSim.ai: AI clinical simulation for medical communication" },
-  description: POSITIONING_ONE_LINER,
+  title: { absolute: "About ClinicalSim.ai: communication intelligence for health systems" },
+  description: POSITIONING_LONG,
   openGraph: {
     title: "About ClinicalSim.ai",
     description:
-      "Learners practice high-stakes conversations with AI patients, and faculty can inspect the transcript evidence behind each score.",
+      "Healthcare teams practice high-stakes conversations with AI patients, and leaders can inspect the transcript evidence behind each score.",
     url: "https://clinicalsim.ai/about",
   },
   twitter: {
     title: "About ClinicalSim.ai",
     description:
-      "Learners practice high-stakes conversations with AI patients, and faculty can inspect the transcript evidence behind each score.",
+      "Healthcare teams practice high-stakes conversations with AI patients, and leaders can inspect the transcript evidence behind each score.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/about",
   },
 }
 
-const LAST_UPDATED = "2026-08-10"
+const LAST_UPDATED = "2026-09-01"
 
 export default function AboutPage() {
   const team = getAllAuthors()
@@ -41,7 +45,7 @@ export default function AboutPage() {
             "@type": "WebPage",
             name: "About ClinicalSim.ai",
             description:
-              "ClinicalSim gives learners voice-based practice with AI patients and gives faculty transcript evidence behind rubric-scored feedback.",
+              POSITIONING_LONG,
             url: "https://clinicalsim.ai/about",
             dateModified: LAST_UPDATED,
             isPartOf: {
@@ -104,10 +108,10 @@ export default function AboutPage() {
             About ClinicalSim
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
-            Practice the conversations that matter most.
+            {CATEGORY_LINE}
           </h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-2xl">
-            Learners are expected to lead high-stakes conversations before they have had enough chances to practice them. ClinicalSim gives them voice-based rehearsal with AI patients and gives faculty the evidence behind each score.
+            {POSITIONING_ONE_LINER} Institutions can use their own service standards, policies, and rubrics, then review results by person, cohort, or anonymous unit.
           </p>
         </div>
       </section>
@@ -120,7 +124,13 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
             <p>
-              Clinicians rehearse procedures until a supervisor is satisfied. Communication rarely gets the same treatment. A family meeting or diagnosis disclosure happens once, with a real person, and faculty cannot attend every practice encounter. ClinicalSim gives learners more chances to practice and gives programs a consistent record of what happened.
+              ClinicalSim began when Gillian Brennan, a neonatologist and simulation leader, asked Ben Conway for a way residents and fellows could rehearse high-stakes conversations and get useful feedback right away. Ben built the first version as a research project. Interest from other programs showed that the same problem reached far beyond one fellowship.
+            </p>
+            <p>
+              Ben brought experience building enterprise software, and Lauren Rissman brought the daily view of a pediatric critical care and palliative care physician. They built ClinicalSim around a simple standard: people need room to practice, and the person reviewing the work needs to see the words behind the score.
+            </p>
+            <p>
+              ClinicalSim now gives institutions a repeatable way to practice those behaviors and inspect the evidence. It does not claim that a simulation score predicts a patient outcome.
             </p>
           </div>
         </div>
@@ -136,17 +146,17 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
             <p>
-              Learners talk through high-stakes encounters by voice with AI patients, practicing the range of conversations their training demands. They practice from any device, on their own time, as many times as they need. There&apos;s no sim center to book, no standardized patient to schedule, and no app to install. The specific scenarios, by specialty and setting, live on our{" "}
+              Clinicians and patient facing staff talk with AI patients by voice from any device. The cases can cover clinical conversations, patient service standards, and debriefing. There&apos;s no app to install, room to book, or faculty observer required for practice. The current programs and conversations live on our{" "}
               <Link href="/solutions" className="text-cs-dark-blue font-medium underline decoration-cs-dark-blue/30 hover:decoration-cs-dark-blue underline-offset-4 transition-colors">
                 use cases page
               </Link>
               .
             </p>
             <p>
-              Every session produces rubric-scored feedback mapped to the competency and communication frameworks named on the case. Directors and faculty can assign cases, review reports, and follow practice over time.
+              Every session produces feedback scored against the standard named on the case, with transcript evidence behind each rating. Leaders can review an individual, a named cohort, or an anonymous unit view based on the access rules set before launch.
             </p>
             <p className="text-cs-dark-blue font-normal">
-              ClinicalSim extends standardized patient programs. It adds repeatable practice between live encounters and another source of evidence for faculty review. It does not replace live assessment or human judgment.
+              ClinicalSim extends standardized patient programs. It adds repeatable practice between live encounters and another source of evidence for review. It does not replace live assessment or human judgment.
             </p>
           </div>
         </div>
@@ -158,11 +168,11 @@ export default function AboutPage() {
       <section className="px-6 py-16 md:py-20 bg-cs-cloud">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 leading-tight">
-            Built for how programs actually run
+            Built for how institutions actually run
           </h2>
           <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
             <p>
-              ClinicalSim runs in the browser, so there is nothing to install. Every session generates a timestamped report tied to the frameworks named on the case and the evidence in the transcript. Directors and faculty can assign cases, review progress, and export reports from one dashboard.
+              ClinicalSim runs in the browser, so there is nothing to install. Every session generates a timestamped report tied to the standard named on the case and the evidence in the transcript. Leaders can assign cases, review progress, and export reports from one dashboard.
             </p>
             <p>
               Every case uses a synthetic patient written from clinical literature rather than a patient record. The product still handles learner recordings, transcripts, account data, and institutional data, which require protection.
@@ -211,10 +221,10 @@ export default function AboutPage() {
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-4 text-white">
-            Give learners practice before the conversation is real
+            Start with one team and one standard
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90 max-w-3xl mx-auto">
-            Tell us which learners and conversations matter most in your program. We will show you what one pilot cycle could look like.
+            Tell us who would practice, what standard you already use, and how the results should be reported. We will show you what one pilot cycle could look like.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/contact">

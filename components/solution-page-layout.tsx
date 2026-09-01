@@ -240,7 +240,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                   {solution.valuePropsHeading ?? "One program view"}
                 </h2>
                 <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
-                  The engine and dashboard stay consistent while each case uses the frameworks that fit the learner and task.
+                  The platform stays consistent while each case uses the standards that fit the person, role, and task.
                 </p>
               </div>
 
@@ -392,6 +392,10 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
         nonEndorsementOrgs={solution.nonEndorsementOrgs}
         showFormative={solution.claimBoundary?.formative}
         showRaterValidation={solution.claimBoundary?.raterValidation}
+        showOutcomePredictionLimit={
+          solution.claimBoundary?.noOutcomePrediction
+        }
+        showEmploymentUseLimit={solution.claimBoundary?.noEmploymentUse}
         note={solution.claimBoundary?.note}
       />
 
@@ -417,7 +421,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                 className="border-white/30 bg-transparent text-white hover:bg-white/10"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                All Use Cases
+                All use cases
               </Button>
             </Link>
           </div>

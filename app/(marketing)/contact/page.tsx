@@ -11,15 +11,15 @@ import { BrandIcon } from "@/components/brand-icon"
 
 export const metadata: Metadata = {
   title: "Contact us: request a pilot",
-  description: "Tell ClinicalSim who would practice, which high-stakes conversations matter most, and what your program needs to measure.",
+  description: "Tell ClinicalSim which team would practice, what standard you already use, and how your institution needs the results reported.",
   openGraph: {
     title: "Contact ClinicalSim.ai",
-    description: "Tell us about the learners, conversations, and measures that matter to your program.",
+    description: "Tell us about the team, communication standard, and reporting needs for your pilot.",
     url: "https://clinicalsim.ai/contact",
   },
   twitter: {
     title: "Contact ClinicalSim.ai",
-    description: "Request a pilot or talk with us about your program.",
+    description: "Request a health system or medical education pilot.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/contact",
@@ -36,7 +36,7 @@ export default function ContactPage() {
             "@type": "ContactPage",
             name: "Contact ClinicalSim.ai",
             description:
-              "Tell ClinicalSim who would practice, which high-stakes conversations matter most, and what the program needs to measure.",
+              "Tell ClinicalSim which team would practice, what standard the institution already uses, and how the results should be reported.",
             url: "https://clinicalsim.ai/contact",
             mainEntity: {
               "@type": "Organization",
@@ -75,23 +75,23 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             {/* Contact Info */}
             <div>
-              <h1 className="text-4xl md:text-5xl font-light mb-6">Tell us about your program</h1>
+              <h1 className="text-4xl md:text-5xl font-light mb-6">Tell us about the team and the standard</h1>
               <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-cs-cloud">
-                If you are considering a pilot, tell us who would practice,
-                which conversations matter most, and what you need to measure.
-                We usually reply within two business days.
+                Tell us who would practice, which conversation or service
+                behavior matters, what standard you already use, and who should
+                see the results. We usually reply within two business days.
               </p>
 
               <div className="space-y-6">
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-xl font-medium mb-2">What to include</h3>
                   <p className="text-base font-light text-cs-cloud">
-                    Include your learner group, program size, and the communication problem you are trying to solve.
+                    Include the team or unit, the approximate participant count, the standard or policy you already teach, and any reporting or privacy limits.
                   </p>
                 </div>
 
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-xl font-medium mb-2">Rather look first?</h3>
+                  <h3 className="text-xl font-medium mb-2">Review the product first</h3>
                   <p className="text-base font-light text-cs-cloud mb-4">
                     The example encounters run a full session end to end, including the
                     transcript and the feedback report the learner received. The
@@ -175,6 +175,42 @@ export default function ContactPage() {
                 />
               </div>
 
+              <div>
+                <Label htmlFor="team" className="text-white text-base font-normal mb-2 block">
+                  Team or department
+                </Label>
+                <select
+                  id="team"
+                  name="team"
+                  defaultValue=""
+                  className="flex h-10 w-full rounded-lg border-2 border-white/30 bg-white/10 px-3 py-2 text-sm text-white focus:border-cs-electric focus:outline-none"
+                >
+                  <option value="" disabled className="text-cs-dark-blue">
+                    Select a team
+                  </option>
+                  <option value="patient-experience" className="text-cs-dark-blue">Patient experience</option>
+                  <option value="risk-safety" className="text-cs-dark-blue">Risk and patient safety</option>
+                  <option value="nursing-education" className="text-cs-dark-blue">Nursing education</option>
+                  <option value="simulation" className="text-cs-dark-blue">Simulation center</option>
+                  <option value="gme" className="text-cs-dark-blue">Graduate medical education</option>
+                  <option value="ume" className="text-cs-dark-blue">Undergraduate medical education</option>
+                  <option value="other" className="text-cs-dark-blue">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <Label htmlFor="pilotGroupSize" className="text-white text-base font-normal mb-2 block">
+                  Approximate pilot group size
+                </Label>
+                <Input
+                  id="pilotGroupSize"
+                  name="pilotGroupSize"
+                  inputMode="numeric"
+                  placeholder="For example, one unit or 25 participants"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
+                />
+              </div>
+
               {/* Message Field */}
               <div>
                 <Label htmlFor="message" className="text-white text-base font-normal mb-2 block">
@@ -183,11 +219,11 @@ export default function ContactPage() {
                 <Textarea
                   name="message"
                   rows={6}
-                  placeholder="Tell us who would practice, which conversations matter most, and what you need to measure."
+                  placeholder="Tell us what people should practice, which standard or policy you already use, and how the results should be reported."
                   required
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 resize-none rounded-lg"
                 />
-                <p className="text-xs text-white/70 mt-2 font-light">Include your learner group, program size, and the communication problem you are trying to solve.</p>
+                <p className="text-xs text-white/70 mt-2 font-light">Include any need for anonymous unit reporting, named completion records, or an approved research comparison.</p>
               </div>
 
               {/* Newsletter Checkbox */}
@@ -223,7 +259,7 @@ export default function ContactPage() {
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">Other ways to work with us</h2>
           <p className="text-lg text-cs-dark-blue/70 font-light text-center mb-12 max-w-2xl mx-auto">
-            Request a pilot, propose a study, or tell us about a specific curriculum partnership.
+            Request a pilot, propose a study, or tell us about a case and rubric partnership.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -233,8 +269,7 @@ export default function ContactPage() {
               </div>
               <h3 className="text-xl font-medium text-cs-navy mb-3">Pilot program</h3>
               <p className="text-cs-dark-blue/85 font-light leading-relaxed">
-                We&apos;re piloting with medical schools, residency programs, and fellowships looking to standardize communication
-                training and remediation with structured, milestone-aligned practice.
+                Health system and medical education teams can begin with one group, one conversation, and one reporting question before they expand.
               </p>
             </div>
 
@@ -244,7 +279,7 @@ export default function ContactPage() {
               </div>
               <h3 className="text-xl font-medium text-cs-navy mb-3">Partnerships</h3>
               <p className="text-cs-dark-blue/85 font-light leading-relaxed">
-                We consider case development and curriculum partnerships with medical schools and health systems. Tell us the learner group and work you want to share.
+                We consider case, rubric, and curriculum partnerships with medical schools and health systems. Tell us the standard and work you want to share.
               </p>
             </div>
 

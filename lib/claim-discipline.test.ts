@@ -3,6 +3,8 @@ import { describe, expect, it } from "vitest"
 import { getAllAudiences } from "./audiences"
 import {
   BANNED_CLAIM_PATTERNS,
+  NO_EMPLOYMENT_USE_LIMITATION,
+  NO_OUTCOME_PREDICTION_LIMITATION,
   NON_ENDORSEMENT_TRIGGERS,
 } from "./claim-discipline"
 import { getAllComparisons } from "./comparisons"
@@ -69,6 +71,17 @@ const REGISTRIES: { name: string; entries: { slug: string; value: unknown }[] }[
 ]
 
 describe("claim discipline", () => {
+  describe("health system limits", () => {
+    it("publishes plain limits on outcome prediction and employment use", () => {
+      expect(NO_OUTCOME_PREDICTION_LIMITATION).toContain(
+        "does not predict patient experience scores",
+      )
+      expect(NO_EMPLOYMENT_USE_LIMITATION).toContain(
+        "must not be used for employment decisions",
+      )
+    })
+  })
+
   describe("conversation pages carry their limitations", () => {
     it("every conversation page declares a claim boundary and its non-endorsement orgs", () => {
       const violations: string[] = []
@@ -101,6 +114,29 @@ describe("claim discipline", () => {
     })
   })
 
+  describe("health system pages carry workforce and outcome limits", () => {
+    it("requires both limits on every health system solution", () => {
+      const violations: string[] = []
+
+      for (const solution of getAllSolutions()) {
+        if (solution.market !== "health-system") continue
+
+        if (solution.claimBoundary?.noOutcomePrediction !== true) {
+          violations.push(
+            `${solution.slug}: claimBoundary.noOutcomePrediction must be true`,
+          )
+        }
+        if (solution.claimBoundary?.noEmploymentUse !== true) {
+          violations.push(
+            `${solution.slug}: claimBoundary.noEmploymentUse must be true`,
+          )
+        }
+      }
+
+      expect(violations).toEqual([])
+    })
+  })
+
   describe("banned claims", () => {
     it("no registry string makes a claim we cannot substantiate", () => {
       const violations: string[] = []
@@ -120,7 +156,7 @@ describe("claim discipline", () => {
                 if (isNegated(text, match.index)) continue
 
                 violations.push(
-                  `${registry.name} ${path}: "${match[0]}" — ${why}`,
+                  `${registry.name} ${path}: "${match[0]}". ${why}`,
                 )
               }
             }

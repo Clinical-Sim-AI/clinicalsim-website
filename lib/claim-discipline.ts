@@ -58,6 +58,12 @@ export const FORMATIVE_USE_LIMITATION =
 export const RATER_VALIDATION_LIMITATION =
   "Consistency between model runs is not the same thing as agreement with expert human raters. Faculty-rater validation on a customer's own rubric is the gate before any high-stakes use, and that work has not been done."
 
+export const NO_OUTCOME_PREDICTION_LIMITATION =
+  "ClinicalSim does not predict patient experience scores, readmissions, safety events, claims, or other clinical or business outcomes. Any comparison with institution-held outcome data requires a separate study plan."
+
+export const NO_EMPLOYMENT_USE_LIMITATION =
+  "Formative scores must not be used for employment decisions, discipline, compensation, credentialing, privileging, or licensure. Institutions should set access, retention, and reporting rules before staff participate."
+
 /**
  * Consistent with the published /faq answer. A "replaces SPs" line on any page contradicts it and
  * antagonizes the simulation directors who are the internal champions.
