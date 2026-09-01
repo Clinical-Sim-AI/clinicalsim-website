@@ -5,6 +5,8 @@ import { AudienceCard } from "@/components/audience-card"
 import { SectionDivider } from "@/components/section-divider"
 import { getAllAudiences, getAudiencesByMarket } from "@/lib/audiences"
 import { JsonLd } from "@/components/json-ld"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
 import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -88,7 +90,8 @@ export default function AudiencesPage() {
         ]}
       />
       {/* Hero Section */}
-      <section className="relative px-6 py-16 md:py-24 text-center bg-cs-dark-blue text-white">
+      <section className="relative overflow-hidden px-6 py-16 md:py-24 text-center bg-cs-dark-blue text-white">
+        <Waveform seed="audiences" align="edges" opacity={0.17} />
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
             One communication platform, built for the teams responsible for the standard
@@ -155,7 +158,7 @@ export default function AudiencesPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed="audiences">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             See how ClinicalSim fits your institution
@@ -177,7 +180,7 @@ export default function AudiencesPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

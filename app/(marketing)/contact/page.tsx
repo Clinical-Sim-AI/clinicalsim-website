@@ -8,6 +8,7 @@ import Link from "next/link"
 import { JsonLd } from "@/components/json-ld"
 import { ArrowRight } from "lucide-react"
 import { BrandIcon } from "@/components/brand-icon"
+import { Waveform } from "@/components/waveform"
 
 export const metadata: Metadata = {
   title: "Contact us: request a pilot",
@@ -70,8 +71,9 @@ export default function ContactPage() {
         ]}
       />
       {/* Contact Hero Section */}
-      <section className="bg-cs-dark-blue text-white py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-6 md:px-12">
+      <section className="relative overflow-hidden bg-cs-dark-blue text-white py-16 md:py-24">
+        <Waveform seed="contact" align="right" opacity={0.17} />
+        <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             {/* Contact Info */}
             <div>

@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { Waveform } from "@/components/waveform"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import type { FaqItem } from "@/lib/types"
 import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb, Presentation, MapPin, Calendar } from "lucide-react"
@@ -240,8 +241,9 @@ export default function ResearchPage() {
       />
 
       {/* Hero Section */}
-      <section className="bg-cs-dark-blue text-white py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-6 md:px-12">
+      <section className="relative overflow-hidden bg-cs-dark-blue text-white py-16 md:py-24">
+        <Waveform seed="research" align="right" opacity={0.17} />
+        <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             {/* Research Info */}
             <div>

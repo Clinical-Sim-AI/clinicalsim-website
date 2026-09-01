@@ -3,6 +3,8 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
 import { getAllComparisons } from "@/lib/comparisons"
 
 export const metadata: Metadata = {
@@ -76,7 +78,8 @@ export default function CompareIndexPage() {
       <JsonLd data={jsonLd} />
 
       {/* Hero */}
-      <section className="relative text-center px-6 pt-20 pb-16 md:pt-28 md:pb-24 bg-cs-dark-blue text-white">
+      <section className="relative overflow-hidden text-center px-6 pt-20 pb-16 md:pt-28 md:pb-24 bg-cs-dark-blue text-white">
+        <Waveform seed="compare" align="edges" opacity={0.17} />
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight leading-[1.08] text-balance text-white">
             Compare communication training methods
@@ -114,7 +117,7 @@ export default function CompareIndexPage() {
       </section>
 
       {/* CTA */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed="compare">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-6">
             Choose the method by the job
@@ -128,7 +131,7 @@ export default function CompareIndexPage() {
             </button>
           </Link>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

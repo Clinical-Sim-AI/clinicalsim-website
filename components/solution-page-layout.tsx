@@ -3,10 +3,12 @@ import { ArrowLeft, ArrowRight, ChevronRight, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
+import { Waveform } from "@/components/waveform"
 import { JsonLd } from "@/components/json-ld"
 import { GlossaryTermLinks } from "@/components/glossary-term-links"
 import { ClaimBoundary } from "@/components/claim-boundary"
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
+import { WaveformBand } from "@/components/waveform-band"
 import { cn, formatIsoMonth } from "@/lib/utils"
 import { type Solution } from "@/lib/solutions"
 import { getPostBySlug } from "@/lib/posts"
@@ -32,6 +34,17 @@ const stageBadge = {
   "light-blue": "bg-cs-light-blue text-cs-dark-blue",
 }
 
+/**
+ * The hero band is dark blue, so the `blue` chip would be the same color as the
+ * band it sits on. Every variant also gets a hairline ring, since navy on dark
+ * blue is legible but weak without one. The pills further down the page keep
+ * using `stageBadge`, which is why this is a second map rather than an edit.
+ */
+const heroBadge = {
+  ...stageBadge,
+  blue: "bg-cs-navy text-white",
+}
+
 interface SolutionPageLayoutProps {
   solution: Solution
 }
@@ -40,6 +53,21 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
   const relatedPosts = (solution.relatedPostSlugs ?? [])
     .map((slug) => getPostBySlug(slug))
     .filter(Boolean)
+
+  /**
+   * SectionDivider paints a filled wedge over a transparent ground, and the
+   * marketing layout behind it is white. Under the dark hero the wedge's
+   * negative space would show white and eat the band's bottom edge, so
+   * whichever optional block renders first has to carry the hero's color.
+   */
+  const optionalBlocks = [
+    (solution.stages?.length ?? 0) > 0,
+    (solution.valueProps?.length ?? 0) > 0,
+    (solution.frameworks?.length ?? 0) > 0,
+    (solution.faqs?.length ?? 0) > 0,
+  ]
+  const underHero = (index: number) =>
+    optionalBlocks.slice(0, index).some(Boolean) ? undefined : "bg-cs-dark-blue"
 
   const faqJsonLd =
     solution.faqs && solution.faqs.length > 0
@@ -105,30 +133,30 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       />
 
       {/* Hero */}
-      <section className="relative px-6 pt-4 md:pt-6 pb-4 md:pb-6">
-        <div className="absolute inset-0 bg-cs-cloud -z-10" />
+      <section className="relative overflow-hidden px-6 py-12 md:py-16 bg-cs-dark-blue text-white">
+        <Waveform seed={solution.slug} align="right" opacity={0.15} />
 
-        <div className="max-w-4xl mx-auto">
-          <nav className="flex items-center gap-2 text-sm text-cs-dark-gray mb-8">
-            <Link href="/" className="hover:text-cs-dark-blue/85 transition-colors">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <nav className="flex items-center gap-2 text-sm text-cs-cloud/70 mb-8">
+            <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
             <ChevronRight className="w-4 h-4" />
             <Link
               href="/solutions"
-              className="hover:text-cs-dark-blue/85 transition-colors"
+              className="hover:text-white transition-colors"
             >
               Use Cases
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-cs-dark-blue/85">{solution.title}</span>
+            <span className="text-white">{solution.title}</span>
           </nav>
 
           <div className="flex items-center gap-3 mb-6">
             <span
               className={cn(
-                "w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0",
-                stageBadge[solution.colorVariant]
+                "w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ring-1 ring-white/15",
+                heroBadge[solution.colorVariant]
               )}
             >
               <BrandIcon
@@ -142,23 +170,23 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                 size={26}
               />
             </span>
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray">
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-electric">
               {solution.shortTitle}
             </p>
           </div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6 text-white">
             {solution.heroHeadline}
           </h1>
 
           {solution.lastUpdated && (
-            <p className="text-sm text-cs-gray font-light mb-4">
+            <p className="text-sm text-cs-cloud/60 font-light mb-4">
               Last updated:{" "}
               {formatIsoMonth(solution.lastUpdated)}
             </p>
           )}
 
-          <p className="text-lg md:text-xl text-cs-dark-blue font-light leading-relaxed mb-8 max-w-3xl">
+          <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-8 max-w-3xl">
             {solution.heroDescription}
           </p>
 
@@ -169,7 +197,10 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
               </Button>
             </Link>
             <Link href="/solutions">
-              <Button variant="secondary" size="lg">
+              <Button
+                size="lg"
+                className="border border-white/25 bg-transparent font-medium text-white hover:bg-white/10"
+              >
                 See all use cases
               </Button>
             </Link>
@@ -180,7 +211,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* Stages / progression arc */}
       {solution.stages && solution.stages.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-down" color="white" />
+          <SectionDivider variant="diagonal-down" color="white" className={underHero(0)} />
 
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
@@ -231,7 +262,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* What you get */}
       {solution.valueProps && solution.valueProps.length > 0 && (
         <>
-          <SectionDivider variant="wave" color="white" />
+          <SectionDivider variant="wave" color="white" className={underHero(1)} />
 
           <section className="px-6 py-8 md:py-10 bg-cs-cloud">
             <div className="max-w-6xl mx-auto">
@@ -269,7 +300,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* Frameworks this lane scores against */}
       {solution.frameworks && solution.frameworks.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-up" color="white" />
+          <SectionDivider variant="diagonal-up" color="white" className={underHero(2)} />
 
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
@@ -318,7 +349,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* FAQs */}
       {solution.faqs && solution.faqs.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-up" color="white" />
+          <SectionDivider variant="diagonal-up" color="white" className={underHero(3)} />
 
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
@@ -400,7 +431,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       />
 
       {/* Final CTA */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed={solution.slug}>
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             {solution.ctaHeadline}
@@ -426,7 +457,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
             </Link>
           </div>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

@@ -4,6 +4,8 @@ import { getAllPosts } from "@/lib/posts"
 import { getAuthorById, TEAM_AUTHOR_ID } from "@/lib/authors"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
 import { BookOpen } from "lucide-react"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { formatIsoDay } from "@/lib/utils"
@@ -98,7 +100,8 @@ export default function InsightsPage() {
     <>
       <JsonLd data={insightsJsonLd} />
       {/* Hero */}
-      <section className="relative text-center px-6 pt-20 pb-16 md:pt-28 md:pb-24 bg-cs-dark-blue text-white">
+      <section className="relative overflow-hidden text-center px-6 pt-20 pb-16 md:pt-28 md:pb-24 bg-cs-dark-blue text-white">
+        <Waveform seed="insights" align="edges" opacity={0.17} />
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight leading-[1.08] text-balance text-white">Evidence and practical guidance for clinical communication training</h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed">
@@ -220,7 +223,7 @@ export default function InsightsPage() {
       )}
 
       {/* CTA Section */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed="insights">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-4">Get new research and product updates</h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
@@ -232,7 +235,7 @@ export default function InsightsPage() {
             </button>
           </Link>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

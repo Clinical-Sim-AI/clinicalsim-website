@@ -9,8 +9,18 @@ import { GlossaryTermLinks } from "@/components/glossary-term-links"
 import { type Audience } from "@/lib/audiences"
 import { getPostBySlug } from "@/lib/posts"
 import { getSolutionBySlug } from "@/lib/solutions"
-import { type BrandIconName } from "@/components/brand-icon"
-import { formatIsoMonth } from "@/lib/utils"
+import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
+import { cn, formatIsoMonth } from "@/lib/utils"
+
+/** Mirrors solution-page-layout's hero chip: `blue` would vanish on the band. */
+const heroBadge = {
+  accent: "bg-cs-electric text-cs-dark-blue",
+  navy: "bg-cs-navy text-white",
+  blue: "bg-cs-navy text-white",
+  "light-blue": "bg-cs-light-blue text-cs-dark-blue",
+}
 
 const valuePropBrandIcons: Array<BrandIconName | null> = [
   "ribbon-check",
@@ -100,31 +110,54 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
         ]}
       />
       {/* Hero Section */}
-      <section className="relative px-6 pt-4 md:pt-6 pb-4 md:pb-6">
-        <div className="absolute inset-0 bg-cs-cloud -z-10" />
+      <section className="relative overflow-hidden px-6 py-12 md:py-16 bg-cs-dark-blue text-white">
+        <Waveform seed={audience.slug} align="right" opacity={0.15} />
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto relative z-10">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-cs-dark-gray mb-8">
-            <Link href="/audiences" className="hover:text-cs-dark-blue/85 transition-colors">
+          <nav className="flex items-center gap-2 text-sm text-cs-cloud/70 mb-8">
+            <Link href="/audiences" className="hover:text-white transition-colors">
               Who We Serve
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-cs-dark-blue/85">{audience.title}</span>
+            <span className="text-white">{audience.title}</span>
           </nav>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6">
+          <div className="flex items-center gap-3 mb-6">
+            <span
+              className={cn(
+                "w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ring-1 ring-white/15",
+                heroBadge[audience.colorVariant]
+              )}
+            >
+              <BrandIcon
+                name={audience.icon}
+                color={
+                  audience.colorVariant === "accent" ||
+                  audience.colorVariant === "light-blue"
+                    ? "dark"
+                    : "white"
+                }
+                size={26}
+              />
+            </span>
+            <p className="text-sm font-medium uppercase tracking-[0.16em] text-cs-electric">
+              {audience.shortTitle}
+            </p>
+          </div>
+
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6 text-white">
             {audience.heroHeadline}
           </h1>
 
           {audience.lastUpdated && (
-            <p className="text-sm text-cs-gray font-light mb-4">
+            <p className="text-sm text-cs-cloud/60 font-light mb-4">
               Last updated:{" "}
               {formatIsoMonth(audience.lastUpdated)}
             </p>
           )}
 
-          <p className="text-base md:text-lg text-cs-dark-blue font-light leading-relaxed mb-8 max-w-3xl">
+          <p className="text-base md:text-lg text-cs-cloud font-light leading-relaxed mb-8 max-w-3xl">
             {audience.heroDescription}
           </p>
 
@@ -138,7 +171,11 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
         </div>
       </section>
 
-      <SectionDivider variant="diagonal-down" color="white" />
+      <SectionDivider
+        variant="diagonal-down"
+        color="white"
+        className="bg-cs-dark-blue"
+      />
 
       {/* Pain Points - "What's at stake" */}
       <section className="px-6 py-8 md:py-10 bg-white">
@@ -361,7 +398,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
       <GlossaryTermLinks slugs={audience.glossarySlugs} />
 
       {/* Final CTA */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed={audience.slug}>
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             {audience.ctaHeadline}
@@ -383,7 +420,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             </Link>
           </div>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

@@ -4,6 +4,7 @@ import { JsonLd } from "@/components/json-ld"
 import { AuthorByline } from "@/components/author-byline"
 import { AuthorBio } from "@/components/author-bio"
 import { getAuthorById, getAuthorUrl, TEAM_AUTHOR_ID } from "@/lib/authors"
+import { Waveform } from "@/components/waveform"
 import { formatIsoDay } from "@/lib/utils"
 import type { Post } from "@/lib/posts"
 
@@ -101,6 +102,12 @@ export function ArticleLayout({
           <ArrowLeft className="w-4 h-4" />
           Back to Insights
         </Link>
+
+        {/* Lead card. Gives the article a visual and the insights index
+            something to show besides a bare title. */}
+        <div className="relative mb-8 aspect-[2/1] w-full overflow-hidden rounded-xl bg-cs-dark-blue">
+          <Waveform seed={post.slug} variant="bars" align="center" opacity={0.22} />
+        </div>
 
         <div className="mb-10">
           <div className="flex items-center gap-3 text-sm text-cs-dark-gray font-light mb-4">

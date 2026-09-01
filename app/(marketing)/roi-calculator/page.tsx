@@ -6,6 +6,8 @@ import { Calculator } from "@/components/roi/Calculator"
 import { JsonLd } from "@/components/json-ld"
 import { SectionDivider } from "@/components/section-divider"
 import { Button } from "@/components/ui/button"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
 
 const URL = "https://clinicalsim.ai/roi-calculator"
 
@@ -80,6 +82,7 @@ export default function RoiCalculatorPage() {
       {/* Hero                                                                */}
       {/* ------------------------------------------------------------------ */}
       <section className="relative overflow-hidden bg-cs-dark-blue px-6 py-16 text-white md:py-24">
+        <Waveform seed="roi-calculator" align="edges" opacity={0.17} />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <p className="mb-6 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-cs-electric md:text-sm">
             <span
@@ -148,7 +151,7 @@ export default function RoiCalculatorPage() {
       {/* ------------------------------------------------------------------ */}
       <SectionDivider variant="diagonal-up" color="cloud" />
 
-      <section className="bg-cs-dark-blue px-6 py-16 text-white md:py-20">
+      <WaveformBand seed="roi-calculator">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="mb-6 text-3xl font-light md:text-4xl lg:text-5xl">
             Want the numbers for your own program?
@@ -167,7 +170,7 @@ export default function RoiCalculatorPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

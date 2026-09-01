@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { AuthorByline } from "@/components/author-byline"
 import { JsonLd } from "@/components/json-ld"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
 import { getAllAuthors, getAuthorUrl } from "@/lib/authors"
 import { ArrowRight } from "lucide-react"
 import {
@@ -99,7 +101,8 @@ export default function AboutPage() {
       />
 
       {/* Hero */}
-      <section className="relative px-6 py-20 md:py-28 bg-cs-dark-blue text-white">
+      <section className="relative overflow-hidden px-6 py-20 md:py-28 bg-cs-dark-blue text-white">
+        <Waveform seed="about" align="right" opacity={0.17} />
         <div className="max-w-3xl mx-auto relative z-10">
           <p className="inline-flex items-center gap-2 text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-electric mb-6">
             <span className="h-1.5 w-1.5 rounded-full bg-cs-electric" aria-hidden="true" />
@@ -235,7 +238,7 @@ export default function AboutPage() {
       <SectionDivider variant="diagonal-up" color="dark-blue" className="bg-cs-cloud" />
 
       {/* Get started */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed="about">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-4 text-white">
             Start with one team and one standard
@@ -258,7 +261,7 @@ export default function AboutPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

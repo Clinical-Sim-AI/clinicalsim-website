@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { WaveformBand } from "@/components/waveform-band"
 import { getAllAudiences } from "@/lib/audiences"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import type { FaqItem } from "@/lib/types"
@@ -602,7 +603,7 @@ export default function EvaluationPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed="evaluation">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-6">
             Bring us the question this page didn&apos;t answer.
@@ -629,7 +630,7 @@ export default function EvaluationPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

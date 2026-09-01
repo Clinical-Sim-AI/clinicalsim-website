@@ -9,6 +9,7 @@ import { MarkdownContent } from "@/components/feedback/markdown-content"
 import { FeedbackReport } from "@/components/feedback/feedback-report"
 import { ExampleAudioPlayer } from "@/components/feedback/example-audio-player"
 import { ConversationTranscript } from "@/components/feedback/conversation-transcript"
+import { Waveform } from "@/components/waveform"
 import { getAllExamples, getExampleBySlug } from "@/lib/examples"
 
 type Props = { params: Promise<{ slug: string }> }
@@ -111,8 +112,9 @@ export default async function ExampleCasePage({ params }: Props) {
       />
 
       {/* Hero */}
-      <section className="relative px-6 py-8 md:py-10 bg-cs-dark-blue text-white">
-        <div className="max-w-4xl mx-auto">
+      <section className="relative overflow-hidden px-6 py-8 md:py-10 bg-cs-dark-blue text-white">
+        <Waveform seed={example.slug} align="right" opacity={0.17} />
+        <div className="max-w-4xl mx-auto relative z-10">
           <Link
             href="/examples"
             className="inline-flex items-center gap-2 text-sm text-cs-cloud/80 hover:text-white transition-colors"

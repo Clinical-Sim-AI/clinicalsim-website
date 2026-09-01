@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { AudienceCard } from "@/components/audience-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { Waveform } from "@/components/waveform"
 import { getSolutionsByMarket } from "@/lib/solutions"
 import type { Market } from "@/lib/positioning"
 
@@ -89,8 +90,9 @@ export default function SolutionsPage() {
       />
 
       {/* Hero */}
-      <section className="relative px-6 py-16 md:py-24 text-center bg-cs-dark-blue text-white">
-        <div className="max-w-4xl mx-auto">
+      <section className="relative overflow-hidden px-6 py-16 md:py-24 text-center bg-cs-dark-blue text-white">
+        <Waveform seed="solutions" align="edges" opacity={0.17} />
+        <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
             One platform for the conversations your institution needs to measure
           </h1>
