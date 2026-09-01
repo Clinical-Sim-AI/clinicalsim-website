@@ -32,9 +32,10 @@ export const metadata: Metadata = {
 }
 
 const LAST_UPDATED = "2026-09-01"
+const SHOW_TEAM: boolean = false
 
 export default function AboutPage() {
-  const team = getAllAuthors()
+  const team = SHOW_TEAM ? getAllAuthors() : []
 
   return (
     <>
@@ -145,36 +146,44 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <SectionDivider variant="wave" color="cloud" className="bg-cs-navy" />
+      <SectionDivider
+        variant="wave"
+        color={SHOW_TEAM ? "cloud" : "white"}
+        className="bg-cs-navy"
+      />
 
-      {/* Team */}
-      <section className="px-6 py-16 md:py-20 bg-cs-cloud">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center leading-tight">
-            The people who built it
-          </h2>
-          <p className="text-lg text-cs-dark-blue/70 font-light leading-relaxed text-center max-w-3xl mx-auto mb-12">
-            Physicians with experience in fellowship leadership, simulation education, and clinical communication work alongside a team that has built enterprise software.
-          </p>
+      {SHOW_TEAM && (
+        <>
+          {/* Team */}
+          <section className="px-6 py-16 md:py-20 bg-cs-cloud">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center leading-tight">
+                The people who built it
+              </h2>
+              <p className="text-lg text-cs-dark-blue/70 font-light leading-relaxed text-center max-w-3xl mx-auto mb-12">
+                Physicians with experience in fellowship leadership, simulation education, and clinical communication work alongside a team that has built enterprise software.
+              </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {team.map((author) => (
-              <div
-                key={author.id}
-                id={author.id}
-                className="bg-white rounded-xl p-6 border border-cs-gray/50 scroll-mt-28"
-              >
-                <AuthorByline authorId={author.id} />
-                <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed mt-4">
-                  {author.bio}
-                </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {team.map((author) => (
+                  <div
+                    key={author.id}
+                    id={author.id}
+                    className="bg-white rounded-xl p-6 border border-cs-gray/50 scroll-mt-28"
+                  >
+                    <AuthorByline authorId={author.id} />
+                    <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed mt-4">
+                      {author.bio}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
+          </section>
 
-      <SectionDivider variant="diagonal-up" color="white" className="bg-cs-cloud" />
+          <SectionDivider variant="diagonal-up" color="white" className="bg-cs-cloud" />
+        </>
+      )}
 
       {/* What ClinicalSim is */}
       <section className="px-6 py-16 md:py-20 bg-white">
