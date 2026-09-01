@@ -14,6 +14,8 @@ import { AsymmetricGrid } from "@/components/asymmetric-grid"
 import { JsonLd } from "@/components/json-ld"
 import { GlossaryTermLinks } from "@/components/glossary-term-links"
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
 import { cn, formatIsoMonth } from "@/lib/utils"
 import type { RemediationPageData } from "@/lib/remediation"
 
@@ -149,41 +151,41 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       {/* ----------------------------------------------------------------- */}
       {/* Section 1: Hero                                                    */}
       {/* ----------------------------------------------------------------- */}
-      <section className="relative px-6 pt-4 md:pt-6 pb-4 md:pb-6">
-        <div className="absolute inset-0 bg-cs-cloud -z-10" />
+      <section className="relative overflow-hidden px-6 py-12 md:py-16 bg-cs-dark-blue text-white">
+        <Waveform seed="remediation" align="right" opacity={0.15} />
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto relative z-10">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-cs-dark-gray mb-8">
+          <nav className="flex items-center gap-2 text-sm text-cs-cloud/70 mb-8">
             <Link
               href="/"
-              className="hover:text-cs-dark-blue/85 transition-colors"
+              className="hover:text-white transition-colors"
             >
               Home
             </Link>
             <ChevronRight className="w-4 h-4" />
             <Link
               href="/solutions"
-              className="hover:text-cs-dark-blue/85 transition-colors"
+              className="hover:text-white transition-colors"
             >
               Solutions
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-cs-dark-blue/85">Communication Remediation</span>
+            <span className="text-white">Communication Remediation</span>
           </nav>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6 text-white">
             {data.heroH1}
           </h1>
 
           {data.lastUpdated && (
-            <p className="text-sm text-cs-gray font-light mb-4">
+            <p className="text-sm text-cs-cloud/60 font-light mb-4">
               Last updated:{" "}
               {formatIsoMonth(data.lastUpdated)}
             </p>
           )}
 
-          <p className="text-lg md:text-xl text-cs-dark-blue font-light leading-relaxed mb-10 max-w-3xl">
+          <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-10 max-w-3xl">
             {data.heroSubtitle}
           </p>
 
@@ -196,6 +198,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
                 label={stat.label}
                 source={stat.source}
                 variant={stat.variant}
+                surface="dark"
               />
             ))}
           </div>
@@ -208,7 +211,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
               </Button>
             </Link>
             <Link href="#evidence">
-              <Button variant="secondary" size="lg">
+              <Button variant="inverse" size="lg">
                 See a Remediation Session
               </Button>
             </Link>
@@ -219,7 +222,11 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       {/* ----------------------------------------------------------------- */}
       {/* Section 2: The Problem                                             */}
       {/* ----------------------------------------------------------------- */}
-      <SectionDivider variant="diagonal-down" color="white" />
+      <SectionDivider
+        variant="diagonal-down"
+        color="white"
+        className="bg-cs-dark-blue"
+      />
 
       <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-6xl mx-auto">
@@ -684,7 +691,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
       {/* ----------------------------------------------------------------- */}
       <SectionDivider variant="diagonal-down" color="cloud" />
 
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed="remediation">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             {data.ctaHeadline}
@@ -710,7 +717,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
             </Link>
           </div>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

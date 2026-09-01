@@ -7,6 +7,8 @@ import { JsonLd } from "@/components/json-ld"
 import { Reveal } from "@/components/reveal"
 import { Button } from "@/components/ui/button"
 import { VideoObjectSchema } from "@/components/video-object-schema"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
 import { getFeaturedFrameworks } from "@/lib/frameworks"
 import { HOMEPAGE_PUBLIC_COPY } from "@/lib/homepage-content"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
@@ -156,7 +158,17 @@ export default function HomePage() {
       />
 
       <section className="relative overflow-hidden bg-cs-dark-blue px-6 py-20 text-white md:py-28 lg:py-32">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        <Waveform seed="home-hero" variant="bars" align="right" opacity={0.2} animate />
+        <Waveform
+          seed="home-hero-flow"
+          variant="flow"
+          align="right"
+          opacity={0.3}
+          className="h-1/4"
+          animate
+        />
+
+        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div className="relative z-10 max-w-2xl">
             <p className="mb-6 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-cs-electric md:text-sm">
               <span
@@ -182,10 +194,7 @@ export default function HomePage() {
                 </Button>
               </Link>
               <Link href="/examples">
-                <Button
-                  size="xl"
-                  className="w-full border border-white/25 bg-transparent font-medium text-white hover:bg-white/10 sm:w-auto"
-                >
+                <Button variant="inverse" size="xl" className="w-full sm:w-auto">
                   See example feedback
                 </Button>
               </Link>
@@ -216,8 +225,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-cs-cloud px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-5xl">
+      <section className="relative overflow-hidden bg-cs-cloud px-6 py-16 md:py-24">
+        <Waveform tone="light" align="edges" opacity={0.3} seed="home-seam-video" className="h-16" />
+
+        <div className="relative z-10 mx-auto max-w-5xl">
           <VideoObjectSchema
             name="ClinicalSim demo: counseling vaccine hesitancy for a two-month-old"
             description="A learner works through a vaccine hesitancy conversation with a ClinicalSim AI patient, then reviews the rubric scores and cited transcript excerpts."
@@ -309,7 +320,7 @@ export default function HomePage() {
               {CONVERSATION_TYPES.map((type) => (
                 <li
                   key={type}
-                  className="rounded-full border border-cs-navy/25 bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
+                  className="rounded-md border border-cs-navy/25 border-l-4 border-l-cs-dark-blue bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
                 >
                   {type}
                 </li>
@@ -383,8 +394,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-5xl">
+      <section className="relative overflow-hidden bg-white px-6 py-16 md:py-24">
+        <Waveform
+          tone="light"
+          align="edges"
+          opacity={0.3}
+          seed="home-seam-proof"
+          className="bottom-0 top-auto h-16"
+        />
+
+        <div className="relative z-10 mx-auto max-w-5xl">
           <div className="mb-12 text-center md:mb-14">
             <h2 className="text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
               {HOMEPAGE_PUBLIC_COPY.proofHeading}
@@ -446,7 +465,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-cs-dark-blue px-6 py-20 text-white md:py-28">
+      <WaveformBand seed="home-closing" className="py-20 md:py-28">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-6 text-balance text-3xl font-light tracking-tight md:text-4xl lg:text-5xl">
             {HOMEPAGE_PUBLIC_COPY.closing.heading}
@@ -460,7 +479,7 @@ export default function HomePage() {
             </Button>
           </Link>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

@@ -3,6 +3,8 @@ import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
 import { getAllComparisons, type Comparison } from "@/lib/comparisons"
 import { getPostBySlug } from "@/lib/posts"
 import { formatIsoMonth } from "@/lib/utils"
@@ -84,42 +86,46 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
       />
 
       {/* Hero + answer-first intro */}
-      <section className="relative px-6 pt-4 md:pt-6 pb-4 md:pb-6">
-        <div className="absolute inset-0 bg-cs-cloud -z-10" />
-        <div className="max-w-4xl mx-auto">
-          <nav className="flex items-center gap-2 text-sm text-cs-dark-gray mb-8">
-            <Link href="/" className="hover:text-cs-dark-blue/85 transition-colors">
+      <section className="relative overflow-hidden px-6 py-12 md:py-16 bg-cs-dark-blue text-white">
+        <Waveform seed={comparison.slug} align="right" opacity={0.15} />
+        <div className="max-w-4xl mx-auto relative z-10">
+          <nav className="flex items-center gap-2 text-sm text-cs-cloud/70 mb-8">
+            <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
             <ChevronRight className="w-4 h-4" />
             <Link
               href="/compare"
-              className="hover:text-cs-dark-blue/85 transition-colors"
+              className="hover:text-white transition-colors"
             >
               Compare
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-cs-dark-blue/85">{comparison.title}</span>
+            <span className="text-white">{comparison.title}</span>
           </nav>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6 text-white">
             {comparison.heroHeadline}
           </h1>
 
           {comparison.lastUpdated && (
-            <p className="text-sm text-cs-gray font-light mb-4">
+            <p className="text-sm text-cs-cloud/60 font-light mb-4">
               Last updated:{" "}
               {formatIsoMonth(comparison.lastUpdated)}
             </p>
           )}
 
-          <p className="text-lg md:text-xl text-cs-dark-blue font-light leading-relaxed max-w-3xl">
+          <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed max-w-3xl">
             {comparison.intro}
           </p>
         </div>
       </section>
 
-      <SectionDivider variant="diagonal-down" color="white" />
+      <SectionDivider
+        variant="diagonal-down"
+        color="white"
+        className="bg-cs-dark-blue"
+      />
 
       {/* Comparison table with real <table> markup for AI Overviews / Perplexity */}
       <section className="px-6 py-8 md:py-10 bg-white">
@@ -134,7 +140,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
                 {comparison.optionALabel} compared with {comparison.optionBLabel}
               </caption>
               <thead>
-                <tr className="bg-cs-dark-blue text-white">
+                <tr className="bg-cs-navy text-white">
                   <th scope="col" className="px-4 py-4 text-sm font-medium align-bottom">
                     Dimension
                   </th>
@@ -271,7 +277,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
       )}
 
       {/* Final CTA */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed={comparison.slug}>
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             See ClinicalSim in your program
@@ -298,7 +304,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
             </Link>
           </div>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

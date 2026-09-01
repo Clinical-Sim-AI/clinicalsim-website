@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { ClaimBoundary } from "@/components/claim-boundary"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
 import {
   getFrameworksByDomain,
   readyToUseFrameworks,
@@ -141,7 +143,8 @@ export default function FrameworksPage() {
     <>
       <JsonLd data={jsonLd} />
 
-      <section className="relative px-6 py-16 md:py-24 bg-cs-dark-blue text-white">
+      <section className="relative overflow-hidden px-6 py-16 md:py-24 bg-cs-dark-blue text-white">
+        <Waveform seed="frameworks" align="right" opacity={0.17} />
         <div className="max-w-4xl mx-auto relative z-10">
           <nav className="flex items-center gap-2 text-sm text-cs-cloud/70 mb-8">
             <Link href="/" className="hover:text-white transition-colors">
@@ -411,7 +414,7 @@ export default function FrameworksPage() {
       </div>
 
       {/* Final CTA */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed="frameworks">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             Start with a ready to use case or bring your own standard
@@ -437,7 +440,7 @@ export default function FrameworksPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

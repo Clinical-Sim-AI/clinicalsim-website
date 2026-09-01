@@ -8,6 +8,12 @@ export interface StatHighlightProps extends React.HTMLAttributes<HTMLDivElement>
   source?: string
   variant?: "accent" | "navy" | "blue" | "light-blue"
   size?: "default" | "large"
+  /**
+   * Opt in for a dark band. The default label and source colors are dark on
+   * light, and two of the four numeral variants are dark blue or navy, so a
+   * stat dropped onto cs-dark-blue would be half invisible without this.
+   */
+  surface?: "light" | "dark"
 }
 
 const variantStyles = {
@@ -17,15 +23,25 @@ const variantStyles = {
   "light-blue": "text-cs-light-blue",
 }
 
+const darkVariantStyles = {
+  accent: "text-cs-electric",
+  navy: "text-cs-light-blue",
+  blue: "text-white",
+  "light-blue": "text-cs-light-blue",
+}
+
 export function StatHighlight({
   value,
   label,
   source,
   variant = "blue",
   size = "default",
+  surface = "light",
   className,
   ...props
 }: StatHighlightProps) {
+  const onDark = surface === "dark"
+
   return (
     <div
       className={cn(
@@ -38,18 +54,28 @@ export function StatHighlight({
         className={cn(
           "font-bold mb-3 tracking-tight",
           size === "large" ? "text-4xl md:text-5xl lg:text-6xl" : "text-3xl md:text-4xl lg:text-5xl",
-          variantStyles[variant]
+          onDark ? darkVariantStyles[variant] : variantStyles[variant]
         )}
       >
         <CountUp value={value} />
       </div>
 
-      <p className="text-base md:text-lg text-cs-dark-blue font-normal leading-relaxed max-w-xs">
+      <p
+        className={cn(
+          "text-base md:text-lg font-normal leading-relaxed max-w-xs",
+          onDark ? "text-cs-cloud" : "text-cs-dark-blue"
+        )}
+      >
         {label}
       </p>
 
       {source && (
-        <p className="text-sm text-cs-dark-gray font-light mt-2 italic">
+        <p
+          className={cn(
+            "text-sm font-light mt-2 italic",
+            onDark ? "text-cs-cloud/70" : "text-cs-dark-gray"
+          )}
+        >
           {source}
         </p>
       )}

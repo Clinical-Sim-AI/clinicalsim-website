@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 
 export function SiteFooter() {
   return (
-    <footer className="bg-white/80 backdrop-blur-sm border-t border-white/20 py-12">
+    <footer className="bg-white/80 backdrop-blur-sm border-t border-cs-gray/60 py-12">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           {/* Logo and Description */}
@@ -15,7 +15,7 @@ export function SiteFooter() {
                 alt="ClinicalSim"
                 width={612}
                 height={367}
-                className="h-8 w-auto"
+                className="h-12 w-auto"
               />
             </Link>
             <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed">

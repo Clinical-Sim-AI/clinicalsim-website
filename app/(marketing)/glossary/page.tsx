@@ -3,6 +3,8 @@ import Link from "next/link"
 import { ChevronRight } from "lucide-react"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
 import {
   getAllGlossaryTerms,
   getGlossaryTeaser,
@@ -96,7 +98,8 @@ export default function GlossaryPage() {
       <JsonLd data={glossaryJsonLd} />
 
       {/* Hero */}
-      <section className="relative px-6 py-16 md:py-24 bg-cs-dark-blue text-white">
+      <section className="relative overflow-hidden px-6 py-16 md:py-24 bg-cs-dark-blue text-white">
+        <Waveform seed="glossary" align="right" opacity={0.17} />
         <div className="max-w-4xl mx-auto relative z-10">
           <nav className="flex items-center gap-2 text-sm text-cs-cloud/70 mb-8">
             <Link href="/" className="hover:text-white transition-colors">
@@ -239,7 +242,7 @@ export default function GlossaryPage() {
       </section>
 
       {/* CTA */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed="glossary">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-6">
             Put the frameworks into practice
@@ -253,7 +256,7 @@ export default function GlossaryPage() {
             </button>
           </Link>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

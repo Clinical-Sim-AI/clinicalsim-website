@@ -4,6 +4,8 @@ import { notFound, redirect } from "next/navigation"
 import { ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { JsonLd } from "@/components/json-ld"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
 import {
   getGlossaryPageTitle,
   getGlossaryTermBySlug,
@@ -124,8 +126,9 @@ export default async function GlossaryTermPage({ params }: Props) {
       />
 
       {/* Hero */}
-      <section className="relative px-6 py-14 md:py-20 bg-cs-dark-blue text-white">
-        <div className="max-w-3xl mx-auto">
+      <section className="relative overflow-hidden px-6 py-14 md:py-20 bg-cs-dark-blue text-white">
+        <Waveform seed={term.slug} align="right" opacity={0.17} />
+        <div className="max-w-3xl mx-auto relative z-10">
           <nav className="flex items-center gap-2 text-sm text-cs-cloud/70 mb-8">
             <Link href="/" className="hover:text-white transition-colors">
               Home
@@ -273,7 +276,7 @@ export default async function GlossaryTermPage({ params }: Props) {
       </section>
 
       {/* CTA */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed={term.slug}>
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-light mb-6">
             Put the frameworks into practice
@@ -288,7 +291,7 @@ export default async function GlossaryTermPage({ params }: Props) {
             </Button>
           </Link>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

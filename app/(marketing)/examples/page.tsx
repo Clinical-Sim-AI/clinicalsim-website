@@ -5,6 +5,8 @@ import { AsymmetricGrid } from "@/components/asymmetric-grid"
 import { ExampleCard } from "@/components/feedback/example-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { Waveform } from "@/components/waveform"
+import { WaveformBand } from "@/components/waveform-band"
 import { getAllExamples } from "@/lib/examples"
 import { ArrowRight } from "lucide-react"
 
@@ -79,7 +81,8 @@ export default function ExamplesPage() {
       />
 
       {/* Hero */}
-      <section className="relative px-6 py-16 md:py-24 text-center bg-cs-dark-blue text-white">
+      <section className="relative overflow-hidden px-6 py-16 md:py-24 text-center bg-cs-dark-blue text-white">
+        <Waveform seed="examples" align="edges" opacity={0.17} />
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
             See the feedback for yourself
@@ -110,7 +113,7 @@ export default function ExamplesPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
+      <WaveformBand seed="examples">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             This is what a learner receives
@@ -136,7 +139,7 @@ export default function ExamplesPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </WaveformBand>
     </>
   )
 }

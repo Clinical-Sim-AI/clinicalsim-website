@@ -24,6 +24,9 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-cs-dark-blue underline-offset-4 hover:underline",
         accent: `bg-cs-electric text-cs-dark-blue hover:bg-cs-electric/90 font-bold ${ctaLift}`,
+        // The inverse of `secondary`, for the dark bands. `secondary` outlines
+        // in Dark Blue, which is invisible on a Dark Blue or Navy surface.
+        inverse: `border border-white/25 bg-transparent text-white hover:bg-white/10 ${ctaLift}`,
       },
       size: {
         default: "h-10 px-4 py-2",
