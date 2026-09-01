@@ -12,6 +12,7 @@ import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import {
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
+  POSITIONING_LONG,
   POSITIONING_ONE_LINER,
   POSITIONING_SUPPORT,
 } from "@/lib/positioning"
@@ -22,18 +23,15 @@ import {
 
 export const metadata: Metadata = {
   title: { absolute: "FAQ: communication intelligence, scoring, privacy, and programs" },
-  description:
-    "Answers to common questions about ClinicalSim: what it is, how it compares to Step 2 CS and standardized patients, communication remediation, ACGME Milestone scoring, My Progress, evidence for CCC review, privacy, and research.",
+  description: POSITIONING_LONG,
   openGraph: {
     title: "FAQ | ClinicalSim.ai",
-    description:
-      "Common questions about ClinicalSim's AI clinical simulation: the product, scoring and My Progress, standards alignment, privacy, and research.",
+    description: POSITIONING_LONG,
     url: "https://clinicalsim.ai/faq",
   },
   twitter: {
     title: "FAQ | ClinicalSim.ai",
-    description:
-      "Common questions about ClinicalSim's AI clinical simulation: the product, scoring and My Progress, standards alignment, privacy, and research.",
+    description: POSITIONING_LONG,
   },
   alternates: {
     canonical: "https://clinicalsim.ai/faq",

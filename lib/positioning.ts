@@ -34,7 +34,7 @@ export const CATEGORY_LINE =
  * deck's stronger phrasing about national standards.
  */
 export const CATEGORY_DEFINITION =
-  "Clinicians and patient facing staff speak with AI patients on any device. Each encounter is scored against the standards their institution already uses, with transcript evidence behind every score."
+  "Clinicians, medical learners, and patient facing staff practice spoken encounters with AI patients. Cases use published clinical frameworks or an institution supplied policy, service standard, script, or rubric, with transcript evidence behind every score."
 
 /**
  * The canonical one-liner. Already the homepage h2 and the /llms.txt header
@@ -47,7 +47,7 @@ export const POSITIONING_ONE_LINER =
 
 /** The sentence that follows the one-liner wherever there is room for two. */
 export const POSITIONING_SUPPORT =
-  "Named physicians write and review each clinical case, and institutions can add the service standards, policies, and rubrics they already use."
+  "Teams can start with ready to use cases based on published clinical frameworks or add an institution's policy, service standard, script, or rubric."
 
 /** One-liner plus support. The default for a meta description or a schema node. */
 export const POSITIONING_LONG = `${POSITIONING_ONE_LINER} ${POSITIONING_SUPPORT}`

@@ -9,7 +9,6 @@ import { ArrowRight } from "lucide-react"
 import {
   CATEGORY_LINE,
   POSITIONING_LONG,
-  POSITIONING_ONE_LINER,
 } from "@/lib/positioning"
 
 export const metadata: Metadata = {
@@ -17,14 +16,12 @@ export const metadata: Metadata = {
   description: POSITIONING_LONG,
   openGraph: {
     title: "About ClinicalSim.ai",
-    description:
-      "Healthcare teams practice high-stakes conversations with AI patients, and leaders can inspect the transcript evidence behind each score.",
+    description: POSITIONING_LONG,
     url: "https://clinicalsim.ai/about",
   },
   twitter: {
     title: "About ClinicalSim.ai",
-    description:
-      "Healthcare teams practice high-stakes conversations with AI patients, and leaders can inspect the transcript evidence behind each score.",
+    description: POSITIONING_LONG,
   },
   alternates: {
     canonical: "https://clinicalsim.ai/about",
@@ -112,7 +109,7 @@ export default function AboutPage() {
             {CATEGORY_LINE}
           </h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-2xl">
-            {POSITIONING_ONE_LINER} Institutions can use their own service standards, policies, and rubrics, then review results by person, cohort, or anonymous unit.
+            {POSITIONING_LONG}
           </p>
         </div>
       </section>

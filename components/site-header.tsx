@@ -289,7 +289,7 @@ export function SiteHeader() {
                   className="block px-4 py-2.5 text-sm text-cs-dark-blue/85 hover:bg-cs-cloud/70 transition-colors"
                   onClick={() => setSolutionsOpen(false)}
                 >
-                  Scored against your framework
+                  Frameworks and standards
                 </Link>
                 <Link
                   href="/solutions"
@@ -507,7 +507,7 @@ export function SiteHeader() {
                       className="block px-3 py-2.5 text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      Scored against your framework
+                      Frameworks and standards
                     </Link>
                     <Link
                       href="/solutions"

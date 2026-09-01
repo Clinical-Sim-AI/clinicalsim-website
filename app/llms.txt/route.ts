@@ -50,7 +50,7 @@ const HEADER = `# ClinicalSim.ai
 ${KEY_FACTS}
 ## Pages
 
-- [Homepage](${BASE_URL}): Voice-based practice with AI patients for healthcare teams, scored against the institution's standards with transcript evidence behind every score.
+- [Homepage](${BASE_URL}): Voice based practice with AI patients. Teams can start with ready to use cases based on published clinical frameworks or add an institution's policy, service standard, script, or rubric.
 - [About](${BASE_URL}/about): How ClinicalSim began, why the platform extends beyond medical education, how it handles scoring evidence, and the team responsible for the work.`
 
 export async function GET() {
@@ -88,7 +88,7 @@ export async function GET() {
 
   const otherPages = [
     `\n## More\n`,
-    `- [Scored against your framework](${BASE_URL}/frameworks): Send your element definitions and get those definitions back as scores, per clinician, with the line that earned each score quoted underneath. States the scope rule, that an element is scored only where the case gave the clinician a chance to show it, and lists the public frameworks ClinicalSim scores against today.`,
+    `- [Published frameworks and institution standards](${BASE_URL}/frameworks): Start with ready to use cases based on published clinical frameworks or add an institution's policy, service standard, script, or rubric. Every score cites transcript evidence, and the page states the scope rule and scoring limits.`,
     `- [Methodology](${BASE_URL}/methodology): How ClinicalSim builds cases, names the competency and communication frameworks each case uses, and generates rubric-scored feedback tied to transcript evidence.`,
     `- [Evaluating ClinicalSim](${BASE_URL}/evaluation): The questions behind the purchase, answered in one place: what ClinicalSim is intended for and what it is not, who inside an institution owns the decision, what the evidence establishes and what it does not, what a privacy or procurement reviewer will find, what it takes to run, how it is licensed, and what ClinicalSim will not claim.`,
     `- [Trust and data handling](${BASE_URL}/trust): ClinicalSim is intended for training and assessment and does not diagnose patients, recommend treatment, or create clinical documentation. Cases use synthetic patients written from clinical literature rather than patient records. The product handles learner recordings, transcripts, account data, and institutional data.`,

@@ -11,15 +11,16 @@ export interface AudienceCardProps extends React.HTMLAttributes<HTMLDivElement> 
   subtitle: string
   bullets: string[]
   href: string
+  ctaLabel?: string
   variant?: "accent" | "navy" | "blue" | "light-blue"
 }
 
 const variantStyles = {
   accent: {
-    iconBg: "bg-cs-electric",
-    iconColor: "text-cs-dark-blue",
-    brandIconColor: "dark" as const,
-    bulletColor: "bg-cs-electric",
+    iconBg: "bg-cs-dark-blue",
+    iconColor: "text-white",
+    brandIconColor: "white" as const,
+    bulletColor: "bg-cs-navy",
   },
   navy: {
     iconBg: "bg-cs-navy",
@@ -48,6 +49,7 @@ export function AudienceCard({
   subtitle,
   bullets,
   href,
+  ctaLabel = "Learn more",
   variant = "accent",
   className,
   ...props
@@ -91,7 +93,7 @@ export function AudienceCard({
         </ul>
 
         <div className="flex items-center text-cs-dark-blue font-medium mt-auto">
-          Learn More
+          {ctaLabel}
           <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
         </div>
       </div>

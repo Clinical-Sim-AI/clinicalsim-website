@@ -1074,6 +1074,18 @@ export function getHomepageSolutions(): Solution[] {
   return getPublishedSolutions().filter((s) => !s.hideFromHomepage)
 }
 
+export function getHomepageSolutionGroups(): Array<{
+  market: Market
+  solutions: Solution[]
+}> {
+  const homepageSolutions = getHomepageSolutions()
+
+  return (["health-system", "medical-education"] as const).map((market) => ({
+    market,
+    solutions: homepageSolutions.filter((solution) => solution.market === market),
+  }))
+}
+
 /** Solutions rendered by the generic SolutionPageLayout (excludes bespoke pages). */
 export function getGenericSolutions(): Solution[] {
   return solutions.filter((s) => !s.customPage)
