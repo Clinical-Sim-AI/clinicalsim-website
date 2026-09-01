@@ -117,78 +117,35 @@ export default function AboutPage() {
       </section>
 
       {/* Why we exist */}
-      <section className="px-6 py-16 md:py-20 bg-white">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 leading-tight">
+      <section className="px-6 py-16 md:py-24 bg-cs-navy text-white">
+        <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-[0.32fr_0.68fr] lg:gap-16">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-electric leading-tight">
             Why we exist
           </h2>
-          <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
-            <p>
-              ClinicalSim began when Gillian Brennan, a neonatologist and simulation leader, asked Ben Conway for a way residents and fellows could rehearse high-stakes conversations and get useful feedback right away. Ben built the first version as a research project. Interest from other programs showed that the same problem reached far beyond one fellowship.
-            </p>
-            <p>
-              Ben brought experience building enterprise software, and Lauren Rissman brought the daily view of a pediatric critical care and palliative care physician. They built ClinicalSim around a simple standard: people need room to practice, and the person reviewing the work needs to see the words behind the score.
-            </p>
-            <p>
-              ClinicalSim now gives institutions a repeatable way to practice those behaviors and inspect the evidence. It does not claim that a simulation score predicts a patient outcome.
-            </p>
-          </div>
+          <blockquote className="border-l-4 border-cs-electric pl-6 md:pl-8">
+            <div className="space-y-6 text-lg md:text-xl text-cs-cloud font-light leading-relaxed">
+              <p>
+                I have been the physician at the bedside, the patient in the bed and an advocating mom in the NICU.
+              </p>
+              <p>
+                When I was bleeding to death after my daughter&apos;s pre-term delivery, the OB called my mother and told her, &quot;We&apos;re doing all we can, but she&apos;s really sick.&quot; My mother is not in medicine. She hung up with more questions than answers, and she still didn&apos;t know I was dying. My husband, without medical training, advocated for hours before anyone listened to him, and his persistence is the reason I am alive today. None of that was a failure of knowledge or technical skill. It was language, which is the one thing we offer in nearly every encounter and the one thing we almost never practice. That is what ClinicalSim is for and why it matters: real conversations, out loud, with feedback specific enough to change what you say the next time you walk into a room.
+              </p>
+              <p>
+                My husband, the advocate who wasn&apos;t heard, is now the CEO of ClinicalSim. Our consulting and co-founding medical team consists of dedicated clinicians who are also program directors and educators. None of us are building this from the outside.
+              </p>
+            </div>
+            <footer className="mt-8 border-t border-white/20 pt-6 text-cs-cloud">
+              <p className="font-medium text-white">Lauren Rissman, MD</p>
+              <p className="mt-1 text-sm font-medium">Chief Medical Officer</p>
+              <p className="mt-2 max-w-2xl text-sm font-light leading-relaxed">
+                Board-certified in pediatrics, pediatric critical care medicine and hospice and palliative care medicine.
+              </p>
+            </footer>
+          </blockquote>
         </div>
       </section>
 
-      <SectionDivider variant="wave" color="cloud" />
-
-      {/* What ClinicalSim is */}
-      <section className="px-6 py-16 md:py-20 bg-cs-cloud">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 leading-tight">
-            What ClinicalSim is
-          </h2>
-          <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
-            <p>
-              Clinicians and patient facing staff talk with AI patients by voice from any device. The cases can cover clinical conversations, patient service standards, and debriefing. There&apos;s no app to install, room to book, or faculty observer required for practice. The current programs and conversations live on our{" "}
-              <Link href="/solutions" className="text-cs-dark-blue font-medium underline decoration-cs-dark-blue/30 hover:decoration-cs-dark-blue underline-offset-4 transition-colors">
-                use cases page
-              </Link>
-              .
-            </p>
-            <p>
-              Every session produces feedback scored against the standard named on the case, with transcript evidence behind each rating. Leaders can review an individual, a named cohort, or an anonymous unit view based on the access rules set before launch.
-            </p>
-            <p className="text-cs-dark-blue font-normal">
-              ClinicalSim extends standardized patient programs. It adds repeatable practice between live encounters and another source of evidence for review. It does not replace live assessment or human judgment.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <SectionDivider variant="wave" color="white" />
-
-      {/* Built for how programs actually run */}
-      <section className="px-6 py-16 md:py-20 bg-cs-cloud">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 leading-tight">
-            Built for how institutions actually run
-          </h2>
-          <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
-            <p>
-              ClinicalSim runs in the browser, so there is nothing to install. Every session generates a timestamped report tied to the standard named on the case and the evidence in the transcript. Leaders can assign cases, review progress, and export reports from one dashboard.
-            </p>
-            <p>
-              Every case uses a synthetic patient written from clinical literature rather than a patient record. The product still handles learner recordings, transcripts, account data, and institutional data, which require protection.
-            </p>
-          </div>
-          <Link
-            href="/trust"
-            className="inline-flex items-center text-cs-dark-blue font-medium hover:text-cs-navy transition-colors group mt-8"
-          >
-            How we handle data
-            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
-      </section>
-
-      <SectionDivider variant="diagonal-up" color="white" />
+      <SectionDivider variant="wave" color="cloud" className="bg-cs-navy" />
 
       {/* Team */}
       <section className="px-6 py-16 md:py-20 bg-cs-cloud">
@@ -216,6 +173,60 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <SectionDivider variant="diagonal-up" color="white" className="bg-cs-cloud" />
+
+      {/* What ClinicalSim is */}
+      <section className="px-6 py-16 md:py-20 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 leading-tight">
+            What ClinicalSim is
+          </h2>
+          <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
+            <p>
+              Clinicians and patient facing staff talk with AI patients by voice from any device. The cases can cover clinical conversations, patient service standards, and debriefing. There&apos;s no app to install, room to book, or faculty observer required for practice. The current programs and conversations live on our{" "}
+              <Link href="/solutions" className="text-cs-dark-blue font-medium underline decoration-cs-dark-blue/30 hover:decoration-cs-dark-blue underline-offset-4 transition-colors">
+                use cases page
+              </Link>
+              .
+            </p>
+            <p>
+              Every session produces feedback scored against the standard named on the case, with transcript evidence behind each rating. Leaders can review an individual, a named cohort, or an anonymous unit view based on the access rules set before launch.
+            </p>
+            <p className="text-cs-dark-blue font-normal">
+              ClinicalSim extends standardized patient programs. It adds repeatable practice between live encounters and another source of evidence for review. It does not replace live assessment or human judgment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider variant="wave" color="cloud" className="bg-white" />
+
+      {/* Built for how programs actually run */}
+      <section className="px-6 py-16 md:py-20 bg-cs-cloud">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 leading-tight">
+            Built for how institutions actually run
+          </h2>
+          <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
+            <p>
+              ClinicalSim runs in the browser, so there is nothing to install. Every session generates a timestamped report tied to the standard named on the case and the evidence in the transcript. Leaders can assign cases, review progress, and export reports from one dashboard.
+            </p>
+            <p>
+              Every case uses a synthetic patient written from clinical literature rather than a patient record. The product still handles learner recordings, transcripts, account data, and institutional data, which require protection.
+            </p>
+          </div>
+          <Link
+            href="/trust"
+            className="inline-flex items-center text-cs-dark-blue font-medium hover:text-cs-navy transition-colors group mt-8"
+          >
+            How we handle data
+            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+      </section>
+
+      <SectionDivider variant="diagonal-up" color="dark-blue" className="bg-cs-cloud" />
 
       {/* Get started */}
       <section className="px-6 py-16 md:py-20 bg-cs-dark-blue text-white">
