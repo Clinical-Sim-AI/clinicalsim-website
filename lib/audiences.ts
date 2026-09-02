@@ -79,10 +79,10 @@ const audiences: Audience[] = [
     market: "medical-education",
     title: "Program directors",
     shortTitle: "Program directors",
-    subtitle: "Repeatable practice between coaching sessions",
+    subtitle: "See where the conversation breaks down, then fix it",
     icon: "hat-graduation",
     colorVariant: "navy",
-    lastUpdated: "2026-08-31",
+    lastUpdated: "2026-09-02",
 
     cardBullets: [
       "Structured encounters between coaching sessions",
@@ -93,7 +93,7 @@ const audiences: Audience[] = [
     heroHeadline:
       "Your next remediation case doesn't have to start from scratch",
     heroDescription:
-      "Give the learner repeatable practice in the conversations they need to improve. Review milestone-aligned reports between coaching sessions and bring the transcript evidence to your CCC.",
+      "Score the learner's conversation against the milestone language your CCC already uses, see which element breaks down in the learner's own words, and give them repeatable practice on that element between coaching sessions. Bring the record to your CCC.",
 
     painPoints: [
       {
@@ -153,14 +153,14 @@ const audiences: Audience[] = [
 
     valueProps: [
       {
-        title: "Structured practice before coaching",
+        title: "Practice aimed at the missed element",
         description:
-          "Give learners structured practice in breaking bad news, informed consent, and other high-stakes conversations between coaching sessions.",
+          "Once the scores show which element a learner keeps missing, give them structured practice on it in breaking bad news, informed consent, and other high-stakes conversations between coaching sessions.",
       },
       {
         title: "Milestone-aligned assessment",
         description:
-          "Each relevant practice report maps observed behavior to ACGME Milestones 2.0 and cites the learner's words for faculty and CCC review.",
+          "Each conversation is scored against the ACGME Milestones 2.0 subcompetencies on the case, and every score quotes the learner's own words, so faculty and the CCC see which element broke down rather than a rating.",
       },
       {
         title: "On demand, not on schedule",
@@ -188,12 +188,12 @@ const audiences: Audience[] = [
       {
         question: "What can a program director give a learner between coaching sessions?",
         answer:
-          "Structured practice in the specific conversation the learner needs to improve, repeated as often as they need it, without booking a standardized patient or a room for each attempt. Each relevant report maps observed behavior to ACGME Milestones 2.0 and cites the learner's own words, so the program director stays the coach rather than the whole remediation infrastructure, and monitors progress through the faculty dashboard without attending every session.",
+          "Structured practice in the specific conversation the learner needs to improve, repeated as often as they need it, without booking a standardized patient or a room for each attempt. Each attempt is scored against the ACGME Milestones 2.0 subcompetencies on the case, so the program director can see which element is still breaking down, stays the coach rather than the whole remediation infrastructure, and monitors progress through the faculty dashboard without attending every session.",
       },
       {
         question: "Can a ClinicalSim report go into a Clinical Competency Committee review?",
         answer:
-          "Yes. Each practice report maps observed behavior to the relevant ACGME Milestones 2.0 subcompetency and cites the transcript evidence behind the score, so a CCC can review it alongside faculty observation and the other evidence it already uses. The report does not replace faculty judgment or the committee's decision.",
+          "Yes. Each report scores the conversation against the relevant ACGME Milestones 2.0 subcompetency and quotes the learner's own words under every score, so a CCC can read what the learner said alongside faculty observation and the other evidence it already uses. The report does not replace faculty judgment or the committee's decision.",
       },
     ],
 
@@ -230,7 +230,7 @@ const audiences: Audience[] = [
     subtitle: "Standardize remediation infrastructure across every program",
     icon: "hospital",
     colorVariant: "accent",
-    lastUpdated: "2026-08-31",
+    lastUpdated: "2026-09-02",
 
     cardBullets: [
       "Shared remediation documentation across every program",
@@ -241,7 +241,7 @@ const audiences: Audience[] = [
     heroHeadline:
       "Give every program the same starting point for communication remediation",
     heroDescription:
-      "ClinicalSim gives programs shared case standards, milestone-aligned reports, and longitudinal records while each program director and CCC keeps authority over the remediation plan.",
+      "Every program's conversations are scored against the same milestone language, with each learner's own words quoted under every score, so a GME office can see where communication breaks down by program and by learner while each program director and CCC keeps authority over the remediation plan.",
 
     painPoints: [
       {
@@ -301,7 +301,7 @@ const audiences: Audience[] = [
       {
         title: "Standardize across all programs",
         description:
-          "One platform provides consistent documentation while each case uses the milestone and communication frameworks that fit the specialty, learner, and task.",
+          "Every program's conversations are scored against the same milestone language, so the record is comparable across programs while each case uses the communication framework that fits the specialty, learner, and task.",
       },
       {
         title: "Documentation for review",
@@ -324,7 +324,7 @@ const audiences: Audience[] = [
       {
         question: "How can a GME office standardize communication remediation across programs?",
         answer:
-          "Programs that each build their own remediation approach give a GME office no way to see whether learners have a repeatable structure for practice and coaching. One platform provides consistent documentation across every program while each case still uses the milestone and communication frameworks that fit the specialty, learner, and task, so standardization happens in the record rather than by flattening clinical differences between programs.",
+          "Programs that each build their own remediation approach give a GME office no way to see whether learners have a repeatable structure for practice and coaching. Scoring every program's conversations against the same milestone language, with the learner's own words quoted under each score, gives a GME office one comparable record across programs, while each case still uses the communication framework that fits the specialty, learner, and task. Standardization happens in the measurement rather than by flattening clinical differences between programs.",
       },
       {
         question: "What documentation does a GME office get from each practice session?",
@@ -365,7 +365,7 @@ const audiences: Audience[] = [
     subtitle: "Extend your SP program, don't replace it",
     icon: "microscope",
     colorVariant: "blue",
-    lastUpdated: "2026-08-31",
+    lastUpdated: "2026-09-02",
 
     cardBullets: [
       "Transcript evidence for faculty and CCC review",
@@ -376,7 +376,7 @@ const audiences: Audience[] = [
     heroHeadline:
       "Give struggling learners more practice without adding another SP session",
     heroDescription:
-      "ClinicalSim adds voice-based practice between scheduled encounters. Your SP program keeps the live assessment and coaching work that require human presence.",
+      "ClinicalSim scores voice-based practice between scheduled encounters against the same rubric your center already uses, with the learner's own words quoted under every score. Your SP program keeps the live assessment and coaching work that require human presence.",
 
     painPoints: [
       {
@@ -437,7 +437,7 @@ const audiences: Audience[] = [
       {
         title: "Evidence from each practice session",
         description:
-          "Each report names the case-specific frameworks and cites transcript evidence, so faculty can compare repeated attempts and bring the record into committee review.",
+          "Each report scores the conversation against the framework named on the case and quotes the learner's own words under every score, so faculty can see which element changed between attempts and bring the record into committee review.",
       },
       {
         title: "The volume remediation requires",
@@ -512,7 +512,7 @@ const audiences: Audience[] = [
     subtitle: "Milestone-aligned evidence for CCC review",
     icon: "ribbon-check",
     colorVariant: "light-blue",
-    lastUpdated: "2026-08-31",
+    lastUpdated: "2026-09-02",
 
     cardBullets: [
       "Milestone-aligned assessment data from structured practice sessions",
@@ -522,7 +522,7 @@ const audiences: Audience[] = [
 
     heroHeadline: "Give your CCC another source of communication evidence",
     heroDescription:
-      "Each practice report maps observed behavior to the relevant milestone and cites the learner's words. Review it alongside faculty observation and the other evidence your committee already uses.",
+      "Each conversation is scored against the relevant milestone, with the learner's own words quoted under every score. Review it alongside faculty observation and the other evidence your committee already uses.",
 
     painPoints: [
       {
@@ -580,7 +580,7 @@ const audiences: Audience[] = [
       {
         title: "Structured communication data",
         description:
-          "Every practice session generates assessment data mapped to ACGME Milestones 2.0. Your committee can use that structured, comparable record alongside faculty evaluations.",
+          "Every practice conversation is scored against ACGME Milestones 2.0, element by element, with the learner's words under each score. Your committee can read that comparable record alongside faculty evaluations.",
       },
       {
         title: "Longitudinal progress tracking",
@@ -644,7 +644,7 @@ const audiences: Audience[] = [
     subtitle: "Sequence communication across all four years",
     icon: "book-opened",
     colorVariant: "blue",
-    lastUpdated: "2026-08-31",
+    lastUpdated: "2026-09-02",
 
     cardBullets: [
       "A four-year arc from history-taking to diagnosis disclosure",
@@ -655,7 +655,7 @@ const audiences: Audience[] = [
     heroHeadline:
       "Build communication skill across all four years",
     heroDescription:
-      "Sequence voice-based practice from history taking to diagnosis disclosure, then follow each student's work across clerkships in one dashboard. ClinicalSim adds repetition between SP encounters and OSCEs.",
+      "Sequence voice-based practice from history taking to diagnosis disclosure, score every conversation against the framework named on the case with the student's own words under each score, and follow each student across clerkships in one dashboard. ClinicalSim adds repetition between SP encounters and OSCEs.",
 
     painPoints: [
       {
@@ -727,7 +727,7 @@ const audiences: Audience[] = [
       {
         title: "Built on published frameworks",
         description:
-          "Scenarios and feedback draw on published communication frameworks such as SPIKES, teach-back, and Calgary-Cambridge, so students learn structures they'll carry into residency.",
+          "Every conversation is scored against a published framework named on the case, such as SPIKES, teach-back, or Calgary-Cambridge, with the student's own words quoted under each score, so students learn structures they'll carry into residency and see exactly which step they skipped.",
       },
     ],
 
@@ -745,7 +745,7 @@ const audiences: Audience[] = [
       {
         question: "Which communication frameworks do undergraduate medical education scenarios use?",
         answer:
-          "Scenarios and feedback draw on published communication frameworks including SPIKES, teach-back, and Calgary-Cambridge, and every case names the framework it uses. Students learn structures they carry into residency rather than a scoring scheme local to one platform.",
+          "Every case names the published communication framework it scores against, including SPIKES, teach-back, and Calgary-Cambridge, and every score quotes the student's own words. Students learn structures they carry into residency rather than a scoring scheme local to one platform.",
       },
     ],
 
@@ -778,7 +778,7 @@ const audiences: Audience[] = [
     subtitle: "Practice the conversations faculty are expected to model",
     icon: "medal-star",
     colorVariant: "accent",
-    lastUpdated: "2026-08-31",
+    lastUpdated: "2026-09-02",
 
     cardBullets: [
       "Rehearse giving specific corrective feedback",
@@ -789,7 +789,7 @@ const audiences: Audience[] = [
     heroHeadline:
       "Practice the conversations you are expected to lead",
     heroDescription:
-      "Rehearse corrective feedback, professionalism concerns, and bedside teaching in private. Review the rubric and transcript before you have the conversation with a learner or colleague.",
+      "Rehearse corrective feedback, professionalism concerns, and bedside teaching in private. See which elements of the framework you hit and which you skipped, in your own words, before you have the conversation with a learner or colleague.",
 
     painPoints: [
       {
@@ -800,7 +800,7 @@ const audiences: Audience[] = [
       {
         headline: "Faculty need evidence they can inspect",
         description:
-          "A private practice report gives a faculty member the rubric and transcript evidence to review before discussing the conversation with a coach.",
+          "A private report scores the conversation against the framework on the case and quotes what the faculty member said under each score, so they can see the element they missed before discussing it with a coach.",
       },
       {
         headline: "No consistent feedback loop",
@@ -916,8 +916,8 @@ const audiences: Audience[] = [
     heroHeadline:
       "Practice the conversations that appear in a growing share of claims",
     heroDescription:
-      "Candello found communication factors in 40% of asserted malpractice cases from 2014 through 2024. ClinicalSim gives clinicians voice-based practice in diagnosis disclosure, goals of care, family meetings, and de-escalation, with a timestamped record of each session. ClinicalSim has not been studied against malpractice claims and does not predict risk.",
-    lastUpdated: "2026-08-10",
+      "Candello found communication factors in 40% of asserted malpractice cases from 2014 through 2024. Clinicians practice diagnosis disclosure, goals of care, family meetings, and de-escalation with AI patients. ClinicalSim scores each conversation against a published framework or your institution's own policy, quotes the clinician's own words under every score, and keeps a timestamped record per person. ClinicalSim has not been studied against malpractice claims and does not predict risk.",
+    lastUpdated: "2026-09-02",
 
     painPoints: [
       {
@@ -979,7 +979,7 @@ const audiences: Audience[] = [
       {
         title: "Practice the conversations that appear in claims",
         description:
-          "The library covers goals-of-care conversations, diagnosis disclosure, advance care planning, family meetings, and de-escalation. Clinicians practice by voice, on demand, from any device, and get feedback scored against published frameworks including SPIKES and Calgary-Cambridge.",
+          "The library covers goals-of-care conversations, diagnosis disclosure, advance care planning, family meetings, and de-escalation. Clinicians practice by voice, on demand, from any device, and each conversation is scored against a published framework such as SPIKES or Calgary-Cambridge, or against your institution's own disclosure or consent policy, with their own words quoted under every score.",
       },
       {
         title: "A record per clinician, not a sign-in sheet",

@@ -144,7 +144,7 @@ const ON_DEMAND_VALUE_PROP: SolutionValueProp = {
 const DASHBOARD_VALUE_PROP: SolutionValueProp = {
   title: "A dashboard that follows the learner",
   description:
-    "Review repeated attempts, subcompetency scores, and case reports in one dashboard for an individual learner or cohort.",
+    "Review repeated attempts, the score on each element, and the words behind it in one dashboard, by learner or by cohort, so you can see where the conversation breaks down and for whom.",
 }
 
 const PRIVATE_REPETITION_VALUE_PROP: SolutionValueProp = {
@@ -157,9 +157,9 @@ const PRIVATE_REPETITION_VALUE_PROP: SolutionValueProp = {
 const GME_VALUE_PROPS: SolutionValueProp[] = [
   ON_DEMAND_VALUE_PROP,
   {
-    title: "Milestone-aligned feedback",
+    title: "Milestone-aligned scores, in the learner's words",
     description:
-      "Each report maps observed behavior to the relevant ACGME Milestones 2.0 and cites the learner's words behind the rating.",
+      "Each conversation is scored against the ACGME Milestones 2.0 subcompetencies named on the case, and every score quotes the learner's own words, so a faculty member or CCC can see which element broke down rather than a rating alone.",
   },
   DASHBOARD_VALUE_PROP,
   PRIVATE_REPETITION_VALUE_PROP,
@@ -169,9 +169,9 @@ const GME_VALUE_PROPS: SolutionValueProp[] = [
 const UME_VALUE_PROPS: SolutionValueProp[] = [
   ON_DEMAND_VALUE_PROP,
   {
-    title: "Feedback aligned to UME competencies",
+    title: "Scored against UME competencies",
     description:
-      "Each report uses the AAMC Foundational Competencies and the communication framework named on the case, with feedback tied to transcript evidence.",
+      "Each conversation is scored against the AAMC Foundational Competencies and the communication framework named on the case, with the student's own words quoted under every score.",
   },
   DASHBOARD_VALUE_PROP,
   PRIVATE_REPETITION_VALUE_PROP,
@@ -181,9 +181,9 @@ const UME_VALUE_PROPS: SolutionValueProp[] = [
 const FACULTY_VALUE_PROPS: SolutionValueProp[] = [
   ON_DEMAND_VALUE_PROP,
   {
-    title: "Structured, rubric-scored feedback",
+    title: "Scored against the framework on the case",
     description:
-      "Each report uses the framework named on the case and ties feedback to specific behavior in the transcript.",
+      "Each conversation is scored against the framework named on the case, Pendleton or SBI for feedback, and every score quotes what the faculty member said, so the report shows which element they missed rather than a rating alone.",
   },
   DASHBOARD_VALUE_PROP,
   PRIVATE_REPETITION_VALUE_PROP,
@@ -202,7 +202,7 @@ const solutions: Solution[] = [
     subtitle: "A longitudinal communication curriculum across PGY years",
     icon: "stack",
     colorVariant: "accent",
-    lastUpdated: "2026-08-20",
+    lastUpdated: "2026-09-02",
     cardBullets: [
       "A gradual arc from PGY-1 to senior resident and fellow",
       "Mapped to ACGME Milestones 2.0 and ABP EPAs",
@@ -213,7 +213,7 @@ const solutions: Solution[] = [
       "A core communication curriculum for every resident and fellow, not a remediation add-on. Cases progress across PGY years, mapped to ACGME Milestones 2.0 and EPAs.",
     heroHeadline: "Communication practice that grows with clinical responsibility",
     heroDescription:
-      "Every resident works the same sequence, from clear information delivery through uncertainty, family meetings, and leadership. Each case uses the ACGME Milestones and communication framework that fit the learner, specialty, and task.",
+      "Every resident works the same sequence, from clear information delivery through uncertainty, family meetings, and leadership. Each conversation is scored against the ACGME Milestones and communication framework that fit the learner, specialty, and task, with the resident's own words quoted under every score.",
     stagesHeading: "The arc across training",
     stagesIntro:
       "Increasing complexity, emotional intensity, and leadership demand from intern year through fellowship.",
@@ -259,7 +259,7 @@ const solutions: Solution[] = [
       {
         question: "Does this replace bedside teaching and faculty feedback?",
         answer:
-          "No. The platform gives learners private, repeatable practice, so faculty time can stay focused on coaching. A faculty mentor observing a real family meeting provides human judgment that ClinicalSim does not replace.",
+          "No. ClinicalSim scores each practice conversation against the milestone language on the case and quotes the learner's words under every score, so a faculty member arrives at coaching already knowing which element broke down and spends the time on that. A faculty mentor observing a real family meeting provides human judgment that ClinicalSim does not replace.",
       },
     ],
     relatedPostSlugs: [
@@ -293,7 +293,7 @@ const solutions: Solution[] = [
     subtitle: "From history-taking to delivering a diagnosis, across four years",
     icon: "student",
     colorVariant: "blue",
-    lastUpdated: "2026-08-20",
+    lastUpdated: "2026-09-02",
     cardBullets: [
       "A four-year arc from M1 history-taking to M4 diagnosis disclosure",
       "OSCE practice on demand between scheduled SP encounters",
@@ -339,7 +339,7 @@ const solutions: Solution[] = [
       {
         question: "Can students use it to prepare for an OSCE?",
         answer:
-          "Students get repeatable OSCE practice on demand between scheduled standardized patient encounters, rehearsing the communication tasks a station asks for: taking a focused history, explaining a diagnosis, and answering a family's questions. Scheduled SP encounters are limited by actor time, rooms, and faculty observers, so they can score a communication skill without giving a student the repetition needed to build one. Live assessment stays with faculty and the program. Extend your SP program, don't replace it.",
+          "Students get repeatable OSCE practice on demand between scheduled standardized patient encounters, rehearsing the communication tasks a station asks for: taking a focused history, explaining a diagnosis, and answering a family's questions. Each attempt is scored against the rubric written for the case, with the student's own words quoted under every score, so the student knows which element they missed before the station counts. Scheduled SP encounters are limited by actor time, rooms, and faculty observers, so they can score a communication skill without giving a student the repetition needed to build one. Live assessment stays with faculty and the program. Extend your SP program, don't replace it.",
       },
       {
         question: "What does a virtual OSCE station look like here?",
@@ -377,7 +377,7 @@ const solutions: Solution[] = [
     subtitle: "The conversations faculty are expected to model",
     icon: "group",
     colorVariant: "light-blue",
-    lastUpdated: "2026-08-10",
+    lastUpdated: "2026-09-02",
     cardBullets: [
       "Practice giving specific corrective feedback",
       "Lead professionalism conversations with peers",
@@ -388,7 +388,7 @@ const solutions: Solution[] = [
       "Attendings and clinician educators practice the conversations they're expected to model, including feedback, professionalism concerns, and bedside teaching, with rubric-scored simulation.",
     heroHeadline: "Build communication practice into faculty development",
     heroDescription:
-      "Faculty can rehearse corrective feedback, professionalism concerns, bedside teaching, and peer conversations before they lead them in person. Each session produces framework-based feedback they can review privately or with a coach.",
+      "Faculty can rehearse corrective feedback, professionalism concerns, bedside teaching, and peer conversations before they lead them in person. Each conversation is scored against the framework named on the case, with the faculty member's own words quoted under every score, to review privately or with a coach.",
     stagesHeading: "What faculty practice",
     stagesIntro:
       "The same rubric system that trains residents, turned toward the skills faculty are expected to demonstrate.",
@@ -417,7 +417,7 @@ const solutions: Solution[] = [
       {
         question: "Why would experienced faculty need communication practice?",
         answer:
-          "Faculty are expected to model feedback, professionalism, and teaching conversations. The platform gives them a private place to rehearse and review rubric-scored feedback before leading those conversations in person.",
+          "Faculty are expected to model feedback, professionalism, and teaching conversations. ClinicalSim gives them a private place to rehearse, scores the conversation against the framework on the case (Pendleton or SBI for feedback), and quotes their own words under each score, so they can see which element they skipped before leading the conversation in person.",
       },
       {
         question: "Does this use the same system as trainee scenarios?",
@@ -978,7 +978,7 @@ const solutions: Solution[] = [
     colorVariant: "navy",
     customPage: true,
     hideFromHomepage: true,
-    lastUpdated: "2026-08-10",
+    lastUpdated: "2026-09-02",
     cardBullets: [
       "Targeted, milestone-mapped practice for a struggling learner",
       "Repeatable, on-demand practice without SP scheduling",
@@ -990,10 +990,10 @@ const solutions: Solution[] = [
     heroHeadline:
       "Communication remediation with evidence for the CCC",
     heroDescription:
-      "Targeted, on-demand practice with milestone-aligned reports and transcript evidence for faculty and CCC review.",
+      "Score the conversation a learner is remediating against the milestone language the CCC already uses, show where it breaks down in the learner's own words, and give them targeted practice on that element.",
     ctaHeadline: "Start with a repeatable remediation structure",
     ctaDescription:
-      "Review how structured practice and milestone-aligned feedback could fit a communication remediation plan.",
+      "Start with an assessment of one learner's conversation and see how milestone-aligned scores and targeted practice fit a communication remediation plan.",
   },
 ]
 
