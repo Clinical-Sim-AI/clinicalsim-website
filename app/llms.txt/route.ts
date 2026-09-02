@@ -7,10 +7,12 @@ import { getIndexableGlossaryTerms } from "@/lib/glossary"
 import { getAllHelpArticles } from "@/lib/help-articles"
 import { getFeaturedFrameworks } from "@/lib/frameworks"
 import {
+  ASSESSMENT_ENTRY,
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
   MEASUREMENT_CLAIM,
   POSITIONING_AUDIENCE,
+  POSITIONING_LONG,
   POSITIONING_ONE_LINER,
   POSITIONING_SUPPORT,
 } from "@/lib/positioning"
@@ -36,6 +38,7 @@ const KEY_FACTS = `## Key facts
 
 - **What it is.** ${CATEGORY_LINE} ${CATEGORY_DEFINITION}
 - **In one sentence.** ${POSITIONING_ONE_LINER}
+- **How it starts.** ${ASSESSMENT_ENTRY}
 - **Intended use.** Clinician training and assessment. ClinicalSim produces no patient-facing output, makes no diagnostic or treatment recommendation, and creates no clinical documentation. (/trust)
 - **What it does not do.** It does not replace a standardized patient program, it extends one. It does not predict patient experience scores, readmissions, safety events, claims, or other clinical or business outcomes. It does not price malpractice risk or benchmark one institution against another. It is audio only, so it cannot assess eye contact, body language, or physical presence. (/trust, /faq, /solutions/patient-experience)
 - **Patient data.** Every patient in every case is synthetic, written from the clinical literature rather than adapted from a chart, so case development needs no patient record and no de-identification step. The platform does handle learner recordings, transcripts, account data, and institutional data. Voice collection is consent-gated and learners can request erasure. (/trust)
@@ -55,7 +58,7 @@ const HEADER = `# ClinicalSim.ai
 ${KEY_FACTS}
 ## Pages
 
-- [Homepage](${BASE_URL}): Voice based practice with AI patients. Teams can start with ready to use cases based on published clinical frameworks or add an institution's policy, service standard, script, or rubric.
+- [Homepage](${BASE_URL}): ${POSITIONING_LONG}
 - [About](${BASE_URL}/about): How ClinicalSim began, why the platform extends beyond medical education, how it handles scoring evidence, and the team responsible for the work.`
 
 export async function GET() {
@@ -101,7 +104,7 @@ export async function GET() {
     `- [FAQ for medical educators](${BASE_URL}/medical-educator-faq): How to read a feedback report, inspect transcript evidence, compare GME and UME scoring, choose a practice cadence, and use results in a rotation or remediation plan.`,
     `- [Research collaboration](${BASE_URL}/research): Propose a study in communication training, implementation, patient experience, workforce education, or competency assessment.`,
     `- [Insights](${BASE_URL}/insights): Research and evidence on medical communication training, simulation technology, and clinical conversation outcomes.`,
-    `- [Contact](${BASE_URL}/contact): Request a pilot with one team, one standard, and defined reporting rules.`,
+    `- [Contact](${BASE_URL}/contact): Start with an assessment: one group, one standard, and defined reporting rules.`,
     `- [Help center](${BASE_URL}/help): Guides, release notes, and support for ClinicalSim programs and learners.`,
     `- [Release notes](${BASE_URL}/help/release-notes): A concise log of customer-visible ClinicalSim changes, newest first.`,
     // Mapped from the registry so this list and app/sitemap.ts cannot disagree.

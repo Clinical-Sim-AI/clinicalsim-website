@@ -124,7 +124,7 @@ export default function ExamplesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a pilot
+                Start with an assessment
               </Button>
             </Link>
             <Link href="/solutions/remediation">

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
 }
 
-const LAST_UPDATED = "2026-09-01"
+const LAST_UPDATED = "2026-09-02"
 const SHOW_TEAM: boolean = false
 
 export default function AboutPage() {
@@ -193,14 +193,14 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
             <p>
-              Clinicians and patient facing staff talk with AI patients by voice from any device. The cases can cover clinical conversations, patient service standards, and debriefing. There&apos;s no app to install, room to book, or faculty observer required for practice. The current programs and conversations live on our{" "}
+              Clinicians and patient facing staff talk with AI patients by voice from any device, on cases that cover clinical conversations, patient service standards, and debriefing. Nobody books a room or sits in as an observer. The current programs and conversations live on our{" "}
               <Link href="/solutions" className="text-cs-dark-blue font-medium underline decoration-cs-dark-blue/30 hover:decoration-cs-dark-blue underline-offset-4 transition-colors">
                 use cases page
               </Link>
               .
             </p>
             <p>
-              Every session produces feedback scored against the standard named on the case, with transcript evidence behind each rating. Leaders can review an individual, a named cohort, or an anonymous unit view based on the access rules set before launch.
+              Every conversation is scored against the standard named on the case, and the participant&apos;s own words sit under each score. Leaders review an individual, a named cohort, or an anonymous unit view based on the access rules set before launch.
             </p>
             <p className="text-cs-dark-blue font-normal">
               ClinicalSim extends standardized patient programs. It adds repeatable practice between live encounters and another source of evidence for review. It does not replace live assessment or human judgment.
@@ -249,7 +249,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a pilot
+                Start with an assessment
               </Button>
             </Link>
             <Link

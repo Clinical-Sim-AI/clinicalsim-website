@@ -97,7 +97,7 @@ export default function AudiencesPage() {
             One communication platform, built for the teams responsible for the standard
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-4 max-w-3xl mx-auto">
-            Patient experience, risk, safety, simulation, and medical education teams can use the same voice practice and transcript evidence while each keeps the reporting view its work requires.
+            Patient experience, risk, safety, simulation, and medical education teams measure conversations against their own standard and fix what they find, while each keeps the reporting view its work requires.
           </p>
         </div>
       </section>
@@ -169,7 +169,7 @@ export default function AudiencesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Request a pilot
+                Start with an assessment
               </Button>
             </Link>
             <Link href="/solutions/patient-experience">

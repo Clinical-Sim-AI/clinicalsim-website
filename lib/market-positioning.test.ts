@@ -3,8 +3,13 @@ import { describe, expect, it } from "vitest"
 import { getAudiencesByMarket } from "./audiences"
 import { getHomepageSolutionGroups, getSolutionsByMarket } from "./solutions"
 import {
+  ASSESSMENT_ENTRY,
   CATEGORY_DEFINITION,
+  CATEGORY_LINE,
+  MEASUREMENT_CLAIM,
+  POSITIONING_AUDIENCE,
   POSITIONING_LONG,
+  POSITIONING_ONE_LINER,
   POSITIONING_SUPPORT,
 } from "./positioning"
 
@@ -62,6 +67,23 @@ describe("market positioning", () => {
       expect(copy).toMatch(/published clinical frameworks/i)
       expect(copy).toMatch(/institution/i)
       expect(copy).toMatch(/policy|service standard|script|rubric/i)
+    }
+  })
+
+  it("positions the company as measuring communication, entered through an assessment", () => {
+    expect(POSITIONING_ONE_LINER).toMatch(/measures/i)
+    expect(ASSESSMENT_ENTRY).toMatch(/assessment/i)
+    for (const copy of [
+      ASSESSMENT_ENTRY,
+      CATEGORY_DEFINITION,
+      CATEGORY_LINE,
+      MEASUREMENT_CLAIM,
+      POSITIONING_AUDIENCE,
+      POSITIONING_LONG,
+      POSITIONING_ONE_LINER,
+      POSITIONING_SUPPORT,
+    ]) {
+      expect(copy).not.toMatch(/[\u2013\u2014]/)
     }
   })
 

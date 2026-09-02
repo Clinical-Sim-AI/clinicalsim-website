@@ -73,7 +73,7 @@ export default async function OpenGraphImage() {
             opacity: 0.75,
           }}
         >
-          AI patients · Your standards · Transcript evidence
+          Your standard · Their words · Measured, then fixed
         </div>
       </div>
     ),
