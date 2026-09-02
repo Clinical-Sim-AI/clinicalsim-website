@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { CATEGORY_LINE, POSITIONING_ONE_LINER } from "@/lib/positioning"
 
 export function SiteFooter() {
   return (
@@ -19,7 +20,7 @@ export function SiteFooter() {
               />
             </Link>
             <p className="text-sm text-cs-dark-blue/70 font-light leading-relaxed">
-              The communication intelligence platform for health systems. Healthcare teams practice with AI patients, and leaders review the transcript evidence behind each score.
+              {`${CATEGORY_LINE} ${POSITIONING_ONE_LINER}`}
             </p>
           </div>
 
@@ -95,7 +96,7 @@ export function SiteFooter() {
             </p>
             <Link href="/contact" className="inline-block pt-2">
               <Button size="lg">
-                Request a pilot
+                Start with an assessment
               </Button>
             </Link>
           </div>

@@ -14,7 +14,6 @@ import {
   CATEGORY_LINE,
   POSITIONING_LONG,
   POSITIONING_ONE_LINER,
-  POSITIONING_SUPPORT,
 } from "@/lib/positioning"
 import {
   NO_EMPLOYMENT_USE_LIMITATION,
@@ -64,9 +63,11 @@ const faqSections: FaqSection[] = [
       {
         id: "what-is-clinicalsim",
         question: "What is ClinicalSim?",
-        // Leads with the canonical sentence from lib/positioning.ts. This
+        // Leads with the canonical sentences from lib/positioning.ts. This
         // answer used to be a fourth competing description of the company.
-        answer: `${CATEGORY_LINE} ${CATEGORY_DEFINITION} ${POSITIONING_ONE_LINER} ${POSITIONING_SUPPORT}`,
+        // POSITIONING_SUPPORT is left out here because CATEGORY_DEFINITION
+        // already names both scoring paths and the quoted words.
+        answer: `${CATEGORY_LINE} ${CATEGORY_DEFINITION} ${POSITIONING_ONE_LINER}`,
       },
       {
         id: "replaces-step-2-cs",
@@ -605,7 +606,7 @@ export default function FaqPage() {
             </Link>
             <Link href="/contact">
               <Button variant="default" size="lg">
-                Request a pilot
+                Start with an assessment
               </Button>
             </Link>
           </div>

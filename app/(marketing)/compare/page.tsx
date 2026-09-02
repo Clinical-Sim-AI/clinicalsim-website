@@ -127,7 +127,7 @@ export default function CompareIndexPage() {
           </p>
           <Link href="/contact">
             <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-base font-bold transition-all duration-300 bg-cs-electric text-cs-dark-blue hover:bg-cs-electric/90 hover:shadow-lg h-14 px-10">
-              Request a pilot
+              Start with an assessment
             </button>
           </Link>
         </div>

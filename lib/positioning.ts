@@ -13,6 +13,10 @@
  *
  * Import from here rather than retyping. Anything that describes the company as
  * a whole should use these.
+ *
+ * Repositioned 2026-09-02 after Ben's call with advisors: the company measures
+ * communication against the standard an institution already holds, shows where
+ * it breaks down per person, and fixes it. Seats and features are not the pitch.
  */
 
 /**
@@ -28,47 +32,53 @@ export const CATEGORY_LINE =
   "The communication intelligence platform for health systems."
 
 /**
- * The plain-language unpacking of CATEGORY_LINE, from deck slide 3's three-part
- * product definition. The third part is deliberately reconciled to the site's
- * own wording ("named physicians write and review each case") rather than the
- * deck's stronger phrasing about national standards.
+ * The plain-language unpacking of CATEGORY_LINE. Measure, show, fix: the three
+ * verbs Ben settled on 2026-09-02. The scoring paths (published framework or the
+ * institution's own standard) stay named because lib/market-positioning.test.ts
+ * asserts both appear.
  */
 export const CATEGORY_DEFINITION =
-  "Clinicians, medical learners, and patient facing staff practice spoken encounters with AI patients. Cases use published clinical frameworks or an institution supplied policy, service standard, script, or rubric, with transcript evidence behind every score."
+  "Clinicians, medical learners, and patient facing staff hold spoken conversations with AI patients. ClinicalSim scores each conversation against published clinical frameworks or the institution's own policy, service standard, script, or rubric, quotes the participant's own words under every score, and gives people practice on the elements they missed."
 
 /**
- * The canonical one-liner. Already the homepage h2 and the /llms.txt header
- * blurb. Keep the wording identical everywhere it appears: repetition across
+ * The canonical one-liner. Feeds POSITIONING_LONG (root metadata, the
+ * Organization and WebSite nodes, /about), the footer tagline, and the /llms.txt
+ * header. Keep the wording identical everywhere it appears: repetition across
  * pages is what makes a sentence extractable, and a near-variant reads to a
  * retrieval system as a competing claim rather than the same one.
  */
 export const POSITIONING_ONE_LINER =
-  "ClinicalSim gives healthcare teams voice-based practice with AI patients and gives leaders the transcript evidence behind each score."
+  "ClinicalSim measures how clinicians and staff talk with patients, against the standard your institution already holds, and fixes what it finds."
 
 /** The sentence that follows the one-liner wherever there is room for two. */
 export const POSITIONING_SUPPORT =
-  "Teams can start with ready to use cases based on published clinical frameworks or add an institution's policy, service standard, script, or rubric."
+  "Every score quotes the participant's own words, by person, cohort, or unit. Cases use published clinical frameworks or the institution's own policy, service standard, script, or rubric."
 
 /** One-liner plus support. The default for a meta description or a schema node. */
 export const POSITIONING_LONG = `${POSITIONING_ONE_LINER} ${POSITIONING_SUPPORT}`
 
 /**
  * Who the platform is for. Kept here because Organization.description and the
- * /llms.txt facts block should not drift from each other on this point.
+ * /llms.txt facts block should not drift from each other on this point. Both
+ * markets are named on purpose: residency, fellowship, and medical school
+ * programs are where traction is and must not read as an afterthought.
  */
 export const POSITIONING_AUDIENCE =
-  "Health systems use ClinicalSim across patient experience, risk and safety, medical education, and faculty development."
+  "Health systems use ClinicalSim across patient experience, risk and safety, informed consent, error disclosure, and debriefing. Residency, fellowship, and medical school programs use it for milestones, OSCE practice, and faculty development."
 
 export type Market = "health-system" | "medical-education"
 
 /**
  * The instrument claim, from the use case library brief (2026-08-31).
  *
- * This is what makes the product a category rather than a training tool, and it is the sentence
- * /frameworks is built to be cited for. It is deliberately separate from POSITIONING_ONE_LINER:
- * the one-liner describes what a learner and a faculty member each get, this describes what the
- * thing is. Both are true; rewriting the one-liner into this is a positioning decision Ben has
- * not made.
+ * This is what makes the product a category rather than a training tool. It is
+ * the /llms.txt frameworks line. It stays separate from POSITIONING_ONE_LINER:
+ * the one-liner says what the company does for a buyer, this says what the
+ * instrument is. Both are true.
  */
 export const MEASUREMENT_CLAIM =
-  "ClinicalSim measures a spoken clinical conversation against a named standard, person by person, with the clinician's own words quoted under every score."
+  "ClinicalSim measures a spoken clinical conversation against a named standard, person by person, with the participant's own words quoted under every score."
+
+/** The entry point. Shared by the homepage, /contact, and /llms.txt. */
+export const ASSESSMENT_ENTRY =
+  "An engagement starts with an assessment. You send the standard you already hold, one group runs a conversation or two with AI patients, and the report shows where the conversation breaks down, in the participants' own words."

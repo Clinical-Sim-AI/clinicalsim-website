@@ -212,7 +212,7 @@ const audiences: Audience[] = [
     ],
     ctaHeadline: "Start with a repeatable remediation structure",
     ctaDescription:
-      "Request a pilot and see how structured practice with milestone-aligned feedback fits your communication remediation plan.",
+      "Start with an assessment and see how structured practice with milestone-aligned feedback fits your communication remediation plan.",
 
     relatedPostSlugs: [
       "scalability-problem-sp-programs",
@@ -349,7 +349,7 @@ const audiences: Audience[] = [
     ],
     ctaHeadline: "Give every program the same starting point",
     ctaDescription:
-      "Request a pilot and see how shared case standards and reviewable practice records could fit your GME office.",
+      "Start with an assessment and see how shared case standards and reviewable practice records could fit your GME office.",
 
     relatedPostSlugs: [
       "hospital-communication-training-roi",
@@ -495,7 +495,7 @@ const audiences: Audience[] = [
     ],
     ctaHeadline: "See how ClinicalSim extends an SP program",
     ctaDescription:
-      "Request a pilot and see how ClinicalSim extends your simulation center's communication training capacity.",
+      "Start with an assessment and see how ClinicalSim extends your simulation center's communication training capacity.",
 
     relatedPostSlugs: [
       "scalability-problem-sp-programs",
@@ -628,7 +628,7 @@ const audiences: Audience[] = [
     ],
     ctaHeadline: "Add another source of communication evidence",
     ctaDescription:
-      "Request a pilot and review the transcript evidence a ClinicalSim report can add to your committee's existing sources.",
+      "Start with an assessment and review the transcript evidence a ClinicalSim report can add to your committee's existing sources.",
 
     relatedPostSlugs: [
       "osce-case-design-guide",
@@ -761,7 +761,7 @@ const audiences: Audience[] = [
     ctaHeadline:
       "Build communication skill across all four years.",
     ctaDescription:
-      "Request a pilot and review a four-year sequence from the first patient history through diagnosis disclosure.",
+      "Start with an assessment and review a four-year sequence from the first patient history through diagnosis disclosure.",
 
     relatedPostSlugs: [
       "osce-case-design-guide",
@@ -890,7 +890,7 @@ const audiences: Audience[] = [
     ctaHeadline:
       "Give faculty the practice they never got.",
     ctaDescription:
-      "Request a pilot and review cases for corrective feedback, professionalism concerns, and bedside teaching.",
+      "Start with an assessment and review cases for corrective feedback, professionalism concerns, and bedside teaching.",
 
     relatedPostSlugs: [
       "eol-communication-training-measurement-gap",
@@ -1039,7 +1039,7 @@ const audiences: Audience[] = [
     ],
     ctaHeadline: "Add documented practice to your risk reduction program",
     ctaDescription:
-      "Request a pilot and review the practice record ClinicalSim produces for each simulated encounter.",
+      "Start with an assessment and review the practice record ClinicalSim produces for each simulated encounter.",
 
     relatedPostSlugs: [
       "why-communication-training-matters",

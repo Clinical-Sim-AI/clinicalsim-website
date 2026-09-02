@@ -132,10 +132,11 @@ export default function HomePage() {
               url: "https://clinicalsim.ai",
             },
             featureList: [
-              "Voice based practice with AI patients",
+              "Spoken conversations with AI patients, scored against a published framework or the institution's own standard",
               "Ready to use cases based on published clinical frameworks",
               "Institution supplied policies, service standards, scripts, and rubrics",
               "Rubric scores with transcript evidence",
+              "Assessment report by person, cohort, or anonymous unit",
               "Individual, cohort, and anonymous unit reporting",
               "Cases written and reviewed by named physicians",
             ],
@@ -189,13 +190,13 @@ export default function HomePage() {
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Link href="/contact">
                 <Button variant="accent" size="xl" className="w-full sm:w-auto">
-                  Request a pilot
+                  {HOMEPAGE_PUBLIC_COPY.hero.primaryCta}
                   <ArrowRight />
                 </Button>
               </Link>
               <Link href="/examples">
                 <Button variant="inverse" size="xl" className="w-full sm:w-auto">
-                  See example feedback
+                  {HOMEPAGE_PUBLIC_COPY.hero.secondaryCta}
                 </Button>
               </Link>
             </div>
@@ -246,6 +247,43 @@ export default function HomePage() {
       </section>
 
       <section className="bg-white px-6 py-16 md:py-24">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-10 max-w-3xl md:mb-12">
+            <h2 className="mb-4 text-balance text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
+              {HOMEPAGE_PUBLIC_COPY.howItStarts.heading}
+            </h2>
+            <p className="text-lg font-light text-cs-dark-blue/70">
+              {HOMEPAGE_PUBLIC_COPY.howItStarts.intro}
+            </p>
+          </div>
+
+          <div className="space-y-5">
+            {HOMEPAGE_PUBLIC_COPY.howItStarts.steps.map((step, index) => (
+              <Reveal key={step.title} delay={index * 80}>
+                <div className="rounded-xl border border-cs-gray/50 border-l-4 border-l-cs-navy bg-white px-6 py-5">
+                  <h3 className="mb-2 text-lg font-medium text-cs-dark-blue">
+                    {index + 1}. {step.title}
+                  </h3>
+                  <p className="text-base font-light leading-relaxed text-cs-dark-blue/85">
+                    {step.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-8 rounded-2xl bg-cs-navy p-6 text-white md:p-8">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.16em] text-cs-electric">
+              {HOMEPAGE_PUBLIC_COPY.howItStarts.exampleLabel}
+            </p>
+            <p className="text-lg font-light leading-relaxed text-cs-cloud">
+              {HOMEPAGE_PUBLIC_COPY.howItStarts.example}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-cs-gray/60 bg-white px-6 py-16 md:py-24">
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
             <h2 className="text-balance text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
@@ -254,6 +292,23 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+            <article className="rounded-2xl bg-cs-navy p-6 text-white md:p-8">
+              <h3 className="mb-3 text-2xl font-medium text-white">
+                {HOMEPAGE_PUBLIC_COPY.scoring.institutionTitle}
+              </h3>
+              <p className="font-light leading-relaxed text-cs-cloud">
+                {HOMEPAGE_PUBLIC_COPY.scoring.institutionBody}
+              </p>
+              <div className="mt-8 border-t border-white/15 pt-6">
+                <p className="text-lg font-medium text-cs-electric">
+                  Policy, service model, script, or rubric
+                </p>
+                <p className="mt-2 text-sm font-light leading-relaxed text-cs-cloud">
+                  We review which elements a spoken conversation can show before the assessment begins.
+                </p>
+              </div>
+            </article>
+
             <article className="rounded-2xl border border-cs-gray bg-white p-6 md:p-8">
               <h3 className="mb-3 text-2xl font-medium text-cs-dark-blue">
                 {HOMEPAGE_PUBLIC_COPY.scoring.readyTitle}
@@ -271,23 +326,6 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-            </article>
-
-            <article className="rounded-2xl bg-cs-navy p-6 text-white md:p-8">
-              <h3 className="mb-3 text-2xl font-medium text-white">
-                {HOMEPAGE_PUBLIC_COPY.scoring.institutionTitle}
-              </h3>
-              <p className="font-light leading-relaxed text-cs-cloud">
-                {HOMEPAGE_PUBLIC_COPY.scoring.institutionBody}
-              </p>
-              <div className="mt-8 border-t border-white/15 pt-6">
-                <p className="text-lg font-medium text-cs-electric">
-                  Policy, service model, script, or rubric
-                </p>
-                <p className="mt-2 text-sm font-light leading-relaxed text-cs-cloud">
-                  We review which elements a spoken encounter can show before a pilot begins.
-                </p>
-              </div>
             </article>
           </div>
 
@@ -457,7 +495,7 @@ export default function HomePage() {
           <div className="mt-12 text-center md:mt-14">
             <Link href="/contact">
               <Button size="xl">
-                Request a pilot
+                {HOMEPAGE_PUBLIC_COPY.closing.cta}
                 <ArrowRight />
               </Button>
             </Link>
@@ -475,7 +513,7 @@ export default function HomePage() {
           </p>
           <Link href="/contact">
             <Button variant="accent" size="xl">
-              Request a pilot
+              {HOMEPAGE_PUBLIC_COPY.closing.cta}
             </Button>
           </Link>
         </div>

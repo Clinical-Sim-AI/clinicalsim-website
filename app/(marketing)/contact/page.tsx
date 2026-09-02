@@ -11,16 +11,16 @@ import { BrandIcon } from "@/components/brand-icon"
 import { Waveform } from "@/components/waveform"
 
 export const metadata: Metadata = {
-  title: "Contact us: request a pilot",
-  description: "Tell ClinicalSim which team would practice, what standard you already use, and how your institution needs the results reported.",
+  title: "Contact us: start with an assessment",
+  description: "Tell ClinicalSim which group would take part, which standard you already hold, and how your institution needs the results reported.",
   openGraph: {
     title: "Contact ClinicalSim.ai",
-    description: "Tell us about the team, communication standard, and reporting needs for your pilot.",
+    description: "Tell us about the group, the standard you already hold, and how the results should be reported.",
     url: "https://clinicalsim.ai/contact",
   },
   twitter: {
     title: "Contact ClinicalSim.ai",
-    description: "Request a health system or medical education pilot.",
+    description: "Start with an assessment for a health system or medical education group.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/contact",
@@ -37,7 +37,7 @@ export default function ContactPage() {
             "@type": "ContactPage",
             name: "Contact ClinicalSim.ai",
             description:
-              "Tell ClinicalSim which team would practice, what standard the institution already uses, and how the results should be reported.",
+              "Tell ClinicalSim which group would take part, which standard the institution already holds, and how the results should be reported.",
             url: "https://clinicalsim.ai/contact",
             mainEntity: {
               "@type": "Organization",
@@ -77,11 +77,11 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             {/* Contact Info */}
             <div>
-              <h1 className="text-4xl md:text-5xl font-light mb-6">Tell us about the team and the standard</h1>
+              <h1 className="text-4xl md:text-5xl font-light mb-6">Tell us about the group and the standard</h1>
               <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-cs-cloud">
-                Tell us who would practice, which conversation or service
-                behavior matters, what standard you already use, and who should
-                see the results. We usually reply within two business days.
+                Tell us who would take part, which conversation is going wrong or
+                which one learners need to practice, what standard you already hold,
+                and who should see the results. We usually reply within two business days.
               </p>
 
               <div className="space-y-6">
@@ -202,7 +202,7 @@ export default function ContactPage() {
 
               <div>
                 <Label htmlFor="pilotGroupSize" className="text-white text-base font-normal mb-2 block">
-                  Approximate pilot group size
+                  Approximate group size
                 </Label>
                 <Input
                   id="pilotGroupSize"
@@ -249,7 +249,7 @@ export default function ContactPage() {
                 size="lg"
                 className="w-full md:w-auto"
               >
-                Request a pilot
+                Start with an assessment
               </Button>
             </form>
           </div>
@@ -261,7 +261,7 @@ export default function ContactPage() {
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">Other ways to work with us</h2>
           <p className="text-lg text-cs-dark-blue/70 font-light text-center mb-12 max-w-2xl mx-auto">
-            Request a pilot, propose a study, or tell us about a case and rubric partnership.
+            Start with an assessment, propose a study, or tell us about a case and rubric partnership.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -269,9 +269,9 @@ export default function ContactPage() {
               <div className="w-12 h-12 rounded-lg bg-cs-electric flex items-center justify-center mb-6">
                 <BrandIcon name="people-connected" color="dark" size={28} />
               </div>
-              <h3 className="text-xl font-medium text-cs-navy mb-3">Pilot program</h3>
+              <h3 className="text-xl font-medium text-cs-navy mb-3">Assessment</h3>
               <p className="text-cs-dark-blue/85 font-light leading-relaxed">
-                Health system and medical education teams can begin with one group, one conversation, and one reporting question before they expand.
+                Health system and medical education teams begin with one group, one standard, and one conversation. The report comes back with the participants&apos; own words under every score, and the pilot grows from what it finds.
               </p>
             </div>
 

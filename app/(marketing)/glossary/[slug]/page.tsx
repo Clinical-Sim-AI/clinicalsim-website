@@ -287,7 +287,7 @@ export default async function GlossaryTermPage({ params }: Props) {
           </p>
           <Link href="/contact">
             <Button variant="accent" size="xl">
-              Request a pilot
+              Start with an assessment
             </Button>
           </Link>
         </div>

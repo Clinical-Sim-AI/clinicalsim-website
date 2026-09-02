@@ -33,7 +33,7 @@ const GROUPS: {
 export const metadata: Metadata = {
   title: "Communication intelligence use cases",
   description:
-    "ClinicalSim supports health systems and medical education with scored voice practice for patient experience, debriefing, safety conversations, curricula, and remediation.",
+    "ClinicalSim measures and fixes communication for health systems and medical education: patient experience, debriefing, informed consent, error disclosure, curricula, and remediation.",
   openGraph: {
     title: "Use cases | ClinicalSim.ai",
     description:
@@ -97,7 +97,7 @@ export default function SolutionsPage() {
             One platform for the conversations your institution needs to measure
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">
-            Teams practice with AI patients, each encounter is scored against the standard that fits the task, and every score cites the speaker&apos;s own words.
+            Each conversation is scored against the standard that fits the task, every score quotes the speaker&apos;s own words, and the same cases give people the practice to fix what the score found.
           </p>
           <p className="mt-6 text-base md:text-lg text-cs-cloud/85 font-light max-w-3xl mx-auto">
             <Link
@@ -161,7 +161,7 @@ export default function SolutionsPage() {
           </p>
           <Link href="/contact">
             <Button variant="accent" size="xl">
-              Request a pilot
+              Start with an assessment
             </Button>
           </Link>
         </div>

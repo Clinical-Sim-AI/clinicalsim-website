@@ -15,3 +15,31 @@ describe("homepage public copy", () => {
     }
   })
 })
+
+describe("homepage hero keeps both markets in frame", () => {
+  it("names patients and medical education programs in the hero", () => {
+    const { headline, body } = HOMEPAGE_PUBLIC_COPY.hero
+    expect(`${headline} ${body}`).toMatch(/patients/i)
+    expect(body).toMatch(/residency|medical school/i)
+    expect(body).toMatch(/standard/i)
+  })
+
+  it("ties every score to the participant's own words", () => {
+    const copy = JSON.stringify(HOMEPAGE_PUBLIC_COPY)
+    expect(copy).toMatch(/own words/i)
+    expect(copy).not.toMatch(/[–—]/)
+  })
+})
+
+describe("homepage leads with the assessment entry point", () => {
+  it("names the assessment and retires the pilot request", () => {
+    const copy = JSON.stringify(HOMEPAGE_PUBLIC_COPY)
+    expect(copy).toMatch(/assessment/i)
+    expect(copy).not.toContain("Request a pilot")
+  })
+
+  it("walks through three steps and anonymizes the pilot example", () => {
+    expect(HOMEPAGE_PUBLIC_COPY.howItStarts.steps).toHaveLength(3)
+    expect(HOMEPAGE_PUBLIC_COPY.howItStarts.example).not.toMatch(/advocate/i)
+  })
+})
