@@ -2,9 +2,9 @@ export const HOMEPAGE_PUBLIC_COPY = {
   hero: {
     eyebrow: "Communication intelligence for health systems",
     headline:
-      "Measure how your clinicians and staff talk with patients. Then fix what you find.",
-    body: "Patient complaints, consent, error disclosure, debriefs, and learner milestones all come down to what someone said in the room. ClinicalSim scores those spoken conversations against the standard your institution already holds, shows each person where they fell short in their own words, and gives them the practice to fix it. Residency, fellowship, and medical school programs use the same tool for milestones and OSCE practice.",
-    primaryCta: "Start with an assessment",
+      "Give clinicians measurable practice for better patient conversations.",
+    body: "Clinicians, learners, and patient facing staff practice spoken conversations with AI patients. ClinicalSim scores each simulation against a published clinical framework or your institution's own standard and quotes the participant's words behind every score. Participants see what they did well and what to practice next, while leaders can see patterns across a cohort or unit. Residency, fellowship, and medical school programs use the same tool for milestones and OSCE practice.",
+    primaryCta: "See how an assessment works",
     secondaryCta: "See example feedback",
     pilot:
       "More than 25 academic medical centers and children's hospitals are piloting ClinicalSim.",
@@ -24,12 +24,12 @@ export const HOMEPAGE_PUBLIC_COPY = {
     },
   ],
   demo: {
-    heading: "Watch one conversation get measured",
+    heading: "Watch one simulated conversation get measured",
     body: "A learner talks a hesitant parent through a two-month vaccine visit. The report then scores the conversation and quotes the lines that earned each score.",
   },
   howItStarts: {
-    heading: "How an assessment starts",
-    intro: "You already have the standard and the people. We add the measurement.",
+    heading: "How a communication assessment works",
+    intro: "Your standard becomes a clear guide for feedback and practice.",
     steps: [
       {
         title: "Send us the standard you already hold",
@@ -37,16 +37,16 @@ export const HOMEPAGE_PUBLIC_COPY = {
       },
       {
         title: "One group runs a conversation or two",
-        body: "Pick the unit or program where the complaints are coming from. Each person talks through the case with an AI patient by voice, from any device, with no observer in the room.",
+        body: "Choose a group and a conversation where more consistent communication would help. Each person talks through the case with an AI patient by voice, from any device, with no observer in the room.",
       },
       {
-        title: "Read the report, then fix what it finds",
-        body: "The report scores every element as you wrote it and quotes the words behind each score, by person and by cohort. The same cases then become the practice that closes the gap, and formative scores stay out of personnel files.",
+        title: "See the pattern and plan the practice",
+        body: "The report shows strengths and areas for focused practice, with the participants' words behind every score. The same cases give people another chance to practice, and formative scores stay out of personnel files.",
       },
     ],
-    exampleLabel: "What one report found",
+    exampleLabel: "What one health system learned",
     example:
-      "In one health system pilot, participants opened conversations well and closed them poorly. Nobody thanked the patient for raising a concern, and reflecting the concern back and summarizing the plan were the weakest elements in the standard. The leaders who wrote that standard did not need a validation study to act on it. They needed the transcripts.",
+      "In one health system pilot, participants consistently opened conversations well. The report identified three elements to reinforce at the close: thanking the patient for raising a concern, reflecting the concern back, and summarizing the plan. Leaders could see those patterns in the transcripts and use the same cases for focused practice.",
   },
   scoring: {
     heading: "Measured against a standard you already trust",
@@ -57,13 +57,13 @@ export const HOMEPAGE_PUBLIC_COPY = {
     readyBody:
       "Start with a case built on a named, published framework that health care or medical education already uses.",
     sharedLine:
-      "Either way, every score quotes the participant's own words, so nobody has to take the number on faith.",
+      "Either way, every score quotes the participant's own words, so participants and faculty can inspect the feedback.",
     conversationsHeading: "Conversations ready to measure today",
   },
   buyers: {
     healthSystemHeading: "For health systems",
     healthSystemBody:
-      "Complaints, consent, disclosure, and debriefs are already tracked somewhere in your system. The conversation itself is not. ClinicalSim measures it against your own service standard or policy, person by person, and gives people practice on the exact elements they missed.",
+      "ClinicalSim turns practice in consent, disclosure, debriefing, and patient service into feedback for each participant and measurable patterns for leaders. Each simulation uses your own service standard or policy, with the participant's words behind every score.",
     medicalEducationHeading:
       "For residency, fellowship, and medical school programs",
     medicalEducationBody:
@@ -71,8 +71,8 @@ export const HOMEPAGE_PUBLIC_COPY = {
   },
   proofHeading: "From clinicians who have used ClinicalSim",
   closing: {
-    heading: "Start with the conversation that's going wrong.",
-    body: "Tell us where the complaints are coming from, or which conversation your learners need to practice. We'll review your standard, or show you the closest ready to use case, before the assessment begins.",
+    heading: "Start with a conversation you want to strengthen.",
+    body: "Tell us where leaders want more consistent communication or which conversation learners need to practice. We'll review your standard, or show you the closest ready to use case, before the assessment begins.",
     cta: "Start with an assessment",
   },
 } as const

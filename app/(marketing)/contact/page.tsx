@@ -79,8 +79,8 @@ export default function ContactPage() {
             <div>
               <h1 className="text-4xl md:text-5xl font-light mb-6">Tell us about the group and the standard</h1>
               <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-cs-cloud">
-                Tell us who would take part, which conversation is going wrong or
-                which one learners need to practice, what standard you already hold,
+                Tell us who would take part, which conversation you want to strengthen
+                or which one learners need to practice, what standard you already hold,
                 and who should see the results. We usually reply within two business days.
               </p>
 
@@ -225,7 +225,7 @@ export default function ContactPage() {
                   required
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 resize-none rounded-lg"
                 />
-                <p className="text-xs text-white/70 mt-2 font-light">Include any need for anonymous unit reporting, named completion records, or an approved research comparison.</p>
+                <p className="text-xs text-white/70 mt-2 font-light">Include participant access and privacy needs, plus whether the program needs aggregate practice patterns, completion records, or an approved research comparison.</p>
               </div>
 
               {/* Newsletter Checkbox */}
@@ -271,7 +271,7 @@ export default function ContactPage() {
               </div>
               <h3 className="text-xl font-medium text-cs-navy mb-3">Assessment</h3>
               <p className="text-cs-dark-blue/85 font-light leading-relaxed">
-                Health system and medical education teams begin with one group, one standard, and one conversation. The report comes back with the participants&apos; own words under every score, and the pilot grows from what it finds.
+                Health system and medical education teams begin with one group, one standard, and one conversation. The first cycle gives participants specific feedback and gives the program aggregate patterns to plan the next round of practice.
               </p>
             </div>
 
@@ -305,10 +305,8 @@ export default function ContactPage() {
           </div>
 
           <p className="mt-12 text-base text-cs-dark-blue/70 font-light leading-relaxed max-w-3xl mx-auto text-center">
-            If you are evaluating rather than buying, say so in the note. Program
-            directors usually want to see what a feedback report actually contains
-            before they talk about scope or pricing, and it is a shorter conversation
-            once you have read one. The{" "}
+            Before a scope or pricing call, review a complete example report and the
+            evaluation page. The{" "}
             <Link href="/examples" className="text-cs-dark-blue underline underline-offset-2 hover:no-underline">
               example encounters
             </Link>{" "}
@@ -316,12 +314,11 @@ export default function ContactPage() {
             <Link href="/medical-educator-faq" className="text-cs-dark-blue underline underline-offset-2 hover:no-underline">
               FAQ for medical educators
             </Link>{" "}
-            cover most of what comes up first, and{" "}
+            cover the product experience, and{" "}
             <Link href="/evaluation" className="text-cs-dark-blue underline underline-offset-2 hover:no-underline">
               evaluating ClinicalSim
             </Link>{" "}
-            answers the procurement, evidence, and licensing questions before
-            you have to ask them.
+            answers the procurement, evidence, and licensing questions.
           </p>
         </div>
       </section>

@@ -142,9 +142,9 @@ const ON_DEMAND_VALUE_PROP: SolutionValueProp = {
 }
 
 const DASHBOARD_VALUE_PROP: SolutionValueProp = {
-  title: "A dashboard that follows the learner",
+  title: "A program view for coaching",
   description:
-    "Review repeated attempts, the score on each element, and the words behind it in one dashboard, by learner or by cohort, so you can see where the conversation breaks down and for whom.",
+    "Review repeated practice and transcript-linked feedback by participant or cohort, with institution-defined access, so coaches can see strengths and choose the next practice focus.",
 }
 
 const PRIVATE_REPETITION_VALUE_PROP: SolutionValueProp = {
@@ -159,7 +159,7 @@ const GME_VALUE_PROPS: SolutionValueProp[] = [
   {
     title: "Milestone-aligned scores, in the learner's words",
     description:
-      "Each conversation is scored against the ACGME Milestones 2.0 subcompetencies named on the case, and every score quotes the learner's own words, so a faculty member or CCC can see which element broke down rather than a rating alone.",
+      "Each conversation is scored against the ACGME Milestones 2.0 subcompetencies named on the case, and every score quotes the learner's own words, so a faculty member or CCC can inspect the feedback rather than rely on a rating alone.",
   },
   DASHBOARD_VALUE_PROP,
   PRIVATE_REPETITION_VALUE_PROP,
@@ -169,9 +169,9 @@ const GME_VALUE_PROPS: SolutionValueProp[] = [
 const UME_VALUE_PROPS: SolutionValueProp[] = [
   ON_DEMAND_VALUE_PROP,
   {
-    title: "Scored against UME competencies",
+    title: "Scored on the case framework, mapped to UME competencies",
     description:
-      "Each conversation is scored against the AAMC Foundational Competencies and the communication framework named on the case, with the student's own words quoted under every score.",
+      "Each conversation is scored against the communication framework named on the case and recorded against the AAMC Foundational Competencies, with the student's own words quoted under every score.",
   },
   DASHBOARD_VALUE_PROP,
   PRIVATE_REPETITION_VALUE_PROP,
@@ -183,7 +183,7 @@ const FACULTY_VALUE_PROPS: SolutionValueProp[] = [
   {
     title: "Scored against the framework on the case",
     description:
-      "Each conversation is scored against the framework named on the case, Pendleton or SBI for feedback, and every score quotes what the faculty member said, so the report shows which element they missed rather than a rating alone.",
+      "Each conversation is scored against the framework named on the case, and every score quotes what the faculty member said, so the report shows strengths and a clear focus for the next attempt.",
   },
   DASHBOARD_VALUE_PROP,
   PRIVATE_REPETITION_VALUE_PROP,
@@ -304,7 +304,7 @@ const solutions: Solution[] = [
       "Give medical students virtual OSCE practice between scheduled standardized patient encounters, sequenced across four years from the first history through diagnosis disclosure.",
     heroHeadline: "Build communication skills alongside clinical knowledge",
     heroDescription:
-      "Sequence practice from the first patient history through diagnosis disclosure and clerkship conversations, including the communication stations students meet in an OSCE. Each report uses the AAMC Foundational Competencies and the communication framework named on the case.",
+      "Sequence practice from the first patient history through diagnosis disclosure and clerkship conversations, including the communication stations students meet in an OSCE. Each conversation is scored against the communication framework named on the case and recorded against the AAMC Foundational Competencies.",
     stagesHeading: "A four-year progression",
     stagesIntro:
       "Communication competency sequenced to develop in step with the curriculum.",
@@ -339,7 +339,7 @@ const solutions: Solution[] = [
       {
         question: "Can students use it to prepare for an OSCE?",
         answer:
-          "Students get repeatable OSCE practice on demand between scheduled standardized patient encounters, rehearsing the communication tasks a station asks for: taking a focused history, explaining a diagnosis, and answering a family's questions. Each attempt is scored against the rubric written for the case, with the student's own words quoted under every score, so the student knows which element they missed before the station counts. Scheduled SP encounters are limited by actor time, rooms, and faculty observers, so they can score a communication skill without giving a student the repetition needed to build one. Live assessment stays with faculty and the program. Extend your SP program, don't replace it.",
+          "Students get repeatable OSCE practice on demand between scheduled standardized patient encounters, rehearsing the communication tasks a station asks for: taking a focused history, explaining a diagnosis, and answering a family's questions. Each attempt is scored against the rubric written for the case, with the student's own words quoted under every score, so the student sees what worked and what to practice before the station counts. Scheduled SP encounters are limited by actor time, rooms, and faculty observers, so they can score a communication skill without giving a student the repetition needed to build one. Live assessment stays with faculty and the program. Extend your SP program, don't replace it.",
       },
       {
         question: "What does a virtual OSCE station look like here?",
@@ -417,7 +417,7 @@ const solutions: Solution[] = [
       {
         question: "Why would experienced faculty need communication practice?",
         answer:
-          "Faculty are expected to model feedback, professionalism, and teaching conversations. ClinicalSim gives them a private place to rehearse, scores the conversation against the framework on the case (Pendleton or SBI for feedback), and quotes their own words under each score, so they can see which element they skipped before leading the conversation in person.",
+          "Faculty are expected to model feedback, professionalism, and teaching conversations. ClinicalSim gives them a private place to rehearse, scores the conversation against the framework named on the case, and quotes their own words under each score, so they can see what worked and what to practice before leading the conversation in person.",
       },
       {
         question: "Does this use the same system as trainee scenarios?",
@@ -697,9 +697,9 @@ const solutions: Solution[] = [
     metaTitle: "Informed consent, scored as a conversation",
     metaDescription:
       "The signature is almost always obtained. The conversation usually is not: 9% of 1,057 recorded encounters contained all seven elements of an informed decision (Braddock, JAMA 1999). Score consent conversations against your own policy, element by element.",
-    heroHeadline: "The signature is not the consent",
+    heroHeadline: "Help clinicians practice the whole consent conversation",
     heroDescription:
-      "Consent is a procedure that every hospital documents and almost nobody observes. ClinicalSim scores a spoken consent conversation against the element definitions in your own policy, one score per element, with the line the clinician said quoted underneath.",
+      "Clinicians practice with AI patients before a real procedure. Their private report shows what they covered well and where to practice, scored against the element definitions in your policy.",
     stagesHeading: "The six elements in the ready to use consent rubric",
     stagesIntro:
       "The current catalog case uses a six element rubric grounded in AMA Code of Medical Ethics Opinion 2.1.1 and the StatPearls review of informed consent.",
@@ -746,12 +746,12 @@ const solutions: Solution[] = [
       {
         title: "Your consent policy, scored as written",
         description:
-          "A surveyor checks whether staff followed your policy, not whether your policy matches a national ideal. So the rubric uses your element definitions, in your words, including the disclosure of who performs which parts that the April 2024 CMS memo forced hospitals to write in.",
+          "The rubric uses your element definitions, in your words, including the disclosure of who performs which parts that CMS addressed in its April 2024 hospital memo.",
       },
       {
-        title: "Evidence per person, before it is needed",
+        title: "Feedback for the clinician and a reviewable program record",
         description:
-          "A Clinical Competency Committee can hold a resident at a communication level with no observed consent encounter on record anywhere. Scored practice puts a dated, quoted, per-resident artifact in the packet.",
+          "The clinician receives specific feedback after each simulated consent conversation. Under agreed access rules, a program can review a dated record alongside its other evidence.",
       },
       ON_DEMAND_VALUE_PROP,
       {
@@ -801,7 +801,7 @@ const solutions: Solution[] = [
       {
         question: "Is the consent rubric validated?",
         answer:
-          "No. Nobody has published a validated rubric for scoring a live procedural consent conversation in clinical care, as opposed to research consent, and we are not going to describe ours as one. Scores are anchored to published element definitions and to verbatim transcript evidence, and agreement with faculty raters is unmeasured work that a pilot should do.",
+          "No. ClinicalSim's consent rubric has not been validated against expert raters. Scores are anchored to published element definitions and verbatim transcript evidence, and agreement with faculty raters remains unmeasured.",
       },
     ],
     nonEndorsementOrgs: ["the ACGME", "the American College of Surgeons"],
@@ -852,9 +852,9 @@ const solutions: Solution[] = [
     metaTitle: "Error disclosure, practiced and scored",
     metaDescription:
       "97% of physicians say they would disclose a hypothetical minor-harm error; 5% have disclosed an actual major one (Kaldjian, JGIM 2007). Practice with AHRQ CANDOR or your own disclosure policy.",
-    heroHeadline: "The hardest conversation in medicine, rehearsed first",
+    heroHeadline: "Practice disclosure before a clinician faces the real conversation",
     heroDescription:
-      "Most clinicians have their first real disclosure conversation with no practice behind it. ClinicalSim gives them a private one to get wrong first, scored against your institution's own disclosure elements with the words they used quoted under each score.",
+      "Clinicians rehearse with AI patients in private, then review strengths and areas for practice against AHRQ CANDOR or the institution's disclosure policy.",
     stagesHeading: "What a disclosure conversation has to carry",
     stagesIntro:
       "The ready to use rubric follows the disclosure checklist in AHRQ's CANDOR toolkit. It scores six parts of the conversation with the patient or family.",
@@ -901,7 +901,7 @@ const solutions: Solution[] = [
       {
         title: "Evidence for a requirement you already carry",
         description:
-          "ACGME Common Program Requirement 4.9.g asks residents to demonstrate competence in disclosure of patient safety events, real or simulated. Simulated is already accepted. Until now there has been nothing to put in the file when a resident does one.",
+          "ACGME Common Program Requirement 4.9.g asks residents to demonstrate competence in disclosure of patient safety events, real or simulated. A scored simulated disclosure gives programs a reviewable record to use alongside other evidence.",
       },
       {
         title: "Your disclosure policy, scored as written",
@@ -980,7 +980,7 @@ const solutions: Solution[] = [
     hideFromHomepage: true,
     lastUpdated: "2026-09-02",
     cardBullets: [
-      "Targeted, milestone-mapped practice for a struggling learner",
+      "Targeted, milestone-mapped practice for a learner who needs support",
       "Repeatable, on-demand practice without SP scheduling",
       "Reports with transcript evidence for CCC review",
     ],
@@ -988,12 +988,12 @@ const solutions: Solution[] = [
     metaDescription:
       "AI clinical simulation for communication remediation. Milestone-mapped practice and transcript evidence for faculty and CCC review.",
     heroHeadline:
-      "Communication remediation with evidence for the CCC",
+      "Give every learner a clear path to better communication",
     heroDescription:
-      "Score the conversation a learner is remediating against the milestone language the CCC already uses, show where it breaks down in the learner's own words, and give them targeted practice on that element.",
+      "Learners rehearse high-stakes conversations with AI patients, see what they did well and what to practice next, and return to coaching with transcript-linked feedback against the milestones your program uses.",
     ctaHeadline: "Start with a repeatable remediation structure",
     ctaDescription:
-      "Start with an assessment of one learner's conversation and see how milestone-aligned scores and targeted practice fit a communication remediation plan.",
+      "Review how structured practice and milestone-aligned feedback could fit a communication remediation plan.",
   },
 ]
 

@@ -7,17 +7,17 @@ const audience = getAudienceBySlug("risk-and-patient-safety")!
 export const metadata: Metadata = {
   title: { absolute: "Risk and patient safety leaders: communication in malpractice claims" },
   description:
-    "Candello found communication factors in 40% of asserted malpractice cases from 2014 through 2024. ClinicalSim provides voice-based practice records and has not been studied against claims.",
+    "Give clinicians private practice in disclosure and other high-stakes safety conversations with AI patients. ClinicalSim does not monitor patient care or predict claims.",
   openGraph: {
     title: "Risk and patient safety leaders | ClinicalSim.ai",
     description:
-      "Practice diagnosis disclosure, goals of care, family meetings, and de-escalation, with a timestamped record of each simulated encounter.",
+      "Clinicians practice disclosure, goals of care, family meetings, and de-escalation with AI patients, then review strengths and areas for practice.",
     url: "https://clinicalsim.ai/audiences/risk-and-patient-safety",
   },
   twitter: {
     title: "Risk and patient safety leaders | ClinicalSim.ai",
     description:
-      "ClinicalSim does not predict malpractice risk or claim outcomes. It provides simulated practice records for a risk reduction program to review.",
+      "ClinicalSim gives clinicians private simulated practice and gives leaders aggregate patterns under institution-defined access rules. It does not predict claims.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/audiences/risk-and-patient-safety",

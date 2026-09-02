@@ -283,13 +283,13 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
             See ClinicalSim in your program
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
-            Start with an assessment and see how on-demand, rubric-scored practice fits
-            alongside the assessment tools you already use.
+            See how repeatable, rubric-scored practice fits your curriculum,
+            standards, and reporting needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Start with an assessment
+                Talk with us
               </Button>
             </Link>
             <Link href="/compare">

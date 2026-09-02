@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 
 // Visible + schema recency. Update whenever answers change.
 const LAST_UPDATED_ISO = PAGE_DATE_MODIFIED.faq
-const LAST_UPDATED_LABEL = "September 1, 2026"
+const LAST_UPDATED_LABEL = "September 2, 2026"
 
 interface FaqEntry {
   id: string
@@ -103,7 +103,7 @@ const faqSections: FaqSection[] = [
         id: "patient-experience-training",
         question: "How can a patient experience team use ClinicalSim?",
         answer:
-          "A patient experience team can start with one unit and one behavior the institution already teaches, such as listening, explanation, teach back, or a service script. Staff practice with AI patients, and leaders can review named cohort or anonymous unit results with transcript evidence behind each score.",
+          "Staff practice listening, explanation, teach back, or service conversations with AI patients and receive feedback tied to the standard the institution already teaches. Under access rules set before launch, leaders can review aggregate cohort or unit patterns to choose the next practice focus.",
       },
       {
         id: "nonclinical-staff",
@@ -318,9 +318,9 @@ const faqSections: FaqSection[] = [
       },
       {
         id: "faculty-monitoring",
-        question: "How can faculty monitor learner progress without attending sessions?",
+        question: "How can faculty support learner progress between sessions?",
         answer:
-          "Faculty with program access can review assigned learners' progress, recordings, transcripts, and feedback without attending the practice session. Program permissions determine which learner records each faculty member can see.",
+          "Programs set access before launch. Faculty can review the practice records their role permits, so they can coach a learner without sitting in the session. Learners always see their own reports and do not see peer comparisons.",
       },
       {
         id: "ccc-review",
@@ -361,15 +361,15 @@ const faqSections: FaqSection[] = [
       },
       {
         id: "who-owns-decision",
-        question: "Who inside an institution usually owns this decision?",
+        question: "Who inside an institution usually leads this work?",
         answer:
-          "Communication training rarely has one owner, which is why these purchases stall. The office that feels the problem, the office that holds the budget, and the office that has to defend the decision are often three different offices: program directors, DIOs and GME leadership, simulation center directors, clinical competency committees, medical school and UME leadership, faculty and clinician educators, risk and patient safety, and quality and patient experience. The evaluation page states the case for each of those roles and links to a page written in that role's own terms.",
+          "Communication training often involves several teams. Program directors, DIOs and GME leadership, simulation center directors, clinical competency committees, medical school and UME leadership, faculty and clinician educators, risk and patient safety, and quality and patient experience may each help set the goals, fund the work, or support participants. The evaluation page explains what each role needs from an assessment.",
       },
       {
         id: "see-before-deciding",
         question: "Can we see real ClinicalSim encounters before deciding?",
         answer:
-          "Yes. Four complete encounters are published with the audio, the full transcript, and the entire scored report, with no sign-in and no form. They are deliberately unflattering: the informed consent encounter scored 22 out of 30 and the vaccine hesitancy encounter scored 17 out of 25, with the weak domains named and the learner's own words quoted as the reason. Reading one of those reports tells a program more than a demo does.",
+          "Yes. Four complete AI patient simulations are published with the audio, full transcript, and scored report, with no sign-in and no form. The reports show what the learner did well, where more practice would help, and the learner's own words behind each score. Reading one shows exactly what a participant and an authorized coach receive.",
       },
       {
         id: "research-response-time",
@@ -606,7 +606,7 @@ export default function FaqPage() {
             </Link>
             <Link href="/contact">
               <Button variant="default" size="lg">
-                Start with an assessment
+                Talk with us
               </Button>
             </Link>
           </div>

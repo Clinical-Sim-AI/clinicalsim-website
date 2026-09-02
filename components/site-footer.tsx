@@ -96,7 +96,7 @@ export function SiteFooter() {
             </p>
             <Link href="/contact" className="inline-block pt-2">
               <Button size="lg">
-                Start with an assessment
+                Talk with us
               </Button>
             </Link>
           </div>

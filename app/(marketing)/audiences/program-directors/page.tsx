@@ -6,15 +6,15 @@ const audience = getAudienceBySlug("program-directors")!
 
 export const metadata: Metadata = {
   title: { absolute: "Program directors: a repeatable communication remediation structure" },
-  description: "In a survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years. ClinicalSim adds structured practice and transcript evidence.",
+  description: "In a survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years. ClinicalSim scores each conversation against the milestone language your CCC already uses and quotes the learner's own words under every score.",
   openGraph: {
     title: "Program directors | ClinicalSim.ai",
-    description: "Give a learner repeatable practice between coaching sessions and bring transcript evidence to your CCC.",
+    description: "Give each learner a clear next step between coaching sessions, with milestone-aligned feedback and transcript evidence for CCC review.",
     url: "https://clinicalsim.ai/audiences/program-directors",
   },
   twitter: {
     title: "Program directors | ClinicalSim.ai",
-    description: "Structured practice, milestone-aligned reports, and transcript evidence for communication remediation.",
+    description: "Milestone-aligned scores, the learner's own words under each one, and targeted practice for communication remediation.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/audiences/program-directors",

@@ -94,10 +94,10 @@ export default function AudiencesPage() {
         <Waveform seed="audiences" align="edges" opacity={0.17} />
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
-            One communication platform, built for the teams responsible for the standard
+            Give every team a clearer way to support better patient conversations
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-4 max-w-3xl mx-auto">
-            Patient experience, risk, safety, simulation, and medical education teams measure conversations against their own standard and fix what they find, while each keeps the reporting view its work requires.
+            Clinicians, learners, and staff practice with AI patients and get feedback they can use on the next attempt. Patient experience, risk, safety, simulation, and medical education leaders can review patterns against the standards they already hold.
           </p>
         </div>
       </section>
@@ -169,7 +169,7 @@ export default function AudiencesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Start with an assessment
+                Talk with us
               </Button>
             </Link>
             <Link href="/solutions/patient-experience">

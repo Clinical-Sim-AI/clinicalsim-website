@@ -200,7 +200,7 @@ export default function AboutPage() {
               .
             </p>
             <p>
-              Every conversation is scored against the standard named on the case, and the participant&apos;s own words sit under each score. Leaders review an individual, a named cohort, or an anonymous unit view based on the access rules set before launch.
+              Every simulation is scored against the standard named on the case, and the participant&apos;s own words sit under each score. Participants receive feedback tied to that standard. Programs can review individual reports for agreed coaching and aggregate patterns for curriculum planning under rules set before launch.
             </p>
             <p className="text-cs-dark-blue font-normal">
               ClinicalSim extends standardized patient programs. It adds repeatable practice between live encounters and another source of evidence for review. It does not replace live assessment or human judgment.
@@ -219,7 +219,7 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
             <p>
-              ClinicalSim runs in the browser, so there is nothing to install. Every session generates a timestamped report tied to the standard named on the case and the evidence in the transcript. Leaders can assign cases, review progress, and export reports from one dashboard.
+              ClinicalSim runs in the browser, so there is nothing to install. Participants practice assigned cases and review feedback tied to the transcript. Programs can support coaching, review agreed progress records, and export reports from one dashboard under access rules set before launch.
             </p>
             <p>
               Every case uses a synthetic patient written from clinical literature rather than a patient record. The product still handles learner recordings, transcripts, account data, and institutional data, which require protection.
@@ -249,7 +249,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Start with an assessment
+                Talk with us
               </Button>
             </Link>
             <Link

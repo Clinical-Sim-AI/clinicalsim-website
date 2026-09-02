@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "ClinicalSim adds repeatable voice-based practice between scheduled standardized patient encounters. Live assessment and coaching stay with people.",
   openGraph: {
     title: "Simulation center directors | ClinicalSim.ai",
-    description: "Give struggling learners more practice without adding another SP session.",
+    description: "Give learners more practice without adding another SP session, while standardized patients stay focused on live assessment and coaching.",
     url: "https://clinicalsim.ai/audiences/simulation-center-directors",
   },
   twitter: {

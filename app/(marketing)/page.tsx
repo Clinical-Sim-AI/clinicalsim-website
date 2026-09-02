@@ -188,7 +188,7 @@ export default function HomePage() {
             </p>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <Link href="/contact">
+              <Link href="#how-an-assessment-works">
                 <Button variant="accent" size="xl" className="w-full sm:w-auto">
                   {HOMEPAGE_PUBLIC_COPY.hero.primaryCta}
                   <ArrowRight />
@@ -246,7 +246,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 md:py-24">
+      <section
+        id="how-an-assessment-works"
+        className="scroll-mt-20 bg-white px-6 py-16 md:py-24"
+      >
         <div className="mx-auto max-w-5xl">
           <div className="mb-10 max-w-3xl md:mb-12">
             <h2 className="mb-4 text-balance text-3xl font-light tracking-tight text-cs-navy md:text-4xl">

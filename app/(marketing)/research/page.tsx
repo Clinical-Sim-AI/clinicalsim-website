@@ -48,7 +48,7 @@ const benefits = [
   {
     icon: BarChart3,
     title: "Structured data exports",
-    description: "Depending on the protocol and agreement, we can provide structured exports of transcripts, usage data, and scored outcomes.",
+    description: "Depending on the protocol and agreement, we can provide structured exports of transcripts, usage data, and scores from simulated encounters.",
     variant: "navy" as const,
   },
   {
@@ -173,7 +173,7 @@ const researchFaqs: FaqItem[] = [
   {
     question: "What can a study team request from ClinicalSim?",
     answer:
-      "A study team can request platform access for participants, help developing cases that match the study question and population, structured data exports covering transcripts, usage, and scored outcomes, technical documentation about the platform and its scoring method for manuscripts and study records, participant onboarding and technical support, and technical documentation for an IRB submission.",
+      "A study team can request platform access for participants, help developing cases that match the study question and population, structured data exports covering transcripts, usage, and scores from simulated encounters, technical documentation about the platform and its scoring method for manuscripts and study records, participant onboarding and technical support, and technical documentation for an IRB submission.",
   },
   {
     question: "Who is responsible for the IRB protocol and review?",

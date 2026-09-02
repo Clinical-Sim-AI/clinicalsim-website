@@ -160,9 +160,9 @@ export default function FrameworksPage() {
           </h1>
 
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-8 max-w-3xl">
-            Start with ready to use cases based on named, published clinical frameworks, or add your
-            institution&apos;s policy, service standard, script, or rubric. Every score quotes the
-            transcript evidence behind it.
+            Participants practice with AI patients and receive feedback that shows what worked and
+            what to try next. Programs can start with a published clinical framework or add the
+            policy, service standard, script, or rubric they already use.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -426,7 +426,7 @@ export default function FrameworksPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Start with an assessment
+                Talk with us
               </Button>
             </Link>
             <Link href="/solutions">

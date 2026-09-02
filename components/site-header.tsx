@@ -436,7 +436,7 @@ export function SiteHeader() {
           </button>
 
           {helpOpen && (
-            /* Right-aligned: Help is the last dropdown before the Sign Up
+            /* Right-aligned: Help is the last dropdown before the Talk with us
                button, so a left-aligned 224px panel hangs past the viewport and
                gives the page a horizontal scrollbar. */
             <div className="absolute top-full right-0 pt-2 w-max min-w-56 z-50">
@@ -457,7 +457,7 @@ export function SiteHeader() {
         </div>
 
         <Button asChild>
-          <a href="https://platform.clinicalsim.ai/sign-up">Sign Up</a>
+          <Link href="/contact">Talk with us</Link>
         </Button>
       </nav>
 
@@ -642,12 +642,12 @@ export function SiteHeader() {
               </div>
 
               <Button asChild className="w-full mt-4">
-                <a
-                  href="https://platform.clinicalsim.ai/sign-up"
+                <Link
+                  href="/contact"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Sign Up
-                </a>
+                  Talk with us
+                </Link>
               </Button>
             </div>
           </nav>

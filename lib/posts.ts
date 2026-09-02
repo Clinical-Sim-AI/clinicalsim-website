@@ -117,7 +117,7 @@ const posts: Post[] = [
     title: "SPIKES gives learners a structure. Practice shows whether they can use it.",
     description: "This article has been consolidated into Breaking bad news is a practice problem, not a knowledge problem.",
     date: "2025-10-07",
-    dateModified: "2026-09-02",
+    dateModified: "2026-08-10",
     author: "ClinicalSim Team",
     readingTime: "5 min read",
     tags: ["breaking bad news", "medical training", "communication"],
