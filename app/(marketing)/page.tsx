@@ -159,13 +159,20 @@ export default function HomePage() {
       />
 
       <section className="relative overflow-hidden bg-cs-dark-blue px-6 py-20 text-white md:py-28 lg:py-32">
-        <Waveform seed="home-hero" variant="bars" align="right" opacity={0.2} animate />
+        <Waveform
+          seed="home-hero"
+          variant="bars"
+          align="right"
+          opacity={0.2}
+          className="hidden lg:left-auto lg:block lg:w-[42%]"
+          animate
+        />
         <Waveform
           seed="home-hero-flow"
           variant="flow"
           align="right"
           opacity={0.3}
-          className="h-1/4"
+          className="hidden lg:left-auto lg:block lg:h-1/4 lg:w-[42%]"
           animate
         />
 
