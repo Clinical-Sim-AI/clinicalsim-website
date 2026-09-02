@@ -72,6 +72,8 @@ describe("market positioning", () => {
 
   it("positions the company as measuring communication, entered through an assessment", () => {
     expect(POSITIONING_ONE_LINER).toMatch(/measures/i)
+    expect(POSITIONING_ONE_LINER).toMatch(/AI patients/i)
+    expect(POSITIONING_ONE_LINER).toMatch(/practice/i)
     expect(ASSESSMENT_ENTRY).toMatch(/assessment/i)
     for (const copy of [
       ASSESSMENT_ENTRY,
@@ -84,6 +86,7 @@ describe("market positioning", () => {
       POSITIONING_SUPPORT,
     ]) {
       expect(copy).not.toMatch(/[\u2013\u2014]/)
+      expect(copy).not.toMatch(/fix what|breaks down|fell short/i)
     }
   })
 

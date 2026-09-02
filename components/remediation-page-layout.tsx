@@ -207,7 +207,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Start with an assessment
+                Talk with us
               </Button>
             </Link>
             <Link href="#evidence">
@@ -638,7 +638,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <div className="text-center mt-10">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Start with an assessment
+                Talk with us
               </Button>
             </Link>
           </div>
@@ -702,7 +702,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Start with an assessment
+                Talk with us
               </Button>
             </Link>
             <Link href="/solutions">

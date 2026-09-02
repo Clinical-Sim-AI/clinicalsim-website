@@ -157,6 +157,15 @@ All written copy on this site must read as human and on-brand, never as generate
 - Say **"evidence-based"**, not "clinically proven" or "validated". The RCT framing is **"among the first"**, not an overclaim.
 - **Never claim SP replacement**: "extend your SP program, don't replace it." Make the learner or program the subject of the sentence, not the AI ("clinicians build confidence through practice", not "AI helps clinicians build confidence").
 
+### Put clinicians at the center
+- Enterprise buyers need measurement and reporting, but clinicians, learners, and staff are the people using ClinicalSim. Public copy must respect both audiences.
+- Lead with practice, useful feedback, and better patient conversations. Measurement is the method, not the purpose.
+- Make clear that participants practice simulated conversations with AI patients. Never imply that ClinicalSim records or monitors real patient encounters unless the product actually does so.
+- Measure the conversation and support the participant. Never frame clinicians as problems to find or fix.
+- Describe balanced feedback: what the participant did well and what to practice next. Avoid deficit-first phrases such as "fell short," "breaks down," "fix what we find," "going wrong," and "where complaints are coming from" in marketing copy.
+- Put the participant benefit before the leader reporting benefit. Leaders can review patterns across a cohort or unit, while each participant gets clear feedback and another chance to practice.
+- Keep formative and employment-use boundaries explicit where reporting could feel punitive. Do not let stronger commercial language weaken those safeguards.
+
 ### Add soul
 Clean but sterile copy is also an AI tell. Vary the rhythm, take a point of view, and be specific rather than neutral. Voice test: would a program director take it seriously, and would it sound right if Ben said it out loud in a meeting?
 

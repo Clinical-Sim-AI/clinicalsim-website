@@ -94,10 +94,10 @@ export default function SolutionsPage() {
         <Waveform seed="solutions" align="edges" opacity={0.17} />
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
-            One platform for the conversations your institution needs to measure
+            Measurable practice for the conversations your institution wants to strengthen
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed max-w-3xl mx-auto">
-            Each conversation is scored against the standard that fits the task, every score quotes the speaker&apos;s own words, and the same cases give people the practice to fix what the score found.
+            Clinicians and learners practice with AI patients. Each simulation is scored against the standard that fits the task, with the participant&apos;s own words behind every score and another chance to practice.
           </p>
           <p className="mt-6 text-base md:text-lg text-cs-cloud/85 font-light max-w-3xl mx-auto">
             <Link
@@ -161,7 +161,7 @@ export default function SolutionsPage() {
           </p>
           <Link href="/contact">
             <Button variant="accent" size="xl">
-              Start with an assessment
+              Talk with us
             </Button>
           </Link>
         </div>

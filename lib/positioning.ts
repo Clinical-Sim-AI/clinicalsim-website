@@ -15,8 +15,8 @@
  * a whole should use these.
  *
  * Repositioned 2026-09-02 after Ben's call with advisors: the company measures
- * communication against the standard an institution already holds, shows where
- * it breaks down per person, and fixes it. Seats and features are not the pitch.
+ * communication against the standard an institution already holds and turns
+ * that evidence into focused practice. Seats and features are not the pitch.
  */
 
 /**
@@ -32,13 +32,12 @@ export const CATEGORY_LINE =
   "The communication intelligence platform for health systems."
 
 /**
- * The plain-language unpacking of CATEGORY_LINE. Measure, show, fix: the three
- * verbs Ben settled on 2026-09-02. The scoring paths (published framework or the
- * institution's own standard) stay named because lib/market-positioning.test.ts
- * asserts both appear.
+ * The plain-language unpacking of CATEGORY_LINE. Practice is the participant's
+ * experience and measurement is the institution's method. The scoring paths
+ * stay named because lib/market-positioning.test.ts asserts both appear.
  */
 export const CATEGORY_DEFINITION =
-  "Clinicians, medical learners, and patient facing staff hold spoken conversations with AI patients. ClinicalSim scores each conversation against published clinical frameworks or the institution's own policy, service standard, script, or rubric, quotes the participant's own words under every score, and gives people practice on the elements they missed."
+  "Clinicians, medical learners, and patient facing staff practice spoken conversations with AI patients. ClinicalSim scores each simulation against published clinical frameworks or the institution's own policy, service standard, script, or rubric, quotes the participant's own words under every score, and shows what they did well and what to practice next."
 
 /**
  * The canonical one-liner. Feeds POSITIONING_LONG (root metadata, the
@@ -48,11 +47,11 @@ export const CATEGORY_DEFINITION =
  * retrieval system as a competing claim rather than the same one.
  */
 export const POSITIONING_ONE_LINER =
-  "ClinicalSim measures how clinicians and staff talk with patients, against the standard your institution already holds, and fixes what it finds."
+  "ClinicalSim gives clinicians and staff spoken practice with AI patients and measures each simulation against the standard your institution already holds."
 
 /** The sentence that follows the one-liner wherever there is room for two. */
 export const POSITIONING_SUPPORT =
-  "Every score quotes the participant's own words, by person, cohort, or unit. Cases use published clinical frameworks or the institution's own policy, service standard, script, or rubric."
+  "Participants see what they did well and what to practice next, with their own words under every score. Leaders can review patterns by cohort or unit. Cases use published clinical frameworks or the institution's own policy, service standard, script, or rubric."
 
 /** One-liner plus support. The default for a meta description or a schema node. */
 export const POSITIONING_LONG = `${POSITIONING_ONE_LINER} ${POSITIONING_SUPPORT}`
@@ -77,8 +76,8 @@ export type Market = "health-system" | "medical-education"
  * instrument is. Both are true.
  */
 export const MEASUREMENT_CLAIM =
-  "ClinicalSim measures a spoken clinical conversation against a named standard, person by person, with the participant's own words quoted under every score."
+  "ClinicalSim measures a simulated clinical conversation against a named standard, with the participant's own words quoted under every score."
 
 /** The entry point. Shared by the homepage, /contact, and /llms.txt. */
 export const ASSESSMENT_ENTRY =
-  "An engagement starts with an assessment. You send the standard you already hold, one group runs a conversation or two with AI patients, and the report shows where the conversation breaks down, in the participants' own words."
+  "An engagement can start with a communication assessment. One group practices a conversation or two with AI patients against the standard your institution already holds. The report shows strengths and areas for focused practice in the participants' own words."

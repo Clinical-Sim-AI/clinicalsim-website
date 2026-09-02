@@ -28,13 +28,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/about`,
-      lastModified: new Date("2026-09-01"),
+      lastModified: new Date("2026-09-02"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/contact`,
-      lastModified: new Date("2026-09-01"),
+      lastModified: new Date("2026-09-02"),
       changeFrequency: "monthly",
       priority: 0.7,
     },
@@ -46,13 +46,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/solutions`,
-      lastModified: new Date("2026-09-01"),
+      lastModified: new Date("2026-09-02"),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/audiences`,
-      lastModified: new Date("2026-09-01"),
+      lastModified: new Date("2026-09-02"),
       changeFrequency: "monthly",
       priority: 0.8,
     },

@@ -179,7 +179,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Start with an assessment
+                Talk with us
               </Button>
             </Link>
             <Link href="/solutions">
@@ -251,10 +251,10 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
-                  {solution.valuePropsHeading ?? "One program view"}
+                  {solution.valuePropsHeading ?? "Practice for participants, reporting for programs"}
                 </h2>
                 <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
-                  The platform stays consistent while each case uses the standards that fit the person, role, and task.
+                  Participants get feedback they can use on the next attempt, while programs review agreed individual or cohort views.
                 </p>
               </div>
 
@@ -291,8 +291,9 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                 The frameworks behind the score
               </h2>
               <p className="text-lg text-cs-dark-blue/70 font-light mb-8 max-w-2xl">
-                Each of these publishes named elements. We score a spoken conversation against
-                those definitions as written, and quote the line that earned each score.
+                Each AI patient case names the published framework or institution-defined standard
+                used for feedback. The report shows strengths and areas for practice, with the
+                participant&apos;s own words behind each score.
               </p>
 
               <div className="space-y-4">
@@ -425,7 +426,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Start with an assessment
+                Talk with us
               </Button>
             </Link>
             <Link href="/solutions">

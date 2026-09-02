@@ -94,9 +94,9 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   // Hero
   // ---------------------------------------------------------------------------
-  heroH1: "The communication remediation toolkit program directors have been asking for",
+  heroH1: "Give every learner a clear path to better communication",
   heroSubtitle:
-    "Give a learner structured voice-based practice between coaching sessions. Each report maps the encounter to the relevant ACGME Milestones and cites the transcript evidence your CCC can review.",
+    "Learners rehearse high-stakes conversations with AI patients, see what they did well and what to practice next, and return to coaching with transcript-linked feedback against the milestones your program uses.",
   heroStats: [
     {
       value: "93%",

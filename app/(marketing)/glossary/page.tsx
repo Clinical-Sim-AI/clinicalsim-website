@@ -252,7 +252,7 @@ export default function GlossaryPage() {
           </p>
           <Link href="/contact">
             <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-base font-medium transition-all duration-300 bg-cs-electric text-cs-dark-blue hover:bg-cs-electric/90 hover:shadow-lg h-14 px-10 font-bold">
-              Start with an assessment
+              Talk with us
             </button>
           </Link>
         </div>

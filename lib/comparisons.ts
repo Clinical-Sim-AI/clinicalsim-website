@@ -198,7 +198,7 @@ const comparisons: Comparison[] = [
       {
         dimension: "Whether two scores can be compared",
         optionA:
-          "Every learner meets the same published case version graded against the same expert-authored rubric version, both versioned and locked, so two scores measure the same thing.",
+          "Every learner meets the same locked case and rubric versions, which limits variation caused by content changes. Versioning supports consistent review, but does not by itself establish reliability, validity, or score comparability.",
         optionB:
           "Depends on whether the scenario and the scoring model are versioned and identical between learners. Ask before treating any two scores as comparable.",
       },
@@ -240,7 +240,7 @@ const comparisons: Comparison[] = [
         question:
           "What makes an automated communication score comparable between two learners?",
         answer:
-          "A score compares only when both learners met the same case, at the same version, graded against the same expert-authored rubric, at the same version. Conversation volume says nothing about measurement on its own: a platform can run thousands of encounters and still produce scores that cannot be set beside one another, because the scenario drifted or the scoring model changed in between. Ask any vendor whether cases and rubrics are versioned and locked, and whether two learners graded a month apart were graded by the same thing.",
+          "Locked case and rubric versions limit variation caused by content changes, so a reviewer can confirm that two learners met the same material. Versioning supports consistent review, but does not by itself establish reliability, validity, or score comparability. Those claims require separate evidence.",
       },
       {
         // The narrow negative from deck slide 15, with its qualifiers intact

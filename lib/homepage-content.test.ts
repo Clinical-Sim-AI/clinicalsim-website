@@ -20,6 +20,7 @@ describe("homepage hero keeps both markets in frame", () => {
   it("names patients and medical education programs in the hero", () => {
     const { headline, body } = HOMEPAGE_PUBLIC_COPY.hero
     expect(`${headline} ${body}`).toMatch(/patients/i)
+    expect(body).toMatch(/AI patients/i)
     expect(body).toMatch(/residency|medical school/i)
     expect(body).toMatch(/standard/i)
   })
@@ -28,6 +29,15 @@ describe("homepage hero keeps both markets in frame", () => {
     const copy = JSON.stringify(HOMEPAGE_PUBLIC_COPY)
     expect(copy).toMatch(/own words/i)
     expect(copy).not.toMatch(/[–—]/)
+  })
+
+  it("puts participant practice before deficit language", () => {
+    const copy = JSON.stringify(HOMEPAGE_PUBLIC_COPY)
+    expect(HOMEPAGE_PUBLIC_COPY.hero.headline).toMatch(/practice/i)
+    expect(HOMEPAGE_PUBLIC_COPY.hero.body).toMatch(/did well|strength/i)
+    expect(copy).not.toMatch(
+      /fix what|fell short|going wrong|complaints are coming|breaks down|nobody thanked/i,
+    )
   })
 })
 

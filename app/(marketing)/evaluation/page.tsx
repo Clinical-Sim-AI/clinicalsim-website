@@ -33,7 +33,7 @@ import type { FaqItem } from "@/lib/types"
 export const metadata: Metadata = {
   title: "Evaluating ClinicalSim",
   description:
-    "What ClinicalSim is for and what it is not, who owns the decision inside an institution, what the evidence establishes, what a procurement reviewer will find, what it takes to run, and how it is licensed.",
+    "Review ClinicalSim's intended use, evidence, rollout, data handling, licensing, and product limits before a scope or pricing call.",
   openGraph: {
     title: "Evaluating ClinicalSim | ClinicalSim.ai",
     description:
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 }
 
 const LAST_UPDATED = PAGE_DATE_MODIFIED.evaluation
-const LAST_UPDATED_LABEL = "August 2026"
+const LAST_UPDATED_LABEL = "September 2026"
 
 /**
  * Each answer has to read on its own, without its question, because an answer
@@ -62,7 +62,7 @@ const evaluationFaqs: FaqItem[] = [
     question:
       "What should a program consider before adopting an AI communication training platform?",
     answer:
-      "Six questions decide it. What the platform is intended for and what it explicitly does not do; who inside the institution owns the problem and the budget, which for communication training is rarely one office; what the evidence establishes and, more usefully, what it does not; what a privacy and procurement reviewer will find, starting with whether any patient data enters the system; what it takes to run, meaning devices, encounter length, roles, and anything IT has to allow; and how it is licensed. Ask to see a complete scored encounter before any of that. A vendor who will not show you an unflattering report has not answered the question.",
+      "Review the platform's intended use and limits, the evidence behind its claims, data handling, rollout needs, licensing, and the experience of the people who will practice. Four complete AI patient simulations are published with audio, transcript, and full reports so each reviewer can evaluate the same facts before a scope or pricing call.",
   },
   {
     question: "Does ClinicalSim replace a standardized patient program?",
@@ -92,7 +92,7 @@ const evaluationFaqs: FaqItem[] = [
   {
     question: "Can I see a real ClinicalSim encounter before talking to sales?",
     answer:
-      "Yes. Four complete encounters are published at clinicalsim.ai/examples with the audio, the full transcript, and the entire scored report, with no sign-in and no form. They are not flattering, which is the point: the informed consent encounter scored 22 out of 30 and the vaccine hesitancy encounter scored 17 out of 25, with the weak domains named and the learner's own words quoted as the reason.",
+      "Yes. Four complete AI patient simulations are published at clinicalsim.ai/examples with audio, the full transcript, and the entire scored report, with no sign-in and no form. Each report shows strengths, areas for focused practice, and the participant's words behind the feedback.",
   },
 ]
 
@@ -138,7 +138,7 @@ export default function EvaluationPage() {
             "@type": "WebPage",
             name: "Evaluating ClinicalSim",
             description:
-              "What ClinicalSim is for and what it is not, who owns the decision inside an institution, what the evidence establishes, what a procurement reviewer will find, what it takes to run, and how it is licensed.",
+              "Review ClinicalSim's intended use, evidence, rollout, data handling, licensing, and product limits before a scope or pricing call.",
             url: "https://clinicalsim.ai/evaluation",
             dateModified: LAST_UPDATED,
             publisher: {
@@ -196,18 +196,18 @@ export default function EvaluationPage() {
           </p>
 
           <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-4 max-w-3xl">
-            Most of what a program needs to decide about a platform like this
-            never comes up on a product page. Who owns the problem, what the
-            evidence actually supports, what a procurement reviewer will ask,
-            what IT has to do, and how the thing is paid for. This page answers
-            those, including the parts that don&apos;t flatter us.
+            An enterprise review usually spans the team that owns communication
+            training, the budget holder, IT and privacy reviewers, and the people
+            who will practice. This page covers evidence, rollout, data handling,
+            licensing, and product limits so each group can evaluate the same facts.
           </p>
 
           <div className="rounded-xl border-l-4 border-cs-electric bg-cs-dark-blue px-6 py-5 max-w-3xl">
             <p className="text-base md:text-lg text-white font-light leading-relaxed">
-              If you read one thing before talking to us, read a complete scored
-              encounter. Four are published with audio, transcript, and the full
-              report, no sign-in required, and they are not flattering.{" "}
+              Four complete AI patient simulations are published with audio,
+              transcript, and the full report, with no sign-in required. Each
+              shows strengths, areas for focused practice, and the participant&apos;s
+              words behind the feedback.{" "}
               <Link
                 href="/examples"
                 className="text-cs-electric font-medium underline underline-offset-4 hover:text-white transition-colors"
@@ -234,12 +234,12 @@ export default function EvaluationPage() {
           </h2>
 
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-            ClinicalSim is intended for clinician training and assessment. It
-            produces no patient-facing output, makes no diagnostic or treatment
-            recommendation, and creates no clinical documentation. What it
-            produces is a rubric-scored record of how a clinician handled a
-            simulated conversation, mapped to a published competency framework
-            and tied to the transcript.
+            ClinicalSim is intended for spoken communication practice and
+            formative assessment. Each simulated conversation produces feedback
+            tied to a named standard and the transcript, so participants can see
+            what worked and what to practice next. It produces no patient-facing
+            output, makes no diagnostic or treatment recommendation, and creates
+            no clinical documentation.
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
             It extends a standardized patient program rather than replacing one.
@@ -261,22 +261,20 @@ export default function EvaluationPage() {
 
       <SectionDivider variant="wave" color="white" />
 
-      {/* 2. Who owns the problem. Driven from lib/audiences.ts so this list and
+      {/* 2. Who is involved. Driven from lib/audiences.ts so this list and
           the /audiences hub cannot disagree. */}
       <section className="px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
-            2. Who inside an institution{" "}
-            <span className="text-cs-dark-blue font-medium">owns this</span>
+            2. Who takes part in an{" "}
+            <span className="text-cs-dark-blue font-medium">enterprise review</span>
           </h2>
 
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-8">
-            Communication training rarely has a single owner, which is the
-            quiet reason these purchases stall. The office that feels the
-            problem, the office that holds the budget, and the office that has
-            to defend the decision are often three different offices. These are
-            the roles ClinicalSim is built around, and each page states the case
-            in that role&apos;s own terms.
+            Communication training often involves different teams. Program or
+            health system leaders define the need, finance reviews the budget,
+            IT and privacy teams review data handling, and clinicians or learners
+            use the product. These pages explain what each group needs to know.
           </p>
 
           <ul className="grid sm:grid-cols-2 gap-3">
@@ -513,14 +511,10 @@ export default function EvaluationPage() {
             call first.
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
-            Read the reports before you read anything else we&apos;ve written,
-            because they are not flattering. The informed consent encounter
-            scored 22 out of 30, losing most of its points on assessing
-            decision-making capacity. The vaccine hesitancy encounter scored 17
-            out of 25 and ended weakest of all. In both, the low domains are
-            named and the learner&apos;s own words are quoted as the reason.
-            That is the product working, and it is a more useful thing to judge
-            than a demo.
+            Each example shows strengths, areas for focused practice, and the
+            participant&apos;s own words behind the feedback. Read the complete
+            reports to judge whether the scoring is specific, useful, and
+            appropriate for formative practice.
           </p>
 
           <Link href="/examples">
