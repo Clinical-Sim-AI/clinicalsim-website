@@ -29,7 +29,7 @@
  * quote. Pair it with CATEGORY_DEFINITION on first use.
  */
 export const CATEGORY_LINE =
-  "The communication intelligence platform for health systems."
+  "The communication intelligence platform for healthcare."
 
 /**
  * The plain-language unpacking of CATEGORY_LINE. Practice is the participant's

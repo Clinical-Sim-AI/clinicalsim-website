@@ -14,7 +14,7 @@ import {
 } from "@/lib/positioning"
 
 export const metadata: Metadata = {
-  title: { absolute: "About ClinicalSim.ai: communication intelligence for health systems" },
+  title: { absolute: "About ClinicalSim.ai: communication intelligence for healthcare" },
   description: POSITIONING_LONG,
   openGraph: {
     title: "About ClinicalSim.ai",

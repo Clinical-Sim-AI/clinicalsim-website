@@ -1,6 +1,6 @@
 export const HOMEPAGE_PUBLIC_COPY = {
   hero: {
-    eyebrow: "Communication intelligence for health systems",
+    eyebrow: "Communication intelligence for healthcare",
     headline:
       "Give clinicians measurable practice for better patient conversations.",
     body: "Clinicians, learners, and patient facing staff practice spoken conversations with AI patients. ClinicalSim scores each simulation against a published clinical framework or your institution's own standard and quotes the participant's words behind every score. Participants see what they did well and what to practice next, while leaders can see patterns across a cohort or unit. Residency, fellowship, and medical school programs use the same tool for milestones and OSCE practice.",

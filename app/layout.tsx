@@ -15,7 +15,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL('https://clinicalsim.ai'),
   title: {
-    default: 'ClinicalSim.ai: communication intelligence for health systems',
+    default: 'ClinicalSim.ai: communication intelligence for healthcare',
     template: '%s | ClinicalSim.ai',
   },
   // The fallback description for any page without its own. Sourced from

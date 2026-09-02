@@ -25,11 +25,11 @@ const HOME_DESCRIPTION = POSITIONING_LONG
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Communication intelligence for health systems | ClinicalSim",
+    absolute: "Communication intelligence for healthcare | ClinicalSim",
   },
   description: HOME_DESCRIPTION,
   openGraph: {
-    title: "Communication intelligence for health systems",
+    title: "Communication intelligence for healthcare",
     description: HOME_DESCRIPTION,
     url: "https://clinicalsim.ai",
     images: [
@@ -37,12 +37,12 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ClinicalSim, communication intelligence for health systems",
+        alt: "ClinicalSim, communication intelligence for healthcare",
       },
     ],
   },
   twitter: {
-    title: "Communication intelligence for health systems",
+    title: "Communication intelligence for healthcare",
     description: HOME_DESCRIPTION,
     images: ["/og-image.png"],
   },
@@ -90,7 +90,7 @@ export default function HomePage() {
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Communication intelligence for health systems",
+            name: "Communication intelligence for healthcare",
             description: HOME_DESCRIPTION,
             url: "https://clinicalsim.ai",
             dateModified: PAGE_DATE_MODIFIED.home,
