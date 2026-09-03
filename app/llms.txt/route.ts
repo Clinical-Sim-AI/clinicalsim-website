@@ -11,6 +11,7 @@ import {
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
   MEASUREMENT_CLAIM,
+  MISSION_STATEMENT,
   POSITIONING_AUDIENCE,
   POSITIONING_LONG,
   POSITIONING_ONE_LINER,
@@ -38,6 +39,7 @@ const KEY_FACTS = `## Key facts
 
 - **What it is.** ${CATEGORY_LINE} ${CATEGORY_DEFINITION}
 - **In one sentence.** ${POSITIONING_ONE_LINER}
+- **Mission.** ${MISSION_STATEMENT} (/about)
 - **How it starts.** ${ASSESSMENT_ENTRY}
 - **Intended use.** Clinician training and assessment. ClinicalSim produces no patient-facing output, makes no diagnostic or treatment recommendation, and creates no clinical documentation. (/trust)
 - **What it does not do.** It does not replace a standardized patient program, it extends one. It does not predict patient experience scores, readmissions, safety events, claims, or other clinical or business outcomes. It does not price malpractice risk or benchmark one institution against another. It is audio only, so it cannot assess eye contact, body language, or physical presence. (/trust, /faq, /solutions/patient-experience)

@@ -97,3 +97,36 @@ export const ORGANIZATION_LOGO = {
   width: "1200",
   height: "1200",
 } as const
+
+/**
+ * The mission statement, approved by Ben on 2026-09-03 and published verbatim.
+ *
+ * Two things about it are deliberate and should not be "cleaned up":
+ *
+ * 1. It keeps its em dashes. Every other string in this file is dash free
+ *    because the brand voice rules ban them in published copy, and
+ *    lib/market-positioning.test.ts asserts that for the positioning
+ *    constants. The mission was written by hand and approved as written, so it
+ *    is the one exception, and the test below locks the wording instead of the
+ *    punctuation.
+ * 2. It says "aims to change that", not "changes that". The claim is an
+ *    intention, which is what the company can honestly say today.
+ *
+ * Split into a lead sentence and the paragraph that follows so /about can set
+ * the first line larger without either half being retyped. MISSION_STATEMENT is
+ * the whole thing in one string for /llms.txt and any schema or metadata use.
+ */
+export const MISSION_STATEMENT_LEAD =
+  "Our mission is to improve clinical communication to improve patient care—and make an extraordinarily hard job a little less hard."
+
+export const MISSION_STATEMENT_BODY = [
+  "Medicine measures how patients experience communication, but rarely the communication itself: what clinicians say, how they say it, and how they can improve.",
+  "We send clinicians into some of the hardest conversations of a family's life with little practice or feedback, and both patients and clinicians bear the consequences.",
+  "ClinicalSim aims to change that by making communication a skill we can practice, measure, and improve—so what is said and what is understood are finally the same thing.",
+] as const
+
+/** Lead plus body, as one paragraph. */
+export const MISSION_STATEMENT = [
+  MISSION_STATEMENT_LEAD,
+  ...MISSION_STATEMENT_BODY,
+].join(" ")

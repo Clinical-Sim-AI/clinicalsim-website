@@ -7,6 +7,9 @@ import {
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
   MEASUREMENT_CLAIM,
+  MISSION_STATEMENT,
+  MISSION_STATEMENT_BODY,
+  MISSION_STATEMENT_LEAD,
   POSITIONING_AUDIENCE,
   POSITIONING_LONG,
   POSITIONING_ONE_LINER,
@@ -143,5 +146,29 @@ describe("market positioning", () => {
     expect(errorDisclosure?.frameworks?.map((framework) => framework.name)).not.toContain(
       "NQF Safe Practice on disclosure",
     )
+  })
+})
+
+/**
+ * The mission statement is approved copy, not editable prose. It is the one
+ * published string on the site that keeps its em dashes, so a well meant pass
+ * of the brand voice rules would quietly rewrite it. This locks the wording
+ * character for character instead.
+ */
+describe("mission statement", () => {
+  it("matches the approved wording exactly", () => {
+    expect(MISSION_STATEMENT).toBe(
+      "Our mission is to improve clinical communication to improve patient care\u2014and make an extraordinarily hard job a little less hard. Medicine measures how patients experience communication, but rarely the communication itself: what clinicians say, how they say it, and how they can improve. We send clinicians into some of the hardest conversations of a family's life with little practice or feedback, and both patients and clinicians bear the consequences. ClinicalSim aims to change that by making communication a skill we can practice, measure, and improve\u2014so what is said and what is understood are finally the same thing.",
+    )
+  })
+
+  it("reassembles from the parts /about renders", () => {
+    expect(
+      [MISSION_STATEMENT_LEAD, ...MISSION_STATEMENT_BODY].join(" "),
+    ).toBe(MISSION_STATEMENT)
+  })
+
+  it("keeps the claim an intention rather than a result", () => {
+    expect(MISSION_STATEMENT).toContain("aims to change that")
   })
 })

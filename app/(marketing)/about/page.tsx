@@ -15,6 +15,8 @@ import { ArrowRight } from "lucide-react"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import {
   CATEGORY_LINE,
+  MISSION_STATEMENT_BODY,
+  MISSION_STATEMENT_LEAD,
   POSITIONING_LONG,
 } from "@/lib/positioning"
 
@@ -124,6 +126,25 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
+
+      {/* Mission */}
+      <section className="px-6 py-16 md:py-24 bg-cs-cloud">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-navy mb-8">
+            Our mission
+          </h2>
+          <p className="text-2xl md:text-3xl lg:text-4xl font-light text-cs-dark-blue leading-[1.25] tracking-tight text-balance mb-8">
+            {MISSION_STATEMENT_LEAD}
+          </p>
+          <div className="max-w-3xl space-y-5 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
+            {MISSION_STATEMENT_BODY.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider variant="diagonal-down" color="navy" className="bg-cs-cloud" />
 
       {/* Why we exist */}
       <section className="px-6 py-16 md:py-24 bg-cs-navy text-white">

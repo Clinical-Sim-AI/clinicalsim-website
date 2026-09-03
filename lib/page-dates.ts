@@ -11,7 +11,8 @@
  * entry are the same fact, so they read it from the same place.
  */
 export const PAGE_DATE_MODIFIED = {
-  about: "2026-09-02",
+  // Mission statement added to the page on 2026-09-03.
+  about: "2026-09-03",
   audiences: "2026-09-02",
   compare: "2026-09-02",
   contact: "2026-09-02",
