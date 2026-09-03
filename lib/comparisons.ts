@@ -184,7 +184,7 @@ const comparisons: Comparison[] = [
       {
         dimension: "What performance is scored against",
         optionA:
-          "Published clinical communication frameworks such as SPIKES and Calgary-Cambridge, mapped to the ACGME Milestones, with every rating citing transcript evidence.",
+          "Published clinical communication frameworks such as SPIKES and Calgary-Cambridge, with every rating citing transcript evidence.",
         optionB:
           "The platform's own behavioral competency model. Ask whether it maps to the accreditation framework your program reports against.",
       },
@@ -221,7 +221,7 @@ const comparisons: Comparison[] = [
         question:
           "What is the difference between AI patient simulation and an avatar role-play platform?",
         answer:
-          "AI patient simulation is built for the clinical encounter: the case content comes from clinical literature, the learner speaks to an AI patient, and the session is scored against published clinical communication frameworks and mapped to the ACGME Milestones. Avatar role-play platforms were built for interpersonal and professional skills across industries and present a visual avatar, which in some products is operated live by a trained specialist. The practical questions for a program are who authored the clinical content, what framework the scoring rests on, and whether the learner's words are preserved for review.",
+          "AI patient simulation is built for the clinical encounter: the case content comes from clinical literature, the learner speaks to an AI patient, and the session is scored against the communication framework approved for the case. Avatar role-play platforms were built for interpersonal and professional skills across industries and present a visual avatar, which in some products is operated live by a trained specialist. The practical questions for a program are who authored the clinical content, what framework the scoring rests on, and whether the learner's words are preserved for review.",
       },
       {
         question:

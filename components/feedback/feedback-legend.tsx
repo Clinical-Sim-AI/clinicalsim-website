@@ -87,7 +87,7 @@ export function FeedbackLegend({ className }: Props) {
         </p>
 
         <p>
-          For ACGME milestones, some scenarios can only assess a competency up to
+          For competency frameworks with levels, some scenarios can only assess a competency up to
           a certain level because the higher levels turn on behaviors a single spoken
           encounter can&rsquo;t surface. When a scenario&rsquo;s ceiling is below
           Level {CEILING_MIN_FOR_OVERALL}, that milestone is still shown for its

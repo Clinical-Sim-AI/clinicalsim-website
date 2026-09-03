@@ -3,7 +3,7 @@ export const HOMEPAGE_PUBLIC_COPY = {
     eyebrow: "Communication intelligence for healthcare",
     headline:
       "Give clinicians measurable practice for better patient conversations.",
-    body: "Clinicians, learners, and patient facing staff practice spoken conversations with AI patients. ClinicalSim scores each simulation against a published clinical framework or your institution's own standard and quotes the participant's words behind every score. Participants see what they did well and what to practice next, while leaders can see patterns across a cohort or unit. Residency, fellowship, and medical school programs use the same tool for milestones and OSCE practice.",
+    body: "Clinicians, learners, and patient facing staff practice spoken conversations with AI patients. ClinicalSim scores each simulation against a published clinical framework or your institution's own standard and quotes the participant's words behind every score. Participants see what they did well and what to practice next, while leaders can see patterns across a cohort or unit. Residency, fellowship, and medical school programs use the same tool for competency assessment and OSCE practice.",
     primaryCta: "See how an assessment works",
     secondaryCta: "See example feedback",
     pilot:
@@ -67,7 +67,7 @@ export const HOMEPAGE_PUBLIC_COPY = {
     medicalEducationHeading:
       "For residency, fellowship, and medical school programs",
     medicalEducationBody:
-      "Learners get repeatable practice between scheduled SP encounters. Faculty get milestone-aligned feedback with the transcript behind every score, so they can inspect any case rather than trust a number.",
+      "Learners get repeatable practice between scheduled SP encounters. Faculty get rubric-scored feedback with the transcript behind every score, so they can inspect any case rather than trust a number.",
   },
   proofHeading: "From clinicians who have used ClinicalSim",
   closing: {

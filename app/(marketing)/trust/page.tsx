@@ -172,8 +172,8 @@ export default function TrustPage() {
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
             What it produces is a rubric-scored record of how a clinician
-            handled a simulated conversation, mapped to a published competency
-            framework such as the ACGME Milestones 2.0.
+            handled a simulated conversation, mapped to the competency
+            standard or communication framework approved for the case.
           </p>
         </div>
       </section>

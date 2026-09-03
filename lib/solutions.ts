@@ -131,9 +131,8 @@ export interface Solution {
   ctaDescription: string
 }
 
-// Shared platform capabilities are product features, not statistics, and are
-// safe to reuse across solutions. The competency-framework claim differs by
-// audience (ACGME Milestones govern GME trainees only), so that value prop is
+// Shared platform capabilities are product features, not statistics. The
+// competency-framework claim differs by audience, so that value prop is
 // defined per audience below instead of shared.
 const ON_DEMAND_VALUE_PROP: SolutionValueProp = {
   title: "On demand, not on schedule",
@@ -153,13 +152,13 @@ const PRIVATE_REPETITION_VALUE_PROP: SolutionValueProp = {
     "Learners can repeat a case in private before sharing the report with a faculty member, coach, or program.",
 }
 
-// For residency and fellowship (ACGME-accredited GME trainees).
+// For residency and fellowship.
 const GME_VALUE_PROPS: SolutionValueProp[] = [
   ON_DEMAND_VALUE_PROP,
   {
-    title: "Milestone-aligned scores, in the learner's words",
+    title: "Rubric-scored feedback, in the learner's words",
     description:
-      "Each conversation is scored against the ACGME Milestones 2.0 subcompetencies named on the case, and every score quotes the learner's own words, so a faculty member or CCC can inspect the feedback rather than rely on a rating alone.",
+      "Each conversation is scored against the standard approved for the case, and every score quotes the learner's own words, so a faculty member or CCC can inspect the feedback rather than rely on a rating alone.",
   },
   DASHBOARD_VALUE_PROP,
   PRIVATE_REPETITION_VALUE_PROP,
@@ -202,18 +201,18 @@ const solutions: Solution[] = [
     subtitle: "A longitudinal communication curriculum across PGY years",
     icon: "stack",
     colorVariant: "accent",
-    lastUpdated: "2026-09-02",
+    lastUpdated: "2026-09-03",
     cardBullets: [
       "A gradual arc from PGY-1 to senior resident and fellow",
-      "Mapped to ACGME Milestones 2.0 and ABP EPAs",
+      "Mapped to your program's competency standards",
       "A trackable dashboard that follows learners year over year",
     ],
     metaTitle: "Core communication curriculum for residency",
     metaDescription:
-      "A core communication curriculum for every resident and fellow, not a remediation add-on. Cases progress across PGY years, mapped to ACGME Milestones 2.0 and EPAs.",
+      "A core communication curriculum for every resident and fellow, not a remediation add-on. Cases progress across PGY years and use program-approved competency standards.",
     heroHeadline: "Communication practice that grows with clinical responsibility",
     heroDescription:
-      "Every resident works the same sequence, from clear information delivery through uncertainty, family meetings, and leadership. Each conversation is scored against the ACGME Milestones and communication framework that fit the learner, specialty, and task, with the resident's own words quoted under every score.",
+      "Every resident works the same sequence, from clear information delivery through uncertainty, family meetings, and leadership. Each conversation is scored against the competency standard and communication framework approved for the case, with the resident's own words quoted under every score.",
     stagesHeading: "The arc across training",
     stagesIntro:
       "Increasing complexity, emotional intensity, and leadership demand from intern year through fellowship.",
@@ -237,10 +236,6 @@ const solutions: Solution[] = [
           "Goals-of-care discussions, ICU escalation, and error disclosure involving harm. Learners lead family meetings and begin coaching juniors.",
       },
     ],
-    // Named because the page maps cases to ACGME Milestones 2.0 and ABP EPAs. ACGME's own policy
-    // states that a vendor claim of ACGME endorsement or compliance is false, so the disclaimer
-    // stands near the framework name.
-    nonEndorsementOrgs: ["the ACGME", "the American Board of Pediatrics (ABP)"],
     valuePropsHeading: "One record across training",
     valueProps: GME_VALUE_PROPS,
     faqs: [
@@ -252,14 +247,14 @@ const solutions: Solution[] = [
       },
       {
         question:
-          "How is the curriculum mapped to ACGME milestones and EPAs?",
+          "How is the curriculum mapped to our competency standards?",
         answer:
-          "Each scenario is tagged to specific ACGME Milestones 2.0 subcompetencies and, where applicable, to ABP Entrustable Professional Activities. Rubric scores trace back to a milestone or EPA descriptor, so a learner's progress reads in the same language your Clinical Competency Committee already uses.",
+          "Each scenario can use the competency standard that your program supplies or approves. Rubric scores trace back to that standard, so a learner's progress reads in the same language your Clinical Competency Committee already uses.",
       },
       {
         question: "Does this replace bedside teaching and faculty feedback?",
         answer:
-          "No. ClinicalSim scores each practice conversation against the milestone language on the case and quotes the learner's words under every score, so a faculty member arrives at coaching already knowing which element broke down and spends the time on that. A faculty mentor observing a real family meeting provides human judgment that ClinicalSim does not replace.",
+          "No. ClinicalSim scores each practice conversation against the rubric on the case and quotes the learner's words under every score, so a faculty member arrives at coaching knowing which element needs attention. A faculty mentor observing a real family meeting provides human judgment that ClinicalSim does not replace.",
       },
     ],
     relatedPostSlugs: [
@@ -278,7 +273,7 @@ const solutions: Solution[] = [
     ],
     ctaHeadline: "Build a communication curriculum that spans training.",
     ctaDescription:
-      "Review a longitudinal sequence of milestone-mapped cases from intern year through fellowship.",
+      "Review a longitudinal sequence of rubric-scored cases from intern year through fellowship.",
   },
 
   // -------------------------------------------------------------------------
@@ -978,22 +973,22 @@ const solutions: Solution[] = [
     colorVariant: "navy",
     customPage: true,
     hideFromHomepage: true,
-    lastUpdated: "2026-09-02",
+    lastUpdated: "2026-09-03",
     cardBullets: [
-      "Targeted, milestone-mapped practice for a learner who needs support",
+      "Targeted, rubric-scored practice for a learner who needs support",
       "Repeatable, on-demand practice without SP scheduling",
       "Reports with transcript evidence for CCC review",
     ],
     metaTitle: "Communication remediation",
     metaDescription:
-      "AI clinical simulation for communication remediation. Milestone-mapped practice and transcript evidence for faculty and CCC review.",
+      "AI clinical simulation for communication remediation. Rubric-scored practice and transcript evidence for faculty and CCC review.",
     heroHeadline:
       "Give every learner a clear path to better communication",
     heroDescription:
-      "Learners rehearse high-stakes conversations with AI patients, see what they did well and what to practice next, and return to coaching with transcript-linked feedback against the milestones your program uses.",
+      "Learners rehearse high-stakes conversations with AI patients, see what they did well and what to practice next, and return to coaching with transcript-linked feedback against the standard your program approves.",
     ctaHeadline: "Start with a repeatable remediation structure",
     ctaDescription:
-      "Review how structured practice and milestone-aligned feedback could fit a communication remediation plan.",
+      "Review how structured practice and rubric-scored feedback could fit a communication remediation plan.",
   },
 ]
 

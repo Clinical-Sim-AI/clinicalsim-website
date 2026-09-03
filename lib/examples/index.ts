@@ -5,12 +5,27 @@ import deliveringANewLeukemiaDiagnosisToAFamilyInTheEmergencyDepartment from "./
 import informedConsentDiscussionForCentralVenousCatheterPlacementInThePicu from "./informed-consent-discussion-for-central-venous-catheter-placement-in-the-picu";
 import pediatricVaccineHesitancyCounseling from "./pediatric-vaccine-hesitancy-counseling";
 
-const examples: ExampleCase[] = [
+const rawExamples: ExampleCase[] = [
   addressingHydroxyureaNonadherenceAndMedicalMistrust,
   deliveringANewLeukemiaDiagnosisToAFamilyInTheEmergencyDepartment,
   informedConsentDiscussionForCentralVenousCatheterPlacementInThePicu,
   pediatricVaccineHesitancyCounseling,
 ];
+
+// The public site does not publish ACGME milestone scoring or descriptor text.
+// Keep the generated snapshots intact, then remove those sections at the
+// registry boundary before any page or client component receives them.
+const examples: ExampleCase[] = rawExamples.map((example) => ({
+  ...example,
+  report: {
+    ...example.report,
+    runVersionFields: null,
+    associatedEpas: null,
+    rubricGrades: example.report.rubricGrades.filter(
+      (grade) => !grade.isAcgmeMilestone,
+    ),
+  },
+}));
 
 export function getAllExamples(): ExampleCase[] {
   return examples;

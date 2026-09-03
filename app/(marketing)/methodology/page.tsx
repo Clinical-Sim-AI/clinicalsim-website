@@ -14,7 +14,7 @@ import type { FaqItem } from "@/lib/types"
 export const metadata: Metadata = {
   title: { absolute: "Methodology: Case Development, Standards Alignment & Feedback" },
   description:
-    "How ClinicalSim.ai builds cases, anchors them to the ACGME Milestones 2.0, the Foundational Competencies, or the ACGME Clinician Educator Milestones, applies validated communication frameworks like SPIKES and Calgary-Cambridge, and generates transcript-grounded, competency-based feedback.",
+    "How ClinicalSim.ai builds cases, applies program-approved competency standards and published communication frameworks, and generates transcript-grounded feedback.",
   openGraph: {
     title: "Methodology | ClinicalSim.ai",
     description:
@@ -47,7 +47,7 @@ const methodologyFaqs: FaqItem[] = [
   {
     question: "Which competency frameworks does a ClinicalSim score map to?",
     answer:
-      "ClinicalSim anchors each case to a published competency framework and quotes that framework's level descriptors verbatim from the primary source. Residency and fellowship cases use the specialty-specific ACGME Milestones 2.0, scored on the Dreyfus scale from 1 to 5. Medical school cases use the Foundational Competencies for Undergraduate Medical Education (AAMC, AACOM, and ACGME) and the AAMC Core Entrustable Professional Activities, recorded on three points as demonstrated, partially demonstrated, or not demonstrated. Faculty cases use the ACGME Clinician Educator Milestones. Published communication frameworks are then applied on top of the competency score, each scored independently, and a program can add its own internal or externally validated rubrics.",
+      "ClinicalSim can map a case to the competency framework a program supplies or approves. The case uses only the behaviors the conversation can show, and the report names the standard behind each score. Communication frameworks and program rubrics are scored separately.",
   },
   {
     question: "Can faculty see the evidence behind a ClinicalSim score?",
@@ -63,7 +63,7 @@ const methodologyFaqs: FaqItem[] = [
     question:
       "Should AI-generated scores be used for promotion or remediation decisions?",
     answer:
-      "ClinicalSim scores are formative and are not built to stand alone behind a decision about promotion or remediation. The ACGME milestones themselves were designed as formative tools rather than instruments for high-stakes external decisions, and ClinicalSim treats milestone-aligned output the same way, as evidence that informs program judgment. A competency committee weighs it alongside direct observation and faculty judgment, and the final judgment stays with people. ClinicalSim is testing that alignment rather than asserting it: in the current pilot, program directors assess the same encounters themselves and compare their own read against the platform's output.",
+      "ClinicalSim scores are formative and do not stand alone behind a decision about promotion or remediation. A competency committee weighs the report alongside direct observation and faculty judgment, and people make the final decision. In the current pilot, program directors assess the same encounters and compare their own read with the platform's output.",
   },
   {
     question: "Who writes and reviews ClinicalSim cases?",
@@ -110,7 +110,7 @@ const commitments: {
   {
     title: "Alignment",
     description:
-      "Every score traces to a published competency or a validated communication framework, never to an unexplained rating.",
+      "Every score traces to a program-approved competency standard or a published communication framework, never to an unexplained rating.",
     variant: "default",
     brandIcon: "align-bottom",
   },
@@ -125,7 +125,7 @@ const frameworkTerms: {
   {
     title: "Competency framework",
     description:
-      "The governing-body standard a case is assessed against: the ACGME Milestones 2.0 in graduate medical education, the Foundational Competencies in undergraduate medical education, and the ACGME Clinician Educator Milestones in faculty development.",
+      "The standard a program approves for the case, including any rating scale and the behaviors the conversation can assess.",
     variant: "default",
     brandIcon: "hat-graduation",
   },
@@ -143,14 +143,6 @@ const frameworkTerms: {
     variant: "light-blue",
     brandIcon: "list-unordered",
   },
-]
-
-const dreyfusLevels = [
-  "Level 1, Novice",
-  "Level 2, Advanced Beginner",
-  "Level 3, Competent",
-  "Level 4, Proficient (readiness for unsupervised practice)",
-  "Level 5, Expert (aspirational)",
 ]
 
 const facultyCaseTypes = [
@@ -172,7 +164,7 @@ export default function MethodologyPage() {
             "@type": "WebPage",
             name: "ClinicalSim.ai Methodology",
             description:
-              "How ClinicalSim.ai builds cases, aligns them to governing-body competency frameworks and validated communication frameworks, and generates evidence-based feedback.",
+              "How ClinicalSim.ai builds cases, applies program-approved competency standards and published communication frameworks, and generates evidence-based feedback.",
             url: "https://clinicalsim.ai/methodology",
             dateModified: PAGE_DATE_MODIFIED.methodology,
             author: author
@@ -370,10 +362,9 @@ export default function MethodologyPage() {
           </h3>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
             Three terms recur here. The competency framework is the anchor
-            for the competency assessment; where it defines level
-            descriptors, as the ACGME milestones do, those are quoted
-            verbatim from the primary source. The communication frameworks
-            are then applied to characterize how the learner communicated.
+            for the competency assessment and must be supplied or approved by
+            the program. Communication frameworks are then applied to
+            characterize how the learner communicated.
             The two are distinct: the competency score reflects the
             learner&rsquo;s developmental level, while the communication
             frameworks capture the specific skills underlying communication
@@ -445,43 +436,18 @@ export default function MethodologyPage() {
                 Graduate medical education
               </h4>
               <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-                Cases align to the specialty-specific ACGME Milestones 2.0,
-                with milestone text quoted verbatim from each
-                specialty&rsquo;s own document, and target the high-stakes
-                conversations a specialty most needs to rehearse. The
-                Milestones 2.0 describe six core competencies across five
-                developmental levels; several were harmonized across
-                specialties in 2017 and then adapted by each specialty,
-                which is why text is drawn from the specialty&rsquo;s own
-                version.
+                Residency and fellowship cases use the competency framework
+                and rating scale that the program approves for that case.
+                Each case targets a high-stakes conversation that the
+                specialty needs to rehearse and scores only the behaviors the
+                conversation can show.
               </p>
               <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-                Scoring reflects whichever subcompetencies the scenario
-                exercises, most often interpersonal and communication skills
-                and professionalism, and systems-based practice or other
-                domains where the encounter warrants. Each is scored on the
-                Dreyfus scale (1 to 5), read against the milestone&rsquo;s
-                verbatim level descriptors:
-              </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 mb-4 list-disc list-inside">
-                {dreyfusLevels.map((level) => (
-                  <li
-                    key={level}
-                    className="text-sm text-cs-dark-blue/85 font-light"
-                  >
-                    {level}
-                  </li>
-                ))}
-              </ul>
-              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-                The result is milestone-placed and ready for Clinical
-                Competency Committee review. Because the milestones are
-                formative and were not designed for high-stakes external
-                decisions, ClinicalSim treats milestone-aligned output
-                accordingly, as evidence that informs program judgment. With
-                that in mind, we do not provide a milestone score if the case
-                cannot achieve the level of complexity required to evaluate
-                through level 4.
+                The report names the standard behind each score and cites the
+                learner&rsquo;s words. Faculty and the Clinical Competency
+                Committee can review it alongside direct observation and the
+                program&rsquo;s other evidence. ClinicalSim does not replace
+                their judgment.
               </p>
             </div>
 
@@ -527,19 +493,9 @@ export default function MethodologyPage() {
                 clinician, and the assessment is formative.
               </p>
               <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-                Cases align to the ACGME Clinician Educator Milestones, a
-                2022 joint initiative of the ACGME, the ACCME, the AAMC, and
-                the AACOM. Its 19 subcompetencies carry the same five
-                developmental levels as the ACGME Milestones used in graduate
-                medical education, and level descriptors are quoted verbatim
-                from the source.
-              </p>
-              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-                The Clinician Educator Milestones are guidance rather than an
-                accreditation requirement, in the ACGME&rsquo;s own words.
-                ClinicalSim treats faculty output the way it treats
-                milestone-aligned output in residency: evidence that informs
-                judgment, not a grade.
+                Faculty cases use the framework or rubric that the program
+                approves for the teaching task. The report is formative
+                evidence that informs judgment, not a grade.
               </p>
               <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
                 A case scores only the subcompetencies a voice conversation
@@ -665,32 +621,6 @@ export default function MethodologyPage() {
           <div className="bg-white rounded-xl border border-cs-gray/50 p-6 md:p-8 space-y-8">
             <div>
               <h3 className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mb-3">
-                Graduate medical education
-              </h3>
-              <ol className="space-y-2 list-decimal list-inside">
-                <li className="text-sm text-cs-dark-blue/70 leading-relaxed">
-                  Edgar L, Roberts S, Holmboe E. Milestones 2.0: A Step
-                  Forward. <em>J Grad Med Educ.</em> 2018;10(3):367-369.
-                </li>
-                <li className="text-sm text-cs-dark-blue/70 leading-relaxed">
-                  Morrison LJ, Joyce BL, Meyer LE, et al. Strengthening
-                  Interpersonal and Communication Skills Assessment Through
-                  Harmonized Milestones. <em>J Grad Med Educ.</em>
-                </li>
-                <li className="text-sm text-cs-dark-blue/70 leading-relaxed">
-                  ACGME. Use of Individual Milestones Data by External
-                  Entities for High-Stakes Decisions: A Function for Which
-                  They Are Not Designed or Intended. October 2022.
-                </li>
-                <li className="text-sm text-cs-dark-blue/70 leading-relaxed">
-                  Specialty-specific ACGME Milestones and Supplemental
-                  Guides, sourced per specialty.
-                </li>
-              </ol>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mb-3">
                 Undergraduate medical education
               </h3>
               <ol className="space-y-2 list-decimal list-inside">
@@ -709,30 +639,6 @@ export default function MethodologyPage() {
                   >
                     aamc.org
                   </a>
-                </li>
-              </ol>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-medium uppercase tracking-wider text-cs-dark-gray mb-3">
-                Faculty development
-              </h3>
-              <ol className="space-y-2 list-decimal list-inside">
-                <li className="text-sm text-cs-dark-blue/70 leading-relaxed">
-                  The Clinician Educator Milestone Project. Version 1.1,
-                  August 2022. A joint initiative of the Accreditation Council
-                  for Graduate Medical Education, the Accreditation Council
-                  for Continuing Medical Education, the Association of
-                  American Medical Colleges, and the American Association of
-                  Colleges of Osteopathic Medicine.
-                </li>
-                <li className="text-sm text-cs-dark-blue/70 leading-relaxed">
-                  The Clinician Educator Supplemental Guide. Version 1.1,
-                  October 2025.
-                </li>
-                <li className="text-sm text-cs-dark-blue/70 leading-relaxed">
-                  ACGME. Use of Individual Milestones Data by External
-                  Entities for High-Stakes Decisions. October 2022.
                 </li>
               </ol>
             </div>

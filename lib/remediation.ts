@@ -96,7 +96,7 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   heroH1: "Give every learner a clear path to better communication",
   heroSubtitle:
-    "Learners rehearse high-stakes conversations with AI patients, see what they did well and what to practice next, and return to coaching with transcript-linked feedback against the milestones your program uses.",
+    "Learners rehearse high-stakes conversations with AI patients, see what they did well and what to practice next, and return to coaching with transcript-linked feedback against the standard your program approves.",
   heroStats: [
     {
       value: "93%",
@@ -171,9 +171,9 @@ export const remediationPageData: RemediationPageData = {
       iconName: "Mic",
     },
     {
-      title: "Milestone-aligned feedback",
+      title: "Rubric-scored feedback",
       description:
-        "Feedback mapped to the relevant ICS subcompetencies of ACGME Milestones 2.0, with transcript evidence a learner and faculty member can review.",
+        "Feedback scored against the standard approved for the case, with transcript evidence a learner and faculty member can review.",
       iconName: "BarChart3",
     },
     {
@@ -185,7 +185,7 @@ export const remediationPageData: RemediationPageData = {
     {
       title: "Evidence for CCC review",
       description:
-        "Every session generates a structured, milestone-aligned report your Clinical Competency Committee can review alongside other evidence.",
+        "Every session generates a structured report your Clinical Competency Committee can review alongside other evidence.",
       iconName: "FileText",
     },
     {
@@ -206,7 +206,7 @@ export const remediationPageData: RemediationPageData = {
       painPoint:
         "Programs need a repeatable remediation structure and more practice than faculty calendars can provide.",
       whatTheyGet:
-        "A structured remediation pathway with milestone-aligned practice and longitudinal evidence for CCC review between faculty coaching sessions.",
+        "A structured remediation pathway with rubric-scored practice and longitudinal evidence for CCC review between faculty coaching sessions.",
       iconName: "GraduationCap",
       colorVariant: "navy",
     },
@@ -232,11 +232,11 @@ export const remediationPageData: RemediationPageData = {
     },
     {
       role: "CCCs",
-      headline: "Milestone-aligned evidence from every practice session",
+      headline: "Reviewable evidence from every practice session",
       painPoint:
         "Limited communication evidence across a remediation period.",
       whatTheyGet:
-        "Structured, longitudinal data aligned to ACGME Milestones 2.0, giving your committee another source of evidence to review.",
+        "Structured, longitudinal data with transcript evidence, giving your committee another source to review.",
       iconName: "ClipboardCheck",
       colorVariant: "light-blue",
     },
@@ -265,7 +265,7 @@ export const remediationPageData: RemediationPageData = {
     {
       area: "Graduate medical education",
       credentials: [
-        "ACGME milestone alignment",
+        "Program-approved competency standards",
         "CCC documentation expertise",
       ],
       colorVariant: "blue",
@@ -347,7 +347,7 @@ export const remediationPageData: RemediationPageData = {
       costRange: "Institutional license",
       scalability: "Repeatable sessions for assigned learners",
       availability: "On-demand 24/7",
-      documentation: "Milestone-aligned reports for CCC review",
+      documentation: "Rubric-scored reports for CCC review",
       highlight: true,
     },
   ],
@@ -363,27 +363,27 @@ export const remediationPageData: RemediationPageData = {
     },
     {
       question:
-        "How does ClinicalSim map to ACGME milestones?",
+        "How does ClinicalSim use a program's competency standards?",
       answer:
-        "ClinicalSim generates feedback mapped to the Interpersonal and Communication Skills subcompetencies of ACGME Milestones 2.0. Each practice session produces structured evidence that program directors and CCCs can review alongside faculty observations. It does not replace faculty judgment or the committee's decision.",
+        "ClinicalSim can score a case against the competency standard that a program supplies or approves. Each practice session produces structured evidence that program directors and CCCs can review alongside faculty observations. It does not replace faculty judgment or the committee's decision.",
     },
     {
       question:
         "What documentation does ClinicalSim generate for CCCs?",
       answer:
-        "ClinicalSim generates a timestamped report from every practice session. Each report maps observed behavior to relevant ACGME Milestones 2.0 levels, cites the learner's words, and tracks performance across the remediation period. A CCC can review the report alongside faculty observation and the other evidence it already uses. ClinicalSim does not replace faculty judgment or the committee's decision.",
+        "ClinicalSim generates a timestamped report from every practice session. Each report scores observed behavior against the standard approved for the case, cites the learner's words, and tracks performance across the remediation period. A CCC can review the report alongside faculty observation and the other evidence it already uses. ClinicalSim does not replace faculty judgment or the committee's decision.",
     },
     {
       question:
         "How does this compare to standardized patient encounters?",
       answer:
-        "Standardized patient (SP) encounters remain important for high-stakes assessment, and each encounter requires actor time, space, faculty support, and scheduling. ClinicalSim adds on-demand practice between those encounters, with milestone-aligned feedback after every session. It extends an SP program by supplying repetition, and it does not replace live assessment.",
+        "Standardized patient (SP) encounters remain important for high-stakes assessment, and each encounter requires actor time, space, faculty support, and scheduling. ClinicalSim adds on-demand practice between those encounters, with rubric-scored feedback after every session. It extends an SP program by supplying repetition, and it does not replace live assessment.",
     },
     {
       question:
         "What is PACE and how does ClinicalSim compare?",
       answer:
-        "PACE (Program for Accelerated Curriculum in Education) and similar external remediation programs provide intensive assessment or coaching for one learner at a time and issue an external report at the end. ClinicalSim provides structured, on-demand practice within the learner's home program and generates milestone-aligned documentation from every session. A program can use ClinicalSim on its own or between sessions with an external remediation service.",
+        "PACE (Program for Accelerated Curriculum in Education) and similar external remediation programs provide intensive assessment or coaching for one learner at a time and issue an external report at the end. ClinicalSim provides structured, on-demand practice within the learner's home program and generates rubric-scored documentation from every session. A program can use ClinicalSim on its own or between sessions with an external remediation service.",
     },
   ],
 
@@ -407,5 +407,5 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   // Meta
   // ---------------------------------------------------------------------------
-  lastUpdated: "2026-08-10",
+  lastUpdated: "2026-09-03",
 }

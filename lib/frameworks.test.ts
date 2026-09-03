@@ -20,9 +20,9 @@ describe("published framework catalog", () => {
         .filter((framework) => framework.featured)
         .map((framework) => framework.homepageName),
     ).toEqual([
-      "ACGME Milestones 2.0",
       "NURSE",
       "AHRQ CANDOR",
+      "Informed consent",
       "SPIKES",
     ])
   })

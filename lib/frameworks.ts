@@ -10,19 +10,9 @@ export interface ReadyToUseFramework {
 
 /**
  * Scoring sources attached to at least one active, published simulation that
- * appears in the staging catalog. Most staging keys are rubric slugs. The
- * ACGME entry covers the specialty specific ICS set.
+ * appears in the staging catalog. Most staging keys are rubric slugs.
  */
 export const readyToUseFrameworks: ReadyToUseFramework[] = [
-  {
-    name: "ACGME ICS Milestones 2.0",
-    homepageName: "ACGME Milestones 2.0",
-    featured: true,
-    owner: "ACGME, published by specialty",
-    note: "Specialty specific interpersonal and communication skills subcompetencies. A case uses only the subcompetencies the learner can show in that encounter.",
-    domain: "Medical education",
-    stagingKey: "acgme-ics-milestones",
-  },
   {
     name: "NURSE: Empathic responses to emotion",
     homepageName: "NURSE",
@@ -44,6 +34,7 @@ export const readyToUseFrameworks: ReadyToUseFramework[] = [
   {
     name: "Informed consent: Consent discussion",
     homepageName: "Informed consent",
+    featured: true,
     owner: "AMA Code of Medical Ethics and StatPearls",
     note: "Six elements cover capacity, the proposed intervention, risks and benefits, alternatives, understanding, and a voluntary decision.",
     domain: "Information, decisions, and consent",

@@ -233,7 +233,7 @@ const faqSections: FaqSection[] = [
         id: "gme-scoring",
         question: "How are graduate medical education (GME) cases scored?",
         answer:
-          "GME cases use the specialty-specific ACGME Milestones 2.0 and quote the relevant descriptors from each specialty's document. The report scores only the subcompetencies the case gives the learner a fair chance to show. Faculty can use the report as one source of evidence in CCC review.",
+          "GME cases use the competency framework and rubric approved for the program. The report scores only the behaviors the case gives the learner a fair chance to show. Faculty can use the report as one source of evidence in CCC review.",
       },
       {
         id: "ume-scoring",
@@ -244,9 +244,9 @@ const faqSections: FaqSection[] = [
       },
       {
         id: "high-stakes",
-        question: "Can ClinicalSim's milestone-aligned scores be used for high-stakes decisions?",
+        question: "Can ClinicalSim scores be used for high-stakes decisions?",
         answer:
-          "No. The ACGME Milestones are formative and were not designed for high-stakes external decisions, and ClinicalSim treats milestone-aligned output accordingly, as evidence that informs program judgment, not as a stand-alone basis for high-stakes decisions.",
+          "No. ClinicalSim scores are formative evidence that informs program judgment, not a stand-alone basis for promotion, remediation, or other high-stakes decisions.",
       },
     ],
   },
@@ -258,7 +258,7 @@ const faqSections: FaqSection[] = [
         question:
           "What is the difference between a competency framework, a communication framework, and a rubric?",
         answer:
-          "A competency framework is the governing-body standard a case uses, such as the ACGME Milestones 2.0 in graduate medical education or the Foundational Competencies in undergraduate medical education. A communication framework is a published model of communication behavior, such as SPIKES or Calgary-Cambridge. A rubric turns the relevant framework into scored items for that case.",
+          "A competency framework is the standard a program approves for a case. A communication framework is a published model of communication behavior, such as SPIKES or Calgary-Cambridge. A rubric turns the relevant framework into scored items for that case.",
       },
       {
         id: "multiple-frameworks",
@@ -327,7 +327,7 @@ const faqSections: FaqSection[] = [
         question:
           "Can ClinicalSim output be used in Clinical Competency Committee (CCC) review?",
         answer:
-          "Yes. Each practice report maps observed behavior to the relevant milestone and cites the learner's words. A CCC can review it alongside faculty observation and the other evidence it already uses. The report does not replace faculty judgment or the committee's decision.",
+          "Yes. Each practice report maps observed behavior to the standard approved for the case and cites the learner's words. A CCC can review it alongside faculty observation and the other evidence it already uses. The report does not replace faculty judgment or the committee's decision.",
       },
     ],
   },
@@ -459,7 +459,7 @@ export default function FaqPage() {
             "@type": "WebPage",
             name: "ClinicalSim.ai FAQ",
             description:
-              "Common questions about ClinicalSim's AI clinical simulation: the product, how it compares to Step 2 CS and standardized patients, communication remediation, ACGME Milestone scoring and My Progress, evidence for CCC review, privacy, and research.",
+              "Common questions about ClinicalSim's AI clinical simulation: the product, how it compares to Step 2 CS and standardized patients, communication remediation, scoring and My Progress, evidence for CCC review, privacy, and research.",
             url: "https://clinicalsim.ai/faq",
             dateModified: LAST_UPDATED_ISO,
             isPartOf: {

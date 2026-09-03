@@ -496,7 +496,7 @@ export default function HomePage() {
                   I had to tell a patient&apos;s father that his daughter would need long-term oxygen support through a tracheostomy. Before speaking with him, I practiced the conversation on ClinicalSim. It gave me confidence and feedback on my tone and delivery. Having difficult conversations can be extremely stressful, but having the practice beforehand allowed me to give appropriate time for silence and empathy.
                 </p>
                 <cite className="border-l-4 border-cs-dark-blue pl-4 text-base font-normal not-italic text-cs-dark-blue/70">
-                  Nurse practitioner, Advocate Health
+                  Nurse practitioner, major health system
                 </cite>
               </blockquote>
             </div>

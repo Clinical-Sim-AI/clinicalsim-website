@@ -111,7 +111,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
             "@type": "WebPage",
             name: "Communication Remediation for Medical Education Programs",
             description:
-              "AI clinical simulation for communication remediation with structured practice mapped to ACGME Milestones 2.0 and evidence for CCC review.",
+              "AI clinical simulation for communication remediation with structured practice, rubric-scored feedback, and evidence for CCC review.",
             url: "https://clinicalsim.ai/solutions/remediation",
             dateModified: data.lastUpdated,
             isPartOf: {

@@ -63,7 +63,7 @@ export const POSITIONING_LONG = `${POSITIONING_ONE_LINER} ${POSITIONING_SUPPORT}
  * programs are where traction is and must not read as an afterthought.
  */
 export const POSITIONING_AUDIENCE =
-  "Health systems use ClinicalSim across patient experience, risk and safety, informed consent, error disclosure, and debriefing. Residency, fellowship, and medical school programs use it for milestones, OSCE practice, and faculty development."
+  "Health systems use ClinicalSim across patient experience, risk and safety, informed consent, error disclosure, and debriefing. Residency, fellowship, and medical school programs use it for competency assessment, OSCE practice, and faculty development."
 
 export type Market = "health-system" | "medical-education"
 

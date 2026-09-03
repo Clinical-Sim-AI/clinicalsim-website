@@ -82,18 +82,18 @@ const audiences: Audience[] = [
     subtitle: "Give each learner a clear next step between coaching sessions",
     icon: "hat-graduation",
     colorVariant: "navy",
-    lastUpdated: "2026-09-02",
+    lastUpdated: "2026-09-03",
 
     cardBullets: [
       "Structured encounters between coaching sessions",
-      "Milestone-aligned scores your CCC can review",
+      "Rubric-scored reports your CCC can review",
       "No scheduling, no SP recruitment, no faculty observer required for practice",
     ],
 
     heroHeadline:
       "Give each learner a clear path through communication remediation",
     heroDescription:
-      "Learners rehearse high-stakes conversations with AI patients and see what they did well and what to practice next. Reports use relevant ACGME Milestones 2.0 language and transcript evidence, so faculty can focus coaching and bring a clear record to CCC review.",
+      "Learners rehearse high-stakes conversations with AI patients and see what they did well and what to practice next. Reports use the standard approved for the case and cite transcript evidence, so faculty can focus coaching and bring a clear record to CCC review.",
 
     painPoints: [
       {
@@ -158,9 +158,9 @@ const audiences: Audience[] = [
           "Learners see what they did well and what to practice next, then repeat breaking bad news, informed consent, and other high-stakes conversations between coaching sessions.",
       },
       {
-        title: "Milestone-aligned assessment",
+        title: "Rubric-scored assessment",
         description:
-          "Each conversation is scored against the ACGME Milestones 2.0 subcompetencies on the case, and every score cites the transcript line behind it, so faculty and the CCC can inspect the feedback rather than rely on a rating alone.",
+          "Each conversation is scored against the standard approved for the case, and every score cites the transcript line behind it, so faculty and the CCC can inspect the feedback rather than rely on a rating alone.",
       },
       {
         title: "On demand, not on schedule",
@@ -188,12 +188,12 @@ const audiences: Audience[] = [
       {
         question: "What can a program director give a learner between coaching sessions?",
         answer:
-          "Structured practice in the specific conversation the learner wants to improve, repeated without booking a standardized patient or a room for each attempt. Each report shows strengths and areas for practice against the ACGME Milestones 2.0 subcompetencies on the case. Under access rules set before launch, the program director can focus coaching without attending every session.",
+          "Structured practice in the specific conversation the learner wants to improve, repeated without booking a standardized patient or a room for each attempt. Each report shows strengths and areas for practice against the standard approved for the case. Under access rules set before launch, the program director can focus coaching without attending every session.",
       },
       {
         question: "Can a ClinicalSim report go into a Clinical Competency Committee review?",
         answer:
-          "Yes. Each report scores the conversation against the relevant ACGME Milestones 2.0 subcompetency and quotes the learner's own words under every score, so a CCC can read what the learner said alongside faculty observation and the other evidence it already uses. The report does not replace faculty judgment or the committee's decision.",
+          "Yes. Each report scores the conversation against the standard approved for the case and quotes the learner's own words under every score, so a CCC can read what the learner said alongside faculty observation and the other evidence it already uses. The report does not replace faculty judgment or the committee's decision.",
       },
     ],
 
@@ -212,7 +212,7 @@ const audiences: Audience[] = [
     ],
     ctaHeadline: "Start with a repeatable remediation structure",
     ctaDescription:
-      "Talk with us about how structured practice and milestone-aligned feedback could fit your communication remediation plan.",
+      "Talk with us about how structured practice and rubric-scored feedback could fit your communication remediation plan.",
 
     relatedPostSlugs: [
       "scalability-problem-sp-programs",
@@ -230,18 +230,18 @@ const audiences: Audience[] = [
     subtitle: "One reporting structure across programs, with local clinical standards",
     icon: "hospital",
     colorVariant: "accent",
-    lastUpdated: "2026-09-02",
+    lastUpdated: "2026-09-03",
 
     cardBullets: [
       "Shared remediation documentation across every program",
       "Case-specific frameworks in one program view",
-      "Every session creates a timestamped, milestone-aligned record",
+      "Every session creates a timestamped, rubric-scored record",
     ],
 
     heroHeadline:
       "Give every program the same starting point for communication remediation",
     heroDescription:
-      "Residents practice with AI patients and receive feedback against the harmonized ICS language plus the framework that fits the case. The GME office gets a consistent program view under institution-defined access rules, while each program director and CCC keeps authority.",
+      "Residents practice with AI patients and receive feedback against the standard approved for the case. The GME office gets a consistent program view under institution-defined access rules, while each program director and CCC keeps authority.",
 
     painPoints: [
       {
@@ -252,7 +252,7 @@ const audiences: Audience[] = [
       {
         headline: "Evidence is hard to compare",
         description:
-          "ACGME Milestones give programs shared language for interpersonal and communication skills, but the observations and documentation available to each CCC still vary.",
+          "Competency standards give programs shared language for interpersonal and communication skills, but the observations and documentation available to each CCC still vary.",
       },
       {
         headline: "The record may be incomplete",
@@ -284,8 +284,8 @@ const audiences: Audience[] = [
       },
       {
         value: "ICS 1-3",
-        label: "milestone-aligned documentation from every practice session",
-        source: "ACGME Milestones 2.0",
+        label: "rubric-scored documentation from every practice session",
+        source: "ClinicalSim reporting method",
         variant: "accent",
       },
       {
@@ -306,7 +306,7 @@ const audiences: Audience[] = [
       {
         title: "Documentation for review",
         description:
-          "Every practice session generates a timestamped, milestone-aligned record that a program director, CCC, or GMEC can review alongside other evidence.",
+          "Every practice session generates a timestamped, rubric-scored record that a program director, CCC, or GMEC can review alongside other evidence.",
       },
       {
         title: "Keep practice inside the program",
@@ -329,7 +329,7 @@ const audiences: Audience[] = [
       {
         question: "What documentation does a GME office get from each practice session?",
         answer:
-          "Every ClinicalSim practice session generates a timestamped record with feedback mapped to ACGME Milestones 2.0 interpersonal and communication skills subcompetencies (ICS 1 through 3) and the transcript evidence behind each score. A program director, CCC, or GMEC can review it alongside other evidence, which matters when a GME office has to reconstruct which practice a learner completed and what feedback they received.",
+          "Every ClinicalSim practice session generates a timestamped record with feedback scored against the standard approved for the case and transcript evidence behind each score. A program director, CCC, or GMEC can review it alongside other evidence when a GME office needs to reconstruct which practice a learner completed and what feedback they received.",
       },
       {
         question: "Does ClinicalSim take authority away from a program director or CCC?",
@@ -365,7 +365,7 @@ const audiences: Audience[] = [
     subtitle: "Extend your SP program, don't replace it",
     icon: "microscope",
     colorVariant: "blue",
-    lastUpdated: "2026-09-02",
+    lastUpdated: "2026-09-03",
 
     cardBullets: [
       "Transcript evidence for faculty and CCC review",
@@ -399,7 +399,7 @@ const audiences: Audience[] = [
       {
         headline: "Center value justification",
         description:
-          "Simulation center directors have to document their centers' use and impact. Longitudinal, milestone-aligned communication data gives them evidence that can support that work.",
+          "Simulation center directors have to document their centers' use and impact. Longitudinal, rubric-scored communication data gives them evidence that can support that work.",
       },
     ],
 
@@ -422,8 +422,8 @@ const audiences: Audience[] = [
       },
       {
         value: "ICS 1-3",
-        label: "milestone-aligned feedback from every practice session",
-        source: "ACGME Milestones 2.0",
+        label: "rubric-scored feedback from every practice session",
+        source: "ClinicalSim reporting method",
         variant: "light-blue",
       },
     ],
@@ -465,7 +465,7 @@ const audiences: Audience[] = [
       {
         question: "How can a simulation center document its impact?",
         answer:
-          "Simulation center directors have to show use and impact, and communication practice is usually the hardest part to evidence. ClinicalSim records which learners practiced, which cases they completed, and how their scores changed across repeated simulated encounters, with feedback mapped to ACGME Milestones 2.0 and transcript evidence behind each score.",
+          "Simulation center directors have to show use and impact, and communication practice is usually the hardest part to evidence. ClinicalSim records which learners practiced, which cases they completed, and how their scores changed across repeated simulated encounters, with rubric-scored feedback and transcript evidence behind each score.",
       },
     ],
 
@@ -509,20 +509,20 @@ const audiences: Audience[] = [
     market: "medical-education",
     title: "Clinical competency committees",
     shortTitle: "CCCs",
-    subtitle: "Milestone-aligned evidence for CCC review",
+    subtitle: "Rubric-scored evidence for CCC review",
     icon: "ribbon-check",
     colorVariant: "light-blue",
-    lastUpdated: "2026-09-02",
+    lastUpdated: "2026-09-03",
 
     cardBullets: [
-      "Milestone-aligned assessment data from structured practice sessions",
+      "Rubric-scored assessment data from structured practice sessions",
       "Longitudinal progress tracking across the remediation period",
       "Structured data to complement faculty observations",
     ],
 
     heroHeadline: "Give your CCC another source of communication evidence",
     heroDescription:
-      "Each conversation is scored against the relevant milestone, with the learner's own words quoted under every score. Review it alongside faculty observation and the other evidence your committee already uses.",
+      "Each conversation is scored against the standard approved for the case, with the learner's own words quoted under every score. Review it alongside faculty observation and the other evidence your committee already uses.",
 
     painPoints: [
       {
@@ -558,10 +558,10 @@ const audiences: Audience[] = [
         variant: "light-blue",
       },
       {
-        value: "ICS 1-3",
+        value: "Case rubric",
         label:
-          "structured feedback mapped to Milestones 2.0 from every session",
-        source: "ACGME Milestones 2.0",
+          "structured feedback from every practice session",
+        source: "ClinicalSim reporting method",
         variant: "navy",
       },
       {
@@ -580,7 +580,7 @@ const audiences: Audience[] = [
       {
         title: "Structured communication data",
         description:
-          "Every practice conversation is scored against ACGME Milestones 2.0, element by element, with the learner's words under each score. Your committee can read that comparable record alongside faculty evaluations.",
+          "Every practice conversation is scored against the standard approved for the case, element by element, with the learner's words under each score. Your committee can read that comparable record alongside faculty evaluations.",
       },
       {
         title: "Longitudinal progress tracking",
@@ -603,7 +603,7 @@ const audiences: Audience[] = [
       {
         question: "What communication evidence can a CCC review besides faculty observation?",
         answer:
-          "Faculty observation stays central, but communication evidence is often sparse and hard to compare across a remediation period, and a learner may have only a few documented observations across several months. A ClinicalSim practice report adds a timestamped record that scores the conversation against ACGME Milestones 2.0 and quotes the learner's own words as the evidence for each score, which is a form a committee can compare across attempts.",
+          "Faculty observation stays central, but communication evidence is often sparse and hard to compare across a remediation period, and a learner may have only a few documented observations across several months. A ClinicalSim practice report adds a timestamped record that scores the conversation against the standard approved for the case and quotes the learner's own words as the evidence for each score, which a committee can compare across attempts.",
       },
       {
         question: "Can a committee see whether a learner's communication changed over time?",

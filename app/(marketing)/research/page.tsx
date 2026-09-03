@@ -391,7 +391,7 @@ export default function ResearchPage() {
                   name="feedbackTool"
                   id="feedbackTool"
                   rows={2}
-                  placeholder="e.g., Calgary-Cambridge, ACGME milestones. If not yet decided, write NA."
+                  placeholder="e.g., Calgary-Cambridge or your program's rubric. If not yet decided, write NA."
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 resize-none rounded-lg"
                 />
               </div>

@@ -74,7 +74,7 @@ const sections: PdFaqSection[] = [
   {
     question: "How should I read the feedback?",
     answer:
-      "How you read a report matters as much as what it says: treat it as evidence, not a verdict. Every encounter produces one feedback report, and every score in it traces back to a verbatim line from the transcript, not an unexplained rating. The report opens with an overall impression (strengths, priority gaps, top action items) and then gives targeted recommendations. For GME cases, that means a milestone placement on the Dreyfus scale, read against the specialty's own verbatim level descriptors. For UME cases there is no numeric level, since the Foundational Competencies were not published with one. Instead the report records whether each competency was demonstrated, partially demonstrated, or not demonstrated, and scores performance through whichever communication rubric was applied. Treat the milestone-aligned score as evidence for your Clinical Competency Committee discussion, not a stand-alone verdict. The ACGME milestones are formative and were not designed for high-stakes decisions, so ClinicalSim does not use them that way either. The full standards-alignment logic, including how level descriptors and rubrics are applied, is documented on the methodology page.",
+      "How you read a report matters as much as what it says: treat it as evidence, not a verdict. Every encounter produces one feedback report, and every score in it traces back to a verbatim line from the transcript, not an unexplained rating. The report opens with an overall impression and targeted recommendations. When a case uses a program-approved competency standard, the report applies the rating method configured for that case. Communication and skill rubrics remain separate. Treat every score as evidence for faculty or committee review, not a stand-alone verdict. The methodology page documents how standards and rubrics are applied.",
     node: (
       <>
         <p className="font-medium text-cs-navy">
@@ -88,27 +88,18 @@ const sections: PdFaqSection[] = [
           </Link>
           , and every score in it traces back to a verbatim line from the
           transcript, not an unexplained rating. The report opens with an
-          overall impression (strengths, priority gaps, top action items) and
-          then gives targeted recommendations. For GME cases, that means a
-          milestone placement on the Dreyfus scale, read against the
-          specialty&apos;s own verbatim level descriptors. For UME cases there
-          is no numeric level, since the Foundational Competencies were not
-          published with one. Instead the report records whether each
-          competency was demonstrated, partially demonstrated, or not
-          demonstrated, and scores performance through whichever communication
-          rubric was applied.
+          overall impression and targeted recommendations. When a case uses a
+          program-approved competency standard, the report applies the rating
+          method configured for that case. Communication and skill rubrics
+          remain separate.
         </p>
         <p>
-          Treat the milestone-aligned score as evidence for your Clinical
-          Competency Committee discussion, not a stand-alone verdict. The
-          ACGME milestones are formative and were not designed for high-stakes
-          decisions, so ClinicalSim does not use them that way either. The
-          full standards-alignment logic, including how level descriptors and
-          rubrics are applied, is documented on the{" "}
+          Treat every score as evidence for faculty or committee review, not a
+          stand-alone verdict. The{" "}
           <Link href="/methodology" className={linkClass}>
             methodology page
-          </Link>
-          .
+          </Link>{" "}
+          documents how standards and rubrics are applied.
         </p>
       </>
     ),
@@ -116,7 +107,7 @@ const sections: PdFaqSection[] = [
   {
     question: "How does ClinicalSim determine feedback?",
     answer:
-      "Each case is a voice conversation between the learner and an AI role built for that case, recorded as a timestamped transcript. For every scored competency and framework step, the platform pulls one or two verbatim excerpts that show the behavior, or notes that it did not happen. That is what makes each score traceable to a specific moment instead of a black box. Scoring runs on two tracks that stay separate. The competency framework (ACGME Milestones 2.0 for GME, the Foundational Competencies for UME) reflects where the learner sits developmentally. Communication frameworks like SPIKES or Calgary-Cambridge, plus any rubric your program already uses, score the specific technique independently. Both show up together with their evidence, so you see the full picture. The methodology page walks through this end to end, from case creation to how each score is generated.",
+      "Each case is a voice conversation between the learner and an AI role built for that case, recorded as a timestamped transcript. For every scored competency and framework step, the platform pulls one or two verbatim excerpts that show the behavior, or notes that it did not happen. That makes each score traceable to a specific moment. The program-approved competency standard and any communication or skill rubrics are scored separately, and both appear with their evidence. The methodology page explains how each score is generated.",
     node: (
       <>
         <p>
@@ -132,15 +123,12 @@ const sections: PdFaqSection[] = [
         </p>
         <p>
           Scoring runs on two tracks that stay separate. The competency
-          framework (ACGME Milestones 2.0 for GME, the Foundational
-          Competencies for UME) reflects where the learner sits
-          developmentally.{" "}
+          standard approved for the case and the{" "}
           <Link href="/faq#framework-vs-rubric" className={linkClass}>
-            Communication frameworks like SPIKES or Calgary-Cambridge
+            communication frameworks like SPIKES or Calgary-Cambridge
           </Link>
-          , plus any rubric your program already uses, score the specific
-          technique independently. Both show up together with their evidence,
-          so you see the full picture. The{" "}
+          , plus any rubric your program already uses, are scored separately.
+          Both appear with their evidence. The{" "}
           <Link href="/methodology" className={linkClass}>
             methodology page
           </Link>{" "}
@@ -154,7 +142,7 @@ const sections: PdFaqSection[] = [
     question:
       "How does scoring work for our students versus our residents?",
     answer:
-      "The method is the same across levels. What changes is the competency framework a case is anchored to and how it is scored. For residents and fellows (GME), cases align to the specialty-specific ACGME Milestones 2.0, with the milestone text quoted verbatim from the specialty's own document. The subcompetencies the scenario exercises, most often interpersonal and communication skills and professionalism, are placed on the Dreyfus scale (Level 1 Novice through Level 5 Expert), read against those verbatim descriptors. If a case cannot reach the complexity needed to evaluate through Level 4, we do not assign a milestone score rather than force one. For medical students (UME), the Foundational Competencies (AAMC, AACOM, and ACGME) are not published with the milestones' five-level scale, so there is no numeric level. The report records each competency as demonstrated, partially demonstrated, or not demonstrated, and scores technique through the applied communication or skill rubric. We map UME cases to the Foundational Competencies and to the AAMC Core EPAs independently, with no fixed crosswalk, since an EPA set aligned to the 2024 Foundational Competencies has not been published yet. Entrustment stays a program decision that this evidence informs. The full logic for both levels is on the methodology page.",
+      "The method is the same across learner levels. What changes is the competency standard and scoring method that the program approves for the case. The report scores only behaviors the conversation can show, and communication or skill rubrics remain separate from the competency score. Faculty and committees decide how the report fits with direct observation and other evidence. The methodology page explains the full logic.",
     node: (
       <>
         <p>
@@ -162,27 +150,11 @@ const sections: PdFaqSection[] = [
           framework a case is anchored to and how it is scored.
         </p>
         <p>
-          For residents and fellows (GME), cases align to the
-          specialty-specific ACGME Milestones 2.0, with the milestone text
-          quoted verbatim from the specialty&apos;s own document. The
-          subcompetencies the scenario exercises, most often interpersonal and
-          communication skills and professionalism, are placed on the Dreyfus
-          scale (Level 1 Novice through Level 5 Expert), read against those
-          verbatim descriptors. If a case cannot reach the complexity needed
-          to evaluate through Level 4, we do not assign a milestone score
-          rather than force one.
-        </p>
-        <p>
-          For medical students (UME), the Foundational Competencies (AAMC,
-          AACOM, and ACGME) are not published with the milestones&apos;
-          five-level scale, so there is no numeric level. The report records
-          each competency as demonstrated, partially demonstrated, or not
-          demonstrated, and scores technique through the applied communication
-          or skill rubric. We map UME cases to the Foundational Competencies
-          and to the AAMC Core EPAs independently, with no fixed crosswalk,
-          since an EPA set aligned to the 2024 Foundational Competencies has
-          not been published yet. Entrustment stays a program decision that
-          this evidence informs.
+          Each case uses the competency standard and scoring method that the
+          program approves. The report scores only behaviors the conversation
+          can show, and communication or skill rubrics remain separate from
+          the competency score. Faculty and committees decide how the report
+          fits with direct observation and other evidence.
         </p>
         <p>
           The full logic for both levels is on the{" "}
@@ -389,7 +361,7 @@ const sections: PdFaqSection[] = [
     question:
       "Is there an expectation for how many times a learner runs a scenario?",
     answer:
-      "Neither ClinicalSim nor the mastery-learning literature sets a fixed number, and the communication-skills evidence argues against picking one. McGaghie and colleagues describe simulation-based mastery learning as outcomes-based, not time- or repetition-based: learners practice and get reassessed until they clear a minimum passing standard, and how many attempts that takes differs learner to learner. No study establishes a novice-to-competent rep count for a purely interpersonal skill, so any run-it-five-times rule would be invented rather than evidenced. Two findings shape how we think about it instead. First, competence in communication is scenario-specific: performance on one case predicts performance on another only weakly, so breadth across varied scenarios matters more than depth on one. Second, learners cannot reliably judge their own competence, which is why the standard has to be observed and objective rather than a learner's own sense of readiness. Repetition still matters (Issenberg's BEME review found it was the second most cited feature of effective simulation-based learning, present in 39% of studies, right behind feedback), but it is repetition across cases, measured against a rubric, that does the work. So the expectation is not a rep count. It is this: keep practicing across varied cases until performance holds up against the standard, then come back before it slips. Most programs could not run cases to that standard before now, because standardized-patient scheduling and faculty time capped how many reps a learner could get. That is the ceiling ClinicalSim removes. For the pilot, we recommend being prescriptive: each learner takes every case assigned to them and keeps retaking it until they meet the minimum standard for their PGY year. The logic is the one your program already applies to procedures. You would not clear a resident on a central line or an intubation until they had shown they could do it to standard, and communication deserves the same treatment. Milestone level descriptors set the bar, the report shows where the learner sits against it, and progression follows the standard, not the number of attempts.",
+      "Neither ClinicalSim nor the mastery-learning literature sets a fixed number, and the communication-skills evidence argues against picking one. McGaghie and colleagues describe simulation-based mastery learning as outcomes-based, not time- or repetition-based: learners practice and get reassessed until they clear a minimum passing standard, and how many attempts that takes differs learner to learner. No study establishes a novice-to-competent rep count for a purely interpersonal skill, so any run-it-five-times rule would be invented rather than evidenced. Two findings shape how we think about it instead. First, competence in communication is scenario-specific: performance on one case predicts performance on another only weakly, so breadth across varied scenarios matters more than depth on one. Second, learners cannot reliably judge their own competence, which is why the standard has to be observed and objective rather than a learner's own sense of readiness. Repetition still matters (Issenberg's BEME review found it was the second most cited feature of effective simulation-based learning, present in 39% of studies, right behind feedback), but it is repetition across cases, measured against a rubric, that does the work. So the expectation is not a rep count. It is this: keep practicing across varied cases until performance holds up against the standard, then come back before it slips. Most programs could not run cases to that standard before now, because standardized-patient scheduling and faculty time capped how many reps a learner could get. That is the ceiling ClinicalSim removes. For the pilot, we recommend being prescriptive: each learner takes every case assigned to them and keeps retaking it until they meet the minimum standard for their PGY year. The logic is the one your program already applies to procedures. You would not clear a resident on a central line or an intubation until they had shown they could do it to standard, and communication deserves the same treatment. The program-approved standard sets the bar, the report shows where the learner sits against it, and progression follows the standard, not the number of attempts.",
     node: (
       <>
         <p>
@@ -431,7 +403,7 @@ const sections: PdFaqSection[] = [
           program already applies to procedures. You would not clear a
           resident on a central line or an intubation until they had shown
           they could do it to standard, and communication deserves the same
-          treatment. Milestone level descriptors set the bar, the report{" "}
+          treatment. The program-approved standard sets the bar, the report{" "}
           <Link href="/faq#my-progress" className={linkClass}>
             shows where the learner sits against it
           </Link>
@@ -693,7 +665,7 @@ const sections: PdFaqSection[] = [
   {
     question: "Can we use the reports to document remediation?",
     answer:
-      "Yes, and the format is built for it. Each encounter produces a single transcript-grounded report: verbatim evidence for each rating, an overall impression, and targeted recommendations. Run across a remediation block, those reports give a defensible, time-stamped record of what a learner practiced and where their performance landed against the standard over time. One important caveat on how you frame that record. GME milestone-aligned output is formative. The ACGME is explicit that individual milestones were not designed for high-stakes external decisions, so it should inform your Clinical Competency Committee's judgment rather than stand alone as a verdict. The same holds for UME: entrustment remains a program decision the evidence informs. Used that way, the reports strengthen a remediation file. They do not replace the committee that owns the decision.",
+      "Yes. Each encounter produces one transcript-grounded report with verbatim evidence for each rating, an overall impression, and targeted recommendations. Across a remediation block, those reports document what a learner practiced and where performance landed against the approved standard over time. The reports are formative evidence for Clinical Competency Committee review, not a stand-alone verdict, and they do not replace the committee's judgment.",
     node: (
       <>
         <p>
@@ -705,15 +677,9 @@ const sections: PdFaqSection[] = [
           against the standard over time.
         </p>
         <p>
-          One important caveat on how you frame that record. GME
-          milestone-aligned output is formative. The ACGME is explicit that
-          individual milestones were not designed for high-stakes external
-          decisions, so it should inform your Clinical Competency
-          Committee&apos;s judgment rather than stand alone as a verdict. The
-          same holds for UME: entrustment remains a program decision the
-          evidence informs. Used that way, the reports strengthen a
-          remediation file. They do not replace the committee that owns the
-          decision.
+          The reports are formative evidence for Clinical Competency Committee
+          review, not a stand-alone verdict, and they do not replace the
+          committee&apos;s judgment.
         </p>
       </>
     ),

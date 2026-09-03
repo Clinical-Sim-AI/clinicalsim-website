@@ -43,7 +43,7 @@ const ROWS: { capability: string; cells: [Cell, Cell, Cell] }[] = [
     ],
   },
   {
-    capability: "See milestone data across learners",
+    capability: "See assessment data across learners",
     cells: [
       false,
       "For the projects they manage",

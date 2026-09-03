@@ -6,7 +6,7 @@ const audience = getAudienceBySlug("dios-gme-leadership")!
 
 export const metadata: Metadata = {
   title: { absolute: "DIOs and GME leadership: shared communication remediation standards" },
-  description: "Give programs shared case standards, milestone-aligned reports, and longitudinal practice records while each program director and CCC keeps authority over the remediation plan.",
+  description: "Give programs shared case standards, rubric-scored reports, and longitudinal practice records while each program director and CCC keeps authority over the remediation plan.",
   openGraph: {
     title: "DIOs and GME leadership | ClinicalSim.ai",
     description: "Shared case standards and reviewable communication remediation records across GME programs.",

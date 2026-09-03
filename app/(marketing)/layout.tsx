@@ -41,7 +41,6 @@ export default function MarketingLayout({
               "Healthcare workforce education",
               "Medical communication training",
               "Clinical simulation",
-              "ACGME Milestones 2.0",
               "AAMC Foundational Competencies",
               "Communication remediation",
               "Undergraduate and graduate medical education",
