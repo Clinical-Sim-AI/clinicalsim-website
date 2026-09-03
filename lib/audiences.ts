@@ -55,8 +55,14 @@ export interface Audience {
    * shipped pointing at "goals-of-care", "advance-care-planning", and
    * "cognitive-assessments", none of which is a solution, and the layout's
    * silent fallback rendered the same remediation block on three pages.
+   *
+   * Typed as a non-empty tuple because components/audience-page-layout.tsx
+   * renders the primary use-case block from entry [0]. A plain array permits
+   * [], which would typecheck and then throw at prerender and fail the whole
+   * build, so the emptiness check belongs in the type rather than only in
+   * lib/audiences.test.ts.
    */
-  relevantSolutionSlugs: SolutionSlug[]
+  relevantSolutionSlugs: [SolutionSlug, ...SolutionSlug[]]
 
   /**
    * Optional FAQ block. When present it renders a Q/A section and emits
@@ -917,7 +923,7 @@ const audiences: Audience[] = [
       "Give clinicians a safe place to practice high-stakes safety conversations",
     heroDescription:
       "Clinicians rehearse disclosure, goals of care, family meetings, and de-escalation with AI patients. Each private report shows strengths and areas for practice against a published framework or institution policy. Leaders review completion or aggregate patterns under institution-defined access rules. ClinicalSim does not monitor patient care or predict claims.",
-    lastUpdated: "2026-09-02",
+    lastUpdated: "2026-09-03",
 
     painPoints: [
       {
@@ -1066,7 +1072,7 @@ const audiences: Audience[] = [
       "Start with one unit, one standard, and one reporting question",
     heroDescription:
       "Nurses, clinicians, and patient facing staff practice by voice with AI patients. Each report scores the encounter against your approved service standards and cites the transcript. ClinicalSim does not predict HCAHPS, Qualtrics, readmission, or other patient outcomes.",
-    lastUpdated: "2026-09-01",
+    lastUpdated: "2026-09-03",
 
     painPoints: [
       {

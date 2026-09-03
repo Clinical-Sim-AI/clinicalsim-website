@@ -67,10 +67,16 @@ export default function MarketingLayout({
           user can get past the header nav in one keystroke. Hidden until
           focused. The site otherwise has a single <main>, proper landmarks, and
           aria-labels throughout, and this was the one gap left in the
-          accessibility tree that browser agents read. */}
+          accessibility tree that browser agents read.
+
+          z-[60] rather than z-50: SiteHeader is `relative z-50` and comes later
+          in DOM order, so at equal z-index it wins the stacking context and
+          paints its translucent bar over exactly the top-left corner where
+          this link appears. A focused control hidden behind the header is the
+          one failure this element exists to prevent. */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-cs-dark-blue focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none focus:ring-2 focus:ring-cs-electric"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-cs-dark-blue focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none focus:ring-2 focus:ring-cs-electric"
       >
         Skip to main content
       </a>

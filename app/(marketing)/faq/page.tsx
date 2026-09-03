@@ -50,19 +50,26 @@ interface FaqEntry {
   // Optional rich display (adds inline links). Its text content must match `answer`.
   answerNode?: ReactNode
   /**
-   * Anchor on /medical-educator-faq that answers this question at length.
+   * Anchor on /medical-educator-faq that treats this topic at length. Renders a
+   * "read the longer answer" link under the short answer.
    *
-   * Set on the five questions both pages answer (encounter length, scoring
-   * accuracy and fairness, learner data handling, what the report contains,
-   * and documenting remediation). /medical-educator-faq carries 7,800 words
-   * across 14 answers and owns the depth; these stay here as the short
-   * general-audience answer with a pointer to it.
+   * Set on the five topics both pages cover: encounter length, scoring accuracy
+   * and fairness, learner data handling, what the report contains, and
+   * documenting remediation. /medical-educator-faq carries 7,800 words across
+   * 14 answers and owns the depth; this page keeps the short general-audience
+   * answer and points at it.
    *
-   * An entry with this set is EXCLUDED from this page's FAQPage JSON-LD, so
-   * exactly one page claims each question in structured data. Two FAQPage
-   * nodes competing to answer the same question is the "separate content for
-   * every variation" pattern Google's generative-AI guidance warns about, and
-   * the fix is declaring which page owns the answer rather than splitting it.
+   * This is a reader cross-link only. It deliberately does NOT filter the
+   * FAQPage JSON-LD. An earlier version excluded these five from this page's
+   * schema on the theory that two FAQPage nodes were competing for the same
+   * question, but no question string is actually shared between the two pages,
+   * and three of the five pairs are different questions rather than
+   * restatements ("What does a feedback report include?" against "How should I
+   * read the feedback?", CCC review against remediation documentation,
+   * encounter length against case length). Dropping them gave up coverage for
+   * those wordings without consolidating anything. If two pages ever do claim
+   * an identical question, fix it by aligning or removing one of them, not by
+   * hiding one from its own schema.
    */
   educatorFaqAnchor?: string
 }
@@ -459,18 +466,14 @@ export default function FaqPage() {
     "@context": "https://schema.org" as const,
     "@type": "FAQPage" as const,
     mainEntity: faqSections.flatMap((section) =>
-      section.items
-        // See FaqEntry.educatorFaqAnchor: /medical-educator-faq owns these
-        // questions in structured data, so this page does not also claim them.
-        .filter((item) => !item.educatorFaqAnchor)
-        .map((item) => ({
-          "@type": "Question" as const,
-          name: item.question,
-          acceptedAnswer: {
-            "@type": "Answer" as const,
-            text: item.answer,
-          },
-        }))
+      section.items.map((item) => ({
+        "@type": "Question" as const,
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer" as const,
+          text: item.answer,
+        },
+      }))
     ),
   }
 
