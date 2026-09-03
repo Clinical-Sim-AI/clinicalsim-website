@@ -67,8 +67,8 @@ function DesktopMenuPanel({
 }) {
   if (menu.kind === "grouped") {
     return (
-      <div className="dropdown-enter absolute top-full left-1/2 z-50 w-[min(900px,calc(100vw-2rem))] -translate-x-1/2 pt-2">
-        <div className="grid max-h-[calc(100dvh-7rem)] grid-cols-2 overflow-y-auto rounded-xl border border-cs-gray/30 bg-white/95 py-3 shadow-lg backdrop-blur-sm">
+      <div className="absolute top-full left-1/2 z-50 w-[min(900px,calc(100vw-2rem))] -translate-x-1/2 pt-2">
+        <div className="dropdown-enter grid max-h-[calc(100dvh-7rem)] grid-cols-2 overflow-y-auto rounded-xl border border-cs-gray/30 bg-white/95 py-3 shadow-lg backdrop-blur-sm">
           {menu.columns.map((column, columnIndex) => (
             <div
               key={column.label}

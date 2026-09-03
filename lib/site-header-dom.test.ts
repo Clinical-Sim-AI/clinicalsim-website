@@ -89,6 +89,20 @@ describe("SiteHeader interactions", () => {
     expect(screen.getByRole("link", { name: "Research collaboration" })).toBeTruthy()
   })
 
+  it("keeps mega-menu centering separate from its enter animation", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+
+    await user.click(screen.getByRole("button", { name: "Solutions" }))
+    const animatedPanel = screen
+      .getByRole("link", { name: "Informed consent" })
+      .closest(".dropdown-enter")
+
+    expect(animatedPanel).toBeTruthy()
+    expect(animatedPanel?.className).not.toContain("-translate-x-1/2")
+    expect(animatedPanel?.parentElement?.className).toContain("-translate-x-1/2")
+  })
+
   it("opens on hover and closes after an outside pointer event", () => {
     setQueryMatch(HOVER_QUERY, true)
     render(createElement(SiteHeader))
