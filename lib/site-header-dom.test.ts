@@ -206,6 +206,28 @@ describe("SiteHeader interactions", () => {
     expect(resources.className).toContain("border-b-2")
   })
 
+  it("links Sign in and Sign up to the platform subdomain on both viewports", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+
+    const primary = screen.getByRole("navigation", { name: "Primary navigation" })
+    expect(
+      within(primary).getByRole("link", { name: "Sign in" }).getAttribute("href")
+    ).toBe("https://platform.clinicalsim.ai/sign-in")
+    expect(
+      within(primary).getByRole("link", { name: "Sign up" }).getAttribute("href")
+    ).toBe("https://platform.clinicalsim.ai/sign-up")
+
+    await user.click(screen.getByRole("button", { name: "Open menu" }))
+    const mobile = screen.getByRole("navigation", { name: "Mobile navigation" })
+    expect(
+      within(mobile).getByRole("link", { name: "Sign in" }).getAttribute("href")
+    ).toBe("https://platform.clinicalsim.ai/sign-in")
+    expect(
+      within(mobile).getByRole("link", { name: "Sign up" }).getAttribute("href")
+    ).toBe("https://platform.clinicalsim.ai/sign-up")
+  })
+
   it("keeps Help visually active without marking it current on release notes", () => {
     navigation.pathname = "/help/release-notes"
     render(createElement(SiteHeader))

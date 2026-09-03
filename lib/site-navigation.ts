@@ -100,6 +100,17 @@ export const HEADER_MENUS: HeaderMenu[] = [
 export const HEADER_DIRECT_LINKS: HeaderLink[] = [{ href: "/help", label: "Help" }]
 export const HEADER_ACTION: HeaderLink = { href: "/contact", label: "Talk with us" }
 
+// The learner and admin app lives on its own subdomain, so these two stay
+// absolute URLs and never take part in the active-route logic below.
+export const PLATFORM_SIGN_IN: HeaderLink = {
+  href: "https://platform.clinicalsim.ai/sign-in",
+  label: "Sign in",
+}
+export const PLATFORM_SIGN_UP: HeaderLink = {
+  href: "https://platform.clinicalsim.ai/sign-up",
+  label: "Sign up",
+}
+
 export type HeaderMenuAction =
   | { type: "toggle" | "open"; menu: HeaderMenuId }
   | { type: "dismiss"; reason: "escape" | "outside" | "route" }

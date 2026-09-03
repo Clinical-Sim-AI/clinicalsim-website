@@ -12,6 +12,8 @@ import {
   HEADER_ACTION,
   HEADER_DIRECT_LINKS,
   HEADER_MENUS,
+  PLATFORM_SIGN_IN,
+  PLATFORM_SIGN_UP,
   routeIsActive,
   type HeaderLink,
   type HeaderMenu,
@@ -392,6 +394,20 @@ export function SiteHeader() {
           />
         ))}
 
+        <a
+          href={PLATFORM_SIGN_IN.href}
+          className="pb-1 font-medium text-cs-dark-blue/85 transition-colors hover:text-cs-dark-blue"
+          onClick={closeNavigation}
+        >
+          {PLATFORM_SIGN_IN.label}
+        </a>
+
+        <Button asChild variant="secondary">
+          <a href={PLATFORM_SIGN_UP.href} onClick={closeNavigation}>
+            {PLATFORM_SIGN_UP.label}
+          </a>
+        </Button>
+
         <Button asChild>
           <Link
             href={HEADER_ACTION.href}
@@ -462,6 +478,14 @@ export function SiteHeader() {
                 />
               ))}
 
+              <a
+                href={PLATFORM_SIGN_IN.href}
+                className="block border-b border-cs-gray/30 py-3 font-medium text-cs-dark-blue/85 transition-colors hover:text-cs-dark-blue"
+                onClick={closeNavigation}
+              >
+                {PLATFORM_SIGN_IN.label}
+              </a>
+
               <Button asChild className="mt-4 w-full">
                 <Link
                   href={HEADER_ACTION.href}
@@ -470,6 +494,12 @@ export function SiteHeader() {
                 >
                   {HEADER_ACTION.label}
                 </Link>
+              </Button>
+
+              <Button asChild variant="secondary" className="mt-3 w-full">
+                <a href={PLATFORM_SIGN_UP.href} onClick={closeNavigation}>
+                  {PLATFORM_SIGN_UP.label}
+                </a>
               </Button>
             </div>
           </nav>
