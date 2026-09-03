@@ -1,26 +1,27 @@
 "use client"
 
-import Link from "next/link"
 import Image from "next/image"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState, useRef, useEffect, useSyncExternalStore } from "react"
+import { useEffect, useRef, useState, useSyncExternalStore } from "react"
 import { ChevronDown, Menu, X } from "lucide-react"
 import { BrandIcon } from "@/components/brand-icon"
 import { Button } from "@/components/ui/button"
-import { getAudiencesByMarket } from "@/lib/audiences"
-import { getSolutionsByMarket } from "@/lib/solutions"
+import {
+  getActiveHeaderItem,
+  HEADER_ACTION,
+  HEADER_DIRECT_LINKS,
+  HEADER_MENUS,
+  routeIsActive,
+  type HeaderLink,
+  type HeaderMenu,
+  type HeaderMenuAction,
+  type HeaderMenuId,
+  transitionHeaderMenu,
+} from "@/lib/site-navigation"
 
-// Hover-open is wired up only for pointers that genuinely hover. On a touch
-// screen a tap fires mouseenter immediately before click, so the hover handler
-// opened the menu and the click toggle shut it again in the same gesture,
-// leaving the dropdowns impossible to open by tapping. That bites at the widths
-// that show the full nav, which includes iPad landscape at 1366px.
-//
-// Read through useSyncExternalStore rather than an effect that calls setState:
-// matchMedia is external state, and the server snapshot is false because there
-// is no pointer to ask about during SSR. Nothing works before hydration either
-// way, so starting false costs nothing.
 const HOVER_QUERY = "(hover: hover) and (pointer: fine)"
+const DESKTOP_QUERY = "(min-width: 1024px)"
 
 function subscribeToHover(onChange: () => void) {
   const query = window.matchMedia(HOVER_QUERY)
@@ -31,170 +32,281 @@ function subscribeToHover(onChange: () => void) {
 const getHoverSnapshot = () => window.matchMedia(HOVER_QUERY).matches
 const getHoverServerSnapshot = () => false
 
+function NavigationLink({
+  item,
+  pathname,
+  className,
+  onNavigate,
+}: {
+  item: HeaderLink
+  pathname: string
+  className: string
+  onNavigate: () => void
+}) {
+  return (
+    <Link
+      href={item.href}
+      aria-current={pathname === item.href ? "page" : undefined}
+      className={className}
+      onClick={onNavigate}
+    >
+      {item.icon && <BrandIcon name={item.icon} size={16} className="shrink-0" />}
+      <span>{item.label}</span>
+    </Link>
+  )
+}
+
+function DesktopMenuPanel({
+  menu,
+  pathname,
+  onNavigate,
+}: {
+  menu: HeaderMenu
+  pathname: string
+  onNavigate: () => void
+}) {
+  if (menu.kind === "grouped") {
+    return (
+      <div className="absolute top-full left-1/2 z-50 w-[min(900px,calc(100vw-2rem))] -translate-x-1/2 pt-2">
+        <div className="dropdown-enter grid max-h-[calc(100dvh-7rem)] grid-cols-2 overflow-y-auto rounded-xl border border-cs-gray/30 bg-white/95 py-3 shadow-lg backdrop-blur-sm">
+          {menu.columns.map((column, columnIndex) => (
+            <div
+              key={column.label}
+              className={columnIndex > 0 ? "border-l border-cs-gray/30 px-5" : "px-5"}
+            >
+              <Link
+                href={column.overviewHref}
+                aria-current={pathname === column.overviewHref ? "page" : undefined}
+                className={`inline-block rounded-lg px-2 py-1 text-sm font-bold text-cs-dark-blue hover:underline ${
+                  pathname === column.overviewHref ? "bg-cs-cloud/70" : ""
+                }`}
+                onClick={onNavigate}
+              >
+                {column.label}
+              </Link>
+              {column.groups.map((group) => (
+                <div key={group.label} className="pt-3">
+                  <p className="pb-1 text-xs font-medium uppercase tracking-[0.12em] text-cs-dark-gray">
+                    {group.label}
+                  </p>
+                  {group.items.map((item) => (
+                    <NavigationLink
+                      key={item.href}
+                      item={item}
+                      pathname={pathname}
+                      className={`flex items-center gap-3 rounded-lg px-2 py-2 text-sm transition-colors hover:bg-cs-cloud/70 ${
+                        routeIsActive(pathname, item.href)
+                          ? "bg-cs-cloud/70 font-medium text-cs-dark-blue"
+                          : "text-cs-dark-blue/85"
+                      }`}
+                      onNavigate={onNavigate}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="dropdown-enter absolute top-full left-0 z-50 w-max min-w-64 pt-2">
+      <div className="rounded-xl border border-cs-gray/30 bg-white/95 py-2 shadow-lg backdrop-blur-sm">
+        {menu.items.map((item) => (
+          <NavigationLink
+            key={item.href}
+            item={item}
+            pathname={pathname}
+            className={`block px-4 py-2.5 text-sm transition-colors hover:bg-cs-cloud/70 ${
+              routeIsActive(pathname, item.href)
+                ? "bg-cs-cloud/70 font-medium text-cs-dark-blue"
+                : "text-cs-dark-blue/85"
+            }`}
+            onNavigate={onNavigate}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function MobileMenuPanel({
+  menu,
+  pathname,
+  onNavigate,
+}: {
+  menu: HeaderMenu
+  pathname: string
+  onNavigate: () => void
+}) {
+  if (menu.kind === "grouped") {
+    return (
+      <div className="pb-3 pl-2">
+        {menu.columns.map((column) => (
+          <div key={column.label} className="pt-2">
+            <Link
+              href={column.overviewHref}
+              aria-current={pathname === column.overviewHref ? "page" : undefined}
+              className={`inline-block rounded-lg px-3 py-2 text-sm font-bold text-cs-dark-blue hover:underline ${
+                pathname === column.overviewHref ? "bg-cs-cloud/70" : ""
+              }`}
+              onClick={onNavigate}
+            >
+              {column.label}
+            </Link>
+            {column.groups.map((group) => (
+              <div key={group.label}>
+                <p className="px-3 pb-1 pt-2 text-xs font-medium uppercase tracking-[0.12em] text-cs-dark-gray">
+                  {group.label}
+                </p>
+                {group.items.map((item) => (
+                  <NavigationLink
+                    key={item.href}
+                    item={item}
+                    pathname={pathname}
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors hover:bg-cs-cloud/70 ${
+                      routeIsActive(pathname, item.href)
+                        ? "bg-cs-cloud/70 font-medium text-cs-dark-blue"
+                        : "text-cs-dark-blue/70 hover:text-cs-dark-blue"
+                    }`}
+                    onNavigate={onNavigate}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <div className="pb-3 pl-2">
+      {menu.items.map((item) => (
+        <NavigationLink
+          key={item.href}
+          item={item}
+          pathname={pathname}
+          className={`block rounded-lg px-3 py-2.5 text-sm transition-colors hover:bg-cs-cloud/70 ${
+            routeIsActive(pathname, item.href)
+              ? "bg-cs-cloud/70 font-medium text-cs-dark-blue"
+              : "text-cs-dark-blue/70 hover:text-cs-dark-blue"
+          }`}
+          onNavigate={onNavigate}
+        />
+      ))}
+    </div>
+  )
+}
+
 export function SiteHeader() {
   const pathname = usePathname()
-  const [audiencesOpen, setAudiencesOpen] = useState(false)
-  const [solutionsOpen, setSolutionsOpen] = useState(false)
-  const [whoWeAreOpen, setWhoWeAreOpen] = useState(false)
-  const [helpOpen, setHelpOpen] = useState(false)
+  const [activeMenu, setActiveMenu] = useState<HeaderMenuId | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [mobileAudiencesOpen, setMobileAudiencesOpen] = useState(false)
-  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false)
-  const [mobileWhoWeAreOpen, setMobileWhoWeAreOpen] = useState(false)
-  const [mobileHelpOpen, setMobileHelpOpen] = useState(false)
-  const audiencesDropdownRef = useRef<HTMLDivElement>(null)
-  const audiencesTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
-  const solutionsDropdownRef = useRef<HTMLDivElement>(null)
-  const solutionsTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
-  const whoWeAreDropdownRef = useRef<HTMLDivElement>(null)
-  const whoWeAreTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
-  const helpDropdownRef = useRef<HTMLDivElement>(null)
-  const helpTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
-  const audienceGroups = [
-    { label: "Health systems", items: getAudiencesByMarket("health-system") },
-    {
-      label: "Medical education",
-      items: getAudiencesByMarket("medical-education"),
-    },
-  ]
-  const solutionGroups = [
-    { label: "Health systems", items: getSolutionsByMarket("health-system") },
-    {
-      label: "Medical education",
-      items: getSolutionsByMarket("medical-education"),
-    },
-  ]
+  const [previousPathname, setPreviousPathname] = useState(pathname)
+  const desktopNavigationRef = useRef<HTMLElement>(null)
+  const mobileNavigationRef = useRef<HTMLElement>(null)
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null)
+  const desktopTriggerRefs = useRef<
+    Partial<Record<HeaderMenuId, HTMLButtonElement | null>>
+  >({})
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
+  const canHover = useSyncExternalStore(
+    subscribeToHover,
+    getHoverSnapshot,
+    getHoverServerSnapshot
+  )
+  const activeHeaderItem = getActiveHeaderItem(pathname)
 
-  const canHover = useSyncExternalStore(subscribeToHover, getHoverSnapshot, getHoverServerSnapshot)
-
-  const aboutItems = [
-    { href: "/about", label: "About Us" },
-    { href: "/methodology", label: "Methodology" },
-    { href: "/faq", label: "FAQ" },
-    { href: "/medical-educator-faq", label: "FAQ for Medical Educators" },
-  ]
-
-  const helpItems = [
-    { href: "/help", label: "Help Center" },
-    { href: "/help/release-notes", label: "Release Notes" },
-  ]
-
-  const openAudiences = () => {
-    if (audiencesTimeoutRef.current) clearTimeout(audiencesTimeoutRef.current)
-    setAudiencesOpen(true)
-  }
-
-  const closeAudiences = () => {
-    audiencesTimeoutRef.current = setTimeout(() => setAudiencesOpen(false), 150)
-  }
-
-  const openSolutions = () => {
-    if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current)
-    setSolutionsOpen(true)
-  }
-
-  const closeSolutions = () => {
-    solutionsTimeoutRef.current = setTimeout(() => setSolutionsOpen(false), 150)
-  }
-
-  const openWhoWeAre = () => {
-    if (whoWeAreTimeoutRef.current) clearTimeout(whoWeAreTimeoutRef.current)
-    setWhoWeAreOpen(true)
-  }
-
-  const closeWhoWeAre = () => {
-    whoWeAreTimeoutRef.current = setTimeout(() => setWhoWeAreOpen(false), 150)
-  }
-
-  const openHelp = () => {
-    if (helpTimeoutRef.current) clearTimeout(helpTimeoutRef.current)
-    setHelpOpen(true)
-  }
-
-  const closeHelp = () => {
-    helpTimeoutRef.current = setTimeout(() => setHelpOpen(false), 150)
-  }
-
-  // Close mobile menu on route change (derived state)
-  const [prevPathname, setPrevPathname] = useState(pathname)
-  if (pathname !== prevPathname) {
-    setPrevPathname(pathname)
+  if (pathname !== previousPathname) {
+    setPreviousPathname(pathname)
+    setActiveMenu(null)
     setMobileMenuOpen(false)
-    setMobileAudiencesOpen(false)
-    setMobileSolutionsOpen(false)
-    setMobileWhoWeAreOpen(false)
-    setMobileHelpOpen(false)
   }
 
-  // Prevent body scroll when mobile menu is open
+  const updateMenu = (action: HeaderMenuAction) => {
+    setActiveMenu((current) => transitionHeaderMenu(current, action))
+  }
+
+  const clearHoverTimeout = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current)
+  }
+
+  const openMenu = (menu: HeaderMenuId) => {
+    clearHoverTimeout()
+    updateMenu({ type: "open", menu })
+  }
+
+  const closeMenuAfterDelay = () => {
+    clearHoverTimeout()
+    hoverTimeoutRef.current = setTimeout(
+      () => updateMenu({ type: "dismiss", reason: "outside" }),
+      150
+    )
+  }
+
+  const closeNavigation = () => {
+    updateMenu({ type: "dismiss", reason: "route" })
+    setMobileMenuOpen(false)
+  }
+
   useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
-    }
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : ""
     return () => {
       document.body.style.overflow = ""
     }
   }, [mobileMenuOpen])
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (audiencesDropdownRef.current && !audiencesDropdownRef.current.contains(event.target as Node)) {
-        setAudiencesOpen(false)
-      }
-      if (solutionsDropdownRef.current && !solutionsDropdownRef.current.contains(event.target as Node)) {
-        setSolutionsOpen(false)
-      }
-      if (whoWeAreDropdownRef.current && !whoWeAreDropdownRef.current.contains(event.target as Node)) {
-        setWhoWeAreOpen(false)
-      }
-      if (helpDropdownRef.current && !helpDropdownRef.current.contains(event.target as Node)) {
-        setHelpOpen(false)
-      }
+    const query = window.matchMedia(DESKTOP_QUERY)
+
+    function handleViewportChange(event: MediaQueryListEvent) {
+      if (!event.matches) return
+      setActiveMenu(null)
+      setMobileMenuOpen(false)
     }
-    // Escape closes any open dropdown. Focus stays on the trigger that opened
-    // it, so there is nothing to restore.
-    function handleEscape(event: KeyboardEvent) {
-      if (event.key !== "Escape") return
-      setAudiencesOpen(false)
-      setSolutionsOpen(false)
-      setWhoWeAreOpen(false)
-      setHelpOpen(false)
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    document.addEventListener("keydown", handleEscape)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-      document.removeEventListener("keydown", handleEscape)
-      if (audiencesTimeoutRef.current) clearTimeout(audiencesTimeoutRef.current)
-      if (solutionsTimeoutRef.current) clearTimeout(solutionsTimeoutRef.current)
-      if (whoWeAreTimeoutRef.current) clearTimeout(whoWeAreTimeoutRef.current)
-      if (helpTimeoutRef.current) clearTimeout(helpTimeoutRef.current)
-    }
+
+    query.addEventListener("change", handleViewportChange)
+    return () => query.removeEventListener("change", handleViewportChange)
   }, [])
 
-  const links = [
-    { href: "/examples", label: "Examples" },
-    { href: "/insights", label: "Insights" },
-    { href: "/research", label: "Research" },
-    { href: "/contact", label: "Contact" },
-  ]
+  useEffect(() => {
+    function handleClickOutside(event: PointerEvent) {
+      const target = event.target as Node
+      const insideDesktopNavigation = desktopNavigationRef.current?.contains(target)
+      const insideMobileNavigation = mobileNavigationRef.current?.contains(target)
+      if (!insideDesktopNavigation && !insideMobileNavigation) {
+        setActiveMenu((current) =>
+          transitionHeaderMenu(current, { type: "dismiss", reason: "outside" })
+        )
+      }
+    }
 
-  const isAudiencesActive = pathname === "/audiences" || pathname?.startsWith("/audiences/")
-  // /frameworks lives inside this dropdown rather than as a tenth top-level item, so it lights
-  // the same nav trigger.
-  const isSolutionsActive =
-    pathname === "/solutions" ||
-    pathname?.startsWith("/solutions/") ||
-    pathname === "/frameworks"
-  const isWhoWeAreActive = aboutItems.some(
-    (item) => pathname === item.href || pathname?.startsWith(item.href + "/")
-  )
-  const isHelpActive = pathname === "/help" || pathname?.startsWith("/help/")
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key !== "Escape") return
+      const desktopMenuToRestore = activeMenu
+      setActiveMenu(null)
+      setMobileMenuOpen(false)
+      if (mobileMenuOpen) {
+        mobileMenuButtonRef.current?.focus()
+      } else if (desktopMenuToRestore) {
+        desktopTriggerRefs.current[desktopMenuToRestore]?.focus()
+      }
+    }
+
+    document.addEventListener("pointerdown", handleClickOutside)
+    document.addEventListener("keydown", handleEscape)
+    return () => {
+      document.removeEventListener("pointerdown", handleClickOutside)
+      document.removeEventListener("keydown", handleEscape)
+      if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current)
+    }
+  }, [activeMenu, mobileMenuOpen])
 
   return (
-    <header className="relative z-50 flex items-center justify-between px-4 py-4 md:px-12 md:py-6 bg-white/80 backdrop-blur-sm border-b border-cs-gray/60">
+    <header className="relative z-50 flex items-center justify-between border-b border-cs-gray/60 bg-white/80 px-4 py-4 backdrop-blur-sm md:px-12 md:py-6">
       <Link href="/" className="flex items-center" aria-label="ClinicalSim home">
         <Image
           src="/brand/ClinicalSim_Logo_Lockup_Transparent.svg?v=3"
@@ -207,446 +319,156 @@ export function SiteHeader() {
         />
       </Link>
 
-      {/* Mobile hamburger button */}
       <button
-        className="nav:hidden p-2 -mr-2 text-cs-dark-blue/85 hover:text-cs-dark-blue transition-colors"
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        ref={mobileMenuButtonRef}
+        className="-mr-2 p-2 text-cs-dark-blue/85 transition-colors hover:text-cs-dark-blue lg:hidden"
+        onClick={() => {
+          updateMenu({ type: "dismiss", reason: "outside" })
+          setMobileMenuOpen((open) => !open)
+        }}
         aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={mobileMenuOpen}
+        aria-controls="mobile-navigation"
       >
         {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
 
-      {/* Desktop navigation. Nine items measure ~1085px alongside the logo and
-          the header's md:px-12 padding once the labels drop to 14px with a 12px
-          gap, so the full bar comes in at the custom nav breakpoint (1120px in
-          tailwind.config.ts) rather than waiting for xl. Below that the labels
-          would collide with the logo, hence the hamburger. From xl there is
-          room for 16px labels and a 20px gap, and 2xl opens the gap further.
-          The 1120 threshold assumes these nine items: re-measure the bar and
-          adjust the breakpoint if an item is added, removed, or renamed.
+      <nav
+        ref={desktopNavigationRef}
+        aria-label="Primary navigation"
+        className="hidden items-center gap-3 whitespace-nowrap text-sm lg:flex xl:gap-5 xl:text-base 2xl:gap-8"
+      >
+        {HEADER_MENUS.map((menu) => {
+          const open = activeMenu === menu.id
+          const active = activeHeaderItem === menu.id
 
-          Each dropdown trigger carries aria-expanded so screen readers announce
-          open/closed state. No aria-controls: the panels are conditionally
-          rendered, so the reference would dangle whenever a menu is collapsed,
-          which is the default state. No role="menu" either, since these are
-          lists of links rather than an application menu. */}
-      <nav className="hidden nav:flex items-center gap-3 text-sm xl:gap-5 xl:text-base 2xl:gap-8 whitespace-nowrap">
-        {/* Use Cases dropdown */}
-        <div
-          ref={solutionsDropdownRef}
-          className="relative"
-          onMouseEnter={canHover ? openSolutions : undefined}
-          onMouseLeave={canHover ? closeSolutions : undefined}
-        >
-          <button
-            onClick={() => {
-              setSolutionsOpen(!solutionsOpen)
-            }}
-            aria-expanded={solutionsOpen}
-            className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
-              isSolutionsActive ? "border-b-2 border-cs-dark-blue" : ""
-            }`}
-          >
-            Use Cases
-            <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${solutionsOpen ? "rotate-180" : ""}`} />
-          </button>
-
-          {solutionsOpen && (
-            /* w-max, not a fixed width: the nav sets whitespace-nowrap, which
-               cascades into these panels, so any label longer than the panel
-               spills past its right edge instead of wrapping. Sizing to the
-               longest item keeps the panel honest as titles get renamed. */
-            <div className="dropdown-enter absolute top-full left-0 pt-2 w-max min-w-72 z-50">
-            <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
-              {solutionGroups.map((group, groupIndex) => (
-                <div
-                  key={group.label}
-                  className={groupIndex > 0 ? "border-t border-cs-gray/30 mt-1 pt-1" : ""}
-                >
-                  <p className="px-4 pt-2 pb-1 text-xs font-medium uppercase tracking-[0.12em] text-cs-dark-gray">
-                    {group.label}
-                  </p>
-                  {group.items.map((solution) => (
-                    <Link
-                      key={solution.slug}
-                      href={`/solutions/${solution.slug}`}
-                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-cs-cloud/70 transition-colors"
-                      onClick={() => setSolutionsOpen(false)}
-                    >
-                      <BrandIcon name={solution.icon} size={16} className="shrink-0" />
-                      <span className="text-sm text-cs-dark-blue/85">{solution.title}</span>
-                    </Link>
-                  ))}
-                </div>
-              ))}
-              <div className="border-t border-cs-gray/30 mt-1 pt-1">
-                {/* The ROI calculator link is withheld pending a review of the
-                    page. Restore it here (and in the mobile nav below) rather
-                    than as a tenth top-level item: the bar is measured at nine
-                    and the nav breakpoint above assumes that count. */}
-                <Link
-                  href="/frameworks"
-                  className="block px-4 py-2.5 text-sm text-cs-dark-blue/85 hover:bg-cs-cloud/70 transition-colors"
-                  onClick={() => setSolutionsOpen(false)}
-                >
-                  Frameworks and standards
-                </Link>
-                <Link
-                  href="/solutions"
-                  className="block px-4 py-2.5 text-sm font-medium text-cs-dark-blue hover:bg-cs-cloud/70 transition-colors"
-                  onClick={() => setSolutionsOpen(false)}
-                >
-                  View All
-                </Link>
-              </div>
+          return (
+            <div
+              key={menu.id}
+              className={menu.kind === "grouped" ? "static" : "relative"}
+              onMouseEnter={canHover ? () => openMenu(menu.id) : undefined}
+              onMouseLeave={canHover ? closeMenuAfterDelay : undefined}
+            >
+              <button
+                ref={(node) => {
+                  desktopTriggerRefs.current[menu.id] = node
+                }}
+                onClick={() => {
+                  clearHoverTimeout()
+                  updateMenu({ type: "toggle", menu: menu.id })
+                }}
+                aria-expanded={open}
+                className={`flex items-center gap-1 pb-1 font-medium text-cs-dark-blue/85 transition-colors hover:text-cs-dark-blue ${
+                  active ? "border-b-2 border-cs-dark-blue" : ""
+                }`}
+              >
+                {menu.label}
+                <ChevronDown
+                  className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                    open ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {open && (
+                <DesktopMenuPanel
+                  menu={menu}
+                  pathname={pathname}
+                  onNavigate={closeNavigation}
+                />
+              )}
             </div>
-            </div>
-          )}
-        </div>
+          )
+        })}
 
-        {/* Who We Serve dropdown */}
-        <div
-          ref={audiencesDropdownRef}
-          className="relative"
-          onMouseEnter={canHover ? openAudiences : undefined}
-          onMouseLeave={canHover ? closeAudiences : undefined}
-        >
-          <button
-            onClick={() => {
-              setAudiencesOpen(!audiencesOpen)
-            }}
-            aria-expanded={audiencesOpen}
-            className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
-              isAudiencesActive ? "border-b-2 border-cs-dark-blue" : ""
-            }`}
-          >
-            Who We Serve
-            <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${audiencesOpen ? "rotate-180" : ""}`} />
-          </button>
-
-          {audiencesOpen && (
-            /* w-max for the same reason as the Use Cases panel above. */
-            <div className="dropdown-enter absolute top-full left-0 pt-2 w-max min-w-72 z-50">
-            <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
-              {audienceGroups.map((group, groupIndex) => (
-                <div
-                  key={group.label}
-                  className={groupIndex > 0 ? "border-t border-cs-gray/30 mt-1 pt-1" : ""}
-                >
-                  <p className="px-4 pt-2 pb-1 text-xs font-medium uppercase tracking-[0.12em] text-cs-dark-gray">
-                    {group.label}
-                  </p>
-                  {group.items.map((audience) => (
-                    <Link
-                      key={audience.slug}
-                      href={`/audiences/${audience.slug}`}
-                      className="flex items-center gap-3 px-4 py-2.5 hover:bg-cs-cloud/70 transition-colors"
-                      onClick={() => setAudiencesOpen(false)}
-                    >
-                      <BrandIcon name={audience.icon} size={16} className="shrink-0" />
-                      <span className="text-sm text-cs-dark-blue/85">{audience.title}</span>
-                    </Link>
-                  ))}
-                </div>
-              ))}
-              <div className="border-t border-cs-gray/30 mt-1 pt-1">
-                <Link
-                  href="/audiences"
-                  className="block px-4 py-2.5 text-sm font-medium text-cs-dark-blue hover:bg-cs-cloud/70 transition-colors"
-                  onClick={() => setAudiencesOpen(false)}
-                >
-                  View All
-                </Link>
-              </div>
-            </div>
-            </div>
-          )}
-        </div>
-
-        {/* Who We Are dropdown */}
-        <div
-          ref={whoWeAreDropdownRef}
-          className="relative"
-          onMouseEnter={canHover ? openWhoWeAre : undefined}
-          onMouseLeave={canHover ? closeWhoWeAre : undefined}
-        >
-          <button
-            onClick={() => {
-              setWhoWeAreOpen(!whoWeAreOpen)
-            }}
-            aria-expanded={whoWeAreOpen}
-            className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
-              isWhoWeAreActive ? "border-b-2 border-cs-dark-blue" : ""
-            }`}
-          >
-            Who We Are
-            <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${whoWeAreOpen ? "rotate-180" : ""}`} />
-          </button>
-
-          {whoWeAreOpen && (
-            <div className="dropdown-enter absolute top-full left-0 pt-2 w-max min-w-56 z-50">
-            <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
-              {aboutItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block px-4 py-2.5 text-sm text-cs-dark-blue/85 hover:bg-cs-cloud/70 transition-colors"
-                  onClick={() => setWhoWeAreOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-            </div>
-          )}
-        </div>
-
-        {links.map((link) => (
-          <Link
+        {HEADER_DIRECT_LINKS.map((link) => (
+          <NavigationLink
             key={link.href}
-            href={link.href}
-            className={`text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
-              pathname === link.href || pathname?.startsWith(link.href + "/")
-                ? "border-b-2 border-cs-dark-blue"
-                : ""
+            item={link}
+            pathname={pathname}
+            className={`pb-1 font-medium text-cs-dark-blue/85 transition-colors hover:text-cs-dark-blue ${
+              activeHeaderItem === "help" ? "border-b-2 border-cs-dark-blue" : ""
             }`}
-          >
-            {link.label}
-          </Link>
+            onNavigate={closeNavigation}
+          />
         ))}
 
-        {/* Help dropdown */}
-        <div
-          ref={helpDropdownRef}
-          className="relative"
-          onMouseEnter={canHover ? openHelp : undefined}
-          onMouseLeave={canHover ? closeHelp : undefined}
-        >
-          <button
-            onClick={() => {
-              setHelpOpen(!helpOpen)
-            }}
-            aria-expanded={helpOpen}
-            className={`flex items-center gap-1 text-cs-dark-blue/85 hover:text-cs-dark-blue font-medium transition-colors pb-1 ${
-              isHelpActive ? "border-b-2 border-cs-dark-blue" : ""
-            }`}
-          >
-            Help
-            <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${helpOpen ? "rotate-180" : ""}`} />
-          </button>
-
-          {helpOpen && (
-            /* Right-aligned: Help is the last dropdown before the Talk with us
-               button, so a left-aligned 224px panel hangs past the viewport and
-               gives the page a horizontal scrollbar. */
-            <div className="absolute top-full right-0 pt-2 w-max min-w-56 z-50">
-            <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-cs-gray/30 py-2">
-              {helpItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block px-4 py-2.5 text-sm text-cs-dark-blue/85 hover:bg-cs-cloud/70 transition-colors"
-                  onClick={() => setHelpOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-            </div>
-          )}
-        </div>
-
         <Button asChild>
-          <Link href="/contact">Talk with us</Link>
+          <Link
+            href={HEADER_ACTION.href}
+            aria-current={activeHeaderItem === "contact" ? "page" : undefined}
+            onClick={closeNavigation}
+          >
+            {HEADER_ACTION.label}
+          </Link>
         </Button>
       </nav>
 
-      {/* Mobile menu overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[65px] md:top-[89px] z-40 nav:hidden">
-          <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
-          <nav className="relative bg-white/95 backdrop-blur-sm border-b border-cs-gray/30 shadow-lg max-h-[calc(100dvh-65px)] md:max-h-[calc(100dvh-89px)] overflow-y-auto">
+        <div className="fixed inset-0 top-[65px] z-40 lg:hidden md:top-[89px]">
+          <div
+            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            onClick={closeNavigation}
+            aria-hidden="true"
+          />
+          <nav
+            ref={mobileNavigationRef}
+            id="mobile-navigation"
+            aria-label="Mobile navigation"
+            className="relative max-h-[calc(100dvh-65px)] overflow-y-auto border-b border-cs-gray/30 bg-white/95 shadow-lg backdrop-blur-sm md:max-h-[calc(100dvh-89px)]"
+          >
             <div className="px-4 py-3">
-              {/* Use Cases accordion */}
-              <div className="border-b border-cs-gray/30">
-                <button
-                  onClick={() => {
-                    setMobileSolutionsOpen(!mobileSolutionsOpen)
-                  }}
-                  aria-expanded={mobileSolutionsOpen}
-                  className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
-                    isSolutionsActive ? "text-cs-dark-blue" : ""
-                  }`}
-                >
-                  Use Cases
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
-                </button>
-                {mobileSolutionsOpen && (
-                  <div className="pb-3 pl-2">
-                    {solutionGroups.map((group) => (
-                      <div key={group.label}>
-                        <p className="px-3 pt-3 pb-1 text-xs font-medium uppercase tracking-[0.12em] text-cs-dark-gray">
-                          {group.label}
-                        </p>
-                        {group.items.map((solution) => (
-                          <Link
-                            key={solution.slug}
-                            href={`/solutions/${solution.slug}`}
-                            className="flex items-center gap-3 px-3 py-2.5 text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            <BrandIcon name={solution.icon} size={16} className="shrink-0" />
-                            <span className="text-sm">{solution.title}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    ))}
-                    {/* ROI calculator link withheld; see the desktop dropdown above. */}
-                    <Link
-                      href="/frameworks"
-                      className="block px-3 py-2.5 text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Frameworks and standards
-                    </Link>
-                    <Link
-                      href="/solutions"
-                      className="block px-3 py-2.5 text-sm font-medium text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors mt-1"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      View All
-                    </Link>
-                  </div>
-                )}
-              </div>
+              {HEADER_MENUS.map((menu) => {
+                const open = activeMenu === menu.id
+                const active = activeHeaderItem === menu.id
 
-              {/* Who We Serve accordion */}
-              <div className="border-b border-cs-gray/30">
-                <button
-                  onClick={() => {
-                    setMobileAudiencesOpen(!mobileAudiencesOpen)
-                  }}
-                  aria-expanded={mobileAudiencesOpen}
-                  className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
-                    isAudiencesActive ? "text-cs-dark-blue" : ""
-                  }`}
-                >
-                  Who We Serve
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileAudiencesOpen ? "rotate-180" : ""}`} />
-                </button>
-                {mobileAudiencesOpen && (
-                  <div className="pb-3 pl-2">
-                    {audienceGroups.map((group) => (
-                      <div key={group.label}>
-                        <p className="px-3 pt-3 pb-1 text-xs font-medium uppercase tracking-[0.12em] text-cs-dark-gray">
-                          {group.label}
-                        </p>
-                        {group.items.map((audience) => (
-                          <Link
-                            key={audience.slug}
-                            href={`/audiences/${audience.slug}`}
-                            className="flex items-center gap-3 px-3 py-2.5 text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            <BrandIcon name={audience.icon} size={16} className="shrink-0" />
-                            <span className="text-sm">{audience.title}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    ))}
-                    <Link
-                      href="/audiences"
-                      className="block px-3 py-2.5 text-sm font-medium text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors mt-1"
-                      onClick={() => setMobileMenuOpen(false)}
+                return (
+                  <div key={menu.id} className="border-b border-cs-gray/30">
+                    <button
+                      onClick={() => updateMenu({ type: "toggle", menu: menu.id })}
+                      aria-expanded={open}
+                      className={`flex w-full items-center justify-between py-3 font-medium text-cs-dark-blue/85 ${
+                        active ? "text-cs-dark-blue" : ""
+                      }`}
                     >
-                      View All
-                    </Link>
+                      {menu.label}
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform duration-200 ${
+                          open ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {open && (
+                      <MobileMenuPanel
+                        menu={menu}
+                        pathname={pathname}
+                        onNavigate={closeNavigation}
+                      />
+                    )}
                   </div>
-                )}
-              </div>
+                )
+              })}
 
-              {/* Who We Are accordion */}
-              <div className="border-b border-cs-gray/30">
-                <button
-                  onClick={() => {
-                    setMobileWhoWeAreOpen(!mobileWhoWeAreOpen)
-                  }}
-                  aria-expanded={mobileWhoWeAreOpen}
-                  className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
-                    isWhoWeAreActive ? "text-cs-dark-blue" : ""
-                  }`}
-                >
-                  Who We Are
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileWhoWeAreOpen ? "rotate-180" : ""}`} />
-                </button>
-                {mobileWhoWeAreOpen && (
-                  <div className="pb-3 pl-2">
-                    {aboutItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block px-3 py-2.5 text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Simple links */}
-              {links.map((link) => (
-                <Link
+              {HEADER_DIRECT_LINKS.map((link) => (
+                <NavigationLink
                   key={link.href}
-                  href={link.href}
-                  className={`block py-3 font-medium transition-colors border-b border-cs-gray/30 ${
-                    pathname === link.href || pathname?.startsWith(link.href + "/")
+                  item={link}
+                  pathname={pathname}
+                  className={`block border-b border-cs-gray/30 py-3 font-medium transition-colors ${
+                    activeHeaderItem === "help"
                       ? "text-cs-dark-blue"
                       : "text-cs-dark-blue/85 hover:text-cs-dark-blue"
                   }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
+                  onNavigate={closeNavigation}
+                />
               ))}
 
-              {/* Help accordion */}
-              <div className="border-b border-cs-gray/30">
-                <button
-                  onClick={() => {
-                    setMobileHelpOpen(!mobileHelpOpen)
-                  }}
-                  aria-expanded={mobileHelpOpen}
-                  className={`flex items-center justify-between w-full py-3 text-cs-dark-blue/85 font-medium ${
-                    isHelpActive ? "text-cs-dark-blue" : ""
-                  }`}
-                >
-                  Help
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileHelpOpen ? "rotate-180" : ""}`} />
-                </button>
-                {mobileHelpOpen && (
-                  <div className="pb-3 pl-2">
-                    {helpItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block px-3 py-2.5 text-sm text-cs-dark-blue/70 hover:text-cs-dark-blue hover:bg-cs-cloud/70 rounded-lg transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <Button asChild className="w-full mt-4">
+              <Button asChild className="mt-4 w-full">
                 <Link
-                  href="/contact"
-                  onClick={() => setMobileMenuOpen(false)}
+                  href={HEADER_ACTION.href}
+                  aria-current={activeHeaderItem === "contact" ? "page" : undefined}
+                  onClick={closeNavigation}
                 >
-                  Talk with us
+                  {HEADER_ACTION.label}
                 </Link>
               </Button>
             </div>
