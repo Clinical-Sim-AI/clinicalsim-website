@@ -1,3 +1,5 @@
+import type { PostSlug } from "@/lib/posts"
+
 export interface ComparisonRow {
   dimension: string
   optionA: string
@@ -22,7 +24,7 @@ export interface Comparison {
   rows: ComparisonRow[]
   lastUpdated?: string
   relatedSolutionSlugs?: string[]
-  relatedPostSlugs?: string[]
+  relatedPostSlugs?: PostSlug[]
   faqs?: ComparisonFaq[]
 }
 

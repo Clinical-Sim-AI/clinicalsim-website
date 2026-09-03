@@ -2,6 +2,7 @@ import type { BrandIconName } from "@/components/brand-icon"
 import type { Market } from "@/lib/positioning"
 import type { FaqItem } from "@/lib/types"
 import type { SolutionSlug } from "@/lib/solutions"
+import type { PostSlug } from "@/lib/posts"
 
 export interface PainPoint {
   headline: string
@@ -84,7 +85,7 @@ export interface Audience {
   ctaDescription: string
 
   // Related blog posts
-  relatedPostSlugs: string[]
+  relatedPostSlugs: PostSlug[]
 }
 
 const audiences: Audience[] = [
@@ -1236,6 +1237,26 @@ const audiences: Audience[] = [
     ],
   },
 ]
+
+/**
+ * Audiences whose primary call to action is hand-written in
+ * components/audience-page-layout.tsx instead of being generated from
+ * relevantSolutionSlugs[0].
+ *
+ * The generated block renders the primary solution's title, heroDescription,
+ * and shortTitle verbatim, so two audiences sharing a primary would ship the
+ * same block on two indexable pages. That already happened once, when a
+ * `?? getSolutionBySlug("remediation")` fallback put the identical remediation
+ * block on three pages. lib/audiences.test.ts asserts the primaries are
+ * distinct across every audience that renders the generated block, which is why
+ * the exception list lives here rather than only in the layout: the layout and
+ * the test have to be reading the same list for the check to mean anything.
+ */
+export const BESPOKE_PRIMARY_CTA_AUDIENCE_SLUGS = ["program-directors"] as const
+
+export function rendersGeneratedPrimaryCta(audience: Audience): boolean {
+  return !BESPOKE_PRIMARY_CTA_AUDIENCE_SLUGS.some((slug) => slug === audience.slug)
+}
 
 export function getAllAudiences(): Audience[] {
   return audiences

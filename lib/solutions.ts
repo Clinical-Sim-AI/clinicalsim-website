@@ -1,5 +1,6 @@
 import type { BrandIconName } from "@/components/brand-icon"
 import type { Market } from "@/lib/positioning"
+import type { PostSlug } from "@/lib/posts"
 
 export interface SolutionStage {
   /** Short label for the stage, e.g. "PGY-1", "M1/M2", "Giving feedback" */
@@ -142,7 +143,7 @@ export interface Solution {
   claimBoundary?: SolutionClaimBoundary
 
   faqs?: SolutionFaq[]
-  relatedPostSlugs?: string[]
+  relatedPostSlugs?: PostSlug[]
   /**
    * Glossary slugs to link from this page. The only inbound path to a term page
    * used to be the /glossary hub, so authority reaching a solution page stopped

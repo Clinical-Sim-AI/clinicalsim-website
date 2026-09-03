@@ -1,5 +1,33 @@
+/**
+ * Every slug that has a registry entry, whether or not it still resolves to a
+ * page of its own (`redirectTo` entries stay listed so their old URLs keep
+ * consolidating). `Post.slug` is typed against it, so adding a post without
+ * extending the union is a typecheck error rather than a silent gap, and the
+ * cross-registry `relatedPostSlugs` arrays are typed against it too.
+ *
+ * The union catches a slug that no longer exists. It cannot catch a slug that
+ * exists but redirects, because both are members: getPostBySlug() resolves a
+ * redirected post, so a related-posts card can still render a link that 308s.
+ * lib/posts.test.ts covers that half at runtime. Both halves are needed.
+ */
+export type PostSlug =
+  | "building-rapport-clinical-encounter"
+  | "eol-communication-training-measurement-gap"
+  | "breaking-bad-news-practice-not-knowledge"
+  | "what-programs-lost-when-step-2-cs-disappeared"
+  | "faculty-hour-problem-communication-remediation"
+  | "ai-affirming-care-communication-training"
+  | "osce-case-design-guide"
+  | "hospital-communication-training-roi"
+  | "healthcare-simulation-technology-trends"
+  | "breaking-bad-news-medical-training"
+  | "what-learners-want-from-ai-sps"
+  | "end-of-life-care-communication"
+  | "why-communication-training-matters"
+  | "scalability-problem-sp-programs"
+
 export interface Post {
-  slug: string
+  slug: PostSlug
   title: string
   description: string
   date: string
@@ -142,13 +170,13 @@ const posts: Post[] = [
     slug: "end-of-life-care-communication",
     title: "What end-of-life communication training can and cannot show",
     description:
-      "This article has been consolidated into Six of 105: the measurement gap in end-of-life communication training.",
+      "This article has been consolidated into What the evidence says about communication training.",
     date: "2025-11-04",
     dateModified: "2026-09-02",
     author: "ClinicalSim Team",
     readingTime: "2 min read",
     tags: ["end-of-life", "palliative care", "communication"],
-    redirectTo: "/insights/eol-communication-training-measurement-gap",
+    redirectTo: "/insights/why-communication-training-matters",
   },
   {
     slug: "why-communication-training-matters",

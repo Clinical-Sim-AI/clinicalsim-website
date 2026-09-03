@@ -53,7 +53,7 @@ const nextConfig = {
       // takes them out of getAllPosts, the sitemap, and /llms.txt.
       {
         source: '/insights/end-of-life-care-communication',
-        destination: '/insights/eol-communication-training-measurement-gap',
+        destination: '/insights/why-communication-training-matters',
         permanent: true,
       },
       {

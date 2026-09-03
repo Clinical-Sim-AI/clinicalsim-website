@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest"
-import { getAllAudiences } from "./audiences"
+import {
+  BESPOKE_PRIMARY_CTA_AUDIENCE_SLUGS,
+  getAllAudiences,
+  rendersGeneratedPrimaryCta,
+} from "./audiences"
 import { getSolutionBySlug } from "./solutions"
 
 const audiences = getAllAudiences()
@@ -33,15 +37,35 @@ describe("Audience registry", () => {
     }
   })
 
-  // The routing half of the same defect: even with valid slugs, every audience
-  // pointing at the same primary solution would serve the same block again.
-  it("does not point most audiences at one solution", () => {
-    const primaries = audiences.map((a) => a.relevantSolutionSlugs[0])
+  // The routing half of the same defect: two audiences sharing a primary
+  // solution render a byte-identical use-case block, because
+  // components/audience-page-layout.tsx builds that block entirely from
+  // primarySolution.title, .heroDescription, and .shortTitle. Distinctness only
+  // has to hold across the audiences that actually render it, so the exception
+  // list is imported rather than restated.
+  it("gives every generated primary CTA a distinct solution", () => {
+    const generated = audiences.filter(rendersGeneratedPrimaryCta)
+    const primaries = generated.map((a) => a.relevantSolutionSlugs[0])
     const distinct = new Set(primaries)
 
     expect(
       distinct.size,
-      `audience primary solutions are too concentrated: ${primaries.join(", ")}`
-    ).toBeGreaterThanOrEqual(4)
+      `two audiences would render the same primary use-case block: ${primaries.join(", ")}`
+    ).toBe(generated.length)
+  })
+
+  // Without this the check above weakens silently: moving every audience onto
+  // the bespoke list would leave it comparing an empty set to zero.
+  it("keeps the bespoke CTA list to audiences that exist", () => {
+    const slugs = new Set(audiences.map((a) => a.slug))
+
+    for (const slug of BESPOKE_PRIMARY_CTA_AUDIENCE_SLUGS) {
+      expect(
+        slugs.has(slug),
+        `BESPOKE_PRIMARY_CTA_AUDIENCE_SLUGS names "${slug}", which is not an audience`
+      ).toBe(true)
+    }
+
+    expect(audiences.filter(rendersGeneratedPrimaryCta).length).toBeGreaterThan(0)
   })
 })

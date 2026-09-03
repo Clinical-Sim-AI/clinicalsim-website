@@ -21,7 +21,9 @@ export const PAGE_DATE_MODIFIED = {
   frameworks: "2026-09-03",
   glossary: "2026-08-18",
   home: "2026-09-03",
-  insights: "2026-08-10",
+  // Three posts left the listing and a fourth was retitled and
+  // re-described in the 2026-09-03 consolidation.
+  insights: "2026-09-03",
   // Rewritten by the 2026-09-03 ACGME claim removal (fadf4b5), which replaced
   // the milestone and Dreyfus-scale language across several answers.
   medicalEducatorFaq: "2026-09-03",

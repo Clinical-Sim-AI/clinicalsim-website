@@ -81,7 +81,7 @@ export default function MarketingLayout({
         Skip to main content
       </a>
       <SiteHeader />
-      <main id="main-content" className="relative">
+      <main id="main-content" tabIndex={-1} className="relative focus:outline-none">
         <div className="relative">
           {children}
         </div>
