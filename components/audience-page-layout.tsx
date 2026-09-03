@@ -31,12 +31,12 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
     .map((slug) => getPostBySlug(slug))
     .filter(Boolean)
 
-  // The audience's primary use case, if it maps to a real solution page.
-  // Falls back to the remediation solution to preserve existing behavior.
-  const primarySolution =
-    audience.relevantSolutionSlugs
-      .map((slug) => getSolutionBySlug(slug))
-      .find(Boolean) ?? getSolutionBySlug("remediation")!
+  // The audience's primary use case. relevantSolutionSlugs is typed against the
+  // real slug union and guarded by lib/audiences.test.ts, so the first entry
+  // always resolves. This used to fall back to remediation whenever no slug
+  // matched, which is how three audiences (a DIO page, a sim-center page, and a
+  // CCC page) all shipped rendering the identical remediation block.
+  const primarySolution = getSolutionBySlug(audience.relevantSolutionSlugs[0])!
 
   // The `as const` assertions are load-bearing: without them schema-dts widens
   // "@type" to string and WithContext<Thing> fails to typecheck.

@@ -81,3 +81,19 @@ export const MEASUREMENT_CLAIM =
 /** The entry point. Shared by the homepage, /contact, and /llms.txt. */
 export const ASSESSMENT_ENTRY =
   "An engagement can start with a communication assessment. One group practices a conversation or two with AI patients against the standard your institution already holds. The report shows strengths and areas for focused practice in the participants' own words."
+
+/**
+ * The publisher logo used by every Organization node on the site: the site-wide
+ * Organization, the Article publisher on each insight post, and VideoObject.
+ *
+ * Defined once because those three call sites all pointed independently at
+ * /logo.svg, which has never existed and returned a 404 in production. A logo
+ * URL that 404s makes the whole publisher node unusable, so this path is the
+ * square brand mark that is actually committed under public/, and the
+ * dimensions are the real pixel dimensions of that file.
+ */
+export const ORGANIZATION_LOGO = {
+  url: "https://clinicalsim.ai/brand/ClinicalSim_Logo_Icon_DarkBlue.png",
+  width: "1200",
+  height: "1200",
+} as const

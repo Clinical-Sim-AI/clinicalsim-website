@@ -49,6 +49,22 @@ interface FaqEntry {
   answer: string
   // Optional rich display (adds inline links). Its text content must match `answer`.
   answerNode?: ReactNode
+  /**
+   * Anchor on /medical-educator-faq that answers this question at length.
+   *
+   * Set on the five questions both pages answer (encounter length, scoring
+   * accuracy and fairness, learner data handling, what the report contains,
+   * and documenting remediation). /medical-educator-faq carries 7,800 words
+   * across 14 answers and owns the depth; these stay here as the short
+   * general-audience answer with a pointer to it.
+   *
+   * An entry with this set is EXCLUDED from this page's FAQPage JSON-LD, so
+   * exactly one page claims each question in structured data. Two FAQPage
+   * nodes competing to answer the same question is the "separate content for
+   * every variation" pattern Google's generative-AI guidance warns about, and
+   * the fix is declaring which page owns the answer rather than splitting it.
+   */
+  educatorFaqAnchor?: string
 }
 
 interface FaqSection {
@@ -155,6 +171,7 @@ const faqSections: FaqSection[] = [
         question: "How long does a typical encounter take?",
         answer:
           "A typical ClinicalSim encounter takes between 3 and 10 minutes, short enough to fit into a clinical day and repeat as often as a learner needs.",
+        educatorFaqAnchor: "how-long-does-a-typical-case-take",
       },
       {
         id: "languages",
@@ -298,6 +315,7 @@ const faqSections: FaqSection[] = [
         question: "What does a ClinicalSim feedback report include?",
         answer:
           "Each encounter produces a report with rubric scores, strengths, priority gaps, and suggested next steps. Every scored item cites evidence from the transcript. The report is formative evidence for the learner and faculty reviewer, not a verdict or a substitute for human judgment.",
+        educatorFaqAnchor: "how-should-i-read-the-feedback",
       },
       {
         id: "faculty-methodology",
@@ -328,6 +346,7 @@ const faqSections: FaqSection[] = [
           "Can ClinicalSim output be used in Clinical Competency Committee (CCC) review?",
         answer:
           "Yes. Each practice report maps observed behavior to the standard approved for the case and cites the learner's words. A CCC can review it alongside faculty observation and the other evidence it already uses. The report does not replace faculty judgment or the committee's decision.",
+        educatorFaqAnchor: "can-we-use-the-reports-to-document-remediation",
       },
     ],
   },
@@ -402,6 +421,7 @@ const faqSections: FaqSection[] = [
             practices.
           </p>
         ),
+        educatorFaqAnchor: "is-learner-data-safe-and-is-there-any-phi",
       },
       {
         id: "research",
@@ -428,6 +448,7 @@ const faqSections: FaqSection[] = [
         question: "How does ClinicalSim ensure accuracy?",
         answer:
           "Every score cites one or two excerpts from the transcript, so a reviewer can check the rating against what the learner said. ClinicalSim is testing score performance in pilots and does not claim that its ratings are more accurate or fairer than faculty judgment. The report is formative evidence that a faculty member or committee can accept, question, or override.",
+        educatorFaqAnchor: "how-do-we-know-the-ai-scores-accurately-and-fairly",
       },
     ],
   },
@@ -438,14 +459,18 @@ export default function FaqPage() {
     "@context": "https://schema.org" as const,
     "@type": "FAQPage" as const,
     mainEntity: faqSections.flatMap((section) =>
-      section.items.map((item) => ({
-        "@type": "Question" as const,
-        name: item.question,
-        acceptedAnswer: {
-          "@type": "Answer" as const,
-          text: item.answer,
-        },
-      }))
+      section.items
+        // See FaqEntry.educatorFaqAnchor: /medical-educator-faq owns these
+        // questions in structured data, so this page does not also claim them.
+        .filter((item) => !item.educatorFaqAnchor)
+        .map((item) => ({
+          "@type": "Question" as const,
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: item.answer,
+          },
+        }))
     ),
   }
 
@@ -575,6 +600,21 @@ export default function FaqPage() {
                       </summary>
                       <div className="px-6 pb-5 pt-2 text-base text-cs-dark-blue font-light leading-relaxed space-y-4">
                         {item.answerNode ?? <p>{item.answer}</p>}
+                        {/* The five questions /medical-educator-faq also
+                            answers keep the short version here and point at
+                            the long one, rather than both pages competing to
+                            answer them. See FaqEntry.educatorFaqAnchor. */}
+                        {item.educatorFaqAnchor && (
+                          <p className="text-sm text-cs-dark-gray">
+                            <Link
+                              href={`/medical-educator-faq#${item.educatorFaqAnchor}`}
+                              className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
+                            >
+                              Read the longer answer in the FAQ for medical
+                              educators
+                            </Link>
+                          </p>
+                        )}
                       </div>
                     </details>
                   </div>

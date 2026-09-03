@@ -1,4 +1,5 @@
 import { JsonLd } from "@/components/json-ld"
+import { ORGANIZATION_LOGO } from "@/lib/positioning"
 
 export interface VideoObjectSchemaProps {
   name: string
@@ -59,7 +60,7 @@ export function VideoObjectSchema({
           url: "https://clinicalsim.ai",
           logo: {
             "@type": "ImageObject",
-            url: "https://clinicalsim.ai/logo.svg",
+            ...ORGANIZATION_LOGO,
           },
         },
       }}

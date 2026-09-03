@@ -99,7 +99,9 @@ The project uses shadcn/ui components which are:
 - **Default behavior**: Posts without `authorId` (or with no match) render as "ClinicalSim.ai Team" with a Users icon
 - **Individual authors** render with colored initials avatar + name + title via `components/author-byline.tsx`
 - **JSON-LD**: Article schema automatically uses `Person` for individual authors and `Organization` for team posts
-- **About page**: Emits Person JSON-LD for each team member automatically via `getAllAuthors()`
+- **About page**: The team section is **unpublished** (`TEAM_SECTION_PUBLISHED = false` in `lib/authors.ts`, set deliberately in `d30bb2b` on 2026-09-01 and locked by `lib/about-page.test.ts`). It emits **no** Person JSON-LD and renders no author cards. The earlier claim that it emits Person JSON-LD for each team member via `getAllAuthors()` has been false since that date.
+  - Because those cards are the only page on the site that gives a person a URL, `getAuthorPath()` and `getAuthorUrl()` return `undefined` while the flag is false, and every consumer omits the author `@id`, `url`, and the visible "More about the team" link. A bylined post's Person node then carries `name`, `jobTitle`, and `description` with no URL. That is a weaker signal than a resolvable entity but an honest one; the previous behavior pointed the site's one Person node at `/about#lauren-rissman`, a fragment with no element in the DOM.
+  - Flipping `TEAM_SECTION_PUBLISHED` to `true` restores the cards, the Person schema, and every author URL in one move. Do not reintroduce an `/about#<id>` reference by hand.
 - **`dateModified`**: Optional field on posts. Falls back to `date` in JSON-LD if not set. Update when making significant content edits.
 - The sitemap uses `dateModified ?? date` for insight posts, so registry dates must describe real content changes rather than the build date.
 
@@ -240,9 +242,13 @@ This is a healthcare/medical education site. Accuracy is non-negotiable.
 - **When in doubt, leave it out.** A page with no citation is better than a page with a fabricated one. Flag uncertain claims to the user rather than guessing.
 - **Existing site content is not automatically trustworthy.** If something on the site looks wrong or unsourced, flag it rather than propagating it into new content.
 
-## GEO (Generative Engine Optimization) Guidelines
+## Search and answer-engine requirements
 
-All content on this site must be optimized for discovery by AI search systems (ChatGPT, Perplexity, Google AI Overviews, etc.). Follow these rules when creating or modifying pages:
+There is no separate "GEO" discipline to optimize for. Google's guidance on generative AI features in Search (Search Central, 2026) is explicit that AI Overviews and AI Mode are grounded in the normal Search index, so **a page has to be indexed and snippet-eligible to appear in them at all, and the work of getting it there is ordinary SEO**. The same guidance says Google does not require structured data for AI features and **ignores llms.txt**.
+
+What that leaves as the actual lever is the thing the doc weights most heavily: non-commodity, expert-led content with a first-hand point of view, supported by real images and video. This site's technical foundation is already strong (full server rendering, 100% canonical coverage on the apex, no accidental noindex, no verbatim duplication across the registry-driven families). The gaps that decide visibility are editorial: media, named human authorship, and posts long and specific enough to be worth citing.
+
+Follow the rules below when creating or modifying pages. They are grouped by what they actually buy.
 
 ### Page Metadata (Required for all TSX pages)
 - Every page MUST have `export const metadata: Metadata` with: `title`, `description`, `openGraph` (title, description, url), `twitter` (title, description), and `alternates.canonical`
@@ -255,19 +261,30 @@ All content on this site must be optimized for discovery by AI search systems (C
 - When adding a new page, build absolute URLs from the `https://clinicalsim.ai` base string already used across `lib/` and `app/sitemap.ts`. Do not introduce a new base constant and do not prefix with `www.`.
 
 ### Structured Data (JSON-LD)
+**Why it is here:** rich-results eligibility and unambiguous entity data. It is **not** an AI-search lever. Google's guidance states structured data is not required for AI features, so do not add a schema type on the theory that it will influence an AI answer. The rule stays non-negotiable because it is cheap, already built, and earns its keep in ordinary search.
 - Use `components/json-ld.tsx` helper for all structured data
 - Marketing layout includes Organization + WebSite schemas
 - Blog posts include Article schema via `components/article-layout.tsx`
 - Standard solution pages include WebPage, BreadcrumbList, and FAQPage schemas via `components/solution-page-layout.tsx`.
 - The bespoke remediation page includes the same page-level schema set via `components/remediation-page-layout.tsx`.
 - Standalone pages include WebPage and BreadcrumbList schemas. See `/privacy` or `/research` for examples.
+- Example pages include AudioObject via `components/audio-object-schema.tsx`, derived entirely from the `lib/examples` snapshot. Google has no audio rich result, so this one is for the answer engines rather than the SERP, and the component's docblock says so.
 - **IMPORTANT**: Every new page MUST include appropriate JSON-LD structured data. This is a non-negotiable requirement — always add at minimum WebPage + BreadcrumbList schemas when creating new pages.
+- Never point a schema node at an asset or URL that does not resolve. `Organization.logo`, `Article.publisher.logo`, and `VideoObject.publisher.logo` all pointed at `/logo.svg` for months, which 404s; the path now lives once in `ORGANIZATION_LOGO` (`lib/positioning.ts`) and `lib/organization-logo.test.ts` checks the file exists under `public/`. Same rule for author URLs: see the `/about` note under Authorship.
+
+### Non-commodity content (the part that actually decides visibility)
+Google's guidance names expert-led, first-hand content as what gets surfaced, and warns specifically against producing separate content for every variation of a query. That makes the following load-bearing rather than nice to have:
+- **Say something only this company can say.** The four snapshotted encounters in `lib/examples/*` carry real transcripts, real rubric rationale, and verbatim learner quotes. They are the strongest first-hand asset the site has, and citing a specific score split from one beats another paragraph of literature synthesis. Prefer them when expanding a post.
+- **A thin post is a liability, not a placeholder.** Nine insight posts sat between 316 and 602 words with three redundant pairs among them, so each pair split one topic's authority in two. Consolidate with the `redirectTo` pattern in `lib/posts.ts` plus a `next.config.mjs` permanent redirect rather than keeping both.
+- **Human authorship is an unpublished asset, not a missing one.** `authorId`, `reviewedBy`, and `Author.sameAs` are fully plumbed and mostly unused. Filling them needs the named person's confirmation (see Authorship above), not code.
+- **Do not create a page per query variation.** Two FAQ pages answering the same question is that pattern; `/faq` now defers five questions to `/medical-educator-faq` via `FaqEntry.educatorFaqAnchor` and excludes them from its own FAQPage schema so one page owns each answer.
 
 ### Citation Magnets & Extractable Content
 - Include self-contained, quotable definition blocks (2-3 sentences with a stat + source)
 - FAQ sections on solution pages: clear Q/A format, self-contained answers, each with a stat + source
 - "Key Takeaway" blocks at the top of high-value blog posts: 1 quotable sentence + stat
 - All statistics must include their source attribution
+- `readingTime` in `lib/posts.ts` is a claim a reader can check in ten seconds, and every short post used to overstate it by two to three times. `lib/reading-time.test.ts` bounds each registry value against the MDX word count at 225 wpm, within a minute. Update the value when you change a post's length.
 
 ### Content Structure for AI Discoverability
 - Use clear heading hierarchy (H2 for sections, H3 for subsections)
@@ -279,6 +296,7 @@ All content on this site must be optimized for discovery by AI search systems (C
 - `app/robots.ts`: Crawler rules explicitly allow both `OAI-SearchBot` and `GPTBot`.
 - `app/sitemap.ts`: Generated from the post, solution, audience, comparison, and example registries.
 - `app/llms.txt/route.ts`: Page index for LLM crawlers, served at `/llms.txt`. Update it when adding or removing pages. There is no `public/llms.txt`; the route handler is the only source.
+  - **Google ignores llms.txt.** Its guidance says so directly. The file stays because it is maintained for the non-Google answer engines, where Semrush measures ClinicalSim at 21% share of voice and the 4th-most-cited domain in its category. `lib/llms-coverage.test.ts` stays too. What must stop is treating it as a Google lever: shipping a page is not "done for AI search" because it was added to `/llms.txt`, and no Google-side visibility problem is ever fixed by editing that file.
 - When adding new pages, update `app/sitemap.ts` and `app/llms.txt/route.ts`
 - `lib/page-dates.ts`: Shared material change dates for static pages whose schema and sitemap dates must match. Update a value only when the public page changes materially.
 

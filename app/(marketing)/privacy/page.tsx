@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { JsonLd } from "@/components/json-ld"
+import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 const PRIVACY_DESCRIPTION =
   "ClinicalSim's privacy policy explains how we collect, use, and protect personal information from website visitors."
@@ -33,7 +34,7 @@ export default function PrivacyPolicyPage() {
             name: "Privacy Policy",
             description: PRIVACY_DESCRIPTION,
             url: "https://clinicalsim.ai/privacy",
-            dateModified: "2026-03-16",
+            dateModified: PAGE_DATE_MODIFIED.privacy,
             isPartOf: {
               "@type": "WebSite",
               name: "ClinicalSim.ai",

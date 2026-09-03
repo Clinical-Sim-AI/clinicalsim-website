@@ -4,6 +4,7 @@ import { JsonLd } from "@/components/json-ld"
 import {
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
+  ORGANIZATION_LOGO,
   POSITIONING_AUDIENCE,
   POSITIONING_LONG,
 } from "@/lib/positioning"
@@ -24,9 +25,7 @@ export default function MarketingLayout({
             url: "https://clinicalsim.ai",
             logo: {
               "@type": "ImageObject",
-              url: "https://clinicalsim.ai/logo.svg",
-              width: "512",
-              height: "512",
+              ...ORGANIZATION_LOGO,
             },
             // Company-level category statement, then the plain-language
             // definition, then who uses it. An answer engine reads this node
@@ -64,8 +63,19 @@ export default function MarketingLayout({
           },
         ]}
       />
+      {/* First focusable element on every page, so a keyboard or screen-reader
+          user can get past the header nav in one keystroke. Hidden until
+          focused. The site otherwise has a single <main>, proper landmarks, and
+          aria-labels throughout, and this was the one gap left in the
+          accessibility tree that browser agents read. */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-cs-dark-blue focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none focus:ring-2 focus:ring-cs-electric"
+      >
+        Skip to main content
+      </a>
       <SiteHeader />
-      <main className="relative">
+      <main id="main-content" className="relative">
         <div className="relative">
           {children}
         </div>

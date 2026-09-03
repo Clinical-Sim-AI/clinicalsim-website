@@ -6,8 +6,13 @@ import { AuthorByline } from "@/components/author-byline"
 import { JsonLd } from "@/components/json-ld"
 import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
-import { getAllAuthors, getAuthorUrl } from "@/lib/authors"
+import {
+  getAllAuthors,
+  getAuthorUrl,
+  TEAM_SECTION_PUBLISHED,
+} from "@/lib/authors"
 import { ArrowRight } from "lucide-react"
+import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import {
   CATEGORY_LINE,
   POSITIONING_LONG,
@@ -30,8 +35,10 @@ export const metadata: Metadata = {
   },
 }
 
-const LAST_UPDATED = "2026-09-02"
-const SHOW_TEAM: boolean = false
+const LAST_UPDATED = PAGE_DATE_MODIFIED.about
+// Sourced from lib/authors.ts so the section and the author entity URLs that
+// depend on it cannot disagree. See TEAM_SECTION_PUBLISHED there.
+const SHOW_TEAM: boolean = TEAM_SECTION_PUBLISHED
 
 export default function AboutPage() {
   const team = SHOW_TEAM ? getAllAuthors() : []
@@ -77,8 +84,9 @@ export default function AboutPage() {
             "@type": "Person" as const,
             // Same @id the Article author schema uses, so a post byline and this
             // card resolve to one person.
-            "@id": getAuthorUrl(author.id),
-            url: getAuthorUrl(author.id),
+            ...(getAuthorUrl(author.id)
+              ? { "@id": getAuthorUrl(author.id), url: getAuthorUrl(author.id) }
+              : {}),
             name: author.name,
             ...(author.credentials
               ? { honorificSuffix: author.credentials }

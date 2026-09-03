@@ -7,7 +7,8 @@ import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { FaqAnchorHandler } from "@/components/faq-anchor-handler"
 import { CopyLinkButton } from "@/components/copy-link-button"
-import { slugify } from "@/lib/utils"
+import { formatIsoDay, slugify } from "@/lib/utils"
+import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
   title: "FAQ for Medical Educators: Feedback, Scoring & Evidence",
@@ -29,8 +30,11 @@ export const metadata: Metadata = {
   },
 }
 
-const LAST_UPDATED_ISO = "2026-07-07"
-const LAST_UPDATED_LABEL = "July 7, 2026"
+const LAST_UPDATED_ISO = PAGE_DATE_MODIFIED.medicalEducatorFaq
+// Derived, not hand-written. The label read "July 7, 2026" while the ISO and
+// the sitemap said something else again, and the 2026-09-03 ACGME claim removal
+// rewrote several answers without touching either.
+const LAST_UPDATED_LABEL = formatIsoDay(LAST_UPDATED_ISO)
 
 interface PdFaqSection {
   question: string

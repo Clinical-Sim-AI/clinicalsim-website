@@ -394,7 +394,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     ],
     relatedLinks: [
       { href: "/solutions/remediation", label: "Communication remediation with documented repetitions" },
-      { href: "/insights/scalability-problem-sp-programs", label: "Why SP programs run out of capacity" },
+      { href: "/compare/ai-clinical-simulation-vs-standardized-patients", label: "Where standardized patient programs run out of practice capacity" },
     ],
     lastUpdated: "2026-09-02",
   },
@@ -558,7 +558,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       "Program directors can pair the conversation with an EPA so entrustment for it is recorded rather than assumed.",
     ],
     relatedLinks: [
-      { href: "/insights/end-of-life-care-communication", label: "End-of-life care communication training" },
+      { href: "/insights/eol-communication-training-measurement-gap", label: "The measurement gap in end-of-life communication training" },
       { href: "/audiences/program-directors", label: "For residency and fellowship program directors" },
     ],
     lastUpdated: "2026-08-18",
@@ -619,7 +619,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     ],
     relatedLinks: [
       { href: "/audiences/quality-and-patient-experience", label: "Communication training for quality and patient experience teams" },
-      { href: "/insights/hospital-communication-training-roi", label: "The business case for hospital communication training" },
+      { href: "/insights/why-communication-training-matters", label: "What the evidence says about communication training" },
     ],
     lastUpdated: "2026-09-02",
   },
@@ -1226,7 +1226,7 @@ export const glossaryTerms: GlossaryTerm[] = [
       "Faculty can rehearse the pause after sharing prognosis, which is the step most often lost when a learner is anxious.",
     ],
     relatedLinks: [
-      { href: "/insights/end-of-life-care-communication", label: "End-of-life care communication training" },
+      { href: "/insights/eol-communication-training-measurement-gap", label: "The measurement gap in end-of-life communication training" },
       { href: "/solutions/longitudinal-curriculum", label: "Build a longitudinal communication curriculum" },
     ],
     lastUpdated: "2026-08-18",
@@ -1254,7 +1254,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     ],
     relatedLinks: [
       { href: "/audiences/simulation-center-directors", label: "Capacity planning for a simulation center" },
-      { href: "/insights/scalability-problem-sp-programs", label: "The scalability problem in SP programs" },
+      { href: "/compare/ai-clinical-simulation-vs-standardized-patients", label: "AI clinical simulation compared with standardized patients" },
     ],
     lastUpdated: "2026-08-18",
   },
@@ -1334,7 +1334,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     ],
     relatedLinks: [
       { href: "/compare/ai-clinical-simulation-vs-standardized-patients", label: "AI clinical simulation compared with standardized patients" },
-      { href: "/insights/scalability-problem-sp-programs", label: "The scalability problem in SP programs" },
+      { href: "/insights/what-learners-want-from-ai-sps", label: "What 12 medical students want from AI patient simulation" },
     ],
     lastUpdated: "2026-08-18",
   },

@@ -1,6 +1,7 @@
 import type { BrandIconName } from "@/components/brand-icon"
 import type { Market } from "@/lib/positioning"
 import type { FaqItem } from "@/lib/types"
+import type { SolutionSlug } from "@/lib/solutions"
 
 export interface PainPoint {
   headline: string
@@ -48,7 +49,14 @@ export interface Audience {
   valueProps: ValueProp[]
 
   // Cross-links
-  relevantSolutionSlugs: string[]
+  /**
+   * Solution pages this audience's primary use case maps to, most relevant
+   * first. Typed against the real slug union, not string: four audiences
+   * shipped pointing at "goals-of-care", "advance-care-planning", and
+   * "cognitive-assessments", none of which is a solution, and the layout's
+   * silent fallback rendered the same remediation block on three pages.
+   */
+  relevantSolutionSlugs: SolutionSlug[]
 
   /**
    * Optional FAQ block. When present it renders a Q/A section and emits
@@ -197,11 +205,7 @@ const audiences: Audience[] = [
       },
     ],
 
-    relevantSolutionSlugs: [
-      "goals-of-care",
-      "advance-care-planning",
-      "cognitive-assessments",
-    ],
+    relevantSolutionSlugs: ["longitudinal-curriculum", "remediation"],
 
     glossarySlugs: [
       "milestones",
@@ -215,10 +219,10 @@ const audiences: Audience[] = [
       "Talk with us about how structured practice and rubric-scored feedback could fit your communication remediation plan.",
 
     relatedPostSlugs: [
-      "scalability-problem-sp-programs",
       "osce-case-design-guide",
       "breaking-bad-news-practice-not-knowledge",
       "ai-affirming-care-communication-training",
+      "what-programs-lost-when-step-2-cs-disappeared",
     ],
   },
 
@@ -338,7 +342,7 @@ const audiences: Audience[] = [
       },
     ],
 
-    relevantSolutionSlugs: ["goals-of-care", "advance-care-planning"],
+    relevantSolutionSlugs: ["longitudinal-curriculum", "faculty-development"],
 
     glossarySlugs: [
       "dio",
@@ -352,8 +356,8 @@ const audiences: Audience[] = [
       "Talk with us about shared case standards, learner feedback, and the reporting rules your GME office needs.",
 
     relatedPostSlugs: [
-      "hospital-communication-training-roi",
-      "scalability-problem-sp-programs",
+      "why-communication-training-matters",
+      "faculty-hour-problem-communication-remediation",
     ],
   },
 
@@ -469,11 +473,7 @@ const audiences: Audience[] = [
       },
     ],
 
-    relevantSolutionSlugs: [
-      "goals-of-care",
-      "advance-care-planning",
-      "cognitive-assessments",
-    ],
+    relevantSolutionSlugs: ["debriefing", "longitudinal-curriculum"],
 
     glossarySlugs: [
       "sim-lab",
@@ -498,9 +498,9 @@ const audiences: Audience[] = [
       "Talk with us about how repeatable AI patient practice could extend your simulation center's communication training capacity.",
 
     relatedPostSlugs: [
-      "scalability-problem-sp-programs",
       "osce-case-design-guide",
       "what-learners-want-from-ai-sps",
+      "healthcare-simulation-technology-trends",
     ],
   },
 
@@ -617,7 +617,7 @@ const audiences: Audience[] = [
       },
     ],
 
-    relevantSolutionSlugs: ["goals-of-care", "advance-care-planning"],
+    relevantSolutionSlugs: ["remediation", "longitudinal-curriculum"],
 
     glossarySlugs: [
       "ccc",
@@ -1043,7 +1043,7 @@ const audiences: Audience[] = [
 
     relatedPostSlugs: [
       "why-communication-training-matters",
-      "hospital-communication-training-roi",
+      "breaking-bad-news-practice-not-knowledge",
     ],
   },
   {
@@ -1226,7 +1226,7 @@ const audiences: Audience[] = [
 
     relatedPostSlugs: [
       "why-communication-training-matters",
-      "hospital-communication-training-roi",
+      "building-rapport-clinical-encounter",
     ],
   },
 ]
