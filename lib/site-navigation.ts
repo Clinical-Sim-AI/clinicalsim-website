@@ -113,19 +113,22 @@ export function transitionHeaderMenu(
   return current === action.menu ? null : action.menu
 }
 
-function matchesRoute(pathname: string, href: string) {
+export function routeIsActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`)
 }
 
 export function getActiveHeaderItem(pathname: string): HeaderItemId | null {
-  if (matchesRoute(pathname, HEADER_ACTION.href)) return "contact"
-  if (HEADER_DIRECT_LINKS.some((link) => matchesRoute(pathname, link.href))) return "help"
-  if (matchesRoute(pathname, "/solutions") || matchesRoute(pathname, "/audiences")) {
+  if (routeIsActive(pathname, HEADER_ACTION.href)) return "contact"
+  if (HEADER_DIRECT_LINKS.some((link) => routeIsActive(pathname, link.href))) return "help"
+  if (routeIsActive(pathname, "/solutions") || routeIsActive(pathname, "/audiences")) {
     return "solutions"
   }
 
   for (const menu of HEADER_MENUS) {
-    if (menu.kind === "links" && menu.items.some((item) => matchesRoute(pathname, item.href))) {
+    if (
+      menu.kind === "links" &&
+      menu.items.some((item) => routeIsActive(pathname, item.href))
+    ) {
       return menu.id
     }
   }

@@ -12,6 +12,7 @@ import {
   HEADER_ACTION,
   HEADER_DIRECT_LINKS,
   HEADER_MENUS,
+  routeIsActive,
   type HeaderLink,
   type HeaderMenu,
   type HeaderMenuAction,
@@ -20,6 +21,7 @@ import {
 } from "@/lib/site-navigation"
 
 const HOVER_QUERY = "(hover: hover) and (pointer: fine)"
+const DESKTOP_QUERY = "(min-width: 1024px)"
 
 function subscribeToHover(onChange: () => void) {
   const query = window.matchMedia(HOVER_QUERY)
@@ -29,10 +31,6 @@ function subscribeToHover(onChange: () => void) {
 
 const getHoverSnapshot = () => window.matchMedia(HOVER_QUERY).matches
 const getHoverServerSnapshot = () => false
-
-function routeIsActive(pathname: string, href: string) {
-  return pathname === href || pathname.startsWith(`${href}/`)
-}
 
 function NavigationLink({
   item,
@@ -80,7 +78,12 @@ function DesktopMenuPanel({
             >
               <Link
                 href={column.overviewHref}
-                className="inline-block pb-1 text-sm font-bold text-cs-dark-blue hover:underline"
+                aria-current={
+                  routeIsActive(pathname, column.overviewHref) ? "page" : undefined
+                }
+                className={`inline-block rounded-lg px-2 py-1 text-sm font-bold text-cs-dark-blue hover:underline ${
+                  routeIsActive(pathname, column.overviewHref) ? "bg-cs-cloud/70" : ""
+                }`}
                 onClick={onNavigate}
               >
                 {column.label}
@@ -149,7 +152,12 @@ function MobileMenuPanel({
           <div key={column.label} className="pt-2">
             <Link
               href={column.overviewHref}
-              className="inline-block px-3 py-2 text-sm font-bold text-cs-dark-blue hover:underline"
+              aria-current={
+                routeIsActive(pathname, column.overviewHref) ? "page" : undefined
+              }
+              className={`inline-block rounded-lg px-3 py-2 text-sm font-bold text-cs-dark-blue hover:underline ${
+                routeIsActive(pathname, column.overviewHref) ? "bg-cs-cloud/70" : ""
+              }`}
               onClick={onNavigate}
             >
               {column.label}
@@ -207,6 +215,9 @@ export function SiteHeader() {
   const desktopNavigationRef = useRef<HTMLElement>(null)
   const mobileNavigationRef = useRef<HTMLElement>(null)
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null)
+  const desktopTriggerRefs = useRef<
+    Partial<Record<HeaderMenuId, HTMLButtonElement | null>>
+  >({})
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
   const canHover = useSyncExternalStore(
     subscribeToHover,
@@ -255,6 +266,19 @@ export function SiteHeader() {
   }, [mobileMenuOpen])
 
   useEffect(() => {
+    const query = window.matchMedia(DESKTOP_QUERY)
+
+    function handleViewportChange(event: MediaQueryListEvent) {
+      if (!event.matches) return
+      setActiveMenu(null)
+      setMobileMenuOpen(false)
+    }
+
+    query.addEventListener("change", handleViewportChange)
+    return () => query.removeEventListener("change", handleViewportChange)
+  }, [])
+
+  useEffect(() => {
     function handleClickOutside(event: PointerEvent) {
       const target = event.target as Node
       const insideDesktopNavigation = desktopNavigationRef.current?.contains(target)
@@ -268,12 +292,14 @@ export function SiteHeader() {
 
     function handleEscape(event: KeyboardEvent) {
       if (event.key !== "Escape") return
-      const mobileNavigationWasOpen = Boolean(mobileNavigationRef.current)
-      setActiveMenu((current) =>
-        transitionHeaderMenu(current, { type: "dismiss", reason: "escape" })
-      )
+      const desktopMenuToRestore = activeMenu
+      setActiveMenu(null)
       setMobileMenuOpen(false)
-      if (mobileNavigationWasOpen) mobileMenuButtonRef.current?.focus()
+      if (mobileMenuOpen) {
+        mobileMenuButtonRef.current?.focus()
+      } else if (desktopMenuToRestore) {
+        desktopTriggerRefs.current[desktopMenuToRestore]?.focus()
+      }
     }
 
     document.addEventListener("pointerdown", handleClickOutside)
@@ -283,7 +309,7 @@ export function SiteHeader() {
       document.removeEventListener("keydown", handleEscape)
       if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current)
     }
-  }, [])
+  }, [activeMenu, mobileMenuOpen])
 
   return (
     <header className="relative z-50 flex items-center justify-between border-b border-cs-gray/60 bg-white/80 px-4 py-4 backdrop-blur-sm md:px-12 md:py-6">
@@ -330,6 +356,9 @@ export function SiteHeader() {
               onMouseLeave={canHover ? closeMenuAfterDelay : undefined}
             >
               <button
+                ref={(node) => {
+                  desktopTriggerRefs.current[menu.id] = node
+                }}
                 onClick={() => {
                   clearHoverTimeout()
                   updateMenu({ type: "toggle", menu: menu.id })
