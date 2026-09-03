@@ -1,5 +1,33 @@
+/**
+ * Every slug that has a registry entry, whether or not it still resolves to a
+ * page of its own (`redirectTo` entries stay listed so their old URLs keep
+ * consolidating). `Post.slug` is typed against it, so adding a post without
+ * extending the union is a typecheck error rather than a silent gap, and the
+ * cross-registry `relatedPostSlugs` arrays are typed against it too.
+ *
+ * The union catches a slug that no longer exists. It cannot catch a slug that
+ * exists but redirects, because both are members: getPostBySlug() resolves a
+ * redirected post, so a related-posts card can still render a link that 308s.
+ * lib/posts.test.ts covers that half at runtime. Both halves are needed.
+ */
+export type PostSlug =
+  | "building-rapport-clinical-encounter"
+  | "eol-communication-training-measurement-gap"
+  | "breaking-bad-news-practice-not-knowledge"
+  | "what-programs-lost-when-step-2-cs-disappeared"
+  | "faculty-hour-problem-communication-remediation"
+  | "ai-affirming-care-communication-training"
+  | "osce-case-design-guide"
+  | "hospital-communication-training-roi"
+  | "healthcare-simulation-technology-trends"
+  | "breaking-bad-news-medical-training"
+  | "what-learners-want-from-ai-sps"
+  | "end-of-life-care-communication"
+  | "why-communication-training-matters"
+  | "scalability-problem-sp-programs"
+
 export interface Post {
-  slug: string
+  slug: PostSlug
   title: string
   description: string
   date: string
@@ -28,7 +56,7 @@ const posts: Post[] = [
     date: "2026-08-18",
     dateModified: "2026-09-02",
     author: "ClinicalSim Team",
-    readingTime: "8 min read",
+    readingTime: "5 min read",
     tags: ["rapport", "communication-training", "Kalamazoo", "Calgary-Cambridge", "empathy", "assessment", "simulation", "medical-education"],
   },
   {
@@ -39,7 +67,7 @@ const posts: Post[] = [
     dateModified: "2026-08-20",
     author: "Lauren Rissman, MD",
     authorId: "lauren-rissman",
-    readingTime: "8 min read",
+    readingTime: "7 min read",
     tags: ["end-of-life", "palliative-care", "communication-training", "pediatrics", "simulation", "AI", "medical-education", "OSCE"],
   },
   {
@@ -49,7 +77,7 @@ const posts: Post[] = [
     date: "2026-05-19",
     dateModified: "2026-09-02",
     author: "ClinicalSim Team",
-    readingTime: "8 min read",
+    readingTime: "6 min read",
     tags: ["breaking-bad-news", "communication-training", "SPIKES", "Calgary-Cambridge", "Kalamazoo", "simulation", "deliberate-practice", "medical-education", "remediation"],
   },
   {
@@ -59,17 +87,17 @@ const posts: Post[] = [
     date: "2026-05-11",
     dateModified: "2026-09-02",
     author: "ClinicalSim Team",
-    readingTime: "7 min read",
+    readingTime: "6 min read",
     tags: ["step-2-cs", "communication-assessment", "ACGME", "milestones", "medical-education", "residency", "USMLE"],
   },
   {
     slug: "faculty-hour-problem-communication-remediation",
     title: "The faculty hour problem with communication remediation",
-    description: "One published clinical reasoning remediation program required a mean of 29.6 specialist contact hours. The figure is not a universal estimate, but it shows why programs should separate learner practice from faculty coaching.",
+    description: "One published clinical reasoning remediation program required a mean of 29.6 specialist contact hours. The figure is not a universal estimate, but it shows why programs should separate the decisions that need faculty judgment from the repetitions that do not.",
     date: "2026-04-07",
-    dateModified: "2026-09-02",
+    dateModified: "2026-09-03",
     author: "ClinicalSim Team",
-    readingTime: "7 min read",
+    readingTime: "4 min read",
     tags: ["communication-remediation", "faculty-time", "ACGME", "milestones", "medical-education", "residency"],
   },
   {
@@ -79,7 +107,7 @@ const posts: Post[] = [
     date: "2026-03-30",
     dateModified: "2026-09-02",
     author: "ClinicalSim Team",
-    readingTime: "6 min read",
+    readingTime: "3 min read",
     tags: ["ai", "simulation", "communication-training", "affirming-care", "pediatrics"],
   },
   {
@@ -89,27 +117,32 @@ const posts: Post[] = [
     date: "2026-03-04",
     dateModified: "2026-09-02",
     author: "ClinicalSim Team",
-    readingTime: "10 min read",
+    readingTime: "4 min read",
     tags: ["OSCE", "case design", "medical education", "assessment"],
   },
   {
     slug: "hospital-communication-training-roi",
     title: "Communication training ROI: build the case without inventing a number",
-    description: "Candello found communication factors in 40% of asserted malpractice cases. That measures exposure, not the return from a specific product. A credible business case keeps published risk, local cost, participation, and observed outcomes separate.",
+    description:
+      "This article has been consolidated into What the evidence says about communication training.",
     date: "2026-02-04",
     dateModified: "2026-09-02",
     author: "ClinicalSim Team",
-    readingTime: "5 min read",
+    readingTime: "2 min read",
     tags: ["ROI", "communication training", "hospital administration"],
+    redirectTo: "/insights/why-communication-training-matters",
   },
   {
     slug: "healthcare-simulation-technology-trends",
-    title: "Choosing a medical simulation method in 2026",
-    description: "Standardized patients, mannequins, screen-based cases, text, and voice each show different parts of clinical performance. Choose the method by the behavior learners need to practice or faculty need to assess.",
+    // Retitled 2026-09-03. The old title ("Choosing a medical simulation
+    // method in 2026") dated itself for no benefit: the post is a method
+    // selection guide, not a trends piece, and nothing in it is year-specific.
+    title: "How to choose a medical simulation method",
+    description: "Standardized patients, mannequins, screen-based cases, text, and voice each show different parts of clinical performance. Choose by the behavior learners need to practice or faculty need to assess, not by fidelity.",
     date: "2026-01-07",
-    dateModified: "2026-09-02",
+    dateModified: "2026-09-03",
     author: "ClinicalSim Team",
-    readingTime: "5 min read",
+    readingTime: "3 min read",
     tags: ["simulation", "technology trends", "medical education"],
   },
   {
@@ -130,25 +163,27 @@ const posts: Post[] = [
     date: "2025-12-03",
     dateModified: "2026-09-02",
     author: "ClinicalSim Team",
-    readingTime: "6 min read",
+    readingTime: "4 min read",
     tags: ["research", "AI-SP", "medical education", "HCI"],
   },
   {
     slug: "end-of-life-care-communication",
     title: "What end-of-life communication training can and cannot show",
-    description: "A systematic review found that end-of-life communication training can improve knowledge, self-efficacy, and simulated performance, while evidence for patient-level outcomes remains insufficient.",
+    description:
+      "This article has been consolidated into What the evidence says about communication training.",
     date: "2025-11-04",
     dateModified: "2026-09-02",
     author: "ClinicalSim Team",
-    readingTime: "5 min read",
+    readingTime: "2 min read",
     tags: ["end-of-life", "palliative care", "communication"],
+    redirectTo: "/insights/why-communication-training-matters",
   },
   {
     slug: "why-communication-training-matters",
     title: "What the evidence says about communication training",
-    description: "Communication factors appear in a large share of asserted malpractice cases, and several training studies report gains in knowledge, simulated performance, adherence, or selected service outcomes. The evidence does not show that one product will improve every outcome.",
+    description: "Candello found a communication factor in 40% of asserted malpractice cases, and Chung's review of 20 training studies rated the evidence very low to low quality. Neither supports an ROI headline. What a program can measure is its own learners, scored against a named framework.",
     date: "2025-08-12",
-    dateModified: "2026-09-02",
+    dateModified: "2026-09-03",
     author: "ClinicalSim Team",
     readingTime: "5 min read",
     tags: ["communication", "malpractice", "training gap"],
@@ -156,12 +191,14 @@ const posts: Post[] = [
   {
     slug: "scalability-problem-sp-programs",
     title: "Where standardized patient programs need more practice capacity",
-    description: "Standardized patient encounters require actor training, delivery time, space, and faculty support. AI patients can add repeatable voice-based practice between live encounters without replacing them.",
+    description:
+      "This article has been consolidated into the AI clinical simulation vs. standardized patients comparison.",
     date: "2025-09-09",
     dateModified: "2026-09-02",
     author: "ClinicalSim Team",
-    readingTime: "5 min read",
+    readingTime: "1 min read",
     tags: ["standardized patients", "cost", "scalability"],
+    redirectTo: "/compare/ai-clinical-simulation-vs-standardized-patients",
   },
 ]
 

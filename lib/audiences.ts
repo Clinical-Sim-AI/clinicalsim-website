@@ -1,6 +1,8 @@
 import type { BrandIconName } from "@/components/brand-icon"
 import type { Market } from "@/lib/positioning"
 import type { FaqItem } from "@/lib/types"
+import type { SolutionSlug } from "@/lib/solutions"
+import type { PostSlug } from "@/lib/posts"
 
 export interface PainPoint {
   headline: string
@@ -48,7 +50,20 @@ export interface Audience {
   valueProps: ValueProp[]
 
   // Cross-links
-  relevantSolutionSlugs: string[]
+  /**
+   * Solution pages this audience's primary use case maps to, most relevant
+   * first. Typed against the real slug union, not string: four audiences
+   * shipped pointing at "goals-of-care", "advance-care-planning", and
+   * "cognitive-assessments", none of which is a solution, and the layout's
+   * silent fallback rendered the same remediation block on three pages.
+   *
+   * Typed as a non-empty tuple because components/audience-page-layout.tsx
+   * renders the primary use-case block from entry [0]. A plain array permits
+   * [], which would typecheck and then throw at prerender and fail the whole
+   * build, so the emptiness check belongs in the type rather than only in
+   * lib/audiences.test.ts.
+   */
+  relevantSolutionSlugs: [SolutionSlug, ...SolutionSlug[]]
 
   /**
    * Optional FAQ block. When present it renders a Q/A section and emits
@@ -70,7 +85,7 @@ export interface Audience {
   ctaDescription: string
 
   // Related blog posts
-  relatedPostSlugs: string[]
+  relatedPostSlugs: PostSlug[]
 }
 
 const audiences: Audience[] = [
@@ -197,11 +212,7 @@ const audiences: Audience[] = [
       },
     ],
 
-    relevantSolutionSlugs: [
-      "goals-of-care",
-      "advance-care-planning",
-      "cognitive-assessments",
-    ],
+    relevantSolutionSlugs: ["longitudinal-curriculum", "remediation"],
 
     glossarySlugs: [
       "milestones",
@@ -215,10 +226,10 @@ const audiences: Audience[] = [
       "Talk with us about how structured practice and rubric-scored feedback could fit your communication remediation plan.",
 
     relatedPostSlugs: [
-      "scalability-problem-sp-programs",
       "osce-case-design-guide",
       "breaking-bad-news-practice-not-knowledge",
       "ai-affirming-care-communication-training",
+      "what-programs-lost-when-step-2-cs-disappeared",
     ],
   },
 
@@ -338,7 +349,7 @@ const audiences: Audience[] = [
       },
     ],
 
-    relevantSolutionSlugs: ["goals-of-care", "advance-care-planning"],
+    relevantSolutionSlugs: ["longitudinal-curriculum", "faculty-development"],
 
     glossarySlugs: [
       "dio",
@@ -352,8 +363,8 @@ const audiences: Audience[] = [
       "Talk with us about shared case standards, learner feedback, and the reporting rules your GME office needs.",
 
     relatedPostSlugs: [
-      "hospital-communication-training-roi",
-      "scalability-problem-sp-programs",
+      "why-communication-training-matters",
+      "faculty-hour-problem-communication-remediation",
     ],
   },
 
@@ -469,11 +480,7 @@ const audiences: Audience[] = [
       },
     ],
 
-    relevantSolutionSlugs: [
-      "goals-of-care",
-      "advance-care-planning",
-      "cognitive-assessments",
-    ],
+    relevantSolutionSlugs: ["debriefing", "longitudinal-curriculum"],
 
     glossarySlugs: [
       "sim-lab",
@@ -498,9 +505,9 @@ const audiences: Audience[] = [
       "Talk with us about how repeatable AI patient practice could extend your simulation center's communication training capacity.",
 
     relatedPostSlugs: [
-      "scalability-problem-sp-programs",
       "osce-case-design-guide",
       "what-learners-want-from-ai-sps",
+      "healthcare-simulation-technology-trends",
     ],
   },
 
@@ -617,7 +624,7 @@ const audiences: Audience[] = [
       },
     ],
 
-    relevantSolutionSlugs: ["goals-of-care", "advance-care-planning"],
+    relevantSolutionSlugs: ["remediation", "longitudinal-curriculum"],
 
     glossarySlugs: [
       "ccc",
@@ -917,7 +924,7 @@ const audiences: Audience[] = [
       "Give clinicians a safe place to practice high-stakes safety conversations",
     heroDescription:
       "Clinicians rehearse disclosure, goals of care, family meetings, and de-escalation with AI patients. Each private report shows strengths and areas for practice against a published framework or institution policy. Leaders review completion or aggregate patterns under institution-defined access rules. ClinicalSim does not monitor patient care or predict claims.",
-    lastUpdated: "2026-09-02",
+    lastUpdated: "2026-09-03",
 
     painPoints: [
       {
@@ -1043,7 +1050,7 @@ const audiences: Audience[] = [
 
     relatedPostSlugs: [
       "why-communication-training-matters",
-      "hospital-communication-training-roi",
+      "breaking-bad-news-practice-not-knowledge",
     ],
   },
   {
@@ -1066,7 +1073,7 @@ const audiences: Audience[] = [
       "Start with one unit, one standard, and one reporting question",
     heroDescription:
       "Nurses, clinicians, and patient facing staff practice by voice with AI patients. Each report scores the encounter against your approved service standards and cites the transcript. ClinicalSim does not predict HCAHPS, Qualtrics, readmission, or other patient outcomes.",
-    lastUpdated: "2026-09-01",
+    lastUpdated: "2026-09-03",
 
     painPoints: [
       {
@@ -1226,10 +1233,30 @@ const audiences: Audience[] = [
 
     relatedPostSlugs: [
       "why-communication-training-matters",
-      "hospital-communication-training-roi",
+      "building-rapport-clinical-encounter",
     ],
   },
 ]
+
+/**
+ * Audiences whose primary call to action is hand-written in
+ * components/audience-page-layout.tsx instead of being generated from
+ * relevantSolutionSlugs[0].
+ *
+ * The generated block renders the primary solution's title, heroDescription,
+ * and shortTitle verbatim, so two audiences sharing a primary would ship the
+ * same block on two indexable pages. That already happened once, when a
+ * `?? getSolutionBySlug("remediation")` fallback put the identical remediation
+ * block on three pages. lib/audiences.test.ts asserts the primaries are
+ * distinct across every audience that renders the generated block, which is why
+ * the exception list lives here rather than only in the layout: the layout and
+ * the test have to be reading the same list for the check to mean anything.
+ */
+export const BESPOKE_PRIMARY_CTA_AUDIENCE_SLUGS = ["program-directors"] as const
+
+export function rendersGeneratedPrimaryCta(audience: Audience): boolean {
+  return !BESPOKE_PRIMARY_CTA_AUDIENCE_SLUGS.some((slug) => slug === audience.slug)
+}
 
 export function getAllAudiences(): Audience[] {
   return audiences

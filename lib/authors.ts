@@ -74,21 +74,42 @@ const authors: Author[] = [
 ]
 
 /**
- * Site-relative path to an author's card on /about. The fragment is the author
- * `id`, which is already the card's DOM id. Visible links (e.g. the article
- * AuthorBio block) use this so they stay in sync with the entity URL below.
+ * Whether /about renders the team section. The author cards there are the only
+ * page on the site that gives a person a URL, so this flag decides whether an
+ * author has an entity URL at all.
+ *
+ * It is false deliberately (d30bb2b, 2026-09-01) and lib/about-page.test.ts
+ * locks the section out of the rendered HTML. It lives here rather than in the
+ * page because getAuthorPath and getAuthorUrl below have to answer to it: they
+ * returned `/about#lauren-rissman` regardless, so the site's one Person node
+ * and the visible "More about the team" link both pointed at a fragment with
+ * no element in the DOM.
  */
-export function getAuthorPath(id: string): string {
-  return `/about#${id}`
+export const TEAM_SECTION_PUBLISHED = false
+
+/**
+ * Site-relative path to an author's card on /about, or undefined when the team
+ * section is unpublished and the card therefore does not exist. Visible links
+ * (e.g. the article AuthorBio block) use this and must render nothing when it
+ * is undefined, rather than linking to a dead anchor.
+ */
+export function getAuthorPath(id: string): string | undefined {
+  return TEAM_SECTION_PUBLISHED ? `/about#${id}` : undefined
 }
 
 /**
  * Canonical entity URL for an author: their card on /about. Article author
  * schema, the /about Person schema, and the visible bio block all point here so
  * a crawler resolves the post author and the /about person to one entity.
+ *
+ * Undefined while the team section is unpublished. A Person node then carries
+ * `name`, `jobTitle`, and `description` with no `@id` or `url`, which is a
+ * weaker signal than a resolvable entity but an honest one. A fragment URL that
+ * resolves to nothing is worse: it asserts a page that is not there.
  */
-export function getAuthorUrl(id: string): string {
-  return `https://clinicalsim.ai${getAuthorPath(id)}`
+export function getAuthorUrl(id: string): string | undefined {
+  const path = getAuthorPath(id)
+  return path ? `https://clinicalsim.ai${path}` : undefined
 }
 
 export function getAuthorById(id: string): Author | undefined {

@@ -6,6 +6,7 @@ import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { WaveformBand } from "@/components/waveform-band"
 import type { FaqItem } from "@/lib/types"
+import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
 export const metadata: Metadata = {
   title: "Trust and data handling",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   },
 }
 
-const LAST_UPDATED = "2026-08-10"
+const LAST_UPDATED = PAGE_DATE_MODIFIED.trust
 
 const trustFaqs: FaqItem[] = [
   {

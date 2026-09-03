@@ -172,8 +172,14 @@ export default function MethodologyPage() {
                   "@type": "Person",
                   // Same @id as the /about card and article bylines, so this
                   // Person resolves to the one entity.
-                  "@id": getAuthorUrl(author.id),
-                  url: getAuthorUrl(author.id),
+                  // Omitted while the /about team section is unpublished:
+                  // there is then no page for this person to resolve to.
+                  ...(getAuthorUrl(author.id)
+                    ? {
+                        "@id": getAuthorUrl(author.id),
+                        url: getAuthorUrl(author.id),
+                      }
+                    : {}),
                   name: author.name,
                   honorificSuffix: author.credentials,
                   jobTitle: author.title,

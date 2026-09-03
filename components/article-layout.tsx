@@ -5,6 +5,7 @@ import { AuthorByline } from "@/components/author-byline"
 import { AuthorBio } from "@/components/author-bio"
 import { getAuthorById, getAuthorUrl, TEAM_AUTHOR_ID } from "@/lib/authors"
 import { Waveform } from "@/components/waveform"
+import { ORGANIZATION_LOGO } from "@/lib/positioning"
 import { formatIsoDay } from "@/lib/utils"
 import type { Post } from "@/lib/posts"
 
@@ -12,13 +13,16 @@ function buildAuthorSchema(post: Post) {
   const author = post.authorId ? getAuthorById(post.authorId) : undefined
 
   if (author && author.id !== TEAM_AUTHOR_ID) {
+    // Undefined while the /about team section is unpublished, in which case the
+    // person has no page anywhere on the site. Both keys are then omitted:
+    // pointing @id and url at /about#<id> asserted a fragment with no element
+    // in the DOM, which is a broken entity reference rather than a weak one.
     const profileUrl = getAuthorUrl(author.id)
     return {
       "@type": "Person" as const,
       // Matches the @id on this person's /about card so a crawler resolves the
       // post author and the team page entry to a single entity.
-      "@id": profileUrl,
-      url: profileUrl,
+      ...(profileUrl ? { "@id": profileUrl, url: profileUrl } : {}),
       name: author.name,
       description: author.bio,
       ...(author.credentials ? { honorificSuffix: author.credentials } : {}),
@@ -79,7 +83,7 @@ export function ArticleLayout({
             url: "https://clinicalsim.ai",
             logo: {
               "@type": "ImageObject",
-              url: "https://clinicalsim.ai/logo.svg",
+              ...ORGANIZATION_LOGO,
             },
           },
           image: "https://clinicalsim.ai/og-image.png",

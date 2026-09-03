@@ -28,6 +28,7 @@ next-env.d.ts
 
 # local tooling
 .claude/
+.pnpm-store/
 .playwright-mcp/
 test-results/
 playwright-report/
@@ -38,3 +39,7 @@ AGENTS.md
 
 # macOS
 .DS_Store
+
+# Stray SQLite session file: some tooling opens a ":memory:" database and
+# leaves a file named after the literal path in the repo root.
+:memory:*

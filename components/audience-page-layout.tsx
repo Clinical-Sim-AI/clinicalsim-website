@@ -6,7 +6,7 @@ import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { GlossaryTermLinks } from "@/components/glossary-term-links"
-import { type Audience } from "@/lib/audiences"
+import { rendersGeneratedPrimaryCta, type Audience } from "@/lib/audiences"
 import { getPostBySlug } from "@/lib/posts"
 import { getSolutionBySlug } from "@/lib/solutions"
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
@@ -31,12 +31,12 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
     .map((slug) => getPostBySlug(slug))
     .filter(Boolean)
 
-  // The audience's primary use case, if it maps to a real solution page.
-  // Falls back to the remediation solution to preserve existing behavior.
-  const primarySolution =
-    audience.relevantSolutionSlugs
-      .map((slug) => getSolutionBySlug(slug))
-      .find(Boolean) ?? getSolutionBySlug("remediation")!
+  // The audience's primary use case. relevantSolutionSlugs is typed against the
+  // real slug union and guarded by lib/audiences.test.ts, so the first entry
+  // always resolves. This used to fall back to remediation whenever no slug
+  // matched, which is how three audiences (a DIO page, a sim-center page, and a
+  // CCC page) all shipped rendering the identical remediation block.
+  const primarySolution = getSolutionBySlug(audience.relevantSolutionSlugs[0])!
 
   // The `as const` assertions are load-bearing: without them schema-dts widens
   // "@type" to string and WithContext<Thing> fails to typecheck.
@@ -262,8 +262,11 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
       <SectionDivider variant="curve" color="cloud" />
 
-      {/* Practice tool CTA for program directors only */}
-      {audience.slug === "program-directors" && (
+      {/* Hand-written CTA for the audiences that opt out of the generated
+          primary-solution block (see BESPOKE_PRIMARY_CTA_AUDIENCE_SLUGS).
+          The two branches are complements, so every audience renders
+          exactly one CTA. */}
+      {!rendersGeneratedPrimaryCta(audience) && (
         <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-cs-cloud">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-cs-electric/20 transition-all duration-300">
@@ -294,7 +297,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
       )}
 
       {/* Primary use-case CTA for all other audiences */}
-      {audience.slug !== "program-directors" && (
+      {rendersGeneratedPrimaryCta(audience) && (
         <section className="px-6 pt-8 md:pt-10 pb-4 md:pb-6 bg-cs-cloud">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">

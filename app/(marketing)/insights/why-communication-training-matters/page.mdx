@@ -1,42 +1,72 @@
 import { ArticleLayout } from "@/components/article-layout"
 import { getPostBySlug, getPostMetadata } from "@/lib/posts"
+import { KeyTakeaway } from "@/components/key-takeaway"
 import { ReferencesSection } from "@/components/references-section"
 
 export const metadata = getPostMetadata("why-communication-training-matters")
 
 <ArticleLayout post={getPostBySlug("why-communication-training-matters")}>
 
-Communication factors appear in a large share of asserted malpractice cases, and several training studies report gains in knowledge or simulated performance. Those findings do not show that one training product will improve every outcome.
+<KeyTakeaway stat="40%" statSource="of asserted malpractice cases involved a communication factor (Candello, 2014 to 2024)">
+Communication failures appear in 40% of asserted malpractice cases in Candello's national database. That figure describes the exposure a health system carries. It does not establish a return on any particular training program.
+</KeyTakeaway>
 
-This page separates the questions that often get bundled together: where communication appears in published risk data, what training studies measured, and what a program can reasonably track.
+Communication factors appear in a large share of asserted malpractice cases, and several training studies report gains in knowledge or in simulated performance. Neither finding shows that one product will improve every outcome, and a business case gets weaker, not stronger, when the two are welded together into a single number.
 
-## Malpractice data describes exposure, not product impact
+This page keeps three questions apart: where communication shows up in published risk data, what the training studies actually measured, and what a program can observe about its own learners without waiting for a trial.
 
-Candello found communication factors in 40% of asserted malpractice cases from 2014 through 2024. The report describes patterns in claims data. It does not show that a particular course, simulation method, or product would have prevented those claims.
+## Malpractice data measures exposure, not product impact
 
-Hickson and colleagues found that malpractice claims clustered among a small group of physicians and that unsolicited patient complaints helped identify higher-risk physicians. That is an association in the study population, not proof that communication alone caused a claim.
+Candello analyzed asserted medical professional liability cases from 2014 through 2024 and found a communication factor in 40% of them, up from 30% in its earlier 2009 through 2013 cohort. Communication-related cases also had 39% greater odds of closing with an indemnity payment.
 
-[Read how to build a communication training business case without inventing an ROI](/insights/hospital-communication-training-roi).
+Those figures come from claims data, not from a trial of communication training. They establish that communication failures are common in liability data and that the cost of them lands well outside the education budget. They say nothing about whether a specific course, simulation method, or product would have changed any individual case.
 
-## Training outcomes depend on the intervention and measure
+Hickson and colleagues found that malpractice claims clustered among a small group of physicians, and that unsolicited patient complaints helped identify the higher-risk ones. That is an association inside their study population. It is not proof that communication alone caused a claim, and it is not a screening tool a program should turn on its own faculty.
 
-Communication training studies do not all test the same intervention. A lecture may measure knowledge. A workshop may measure confidence. A simulation may measure observed behavior in a simulated encounter. A multi-part safety program may combine training with process and policy changes.
+## What the training studies measured
 
-Results should stay attached to that design. Improvement in a simulated encounter does not establish an effect on patient outcomes, HCAHPS, readmissions, or malpractice claims.
+Communication training studies do not all test the same thing. A lecture measures knowledge. A workshop measures confidence. A simulation measures observed behavior in a simulated encounter. A multi-part safety program bundles training with process and policy change, then reports the bundle.
 
-[Review the evidence for repeated breaking bad news practice](/insights/breaking-bad-news-practice-not-knowledge).
+Chung and colleagues reviewed 20 studies of end-of-life communication training, six of them randomized trials. Against usual teaching, training was associated with better self-efficacy, knowledge, and communication scores in standardized patient encounters. The authors rated that evidence very low to low quality and found too little of it to say whether training changed patient-level outcomes.
 
-## Programs can measure what training is designed to change
+That is the honest position and it is worth stating plainly, because the temptation runs the other way. Programs have real support for structured communication training. They do not have support for claiming a training tool improved clinical outcomes, and a result from a simulated encounter stays a result from a simulated encounter.
 
-A communication curriculum can track participation, repeated attempts, rubric scores, transcript evidence, and faculty review. Programs can also define local measures before launch and decide who can interpret them.
+Bernacki and Block explain why the skill resists being reduced to one score. In their review of serious illness communication, a goals-of-care conversation asks the clinician to share prognosis, learn how the patient wants decisions made, understand what they fear and what they want, discuss tradeoffs, and find out who else should be in the room. Five tasks, in one conversation, while a family is absorbing frightening news. A framework helps a clinician remember the tasks. Remembering them is not the same as carrying them out at the bedside.
 
-ClinicalSim scores simulated conversations against published frameworks or the institution's own rubric and quotes the participant's own words under every score. Participants see their own feedback, and authorized faculty can review individual or cohort records under the program's access rules. The report is one source of formative evidence, and faculty retain authority over coaching, remediation, progression, and entrustment decisions.
+## A single ROI number is false precision
 
-[Read the ClinicalSim methodology](/methodology).
+A hospital cannot calculate communication training ROI from a national claim percentage. The local case depends on who trains, which conversations they practice, how often they practice, and which outcomes the institution can measure without counting the same dollar twice.
+
+The same discipline applies to standardized patient cost. One national dollar figure per encounter hides differences in actor wages, room use, faculty support, and program design, which is why we publish [the hourly SP rate from two university rate cards](/compare/ai-clinical-simulation-vs-standardized-patients) and decline to roll it up into a cost per encounter.
+
+Keep the inputs separate and label internal estimates as internal. A finance or quality team can inspect a model built that way. It cannot inspect a headline.
+
+## What a program can observe about its own learners
+
+This part needs no trial. A program can document who practiced, which cases they completed, how they performed against a named framework, what evidence sits under each score, and how all of it moved across repeated attempts.
+
+We publish four unedited encounters so that claim is inspectable rather than asserted. In one, a pediatric hematology-oncology fellow delivers a new leukemia diagnosis to a mother in the emergency department across seven minutes and 25 conversational turns. Scored against SPIKES, the encounter earned 25 out of 30. The total is not the interesting part. Assessing perception scored 5 out of 5, largely on one line: "before I share with you a bit about what I know now, I would love to hear a bit about what you've been seeing and what you understand." The very next step, obtaining invitation, scored 3 out of 5, because the fellow signposted what was coming but never asked the mother how much detail she wanted or in what order.
+
+Same conversation, two adjacent steps of the same framework, five and three. A single composite score hides that, and the three is the half that tells the fellow what to work on next.
+
+A [vaccine hesitancy encounter](/examples/pediatric-vaccine-hesitancy-counseling) in the same set splits the other way. Scored against SEGUE, the resident earned 5 out of 5 on understanding the parent's perspective, having drawn out both the worry and where it came from, and 2 out of 5 on ending the encounter, in under seven minutes. The concern was surfaced. The close was left loose.
+
+That is measurable now, in a program's own learners, against a standard the program already holds. Nothing in it depends on a claims database.
+
+## Define the local measures before launch
+
+Claims, patient experience scores, and readmissions matter to an institution. A training program should not claim it moved them without a study designed to test the question.
+
+So decide up front which outcomes are in scope, who may interpret them, and what the reports can and cannot be used for. ClinicalSim scores simulated conversations against published frameworks or the institution's own rubric and quotes the participant's own words under every score. Participants see their own feedback, and authorized faculty can review individual or cohort records under the program's access rules. The report is one source of formative evidence, and faculty keep authority over coaching, remediation, progression, and entrustment decisions.
+
+[Read the ClinicalSim methodology](/methodology), or [review the evidence for repeated breaking bad news practice](/insights/breaking-bad-news-practice-not-knowledge).
 
 <ReferencesSection references={[
-  { title: "2025 Benchmarking Report: Malpractice Risks from Communication Failures", source: "Candello, a division of CRICO", year: "2025" },
+  { authors: "Candello", title: "2025 Benchmarking Report: Malpractice Risks from Communication Failures", source: "Candello, a division of CRICO", year: "2025", url: "https://www.candello.com/About/Press-Release-and-News/2025-Benchmarking-Report-Press-Release" },
+  { authors: "Candello", title: "Malpractice Risks in Communication Failures", source: "Candello, a division of CRICO", year: "2015", url: "https://www.candello.com/Insights/Candello-Reports/Communications-Report" },
   { authors: "Hickson GB, Federspiel CF, Pichert JW, et al.", title: "Patient complaints and malpractice risk", source: "JAMA", year: "2002" },
+  { authors: "Chung HO, Oczkowski SJW, Hanvey L, Mbuagbaw L, You JJ", title: "Educational interventions to train healthcare professionals in end-of-life communication: a systematic review and meta-analysis", source: "BMC Medical Education", year: "2016", doi: "10.1186/s12909-016-0653-x" },
+  { authors: "Bernacki RE, Block SD", title: "Communication about serious illness care goals: a review and synthesis of best practices", source: "JAMA Internal Medicine", year: "2014", doi: "10.1001/jamainternmed.2014.5271" },
 ]} />
 
 </ArticleLayout>

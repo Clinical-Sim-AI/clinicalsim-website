@@ -13,6 +13,8 @@ export function AuthorBio({ authorId }: { authorId?: string }) {
 
   if (!author || author.id === TEAM_AUTHOR_ID) return null
 
+  const authorPath = getAuthorPath(author.id)
+
   return (
     <aside className="mt-14 pt-8 border-t border-cs-gray/50">
       <div className="flex items-start gap-4">
@@ -34,12 +36,18 @@ export function AuthorBio({ authorId }: { authorId?: string }) {
           <p className="mt-3 text-sm text-cs-dark-blue/75 font-light leading-relaxed">
             {author.bio}
           </p>
-          <Link
-            href={getAuthorPath(author.id)}
-            className="mt-4 inline-block text-sm font-medium text-cs-dark-blue underline underline-offset-4 decoration-cs-gray hover:decoration-cs-dark-blue transition-colors"
-          >
-            More about the team
-          </Link>
+          {/* Omitted while the /about team section is unpublished. The link
+              pointed at /about#<id>, an anchor with no element in the DOM, so a
+              reader who clicked it landed at the top of /about with nothing
+              about this person on the page. */}
+          {authorPath && (
+            <Link
+              href={authorPath}
+              className="mt-4 inline-block text-sm font-medium text-cs-dark-blue underline underline-offset-4 decoration-cs-gray hover:decoration-cs-dark-blue transition-colors"
+            >
+              More about the team
+            </Link>
+          )}
         </div>
       </div>
     </aside>

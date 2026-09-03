@@ -1,5 +1,6 @@
 import type { BrandIconName } from "@/components/brand-icon"
 import type { Market } from "@/lib/positioning"
+import type { PostSlug } from "@/lib/posts"
 
 export interface SolutionStage {
   /** Short label for the stage, e.g. "PGY-1", "M1/M2", "Giving feedback" */
@@ -47,8 +48,31 @@ export interface SolutionClaimBoundary {
   note?: string
 }
 
+/**
+ * Every slug that resolves to a real solution page.
+ *
+ * Hand-listed on purpose, and `Solution.slug` is typed against it, so adding a
+ * solution without extending this union is a typecheck error rather than a
+ * silent gap. Cross-registry references are typed against this too (see
+ * Audience.relevantSolutionSlugs): four audiences shipped pointing at
+ * "goals-of-care", "advance-care-planning", and "cognitive-assessments", none
+ * of which is a solution, and the fallback in
+ * components/audience-page-layout.tsx rendered the identical remediation block
+ * on three different indexable pages instead of failing. lib/solutions.test.ts
+ * checks this union and the registry against each other in both directions.
+ */
+export type SolutionSlug =
+  | "longitudinal-curriculum"
+  | "undergraduate-medical-education"
+  | "faculty-development"
+  | "patient-experience"
+  | "debriefing"
+  | "informed-consent"
+  | "error-disclosure"
+  | "remediation"
+
 export interface Solution {
-  slug: string
+  slug: SolutionSlug
   market: Market
   title: string
   shortTitle: string
@@ -119,7 +143,7 @@ export interface Solution {
   claimBoundary?: SolutionClaimBoundary
 
   faqs?: SolutionFaq[]
-  relatedPostSlugs?: string[]
+  relatedPostSlugs?: PostSlug[]
   /**
    * Glossary slugs to link from this page. The only inbound path to a term page
    * used to be the /glossary hub, so authority reaching a solution page stopped
@@ -423,7 +447,7 @@ const solutions: Solution[] = [
     relatedPostSlugs: [
       "eol-communication-training-measurement-gap",
       "why-communication-training-matters",
-      "end-of-life-care-communication",
+      "breaking-bad-news-practice-not-knowledge",
     ],
     glossarySlugs: [
       "debriefing",

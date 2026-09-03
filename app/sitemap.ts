@@ -28,13 +28,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/about`,
-      lastModified: new Date("2026-09-02"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.about),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/contact`,
-      lastModified: new Date("2026-09-02"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.contact),
       changeFrequency: "monthly",
       priority: 0.7,
     },
@@ -46,13 +46,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/solutions`,
-      lastModified: new Date("2026-09-02"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.solutions),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/audiences`,
-      lastModified: new Date("2026-09-02"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.audiences),
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -88,7 +88,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/trust`,
-      lastModified: new Date("2026-08-10"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.trust),
       changeFrequency: "monthly",
       priority: 0.7,
     },
@@ -100,19 +100,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/medical-educator-faq`,
-      lastModified: new Date("2026-08-10"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.medicalEducatorFaq),
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${BASE_URL}/compare`,
-      lastModified: new Date("2026-08-10"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.compare),
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${BASE_URL}/examples`,
-      lastModified: new Date("2026-08-10"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.examples),
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -134,7 +134,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // The route still builds; restore this entry when it goes public.
     {
       url: `${BASE_URL}/privacy`,
-      lastModified: new Date("2026-03-16"),
+      lastModified: new Date(PAGE_DATE_MODIFIED.privacy),
       changeFrequency: "yearly",
       priority: 0.3,
     },

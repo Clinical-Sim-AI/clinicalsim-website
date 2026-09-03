@@ -7,17 +7,6 @@
     text-wrap: balance;
   }
 
-  @keyframes fade-slide-out {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-  }
-
   @keyframes fade-slide-in {
     from {
       opacity: 0;
@@ -27,14 +16,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-  .rotating-text-exit {
-    animation: fade-slide-out 0.2s ease-in forwards;
-  }
-
-  .rotating-text-enter {
-    animation: fade-slide-in 0.2s ease-out forwards;
   }
 
   /* Dropdown menu enter animation (site header) */
@@ -126,8 +107,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .rotating-text-exit,
-    .rotating-text-enter,
     .dropdown-enter,
     .wave-draw {
       animation: none;

@@ -3,9 +3,8 @@ import { join } from "node:path"
 import { describe, expect, it } from "vitest"
 import { getAllComparisons } from "./comparisons"
 import { getAllExamples } from "./examples"
-import { getAllPosts, getPostBySlug } from "./posts"
+import { getAllPosts } from "./posts"
 import { getAllSolutions } from "./solutions"
-import { getAllAudiences } from "./audiences"
 import { getAllHelpArticles } from "./help-articles"
 
 /** Root layout template: `%s | ClinicalSim.ai` (app/layout.tsx). */
@@ -124,36 +123,5 @@ describe("page titles", () => {
         `${solution.slug} renders a ${rendered.length} char title: ${rendered}`
       ).toBeLessThanOrEqual(AUDIT_LIMIT)
     }
-  })
-})
-
-describe("related post references", () => {
-  it("never points a related-posts list at a redirected post", () => {
-    // getAllPosts() filters `redirectTo` but getPostBySlug() does not, so a stale
-    // slug in one of these arrays renders a card that 301s on click.
-    const sources = [
-      ...getAllAudiences().map((a) => ({ kind: "audience", slug: a.slug, related: a.relatedPostSlugs })),
-      ...getAllSolutions().map((s) => ({ kind: "solution", slug: s.slug, related: s.relatedPostSlugs })),
-      ...getAllComparisons().map((c) => ({ kind: "comparison", slug: c.slug, related: c.relatedPostSlugs })),
-    ]
-
-    for (const source of sources) {
-      for (const slug of source.related ?? []) {
-        const post = getPostBySlug(slug)
-        expect(post, `${source.kind} ${source.slug} references unknown post ${slug}`).toBeDefined()
-        expect(
-          post!.redirectTo,
-          `${source.kind} ${source.slug} links redirected post ${slug}`
-        ).toBeUndefined()
-      }
-    }
-  })
-
-  it("still has a redirected post in the registry to guard against", () => {
-    // If this ever goes away the check above becomes vacuous. getAllPosts() hides
-    // redirected posts, so reach for the unfiltered lookup.
-    const redirected = getPostBySlug("breaking-bad-news-medical-training")
-    expect(redirected?.redirectTo).toBe("/insights/breaking-bad-news-practice-not-knowledge")
-    expect(getAllPosts().some((p) => p.slug === redirected!.slug)).toBe(false)
   })
 })

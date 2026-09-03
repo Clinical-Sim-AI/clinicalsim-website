@@ -6,7 +6,7 @@ export const metadata = getPostMetadata("what-learners-want-from-ai-sps")
 
 <ArticleLayout post={getPostBySlug("what-learners-want-from-ai-sps")}>
 
-Researchers from CUHK Shenzhen, Nankai University, and the MIT Media Lab interviewed 12 clinical-year medical students and ran three codesign workshops. The students named six requirements for an AI patient they would use. Their answers put feedback, case quality, and faculty involvement ahead of novelty.
+Researchers from CUHK Shenzhen, Nankai University, and the MIT Media Lab interviewed 12 clinical-year medical students and ran three codesign workshops. The students named six requirements for an AI patient they would actually use, and none of the six is realism.
 
 The sample is small and qualitative, so it should guide design questions rather than stand in for the preferences of all medical students. The authors state the headline finding plainly:
 
@@ -14,35 +14,39 @@ The sample is small and qualitative, so it should guide design questions rather 
 >
 > Gao Z, Zhu G, Luo H, et al., Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems, 2026
 
-## Learners want the mode to match the goal
+That sentence is worth sitting with, because most of the attention in this category has gone the other way. The race has been toward patients that sound more human. These students, who are the people expected to use the thing, asked instead for cases that state their purpose, reveal information for clinical reasons, and produce a review they can act on.
 
-Students wanted different modes for exam preparation, open practice, and scaffolded skill development. A single encounter design cannot serve each job equally well.
+## What the six requirements amount to
 
-The program should tell learners whether they are exploring, practicing against a standard, or completing an assessment. Difficulty and feedback can then match that purpose.
+Students wanted the mode to match the goal. Exam preparation, open practice, and scaffolded skill development are three different jobs, and a single encounter design cannot serve each one equally well. A learner should be told whether they are exploring, practicing against a standard, or being assessed, because difficulty and feedback should follow from that.
 
-## Information rules need to be clear
+They wanted the information rules to be legible. Visible findings should appear without a special prompt, other information should follow an appropriate clinical question, and the rule should hold across encounters. That is a case design problem more than a language model problem. The patient reveals something because of the clinical interaction, not because the learner guessed the right phrase.
 
-Students wanted visible findings to appear without a special prompt and other information to follow appropriate clinical questions. They also wanted those rules to stay consistent across encounters.
+They wanted control over difficulty and over how much help arrives mid-encounter, with the structured review saved for afterward. They wanted patient variation in age, emotional response, cultural background, and health beliefs, but tied to a learning objective: variation earns its place when it changes the behavior the learner has to demonstrate, and random novelty just makes cases less comparable.
 
-That is a case design issue, not just a language model issue. The patient should reveal information because of the clinical interaction, not because the learner guessed the right phrase.
+And they wanted faculty in the loop. The researchers position AI patients as a complement to human standardized patients, who remain necessary for embodied interaction, live coaching, and high-stakes assessment.
 
-## Voice needs a fallback
+## What "instructional usability" looks like in a real report
 
-Students expected voice to fail sometimes and asked for a text fallback, keyword shortcuts, and hints. Accessibility and recovery matter because a technical error should not become evidence about clinical performance.
+The abstract phrase is easier to judge against something concrete, so here is [one of the encounters we publish in full](/examples/informed-consent-discussion-for-central-venous-catheter-placement-in-the-picu).
 
-## Learners want control over difficulty and feedback
+A pediatric critical care fellow takes a mother through consent for a central venous catheter in her five-year-old son. It runs fifteen minutes across 44 conversational turns, the longest encounter in the set. Scored against the six elements of an AMA-aligned consent discussion, it totals 22 out of 30.
 
-The workshops produced requests for adjustable challenge, limited cues during an encounter, structured review afterward, and links from errors to learning resources. These requests frame AI patients as practice tools rather than automatic judges.
+The fellow scored 5 out of 5 on disclosing risks, benefits, and outcomes, and 5 out of 5 on confirming understanding. On assessing decision-making capacity, the first element, they scored 2 out of 5. The report is specific about why: this is a surrogate consent conversation, and the fellow never established the mother's role as decision maker, never checked what she already knew, and never asked how much detail she wanted. They answered her questions well as they came. They never set up the conversation.
 
-## Patient variation should serve a learning objective
+That 2 is the whole value of the report. A learner who reads "22 out of 30" learns nothing. A learner who reads that they are strong at explaining and weak at opening has one thing to practice, and can go do it again that afternoon. This is what the students were asking for, and it has nothing to do with how convincing the voice on the other end sounds.
 
-Students wanted to practice with different ages, emotional responses, cultural backgrounds, and health beliefs. Variation is useful when it changes the behavior a learner must demonstrate. Random novelty can make cases less comparable without improving the lesson.
+## One requirement we do not meet
 
-## Faculty involvement still matters
+The students asked for a text fallback, keyword shortcuts, and hints, on the reasonable grounds that voice recognition fails and a technical error should never become evidence about clinical performance.
 
-The researchers positioned AI patients as a complement to human standardized patients. AI patients can add repeatable practice and configurable cases. Standardized patients and faculty remain important for embodied interaction, live coaching, and high-stakes assessment.
+ClinicalSim is audio-only, deliberately. Voice practice surfaces pacing, silence, word choice, and how someone responds to emotion in real time, and a typed version of the same encounter does not test the skill we are trying to measure. That is a defensible trade, but it is a trade, and this study is a fair place to say so rather than quietly skipping the requirement we do not satisfy.
 
-For ClinicalSim, the practical test is straightforward: does each case state its objective, score the conversation against a named framework or the program's own rubric, and quote the learner's own words under every score so a faculty member can inspect it?
+## The test worth holding a case to
+
+Every design decision above collapses into three questions a program can ask about any AI patient, ours included. Does the case state its objective? Is the conversation scored against a named framework or the program's own rubric? Is the learner's own language quoted under every score, so a faculty member can check the rating instead of trusting it?
+
+A case that fails any of the three is entertainment, however good the voice is.
 
 <ReferencesSection references={[
   { authors: "Gao Z, Zhu G, Luo H, Pan DP, Tang H, Zhang B, Pei J, Li J, Wang B", title: "\"It Talks Like a Patient, But Feels Different\": Co-Designing AI Standardized Patients with Medical Learners", source: "Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems", year: "2026", doi: "10.1145/3772363.3798336" },

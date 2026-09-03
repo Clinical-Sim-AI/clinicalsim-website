@@ -10,6 +10,7 @@ import { FeedbackReport } from "@/components/feedback/feedback-report"
 import { ExampleAudioPlayer } from "@/components/feedback/example-audio-player"
 import { ConversationTranscript } from "@/components/feedback/conversation-transcript"
 import { Waveform } from "@/components/waveform"
+import { AudioObjectSchema } from "@/components/audio-object-schema"
 import { getAllExamples, getExampleBySlug } from "@/lib/examples"
 
 type Props = { params: Promise<{ slug: string }> }
@@ -109,6 +110,18 @@ export default async function ExampleCasePage({ params }: Props) {
             ],
           },
         ]}
+      />
+      {/* The recording is the page's primary asset and nothing in the markup
+          said so. Google has no audio rich result, so this is for the answer
+          engines rather than the SERP. */}
+      <AudioObjectSchema
+        name={`${example.title}: unedited ClinicalSim encounter`}
+        description={getExampleDescription(example.slug, example.title)}
+        contentUrl={`https://clinicalsim.ai${example.audio.src}`}
+        embedUrl={`https://clinicalsim.ai/examples/${example.slug}`}
+        uploadDate={example.recordedAt}
+        durationSeconds={example.audio.durationSeconds ?? example.durationSeconds}
+        transcript={example.transcript}
       />
 
       {/* Hero */}

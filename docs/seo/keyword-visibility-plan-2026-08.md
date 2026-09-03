@@ -425,7 +425,7 @@ of ChatGPT answers on 2026-08-20. None of it is a claim that belongs on the site
 - `clinicalsim.ai` is the fourth most cited domain across the whole non-branded question set with
   31 citations, behind only pmc.ncbi.nlm.nih.gov, arxiv.org, and en.wikipedia.org.
 
-Two things follow for this plan.
+Three things follow for this plan.
 
 **The day 90 decision rule in section 9 needs a second reading.** It says that if the KD 0 to 12
 targets have not moved, the constraint is authority rather than content. That inference was drawn
@@ -440,6 +440,40 @@ pages are cited at all, and the two named in the report are `/` (cited in 20 ans
 pages and the FAQ blocks shipped in 6.1 and 6.5 are the response to this in both channels, and the
 next AI visibility pull is the check on whether a term page or a solution page starts getting
 cited on its own.
+
+**Keep the two channels separate, and keep this report in its lane.** Added 2026-09-03, from
+Google's guidance on generative AI features in Search, which cautions against third-party tools
+that claim access to Google's internal ranking signals. Nothing above is that, and nothing above
+should be read as that. The Brand Performance report is a legitimate observation of one real
+surface: it sampled ChatGPT's answers on a date and counted what they said. That is a measurement
+of an output, not a view into how Google ranks anything, and the 21% share of voice figure carries
+no information about Google whatsoever.
+
+The Google-side channel is Search Console's Generative AI performance report, which is first party
+and is the only place a Google AI Overviews or AI Mode number should come from. This plan named no
+Google-side AI channel at all, which was the gap.
+
+**The eligibility setting is on, and it was already on. Checked by Ben on 2026-09-03; nothing was
+changed.** Google's guidance states that a site must be included in Search generative AI features
+in Search Console to be eligible to appear in them, which raised the possibility that every
+content inference in this document sat downstream of an unexamined checkbox. It does not. Recorded
+here in full so the next person does not spend an hour looking for it:
+
+- Path: **Settings → AI controls → Search generative AI**.
+- Property: `sc-domain:clinicalsim.ai`, a domain property added 2026-06-29, Ben verified owner.
+- Selected: "Include my site's links and content in Search generative AI features", carrying a
+  **Default** tag.
+- Save was greyed out, so nothing was sitting there unsaved.
+
+Include is Google's default and inheritance flows down to child properties, which is why nobody
+had to touch it and why no earlier document records checking it. Absence of a record here was not
+evidence of a problem. With the gate confirmed open, the remaining levers are the ordinary ones:
+indexability, and the non-commodity content, media, and named authorship that Google's guidance
+weights. Nothing about eligibility is outstanding.
+
+So when a number gets quoted in a meeting, name the channel with it. Semrush measures ChatGPT,
+Search Console measures Google, and neither one substitutes for the other. That is the same error
+the day 90 re-reading above catches in section 9, applied to the tools rather than the inference.
 
 Corroborations, none of which unblock anything:
 

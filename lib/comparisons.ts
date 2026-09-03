@@ -1,3 +1,5 @@
+import type { PostSlug } from "@/lib/posts"
+
 export interface ComparisonRow {
   dimension: string
   optionA: string
@@ -22,7 +24,7 @@ export interface Comparison {
   rows: ComparisonRow[]
   lastUpdated?: string
   relatedSolutionSlugs?: string[]
-  relatedPostSlugs?: string[]
+  relatedPostSlugs?: PostSlug[]
   faqs?: ComparisonFaq[]
 }
 
@@ -95,12 +97,12 @@ const comparisons: Comparison[] = [
           "Live coaching and high-stakes or summative assessment, including OSCEs.",
       },
     ],
-    lastUpdated: "2026-08-31",
+    lastUpdated: "2026-09-03",
     relatedSolutionSlugs: ["remediation", "undergraduate-medical-education"],
     relatedPostSlugs: [
-      "scalability-problem-sp-programs",
       "osce-case-design-guide",
       "what-learners-want-from-ai-sps",
+      "healthcare-simulation-technology-trends",
     ],
     faqs: [
       {
@@ -113,6 +115,22 @@ const comparisons: Comparison[] = [
         question: "What does standardized patient time cost to run?",
         answer:
           "Two published university rate cards put fully loaded standardized patient time at roughly $123 to $177 an hour (UCLA and the University of Utah rate cards, as published at August 2026). For a 60-resident program that works out to roughly $27,000 to $68,000 a year, depending on how many encounters each resident gets. Read that as the SP-time component rather than the whole bill: faculty time, space, case development, and local geography sit on top of it and vary too much between programs to total honestly.",
+      },
+      {
+        // Carried over from the retired /insights/scalability-problem-sp-programs
+        // post (consolidated 2026-09-03), which redirects here. The refusal to
+        // publish a per-encounter total is the point of the answer, not a
+        // hedge on it: see the SP cost note above and CLAUDE.md.
+        question:
+          "Why does ClinicalSim not publish a cost per standardized patient encounter?",
+        answer:
+          "Because there is no defensible national figure to publish. Programs pay different actor wages and use different amounts of training, faculty time, space, and administrative support, so a per-encounter range that hides those components is not comparable between institutions. The published hourly rate above is the SP-time component and stops there deliberately. Bosse and colleagues took the same approach in a study of fifth-year medical students, counting man-hours instead of inventing a dollar figure: their standardized patient group required 172 man-hours against 112 for peer role-play, a 53.6% difference in that one program (BMC Medical Education, 2015). That study did not test AI patients, and its numbers should not be generalized past its own design.",
+      },
+      {
+        question:
+          "Where do standardized patient programs actually run out of capacity?",
+        answer:
+          "At repetition, not at assessment. A standardized patient encounter brings human judgment and physical presence, which is what an OSCE, a summative assessment, or a complex scenario needs. What the format cannot absorb is a learner who needs the same conversation fifteen times, because each attempt costs an actor booking, a room, and often a faculty observer. The useful question for a program is not a fabricated cost range against a software price. It is whether learners get enough practice before they reach the limited encounters where human time matters most.",
       },
       {
         question:

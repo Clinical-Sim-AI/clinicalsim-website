@@ -46,15 +46,39 @@ const nextConfig = {
         destination: '/insights/breaking-bad-news-practice-not-knowledge',
         permanent: true,
       },
+      // Three posts consolidated on 2026-09-03. Each was 400 to 460 words and
+      // made the same argument as a longer, better-sourced page that already
+      // cross-linked it, so the pair split the topic's authority in two.
+      // Registry entries keep their `redirectTo` (see lib/posts.ts), which
+      // takes them out of getAllPosts, the sitemap, and /llms.txt.
+      {
+        source: '/insights/end-of-life-care-communication',
+        destination: '/insights/why-communication-training-matters',
+        permanent: true,
+      },
+      {
+        source: '/insights/hospital-communication-training-roi',
+        destination: '/insights/why-communication-training-matters',
+        permanent: true,
+      },
+      {
+        source: '/insights/scalability-problem-sp-programs',
+        destination: '/compare/ai-clinical-simulation-vs-standardized-patients',
+        permanent: true,
+      },
       // /pricing was retired in August 2026. It was robots-disallowed and
       // unlinked from every nav, so there is nothing to consolidate for search,
-      // but the URL went out in sales conversations. Send it to the calculator,
-      // which is the closest thing to what someone following an old link
-      // wanted. The robots disallow came off in the same change: a blocked path
-      // cannot be crawled, so it cannot be seen to redirect.
+      // but the URL went out in sales conversations.
+      //
+      // It pointed at /roi-calculator, which is `noindex, nofollow` while the
+      // calculator is unpublished, so every inbound /pricing link terminated:
+      // a crawler followed the redirect and hit a page it was told to drop.
+      // /evaluation carries the licensing answer and is indexable, so it is
+      // both the right answer for a reader and a destination the redirect can
+      // actually pass authority to.
       {
         source: '/pricing',
-        destination: '/roi-calculator',
+        destination: '/evaluation',
         permanent: true,
       },
     ]
