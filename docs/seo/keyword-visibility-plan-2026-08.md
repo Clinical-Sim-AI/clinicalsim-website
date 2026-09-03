@@ -450,12 +450,26 @@ of an output, not a view into how Google ranks anything, and the 21% share of vo
 no information about Google whatsoever.
 
 The Google-side channel is Search Console's Generative AI performance report, which is first party
-and is the only place a Google AI Overviews or AI Mode number should come from. This plan names no
-Google-side AI channel at all, which is the gap. Section 4.2 of the 2026-09-03 site audit makes
-checking it the first action, ahead of any content work, because Google's guidance also states
-that a site must be included in Search generative AI features in Search Console to be eligible to
-appear in them at all. If that setting is off, every content inference in this document is
-downstream of a checkbox nobody has looked at.
+and is the only place a Google AI Overviews or AI Mode number should come from. This plan named no
+Google-side AI channel at all, which was the gap.
+
+**The eligibility setting is on, and it was already on. Checked by Ben on 2026-09-03; nothing was
+changed.** Google's guidance states that a site must be included in Search generative AI features
+in Search Console to be eligible to appear in them, which raised the possibility that every
+content inference in this document sat downstream of an unexamined checkbox. It does not. Recorded
+here in full so the next person does not spend an hour looking for it:
+
+- Path: **Settings → AI controls → Search generative AI**.
+- Property: `sc-domain:clinicalsim.ai`, a domain property added 2026-06-29, Ben verified owner.
+- Selected: "Include my site's links and content in Search generative AI features", carrying a
+  **Default** tag.
+- Save was greyed out, so nothing was sitting there unsaved.
+
+Include is Google's default and inheritance flows down to child properties, which is why nobody
+had to touch it and why no earlier document records checking it. Absence of a record here was not
+evidence of a problem. With the gate confirmed open, the remaining levers are the ordinary ones:
+indexability, and the non-commodity content, media, and named authorship that Google's guidance
+weights. Nothing about eligibility is outstanding.
 
 So when a number gets quoted in a meeting, name the channel with it. Semrush measures ChatGPT,
 Search Console measures Google, and neither one substitutes for the other. That is the same error
