@@ -11,6 +11,7 @@
  * lib/posts.test.ts covers that half at runtime. Both halves are needed.
  */
 export type PostSlug =
+  | "why-standardized-patient-programs-run-out-of-capacity"
   | "building-rapport-clinical-encounter"
   | "eol-communication-training-measurement-gap"
   | "breaking-bad-news-practice-not-knowledge"
@@ -48,6 +49,17 @@ export interface Post {
 }
 
 const posts: Post[] = [
+  {
+    slug: "why-standardized-patient-programs-run-out-of-capacity",
+    title: "Why standardized patient programs run out of capacity",
+    description:
+      "A standardized patient program's capacity is set by how many trained people it can put in a room, not by how many rooms it has.",
+    date: "2026-09-03",
+    author: "Jacqueline Ponczek, MD, MS, FAAP",
+    authorId: "jacqueline-ponczek",
+    readingTime: "5 min read",
+    tags: ["standardized patients", "simulation", "medical education", "OSCE", "capacity", "communication training"],
+  },
   {
     slug: "building-rapport-clinical-encounter",
     title: "Building rapport is a set of behaviors, not a personality",

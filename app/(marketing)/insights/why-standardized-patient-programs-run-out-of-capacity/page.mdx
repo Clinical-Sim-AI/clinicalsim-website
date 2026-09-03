@@ -1,0 +1,65 @@
+import { ArticleLayout } from "@/components/article-layout"
+import { KeyTakeaway } from "@/components/key-takeaway"
+import { ReferencesSection } from "@/components/references-section"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
+
+export const metadata = getPostMetadata("why-standardized-patient-programs-run-out-of-capacity")
+
+<ArticleLayout post={getPostBySlug("why-standardized-patient-programs-run-out-of-capacity")}>
+
+Simulation directors rarely run out of rooms. They run out of people. An observed communication encounter needs the standardized patient, the educator who trains the portrayal, and the faculty member who observes it, all working around a clinical schedule the sim calendar has to fit into. The size of that group, not the floor plan or the budget line, sets how many encounters a program can give a learner each year.
+
+<KeyTakeaway stat="167,083 active residents and fellows across 13,762 ACGME-accredited programs in 2024-25" statSource="(ACGME, January 2026)">
+A standardized patient program's capacity is set by how many trained people it can put in a room, not by how many rooms it has.
+</KeyTakeaway>
+
+## What sets the ceiling
+
+That capacity breaks into three pieces: the size of the SP pool, the hours those people can offer, and the educator time it takes to recruit, train, and quality-assure them (Pollak and Feinstein, Postgraduate Medical Journal, 2026). An exam suite doesn't add to any of the three.
+
+Part of that ceiling is a safety obligation, not a scheduling one. ASPE's Standards of Best Practice call for programs to build in time for de-roling and to monitor the cognitive and psychological demands the role puts on the people playing it (Lewis et al., Advances in Simulation, 2017). A program that pushes SPs through more rotations with fewer breaks hasn't found extra capacity. It's borrowed capacity from the people portraying the roles, and the loan comes due as attrition.
+
+Recruitment isn't a one-time hire either. The standards call for a pool that reflects the diversity of the patients it represents, so what looked adequate last year can come up short the moment a new case needs a portrayal it can't supply.
+
+## Demand keeps rising
+
+In 2025-26, US MD-granting schools passed 100,000 enrolled students for the first time, across 163 LCME-accredited schools (AAMC, December 2025). Osteopathic enrollment set its own record the same year, putting total US medical student enrollment past 140,000 (AACOM, 2026).
+
+Graduate medical education is growing too: 457 programs earned new accreditation in 2024-25, 71 more than the year before (ACGME, January 2026). ACGME won't publish 2025-26 numbers until next January, so its current count of 167,083 active residents and fellows already trails the incoming pipeline above, and that number of new programs points to further growth.
+
+Assessment guidance pushes in the same direction. ACGME's guidebook for clinical competency committees calls for multiple forms of assessment with multiple assessors, and lists direct observation and simulation among the core methods (Andolsek et al., ACGME, 2020). Each additional assessor adds to the staffing need, and programs have to supply that side of it themselves.
+
+The obligation grew again when USMLE discontinued Step 2 Clinical Skills. The job of knowing whether a student can hold a clinical conversation didn't disappear, it landed on the schools. Kogan, Hauer, and Holmboe proposed a national resource for standardized patient and AI-assisted assessment as one answer (Academic Medicine, 2021). That's a response to schools running short on capacity, not a fix for it: pooling the assessment doesn't create the repeat, low-stakes practice a learner needs before the stakes get high.
+
+## What a full schedule cuts first
+
+When capacity is fixed and the exam isn't optional, practice goes first. Most students complete only a handful of simulated OSCE stations before the real exam, since mock OSCEs cost money and staff time a full calendar doesn't have (Bevan et al., BMC Medical Education, 2019). A 2026 review of peer simulated-patient programs names the same problem from the scheduling side: repeated practice across common scenarios is hard to fit into an SP calendar at scale (Pollak and Feinstein, 2026).
+
+The constraint isn't only the SP calendar. Duty hours and clinical service obligations set the same kind of ceiling for residents: SP or simulation time can be open and a resident can still have no window to use it. Faculty face the same limit from the other side, their own clinical load caps how much observation and debriefing time they can give a learner, so even a scheduled encounter can lose its supervising faculty member to the floor.
+
+The learner who needs a second encounter feels this first. A systematic review of 16 remediation studies found three requirements in every program that worked: early identification, an individualized plan, and reassessment with feedback (Al-Sheikhly et al., BMC Medical Education, 2020). An OSCE identified the learner in 62.5% of those studies. Identification, the practice itself, and reassessment each require staffed time, for one learner, competing against an entire cohort's exam day. In a survey of 267 family medicine program directors, 93% had at least one resident in remediation in the past three years, and 45% ranked direct observation as the most useful way to find one (Frazier et al., Family Medicine, 2021).
+
+## Where ClinicalSim fits
+
+ClinicalSim is a voice-based AI patient platform for practicing and scoring clinical communication. Each conversation is scored against the GME or UME competency framework the case is built for, ACGME Milestones 2.0 among them, with an institution's own standards layered in where a program has them. The score cites the transcript evidence behind it for a faculty member to review. That's formative evidence to support faculty judgment, not replace it.
+
+Standardized patients remain the gold standard. A trained SP reacts to a learner in ways no rubric anticipated, gives feedback from having been in the room, and can be watched by a faculty observer who catches what a transcript loses. The exam day that sets one standard across a cohort is still the SP program's to run.
+
+What ClinicalSim adds is the practice a full calendar can't hold. When no SP is booked and a resident wants to run the goals-of-care conversation again, they can, between scheduled encounters, not instead of them.
+
+The room was never the limit. The people are, and they always will be the ones who set the standard. What changes is whether a learner has to wait for one of them to be free before they can practice again.
+
+<ReferencesSection references={[
+  { authors: "Pollak U, Feinstein Y", title: "Training medical students as peer simulated patients in undergraduate medical education: a narrative review and implementation framework", source: "Postgraduate Medical Journal", year: "2026", doi: "10.1093/postmj/qgag100" },
+  { authors: "Lewis KL, Bohnert CA, Gammon WL, Holzer H, Lyman L, Smith C, Thompson TM, Wallace A, Gliva-McConvey G", title: "The Association of Standardized Patient Educators (ASPE) Standards of Best Practice (SOBP)", source: "Advances in Simulation", year: "2017", doi: "10.1186/s41077-017-0043-4" },
+  { title: "Medical School Enrollment Reaches 100,000 Students for the First Time", source: "Association of American Medical Colleges", year: "2025", url: "https://www.aamc.org/news/press-releases/medical-school-enrollment-reaches-100000-students-first-time" },
+  { title: "Applicants, Matriculants, Enrollment and Graduates 1977-78 - 2025-26", source: "American Association of Colleges of Osteopathic Medicine", year: "2026", url: "https://www.aacom.org/searches/reports/report/applicants-enrollment-and-graduates-1977-78---2023-24" },
+  { title: "ACGME Releases 2024-2025 Statistics on Graduate Medical Education Programs and Resident Physicians", source: "Accreditation Council for Graduate Medical Education", year: "2026", url: "https://www.acgme.org/newsroom/2026/1/acgme-releases-2024-2025-statistics-on-graduate-medical-education-programs-and-resident-physicians/" },
+  { authors: "Andolsek K, Padmore J, Hauer KE, Ekpenyong A, Edgar L, Holmboe E", title: "Clinical Competency Committees: A Guidebook for Programs, 3rd Edition", source: "Accreditation Council for Graduate Medical Education", year: "2020" },
+  { authors: "Kogan JR, Hauer KE, Holmboe ES", title: "The Dissolution of the Step 2 Clinical Skills Examination and the Duty of Medical Educators to Step Up the Effectiveness of Clinical Skills Assessment", source: "Academic Medicine", year: "2021", doi: "10.1097/ACM.0000000000004216" },
+  { authors: "Bevan J, Russell B, Marshall B", title: "A new approach to OSCE preparation - PrOSCEs", source: "BMC Medical Education", year: "2019", doi: "10.1186/s12909-019-1571-5" },
+  { authors: "Al-Sheikhly D, Ostlundh L, Arayssi T", title: "Remediation of learners struggling with communication skills: a systematic review", source: "BMC Medical Education", year: "2020", doi: "10.1186/s12909-020-02074-9" },
+  { authors: "Frazier W, Wilson SA, D'Amico F, Bergus GR", title: "Resident Remediation in Family Medicine Residency Programs: A CERA Survey of Program Directors", source: "Family Medicine", year: "2021", doi: "10.22454/FamMed.2021.546572" },
+]} />
+
+</ArticleLayout>
