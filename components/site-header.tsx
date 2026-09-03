@@ -78,11 +78,9 @@ function DesktopMenuPanel({
             >
               <Link
                 href={column.overviewHref}
-                aria-current={
-                  routeIsActive(pathname, column.overviewHref) ? "page" : undefined
-                }
+                aria-current={pathname === column.overviewHref ? "page" : undefined}
                 className={`inline-block rounded-lg px-2 py-1 text-sm font-bold text-cs-dark-blue hover:underline ${
-                  routeIsActive(pathname, column.overviewHref) ? "bg-cs-cloud/70" : ""
+                  pathname === column.overviewHref ? "bg-cs-cloud/70" : ""
                 }`}
                 onClick={onNavigate}
               >
@@ -152,11 +150,9 @@ function MobileMenuPanel({
           <div key={column.label} className="pt-2">
             <Link
               href={column.overviewHref}
-              aria-current={
-                routeIsActive(pathname, column.overviewHref) ? "page" : undefined
-              }
+              aria-current={pathname === column.overviewHref ? "page" : undefined}
               className={`inline-block rounded-lg px-3 py-2 text-sm font-bold text-cs-dark-blue hover:underline ${
-                routeIsActive(pathname, column.overviewHref) ? "bg-cs-cloud/70" : ""
+                pathname === column.overviewHref ? "bg-cs-cloud/70" : ""
               }`}
               onClick={onNavigate}
             >

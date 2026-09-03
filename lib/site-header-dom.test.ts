@@ -155,4 +155,26 @@ describe("SiteHeader interactions", () => {
     expect(overview.getAttribute("aria-current")).toBe("page")
     expect(overview.className).toContain("bg-cs-cloud/70")
   })
+
+  it.each([
+    ["/solutions/informed-consent", "Use cases", "Informed consent"],
+    ["/audiences/program-directors", "Audiences", "Program directors"],
+  ])(
+    "marks only the child link current on %s",
+    async (pathname, overviewLabel, childLabel) => {
+      navigation.pathname = pathname
+      const user = userEvent.setup()
+      render(createElement(SiteHeader))
+
+      await user.click(screen.getByRole("button", { name: "Solutions" }))
+      const currentLinks = screen
+        .getAllByRole("link")
+        .filter((link) => link.getAttribute("aria-current") === "page")
+
+      expect(currentLinks.map((link) => link.textContent)).toEqual([childLabel])
+      expect(
+        screen.getByRole("link", { name: overviewLabel }).getAttribute("aria-current")
+      ).toBeNull()
+    }
+  )
 })
