@@ -9,18 +9,7 @@ const config: Config = {
     "*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
-  	// Full override (not extend): `nav` sits between lg and xl, and extend
-  	// would append it after 2xl, breaking the smallest-to-largest cascade
-  	// order min-width screens rely on. Other values are the Tailwind defaults.
-  	screens: {
-  		sm: '640px',
-  		md: '768px',
-  		lg: '1024px',
-  		nav: '1120px', // full desktop nav fits from here; see components/site-header.tsx
-  		xl: '1280px',
-  		'2xl': '1536px',
-  	},
-  	extend: {
+    extend: {
   		fontSize: {
   			'5xl': ['3rem', { lineHeight: '1.3' }],
   			'6xl': ['3.75rem', { lineHeight: '1.25' }],
