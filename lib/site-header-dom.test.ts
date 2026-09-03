@@ -177,4 +177,27 @@ describe("SiteHeader interactions", () => {
       ).toBeNull()
     }
   )
+
+  it("keeps Insights visually active without marking it current on a post", async () => {
+    navigation.pathname = "/insights/example-post"
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+
+    const resources = screen.getByRole("button", { name: "Resources" })
+    await user.click(resources)
+    const insights = screen.getByRole("link", { name: "Insights" })
+
+    expect(insights.getAttribute("aria-current")).toBeNull()
+    expect(insights.className).toContain("bg-cs-cloud/70")
+    expect(resources.className).toContain("border-b-2")
+  })
+
+  it("keeps Help visually active without marking it current on release notes", () => {
+    navigation.pathname = "/help/release-notes"
+    render(createElement(SiteHeader))
+
+    const help = screen.getByRole("link", { name: "Help" })
+    expect(help.getAttribute("aria-current")).toBeNull()
+    expect(help.className).toContain("border-b-2")
+  })
 })

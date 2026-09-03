@@ -43,12 +43,10 @@ function NavigationLink({
   className: string
   onNavigate: () => void
 }) {
-  const active = routeIsActive(pathname, item.href)
-
   return (
     <Link
       href={item.href}
-      aria-current={active ? "page" : undefined}
+      aria-current={pathname === item.href ? "page" : undefined}
       className={className}
       onClick={onNavigate}
     >
