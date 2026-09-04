@@ -21,7 +21,7 @@ export const PAGE_DATE_MODIFIED = {
   faq: "2026-09-03",
   frameworks: "2026-09-03",
   glossary: "2026-08-18",
-  home: "2026-09-03",
+  home: "2026-09-04",
   // Three posts left the listing and a fourth was retitled and
   // re-described in the 2026-09-03 consolidation.
   insights: "2026-09-03",
