@@ -10,9 +10,8 @@ import { VideoObjectSchema } from "@/components/video-object-schema"
 import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
 import { getFeaturedFrameworks } from "@/lib/frameworks"
-import { HOMEPAGE_PUBLIC_COPY } from "@/lib/homepage-content"
+import { HOMEPAGE_PUBLIC_COPY, HOMEPAGE_SEO } from "@/lib/homepage-content"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
-import { POSITIONING_LONG } from "@/lib/positioning"
 import { getHomepageSolutionGroups } from "@/lib/solutions"
 
 const DemoVideoSection = dynamic(
@@ -21,16 +20,12 @@ const DemoVideoSection = dynamic(
   })),
 )
 
-const HOME_DESCRIPTION = POSITIONING_LONG
-
 export const metadata: Metadata = {
-  title: {
-    absolute: "Communication intelligence for healthcare | ClinicalSim",
-  },
-  description: HOME_DESCRIPTION,
+  title: HOMEPAGE_SEO.title,
+  description: HOMEPAGE_SEO.description,
   openGraph: {
-    title: "Communication intelligence for healthcare",
-    description: HOME_DESCRIPTION,
+    title: HOMEPAGE_SEO.title,
+    description: HOMEPAGE_SEO.description,
     url: "https://clinicalsim.ai",
     images: [
       {
@@ -42,8 +37,8 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Communication intelligence for healthcare",
-    description: HOME_DESCRIPTION,
+    title: HOMEPAGE_SEO.title,
+    description: HOMEPAGE_SEO.description,
     images: ["/og-image.png"],
   },
   alternates: {
@@ -90,8 +85,8 @@ export default function HomePage() {
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Communication intelligence for healthcare",
-            description: HOME_DESCRIPTION,
+            name: HOMEPAGE_SEO.title,
+            description: HOMEPAGE_SEO.description,
             url: "https://clinicalsim.ai",
             dateModified: PAGE_DATE_MODIFIED.home,
             isPartOf: {
@@ -111,49 +106,6 @@ export default function HomePage() {
                 item: "https://clinicalsim.ai",
               },
             ],
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "@id": "https://clinicalsim.ai/#software",
-            name: "ClinicalSim",
-            url: "https://clinicalsim.ai",
-            description: HOME_DESCRIPTION,
-            applicationCategory: "EducationalApplication",
-            applicationSubCategory: "Clinical simulation",
-            operatingSystem: "Web browser",
-            softwareRequirements:
-              "A modern web browser with microphone access. No download or installation.",
-            inLanguage: "en",
-            isPartOf: { "@id": "https://clinicalsim.ai/#website" },
-            publisher: {
-              "@type": "Organization",
-              name: "ClinicalSim",
-              url: "https://clinicalsim.ai",
-            },
-            featureList: [
-              "Spoken conversations with AI patients, scored against a published framework or the institution's own standard",
-              "Ready to use cases based on published clinical frameworks",
-              "Institution supplied policies, service standards, scripts, and rubrics",
-              "Rubric scores with transcript evidence",
-              "Assessment report by person, cohort, or anonymous unit",
-              "Individual, cohort, and anonymous unit reporting",
-              "Cases written and reviewed by named physicians",
-            ],
-            audience: {
-              "@type": "Audience",
-              audienceType: [
-                "Patient experience leaders",
-                "Risk and patient safety leaders",
-                "Nursing education leaders",
-                "Program directors",
-                "DIOs and GME leadership",
-                "Simulation center directors",
-                "Clinical competency committees",
-                "Medical school and UME leadership",
-                "Faculty and clinician educators",
-              ],
-            },
           },
         ]}
       />

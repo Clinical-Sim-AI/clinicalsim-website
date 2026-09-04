@@ -1,9 +1,14 @@
+export const HOMEPAGE_SEO = {
+  title: "AI clinical simulation for healthcare",
+  description:
+    "Clinicians use AI clinical simulation to practice healthcare communication with AI patients and get feedback tied to their own words after each conversation.",
+} as const
+
 export const HOMEPAGE_PUBLIC_COPY = {
   hero: {
     eyebrow: "Communication intelligence for healthcare",
-    headline:
-      "Give clinicians measurable practice for better patient conversations.",
-    body: "Clinicians, learners, and patient facing staff practice spoken conversations with AI patients. ClinicalSim scores each simulation against a published clinical framework or your institution's own standard and quotes the participant's words behind every score. Participants see what they did well and what to practice next, while leaders can see patterns across a cohort or unit. Residency, fellowship, and medical school programs use the same tool for competency assessment and OSCE practice.",
+    headline: "Clinical simulation for better patient conversations.",
+    body: "ClinicalSim is an AI clinical simulation platform for healthcare communication. Clinicians, learners, and patient facing staff practice spoken conversations with AI patients. ClinicalSim scores each simulation against a published clinical framework or your institution's own standard and quotes the participant's words behind every score. Participants see what they did well and what to practice next, while leaders can see patterns across a cohort or unit. Residency, fellowship, and medical school programs use the same tool for competency assessment and OSCE practice.",
     primaryCta: "See how an assessment works",
     secondaryCta: "See example feedback",
     pilot:
