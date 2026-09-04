@@ -37,9 +37,9 @@ export function KeyTakeaway({
       <p className="text-xs font-medium uppercase tracking-wider text-cs-electric mb-3">
         Key Takeaway
       </p>
-      <p className="text-lg md:text-xl font-light leading-relaxed text-white">
+      <div className="text-lg md:text-xl font-light leading-relaxed text-white [&_p]:text-inherit [&_p]:text-lg md:[&_p]:text-xl [&_p:last-child]:mb-0">
         {children}
-      </p>
+      </div>
       {stat && (
         <div className="mt-4 flex items-baseline gap-3 border-t border-white/15 pt-4">
           <span className="text-2xl font-bold tracking-tight text-cs-electric">
