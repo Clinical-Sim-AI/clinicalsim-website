@@ -1,0 +1,67 @@
+import { HelpArticleLayout } from "@/components/help-article-layout"
+import { getHelpArticleMetadata } from "@/lib/help-articles"
+
+export const metadata = getHelpArticleMetadata("resend-an-invitation")
+
+<HelpArticleLayout slug="resend-an-invitation">
+
+An invitation lasts seven days. After that the link stops working, and the person who never got around to signing up has to be invited again. You don't have to retype anything: resend puts a fresh seven days on the same invitation and mails the link out again.
+
+Hospital email security is the other reason people end up stuck. Some gateways hold our invitation in quarantine and the learner never sees it. For that case you can copy the join link out of the platform and send it to them yourself, over whatever channel already works.
+
+You'll need an Admin or Owner role to manage invitations. Project Managers can invite people to a project but don't see the Members page. See [roles and permissions](/help/roles-and-permissions) for the full breakdown.
+
+## Watch the walkthrough
+
+<div className="relative mb-4 h-0 w-full overflow-hidden rounded-lg" style={{ paddingBottom: "56.25%" }}>
+  <iframe
+    src="https://www.loom.com/embed/6d49a013e757464cb1c65973b23c537b"
+    title="How to resend an invitation and copy a join link in ClinicalSim"
+    loading="lazy"
+    allowFullScreen
+    className="absolute inset-0 h-full w-full border-0"
+  />
+</div>
+
+[Watch on Loom](https://www.loom.com/share/6d49a013e757464cb1c65973b23c537b)
+
+## Resend an expired invitation
+
+1. Open **Members** in the platform's navigation.
+2. Scroll to **Pending Invitations**. Anyone whose invitation has run out is tagged **Expired**.
+3. Select **Resend** on that person's row.
+4. Wait for the **Invitation resent** confirmation. The row loses its Expired tag, because the invitation now has another seven days on it.
+
+The link in the new email is the same link as before, so an old copy of the invitation still works once you've resent it.
+
+## Send the join link yourself
+
+Each live invitation has a link icon beside **Resend**. Select it and the join link goes to your clipboard, ready to paste into an email, a text, or a Teams or Slack message. The confirmation reads **Invite link copied**.
+
+The link is all the person needs. Opening it puts them straight into your organization, with no invitation email to find and no separate verification step.
+
+Two things worth knowing. The link icon only appears on an invitation that hasn't expired, so resend first and the icon comes back. And the link is the credential, so treat it like a password: send it to the one person it's for, not to a shared mailbox or a group channel.
+
+## Handle a whole cohort at once
+
+If a batch of invitations went out together and nobody responded, the email is usually the problem rather than the people.
+
+1. On the **Members** page, use the checkbox on each invitation, or **Select all**.
+2. Select **Resend** in the bar that appears to renew and remail all of them.
+3. Or select **Copy links** to put every join link on your clipboard as one list, each line the person's email address followed by their link. Paste it into a spreadsheet and you have a mail merge. Expired invitations are skipped, and the confirmation tells you how many, so resend before you copy.
+
+## From a project page
+
+A project you invited people into has a **Waiting to join** section listing everyone who hasn't accepted yet, with the same resend and copy-link controls. Use whichever page you're already on. They act on the same invitation.
+
+## If a resend doesn't go through
+
+Someone who has already created a verified ClinicalSim account doesn't need an invitation at all. Resending adds them to your organization on the spot, and the confirmation says so.
+
+An address that bounced or reported one of our emails as spam is blocked from further mail, and resend refuses with that reason rather than sending into a dead address. Copy the join link and send it to a working address for that person instead.
+
+Joining your organization and having something to run are separate. A learner who signs up but sits in no project lands on an empty catalog, so assign them to a project once they're in. [Adding a curriculum](/help/add-a-curriculum) covers that.
+
+Still stuck? [Contact the ClinicalSim team](/contact) with the email address you invited and we'll take a look.
+
+</HelpArticleLayout>
