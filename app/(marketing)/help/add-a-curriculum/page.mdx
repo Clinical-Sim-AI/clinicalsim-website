@@ -1,0 +1,49 @@
+import { HelpArticleLayout } from "@/components/help-article-layout"
+import { getHelpArticleMetadata } from "@/lib/help-articles"
+
+export const metadata = getHelpArticleMetadata("add-a-curriculum")
+
+<HelpArticleLayout slug="add-a-curriculum">
+
+A project template is a prepared set of simulations organized by specialty and level. For a curriculum such as PICU 101 or PICU 102, you can start with the included cases and their practice order, then create a project for your own learners.
+
+You'll need a Project Manager, Admin, or Owner role in your organization to create a project. If you're a learner, your program's project manager sets this up and assigns it to you. See [roles and permissions](/help/roles-and-permissions) for details.
+
+## Start from New Project
+
+1. Open **Projects** and select **New Project**.
+2. Select **Start from a template**. This is the default when you open a new project.
+3. Open the template dropdown and search by specialty or name, such as **PICU**. Choose the curriculum you want, such as **PICU 101** or **PICU 102**.
+4. Review the template description and its numbered list of simulations. Select a case name or the arrow beside it to expand its overview. You can read the available scenario details and learning objectives before choosing the curriculum.
+5. Select **Use**, followed by the template name, for example **Use PICU 101**.
+6. Review the project name and description, and set an optional default due date. You can rename the project for your cohort, such as "PICU 101 September fellows".
+7. Select **Next: Add people**. Choose learners already in your organization or enter email addresses to invite new learners, then select **Create project**.
+
+You can also create the project with no learners and add them later. Learners need an assignment to see and run the project's simulations, so remember to add them when you're ready.
+
+## Browse templates in the Catalog
+
+If you'd like to look through the curricula before starting a project:
+
+1. Open **Catalog** in the platform's navigation.
+2. Open the dropdown showing **Simulations** and switch it to **Project templates**.
+3. Search for a specialty or curriculum, select a template, and expand the cases to read their overviews.
+4. Select **Use**, followed by the template name. This takes you to **New Project** with that template selected for review. Confirm the template, then complete the project details and learner steps above.
+
+Project managers can also switch to **Project templates** from the **Simulations** page.
+
+## Adjust the curriculum for your cohort
+
+Once you've created the project, it works like any other project. You can add learners, change the simulations, and adjust their order. The case order guides practice; it doesn't require learners to finish one case before starting the next.
+
+Each template creates a separate project. To assign PICU 102 after PICU 101, repeat the steps with PICU 102 and add the learners who should receive it. You can also reuse the same template to create a project for another cohort.
+
+Changes to your project stay with that project. They don't change the shared template, and later template updates won't change projects you've already created.
+
+## If you can't find a template
+
+Check that you're signed in to your organization's account with a Project Manager, Admin, or Owner role. Clear the template search and try the specialty name. If the curriculum still isn't listed, [contact the ClinicalSim team](/contact).
+
+To build your own curriculum, select **Choose simulations** in **New Project** and pick the cases yourself.
+
+</HelpArticleLayout>
