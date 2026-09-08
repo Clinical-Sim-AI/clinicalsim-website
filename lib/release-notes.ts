@@ -44,6 +44,19 @@ export function formatReleaseDate(date: string): string {
 
 export const releases: Release[] = [
   {
+    id: "2026-09-08",
+    date: "2026-09-08",
+    note: "One fix, and it's the one three PICU learners wrote in about: cases they had finished, twice over, still said \"In progress.\"",
+    userFacing: [
+      "**A case you've finished now says \"Completed.\"** We write two kinds of grade: one from a case's own built-in rubric, and one from each of the additional rubrics attached to it. The completion check only ever looked at the first kind. Building a case to be graded entirely by its additional rubrics is now the normal pattern, and those cases write no built-in grade at all, so a fully graded attempt could never come back as complete. It fell to \"In progress\" the moment you started, and stayed there however many times you ran it. Completion now counts a graded attempt as graded, whichever rubric produced the grade. Nothing to redo and nothing to re-run: status is worked out fresh every time the page loads, so every stuck assignment corrected itself the moment this went live. It reached almost everyone: 186 of the 187 finished project attempts in the app, across every customer organization. Program leads see the same correction in their cohort progress, on both the projects list and inside a project.",
+      "**The reminder email stops chasing people who already finished.** The nudge that goes out for incomplete work read completion the same wrong way, so learners who had done everything asked of them were being reminded to go do it. They aren't any more.",
+    ],
+    team: [
+      "Every place that asks \"was this attempt graded?\" now answers from the same union of both grade tables. The projects list strip was the one path that deliberately loads no rubric grades, because it throws the scores away and the full record is about six kilobytes per row; it now reads just the identifiers it needs, one extra query rather than one per learner. That matters because the alternative was a list page and a project page that disagreed with each other. Where a built-in grade exists the behavior is unchanged to the letter. Per-learner score targets still resolve against that grade, and a case with no built-in fields can't carry targets in the first place. No database change and no backfill: the numbers are computed on read.",
+      "Two smaller populations turned up while diagnosing this and are being tracked on their own. Six finished conversations produced no grade of either kind, so grading quietly returned nothing; those will keep reading \"In progress\", correctly. Twenty-nine more ended in an error.",
+    ],
+  },
+  {
     id: "2026-09-05",
     date: "2026-09-05",
     note: "The biggest release in a while, and most of it lands in two places: the minute you spend on a live call, and the work a program director does before anyone runs one.",
