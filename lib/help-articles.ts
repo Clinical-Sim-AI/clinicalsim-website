@@ -31,6 +31,15 @@ const helpArticles: HelpArticle[] = [
     lastUpdated: "2026-09-08",
   },
   {
+    slug: "resend-an-invitation",
+    title: "Resend an invitation or share a join link",
+    description:
+      "An invitation lasts seven days. How to resend an expired one, and how to copy the join link and send it yourself when hospital email holds ours in quarantine.",
+    teaser:
+      "Invitations expire after seven days, and hospital email security sometimes quarantines them. Resend renews the same invitation, and you can copy the join link out of the Members page and send it over any channel that works.",
+    lastUpdated: "2026-09-08",
+  },
+  {
     slug: "roles-and-permissions",
     title: "Roles and permissions in ClinicalSim",
     description:
