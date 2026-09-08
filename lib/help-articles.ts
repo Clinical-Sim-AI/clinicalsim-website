@@ -28,7 +28,7 @@ const helpArticles: HelpArticle[] = [
       "Set up a curriculum such as PICU 101 or PICU 102 in ClinicalSim. Preview the cases, create a project, and invite your learners.",
     teaser:
       "Start with a prepared curriculum, review the included cases, and assign it to your learners. You can find project templates in New Project or browse them in the Catalog.",
-    lastUpdated: "2026-09-07",
+    lastUpdated: "2026-09-08",
   },
   {
     slug: "roles-and-permissions",
