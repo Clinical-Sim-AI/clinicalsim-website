@@ -92,7 +92,7 @@ export function getHelpArticleMetadata(slug: string) {
  * Baseline date for the /help hub itself, moved when the hub page changes for
  * reasons other than its guide list.
  */
-const HELP_HUB_BASE_DATE = "2026-08-28"
+const HELP_HUB_BASE_DATE = "2026-09-08"
 
 /**
  * The /help hub lists every guide, so publishing or revising one changes the

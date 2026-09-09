@@ -4,6 +4,7 @@ import { ChevronRight, FileText, MessageCircle, PlayCircle, ClipboardList } from
 import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
+import { HelpSearch, type HelpSearchItem } from "@/components/help-search"
 import { getAllHelpArticles } from "@/lib/help-articles"
 
 export const metadata: Metadata = {
@@ -59,6 +60,27 @@ const startHere = [
 
 export default function HelpPage() {
   const guides = getAllHelpArticles()
+  const searchItems: HelpSearchItem[] = [
+    ...startHere.map((item) => ({
+      href: item.href,
+      title: item.title,
+      description: item.body,
+      category: "Help page" as const,
+    })),
+    ...guides.map((guide) => ({
+      href: `/help/${guide.slug}`,
+      title: guide.title,
+      description: `${guide.description} ${guide.teaser}`,
+      category: "Guide" as const,
+    })),
+    {
+      href: "/help/release-notes",
+      title: "Release notes",
+      description:
+        "Customer-visible changes in ClinicalSim, including new features and fixes.",
+      category: "Release notes",
+    },
+  ]
 
   return (
     <>
@@ -121,6 +143,8 @@ export default function HelpPage() {
             feedback report contains, and how a program gets set up. The pages below
             answer those, and if yours isn&apos;t here we&apos;d rather you just asked us.
           </p>
+
+          <HelpSearch items={searchItems} />
         </div>
       </section>
 
