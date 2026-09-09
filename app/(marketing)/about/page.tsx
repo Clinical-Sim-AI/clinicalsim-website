@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { SectionDivider } from "@/components/section-divider"
@@ -149,9 +150,24 @@ export default function AboutPage() {
       {/* Why we exist */}
       <section className="px-6 py-16 md:py-24 bg-cs-navy text-white">
         <div className="max-w-6xl mx-auto grid gap-10 lg:grid-cols-[0.32fr_0.68fr] lg:gap-16">
-          <h2 className="text-3xl md:text-4xl font-light text-cs-electric leading-tight">
-            Why we exist
-          </h2>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-light text-cs-electric leading-tight">
+              Why we exist
+            </h2>
+            <figure className="mt-8 max-w-xs lg:max-w-none">
+              <Image
+                src="/about/lauren-rissman-nicu.jpg"
+                alt="Lauren Rissman, wearing a surgical mask with her eyes closed, holds her newborn daughter against her chest in the NICU. The baby is wrapped in a hospital blanket and has a feeding tube."
+                width={1200}
+                height={1588}
+                sizes="(min-width: 1024px) 22vw, 20rem"
+                className="w-full rounded-xl object-cover shadow-lg shadow-black/30"
+              />
+              <figcaption className="mt-3 text-sm font-light leading-relaxed text-cs-cloud/80">
+                Lauren meeting Juniper for the first time.
+              </figcaption>
+            </figure>
+          </div>
           <blockquote className="border-l-4 border-cs-electric pl-6 md:pl-8">
             <div className="space-y-6 text-lg md:text-xl text-cs-cloud font-light leading-relaxed">
               <p>
