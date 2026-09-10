@@ -51,11 +51,10 @@ export const metadata: Metadata = {
  * this object so a future video swap cannot leave stale schema behind.
  */
 const DEMO_VIDEO = {
-  embedUrl: "https://www.loom.com/embed/3eacd20486a74b5c80a4ab7ba60b0308",
-  thumbnailUrl:
-    "https://cdn.loom.com/sessions/thumbnails/3eacd20486a74b5c80a4ab7ba60b0308-1df353d4e4c664a3.gif",
-  uploadDate: "2026-06-28T00:00:00-05:00",
-  duration: "PT9M22S",
+  embedUrl: "https://www.youtube.com/embed/ZkA0slljnwI",
+  thumbnailUrl: "https://i.ytimg.com/vi/ZkA0slljnwI/maxresdefault.jpg",
+  uploadDate: "2026-09-10T10:00:26-07:00",
+  duration: "PT9M21S",
 }
 
 const CONVERSATION_TYPES = [
@@ -200,7 +199,7 @@ export default function HomePage() {
           <DemoVideoSection
             title={HOMEPAGE_PUBLIC_COPY.demo.heading}
             description={HOMEPAGE_PUBLIC_COPY.demo.body}
-            loomUrl={`${DEMO_VIDEO.embedUrl}?t=0`}
+            youtubeUrl={`${DEMO_VIDEO.embedUrl}?si=H8ioHlNkpc7yQrjZ`}
           />
         </div>
       </section>
