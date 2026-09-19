@@ -16,9 +16,8 @@ import { ArrowRight } from "lucide-react"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import {
   CATEGORY_LINE,
-  MISSION_STATEMENT_BODY,
-  MISSION_STATEMENT_LEAD,
   POSITIONING_LONG,
+  POSITIONING_ONE_LINER,
 } from "@/lib/positioning"
 
 export const metadata: Metadata = {
@@ -123,7 +122,7 @@ export default function AboutPage() {
             {CATEGORY_LINE}
           </h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-2xl">
-            {POSITIONING_LONG}
+            {POSITIONING_ONE_LINER}
           </p>
         </div>
       </section>
@@ -134,14 +133,9 @@ export default function AboutPage() {
           <h2 className="text-xs md:text-sm font-medium uppercase tracking-[0.18em] text-cs-navy mb-8">
             Our mission
           </h2>
-          <p className="text-2xl md:text-3xl lg:text-4xl font-light text-cs-dark-blue leading-[1.25] tracking-tight text-balance mb-8">
-            {MISSION_STATEMENT_LEAD}
+          <p className="text-2xl md:text-3xl lg:text-4xl font-light text-cs-dark-blue leading-[1.25] tracking-tight text-balance">
+            Our mission is to improve patient care through better clinical communication and make an extraordinarily hard job a little less hard.
           </p>
-          <div className="max-w-3xl space-y-5 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
-            {MISSION_STATEMENT_BODY.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -238,33 +232,20 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
             <p>
-              Clinicians and patient facing staff talk with AI patients by voice from any device, on cases that cover clinical conversations, patient service standards, and debriefing. Nobody books a room or sits in as an observer. The current programs and conversations live on our{" "}
+              Participants practice in their browser, with nothing to install. Cases cover clinical conversations, patient service standards, and debriefing. Explore our{" "}
               <Link href="/solutions" className="text-cs-dark-blue font-medium underline decoration-cs-dark-blue/30 hover:decoration-cs-dark-blue underline-offset-4 transition-colors">
                 use cases page
               </Link>
               .
             </p>
             <p>
-              Every simulation is scored against the standard named on the case, and the participant&apos;s own words sit under each score. Participants receive feedback tied to that standard. Programs can review individual reports for agreed coaching and aggregate patterns for curriculum planning under rules set before launch.
+              Each case uses a published clinical framework or the institution&apos;s own policy, service standard, script, or rubric. Participants see what they did well and what to practice next, with their own words under every score.
+            </p>
+            <p>
+              Programs can review individual reports for agreed coaching, see cohort patterns for curriculum planning, and export reports under access rules set before launch.
             </p>
             <p className="text-cs-dark-blue font-normal">
-              ClinicalSim extends standardized patient programs. It adds repeatable practice between live encounters and another source of evidence for review. It does not replace live assessment or human judgment.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <SectionDivider variant="wave" color="cloud" className="bg-white" />
-
-      {/* Built for how programs actually run */}
-      <section className="px-6 py-16 md:py-20 bg-cs-cloud">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8 leading-tight">
-            Built for how institutions actually run
-          </h2>
-          <div className="space-y-6 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
-            <p>
-              ClinicalSim runs in the browser, so there is nothing to install. Participants practice assigned cases and review feedback tied to the transcript. Programs can support coaching, review agreed progress records, and export reports from one dashboard under access rules set before launch.
+              ClinicalSim extends standardized patient programs with repeatable practice between live encounters. It doesn&apos;t replace live assessment or human judgment.
             </p>
             <p>
               Every case uses a synthetic patient written from clinical literature rather than a patient record. The product still handles learner recordings, transcripts, account data, and institutional data, which require protection.
@@ -280,7 +261,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <SectionDivider variant="diagonal-up" color="dark-blue" className="bg-cs-cloud" />
+      <SectionDivider variant="diagonal-up" color="dark-blue" className="bg-white" />
 
       {/* Get started */}
       <WaveformBand seed="about">
@@ -289,7 +270,7 @@ export default function AboutPage() {
             Start with one team and one standard
           </h2>
           <p className="text-lg md:text-xl font-light mb-8 text-white/90 max-w-3xl mx-auto">
-            Tell us who would practice, what standard you already use, and how the results should be reported. We will show you what one pilot cycle could look like.
+            Tell us who would practice, what standard you already use, and how the results should be reported. We&apos;ll show you what one pilot cycle could look like.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/contact">

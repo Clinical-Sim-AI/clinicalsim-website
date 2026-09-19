@@ -11,9 +11,8 @@
  * entry are the same fact, so they read it from the same place.
  */
 export const PAGE_DATE_MODIFIED = {
-  // Mission statement added 2026-09-03; NICU photo added to "Why we exist"
-  // on 2026-09-09.
-  about: "2026-09-09",
+  // Introduction and mission shortened; product sections combined.
+  about: "2026-09-19",
   audiences: "2026-09-02",
   compare: "2026-09-02",
   contact: "2026-09-02",

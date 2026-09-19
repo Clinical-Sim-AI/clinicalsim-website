@@ -5,7 +5,6 @@ import AboutPage from "../app/(marketing)/about/page"
 import MethodologyPage from "../app/(marketing)/methodology/page"
 import { ArticleLayout } from "../components/article-layout"
 import { TEAM_SECTION_PUBLISHED } from "./authors"
-import { MISSION_STATEMENT_BODY, MISSION_STATEMENT_LEAD } from "./positioning"
 import { getAllPosts, type Post } from "./posts"
 
 describe("About page", () => {
@@ -17,15 +16,13 @@ describe("About page", () => {
     expect(html).not.toContain('"@type":"Person"')
   })
 
-  it("publishes the mission statement in full", () => {
+  it("publishes the concise mission statement", () => {
     const html = renderToStaticMarkup(createElement(AboutPage))
 
     expect(html).toContain("Our mission")
-    for (const sentence of [MISSION_STATEMENT_LEAD, ...MISSION_STATEMENT_BODY]) {
-      // React escapes the apostrophe in the rendered markup, so compare against
-      // the escaped form rather than the source string.
-      expect(html).toContain(sentence.replace(/'/g, "&#x27;"))
-    }
+    expect(html).toContain(
+      "Our mission is to improve patient care through better clinical communication and make an extraordinarily hard job a little less hard.",
+    )
   })
 })
 
