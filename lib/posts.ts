@@ -11,6 +11,7 @@
  * lib/posts.test.ts covers that half at runtime. Both halves are needed.
  */
 export type PostSlug =
+  | "simulation-vendor-shutdown-program-obligations"
   | "why-standardized-patient-programs-run-out-of-capacity"
   | "building-rapport-clinical-encounter"
   | "eol-communication-training-measurement-gap"
@@ -49,6 +50,17 @@ export interface Post {
 }
 
 const posts: Post[] = [
+  {
+    slug: "simulation-vendor-shutdown-program-obligations",
+    title: "When a simulation vendor shuts down, the program keeps the obligation",
+    description:
+      "Kognito stopped selling in August 2023. Five questions to ask before a simulation vendor holds records your program needs for resident evaluation.",
+    date: "2026-09-22",
+    author: "Ben Conway",
+    authorId: "ben-conway",
+    readingTime: "5 min read",
+    tags: ["simulation", "assessment", "ACGME", "medical education"],
+  },
   {
     slug: "why-standardized-patient-programs-run-out-of-capacity",
     title: "Why standardized patient programs run out of capacity",
