@@ -96,7 +96,7 @@ export const remediationPageData: RemediationPageData = {
   // ---------------------------------------------------------------------------
   heroH1: "Give every learner a clear path to better communication",
   heroSubtitle:
-    "Learners rehearse high-stakes conversations with AI patients, see what they did well and what to practice next, and return to coaching with transcript-linked feedback against the standard your program approves.",
+    "Learners rehearse high-stakes conversations with AI patients and see what they did well and what to practice next. They return to coaching with transcript-linked feedback against the standard your program approves.",
   heroStats: [
     {
       value: "93%",
@@ -134,7 +134,7 @@ export const remediationPageData: RemediationPageData = {
     {
       headline: "Faculty time",
       description:
-        "One published clinical reasoning remediation program required a mean of 29.6 specialist contact hours. That figure excluded program director, CCC, coordinator, and legal time, so it should not be treated as a general range for every remediation case.",
+        "One published clinical reasoning remediation program required a mean of 29.6 specialist contact hours. That figure excluded program director, CCC, coordinator, and legal time. It should not be treated as a general range for every remediation case.",
       stat: "29.6",
       statLabel: "mean specialist contact hours in one clinical reasoning program",
       source: "Guerrasio and Aagaard, J Gen Intern Med, 2014",
@@ -143,7 +143,7 @@ export const remediationPageData: RemediationPageData = {
     {
       headline: "SP bottleneck",
       description:
-        "Each standardized patient encounter requires a trained actor, space, faculty support, and scheduling. Struggling learners need repeated practice with feedback, which is hard to provide through live simulation alone.",
+        "Each standardized patient encounter requires a trained actor, space, faculty support, and scheduling. Struggling learners need repeated practice with feedback, and live simulation alone makes that hard to provide.",
       stat: "On demand",
       statLabel: "practice between scheduled SP encounters",
       source: "ClinicalSim platform availability",
@@ -167,7 +167,7 @@ export const remediationPageData: RemediationPageData = {
     {
       title: "On-demand AI patient encounters",
       description:
-        "Structured practice scenarios purpose-built for communication remediation, available 24/7 with no scheduling required.",
+        "Structured practice scenarios built for communication remediation. They are available 24/7, with no scheduling required.",
       iconName: "Mic",
     },
     {
@@ -179,7 +179,7 @@ export const remediationPageData: RemediationPageData = {
     {
       title: "Longitudinal progress tracking",
       description:
-        "Track performance across the full remediation period, documenting improvement over time rather than relying on single snapshots.",
+        "Track performance across the full remediation period. Improvement is documented over time instead of in single snapshots.",
       iconName: "TrendingUp",
     },
     {
@@ -191,7 +191,7 @@ export const remediationPageData: RemediationPageData = {
     {
       title: "Faculty dashboard",
       description:
-        "Monitor learner progress and session data without attending every practice encounter, so faculty time stays focused on coaching and assessment.",
+        "Follow learner progress and session data without attending every practice encounter. Faculty time stays focused on coaching and assessment.",
       iconName: "LayoutDashboard",
     },
   ],
@@ -224,7 +224,7 @@ export const remediationPageData: RemediationPageData = {
       role: "Simulation centers",
       headline: "Extend your SP program with repeatable practice",
       painPoint:
-        "Live encounters require actor time, faculty support, space, and scheduling, which limits the repetitions available for individual remediation.",
+        "Live encounters require actor time, faculty support, space, and scheduling. That limits the repetitions available for individual remediation.",
       whatTheyGet:
         "AI patient practice that complements scheduled SP encounters without requiring another actor or room for each attempt.",
       iconName: "Monitor",
@@ -289,7 +289,7 @@ export const remediationPageData: RemediationPageData = {
     journal: "Family Medicine",
     year: "2021",
     summary:
-      "Among 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years, 91% reported successful remediation within 12 months, and 50% selected an accessible remediation toolkit as the most important tool for improving the process.",
+      "Among 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years. In the same survey, 91% reported successful remediation within 12 months, and 50% selected an accessible remediation toolkit as the most important tool for improving the process.",
     link: "https://doi.org/10.22454/FamMed.2021.546572",
     badges: ["Peer reviewed", "CERA survey"],
   },
@@ -359,7 +359,7 @@ export const remediationPageData: RemediationPageData = {
     {
       question: "What is communication remediation in GME?",
       answer:
-        "Communication remediation in graduate medical education (GME) is a structured process for learners who have been identified as struggling with clinical communication skills, particularly interpersonal and communication skills (ICS) as defined by the ACGME. In a CERA survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years, 91% reported successful remediation within 12 months, and 50% selected an accessible remediation toolkit as the most important tool for improving the process (Frazier et al., Family Medicine, 2021).",
+        "Communication remediation in graduate medical education (GME) is a structured process for learners identified as struggling with clinical communication skills. That especially means interpersonal and communication skills (ICS) as defined by the ACGME. In a CERA survey of 267 family medicine program directors, 93% reported at least one resident in remediation during the prior three years (Frazier et al., Family Medicine, 2021). In the same survey, 91% reported successful remediation within 12 months, and 50% selected an accessible remediation toolkit as the most important tool for improving the process.",
     },
     {
       question:
@@ -377,13 +377,13 @@ export const remediationPageData: RemediationPageData = {
       question:
         "How does this compare to standardized patient encounters?",
       answer:
-        "Standardized patient (SP) encounters remain important for high-stakes assessment, and each encounter requires actor time, space, faculty support, and scheduling. ClinicalSim adds on-demand practice between those encounters, with rubric-scored feedback after every session. It extends an SP program by supplying repetition, and it does not replace live assessment.",
+        "Standardized patient (SP) encounters remain important for high-stakes assessment. Each encounter requires actor time, space, faculty support, and scheduling. ClinicalSim adds on-demand practice between those encounters, with rubric-scored feedback after every session. It extends an SP program by supplying repetition, and it does not replace live assessment.",
     },
     {
       question:
         "What is PACE and how does ClinicalSim compare?",
       answer:
-        "PACE (Program for Accelerated Curriculum in Education) and similar external remediation programs provide intensive assessment or coaching for one learner at a time and issue an external report at the end. ClinicalSim provides structured, on-demand practice within the learner's home program and generates rubric-scored documentation from every session. A program can use ClinicalSim on its own or between sessions with an external remediation service.",
+        "PACE (Program for Accelerated Curriculum in Education) and similar external remediation programs provide intensive assessment or coaching for one learner at a time. They issue an external report at the end. ClinicalSim provides structured, on-demand practice within the learner's home program and generates rubric-scored documentation from every session. A program can use ClinicalSim on its own or between sessions with an external remediation service.",
     },
   ],
 

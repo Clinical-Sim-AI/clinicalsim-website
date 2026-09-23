@@ -1,6 +1,7 @@
 import Markdown from "react-markdown";
 import type { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { chunkMarkdownParagraphs } from "@/lib/feedback/paragraphs";
 
 const REMARK_PLUGINS = [remarkGfm];
 
@@ -71,13 +72,26 @@ const COMPONENTS: Components = {
 type Props = {
   children: string;
   className?: string;
+  /**
+   * Opt-in, layout-only: break prose paragraphs and list items longer than
+   * this many sentences into separate paragraphs at sentence boundaries. The
+   * words are never changed. Leave unset for citations and tables.
+   */
+  maxSentencesPerParagraph?: number;
 };
 
-export function MarkdownContent({ children, className }: Props) {
+export function MarkdownContent({
+  children,
+  className,
+  maxSentencesPerParagraph,
+}: Props) {
+  const source = maxSentencesPerParagraph
+    ? chunkMarkdownParagraphs(children, maxSentencesPerParagraph)
+    : children;
   return (
     <div className={className}>
       <Markdown components={COMPONENTS} remarkPlugins={REMARK_PLUGINS}>
-        {children}
+        {source}
       </Markdown>
     </div>
   );

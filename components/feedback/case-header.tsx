@@ -33,8 +33,14 @@ export function CaseHeader({ example }: { example: ExampleCase }) {
         </div>
       )}
 
+      {/* TODO(ben): the scenario is verbatim briefing text from the product
+          snapshot and was left word-for-word. Long paragraphs are only split
+          into shorter ones at sentence boundaries for readability. */}
       {scenario && (
-        <MarkdownContent className="mb-4 text-sm leading-relaxed text-cs-dark-blue">
+        <MarkdownContent
+          className="mb-4 text-sm leading-relaxed text-cs-dark-blue"
+          maxSentencesPerParagraph={3}
+        >
           {scenario}
         </MarkdownContent>
       )}
