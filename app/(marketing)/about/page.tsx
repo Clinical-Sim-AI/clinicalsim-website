@@ -16,21 +16,25 @@ import { ArrowRight } from "lucide-react"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import {
   CATEGORY_LINE,
-  POSITIONING_LONG,
   POSITIONING_ONE_LINER,
 } from "@/lib/positioning"
 
+// Page-specific so /about stops sharing POSITIONING_LONG with /faq and the
+// root layout (Semrush flagged the duplicate meta description, Sept 2026).
+const ABOUT_DESCRIPTION =
+  "Our mission is to improve patient care through better clinical communication. ClinicalSim is built by clinicians who are program directors and educators."
+
 export const metadata: Metadata = {
   title: { absolute: "About ClinicalSim.ai: communication intelligence for healthcare" },
-  description: POSITIONING_LONG,
+  description: ABOUT_DESCRIPTION,
   openGraph: {
     title: "About ClinicalSim.ai",
-    description: POSITIONING_LONG,
+    description: ABOUT_DESCRIPTION,
     url: "https://clinicalsim.ai/about",
   },
   twitter: {
     title: "About ClinicalSim.ai",
-    description: POSITIONING_LONG,
+    description: ABOUT_DESCRIPTION,
   },
   alternates: {
     canonical: "https://clinicalsim.ai/about",
@@ -53,8 +57,7 @@ export default function AboutPage() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: "About ClinicalSim.ai",
-            description:
-              POSITIONING_LONG,
+            description: ABOUT_DESCRIPTION,
             url: "https://clinicalsim.ai/about",
             dateModified: LAST_UPDATED,
             isPartOf: {

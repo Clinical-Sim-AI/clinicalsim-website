@@ -100,6 +100,7 @@ const comparisons: Comparison[] = [
     lastUpdated: "2026-09-03",
     relatedSolutionSlugs: ["remediation", "undergraduate-medical-education"],
     relatedPostSlugs: [
+      "why-standardized-patient-programs-run-out-of-capacity",
       "osce-case-design-guide",
       "what-learners-want-from-ai-sps",
       "healthcare-simulation-technology-trends",

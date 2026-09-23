@@ -12,7 +12,6 @@ import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import {
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
-  POSITIONING_LONG,
   POSITIONING_ONE_LINER,
 } from "@/lib/positioning"
 import {
@@ -20,17 +19,22 @@ import {
   NO_OUTCOME_PREDICTION_LIMITATION,
 } from "@/lib/claim-discipline"
 
+// Page-specific so /faq stops sharing POSITIONING_LONG with /about and the
+// root layout (Semrush flagged the duplicate meta description, Sept 2026).
+const FAQ_DESCRIPTION =
+  "Common questions about ClinicalSim: how practice with AI patients works, how it compares to Step 2 CS and standardized patients, scoring, privacy, and research."
+
 export const metadata: Metadata = {
   title: { absolute: "FAQ: communication intelligence, scoring, privacy, and programs" },
-  description: POSITIONING_LONG,
+  description: FAQ_DESCRIPTION,
   openGraph: {
     title: "FAQ | ClinicalSim.ai",
-    description: POSITIONING_LONG,
+    description: FAQ_DESCRIPTION,
     url: "https://clinicalsim.ai/faq",
   },
   twitter: {
     title: "FAQ | ClinicalSim.ai",
-    description: POSITIONING_LONG,
+    description: FAQ_DESCRIPTION,
   },
   alternates: {
     canonical: "https://clinicalsim.ai/faq",

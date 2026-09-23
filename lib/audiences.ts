@@ -230,6 +230,7 @@ const audiences: Audience[] = [
       "breaking-bad-news-practice-not-knowledge",
       "ai-affirming-care-communication-training",
       "what-programs-lost-when-step-2-cs-disappeared",
+      "simulation-vendor-shutdown-program-obligations",
     ],
   },
 
@@ -365,6 +366,7 @@ const audiences: Audience[] = [
     relatedPostSlugs: [
       "why-communication-training-matters",
       "faculty-hour-problem-communication-remediation",
+      "simulation-vendor-shutdown-program-obligations",
     ],
   },
 
@@ -508,6 +510,7 @@ const audiences: Audience[] = [
       "osce-case-design-guide",
       "what-learners-want-from-ai-sps",
       "healthcare-simulation-technology-trends",
+      "why-standardized-patient-programs-run-out-of-capacity",
     ],
   },
 
@@ -640,6 +643,7 @@ const audiences: Audience[] = [
     relatedPostSlugs: [
       "osce-case-design-guide",
       "what-learners-want-from-ai-sps",
+      "simulation-vendor-shutdown-program-obligations",
     ],
   },
 

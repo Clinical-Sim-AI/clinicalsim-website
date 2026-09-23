@@ -208,3 +208,31 @@ Realistic outcome: Authority Score into the low teens, most of the movement from
 3 to 6 buy reach and entity presence rather than authority, which is worth having and should not be
 confused with progress on the ceiling. The compounding track in section 8.5 of the keyword gap report
 is still the one that decides where we are in two years.
+
+### September 2026 update
+
+Fresh pull on 2026-09-23 (Semrush `backlinks_comparison`, root domains). The prospect list built from
+it, and the pending audit of our own links, are in `docs/seo/backlink-prospects-2026-09.md`.
+
+| Domain | Authority Score | Referring domains |
+| --- | --- | --- |
+| clinicalsim.ai | 2 | 127 |
+| simconverse.com | 25 | 386 |
+| i-human.com | 27 | 556 |
+| vitaltalk.org | 29 | 1,183 |
+| oxfordmedicalsimulation.com | 30 | 1,054 |
+| virti.com | 30 | 1,192 |
+| bodyinteract.com | 32 | 1,642 |
+| shadowhealth.com | 32 | 810 |
+| mursion.com | 32 | 1,319 |
+| healthysimulation.com | 38 | 2,734 |
+
+Authority Score has not moved. The 127 referring domains are not comparable to the 40 quoted at the
+top of this file, which came from a different report, so do not read the gap as growth. What stands
+out is the follow share: 302 of our 336 backlinks are followed, about 90%, which is higher than every
+competitor and fits the bought-links history. None of the 659 competitor referring domains returned
+in the gap pulls links to us.
+
+The new doc lists 56 prospects: 11 profiles to claim this week, 35 to earn through research,
+conferences, and pilot sites, and 10 long shots. The own-profile audit and disavow review did not run
+because the Semrush API units ran out mid-session, and the doc says exactly which calls finish it.
