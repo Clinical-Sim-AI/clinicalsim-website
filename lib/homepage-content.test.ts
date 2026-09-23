@@ -83,6 +83,11 @@ describe("homepage targets clinical simulation", () => {
     expect(html).toMatch(/medical simulation/i)
     expect(html).toMatch(/healthcare simulation/i)
     expect(html).toMatch(/simulation training/i)
+
+    const { healthSystemBody, medicalEducationBody } = HOMEPAGE_PUBLIC_COPY.buyers
+    expect(healthSystemBody).toMatch(/healthcare simulation/i)
+    expect(medicalEducationBody).toMatch(/medical simulation/i)
+    expect(medicalEducationBody).toMatch(/simulation training/i)
   })
 
   it("does not emit unsupported software rating schema", () => {

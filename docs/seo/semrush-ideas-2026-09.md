@@ -7,8 +7,11 @@ records what we did and what we rejected, so rejected ideas don't resurface in t
 
 - **Homepage related words.** Added "healthcare simulation", "medical simulation", and "simulation
   training" to the buyer copy in `lib/homepage-content.ts`, locked by `lib/homepage-content.test.ts`.
-  "medical simulation" (480/mo, KD 27) and "healthcare simulation" (260/mo, KD 29) are within reach
-  per `keyword-gap-2026-09.md`. This also covers the low word count idea without padding.
+  "medical simulation" (480/mo, KD 27) and "healthcare simulation" (260/mo, KD 29) pass the KD 35
+  filter in `keyword-gap-2026-09.md`, which assigns both to
+  `/insights/healthcare-simulation-technology-trends`. The homepage uses them only as related words,
+  not targets, so the insight post stays the page that owns them. This also covers the low word count
+  idea without padding.
 - **Backlink domains.** Filtered into `backlink-prospects-2026-09.md` under "Semrush SEO Ideas,
   2026-09-23".
 
@@ -24,8 +27,8 @@ records what we did and what we rejected, so rejected ideas don't resurface in t
 
 ## Rejected
 
-- **"medical sim" in the homepage title and H1.** 170/mo at KD 45, above the AS 2 ceiling, and flagged
-  as brand-adjacent noise in `keyword-gap-2026-08.md`. The title and H1 target "clinical simulation"
+- **"medical sim" in the homepage title and H1.** 170/mo at KD 45 (`keyword-visibility-plan-2026-08.md`; KD 55 in the
+  September tracking list), above the AS 2 ceiling either way, and flagged as brand-adjacent noise in `keyword-gap-2026-08.md`. The title and H1 target "clinical simulation"
   on purpose, and the test locks it.
 - **"full code" as a related word.** Full Code is a competitor brand.
 - **AggregateRating via SoftwareApplication (homepage) or Course (/about).** We have no real ratings.
