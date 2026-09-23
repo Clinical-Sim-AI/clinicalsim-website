@@ -213,8 +213,8 @@ export const glossaryTerms: GlossaryTerm[] = [
     sourceUrl: "https://www.ssih.org/chse",
     relatedSlugs: ["aspe", "standardized-patient", "osce"],
     metaDescription:
-      "The Certified Healthcare Simulation Educator (CHSE) is an SSH credential. Who is eligible, what the exam covers, and the three-year cycle.",
-    metaTitle: "Certified Healthcare Simulation Educator",
+      "CHSE, the Certified Healthcare Simulation Educator, is an SSH credential. Who is eligible, what the exam covers, and the three-year cycle.",
+    metaTitle: "CHSE: simulation educator certification",
     explainer: [
       "SSH lists four eligibility criteria for the CHSE and a candidate has to meet all of them: participation in healthcare simulation in an educational role, focused simulation expertise with learners in undergraduate, graduate, allied health, or practitioner groups, a bachelor's degree or an equivalent combination of education and experience, and two years of documented continued use of simulation in healthcare education, research, or administration. Candidates without a bachelor's degree can ask the SSH Council for Certification to review an equivalency based on combined education and experience.",
       "Exam content comes from a blueprint that SSH rebuilt after an international practice analysis conducted between November 2022 and July 2023. The 2024 blueprint weights four domains: Professional Values, Capabilities, and Leadership at 20 percent, Healthcare and Simulation Knowledge and Practices at 28 percent, Educational Principles Applied to Simulation at 40 percent, and Simulation Resources and Environments at 12 percent. The weighting tells you what the credential is really about, because two fifths of the exam rests on educational principles rather than on equipment or logistics.",
@@ -264,10 +264,11 @@ export const glossaryTerms: GlossaryTerm[] = [
     slug: "clinical-judgment-model",
     term: "Clinical Judgment Model",
     definition:
-      "A clinical judgment model describes how a nurse moves from noticing something about a patient to deciding what to do about it, and two different models carry the name. Tanner's Clinical Judgment Model, drawn from a review of nearly 200 studies and published in the Journal of Nursing Education in 2006, sets out four phases: noticing, interpreting, responding, and reflecting. The NCSBN Clinical Judgment Measurement Model is a separate instrument, built to score clinical judgment inside a standardized licensure examination, and it underpins the Next Generation NCLEX that launched on April 1, 2023. Tanner's model describes how judgment happens. The NCSBN model exists to measure it, and the two are not interchangeable.",
+      "A clinical judgment model describes how a nurse moves from noticing something about a patient to deciding what to do about it, and two different models carry the name. Tanner's Clinical Judgment Model, drawn from a review of nearly 200 studies and published in the Journal of Nursing Education in 2006, sets out four phases: noticing, interpreting, responding, and reflecting. The NCSBN Clinical Judgment Measurement Model is a separate instrument, built to score clinical judgment inside a standardized licensure examination, and it underpins the Next Generation NCLEX that launched on April 1, 2023. Tanner's model describes how judgment happens. The NCSBN model exists to measure it, and the two are not interchangeable. British and Commonwealth sources usually spell it clinical judgement model.",
     source: "Tanner, Journal of Nursing Education, 2006",
     sourceUrl: "https://doi.org/10.3928/01484834-20060601-04",
     relatedSlugs: ["clinical-reasoning", "cbme", "millers-pyramid", "debriefing", "deliberate-practice"],
+    metaTitle: "Clinical judgment model: Tanner and NCSBN",
     metaDescription:
       "Two models share this name: Tanner's four phases of noticing, interpreting, responding, and reflecting, and the NCSBN model behind the Next Gen NCLEX.",
     explainer: [
@@ -763,7 +764,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     source: "SSH Healthcare Simulation Dictionary",
     sourceUrl: "https://www.ssih.org/healthcare-simulation-dictionary",
     relatedSlugs: ["task-trainer", "high-fidelity-simulation", "simulation-fidelity", "sim-lab"],
-    metaTitle: "Manikin in healthcare simulation",
+    metaTitle: "Manikin vs mannequin in simulation",
     metaDescription:
       "Manikin, or mannequin, is a full or partial body patient simulator. What they do, how they differ from task trainers, where they stop.",
     explainer: [

@@ -1,0 +1,297 @@
+# ClinicalSim.ai Position Tracking keyword load, 2026-09-23
+# Campaign: 30880361_5324700 (project 30880361, clinicalsim.ai)
+# Source: Semrush us database (national), pulled via the Semrush MCP on 2026-09-23
+#   (phrase_these batch report, columns volume, keyword_difficulty, intent).
+# Replaces: docs/seo/position-tracking-keywords-2026-08.txt
+#
+# FILTERS
+# Primary tiers (1-5) hold only keywords with KD 35 or lower, because the domain
+# is Authority Score 2. Anything above KD 35 sits in tier 7, watch only, as a
+# scoreboard and not a target. Tier 6 is competitor brands for share of voice;
+# the KD filter does not apply to it, but every brand kept has nonzero US volume.
+# Semrush reports KD 0 for many low-volume terms; that is the figure it returned,
+# not a claim that the term is easy. Terms Semrush returned no row for are not
+# loaded (see the NO DATA list at the bottom).
+#
+# HOW TO LOAD
+# Position Tracking > Settings > Keywords > add manually. Paste one tier block
+# at a time (the lines under each tier header, without the # lines) and tag the
+# batch with the tag named in the header. Load in tier order and stop at a tier
+# boundary if the keyword allowance runs out. Remove "ai simulation" from the
+# campaign if it is still there (590 volume, KD 50, consumer AI tooling SERP).
+# Confirm the campaign location is United States, desktop (see the 08 file).
+#
+# Total: 89 keywords across 7 tiers.
+
+# Tier 1: toeholds — tag: T1-toehold (3 keywords)
+medsim ai
+ai standardized patient
+virtual standardized patient
+
+# Tier 2: OSCE targets — tag: T2-osce (15 keywords)
+objective structured clinical examination
+what is an osce examination
+medical osce exam
+define objective structured clinical examination
+osce exams meaning
+define osce
+what is the osce exam
+whats an osce
+clinical osce
+what are osce exams
+osce practice
+what is osce exam
+virtual osce
+osce simulation
+ai osce
+
+# Tier 3: nursing and UME — tag: T3-nursing-ume (7 keywords)
+patient simulator
+nursing simulation
+clinical judgment model
+simulation in nursing education
+nursing simulation scenarios
+nursing simulation software
+entrustable professional activities
+
+# Tier 4: category and commercial — tag: T4-category (8 keywords)
+virtual patient simulation
+standardized patient program
+competency tracking software
+communication coaching
+ai in medical education
+virtual patient
+standardized patient
+healthcare simulation
+
+# Tier 5: pages shipped since 2026-08-15 — tag: T5-new-pages (23 keywords)
+# Mapping (page -> keywords):
+#   /insights/simulation-vendor-shutdown-program-obligations -> kognito simulation, kognito training
+#   /insights/why-standardized-patient-programs-run-out-of-capacity -> simulated patient, standardized patient training
+#   /solutions/error-disclosure -> disclosure of medical errors, disclosure of adverse events
+#   /solutions/informed-consent -> informed consent training
+#   /solutions/patient-experience (+ /glossary/hcahps) -> patient experience training, hcahps
+#   /solutions/debriefing (+ /glossary/pearls-debriefing) -> pearls debriefing, simulation debriefing, debriefing framework
+#   /insights/building-rapport-clinical-encounter (+ /glossary/rapport) -> patient rapport, building rapport with patients, how to build rapport with patients, rapport with patients
+#   /compare/ai-patient-simulation-vs-avatar-role-play-platforms -> role play simulation, ai role play training
+#   /glossary/serious-illness-conversation-guide (+ /frameworks) -> serious illness conversation guide
+#   /glossary/goals-of-care -> goals of care conversation
+#   /glossary/teach-back-method -> teach back method, teach-back
+#   /glossary/master-adaptive-learner -> master adaptive learner
+#   /evaluation, /frameworks: no keyword with volume found (see NO DATA)
+kognito simulation
+kognito training
+simulated patient
+standardized patient training
+disclosure of medical errors
+disclosure of adverse events
+informed consent training
+patient experience training
+hcahps
+pearls debriefing
+simulation debriefing
+debriefing framework
+patient rapport
+building rapport with patients
+how to build rapport with patients
+rapport with patients
+role play simulation
+ai role play training
+serious illness conversation guide
+goals of care conversation
+teach back method
+teach-back
+master adaptive learner
+
+# Tier 6: competitor brands, share of voice only — tag: T6-competitors (18 keywords)
+# Scoreboard only. The neutral comparison policy in lib/comparisons.ts stands.
+shadow health
+shadow health digital clinical experience
+kognito
+simchat
+simx
+full code medical simulation
+oxford medical simulation
+aquifer cases
+body interact
+vsim for nursing
+sentinelu
+i-human patients
+i human patients
+ihuman
+simconverse
+mursion
+vitaltalk
+vital talk
+
+# Tier 7: watch only, above the KD 35 ceiling — tag: T7-watch (15 keywords)
+# Not targets. Tracked to see whether any movement shows up at all.
+# acgme milestones is KD 33 but sits here because milestone claims were removed
+# from the public site on 2026-09-03 (fadf4b5).
+clinical simulation
+clinical simulations
+medical sim
+objective clinical examination
+osce
+osce exam
+osces
+osce medical
+medical simulation software
+acgme milestones
+debriefing
+breaking bad news
+spikes protocol
+informed consent in healthcare
+simulation lab
+
+# ---------------------------------------------------------------------------
+# REFERENCE: keyword | vol | KD  (US national, Semrush MCP, 2026-09-23)
+# ---------------------------------------------------------------------------
+# Tier 1
+# medsim ai | 30 | 24
+# ai standardized patient | 30 | 0
+# virtual standardized patient | 20 | 0
+# Tier 2
+# objective structured clinical examination | 1300 | 29
+# what is an osce examination | 590 | 26
+# medical osce exam | 480 | 21
+# define objective structured clinical examination | 480 | 29
+# osce exams meaning | 390 | 21
+# define osce | 260 | 22
+# what is the osce exam | 260 | 30
+# whats an osce | 210 | 19
+# clinical osce | 170 | 27
+# what are osce exams | 260 | 27
+# osce practice | 140 | 22
+# what is osce exam | 90 | 20
+# virtual osce | 50 | 6
+# osce simulation | 30 | 16
+# ai osce | 20 | 0
+# Tier 3
+# patient simulator | 590 | 12
+# nursing simulation | 320 | 30
+# clinical judgment model | 1300 | 22
+# simulation in nursing education | 110 | 18
+# nursing simulation scenarios | 90 | 26
+# nursing simulation software | 30 | 25
+# entrustable professional activities | 260 | 23
+# Tier 4
+# virtual patient simulation | 210 | 11
+# standardized patient program | 140 | 24
+# competency tracking software | 140 | 7
+# communication coaching | 590 | 19
+# ai in medical education | 210 | 30
+# virtual patient | 320 | 29
+# standardized patient | 1600 | 29
+# healthcare simulation | 260 | 35
+# Tier 5
+# kognito simulation | 20 | 0
+# kognito training | 20 | 0
+# simulated patient | 110 | 24
+# standardized patient training | 20 | 0
+# disclosure of medical errors | 20 | 0
+# disclosure of adverse events | 20 | 0
+# informed consent training | 30 | 0
+# patient experience training | 90 | 5
+# hcahps | 5400 | 25
+# pearls debriefing | 110 | 13
+# simulation debriefing | 20 | 0
+# debriefing framework | 20 | 0
+# patient rapport | 390 | 16
+# building rapport with patients | 170 | 25
+# how to build rapport with patients | 110 | 16
+# rapport with patients | 90 | 27
+# role play simulation | 30 | 22
+# ai role play training | 30 | 31
+# serious illness conversation guide | 390 | 23
+# goals of care conversation | 50 | 14
+# teach back method | 1900 | 33
+# teach-back | 210 | 28
+# master adaptive learner | 140 | 30
+# Tier 6
+# shadow health | 8100 | 35
+# shadow health digital clinical experience | 50 | 10
+# kognito | 590 | 31
+# simchat | 1300 | 36
+# simx | 1000 | 42
+# full code medical simulation | 1000 | 42
+# oxford medical simulation | 880 | 40
+# aquifer cases | 590 | 25
+# body interact | 480 | 46
+# vsim for nursing | 260 | 22
+# sentinelu | 140 | 20
+# i-human patients | 40 | 29
+# i human patients | 260 | 32
+# ihuman | 2400 | 32
+# simconverse | 320 | 20
+# mursion | 1900 | 26
+# vitaltalk | 210 | 15
+# vital talk | 320 | 21
+# Tier 7
+# clinical simulation | 140 | 36
+# clinical simulations | 30 | 39
+# medical sim | 170 | 55
+# objective clinical examination | 1300 | 38
+# osce | 9900 | 63
+# osce exam | 1600 | 38
+# osces | 1600 | 38
+# osce medical | 1300 | 36
+# medical simulation software | 90 | 65
+# acgme milestones | 390 | 33
+# debriefing | 5400 | 36
+# breaking bad news | 720 | 37
+# spikes protocol | 880 | 38
+# informed consent in healthcare | 390 | 46
+# simulation lab | 1600 | 36
+#
+# ---------------------------------------------------------------------------
+# REMOVED since the 08 file
+# ai simulation | 590 | 50  (off-topic SERP, removed as instructed)
+# ai clinical simulation | no data  (Semrush returned no row)
+#
+# NO DATA (Semrush returned no row, so not loaded)
+# simconverse alternative, kognito alternative, kognito discontinued,
+# shadow health alternative, body interact alternative,
+# oxford medical simulation alternative, mursion alternative, simconverse ai,
+# vitaltalk training, standardized patient program cost,
+# standardized patient shortage, simulation center staffing,
+# error disclosure training, informed consent conversation,
+# informed consent communication, patient experience communication training,
+# communication training for healthcare staff, simulation vendor,
+# simulation software vendor, edtech vendor shutdown, ai simulated patient,
+# ai standardized patients, communication skills training for residents,
+# evaluating simulation software, simulation evaluation framework,
+# standardized patient vs simulation, clinician communication training,
+# residency communication curriculum, communication and resolution program,
+# apology after medical error, empathy training for healthcare,
+# learner records retention, residency evaluation records,
+# standardized patient program director
+#
+# CHECKED AND NOT LOADED (returned data, but off target or zero volume)
+# informed consent | 14800 | 67  (head term, legal/consent-form SERP)
+# informed consent process | 110 | 40
+# debrief | 18100 | 50
+# patient experience | 2900 | 42
+# simulation center | 480 | 38
+# ai role play | 590 | 30  (likely consumer AI chat role play; SERP not checked)
+# data portability | 210 | 29  (GDPR/privacy topic, not the vendor post's reader)
+# cando | 4400 | 35  (ambiguous brand term, not CANDOR)
+# ferpa education records | 140 | 42
+# acgme program requirements | 170 | 44
+# oxford medical simulation vr | 20 | 0
+# kognito login | 20 | 0  (navigational)
+# plus 20-volume or zero-volume lookups with no page match: ai patient (20),
+#   ai patients (10), ai osce practice (20), osce practice ai (20),
+#   physician communication training (20), communication skills training for
+#   doctors (20), healthcare communication training (20), sp program (20),
+#   standardized patients in medical education (20), simulated patients (20),
+#   standardized patient educator (20), clinical debriefing (20),
+#   promoting excellence and reflective learning in simulation (20),
+#   advocacy inquiry (20), candor program (20), assessment records (20),
+#   shared decision making informed consent (20), calgary cambridge model (20);
+#   zero volume: standardized
+#   patient cost, standardized patient recruitment, error disclosure, medical
+#   error disclosure, how to disclose a medical error, disclosing medical
+#   errors, hcahps communication, debriefing in simulation, avatar role play,
+#   ai patient simulation, medical communication training, compassionate
+#   communication in healthcare
