@@ -27,9 +27,10 @@ records what we did and what we rejected, so rejected ideas don't resurface in t
 
 ## Rejected
 
-- **"medical sim" in the homepage title and H1.** 170/mo at KD 45 (`keyword-visibility-plan-2026-08.md`; KD 55 in the
-  September tracking list), above the AS 2 ceiling either way, and flagged as brand-adjacent noise in `keyword-gap-2026-08.md`. The title and H1 target "clinical simulation"
-  on purpose, and the test locks it.
+- **"medical sim" in the homepage title and H1.** 170/mo at KD 45 (`keyword-visibility-plan-2026-08.md`;
+  KD 55 in the September tracking list), above the AS 2 ceiling either way, and flagged as
+  brand-adjacent noise in `keyword-gap-2026-08.md`. The title and H1 target "clinical simulation" on
+  purpose, and the test locks it.
 - **"full code" as a related word.** Full Code is a competitor brand.
 - **AggregateRating via SoftwareApplication (homepage) or Course (/about).** We have no real ratings.
   Marking up invented ones breaks Google's review snippet policy and our own no-fabrication rule, and
