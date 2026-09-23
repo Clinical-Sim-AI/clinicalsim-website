@@ -44,6 +44,72 @@ export function formatReleaseDate(date: string): string {
 
 export const releases: Release[] = [
   {
+    id: "2026-09-23",
+    date: "2026-09-23",
+    note: "Two things a customer asked for are live. Learners now see the face of the person they're talking to during a voice case, and program leads can run a whole study inside a project: an initial survey, a set number of practice runs per case, and a final survey once feedback has been read.",
+    userFacing: [
+      "**You can see who you're talking to.** During a voice simulation, the character's portrait now sits at the center of the call screen, large enough to read a face, with the speaking indicator below it. A customer told us learners wanted \"something visual on the screen while having the conversation,\" and a person holds attention better than a shape does. The indicator still shows whose turn it is, including for learners who have reduced motion turned on, and the End Call button stays in the same place on a phone.",
+      "**Projects can now run a full study.** A program lead can require an initial survey before any practice, set a minimum (and optional maximum) number of completed runs for each case, and ask for a final survey once those runs are done or once the learner has opened their feedback. Each learner is held to the version of the project they started, so editing questions or swapping a case later never changes the rules for someone already enrolled. Failed or interrupted calls don't count against a learner's attempts.",
+      "**Every project has its own page.** Learners get one page per assigned project showing their next step, the due date, how many runs each case still needs, and their feedback. When the project calls for it, the final survey waits until the required feedback is ready and has been opened. A program lead can override that for an individual learner.",
+      "**Surveys save as you go.** Surveys now show one section at a time and save each answer automatically. If a save fails, or the same survey is open in two tabs, your answers are kept and you're told what happened instead of losing your work.",
+      "**The initial survey can come after the first briefing.** Program leads can place a project's initial survey before any briefing, as it works today, or right after the learner reads the first case's briefing. It's still taken once, before any run, so it stays a true baseline.",
+      "**Program leads have a clearer setup screen.** Project setup is now split into case requirements, initial survey, final survey, and a final review before publishing. Study progress and survey response exports (as CSV files) live under Learners.",
+      "**Calls can run a little longer, and a pause won't end them.** A voice encounter can now last up to 30 minutes, up from 25. Three production encounters had been hitting the old limit. The character now waits 30 seconds of silence before ending the call, up from 20, so a learner who stops to think or reread the briefing isn't cut off.",
+    ],
+    team: [
+      "Character portraits now travel from staging to production with the regular content sync. The image itself is copied into production's own storage, so production never points at a staging file, and a portrait that fails to copy is reported as a warning without holding back the rest of that case's content.",
+      "The Neurodev study instruments ship as a ready-made preset: three cases, two runs each, with the exact pre and post surveys.",
+      "Existing projects and session surveys behave exactly as before. Nothing was switched on automatically and no past activity was backfilled.",
+      "The saved copies of our two voice-agent configurations had drifted far from the live agents and sent one investigation the wrong way. They're refreshed, and one command now reports whether they've drifted again.",
+      "The background job worker is pinned to Node 24, ahead of the provider rejecting new deployments on older versions from October 5. Every environment (the app host, CI, the dev container, and the worker) now reads its Node version from one file in the repo, which also fixed local development after the first pin.",
+      "Build and deploy tooling updates: GitHub Actions moved to current major versions, and the database command-line tool now installs from npm on CI, staging, and production. That tool install once failed a staging deploy on a download rate limit, and that failure mode is now gone.",
+      "Dropped an unused email-preview package that was pulling in an older, vulnerable copy of Next.js and setting off security alerts, aligned the lint rules with our Next.js version, and moved to the current Next.js patch release.",
+      "New database tests guard the survey gate against a bug that would ask a learner the same survey forever.",
+      "A phone-width check of the case-survey screens from the last release found them working, and fixed a small keyboard issue in the survey timing control.",
+    ],
+  },
+  {
+    id: "2026-09-16",
+    date: "2026-09-16",
+    note: "Cases can now put the survey before the briefing, for studies that need a baseline the learner answers before reading the case. And two more fixes stop good feedback from being held back.",
+    userFacing: [
+      "**A case's pre-survey can come before the briefing.** Authors can now choose whether the pre-survey runs before or after the learner reads the scenario. After is still the default. When it's set to before, the learner sees only the title and the survey. The briefing isn't just hidden on screen, it's never sent to the browser, so a learner answering a baseline survey can't read the case first. Each learner is asked once per case version.",
+      "**More feedback gets through the quote check.** Two more harmless mismatches were holding back feedback: a quote that started mid-sentence with a capital letter the transcript didn't have, and a quote that ended partway through two words speech-to-text had run together. Both now match. When the grader splits one quote in two at such a spot, we join it back into a single quote. A real paraphrase, words the learner didn't say, still doesn't pass.",
+    ],
+    team: [
+      "Rechecking the grades that had been withheld in production showed 9 of the 10 remaining failures were these two cases, and one was a genuine paraphrase the check was right to refuse. A test run on four production conversations copied to staging then matched 14 of 17 grades, and the fix for the last three shipped the same day.",
+    ],
+  },
+  {
+    id: "2026-09-15",
+    date: "2026-09-15",
+    note: "A fix for feedback that was being held back when it shouldn't have been.",
+    userFacing: [
+      "**Feedback isn't held back over speech-to-text spacing.** The September 12 change checks every quote in feedback against the transcript, character for character. Speech-to-text sometimes runs two spoken words together (\"theseillnesses\", \"heis\"), so a quote a person would read as correct didn't match, and the whole feedback report was withheld. That affected 33 grades in production. Quotes now match even when spacing or punctuation differs, and what the learner sees is always the transcript's own text, never the grader's version of it.",
+    ],
+    team: [
+      "Every rejected quote is now logged with the fragment that failed, so we can see exactly why a grade was held back and how often it happens.",
+    ],
+  },
+  {
+    id: "2026-09-12",
+    date: "2026-09-12",
+    note: "Feedback now quotes only what the learner actually said. Two reviewed feedback reports had credited a learner with words the AI patient spoke, and that can't happen any more. This release also carries a round of security work that came out of a hospital customer's security review.",
+    userFacing: [
+      "**Quotes in feedback are always the learner's own words.** Two reviewed feedback reports quoted the AI patient's lines as if the learner had said them, which means someone could be praised or marked down for words they never spoke. The grader no longer types quotations at all. It points to the exact place in the transcript, and we check who said it and copy the words in ourselves. If a quote can't be matched to the transcript, the feedback isn't shown rather than shown wrong.",
+      "**Character quotes are labeled once.** A line the patient said used to read \"Character context: Character said:\". It now carries one label.",
+      "**Communication feedback no longer prints its own totals.** The written feedback sometimes stated an overall score that didn't agree with the domain scores right beside it. It now keeps the per-domain scores, evidence, and recommendations, and the overall total comes from the scores themselves, so the two can't disagree.",
+    ],
+    team: [
+      "Every connection to the database now checks that it's really talking to our database provider, not only that the line is encrypted. Before this, a connection would accept any certificate. Found in a hospital customer's security review, with no sign it was ever exploited. The admin status page now shows what each connection actually negotiated.",
+      "Platform admin, which can read every organization's transcripts, can now only be granted to a verified address on a company email domain. The other half of that control, hardware security keys for those accounts, is set in Google Workspace and written up alongside our SOC 2 evidence.",
+      "A week of dependency updates (Next.js, the sign-in library, the database library, error monitoring, the background job SDK, and the test runner) took reported production security advisories from 137 to 60, and critical ones from 5 to 0.",
+      "Feature flags now live in one typed list. Three flags were being read without ever being declared, and five of seven were being silently dropped in test runs, so \"flag on\" tests were running with the flag off. Both are fixed and a test now catches either mistake.",
+      "Each developer checkout now gets its own test database and port. Parallel checkouts on one machine had been wiping each other's test data and, worse, one could quietly run its tests against another's code and pass.",
+      "The staging deploy now uses a pinned version of the database tool rather than \"latest\", after a rate limit on looking up \"latest\" failed a staging deploy before it started.",
+    ],
+  },
+  {
     id: "2026-09-09",
     date: "2026-09-09",
     note: "Surveys can now ask the kinds of questions a research study actually asks: a rating grid, a follow-up that appears only when it applies, \"Other\" with a write-in box. Behind that, two quiet ways survey answers could go missing are closed.",
