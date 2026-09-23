@@ -37,6 +37,14 @@ export interface Post {
   readingTime: string
   tags: string[]
   redirectTo?: string
+  /**
+   * Short <title> for posts whose headline runs past 43 characters. The root
+   * layout template appends " | ClinicalSim.ai" (17 characters), and Google
+   * truncates near 60, so 43 is the most the bare title can carry. The visible
+   * H1, og:title, and twitter:title keep the full `title`. Keep the page's main
+   * search phrase in it.
+   */
+  seoTitle?: string
   authorId?: string
   dateModified?: string
   /**
@@ -53,6 +61,7 @@ const posts: Post[] = [
   {
     slug: "simulation-vendor-shutdown-program-obligations",
     title: "When a simulation vendor shuts down, the program keeps the obligation",
+    seoTitle: "When a simulation vendor shuts down",
     description:
       "Kognito stopped selling in August 2023. Five questions to ask before a simulation vendor holds records your program needs for resident evaluation.",
     date: "2026-09-22",
@@ -64,6 +73,8 @@ const posts: Post[] = [
   {
     slug: "why-standardized-patient-programs-run-out-of-capacity",
     title: "Why standardized patient programs run out of capacity",
+    // TODO(ben): confirm short title.
+    seoTitle: "Standardized patient program capacity",
     description:
       "A standardized patient program's capacity is set by how many trained people it can put in a room, not by how many rooms it has.",
     date: "2026-09-03",
@@ -75,6 +86,7 @@ const posts: Post[] = [
   {
     slug: "building-rapport-clinical-encounter",
     title: "Building rapport is a set of behaviors, not a personality",
+    seoTitle: "Building rapport in the clinical encounter",
     description:
       "Clinicians elicited the patient's agenda in 36% of 112 recorded encounters and interrupted after a median of 11 seconds. Rapport lives in that half minute, and three hours of training moved patient ratings in a randomized trial.",
     date: "2026-08-18",
@@ -86,6 +98,7 @@ const posts: Post[] = [
   {
     slug: "eol-communication-training-measurement-gap",
     title: "Six of 105: the measurement gap in end-of-life communication training",
+    seoTitle: "End-of-life communication training gap",
     description: "A systematic review of 105 studies found only 6 with clear training objectives — none sharing the same outcomes. A pediatric intensivist and palliative care physician explains what this means for fellows learning to navigate the hardest conversations in medicine.",
     date: "2026-06-09",
     dateModified: "2026-08-20",
@@ -97,6 +110,7 @@ const posts: Post[] = [
   {
     slug: "breaking-bad-news-practice-not-knowledge",
     title: "Breaking bad news is a practice problem, not a knowledge problem",
+    seoTitle: "Breaking bad news is a practice problem",
     description: "A framework can organize a conversation, but learners still need repeated spoken practice with feedback. The evidence shows how little formal training many residents receive and what a program can do about it.",
     date: "2026-05-19",
     dateModified: "2026-09-02",
@@ -107,6 +121,7 @@ const posts: Post[] = [
   {
     slug: "what-programs-lost-when-step-2-cs-disappeared",
     title: "What programs lost when Step 2 CS disappeared, and what hasn't replaced it",
+    seoTitle: "What programs lost with Step 2 CS",
     description: "USMLE discontinued Step 2 CS in 2021. No national successor now assesses clinical communication, so programs have built local methods around Milestones 2.0 with uneven time, tools, and evidence.",
     date: "2026-05-11",
     dateModified: "2026-09-02",
@@ -117,6 +132,8 @@ const posts: Post[] = [
   {
     slug: "faculty-hour-problem-communication-remediation",
     title: "The faculty hour problem with communication remediation",
+    // TODO(ben): confirm short title.
+    seoTitle: "Faculty time in communication remediation",
     description: "One published clinical reasoning remediation program required a mean of 29.6 specialist contact hours. The figure is not a universal estimate, but it shows why programs should separate the decisions that need faculty judgment from the repetitions that do not.",
     date: "2026-04-07",
     dateModified: "2026-09-03",
@@ -127,6 +144,8 @@ const posts: Post[] = [
   {
     slug: "ai-affirming-care-communication-training",
     title: "Simulation can preserve affirming care practice as exposure shrinks",
+    // TODO(ben): confirm short title.
+    seoTitle: "Simulation for affirming care practice",
     description: "Sixty percent of surveyed residency program directors reported no rotation with direct clinical exposure to transgender patients. A team presenting at IPSS Rome designed an AI patient scenario for structured communication practice when clinical exposure is limited.",
     date: "2026-03-30",
     dateModified: "2026-09-02",
@@ -137,6 +156,7 @@ const posts: Post[] = [
   {
     slug: "osce-case-design-guide",
     title: "How to design an OSCE case that shows what a learner can do",
+    seoTitle: "OSCE case design guide",
     description: "Start with the decision the station should support, define observable behaviors, give learners a fair chance to show them, train the SP, and pilot the scoring before the station counts.",
     date: "2026-03-04",
     dateModified: "2026-09-02",
@@ -183,6 +203,7 @@ const posts: Post[] = [
   {
     slug: "what-learners-want-from-ai-sps",
     title: "What 12 medical students want from AI patient simulation",
+    seoTitle: "What medical students want from AI patients",
     description: "Researchers interviewed 12 clinical-year medical students and ran three codesign workshops. The students put feedback, case quality, and faculty involvement ahead of novelty.",
     date: "2025-12-03",
     dateModified: "2026-09-02",
@@ -205,6 +226,8 @@ const posts: Post[] = [
   {
     slug: "why-communication-training-matters",
     title: "What the evidence says about communication training",
+    // TODO(ben): confirm short title.
+    seoTitle: "Evidence for communication training",
     description: "Candello found a communication factor in 40% of asserted malpractice cases, and Chung's review of 20 training studies rated the evidence very low to low quality. Neither supports an ROI headline. What a program can measure is its own learners, scored against a named framework.",
     date: "2025-08-12",
     dateModified: "2026-09-03",
@@ -244,10 +267,11 @@ const SITE_URL = "https://clinicalsim.ai"
  * the registry in this file so MDX pages don't hand-maintain (and drift on) their
  * own metadata.
  *
- * The <title> is set as `absolute`, so the root layout template
- * ("%s | ClinicalSim.ai") does NOT append the brand suffix. Post titles are full
- * editorial headlines and the extra 17 characters pushed them past the 75-character
- * limit Semrush flags. Registry titles stay bare -- never bake a suffix into one.
+ * The <title> goes through the root layout template ("%s | ClinicalSim.ai"), so
+ * the brand suffix is appended once and the <title> never matches the visible H1
+ * (Semrush flags an identical pair). It uses `seoTitle` when a post has one, so
+ * the rendered title stays at 60 characters or fewer. og:title and twitter:title
+ * keep the full headline. Registry titles stay bare -- never bake a suffix into one.
  */
 export function getPostMetadata(slug: string) {
   const post = getPostBySlug(slug)
@@ -255,7 +279,7 @@ export function getPostMetadata(slug: string) {
 
   const url = `${SITE_URL}/insights/${post.slug}`
   return {
-    title: { absolute: post.title },
+    title: post.seoTitle ?? post.title,
     description: post.description,
     alternates: { canonical: url },
     openGraph: {

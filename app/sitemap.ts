@@ -21,7 +21,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: BASE_URL,
+      // Trailing slash matches the href="/" internal links. Without it
+      // Semrush treats the sitemap entry as a separate, orphaned URL.
+      url: `${BASE_URL}/`,
       lastModified: new Date(PAGE_DATE_MODIFIED.home),
       changeFrequency: "weekly",
       priority: 1,

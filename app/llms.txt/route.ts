@@ -60,7 +60,7 @@ const HEADER = `# ClinicalSim.ai
 ${KEY_FACTS}
 ## Pages
 
-- [Homepage](${BASE_URL}): ${POSITIONING_LONG}
+- [Homepage](${BASE_URL}/): ${POSITIONING_LONG}
 - [About](${BASE_URL}/about): How ClinicalSim began, why the platform extends beyond medical education, how it handles scoring evidence, and the team responsible for the work.`
 
 export async function GET() {
