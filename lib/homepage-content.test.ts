@@ -77,6 +77,14 @@ describe("homepage targets clinical simulation", () => {
     expect(html).toContain(`"description":"${metadata.description}"`)
   })
 
+  it("names the related simulation terms in rendered body copy", () => {
+    const html = renderToStaticMarkup(createElement(HomePage))
+
+    expect(html).toMatch(/medical simulation/i)
+    expect(html).toMatch(/healthcare simulation/i)
+    expect(html).toMatch(/simulation training/i)
+  })
+
   it("does not emit unsupported software rating schema", () => {
     const html = renderToStaticMarkup(createElement(HomePage))
 

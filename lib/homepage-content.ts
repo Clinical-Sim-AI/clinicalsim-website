@@ -68,11 +68,11 @@ export const HOMEPAGE_PUBLIC_COPY = {
   buyers: {
     healthSystemHeading: "For health systems",
     healthSystemBody:
-      "ClinicalSim turns practice in consent, disclosure, debriefing, and patient service into feedback for each participant and measurable patterns for leaders. Each simulation uses your own service standard or policy, with the participant's words behind every score.",
+      "ClinicalSim turns practice in consent, disclosure, debriefing, and patient service into feedback for each participant and measurable patterns for leaders. Each simulation uses your own service standard or policy, with the participant's words behind every score. It works alongside the healthcare simulation your education team already runs, so people can practice by voice from any device between scheduled sessions.",
     medicalEducationHeading:
       "For residency, fellowship, and medical school programs",
     medicalEducationBody:
-      "Learners get repeatable practice between scheduled SP encounters. Faculty get rubric-scored feedback with the transcript behind every score, so they can inspect any case rather than trust a number.",
+      "Learners get repeatable practice between scheduled SP encounters. Faculty get rubric-scored feedback with the transcript behind every score, so they can inspect any case rather than trust a number. Your program keeps its medical simulation and SP sessions, and learners add simulation training on communication whenever they need it, not only when an SP is booked.",
   },
   proofHeading: "From clinicians who have used ClinicalSim",
   closing: {
