@@ -9,8 +9,9 @@
  *
  * The sentence detector is deliberately conservative. It only breaks after
  * ". ", "? ", or "! " when the next character is an uppercase letter, and it
- * never breaks inside double quotes, parentheses, square brackets, or markdown
- * emphasis, after an ellipsis, or after a common abbreviation. A missed break
+ * never breaks inside straight or curly double quotes, parentheses, square
+ * brackets, inline code, or markdown emphasis, after an ellipsis, or after a
+ * common or dotted abbreviation ("U.S.", "M.D.", "a.m."). A missed break
  * leaves a paragraph long; a wrong break would split a quote, so misses win.
  */
 
@@ -28,20 +29,34 @@ const ABBREVIATIONS = new Set([
   "al",
   "approx",
   "fig",
+  "prof",
+  "jr",
+  "sr",
+  "inc",
+  "mt",
+  "pt",
 ])
+
+/** Strip leading quote or bracket characters so "'Dr" still reads as "dr". */
+const LEADING_PUNCT = /^[\s"'\u2018\u201c(\[]+/
 
 /** Split one prose paragraph into sentences, preserving the original text. */
 export function splitSentences(text: string): string[] {
   const sentences: string[] = []
   let start = 0
   let inQuote = false
+  let inCode = false
   let parenDepth = 0
   let bracketDepth = 0
   let emphasis = 0
 
   for (let i = 0; i < text.length; i++) {
     const ch = text[i]
-    if (ch === '"') inQuote = !inQuote
+    if (ch === "`") inCode = !inCode
+    else if (inCode) continue
+    else if (ch === '"') inQuote = !inQuote
+    else if (ch === "\u201c") inQuote = true
+    else if (ch === "\u201d") inQuote = false
     else if (ch === "(") parenDepth++
     else if (ch === ")") parenDepth = Math.max(0, parenDepth - 1)
     else if (ch === "[") bracketDepth++
@@ -62,8 +77,10 @@ export function splitSentences(text: string): string[] {
     if (!next || !/[A-Z]/.test(next)) continue
     if (ch === "." && text[i - 1] === ".") continue // ellipsis
     if (ch === ".") {
-      const word = text.slice(start, i).split(/\s+/).pop()?.toLowerCase() ?? ""
-      if (ABBREVIATIONS.has(word) || /^[a-z]$/i.test(word)) continue
+      const word = (text.slice(start, i).split(/\s+/).pop() ?? "")
+        .toLowerCase()
+        .replace(LEADING_PUNCT, "")
+      if (ABBREVIATIONS.has(word) || /^([a-z]\.)*[a-z]$/.test(word)) continue
     }
 
     sentences.push(text.slice(start, i + 1))
@@ -98,7 +115,8 @@ const LIST_ITEM = /^(\s*)([-*+]|\d+\.)(\s+)(.*)$/
  * are indented under the marker, so it still renders as one bullet.
  */
 export function chunkMarkdownParagraphs(markdown: string, maxSentences = 3): string {
-  if (markdown.includes("```")) return markdown
+  // Leave any document with fenced or indented code untouched.
+  if (/```|~~~|^( {4}|\t)\S/m.test(markdown)) return markdown
 
   return markdown
     .split(/\n{2,}/)

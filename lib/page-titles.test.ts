@@ -3,9 +3,9 @@ import { join } from "node:path"
 import { describe, expect, it } from "vitest"
 import { getAllComparisons } from "./comparisons"
 import { getAllExamples } from "./examples"
-import { getAllPosts } from "./posts"
+import { getAllPosts, getPostMetadata } from "./posts"
 import { getAllSolutions } from "./solutions"
-import { getAllHelpArticles } from "./help-articles"
+import { getAllHelpArticles, getHelpArticleMetadata } from "./help-articles"
 
 /** Root layout template: `%s | ClinicalSim.ai` (app/layout.tsx). */
 const TITLE_SUFFIX = " | ClinicalSim.ai"
@@ -83,7 +83,10 @@ describe("page titles", () => {
     // getPostMetadata passes `seoTitle ?? title` through the root template. The
     // registry `title` is the visible H1 in ArticleLayout.
     for (const post of getAllPosts()) {
-      const rendered = (post.seoTitle ?? post.title) + TITLE_SUFFIX
+      // Read the helper's real output: an `absolute` object would skip the suffix.
+      const title = getPostMetadata(post.slug).title
+      expect(typeof title, `${post.slug} must use the root template`).toBe("string")
+      const rendered = title + TITLE_SUFFIX
       expect(
         rendered.length,
         `${post.slug} renders a ${rendered.length} char title: ${rendered}`
@@ -108,7 +111,9 @@ describe("page titles", () => {
     const compareDir = join(MARKETING, "compare")
     for (const comparison of getAllComparisons()) {
       const source = readFileSync(join(compareDir, comparison.slug, "page.tsx"), "utf8")
-      const absolute = source.includes("title: { absolute: comparison.metaTitle }")
+      const absolute = /title:\s*\{\s*absolute:\s*comparison\.metaTitle\s*\}/.test(source)
+      const templated = /^ {2}title:\s*comparison\.metaTitle,/m.test(source)
+      expect(absolute !== templated, `${comparison.slug} title form not recognized`).toBe(true)
       const rendered = absolute ? comparison.metaTitle : comparison.metaTitle + TITLE_SUFFIX
       expect(
         rendered.length,
@@ -122,11 +127,14 @@ describe("page titles", () => {
     // getHelpArticleMetadata passes the registry title through the root template.
     // The registry title is also the visible H1 in HelpArticleLayout.
     for (const article of getAllHelpArticles()) {
-      const rendered = article.title + TITLE_SUFFIX
+      const title = getHelpArticleMetadata(article.slug).title
+      expect(typeof title, `${article.slug} must use the root template`).toBe("string")
+      const rendered = title + TITLE_SUFFIX
       expect(
         rendered.length,
         `${article.slug} renders a ${rendered.length} char title: ${rendered}`
       ).toBeLessThanOrEqual(SERP_LIMIT)
+      expect(rendered, `${article.slug} title matches its H1`).not.toBe(article.title)
     }
   })
 

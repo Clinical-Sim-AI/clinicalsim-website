@@ -7,6 +7,26 @@ import { chunkMarkdownParagraphs, chunkParagraph, splitSentences } from "./parag
 const letters = (s: string) => s.replace(/\s+/g, "")
 
 describe("splitSentences", () => {
+  it("does not break after dotted abbreviations, titles, or inside curly quotes and code", () => {
+    const cases = [
+      "She served in the U.S. Army for years.",
+      "Signed by Jane Roe, M.D. Reviewed later.",
+      "The clinic opens at 9 a.m. Monday.",
+      "Ask Prof. Adams first.",
+      "He said \u201cStop. Wait here.\u201d then left.",
+      "She wrote 'Dr. Smith will call.'",
+      "Run `a. B` now.",
+    ]
+    for (const text of cases) expect(splitSentences(text), text).toEqual([text])
+  })
+
+  it("leaves documents with tilde fences or indented code untouched", () => {
+    const tilde = "A one. B two. C three. D four.\n\n~~~\nx\n~~~"
+    const indented = "A one. B two. C three. D four.\n\n    code. Here."
+    expect(chunkMarkdownParagraphs(tilde)).toBe(tilde)
+    expect(chunkMarkdownParagraphs(indented)).toBe(indented)
+  })
+
   it("does not break inside quotes, after ellipses, or after abbreviations", () => {
     const text =
       'She said "Stop. Wait here." Then she left... Mostly. Mrs. Harris agreed, e.g. Noah. Done.'
@@ -52,6 +72,7 @@ describe("chunkMarkdownParagraphs", () => {
     for (const example of getAllExamples()) {
       const sources = [
         example.scenario ?? "",
+        example.report.builtInGrade?.content ?? "",
         ...example.report.rubricGrades.map((g) => g.content ?? ""),
         ...example.transcript.map((t) => stripTranscriptMarkup(t.message)),
       ]
