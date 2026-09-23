@@ -296,3 +296,35 @@ task, not something that will move Authority Score by itself.
 Total spent: 27,720 units. The matrix report costs about 40 units per row, so a 500-row pull is
 expensive; next time, filter on the clinicalsim.ai column and sort by `matchesnum_desc` to fetch only
 the shared domains.
+
+---
+
+## Semrush SEO Ideas, 2026-09-23
+
+Semrush's SEO Ideas report suggested backlink domains for three target keywords. Filtered here so no
+one re-chases the noise. No outreach sent. Authority Scores not pulled.
+
+**Worth logging**
+
+| Domain | Suggested for | Note |
+| --- | --- | --- |
+| can-sim.ca | clinical simulation | Canadian simulation society; same play as ssih.org |
+| immersivelearning.news | clinical simulation | Trade media on simulation and XR; pitch news |
+| uab.edu, uabmedicine.org | clinical simulation | Sim center resource pages; find the linking page first |
+| michiganmedicine.org | clinical simulation | Pairs with the existing umich.edu row |
+| gaumard.com | clinical simulation | Manikin vendor; partner or resource page only, long cycle |
+| federation.edu.au | medical sim | Australian university; outside current market, low priority |
+| ric.edu, hartnell.edu | medical sim | Nursing or health programs with sim resource pages |
+| medscape.com | medical sim | Long shot; already listed under single-competitor domains |
+| healthysimulation.com | speech pathology clinical simulations | Already tracked in Tier 2 |
+
+**Rejected**
+
+- telegram.dog, yahoo.com, answers.com, nyx.cz, ifixit.com, outreachdashboard.wmflabs.org,
+  loginslink.com, atlassian.net: search, UGC, scraper, or wiki tooling noise.
+- rs6.net, constantcontact.com: email-newsletter redirect hosts, not editorial links.
+- apptopia.com, androidappsforme.com: app-store data scrapers.
+- fullcodemedical.com, medschoolcoach.com: competitor or test-prep vendor sites.
+- creativelearningguild.co.uk, endourology.org, worldpharmatoday.com: off-topic for communication
+  simulation.
+- appstate.edu, speechpathology.org: suggested for speech pathology, which ClinicalSim doesn't serve.
