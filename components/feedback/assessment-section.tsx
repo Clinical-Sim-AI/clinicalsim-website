@@ -102,7 +102,10 @@ function SynthesisBlock({
       <h4 className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-cs-navy">
         {label}
       </h4>
-      <MarkdownContent className="text-sm leading-relaxed">
+      {/* TODO(ben): synthesis prose is verbatim generated feedback and was left
+          word-for-word. Long paragraphs and bullets are only split at sentence
+          boundaries for readability. */}
+      <MarkdownContent className="text-sm leading-relaxed" maxSentencesPerParagraph={3}>
         {children}
       </MarkdownContent>
     </div>

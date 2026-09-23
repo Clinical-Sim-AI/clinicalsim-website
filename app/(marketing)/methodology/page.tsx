@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/json-ld"
 import { AuthorByline } from "@/components/author-byline"
 import { getAuthorById, getAuthorUrl } from "@/lib/authors"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { chunkParagraph } from "@/lib/feedback/paragraphs"
 import type { FaqItem } from "@/lib/types"
 
 export const metadata: Metadata = {
@@ -42,7 +43,7 @@ const methodologyFaqs: FaqItem[] = [
   {
     question: "How does ClinicalSim's AI scoring work?",
     answer:
-      "Each ClinicalSim encounter is a voice conversation between the learner and an AI patient built for that case, captured as a timestamped transcript. For every scored competency and framework step, the platform pulls one or two verbatim excerpts from that transcript showing the behavior, or documents that it was absent. Scoring follows the competency framework the case is anchored to, and the unit of assessment is the individual competency the case exercises. Any communication framework or program rubric applied alongside it is scored separately, so the two are never collapsed into one number.",
+      "Each ClinicalSim encounter is a voice conversation between the learner and an AI patient built for that case, captured as a timestamped transcript. For every scored competency and framework step, the platform pulls one or two verbatim excerpts from the transcript that show the behavior, or notes that it was absent. Scoring follows the competency framework the case is anchored to, and the unit of assessment is the individual competency the case exercises. Any communication framework or program rubric applied alongside it is scored separately, so the two never collapse into one number.",
   },
   {
     question: "Which competency frameworks does a ClinicalSim score map to?",
@@ -52,12 +53,12 @@ const methodologyFaqs: FaqItem[] = [
   {
     question: "Can faculty see the evidence behind a ClinicalSim score?",
     answer:
-      "Every score in a ClinicalSim report carries the verbatim transcript excerpt that produced it, so a reviewer reads the moment in the conversation rather than taking the rating on trust. The report presents all scores together with their evidence, adds an overall impression covering strengths, priority gaps, and top action items, and gives faculty transcript-grounded evidence for decisions about progression, remediation, or readiness.",
+      "Every score in a ClinicalSim report carries the verbatim transcript excerpt that produced it. A reviewer reads the moment in the conversation instead of taking the rating on trust. The report shows all scores together with their evidence and adds an overall impression covering strengths, priority gaps, and top action items. That gives faculty transcript-grounded evidence for decisions about progression, remediation, or readiness.",
   },
   {
     question: "What does a ClinicalSim score claim, and what does it not claim?",
     answer:
-      "The communication frameworks ClinicalSim applies were built for trained human raters observing real encounters, and that is the context in which their published reliability was established. Scoring those frameworks with AI in a simulated encounter goes beyond that context, so a framework's published reliability does not transfer to a ClinicalSim score. Each score is a formative signal backed by verbatim transcript evidence, which is why this methodology asks a reader to treat every result as evidence rather than a verdict.",
+      "The communication frameworks ClinicalSim applies were built for trained human raters observing real encounters. Their published reliability was established in that context. Scoring those frameworks with AI in a simulated encounter goes beyond it, so a framework's published reliability does not transfer to a ClinicalSim score. Each score is a formative signal backed by verbatim transcript evidence, which is why this methodology asks readers to treat every result as evidence, not a verdict.",
   },
   {
     question:
@@ -68,7 +69,7 @@ const methodologyFaqs: FaqItem[] = [
   {
     question: "Who writes and reviews ClinicalSim cases?",
     answer:
-      "Every ClinicalSim case starts from a defined purpose, meaning the communication and clinical skills it should exercise and the competencies it should assess, and it is written to that purpose with explicit learning objectives and a clinical evidence base drawn from the literature. Practicing physicians then review it for accuracy, content, alignment, and fit to its objectives, among them program directors, simulation facilitators, and educators from both undergraduate and graduate medical education. Faculty development cases carry an additional review by someone with faculty development or clinical teaching expertise, and every case is run repeatedly before release.",
+      "Every ClinicalSim case starts from a defined purpose: the communication and clinical skills it should exercise and the competencies it should assess. It is written to that purpose, with explicit learning objectives and a clinical evidence base drawn from the literature. Practicing physicians, including program directors, simulation facilitators, and educators from undergraduate and graduate medical education, then review it for accuracy, content, alignment, and fit to its objectives. Faculty development cases get an extra review from someone with faculty development or clinical teaching expertise, and every case is run repeatedly before release.",
   },
 ]
 
@@ -255,22 +256,22 @@ export default function MethodologyPage() {
           </div>
 
           <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-4 max-w-3xl">
-            This page outlines ClinicalSim case development, communication
-            and governing-body framework alignment, scoring, and how each
-            encounter generates high-quality, actionable feedback. A single
-            engine, rubric, and dashboard serve learners across the
-            medical-education continuum, and every session produces
-            timestamped, competency-based documentation for learners,
-            faculty, and program leadership.
+            This page explains how ClinicalSim builds cases, aligns them to
+            communication and governing-body frameworks, scores them, and
+            turns each encounter into high-quality, actionable feedback. One
+            engine, rubric, and dashboard serve learners across the medical
+            education continuum. Every session produces timestamped,
+            competency-based documentation for learners, faculty, and program
+            leadership.
           </p>
 
           <div className="rounded-xl border-l-4 border-cs-electric bg-cs-dark-blue px-6 py-5 max-w-3xl">
             <p className="text-base md:text-lg text-white font-light leading-relaxed">
               <span className="font-medium">Key takeaway:</span> every
               ClinicalSim case is anchored to a specific, published
-              competency or communication standard, and every score traces
-              to a verbatim excerpt from the encounter transcript, never to
-              an unexplained rating.
+              competency or communication standard. Every score traces to a
+              verbatim excerpt from the encounter transcript, never to an
+              unexplained rating.
             </p>
           </div>
         </div>
@@ -288,22 +289,32 @@ export default function MethodologyPage() {
 
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
             Every case is anchored to the relevant governing body&rsquo;s
-            framework for the learner&rsquo;s level. This anchoring holds
-            regardless of a program&rsquo;s chosen primary measure. A program
-            may adopt an internal or externally validated tool as its
-            primary focus, or incorporate ClinicalSim cases into a broader
-            curriculum. Each case&rsquo;s scoring and feedback are always
-            grounded in a specific, published standard.
+            framework for the learner&rsquo;s level. That holds whatever
+            primary measure a program chooses. A program may make an internal
+            or externally validated tool its primary focus, or fold
+            ClinicalSim cases into a broader curriculum. Either way, each
+            case&rsquo;s scoring and feedback rest on a specific, published
+            standard.
           </p>
 
-          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
-            Sharing our methodology keeps our work transparent, so those who
-            rely on it can trust it. Three commitments anchor it: quality,
-            because every case is built from primary sources; consistency,
-            because the same scoring logic applies to every case; and
-            alignment, because every score traces to a published competency
-            or a validated communication framework.
+          <h3 className="text-2xl font-medium text-cs-dark-blue mb-4">
+            Three commitments
+          </h3>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+            We share this methodology to keep our work transparent, so the
+            people who rely on it can trust it. Three commitments anchor it:
           </p>
+          <ul className="list-disc pl-5 space-y-1 text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
+            <li>Quality, because every case is built from primary sources.</li>
+            <li>
+              Consistency, because the same scoring logic applies to every
+              case.
+            </li>
+            <li>
+              Alignment, because every score traces to a published competency
+              or a validated communication framework.
+            </li>
+          </ul>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {commitments.map((c) => (
@@ -330,51 +341,69 @@ export default function MethodologyPage() {
           </h2>
 
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
-            The method below applies to every case, regardless of learner
-            level. Within Evidence and scoring, the level subsections
-            describe what varies by learner level.
+            The method below applies to every case at every learner level.
+            Where something does vary by level, the subsections under
+            Evidence and scoring describe it.
           </p>
 
           <h3 className="text-2xl font-medium text-cs-dark-blue mb-4">
             2.1 Building a case
           </h3>
+          <h4 className="text-lg font-medium text-cs-dark-blue mb-2">
+            A defined purpose
+          </h4>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
-            Every case begins with a defined purpose: the communication and
-            clinical skills it should exercise and the competencies it
-            should assess. Content is written to that purpose, with explicit
-            learning objectives and a clinical evidence base drawn from
-            foundational and other applicable literature.
+            Every case begins with a defined purpose. The purpose names the
+            communication and clinical skills the case should exercise and
+            the competencies it should assess. The content is written to that
+            purpose, with explicit learning objectives and a clinical evidence
+            base drawn from foundational and other applicable literature.
           </p>
+          <h4 className="text-lg font-medium text-cs-dark-blue mb-2">
+            Physician review
+          </h4>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
             Physicians then review each case for accuracy, content, alignment,
-            and fit to its objectives; reviewers are practicing physicians with
-            strong academic backgrounds and decades of collective experience,
-            including program directors, simulation facilitators, and UME
-            and GME educators. Faculty development cases are also reviewed
-            by someone with faculty development or clinical teaching
-            expertise.
+            and fit to its objectives. The reviewers are practicing physicians
+            with strong academic backgrounds and decades of collective
+            experience. They include program directors, simulation
+            facilitators, and UME and GME educators. Faculty development cases
+            are also reviewed by someone with faculty development or clinical
+            teaching expertise.
           </p>
-          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
+          <h4 className="text-lg font-medium text-cs-dark-blue mb-2">
+            Testing before release
+          </h4>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-3">
             Before release, each case is run repeatedly to confirm three
-            things: that the AI character convincingly plays the role the case
-            requires; that scoring and feedback perform as intended; and that
-            what the case asks can be assessed within the limits of
-            voice-based simulation. Refinements are made in coordination with
-            ClinicalSim&rsquo;s clinical and technical leadership.
+            things:
+          </p>
+          <ul className="list-disc pl-5 space-y-1 text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+            <li>The AI character convincingly plays the role the case requires.</li>
+            <li>Scoring and feedback perform as intended.</li>
+            <li>
+              What the case asks can be assessed within the limits of
+              voice-based simulation.
+            </li>
+          </ul>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
+            Refinements are made in coordination with ClinicalSim&rsquo;s
+            clinical and technical leadership.
           </p>
 
           <h3 className="text-2xl font-medium text-cs-dark-blue mb-4">
             2.2 Competency alignment and communication frameworks
           </h3>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
-            Three terms recur here. The competency framework is the anchor
-            for the competency assessment and must be supplied or approved by
-            the program. Communication frameworks are then applied to
-            characterize how the learner communicated.
-            The two are distinct: the competency score reflects the
-            learner&rsquo;s developmental level, while the communication
-            frameworks capture the specific skills underlying communication
-            technique.
+            Three terms recur here. The competency framework anchors the
+            competency assessment, and the program must supply or approve it.
+            Communication frameworks are then applied to characterize how the
+            learner communicated.
+          </p>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
+            The two are distinct. The competency score reflects the
+            learner&rsquo;s developmental level. The communication frameworks
+            capture the specific skills behind communication technique.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -389,51 +418,69 @@ export default function MethodologyPage() {
             ))}
           </div>
 
+          <h4 className="text-lg font-medium text-cs-dark-blue mb-2">
+            How frameworks are chosen
+          </h4>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
+            Each communication framework comes from a cited, published source,
+            and the frameworks are a floor, not a ceiling. One or more may be
+            applied to a case, each is scored independently, and programs may
+            add their own internal or externally validated rubrics.
+          </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
-            Each communication framework comes from a cited, published source
-            and is a floor, not a ceiling:
-            one or more may be applied to a case, each scored independently,
-            and programs may add their own internal or externally validated
-            rubrics. Because these frameworks and rubrics operate at
-            different scopes, from whole-encounter structures to
-            task-specific routines to discrete micro-skills, ClinicalSim
-            selects those best suited to each case&rsquo;s communication
-            task.
+            These frameworks and rubrics work at different scopes, from
+            whole-encounter structures to task-specific routines to discrete
+            micro-skills. So ClinicalSim selects the ones best suited to each
+            case&rsquo;s communication task.
           </p>
 
           <h3 className="text-2xl font-medium text-cs-dark-blue mb-4">
             2.3 Evidence and scoring
           </h3>
-          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+          <h4 className="text-lg font-medium text-cs-dark-blue mb-2">
+            Evidence from the transcript
+          </h4>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
             Each encounter is a voice conversation between the learner and
             an AI role designed for the case, captured as a timestamped
             transcript. For every scored competency and framework step, the
-            platform draws one or two verbatim excerpts that demonstrate the
-            behavior, or documents its absence. Because each score is
-            traceable to the moment that supports it, the output withstands
-            review rather than serving as an unexplained rating.
+            platform pulls one or two verbatim excerpts that show the
+            behavior, or notes that it was absent. Each score traces to the
+            moment that supports it, so the output holds up to review instead
+            of standing as an unexplained rating.
           </p>
-          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
-            Scoring follows the competency framework on which a case is
-            built, and the unit of assessment is the individual competency
-            the case exercises. Each applied communication framework or
-            program rubric is scored independently of the competency.
-          </p>
+          <h4 className="text-lg font-medium text-cs-dark-blue mb-2">
+            What gets scored
+          </h4>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
-            Where an instrument publishes its own rating scale, we use it.
-            Most communication frameworks do not, and there we apply a
-            ClinicalSim scale to the framework&rsquo;s own steps and say so
-            in the case, so a score is never read as though the
-            framework&rsquo;s validation stood behind it.
+            Scoring follows the competency framework the case is built on.
+            The unit of assessment is the individual competency the case
+            exercises. Each communication framework or program rubric applied
+            to the case is scored independently of the competency.
+          </p>
+          <h4 className="text-lg font-medium text-cs-dark-blue mb-2">
+            Rating scales
+          </h4>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
+            When an instrument publishes its own rating scale, we use it. Most
+            communication frameworks do not. For those, we apply a ClinicalSim
+            scale to the framework&rsquo;s own steps and say so in the case,
+            so a score is never read as though the framework&rsquo;s
+            validation stood behind it.
+          </p>
+          <h4 className="text-lg font-medium text-cs-dark-blue mb-2">
+            Reading scores by stage of training
+          </h4>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+            These frameworks are developmental. The same result means
+            different things at different stages of training, and it is always
+            read that way. All scores are shown together with their verbatim
+            evidence, so the learner or reviewer sees the complete picture.
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-10">
-            Because these frameworks are developmental, a given result carries
-            different meaning at different stages of training and is always
-            interpreted accordingly. All scores are presented together, with
-            their verbatim evidence, so the learner or reviewer sees a
-            complete picture. What varies is the competency framework a case
-            is anchored to and how the competency itself is scored, described
-            by learner level below.
+            What varies by learner level is the competency framework a case is
+            anchored to and how the competency itself is scored. The sections
+            below describe each level.
           </p>
 
           <div className="space-y-6">
@@ -444,8 +491,8 @@ export default function MethodologyPage() {
               <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
                 Residency and fellowship cases use the competency framework
                 and rating scale that the program approves for that case.
-                Each case targets a high-stakes conversation that the
-                specialty needs to rehearse and scores only the behaviors the
+                Each case targets a high-stakes conversation the specialty
+                needs to rehearse. It scores only the behaviors the
                 conversation can show.
               </p>
               <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
@@ -461,31 +508,49 @@ export default function MethodologyPage() {
               <h4 className="text-lg font-medium text-cs-dark-blue mb-3">
                 Undergraduate medical education
               </h4>
+              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-3">
+                Cases align to two standards:
+              </p>
+              <ul className="list-disc pl-5 space-y-1 text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+                <li>
+                  The Foundational Competencies for Undergraduate Medical
+                  Education (AAMC, AACOM, and ACGME)
+                </li>
+                <li>
+                  The AAMC Core Entrustable Professional Activities (EPAs) for
+                  Entering Residency
+                </li>
+              </ul>
               <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-                Cases align to the Foundational Competencies for
-                Undergraduate Medical Education (AAMC, AACOM, and ACGME) and
-                the AAMC Core Entrustable Professional Activities (EPAs) for
-                Entering Residency. The Core EPAs were originally mapped to
-                the Physician Competency Reference Set (PCRS, 2013), which
-                the 2024 Foundational Competencies now supersede; an updated
-                set of EPAs aligned to the Foundational Competencies is
-                anticipated but not yet published. Until it is, ClinicalSim
-                maps UME cases to the EPAs and to the Foundational
-                Competencies independently, without asserting a fixed
-                crosswalk between them.
+                The Core EPAs were originally mapped to the Physician
+                Competency Reference Set (PCRS, 2013). The 2024 Foundational
+                Competencies now supersede the PCRS. An updated set of EPAs
+                aligned to the Foundational Competencies is anticipated but not
+                yet published.
               </p>
               <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-                For UME, ClinicalSim records each competency on three
-                points, demonstrated, partially demonstrated, or not
-                demonstrated, and scores performance through the applied
-                communication or skill rubric. Entrustment, the
-                pre-entrustable to entrustable judgment, remains a program
-                decision that this evidence informs.
+                Until it is, ClinicalSim maps UME cases to the EPAs and to the
+                Foundational Competencies independently. It does not assert a
+                fixed crosswalk between them.
+              </p>
+              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-3">
+                For UME, ClinicalSim records each competency on three points:
+              </p>
+              <ul className="list-disc pl-5 space-y-1 text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+                <li>Demonstrated</li>
+                <li>Partially demonstrated</li>
+                <li>Not demonstrated</li>
+              </ul>
+              <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+                Performance is scored through the applied communication or
+                skill rubric. Entrustment, the pre-entrustable to entrustable
+                judgment, remains a program decision that this evidence
+                informs.
               </p>
               <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-                Development emphasizes foundational encounters that mature
+                Development focuses on foundational encounters that mature
                 alongside clinical knowledge, from history-taking to
-                delivering a diagnosis, preparing students for the
+                delivering a diagnosis. The aim is to prepare students for the
                 transition to residency.
               </p>
             </div>
@@ -529,39 +594,54 @@ export default function MethodologyPage() {
           <h3 className="text-2xl font-medium text-cs-dark-blue mt-10 mb-4">
             2.4 Feedback
           </h3>
-          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-2">
-            Each encounter produces a single feedback report.
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-3">
+            Each encounter produces a single feedback report. It includes:
           </p>
-          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-            Verbatim evidence is incorporated into the grading rubrics,
-            justifying the level a learner reached or the specific step
-            assessed. The report then offers an overall impression
-            (strengths, priority gaps, and top action items) and targeted
-            recommendations. Depending on the case, it indicates where a
-            learner sits developmentally and provides reviewers with
-            transcript-grounded evidence for decisions about progression,
-            remediation, readiness for practice, readiness to perform a
-            particular task, or familiarity with a given subject area.
+          <ul className="list-disc pl-5 space-y-1 text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
+            <li>
+              Verbatim evidence inside the grading rubrics, which justifies
+              the level a learner reached or the specific step assessed
+            </li>
+            <li>
+              An overall impression covering strengths, priority gaps, and
+              top action items
+            </li>
+            <li>Targeted recommendations</li>
+          </ul>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-3">
+            Depending on the case, the report shows where a learner sits
+            developmentally. It also gives reviewers transcript-grounded
+            evidence for decisions about:
           </p>
+          <ul className="list-disc pl-5 space-y-1 text-base text-cs-dark-blue/85 font-light leading-relaxed">
+            <li>Progression</li>
+            <li>Remediation</li>
+            <li>Readiness for practice</li>
+            <li>Readiness to perform a particular task</li>
+            <li>Familiarity with a given subject area</li>
+          </ul>
 
           <h3 className="text-2xl font-medium text-cs-dark-blue mt-10 mb-4">
             2.5 What a score claims, and what it does not
           </h3>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
             The frameworks ClinicalSim applies were built for trained human
-            raters observing real encounters, and that is how their published
+            raters observing real encounters. That is how their published
             reliability was established. Scoring them with AI in a simulated
-            encounter is an extension beyond that context, so a
-            framework&rsquo;s reliability does not carry over to a ClinicalSim
-            score. Each score is a formative signal backed by verbatim
-            transcript evidence.
+            encounter goes beyond that context, so a framework&rsquo;s
+            reliability does not carry over to a ClinicalSim score. Each score
+            is a formative signal backed by verbatim transcript evidence.
           </p>
+          <h4 className="text-lg font-medium text-cs-dark-blue mb-2">
+            How we are testing it
+          </h4>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
             We are testing that rather than asserting it. In our current
             pilot, program directors review ClinicalSim output alongside their
-            own assessment of the same encounters, which is how we find out
-            where the platform holds up against the standard and where it
-            complements faculty judgment rather than substituting for it.
+            own assessment of the same encounters. That comparison is how we
+            find out where the platform holds up against the standard, and
+            where it complements faculty judgment rather than substituting for
+            it.
           </p>
         </div>
       </section>
@@ -582,7 +662,7 @@ export default function MethodologyPage() {
               </span>{" "}
               We are committed to accuracy and to fidelity to the source
               documents behind every case. Each result is a transparent
-              statement of the evidence in the encounter: it informs the
+              statement of the evidence in the encounter. It informs the
               learner and the reviewer, and it never replaces final human
               judgment.
             </p>
@@ -606,9 +686,18 @@ export default function MethodologyPage() {
                 <h3 className="text-lg md:text-xl font-medium text-cs-dark-blue mb-2">
                   {faq.question}
                 </h3>
-                <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-                  {faq.answer}
-                </p>
+                {/* Same string as the FAQPage JSON-LD; only the visible copy
+                    is broken into shorter paragraphs. */}
+                <div className="space-y-3">
+                  {chunkParagraph(faq.answer, 2).map((chunk, i) => (
+                    <p
+                      key={i}
+                      className="text-base text-cs-dark-blue/85 font-light leading-relaxed"
+                    >
+                      {chunk}
+                    </p>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -718,9 +807,9 @@ export default function MethodologyPage() {
           </h2>
           <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed mb-8">
             Read the wider FAQ for questions about cost, rollout, and program
-            fit, or work through evaluating ClinicalSim for what the evidence
-            supports, what a procurement review will find, and how it is
-            licensed.
+            fit. Or work through evaluating ClinicalSim to see what the
+            evidence supports, what a procurement review will find, and how it
+            is licensed.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/faq">

@@ -17,6 +17,7 @@ import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
 import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
 import { cn, formatIsoMonth } from "@/lib/utils"
+import { chunkParagraph } from "@/lib/feedback/paragraphs"
 import type { RemediationPageData } from "@/lib/remediation"
 
 // ---------------------------------------------------------------------------
@@ -419,7 +420,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
             </h2>
             <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
               Simulation directors, communication researchers, and GME leaders
-              who understand what remediation actually requires.
+              who understand what remediation requires.
             </p>
           </div>
 
@@ -670,10 +671,17 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
                         </h3>
                         <ChevronRight className="w-5 h-5 text-cs-gray flex-shrink-0 transition-transform group-open:rotate-90" />
                       </summary>
-                      <div className="px-6 pb-5 pt-2">
-                        <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-                          {faq.answer}
-                        </p>
+                      {/* Same string as the FAQPage JSON-LD; only the
+                          visible copy is broken into shorter paragraphs. */}
+                      <div className="space-y-3 px-6 pb-5 pt-2">
+                        {chunkParagraph(faq.answer, 2).map((chunk, i) => (
+                          <p
+                            key={i}
+                            className="text-base text-cs-dark-blue/85 font-light leading-relaxed"
+                          >
+                            {chunk}
+                          </p>
+                        ))}
                       </div>
                     </details>
                   </div>

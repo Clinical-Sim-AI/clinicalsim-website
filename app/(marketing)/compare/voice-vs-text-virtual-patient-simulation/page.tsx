@@ -7,15 +7,15 @@ const comparison = getComparisonBySlug(
 )!
 
 export const metadata: Metadata = {
-  title: { absolute: comparison.metaTitle },
+  title: comparison.metaTitle,
   description: comparison.metaDescription,
   openGraph: {
-    title: comparison.metaTitle,
+    title: comparison.title,
     description: comparison.metaDescription,
     url: "https://clinicalsim.ai/compare/voice-vs-text-virtual-patient-simulation",
   },
   twitter: {
-    title: comparison.metaTitle,
+    title: comparison.title,
     description: comparison.metaDescription,
   },
   alternates: {

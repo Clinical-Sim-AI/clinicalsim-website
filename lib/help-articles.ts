@@ -2,10 +2,11 @@ export interface HelpArticle {
   /** URL path segment: "roles-and-permissions" -> /help/roles-and-permissions */
   slug: string
   /**
-   * Bare title with no " | ClinicalSim.ai" suffix. getHelpArticleMetadata emits
-   * it as `title: { absolute }`, so this string is the whole rendered <title>.
-   * It is also the visible H1 in HelpArticleLayout, which makes shortening one
-   * an editorial change rather than a metadata change.
+   * Bare title with no " | ClinicalSim.ai" suffix. getHelpArticleMetadata passes
+   * it through the root layout template, which appends the suffix, so keep it at
+   * 43 characters or fewer to hold the rendered <title> at 60. It is also the
+   * visible H1 in HelpArticleLayout, which makes shortening one an editorial
+   * change rather than a metadata change.
    */
   title: string
   /** Meta description. */
@@ -63,8 +64,8 @@ const SITE_URL = "https://clinicalsim.ai"
 /**
  * Build the full Metadata object for a help article from its slug, so MDX pages
  * don't hand-maintain (and drift on) their own metadata. Mirrors getPostMetadata
- * in lib/posts.ts, including the `title: { absolute }` that stops the root layout
- * template ("%s | ClinicalSim.ai") appending a second brand suffix.
+ * in lib/posts.ts: the title goes through the root layout template
+ * ("%s | ClinicalSim.ai"), so the <title> carries the suffix and differs from the H1.
  */
 export function getHelpArticleMetadata(slug: string) {
   const article = getHelpArticleBySlug(slug)
@@ -72,7 +73,7 @@ export function getHelpArticleMetadata(slug: string) {
 
   const url = `${SITE_URL}/help/${article.slug}`
   return {
-    title: { absolute: article.title },
+    title: article.title,
     description: article.description,
     alternates: { canonical: url },
     openGraph: {

@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { stripTranscriptMarkup } from "@/lib/feedback/transcript-markup";
+import { chunkParagraph } from "@/lib/feedback/paragraphs";
 
 type Turn = { role: string; message: string };
 
@@ -58,9 +59,18 @@ export function ConversationTranscript({ transcript }: Props) {
           >
             {turn.role === "user" ? "You" : "AI"}
           </Badge>
-          <p className="text-sm leading-relaxed">
-            {stripTranscriptMarkup(turn.message)}
-          </p>
+          {/* TODO(ben): transcript turns are verbatim speech and were left
+              word-for-word. Long turns are only split into paragraphs at
+              sentence boundaries for readability. */}
+          <div className="space-y-2">
+            {chunkParagraph(stripTranscriptMarkup(turn.message), 3).map(
+              (chunk, j) => (
+                <p key={j} className="text-sm leading-relaxed">
+                  {chunk}
+                </p>
+              ),
+            )}
+          </div>
         </div>
       ))}
     </div>

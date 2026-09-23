@@ -12,7 +12,12 @@ export function OverallSummary({ narrative }: { narrative?: string }) {
       aria-label="Overall feedback"
       className="rounded-2xl border border-cs-gray bg-white p-6"
     >
-      <MarkdownContent className="text-[15px] leading-relaxed">
+      {/* TODO(ben): verbatim generated feedback, left word-for-word. Long
+          paragraphs are only split at sentence boundaries for readability. */}
+      <MarkdownContent
+        className="text-[15px] leading-relaxed"
+        maxSentencesPerParagraph={3}
+      >
         {narrative}
       </MarkdownContent>
     </section>

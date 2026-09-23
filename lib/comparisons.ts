@@ -14,6 +14,13 @@ export interface ComparisonFaq {
 export interface Comparison {
   slug: string
   title: string
+  /**
+   * The <title>. The avatar and voice/text pages pass it through the root layout
+   * template, so it must stay at 43 characters or fewer and differ from
+   * heroHeadline (their H1). The standardized patients page still sets it as
+   * `absolute`, because its title already differs from its H1 and the suffix
+   * would push it past 75. og:title and twitter:title use `title`.
+   */
   metaTitle: string
   metaDescription: string
   heroHeadline: string
@@ -156,7 +163,7 @@ const comparisons: Comparison[] = [
   {
     slug: "ai-patient-simulation-vs-avatar-role-play-platforms",
     title: "AI patient simulation vs. avatar role-play platforms",
-    metaTitle: "AI patient simulation vs. avatar role-play platforms",
+    metaTitle: "AI patients vs. avatar role-play",
     metaDescription:
       "How AI patient simulation and avatar-based role-play platforms compare for clinical communication training: who plays the other party, what the case content is drawn from, how performance is scored, and what evidence each produces.",
     heroHeadline: "AI patient simulation vs. avatar role-play platforms",
@@ -283,8 +290,7 @@ const comparisons: Comparison[] = [
   {
     slug: "voice-vs-text-virtual-patient-simulation",
     title: "Voice-based vs. text-based AI patient simulation",
-    metaTitle:
-      "Voice-based vs. text-based AI patient simulation",
+    metaTitle: "Voice vs. text AI patient simulation",
     metaDescription:
       "How voice-based and text-based AI patient simulation compare for clinical communication training, including realism, skills assessed, accessibility, and where each format fits.",
     heroHeadline:
