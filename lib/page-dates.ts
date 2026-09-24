@@ -22,8 +22,8 @@ export const PAGE_DATE_MODIFIED = {
   frameworks: "2026-09-03",
   glossary: "2026-08-18",
   home: "2026-09-04",
-  // Added the simulation vendor shutdown article to the listing.
-  insights: "2026-09-22",
+  // Added the communication remediation plan article to the listing.
+  insights: "2026-09-24",
   // Rewritten by the 2026-09-03 ACGME claim removal (fadf4b5), which replaced
   // the milestone and Dreyfus-scale language across several answers.
   medicalEducatorFaq: "2026-09-03",
