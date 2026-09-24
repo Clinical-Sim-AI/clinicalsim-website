@@ -11,6 +11,7 @@
  * lib/posts.test.ts covers that half at runtime. Both halves are needed.
  */
 export type PostSlug =
+  | "communication-remediation-plan"
   | "simulation-vendor-shutdown-program-obligations"
   | "why-standardized-patient-programs-run-out-of-capacity"
   | "building-rapport-clinical-encounter"
@@ -58,6 +59,18 @@ export interface Post {
 }
 
 const posts: Post[] = [
+  {
+    slug: "communication-remediation-plan",
+    title: "What belongs in a resident communication remediation plan",
+    seoTitle: "Communication remediation plans",
+    description:
+      "In a survey of 267 family medicine program directors, 93 percent had a resident in remediation and 22 percent said missing documented evaluations made it hard to start or guide. What a communication remediation plan needs to record.",
+    date: "2026-09-24",
+    author: "Vinod Havalad, MD",
+    authorId: "vinod-havalad",
+    readingTime: "6 min read",
+    tags: ["communication-remediation", "ACGME", "milestones", "medical-education", "residency"],
+  },
   {
     slug: "simulation-vendor-shutdown-program-obligations",
     title: "When a simulation vendor shuts down, the program keeps the obligation",
