@@ -8,7 +8,7 @@ export const HOMEPAGE_PUBLIC_COPY = {
   hero: {
     eyebrow: "Communication intelligence for healthcare",
     headline: "Clinical simulation for better patient conversations.",
-    body: "ClinicalSim is an AI clinical simulation platform for healthcare communication. Clinicians, learners, and patient facing staff practice spoken conversations with AI patients. ClinicalSim scores each simulation against a published clinical framework or your institution's own standard and quotes the participant's words behind every score. Participants see what they did well and what to practice next, while leaders can see patterns across a cohort or unit. Residency, fellowship, and medical school programs use the same tool for competency assessment and OSCE practice.",
+    body: "Clinicians and trainees talk through realistic cases out loud with AI patients. Each clinical simulation is scored against your standard, so every person sees what they did well and what to practice next. It's built for anyone who talks to a patient, from residency programs to the front desk.",
     primaryCta: "See how an assessment works",
     secondaryCta: "See example feedback",
     pilot:
