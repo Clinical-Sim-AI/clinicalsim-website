@@ -12,10 +12,10 @@ import { Waveform } from "@/components/waveform"
 
 export const metadata: Metadata = {
   title: "Contact us: start with an assessment",
-  description: "Tell ClinicalSim which group would take part, which standard you already hold, and how your institution needs the results reported.",
+  description: "Tell ClinicalSim who would take part, your standard for communication, and how your institution needs the results reported.",
   openGraph: {
     title: "Contact ClinicalSim.ai",
-    description: "Tell us about the group, the standard you already hold, and how the results should be reported.",
+    description: "Tell us about the group, your standard for communication, and how the results should be reported.",
     url: "https://clinicalsim.ai/contact",
   },
   twitter: {
@@ -37,7 +37,7 @@ export default function ContactPage() {
             "@type": "ContactPage",
             name: "Contact ClinicalSim.ai",
             description:
-              "Tell ClinicalSim which group would take part, which standard the institution already holds, and how the results should be reported.",
+              "Tell ClinicalSim who would take part, your institution's standard for communication, and how the results should be reported.",
             url: "https://clinicalsim.ai/contact",
             mainEntity: {
               "@type": "Organization",
@@ -80,7 +80,7 @@ export default function ContactPage() {
               <h1 className="text-4xl md:text-5xl font-light mb-6">Tell us about the group and the standard</h1>
               <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-cs-cloud">
                 Tell us who would take part, which conversation you want to strengthen
-                or which one learners need to practice, what standard you already hold,
+                or which one learners need to practice, your standard for communication,
                 and who should see the results. We usually reply within two business days.
               </p>
 

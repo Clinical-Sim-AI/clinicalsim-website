@@ -21,7 +21,7 @@ export const PAGE_DATE_MODIFIED = {
   faq: "2026-09-03",
   frameworks: "2026-09-03",
   glossary: "2026-08-18",
-  home: "2026-09-04",
+  home: "2026-09-25",
   // Added the communication remediation plan article to the listing.
   insights: "2026-09-24",
   // Rewritten by the 2026-09-03 ACGME claim removal (fadf4b5), which replaced

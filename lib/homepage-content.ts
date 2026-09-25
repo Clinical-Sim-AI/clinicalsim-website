@@ -29,24 +29,24 @@ export const HOMEPAGE_PUBLIC_COPY = {
     },
   ],
   demo: {
-    heading: "Watch one simulated conversation get measured",
+    heading: "Watch a simulated conversation and review the feedback",
     body: "A learner talks a hesitant parent through a two-month vaccine visit. The report then scores the conversation and quotes the lines that earned each score.",
   },
   howItStarts: {
     heading: "How a communication assessment works",
-    intro: "Your standard becomes a clear guide for feedback and practice.",
+    intro: "Participants practice with AI patients and get feedback based on your communication standard.",
     steps: [
       {
-        title: "Send us the standard you already hold",
-        body: "A service model, consent policy, disclosure policy, debrief framework, or rubric. We review which elements a spoken conversation can show before anyone records a word.",
+        title: "Send us your standard for communication",
+        body: "Share your service model, consent or disclosure policy, debrief framework, or rubric. We'll review which parts we can assess in a simulated conversation before participants begin.",
       },
       {
-        title: "One group runs a conversation or two",
-        body: "Choose a group and a conversation where more consistent communication would help. Each person talks through the case with an AI patient by voice, from any device, with no observer in the room.",
+        title: "Choose a group to practice with AI patients",
+        body: "Choose who'll take part and which conversation they'll practice. Each participant speaks with an AI patient from their own device, with no observer in the room.",
       },
       {
-        title: "See the pattern and plan the practice",
-        body: "The report shows strengths and areas for focused practice, with the participants' words behind every score. The same cases give people another chance to practice, and formative scores stay out of personnel files.",
+        title: "Review the feedback and plan what to practice next",
+        body: "Each participant sees what they did well and what to practice next, with quotes from their conversation supporting each score. Leaders can review results across the group and choose cases for further practice. Formative scores stay out of personnel files.",
       },
     ],
     exampleLabel: "What one health system learned",
@@ -54,7 +54,7 @@ export const HOMEPAGE_PUBLIC_COPY = {
       "In one health system pilot, participants consistently opened conversations well. The report identified three elements to reinforce at the close: thanking the patient for raising a concern, reflecting the concern back, and summarizing the plan. Leaders could see those patterns in the transcripts and use the same cases for focused practice.",
   },
   scoring: {
-    heading: "Measured against a standard you already trust",
+    heading: "How we score each conversation",
     institutionTitle: "Your institution's own standard",
     institutionBody:
       "Bring the policy, service model, script, or rubric your institution already teaches. ClinicalSim scores the conversation element by element, as you wrote it.",
@@ -63,7 +63,7 @@ export const HOMEPAGE_PUBLIC_COPY = {
       "Start with a case built on a named, published framework that health care or medical education already uses.",
     sharedLine:
       "Either way, every score quotes the participant's own words, so participants and faculty can inspect the feedback.",
-    conversationsHeading: "Conversations ready to measure today",
+    conversationsHeading: "Conversations participants can practice",
   },
   buyers: {
     healthSystemHeading: "For health systems",
