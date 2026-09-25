@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import dynamic from "next/dynamic"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ChevronDown } from "lucide-react"
 import { AudienceCard } from "@/components/audience-card"
 import { JsonLd } from "@/components/json-ld"
 import { Reveal } from "@/components/reveal"
@@ -19,6 +19,23 @@ const DemoVideoSection = dynamic(
     default: module.DemoVideoSection,
   })),
 )
+
+/**
+ * A resident's written reflection, emailed to Ben after they used ClinicalSim
+ * and then held a similar palliative conversation with a real family. The text
+ * is verbatim, so it keeps the writer's em dashes; only the curly quotes are
+ * straightened. The full text sits in a server-rendered `details` element so
+ * it stays in the HTML for crawlers while the card stays short.
+ */
+const RESIDENT_REFLECTION = {
+  pullQuote:
+    "Rather than feeling compelled to immediately define \"goals of care\" or guide the conversation toward a particular medical decision, I was able to slow down and truly listen.",
+  paragraphs: [
+    "As I stood beside the interpreter, waiting for them to translate our response to the many fears this mother had just shared, I was struck by how familiar the conversation felt. Just a few weeks earlier, I had participated in a remarkably similar conversation—but that one did not involve a real mother or a real child suffering from a life-threatening illness. Rather, it was an AI-generated clinical simulation. The simulation, along with the feedback that followed, had prepared me to approach this encounter differently. I found myself more attuned not only to listening to this mother's fears, worries, and hopes, but also to validating and holding space for them. Rather than feeling compelled to immediately define \"goals of care\" or guide the conversation toward a particular medical decision, I was able to slow down and truly listen. I focused on understanding what a meaningful life looked like for her daughter and what mattered most to her as a mother—even when those priorities might not have aligned with what I would have initially considered the first-line \"medical\" recommendation.",
+    "In reflecting, I realized the value of ClinicalSim extended far beyond practicing communication skills in a simulated environment. It had changed the way I approached a real, difficult conversation with a family and overall strengthened my ability to better listen to, support, and advocate for families navigating profoundly difficult circumstances.",
+  ],
+  attribution: "Resident physician, ClinicalSim user",
+} as const
 
 export const metadata: Metadata = {
   title: HOMEPAGE_SEO.title,
@@ -451,6 +468,37 @@ export default function HomePage() {
                 </cite>
               </blockquote>
             </div>
+
+            <figure className="mt-12 rounded-2xl border border-cs-gray/60 bg-cs-cloud/60 p-6 md:mt-16 md:p-10">
+              <p className="mb-4 text-sm font-medium uppercase tracking-wide text-cs-dark-blue/70">
+                A resident&apos;s reflection, weeks after a practice simulation
+              </p>
+              <blockquote className="border-l-4 border-cs-dark-blue pl-5 md:pl-6">
+                <p className="text-xl font-light leading-relaxed text-cs-dark-blue md:text-2xl">
+                  {RESIDENT_REFLECTION.pullQuote}
+                </p>
+              </blockquote>
+              <details className="group mt-6">
+                <summary className="flex cursor-pointer list-none items-center gap-2 font-medium text-cs-dark-blue transition-colors hover:text-cs-navy [&::-webkit-details-marker]:hidden">
+                  <span className="group-open:hidden">Read the full reflection</span>
+                  <span className="hidden group-open:inline">Hide the full reflection</span>
+                  <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                </summary>
+                <blockquote className="mt-5 space-y-4 border-t border-cs-navy/15 pt-5">
+                  {RESIDENT_REFLECTION.paragraphs.map((paragraph) => (
+                    <p
+                      key={paragraph.slice(0, 32)}
+                      className="text-base font-light leading-relaxed text-cs-dark-blue md:text-lg"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </blockquote>
+              </details>
+              <figcaption className="mt-6 text-base text-cs-dark-blue/70">
+                {RESIDENT_REFLECTION.attribution}
+              </figcaption>
+            </figure>
           </div>
 
           <div className="mt-12 text-center md:mt-14">
