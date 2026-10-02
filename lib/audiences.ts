@@ -928,7 +928,7 @@ const audiences: Audience[] = [
       "Give clinicians a safe place to practice high-stakes safety conversations",
     heroDescription:
       "Clinicians rehearse disclosure, goals of care, family meetings, and de-escalation with AI patients. Each private report shows strengths and areas for practice against a published framework or institution policy. Leaders review completion or aggregate patterns under institution-defined access rules. ClinicalSim does not monitor patient care or predict claims.",
-    lastUpdated: "2026-09-03",
+    lastUpdated: "2026-10-02",
 
     painPoints: [
       {
@@ -1019,7 +1019,7 @@ const audiences: Audience[] = [
         question:
           "Is there evidence that communication training changes claim rates?",
         answer:
-          "A published report on CRICO's multi-part obstetric safety program described lower OB claim rates after a program that included simulation, team training, and other safety work (Schaffer et al., Obstetrics and Gynecology 2021). The change cannot be attributed to simulation alone. ClinicalSim has not been studied against claim rates.",
+          "A published report on CRICO's multi-part obstetric safety program described lower OB claim rates after a program that included simulation, team training, and other safety work (Schaffer et al., Obstetrics and Gynecology 2021). The change cannot be attributed to simulation alone. In a randomized vignette study of 804 U.S. adults, 41% said they would contact a lawyer after a missed diagnosis without shared decision-making, against 11 to 12% when the physician used it (Schoenfeld et al., Annals of Emergency Medicine 2019). That measured stated intent, not filed claims, and a 2015 systematic review found too little data to say whether shared decision-making reduces litigation (Durand et al., BMC Health Services Research). ClinicalSim has not been studied against claim rates.",
       },
       {
         question: "Does ClinicalSim qualify for a malpractice premium credit?",
@@ -1077,7 +1077,7 @@ const audiences: Audience[] = [
       "Start with one unit, one standard, and one reporting question",
     heroDescription:
       "Nurses, clinicians, and patient facing staff practice by voice with AI patients. Each report scores the encounter against your approved service standards and cites the transcript. ClinicalSim does not predict HCAHPS, Qualtrics, readmission, or other patient outcomes.",
-    lastUpdated: "2026-09-03",
+    lastUpdated: "2026-10-02",
 
     painPoints: [
       {
@@ -1191,7 +1191,7 @@ const audiences: Audience[] = [
       {
         question: "How do hospitals improve HCAHPS communication scores?",
         answer:
-          "HCAHPS arrives as a unit or hospital score, weeks after discharge, about the whole stay. Teams can use it to choose a shared practice focus, while participants review their own simulated feedback under preset access rules. The evidence supports the behaviors: a communication-centered discharge cut 30-day utilization about 30% in a randomized trial (Project RED, Annals of Internal Medicine 2009), and teach-back education cut heart failure readmissions with an odds ratio of 0.40 in a 2023 meta-analysis (Patient Education and Counseling). No study has tested ClinicalSim against HCAHPS scores, and we claim no score-to-survey correlation.",
+          "HCAHPS arrives as a unit or hospital score, weeks after discharge, about the whole stay. Teams can use it to choose a shared practice focus, while participants review their own simulated feedback under preset access rules. The evidence supports the behaviors: a communication-centered discharge cut 30-day utilization about 30% in a randomized trial (Project RED, Annals of Internal Medicine 2009), and teach-back education cut heart failure readmissions with an odds ratio of 0.40 in a 2023 meta-analysis (Patient Education and Counseling). On training itself, a 2025 review of 14 studies found that in-service communication training of 5.5 to 8 hours improved selected patient experience measures, while a 45-minute session did not and coaching gains faded without boosters (Jesus et al., Medical Care 2025). No study has tested ClinicalSim against HCAHPS scores, and we claim no score-to-survey correlation.",
       },
       {
         question:
@@ -1202,7 +1202,7 @@ const audiences: Audience[] = [
       {
         question: "Does communication training move readmissions?",
         answer:
-          "A communication-centered discharge process cut 30-day hospital utilization by about 30% in a randomized trial (Project RED, Annals of Internal Medicine 2009), and teach-back education cut heart failure readmissions with an odds ratio of 0.40 in a 2023 meta-analysis (Patient Education and Counseling). CMS readmission penalties run $320 million to $563 million a year and reach roughly three quarters of evaluated hospitals (KFF and Definitive Healthcare analyses of CMS data). ClinicalSim itself has not been studied against readmission rates.",
+          "A communication-centered discharge process cut 30-day hospital utilization by about 30% in a randomized trial (Project RED, Annals of Internal Medicine 2009), and teach-back education cut heart failure readmissions with an odds ratio of 0.40 in a 2023 meta-analysis (Patient Education and Counseling). Across 19 randomized trials and 3,953 patients, communication interventions at discharge were associated with 30-day readmissions of 9.1% against 13.5% in control groups (RR 0.69; Becker et al., JAMA Network Open 2021). Those trials tested interventions delivered to patients, not clinician training. CMS readmission penalties run $320 million to $563 million a year and reach roughly three quarters of evaluated hospitals (KFF and Definitive Healthcare analyses of CMS data). ClinicalSim itself has not been studied against readmission rates.",
       },
       {
         question: "Why has HCAHPS communication been so hard to move?",

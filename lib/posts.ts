@@ -243,10 +243,14 @@ const posts: Post[] = [
     seoTitle: "Evidence for communication training",
     description: "Candello found a communication factor in 40% of asserted malpractice cases, and Chung's review of 20 training studies rated the evidence very low to low quality. Neither supports an ROI headline. What a program can measure is its own learners, scored against a named framework.",
     date: "2025-08-12",
-    dateModified: "2026-09-03",
+    dateModified: "2026-10-02",
     author: "ClinicalSim Team",
-    readingTime: "5 min read",
+    readingTime: "7 min read",
     tags: ["communication", "malpractice", "training gap"],
+    // Ben confirmed Vinod as reviewer on 2026-10-02. The readmission,
+    // patient experience, and medicolegal studies came from his list.
+    reviewedBy: "Vinod Havalad, MD",
+    reviewedDate: "2026-10-02",
   },
   {
     slug: "scalability-problem-sp-programs",
