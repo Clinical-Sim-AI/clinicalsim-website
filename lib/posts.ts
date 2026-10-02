@@ -247,6 +247,10 @@ const posts: Post[] = [
     author: "ClinicalSim Team",
     readingTime: "7 min read",
     tags: ["communication", "malpractice", "training gap"],
+    // Ben confirmed Vinod as reviewer on 2026-10-02. The readmission,
+    // patient experience, and medicolegal studies came from his list.
+    reviewedBy: "Vinod Havalad, MD",
+    reviewedDate: "2026-10-02",
   },
   {
     slug: "scalability-problem-sp-programs",
