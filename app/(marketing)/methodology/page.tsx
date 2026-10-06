@@ -263,7 +263,14 @@ export default function MethodologyPage() {
             engine, rubric, and dashboard serve learners across the medical
             education continuum. Every session produces timestamped,
             competency-based documentation for learners, faculty, and program
-            leadership.
+            leadership. For the institutional view of the same loop, see{" "}
+            <Link
+              href="/clinical-communication-intelligence"
+              className="text-cs-dark-blue font-medium underline underline-offset-4 hover:text-cs-navy transition-colors"
+            >
+              what clinical communication intelligence means
+            </Link>
+            .
           </p>
 
           <div className="rounded-xl border-l-4 border-cs-electric bg-cs-dark-blue px-6 py-5 max-w-3xl">
@@ -809,8 +816,8 @@ export default function MethodologyPage() {
           <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed mb-8">
             Read the wider FAQ for questions about cost, rollout, and program
             fit. Or work through evaluating ClinicalSim to see what the
-            evidence supports, what a procurement review will find, and how it
-            is licensed.
+            evidence supports, what a procurement review will find, and how an
+            engagement starts.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/faq">

@@ -306,7 +306,7 @@ export default function ContactPage() {
                   <Label htmlFor="newsletter" className="text-white text-base font-normal">
                     Sign up for news and updates
                   </Label>
-                  <p className="text-xs text-white/70 mt-1 font-light">Get notified about new features, research findings, and pilot opportunities.</p>
+                  <p className="text-xs text-white/70 mt-1 font-light">Get notified about new features and research findings.</p>
                 </div>
               </div>
 
@@ -386,7 +386,7 @@ export default function ContactPage() {
             <Link href="/evaluation" className="text-cs-dark-blue underline underline-offset-2 hover:no-underline">
               evaluating ClinicalSim
             </Link>{" "}
-            answers the procurement, evidence, and licensing questions.
+            answers the procurement, evidence, and engagement questions.
           </p>
         </div>
       </section>

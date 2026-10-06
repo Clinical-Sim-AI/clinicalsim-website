@@ -326,6 +326,12 @@ export default function HomePage() {
             >
               Read the scoring limits
             </Link>
+            <Link
+              href="/clinical-communication-intelligence"
+              className="font-medium text-cs-dark-blue underline decoration-cs-gray underline-offset-4 transition-colors hover:text-cs-navy"
+            >
+              What clinical communication intelligence means
+            </Link>
           </div>
 
           <div className="mt-14 border-t border-cs-gray pt-10 md:mt-16 md:pt-12">
@@ -348,10 +354,19 @@ export default function HomePage() {
 
       <section className="bg-cs-cloud px-6 py-16 md:py-24">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-12 md:mb-14">
-            <h2 className="mb-4 text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
-              {HOMEPAGE_PUBLIC_COPY.buyers.healthSystemHeading}
+          <div className="mb-12 max-w-3xl md:mb-16">
+            <h2 className="mb-4 text-balance text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
+              {HOMEPAGE_PUBLIC_COPY.buyers.heading}
             </h2>
+            <p className="text-lg font-light text-cs-dark-blue/70">
+              {HOMEPAGE_PUBLIC_COPY.buyers.intro}
+            </p>
+          </div>
+
+          <div className="mb-12 md:mb-14">
+            <h3 className="mb-4 text-2xl font-light tracking-tight text-cs-navy md:text-3xl">
+              {HOMEPAGE_PUBLIC_COPY.buyers.healthSystemHeading}
+            </h3>
             <p className="max-w-3xl text-lg font-light text-cs-dark-blue">
               {HOMEPAGE_PUBLIC_COPY.buyers.healthSystemBody}
             </p>
@@ -374,9 +389,9 @@ export default function HomePage() {
           </div>
 
           <div className="mb-12 mt-16 border-t border-cs-navy/15 pt-14 md:mb-14 md:mt-20 md:pt-16">
-            <h2 className="mb-4 text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
+            <h3 className="mb-4 text-2xl font-light tracking-tight text-cs-navy md:text-3xl">
               {HOMEPAGE_PUBLIC_COPY.buyers.medicalEducationHeading}
-            </h2>
+            </h3>
             <p className="max-w-3xl text-lg font-light text-cs-dark-blue">
               {HOMEPAGE_PUBLIC_COPY.buyers.medicalEducationBody}
             </p>

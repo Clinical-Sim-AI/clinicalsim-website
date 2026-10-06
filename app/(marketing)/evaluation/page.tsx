@@ -6,7 +6,12 @@ import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { WaveformBand } from "@/components/waveform-band"
 import { getAllAudiences } from "@/lib/audiences"
+import {
+  NO_OUTCOME_PREDICTION_LIMITATION,
+  SP_SUPPLEMENT_LINE,
+} from "@/lib/claim-discipline"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { ASSESSMENT_ENTRY, PRIMARY_CTA } from "@/lib/positioning"
 import type { FaqItem } from "@/lib/types"
 
 /**
@@ -20,10 +25,11 @@ import type { FaqItem } from "@/lib/types"
  *     encryption, retention, subprocessors, or hosting. Section 4 is structure
  *     over the trust page's existing claims and nothing more. Deck slide 23
  *     holds cleared sentences for all of these if Ben ever asks for them.
- *  2. NO price. Section 6 is budget framing only. The list price in
- *     lib/roi/constants.public.json and the deck's average contract value both
- *     stay off the site, and no claim may be made about which approval
- *     threshold a ClinicalSim purchase sits under.
+ *  2. NO price and NO billing basis. Section 6 describes how an engagement is
+ *     structured (ASSESSMENT_ENTRY) and nothing about how it is billed: no
+ *     per-learner, per-seat, or subscription wording (Ben, 2026-10-06). No
+ *     price, no scope allowance, and no claim about which approval threshold
+ *     a ClinicalSim purchase sits under.
  *  3. NO research outcomes, and no description of the research portfolio's
  *     shape or independence. Both were drafted and then withdrawn on
  *     2026-08-31 at Ben's instruction. They return only once the study owners
@@ -33,17 +39,17 @@ import type { FaqItem } from "@/lib/types"
 export const metadata: Metadata = {
   title: "Evaluating ClinicalSim",
   description:
-    "Review ClinicalSim's intended use, evidence, rollout, data handling, licensing, and product limits before a scope or pricing call.",
+    "Review ClinicalSim's intended use, evidence, rollout, data handling, engagement structure, and product limits before a scope or pricing call.",
   openGraph: {
     title: "Evaluating ClinicalSim | ClinicalSim.ai",
     description:
-      "The questions behind the purchase: intended use, evidence and its limits, procurement, rollout, licensing, and four scored encounters you can read without signing in.",
+      "The questions behind the purchase: intended use, evidence and its limits, procurement, rollout, how an engagement starts, and four scored encounters you can read without signing in.",
     url: "https://clinicalsim.ai/evaluation",
   },
   twitter: {
     title: "Evaluating ClinicalSim | ClinicalSim.ai",
     description:
-      "Intended use, evidence and its limits, procurement, rollout, licensing, and what we will not claim.",
+      "Intended use, evidence and its limits, procurement, rollout, how an engagement starts, and what we will not claim.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/evaluation",
@@ -51,7 +57,7 @@ export const metadata: Metadata = {
 }
 
 const LAST_UPDATED = PAGE_DATE_MODIFIED.evaluation
-const LAST_UPDATED_LABEL = "September 2026"
+const LAST_UPDATED_LABEL = "October 2026"
 
 /**
  * Each answer has to read on its own, without its question, because an answer
@@ -62,7 +68,7 @@ const evaluationFaqs: FaqItem[] = [
     question:
       "What should a program consider before adopting an AI communication training platform?",
     answer:
-      "Review the platform's intended use and limits, the evidence behind its claims, data handling, rollout needs, licensing, and the experience of the people who will practice. Four complete AI patient simulations are published with audio, transcript, and full reports so each reviewer can evaluate the same facts before a scope or pricing call.",
+      "Review the platform's intended use and limits, the evidence behind its claims, data handling, rollout needs, how an engagement is structured, and the experience of the people who will practice. Four complete AI patient simulations are published with audio, transcript, and full reports so each reviewer can evaluate the same facts before a scope or pricing call.",
   },
   {
     question: "Does ClinicalSim replace a standardized patient program?",
@@ -85,9 +91,9 @@ const evaluationFaqs: FaqItem[] = [
       "A browser and nothing else. ClinicalSim runs on any phone, tablet, or desktop with no download and no app to install, and a typical encounter takes 3 to 10 minutes. The platform currently supports English only. One thing IT may need to do is allow the voice service, because hospital firewalls, VPNs, and web filters sometimes block it; the briefing page runs a connection test that detects this and names what to ask IT to allow.",
   },
   {
-    question: "How is ClinicalSim licensed and budgeted?",
+    question: "How does an engagement with ClinicalSim start, and is there a published price?",
     answer:
-      "ClinicalSim is an annual per-learner subscription, which makes it operating expense rather than a capital purchase. That distinction usually matters more to how a purchase gets routed inside an academic medical center than the size of the number does. What a specific program pays depends on how many learners it covers, which cases it needs, and the term, so there is no list price published here.",
+      "An engagement usually starts with a communication assessment: one group practices a conversation or two with AI patients against the standard the institution already holds, and the report shows strengths and areas for focused practice in the participants' own words. A longer program can include that baseline, and a continuing engagement extends practice and review across more teams. No price is published. ClinicalSim scopes each engagement with the institution and quotes it directly.",
   },
   {
     question: "Can I see a real ClinicalSim encounter before talking to sales?",
@@ -138,7 +144,7 @@ export default function EvaluationPage() {
             "@type": "WebPage",
             name: "Evaluating ClinicalSim",
             description:
-              "Review ClinicalSim's intended use, evidence, rollout, data handling, licensing, and product limits before a scope or pricing call.",
+              "Review ClinicalSim's intended use, evidence, rollout, data handling, engagement structure, and product limits before a scope or pricing call.",
             url: "https://clinicalsim.ai/evaluation",
             dateModified: LAST_UPDATED,
             publisher: {
@@ -199,7 +205,8 @@ export default function EvaluationPage() {
             An enterprise review usually spans the team that owns communication
             training, the budget holder, IT and privacy reviewers, and the people
             who will practice. This page covers evidence, rollout, data handling,
-            licensing, and product limits so each group can evaluate the same facts.
+            how an engagement is structured, and product limits so each group can
+            evaluate the same facts.
           </p>
 
           <div className="rounded-xl border-l-4 border-cs-electric bg-cs-dark-blue px-6 py-5 max-w-3xl">
@@ -248,7 +255,15 @@ export default function EvaluationPage() {
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
             It does not price malpractice risk, and it does not benchmark one
-            institution against another.
+            institution against another. For the idea behind the product in
+            one page, read{" "}
+            <Link
+              href="/clinical-communication-intelligence"
+              className="text-cs-dark-blue font-medium hover:text-cs-navy transition-colors"
+            >
+              what clinical communication intelligence means for an institution
+            </Link>
+            .
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
             It is audio only. Voice practice surfaces pacing, silence, word
@@ -468,40 +483,77 @@ export default function EvaluationPage() {
 
       <SectionDivider variant="wave" color="white" />
 
-      {/* 6. Licensing. Structure of lib/roi/constants.public.json only: an
-          annual per-learner subscription. NO number, and no claim about which
-          approval threshold this sits under. See the file header. */}
+      {/* 6. Engagements. ASSESSMENT_ENTRY (lib/positioning.ts) verbatim. No
+          price, no scope allowance, and no billing basis: see the file
+          header. */}
       <section className="px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
-            6. How it is{" "}
-            <span className="text-cs-dark-blue font-medium">licensed</span>
+            6. How an engagement{" "}
+            <span className="text-cs-dark-blue font-medium">starts</span>
           </h2>
 
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-            ClinicalSim is an annual per-learner subscription. That makes it
-            operating expense rather than a capital purchase, which in most
-            academic medical centers matters more to how the decision gets
-            routed than the size of the number does.
+            {ASSESSMENT_ENTRY}
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-            There is no list price on this page, because what a program pays
-            depends on how many learners it covers, which cases it needs, and
-            the term. Ask us and we&apos;ll give you a number for your program
-            rather than a range you have to translate.
+            There is no price on this page. We scope each engagement with the
+            institution, around the conversation it wants to strengthen and
+            the people who will practice it, and quote it directly.
           </p>
         </div>
       </section>
 
       <SectionDivider variant="diagonal-up" color="white" />
 
-      {/* 7. Proof before the decision. The two scores are verified against the
-          rubricGrades content in lib/examples/*.ts:
-          informed-consent... "Total 22/30", vaccine-hesitancy "Total 17/25". */}
+      {/* 7. How this fits. SP line and outcome limitation verbatim from
+          lib/claim-discipline.ts. The survey sentence restates the published
+          mission ("Medicine measures how patients experience communication,
+          but rarely the communication itself"). No competitor is named. */}
       <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
-            7. How to see it{" "}
+            7. How this fits with{" "}
+            <span className="text-cs-dark-blue font-medium">what you already run</span>
+          </h2>
+
+          <h3 className="text-xl font-medium text-cs-dark-blue mb-2">
+            A standardized patient program
+          </h3>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
+            {SP_SUPPLEMENT_LINE}
+          </p>
+
+          <h3 className="text-xl font-medium text-cs-dark-blue mb-2">
+            Another AI simulation tool
+          </h3>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
+            Ask any vendor, us included, which named standard the score is
+            built on, whether each score quotes the transcript behind it, and
+            what the score must not be used for.
+          </p>
+
+          <h3 className="text-xl font-medium text-cs-dark-blue mb-2">
+            Patient experience surveys
+          </h3>
+          <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
+            A survey reports how patients experienced communication after the
+            visit. ClinicalSim measures the conversation itself, in
+            simulation: what the participant said, scored against the standard
+            your team already teaches. {NO_OUTCOME_PREDICTION_LIMITATION}
+          </p>
+        </div>
+      </section>
+
+      <SectionDivider variant="wave" color="white" />
+
+      {/* 8. Proof before the decision. The two scores are verified against the
+          rubricGrades content in lib/examples/*.ts:
+          informed-consent... "Total 22/30", vaccine-hesitancy "Total 17/25". */}
+      <section className="px-6 py-8 md:py-10 bg-cs-cloud">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
+            8. How to see it{" "}
             <span className="text-cs-dark-blue font-medium">before deciding</span>
           </h2>
 
@@ -525,14 +577,14 @@ export default function EvaluationPage() {
         </div>
       </section>
 
-      <SectionDivider variant="wave" color="white" />
+      <SectionDivider variant="diagonal-up" color="white" />
 
-      {/* 8. Consolidated restraint. See the `willNotClaim` comment for the
+      {/* 9. Consolidated restraint. See the `willNotClaim` comment for the
           per-item sources. */}
-      <section className="px-6 py-8 md:py-10 bg-cs-cloud">
+      <section className="px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
-            8. What we{" "}
+            9. What we{" "}
             <span className="text-cs-dark-blue font-medium">will not claim</span>
           </h2>
 
@@ -561,13 +613,13 @@ export default function EvaluationPage() {
         </div>
       </section>
 
-      <SectionDivider variant="diagonal-up" color="white" />
+      <SectionDivider variant="wave" color="white" />
 
-      {/* 9. FAQ */}
-      <section className="px-6 py-8 md:py-10 bg-white">
+      {/* 10. FAQ */}
+      <section className="px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
-            9. Questions buyers{" "}
+            10. Questions buyers{" "}
             <span className="text-cs-dark-blue font-medium">actually ask</span>
           </h2>
 
@@ -610,7 +662,7 @@ export default function EvaluationPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href="/examples">

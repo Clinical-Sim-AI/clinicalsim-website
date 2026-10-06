@@ -70,8 +70,11 @@ describe("homepage leads with the assessment entry point", () => {
     expect(copy).not.toContain("Request a pilot")
   })
 
-  it("walks through three steps and anonymizes the pilot example", () => {
-    expect(HOMEPAGE_PUBLIC_COPY.howItStarts.steps).toHaveLength(3)
+  it("walks through four steps and anonymizes the pilot example", () => {
+    expect(HOMEPAGE_PUBLIC_COPY.howItStarts.steps).toHaveLength(4)
+    expect(HOMEPAGE_PUBLIC_COPY.howItStarts.steps[3].title).toBe(
+      "Practice again and compare",
+    )
     expect(HOMEPAGE_PUBLIC_COPY.howItStarts.example).not.toMatch(/advocate/i)
   })
 })

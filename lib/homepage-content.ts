@@ -53,6 +53,10 @@ export const HOMEPAGE_PUBLIC_COPY = {
         title: "Review the feedback and plan what to practice next",
         body: "Each participant sees what they did well and what to practice next, with quotes from their conversation supporting each score. Leaders can review results across the group and choose cases for further practice. Formative scores stay out of personnel files.",
       },
+      {
+        title: "Practice again and compare",
+        body: "Participants repeat the case and compare their new scores with the earlier attempt. Leaders can review the group's results across attempts, and that review stays formative: it describes the group and never ranks one person against another.",
+      },
     ],
     exampleLabel: "What one health system learned",
     example:
@@ -71,6 +75,9 @@ export const HOMEPAGE_PUBLIC_COPY = {
     conversationsHeading: "Conversations participants can practice",
   },
   buyers: {
+    heading: "Start with a conversation your institution already cares about",
+    intro:
+      "Most institutions already know which conversation they want to strengthen, so the first assessment starts there rather than with a list of features.",
     healthSystemHeading: "For health systems",
     healthSystemBody:
       "ClinicalSim turns practice in consent, disclosure, debriefing, and patient service into feedback for each participant and measurable patterns for leaders. Each simulation uses your own service standard or policy, with the participant's words behind every score. It works alongside the healthcare simulation your education team already runs, so people can practice by voice from any device between scheduled sessions.",

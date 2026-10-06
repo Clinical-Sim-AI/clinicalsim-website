@@ -44,7 +44,7 @@ describe("header navigation", () => {
     expect(HEADER_MENUS.map(({ label }) => label)).toEqual([
       "Solutions",
       "How it works",
-      "Resources",
+      "Evidence and insights",
     ])
     expect(HEADER_DIRECT_LINKS).toEqual([{ href: "/help", label: "Help" }])
     expect(HEADER_ACTION).toEqual({ href: "/contact", label: "Talk with us" })
@@ -109,6 +109,10 @@ describe("header navigation", () => {
     }
 
     expect(howItWorks.items).toEqual([
+      {
+        href: "/clinical-communication-intelligence",
+        label: "Clinical communication intelligence",
+      },
       { href: "/examples", label: "Examples" },
       { href: "/frameworks", label: "Frameworks and standards" },
       { href: "/methodology", label: "Methodology" },

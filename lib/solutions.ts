@@ -475,7 +475,7 @@ const solutions: Solution[] = [
     subtitle: "Practice the behaviors behind listening, explanation, and respect",
     icon: "chat-square-heart",
     colorVariant: "accent",
-    lastUpdated: "2026-09-01",
+    lastUpdated: "2026-10-06",
     cardBullets: [
       "Score the service standards your institution already teaches",
       "Quote the words behind each score",
@@ -538,6 +538,11 @@ const solutions: Solution[] = [
         question: "Can ClinicalSim score our service scripts and standards?",
         answer:
           "Yes. The institution supplies the approved script, service model, or rubric, and ClinicalSim scores the defined behavior. The report can give credit for the intended meaning rather than require one exact sentence.",
+      },
+      {
+        question: "Can ClinicalSim check whether staff confirm the patient understood?",
+        answer:
+          "Yes, when the institution's standard includes that step. If a service model or script asks staff to use teach back or to summarize the plan before the patient leaves, ClinicalSim scores that step like any other behavior in the standard and quotes the words the staff member used. The score shows whether the check happened in the simulated conversation. It does not measure what a real patient later understood or remembered.",
       },
       {
         question: "Can nurses and nonclinical staff use the same platform?",
@@ -707,7 +712,7 @@ const solutions: Solution[] = [
     subtitle: "Scoring the conversation behind the signature",
     icon: "badge-check",
     colorVariant: "navy",
-    lastUpdated: "2026-09-01",
+    lastUpdated: "2026-10-06",
     cardBullets: [
       "Scored element by element against your own consent policy",
       "Every score quotes the line the clinician actually said",
@@ -811,6 +816,11 @@ const solutions: Solution[] = [
         question: "Is this a skill that responds to training?",
         answer:
           "Yes, with a measured effect. In a randomized trial of 122 senior medical students, consent OSCE scores rose from 61% to 71% in the trained arm against under 1% change in control, an effect size of 0.79, and the number reporting confidence obtaining consent went from 11 to 62 (BMC Medical Education, 2025). Separately, 56% of 402 emergency medicine residents reported never having had formal training on informed consent at all (Academic Emergency Medicine, 2007).",
+      },
+      {
+        question: "How does a consent case score the check of understanding?",
+        answer:
+          "The sixth element of the ready to use consent rubric covers it: invite questions, use teach back to check the explanation, correct misunderstandings, and ask for the decision. The report scores that element from the transcript and quotes what the clinician said when they checked, or notes that the check did not appear when the case gave the chance. An institution that uses its own consent policy can define the check in its own words.",
       },
       {
         question: "Does ClinicalSim make our consent process compliant?",
