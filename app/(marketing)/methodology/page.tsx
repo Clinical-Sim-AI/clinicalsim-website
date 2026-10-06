@@ -263,7 +263,14 @@ export default function MethodologyPage() {
             engine, rubric, and dashboard serve learners across the medical
             education continuum. Every session produces timestamped,
             competency-based documentation for learners, faculty, and program
-            leadership.
+            leadership. For the institutional view of the same loop, see{" "}
+            <Link
+              href="/clinical-communication-intelligence"
+              className="text-cs-dark-blue font-medium underline underline-offset-4 hover:text-cs-navy transition-colors"
+            >
+              what clinical communication intelligence means
+            </Link>
+            .
           </p>
 
           <div className="rounded-xl border-l-4 border-cs-electric bg-cs-dark-blue px-6 py-5 max-w-3xl">

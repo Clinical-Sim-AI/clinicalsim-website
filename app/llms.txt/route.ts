@@ -10,6 +10,7 @@ import {
   ASSESSMENT_ENTRY,
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
+  CATEGORY_MEANING,
   MEASUREMENT_CLAIM,
   MISSION_STATEMENT,
   POSITIONING_AUDIENCE,
@@ -48,7 +49,7 @@ const KEY_FACTS = `## Key facts
 - **Limits of the evidence.** Those frameworks were built for trained human raters observing real encounters, which is where their published reliability was established. A framework's reliability does not carry over to an AI score in a simulated encounter, so each score is a formative signal rather than a validated measure. ClinicalSim does not claim its scoring is more accurate or more valid than a faculty member's read. (/methodology, /trust)
 - **Who it serves.** ${POSITIONING_AUDIENCE} Buyers include patient experience, risk and patient safety, simulation, GME, and UME leaders. (/audiences)
 - **Proof you can read without signing in.** Four complete AI patient simulations are published at ${BASE_URL}/examples with audio, the full transcript, and the entire scored report, no sign-in and no form. Each report shows strengths, areas for focused practice, and the participant's own words behind the feedback.
-- **How it is licensed.** An annual per-learner subscription, so operating expense rather than a capital purchase. No list price is published; what a program pays depends on learner count, cases, and term. (/evaluation)
+- **How an engagement is structured.** An engagement usually begins with a communication assessment, can continue as a longer program that includes that baseline, and can extend into continuing practice and review across more teams. No price is published. (/evaluation)
 - **Deployment.** Browser-based on any phone, tablet, or desktop with nothing to install. A typical encounter runs 3 to 10 minutes. English only. Four roles: Member, Project Manager, Admin, Owner. Nothing crosses organizations. IT may need to allow the voice service. (/faq, /help/roles-and-permissions)
 - **Contact.** ${BASE_URL}/contact to discuss a communication priority or ask a product question, ${BASE_URL}/research to propose a study (rolling review, typically a 1 to 2 week response).
 `
@@ -99,8 +100,9 @@ export async function GET() {
   const otherPages = [
     `\n## More\n`,
     `- [Published frameworks and institution standards](${BASE_URL}/frameworks): Start with ready to use cases based on published clinical frameworks or add an institution's policy, service standard, script, or rubric. Every score cites transcript evidence, and the page states the scope rule and scoring limits.`,
+    `- [Clinical communication intelligence](${BASE_URL}/clinical-communication-intelligence): ${CATEGORY_MEANING} The page walks through the practice loop (agree the standard, practice, focus the next round, practice again and compare), one scored conversation from the published examples, the question each role brings, and what the approach does not claim.`,
     `- [Methodology](${BASE_URL}/methodology): How ClinicalSim builds cases, names the competency and communication frameworks each case uses, and generates rubric-scored feedback tied to transcript evidence.`,
-    `- [Evaluating ClinicalSim](${BASE_URL}/evaluation): The questions behind the purchase, answered in one place: what ClinicalSim is intended for and what it is not, who inside an institution owns the decision, what the evidence establishes and what it does not, what a privacy or procurement reviewer will find, what it takes to run, how it is licensed, and what ClinicalSim will not claim.`,
+    `- [Evaluating ClinicalSim](${BASE_URL}/evaluation): The questions behind the purchase, answered in one place: what ClinicalSim is intended for and what it is not, who inside an institution owns the decision, what the evidence establishes and what it does not, what a privacy or procurement reviewer will find, what it takes to run, how an engagement is structured, how it fits with SP programs and patient experience surveys, and what ClinicalSim will not claim.`,
     `- [Trust and data handling](${BASE_URL}/trust): ClinicalSim is intended for training and assessment and does not diagnose patients, recommend treatment, or create clinical documentation. Cases use synthetic patients written from clinical literature rather than patient records. The product handles learner recordings, transcripts, account data, and institutional data.`,
     `- [FAQ](${BASE_URL}/faq): Common questions about ClinicalSim's AI clinical simulation, including how it compares to Step 2 CS and standardized patients, communication remediation, scoring and My Progress, evidence for CCC review, privacy, and research.`,
     `- [FAQ for medical educators](${BASE_URL}/medical-educator-faq): How to read a feedback report, inspect transcript evidence, compare GME and UME scoring, choose a practice cadence, and use results in a rotation or remediation plan.`,

@@ -83,7 +83,7 @@ describe("SiteHeader interactions", () => {
     expect(solutions.getAttribute("aria-expanded")).toBe("true")
     expect(screen.getByRole("link", { name: "Informed consent" })).toBeTruthy()
 
-    await user.click(screen.getByRole("button", { name: "Resources" }))
+    await user.click(screen.getByRole("button", { name: "Evidence and insights" }))
     expect(solutions.getAttribute("aria-expanded")).toBe("false")
     expect(screen.queryByRole("link", { name: "Informed consent" })).toBeNull()
     expect(screen.getByRole("link", { name: "Research collaboration" })).toBeTruthy()
@@ -197,7 +197,7 @@ describe("SiteHeader interactions", () => {
     const user = userEvent.setup()
     render(createElement(SiteHeader))
 
-    const resources = screen.getByRole("button", { name: "Resources" })
+    const resources = screen.getByRole("button", { name: "Evidence and insights" })
     await user.click(resources)
     const insights = screen.getByRole("link", { name: "Insights" })
 

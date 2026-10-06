@@ -131,7 +131,14 @@ export default function AboutPage() {
           <p className="mt-6 text-lg text-cs-cloud/90 font-light leading-relaxed max-w-2xl">
             {CATEGORY_MEANING} We want clinicians to be able to practice the
             conversations that matter most and get feedback specific enough to
-            act on.
+            act on.{" "}
+            <Link
+              href="/clinical-communication-intelligence"
+              className="font-medium text-white underline underline-offset-4 hover:text-cs-electric transition-colors"
+            >
+              Read what clinical communication intelligence means for an institution
+            </Link>
+            .
           </p>
         </div>
       </section>

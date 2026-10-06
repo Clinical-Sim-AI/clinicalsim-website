@@ -15,10 +15,16 @@ export const PAGE_DATE_MODIFIED = {
   // Category line became "clinical communication intelligence" (2026-10-06).
   about: "2026-10-06",
   audiences: "2026-09-02",
+  // New category page (2026-10-06).
+  clinicalCommunicationIntelligence: "2026-10-06",
   compare: "2026-09-02",
   contact: "2026-10-06",
-  evaluation: "2026-09-02",
+  // Licensing section became engagements with no billing basis; added the
+  // "How this fits with what you already run" section (2026-10-06).
+  evaluation: "2026-10-06",
   examples: "2026-09-02",
+  // Licensing answer reworded without a billing basis; three program-fit
+  // objections added (2026-10-06).
   faq: "2026-10-06",
   frameworks: "2026-09-03",
   glossary: "2026-08-18",

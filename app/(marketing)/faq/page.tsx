@@ -18,6 +18,7 @@ import {
 import {
   NO_EMPLOYMENT_USE_LIMITATION,
   NO_OUTCOME_PREDICTION_LIMITATION,
+  SP_SUPPLEMENT_LINE,
 } from "@/lib/claim-discipline"
 
 // Page-specific so /faq stops sharing POSITIONING_LONG with /about and the
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
 
 // Visible + schema recency. Update whenever answers change.
 const LAST_UPDATED_ISO = PAGE_DATE_MODIFIED.faq
-const LAST_UPDATED_LABEL = "September 2, 2026"
+const LAST_UPDATED_LABEL = "October 6, 2026"
 
 interface FaqEntry {
   id: string
@@ -365,18 +366,76 @@ const faqSections: FaqSection[] = [
   {
     // Added 2026-08-31. The methodology page's CTA has been sending readers
     // here for "pricing, rollout, and program fit" while this page answered
-    // none of the three. Sources per answer: licensing is the structure of
-    // lib/roi/constants.public.json with no figure (Ben's decision, budget
-    // framing only); the rest restate /faq "devices-and-install",
+    // none of the three. Sources per answer: the engagement answer is
+    // ASSESSMENT_ENTRY with no price and no billing basis (Ben, 2026-10-06);
+    // the three program-fit objections (2026-10-06) restate /methodology,
+    // /trust, /roi-calculator, and the claim-discipline sentences; the rest
+    // restate /faq "devices-and-install",
     // "encounter-length", "languages", /help/roles-and-permissions,
     // lib/release-notes.ts 2026-08-03, lib/examples/*.ts, and /research.
     category: "Cost, rollout, and program fit",
     items: [
       {
         id: "how-licensed",
-        question: "How is ClinicalSim licensed, and how should a program budget for it?",
+        question: "How does an engagement with ClinicalSim start, and is there a published price?",
         answer:
-          "ClinicalSim is an annual per-learner subscription, so it lands as operating expense rather than a capital purchase. In most academic medical centers that distinction matters more to how the decision gets routed than the size of the number does. What a program pays depends on how many learners it covers, which cases it needs, and the term, so there is no list price published here.",
+          "An engagement usually starts with a communication assessment, in which one group practices a conversation or two with AI patients against the standard the institution already holds. A longer program can include that baseline, and a continuing engagement extends practice and review across more teams. No price is published. ClinicalSim scopes each engagement with the institution and quotes it directly.",
+      },
+      {
+        id: "already-provide-training",
+        question: "We already provide communication training. Why add ClinicalSim?",
+        answer: `Most communication training is limited by how many sessions faculty and standardized patients can staff. ClinicalSim adds practice between those sessions: a participant can repeat a case from any device, and every score quotes the words they used, so the feedback is about their own conversation rather than conversations in general. ${SP_SUPPLEMENT_LINE}`,
+      },
+      {
+        id: "build-it-ourselves",
+        question: "Could we build this ourselves?",
+        answer:
+          "Some institutions could, and it helps to know what the work involves. A working program needs cases written for each conversation and learner level, a rubric mapped element by element to the institution's standard, review of the scoring against real transcripts before release, and voice, privacy, and data handling that a security review will accept. The methodology page describes how ClinicalSim builds and scores cases, and the trust page describes how it handles data, so a team weighing a build can compare the two directly.",
+        answerNode: (
+          <p>
+            Some institutions could, and it helps to know what the work
+            involves. A working program needs cases written for each
+            conversation and learner level, a rubric mapped element by element
+            to the institution&apos;s standard, review of the scoring against
+            real transcripts before release, and voice, privacy, and data
+            handling that a security review will accept. The{" "}
+            <Link
+              href="/methodology"
+              className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
+            >
+              methodology page
+            </Link>
+            {" "}describes how ClinicalSim builds and scores cases, and the{" "}
+            <Link
+              href="/trust"
+              className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
+            >
+              trust page
+            </Link>
+            {" "}describes how it handles data, so a team weighing a build can
+            compare the two directly.
+          </p>
+        ),
+      },
+      {
+        id: "what-return",
+        question: "What return should we expect from ClinicalSim?",
+        answer: `ClinicalSim does not promise a return. The ROI calculator lets a program enter its own figures, such as the number of residents and fellows, remediation cases, and the value of a faculty hour, and shows what those inputs imply, with the source behind each default. ${NO_OUTCOME_PREDICTION_LIMITATION}`,
+        answerNode: (
+          <p>
+            ClinicalSim does not promise a return. The{" "}
+            <Link
+              href="/roi-calculator"
+              className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
+            >
+              ROI calculator
+            </Link>
+            {" "}lets a program enter its own figures, such as the number of
+            residents and fellows, remediation cases, and the value of a faculty
+            hour, and shows what those inputs imply, with the source behind each
+            default. {NO_OUTCOME_PREDICTION_LIMITATION}
+          </p>
+        ),
       },
       {
         id: "what-to-start",

@@ -4,6 +4,7 @@ import {
   getAllAudiences,
   rendersGeneratedPrimaryCta,
 } from "./audiences"
+import { BRITISH_SPELLING_PATTERN } from "./claim-discipline"
 import { getSolutionBySlug } from "./solutions"
 
 const audiences = getAllAudiences()
@@ -67,5 +68,21 @@ describe("Audience registry", () => {
     }
 
     expect(audiences.filter(rendersGeneratedPrimaryCta).length).toBeGreaterThan(0)
+  })
+
+  // The opener is the buyer's own question (Walia & Miller, Doc 3 p11). It is
+  // adapted, not copied: the deck writes British English and frames some
+  // questions around what is wrong with people.
+  it("opens every audience page with the buyer's question", () => {
+    for (const audience of audiences) {
+      const question = audience.buyerQuestion
+      expect(question, `${audience.slug} has no buyerQuestion`).toBeTruthy()
+      expect(question!.trim().endsWith("?"), `${audience.slug}: ${question}`).toBe(true)
+      expect(question, `${audience.slug}: ${question}`).not.toMatch(BRITISH_SPELLING_PATTERN)
+      expect(question, `${audience.slug}: ${question}`).not.toMatch(
+        /fix what|fell short|falls short|going wrong|breaks down|complaints are coming|struggling|weak|poor performers|at-risk clinicians|behaviou?rs? deserve/i
+      )
+      expect(question, `${audience.slug}: ${question}`).not.toMatch(/[–—]/)
+    }
   })
 })

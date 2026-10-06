@@ -134,6 +134,12 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             </p>
           </div>
 
+          {audience.buyerQuestion && (
+            <p className="text-lg md:text-xl font-light leading-snug text-cs-cloud mb-4 max-w-3xl">
+              {audience.buyerQuestion}
+            </p>
+          )}
+
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.1] text-balance mb-6 text-white">
             {audience.heroHeadline}
           </h1>

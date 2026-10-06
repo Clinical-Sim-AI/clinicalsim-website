@@ -186,13 +186,14 @@ describe("claim discipline", () => {
   })
 
   describe("American spelling", () => {
-    it("positioning and homepage copy carry no British spellings from the consultant decks", () => {
+    it("positioning, homepage, and audience copy carry no British spellings from the consultant decks", () => {
       const violations: string[] = []
 
       for (const registry of REGISTRIES) {
         if (
           registry.name !== "lib/positioning.ts" &&
-          registry.name !== "lib/homepage-content.ts"
+          registry.name !== "lib/homepage-content.ts" &&
+          registry.name !== "lib/audiences.ts"
         ) {
           continue
         }

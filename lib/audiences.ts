@@ -36,6 +36,13 @@ export interface Audience {
   cardBullets: string[]
 
   // Hero
+  /**
+   * The buyer's own question, rendered above heroHeadline. Adapted from the
+   * buyer questions in the Walia & Miller offer strategy (Doc 3, p11), in
+   * American spelling and without deficit framing. lib/audiences.test.ts
+   * checks each one ends in "?".
+   */
+  buyerQuestion?: string
   heroHeadline: string
   heroDescription: string
   lastUpdated?: string
@@ -97,7 +104,7 @@ const audiences: Audience[] = [
     subtitle: "Give each learner a clear next step between coaching sessions",
     icon: "hat-graduation",
     colorVariant: "navy",
-    lastUpdated: "2026-09-03",
+    lastUpdated: "2026-10-06",
 
     cardBullets: [
       "Structured encounters between coaching sessions",
@@ -105,6 +112,8 @@ const audiences: Audience[] = [
       "No scheduling, no SP recruitment, no faculty observer required for practice",
     ],
 
+    buyerQuestion:
+      "Where does this cohort need support, and how should we organize it?",
     heroHeadline:
       "Give each learner a clear path through communication remediation",
     heroDescription:
@@ -242,7 +251,7 @@ const audiences: Audience[] = [
     subtitle: "One reporting structure across programs, with local clinical standards",
     icon: "hospital",
     colorVariant: "accent",
-    lastUpdated: "2026-09-03",
+    lastUpdated: "2026-10-06",
 
     cardBullets: [
       "Shared remediation documentation across every program",
@@ -250,6 +259,8 @@ const audiences: Audience[] = [
       "Every session creates a timestamped, rubric-scored record",
     ],
 
+    buyerQuestion:
+      "How do we develop and review communication consistently across our programs?",
     heroHeadline:
       "Give every program the same starting point for communication remediation",
     heroDescription:
@@ -378,7 +389,7 @@ const audiences: Audience[] = [
     subtitle: "Extend your SP program, don't replace it",
     icon: "microscope",
     colorVariant: "blue",
-    lastUpdated: "2026-09-03",
+    lastUpdated: "2026-10-06",
 
     cardBullets: [
       "Transcript evidence for faculty and CCC review",
@@ -386,6 +397,8 @@ const audiences: Audience[] = [
       "A longitudinal record of simulated practice",
     ],
 
+    buyerQuestion:
+      "How do we give learners more practice between the sessions we can staff?",
     heroHeadline:
       "Give learners more practice without adding another SP session",
     heroDescription:
@@ -522,7 +535,7 @@ const audiences: Audience[] = [
     subtitle: "Rubric-scored evidence for CCC review",
     icon: "ribbon-check",
     colorVariant: "light-blue",
-    lastUpdated: "2026-09-03",
+    lastUpdated: "2026-10-06",
 
     cardBullets: [
       "Rubric-scored assessment data from structured practice sessions",
@@ -530,6 +543,8 @@ const audiences: Audience[] = [
       "Structured data to complement faculty observations",
     ],
 
+    buyerQuestion:
+      "What communication evidence can we review alongside faculty observation?",
     heroHeadline: "Give your CCC another source of communication evidence",
     heroDescription:
       "Each conversation is scored against the standard approved for the case, with the learner's own words quoted under every score. Review it alongside faculty observation and the other evidence your committee already uses.",
@@ -655,7 +670,7 @@ const audiences: Audience[] = [
     subtitle: "Sequence communication across all four years",
     icon: "book-opened",
     colorVariant: "blue",
-    lastUpdated: "2026-09-02",
+    lastUpdated: "2026-10-06",
 
     cardBullets: [
       "A four-year arc from history-taking to diagnosis disclosure",
@@ -663,6 +678,8 @@ const audiences: Audience[] = [
       "A dashboard that follows each student through clerkships",
     ],
 
+    buyerQuestion:
+      "How do we develop and review communication consistently across courses and clerkships?",
     heroHeadline:
       "Build communication skill across all four years",
     heroDescription:
@@ -789,7 +806,7 @@ const audiences: Audience[] = [
     subtitle: "Practice the conversations faculty are expected to model",
     icon: "medal-star",
     colorVariant: "accent",
-    lastUpdated: "2026-09-02",
+    lastUpdated: "2026-10-06",
 
     cardBullets: [
       "Rehearse giving specific corrective feedback",
@@ -797,6 +814,8 @@ const audiences: Audience[] = [
       "The same rubric system that trains residents",
     ],
 
+    buyerQuestion:
+      "What should each learner practice next, and how do we support them?",
     heroHeadline:
       "Practice the conversations you are expected to lead",
     heroDescription:
@@ -924,11 +943,13 @@ const audiences: Audience[] = [
       "Extends the simulation program your institution already runs",
     ],
 
+    buyerQuestion:
+      "Which conversations matter most for our safety priorities, and how do we prepare clinicians for them?",
     heroHeadline:
       "Give clinicians a safe place to practice high-stakes safety conversations",
     heroDescription:
       "Clinicians rehearse disclosure, goals of care, family meetings, and de-escalation with AI patients. Each private report shows strengths and areas for practice against a published framework or institution policy. Leaders review completion or aggregate patterns under institution-defined access rules. ClinicalSim does not monitor patient care or predict claims.",
-    lastUpdated: "2026-10-02",
+    lastUpdated: "2026-10-06",
 
     painPoints: [
       {
@@ -1073,11 +1094,13 @@ const audiences: Audience[] = [
       "Review named cohorts or anonymous unit results",
     ],
 
+    buyerQuestion:
+      "Which parts of patient conversations deserve attention for our priority, and what can we do about them?",
     heroHeadline:
       "Start with one unit, one standard, and one reporting question",
     heroDescription:
       "Nurses, clinicians, and patient facing staff practice by voice with AI patients. Each report scores the encounter against your approved service standards and cites the transcript. ClinicalSim does not predict HCAHPS, Qualtrics, readmission, or other patient outcomes.",
-    lastUpdated: "2026-10-02",
+    lastUpdated: "2026-10-06",
 
     painPoints: [
       {

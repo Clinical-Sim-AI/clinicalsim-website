@@ -77,6 +77,10 @@ export const HEADER_MENUS: HeaderMenu[] = [
     label: "How it works",
     kind: "links",
     items: [
+      {
+        href: "/clinical-communication-intelligence",
+        label: "Clinical communication intelligence",
+      },
       { href: "/examples", label: "Examples" },
       { href: "/frameworks", label: "Frameworks and standards" },
       { href: "/methodology", label: "Methodology" },
@@ -85,7 +89,7 @@ export const HEADER_MENUS: HeaderMenu[] = [
   },
   {
     id: "resources",
-    label: "Resources",
+    label: "Evidence and insights",
     kind: "links",
     items: [
       { href: "/insights", label: "Insights" },

@@ -306,7 +306,7 @@ export default function ContactPage() {
                   <Label htmlFor="newsletter" className="text-white text-base font-normal">
                     Sign up for news and updates
                   </Label>
-                  <p className="text-xs text-white/70 mt-1 font-light">Get notified about new features, research findings, and pilot opportunities.</p>
+                  <p className="text-xs text-white/70 mt-1 font-light">Get notified about new features and research findings.</p>
                 </div>
               </div>
 
