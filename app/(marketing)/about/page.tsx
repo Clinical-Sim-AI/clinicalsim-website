@@ -16,6 +16,7 @@ import { ArrowRight } from "lucide-react"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import {
   CATEGORY_LINE,
+  CATEGORY_MEANING,
   POSITIONING_ONE_LINER,
 } from "@/lib/positioning"
 
@@ -25,7 +26,7 @@ const ABOUT_DESCRIPTION =
   "Our mission is to improve patient care through better clinical communication. ClinicalSim is built by clinicians who are program directors and educators."
 
 export const metadata: Metadata = {
-  title: { absolute: "About ClinicalSim.ai: communication intelligence for healthcare" },
+  title: { absolute: "About ClinicalSim.ai: clinical communication intelligence for healthcare" },
   description: ABOUT_DESCRIPTION,
   openGraph: {
     title: "About ClinicalSim.ai",
@@ -126,6 +127,10 @@ export default function AboutPage() {
           </h1>
           <p className="text-xl text-cs-cloud font-light leading-relaxed max-w-2xl">
             {POSITIONING_ONE_LINER}
+          </p>
+          <p className="mt-6 text-lg text-cs-cloud/90 font-light leading-relaxed max-w-2xl">
+            {CATEGORY_MEANING} We want important healthcare conversations to be
+            something clinicians can prepare for, examine, and improve.
           </p>
         </div>
       </section>

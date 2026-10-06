@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { PRIMARY_CTA } from "@/lib/positioning"
 import type { ReactNode } from "react"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
@@ -1051,8 +1052,8 @@ export default function ProgramDirectorFaqPage() {
             </span>
           </h2>
           <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed mb-8">
-            Read the full methodology, or talk to us about piloting ClinicalSim
-            at your program.
+            Read the full methodology, or tell us which conversation your
+            program wants to strengthen.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/methodology">
@@ -1062,7 +1063,7 @@ export default function ProgramDirectorFaqPage() {
             </Link>
             <Link href="/contact">
               <Button variant="default" size="lg">
-                Request a Pilot
+                {PRIMARY_CTA}
               </Button>
             </Link>
           </div>

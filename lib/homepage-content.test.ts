@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server"
 import { describe, expect, it } from "vitest"
 import HomePage, { metadata } from "../app/(marketing)/page"
 import { HOMEPAGE_PUBLIC_COPY } from "./homepage-content"
+import { PRIMARY_CTA } from "./positioning"
 
 describe("homepage public copy", () => {
   it("keeps retired positioning phrases off the homepage", () => {
@@ -42,6 +43,23 @@ describe("homepage hero keeps both markets in frame", () => {
     expect(copy).not.toMatch(
       /fix what|fell short|going wrong|complaints are coming|breaks down|nobody thanked/i,
     )
+  })
+})
+
+describe("homepage names the category and one call to action", () => {
+  it("puts clinical communication intelligence in the eyebrow", () => {
+    expect(HOMEPAGE_PUBLIC_COPY.hero.eyebrow).toMatch(
+      /clinical communication intelligence/i,
+    )
+  })
+
+  it("uses the shared primary CTA in the hero and the closing", () => {
+    expect(HOMEPAGE_PUBLIC_COPY.hero.primaryCta).toBe(PRIMARY_CTA)
+    expect(HOMEPAGE_PUBLIC_COPY.closing.cta).toBe(PRIMARY_CTA)
+  })
+
+  it("states the pilot count Ben confirmed on 2026-10-06", () => {
+    expect(HOMEPAGE_PUBLIC_COPY.hero.pilot).toMatch(/^29 /)
   })
 })
 

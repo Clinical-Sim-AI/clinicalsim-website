@@ -1,3 +1,5 @@
+import { PRIMARY_CTA } from "./positioning"
+
 export const HOMEPAGE_SEO = {
   title: "AI clinical simulation for healthcare",
   description:
@@ -6,13 +8,16 @@ export const HOMEPAGE_SEO = {
 
 export const HOMEPAGE_PUBLIC_COPY = {
   hero: {
-    eyebrow: "Communication intelligence for healthcare",
+    eyebrow: "Clinical communication intelligence",
     headline: "Clinical simulation for better patient conversations.",
-    body: "Clinicians and trainees talk through realistic cases out loud with AI patients. Each clinical simulation is scored against your standard, so every person sees what they did well and what to practice next. It's built for anyone who talks to a patient, from residency programs to the front desk.",
-    primaryCta: "See how an assessment works",
-    secondaryCta: "See example feedback",
+    body: "Clinicians and trainees talk through realistic cases out loud with AI patients. Each clinical simulation is scored against your standard, so every person sees what they did well and what to practice next, and leaders can see where the group needs focused practice. It's built for anyone who talks to a patient, from residency programs to the front desk.",
+    primaryCta: PRIMARY_CTA,
+    secondaryCta: "See a conversation",
+    // Count confirmed by Ben, 2026-10-06. Before changing the institution
+    // wording, confirm every pilot is an academic medical center or a
+    // children's hospital.
     pilot:
-      "More than 25 academic medical centers and children's hospitals are piloting ClinicalSim.",
+      "29 academic medical centers and children's hospitals are piloting ClinicalSim.",
   },
   evidencePanel: [
     {
@@ -29,12 +34,12 @@ export const HOMEPAGE_PUBLIC_COPY = {
     },
   ],
   demo: {
-    heading: "Watch a simulated conversation and review the feedback",
+    heading: "Inspect the conversation behind the feedback",
     body: "A learner talks a hesitant parent through a two-month vaccine visit. The report then scores the conversation and quotes the lines that earned each score.",
   },
   howItStarts: {
-    heading: "How a communication assessment works",
-    intro: "Participants practice with AI patients and get feedback based on your communication standard.",
+    heading: "Turn the standard you already teach into practice and review",
+    intro: "In a communication assessment, participants practice with AI patients and get feedback based on your communication standard.",
     steps: [
       {
         title: "Send us your standard for communication",
@@ -76,8 +81,8 @@ export const HOMEPAGE_PUBLIC_COPY = {
   },
   proofHeading: "From clinicians who have used ClinicalSim",
   closing: {
-    heading: "Start with a conversation you want to strengthen.",
-    body: "Tell us where leaders want more consistent communication or which conversation learners need to practice. We'll review your standard, or show you the closest ready to use case, before the assessment begins.",
-    cta: "Start with an assessment",
+    heading: "Bring us a communication priority.",
+    body: "Tell us which conversation your institution wants to strengthen and who needs to practice it. We'll review the standard you already teach, or show you the closest ready to use case, and plan an assessment around it.",
+    cta: PRIMARY_CTA,
   },
 } as const

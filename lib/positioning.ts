@@ -24,20 +24,28 @@
  * 2026-08-27) leads with this line, and the 2026-08-07 GEO audit listed it as a
  * public candidate pending positioning approval.
  *
+ * "Clinical" was added 2026-10-06, from the Walia & Miller strategy decks. In
+ * running copy the category is lowercase "clinical communication intelligence";
+ * the acronym CCI is reserved for a dedicated category page.
+ *
  * Never ship it alone. It is an abstraction, and an abstraction with no
  * definition attached is exactly the kind of sentence an answer engine cannot
  * quote. Pair it with CATEGORY_DEFINITION on first use.
  */
 export const CATEGORY_LINE =
-  "The communication intelligence platform for healthcare."
+  "The clinical communication intelligence platform for healthcare."
 
 /**
- * The plain-language unpacking of CATEGORY_LINE. Practice is the participant's
+ * The plain-language unpacking of CATEGORY_LINE. It opens with a one-sentence
+ * definition of the category (Walia & Miller, 2026-10) and then says what the
+ * participant does. Practice is the participant's
  * experience and measurement is the institution's method. The scoring paths
  * stay named because lib/market-positioning.test.ts asserts both appear.
  */
-export const CATEGORY_DEFINITION =
-  "Clinicians, medical learners, and patient facing staff practice spoken conversations with AI patients. ClinicalSim scores each simulation against published clinical frameworks or the institution's own policy, service standard, script, or rubric, quotes the participant's own words under every score, and shows what they did well and what to practice next."
+export const CATEGORY_MEANING =
+  "Clinical communication intelligence means making how healthcare teams handle important conversations visible, interpretable, and improvable."
+
+export const CATEGORY_DEFINITION = `${CATEGORY_MEANING} Clinicians, medical learners, and patient facing staff practice spoken conversations with AI patients. ClinicalSim scores each simulation against published clinical frameworks or the institution's own policy, service standard, script, or rubric, quotes the participant's own words under every score, and shows what they did well and what to practice next.`
 
 /**
  * The canonical one-liner. Feeds POSITIONING_LONG (root metadata, the
@@ -51,7 +59,7 @@ export const POSITIONING_ONE_LINER =
 
 /** The sentence that follows the one-liner wherever there is room for two. */
 export const POSITIONING_SUPPORT =
-  "Participants see what they did well and what to practice next, with their own words under every score. Leaders can review patterns by cohort or unit. Cases use published clinical frameworks or the institution's own policy, service standard, script, or rubric."
+  "Participants see what they did well and what to practice next, with their own words under every score. Leaders can review patterns by cohort or unit and decide where the group focuses its next round of practice. Cases use published clinical frameworks or the institution's own policy, service standard, script, or rubric."
 
 /** One-liner plus support. The default for a meta description or a schema node. */
 export const POSITIONING_LONG = `${POSITIONING_ONE_LINER} ${POSITIONING_SUPPORT}`
@@ -78,9 +86,22 @@ export type Market = "health-system" | "medical-education"
 export const MEASUREMENT_CLAIM =
   "ClinicalSim measures a simulated clinical conversation against a named standard, with the participant's own words quoted under every score."
 
-/** The entry point. Shared by the homepage, /contact, and /llms.txt. */
+/**
+ * The entry point. Shared by the homepage, /contact, and /llms.txt.
+ *
+ * Rewritten 2026-10-06 to describe the engagement sequence Ben confirmed
+ * (assessment, then a longer program, then a continuing engagement). No prices,
+ * scope allowances, or durations: none of those are published.
+ */
 export const ASSESSMENT_ENTRY =
-  "An engagement can start with a communication assessment. One group practices a conversation or two with AI patients against the standard your institution already holds. The report shows strengths and areas for focused practice in the participants' own words."
+  "An engagement starts with a communication priority your institution already recognizes. In a communication assessment, one group practices a conversation or two with AI patients against the standard your institution already holds, and the report shows strengths and areas for focused practice in the participants' own words. A longer program can include that baseline, and a continuing engagement extends practice and review across more teams."
+
+/**
+ * The one in-page primary call to action, from the Walia & Miller decks
+ * (2026-10). The decision it invites is about the program, never about a
+ * person. The short header button keeps "Talk with us".
+ */
+export const PRIMARY_CTA = "Discuss your communication priorities"
 
 /**
  * The publisher logo used by every Organization node on the site: the site-wide

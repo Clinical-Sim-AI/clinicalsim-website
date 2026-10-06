@@ -12,16 +12,18 @@
  */
 export const PAGE_DATE_MODIFIED = {
   // Introduction and mission shortened; product sections combined.
-  about: "2026-09-19",
+  // Category line became "clinical communication intelligence" (2026-10-06).
+  about: "2026-10-06",
   audiences: "2026-09-02",
   compare: "2026-09-02",
-  contact: "2026-09-02",
+  contact: "2026-10-06",
   evaluation: "2026-09-02",
   examples: "2026-09-02",
-  faq: "2026-09-03",
+  faq: "2026-10-06",
   frameworks: "2026-09-03",
   glossary: "2026-08-18",
-  home: "2026-09-25",
+  // Category eyebrow, leader clause, single CTA, and the 29-pilot line.
+  home: "2026-10-06",
   // Added the communication remediation plan article to the listing.
   insights: "2026-09-24",
   // Rewritten by the 2026-09-03 ACGME claim removal (fadf4b5), which replaced

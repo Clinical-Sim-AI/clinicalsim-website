@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "ClinicalSim, communication intelligence for healthcare",
+        alt: "ClinicalSim, clinical communication intelligence for healthcare",
       },
     ],
   },
@@ -163,7 +163,7 @@ export default function HomePage() {
             </p>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <Link href="#how-an-assessment-works">
+              <Link href="/contact">
                 <Button variant="accent" size="xl" className="w-full sm:w-auto">
                   {HOMEPAGE_PUBLIC_COPY.hero.primaryCta}
                   <ArrowRight />

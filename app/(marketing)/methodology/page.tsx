@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { PRIMARY_CTA } from "@/lib/positioning"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -824,7 +825,7 @@ export default function MethodologyPage() {
             </Link>
             <Link href="/contact">
               <Button variant="default" size="lg">
-                Request a Pilot
+                {PRIMARY_CTA}
               </Button>
             </Link>
           </div>
