@@ -3,12 +3,15 @@ import { describe, expect, it } from "vitest"
 import { getAllAudiences } from "./audiences"
 import {
   BANNED_CLAIM_PATTERNS,
+  BRITISH_SPELLING_PATTERN,
   NO_EMPLOYMENT_USE_LIMITATION,
   NO_OUTCOME_PREDICTION_LIMITATION,
   NON_ENDORSEMENT_TRIGGERS,
 } from "./claim-discipline"
 import { getAllComparisons } from "./comparisons"
 import { getAllGlossaryTerms } from "./glossary"
+import { HOMEPAGE_PUBLIC_COPY, HOMEPAGE_SEO } from "./homepage-content"
+import * as positioning from "./positioning"
 import { getAllPosts } from "./posts"
 import { getAllSolutions } from "./solutions"
 
@@ -67,6 +70,20 @@ const REGISTRIES: { name: string; entries: { slug: string; value: unknown }[] }[
   {
     name: "lib/glossary.ts",
     entries: getAllGlossaryTerms().map((t) => ({ slug: t.slug, value: t })),
+  },
+  {
+    // The mission is approved verbatim and locked by lib/market-positioning.test.ts.
+    name: "lib/positioning.ts",
+    entries: Object.entries(positioning)
+      .filter(([name]) => !name.startsWith("MISSION_STATEMENT"))
+      .map(([name, value]) => ({ slug: name, value })),
+  },
+  {
+    name: "lib/homepage-content.ts",
+    entries: [
+      { slug: "HOMEPAGE_SEO", value: HOMEPAGE_SEO },
+      { slug: "HOMEPAGE_PUBLIC_COPY", value: HOMEPAGE_PUBLIC_COPY },
+    ],
   },
 ]
 
@@ -160,6 +177,29 @@ describe("claim discipline", () => {
                 )
               }
             }
+          }
+        }
+      }
+
+      expect(violations).toEqual([])
+    })
+  })
+
+  describe("American spelling", () => {
+    it("positioning and homepage copy carry no British spellings from the consultant decks", () => {
+      const violations: string[] = []
+
+      for (const registry of REGISTRIES) {
+        if (
+          registry.name !== "lib/positioning.ts" &&
+          registry.name !== "lib/homepage-content.ts"
+        ) {
+          continue
+        }
+        for (const entry of registry.entries) {
+          for (const { path, text } of collectStrings(entry.value, entry.slug)) {
+            const match = text.match(BRITISH_SPELLING_PATTERN)
+            if (match) violations.push(`${registry.name} ${path}: "${match[0]}"`)
           }
         }
       }
