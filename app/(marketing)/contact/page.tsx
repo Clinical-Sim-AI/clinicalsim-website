@@ -131,47 +131,60 @@ export default function ContactPage() {
               <ContactSourceField />
 
               {/* Name Fields */}
-              <div>
-                <Label htmlFor="name" className="text-white text-base font-normal mb-2 block">
-                  Name <span className="text-cs-dark-blue">*</span>
-                </Label>
+              <fieldset>
+                <legend className="text-white text-base font-normal mb-2 block">
+                  Name <span aria-hidden="true" className="text-cs-electric">*</span>
+                </legend>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
+                    <Label htmlFor="firstName" className="sr-only">
+                      First name
+                    </Label>
                     <Input
+                      id="firstName"
                       name="firstName"
+                      autoComplete="given-name"
                       placeholder="First name"
                       required
                       className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                     />
                   </div>
                   <div>
+                    <Label htmlFor="lastName" className="sr-only">
+                      Last name
+                    </Label>
                     <Input
+                      id="lastName"
                       name="lastName"
+                      autoComplete="family-name"
                       placeholder="Last name"
                       required
                       className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                     />
                   </div>
                 </div>
-              </div>
+              </fieldset>
 
               {/* Email Field */}
               <div>
                 <Label htmlFor="email" className="text-white text-base font-normal mb-2 block">
-                  Email <span className="text-cs-dark-blue">*</span>
+                  Email <span aria-hidden="true" className="text-cs-electric">*</span>
                 </Label>
                 <Input
+                  id="email"
                   name="email"
                   type="email"
+                  autoComplete="email"
+                  aria-describedby="email-hint"
                   required
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
-                <p className="text-xs text-white/70 mt-2 font-light">We use this address to reply to your message.</p>
+                <p id="email-hint" className="text-xs text-white/70 mt-2 font-light">We use this address to reply to your message.</p>
               </div>
 
               <div>
                 <Label htmlFor="communicationPriority" className="text-white text-base font-normal mb-2 block">
-                  Communication priority <span className="text-cs-dark-blue">*</span>
+                  Communication priority <span aria-hidden="true" className="text-cs-electric">*</span>
                 </Label>
                 <Input
                   id="communicationPriority"
@@ -189,6 +202,7 @@ export default function ContactPage() {
                 <Input
                   id="role"
                   name="role"
+                  autoComplete="organization-title"
                   placeholder="For example, program director or patient experience lead"
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
@@ -200,7 +214,9 @@ export default function ContactPage() {
                   Organization
                 </Label>
                 <Input
+                  id="organization"
                   name="organization"
+                  autoComplete="organization"
                   placeholder="Hospital, medical school, or program"
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
@@ -265,21 +281,24 @@ export default function ContactPage() {
               {/* Message Field */}
               <div>
                 <Label htmlFor="message" className="text-white text-base font-normal mb-2 block">
-                  Message <span className="text-cs-dark-blue">*</span>
+                  Message <span aria-hidden="true" className="text-cs-electric">*</span>
                 </Label>
                 <Textarea
+                  id="message"
                   name="message"
+                  aria-describedby="message-hint"
                   rows={6}
                   placeholder="Tell us what people should practice, which standard or policy you already use, and how the results should be reported."
                   required
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 resize-none rounded-lg"
                 />
-                <p className="text-xs text-white/70 mt-2 font-light">Include participant access and privacy needs, plus whether the program needs aggregate practice patterns, completion records, or an approved research comparison.</p>
+                <p id="message-hint" className="text-xs text-white/70 mt-2 font-light">Include participant access and privacy needs, plus whether the program needs aggregate practice patterns, completion records, or an approved research comparison.</p>
               </div>
 
               {/* Newsletter Checkbox */}
               <div className="flex items-start space-x-3 bg-white/5 rounded-lg p-4 border border-white/10">
                 <Checkbox
+                  id="newsletter"
                   name="newsletter"
                   className="border-white/50 data-[state=checked]:bg-cs-electric data-[state=checked]:border-cs-electric mt-1"
                 />
@@ -310,7 +329,7 @@ export default function ContactPage() {
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">Other ways to work with us</h2>
           <p className="text-lg text-cs-dark-blue/70 font-light text-center mb-12 max-w-2xl mx-auto">
-            Start with an assessment, propose a study, or tell us about a case and rubric partnership.
+            Bring us a communication priority, propose a study, or tell us about a case and rubric partnership.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">

@@ -233,3 +233,72 @@ describe("claim discipline", () => {
     })
   })
 })
+
+describe("pattern behavior", () => {
+  const banned = (text: string) =>
+    BANNED_CLAIM_PATTERNS.some(({ pattern }) => pattern.test(text))
+
+  it("catches the consultant deck phrases in their common forms", () => {
+    for (const text of [
+      "ClinicalSim is a category of one.",
+      "Simulation reveals real behaviour under pressure.",
+      "The report revealed real behaviors.",
+      "Revealing real behavior in every encounter.",
+      "The economic exposure map shows where risk sits.",
+      "Predictive CCI is next on the roadmap.",
+      "It is the only platform for this.",
+      "The only clinical communication platform for healthcare.",
+      "We are the only company doing this.",
+    ]) {
+      expect(banned(text), text).toBe(true)
+    }
+  })
+
+  it("leaves ordinary sentences alone", () => {
+    for (const text of [
+      "Only platform Owners can change roles.",
+      "Behavior in a simulated conversation is a formative signal.",
+      "The company is one of several in this category.",
+    ]) {
+      expect(banned(text), text).toBe(false)
+    }
+  })
+
+  it("flags British spellings and leaves the American ones", () => {
+    for (const text of [
+      "practise",
+      "programmes",
+      "organisation",
+      "organisational",
+      "behavioural",
+      "judgement",
+      "recognise",
+      "prioritise",
+      "standardised",
+      "analysed",
+      "simulation centre",
+      "colour",
+    ]) {
+      expect(BRITISH_SPELLING_PATTERN.test(text), text).toBe(true)
+    }
+    for (const text of [
+      "practice",
+      "practiced",
+      "program",
+      "organization",
+      "organism",
+      "behavioral",
+      "behavior",
+      "judgment",
+      "recognize",
+      "prioritize",
+      "standardized",
+      "analyses",
+      "analysis",
+      "center",
+      "color",
+    ]) {
+      expect(BRITISH_SPELLING_PATTERN.test(text), text).toBe(false)
+    }
+  })
+})

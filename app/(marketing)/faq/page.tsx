@@ -13,6 +13,7 @@ import {
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
   POSITIONING_ONE_LINER,
+  PRIMARY_CTA,
 } from "@/lib/positioning"
 import {
   NO_EMPLOYMENT_USE_LIMITATION,
@@ -653,7 +654,7 @@ export default function FaqPage() {
             </Link>
             <Link href="/contact">
               <Button variant="default" size="lg">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
           </div>

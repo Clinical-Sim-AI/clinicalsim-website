@@ -106,7 +106,7 @@ export async function GET() {
     `- [FAQ for medical educators](${BASE_URL}/medical-educator-faq): How to read a feedback report, inspect transcript evidence, compare GME and UME scoring, choose a practice cadence, and use results in a rotation or remediation plan.`,
     `- [Research collaboration](${BASE_URL}/research): Propose a study in communication training, implementation, patient experience, workforce education, or competency assessment.`,
     `- [Insights](${BASE_URL}/insights): Research and evidence on medical communication training, simulation technology, and clinical conversation outcomes.`,
-    `- [Contact](${BASE_URL}/contact): Start with an assessment: one group, one standard, and defined reporting rules.`,
+    `- [Contact](${BASE_URL}/contact): Tell ClinicalSim which conversation your institution wants to strengthen, who would take part, and the standard you already teach.`,
     `- [Help center](${BASE_URL}/help): Guides, release notes, and support for ClinicalSim programs and learners.`,
     `- [Release notes](${BASE_URL}/help/release-notes): A concise log of customer-visible ClinicalSim changes, newest first.`,
     // Mapped from the registry so this list and app/sitemap.ts cannot disagree.

@@ -129,8 +129,9 @@ export default function AboutPage() {
             {POSITIONING_ONE_LINER}
           </p>
           <p className="mt-6 text-lg text-cs-cloud/90 font-light leading-relaxed max-w-2xl">
-            {CATEGORY_MEANING} We want important healthcare conversations to be
-            something clinicians can prepare for, examine, and improve.
+            {CATEGORY_MEANING} We want clinicians to be able to practice the
+            conversations that matter most and get feedback specific enough to
+            act on.
           </p>
         </div>
       </section>

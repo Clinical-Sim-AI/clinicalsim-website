@@ -134,7 +134,7 @@ export const BANNED_CLAIM_PATTERNS: { pattern: RegExp; why: string }[] = [
     why: "A uniqueness claim the company cannot substantiate. Consultant deck language, not public copy.",
   },
   {
-    pattern: /\breveals?\s+real\s+behaviou?r/i,
+    pattern: /\breveal(s|ed|ing)?\s+real\s+behaviou?rs?\b/i,
     why: "A simulation shows what a participant said in a simulated conversation, not how they behave with real patients.",
   },
   {
@@ -146,7 +146,7 @@ export const BANNED_CLAIM_PATTERNS: { pattern: RegExp; why: string }[] = [
     why: "Roadmap concept. ClinicalSim does not predict outcomes; see NO_OUTCOME_PREDICTION_LIMITATION.",
   },
   {
-    pattern: /\b(the\s+)?only\s+(platform|company)\b/i,
+    pattern: /\bthe\s+only\s+(?:[\w-]+\s+){0,3}?(platform|company|solution|vendor)\b/i,
     why: "A uniqueness claim the company cannot substantiate.",
   },
 ]
@@ -156,7 +156,7 @@ export const BANNED_CLAIM_PATTERNS: { pattern: RegExp; why: string }[] = [
  * "programme" pasted from a deck reads as copied text.
  */
 export const BRITISH_SPELLING_PATTERN =
-  /\b(practis(e|es|ed|ing)|programmes?|organis(e|es|ed|ing|ation|ations)|behaviours?|judgements?)\b/i
+  /\b(practis(e|es|ed|ing)|programmes?|organis(e|es|ed|er|ers|ing|ation|ations|ational)|behavioural|behaviours?|judgements?|recognis(e|es|ed|ing|able)|prioritis(e|es|ed|ing|ation)|standardis(e|es|ed|ing|ation)|analys(e|ed|ing)|centres?|colours?)\b/i
 
 /**
  * Accreditors and framework owners whose appearance in a solution's copy obliges a

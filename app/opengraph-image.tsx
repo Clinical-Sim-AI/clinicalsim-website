@@ -73,7 +73,7 @@ export default async function OpenGraphImage() {
             opacity: 0.75,
           }}
         >
-          Your standard · Their words · Measured, then fixed
+          Your standard · Their words · What to practice next
         </div>
       </div>
     ),

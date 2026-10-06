@@ -1,22 +1,30 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { getPreviousPath } from "@/components/previous-path-tracker"
 
 /**
  * Records which page sent the visitor to /contact, as a hidden form field.
  *
- * It reads the same-origin referrer rather than a `?from=` query string, so
- * internal links stay plain `/contact` and crawlers never see query-string
- * variants of the page. A referrer from another site, or none, is sent as
- * "direct or external".
+ * Internal links stay plain `/contact` (no `?from=` query string), so crawlers
+ * never see query-string variants of the page. A client-side navigation is read
+ * from PreviousPathTracker, because `document.referrer` does not change on a
+ * soft navigation. A full page load falls back to the same-origin referrer. A
+ * referrer from another site, or none, is sent as "direct or external".
  */
 export function ContactSourceField() {
   const input = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
+    if (!input.current) return
+    const previous = getPreviousPath()
+    if (previous) {
+      input.current.value = previous
+      return
+    }
     try {
       const referrer = new URL(document.referrer)
-      if (input.current && referrer.origin === window.location.origin) {
+      if (referrer.origin === window.location.origin) {
         input.current.value = referrer.pathname
       }
     } catch {

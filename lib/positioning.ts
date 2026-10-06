@@ -87,7 +87,7 @@ export const MEASUREMENT_CLAIM =
   "ClinicalSim measures a simulated clinical conversation against a named standard, with the participant's own words quoted under every score."
 
 /**
- * The entry point. Shared by the homepage, /contact, and /llms.txt.
+ * The entry point. Rendered in /llms.txt ("How it starts").
  *
  * Rewritten 2026-10-06 to describe the engagement sequence Ben confirmed
  * (assessment, then a longer program, then a continuing engagement). No prices,

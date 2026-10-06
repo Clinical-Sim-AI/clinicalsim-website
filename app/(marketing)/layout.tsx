@@ -1,6 +1,7 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { JsonLd } from "@/components/json-ld"
+import { PreviousPathTracker } from "@/components/previous-path-tracker"
 import {
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
@@ -80,6 +81,7 @@ export default function MarketingLayout({
       >
         Skip to main content
       </a>
+      <PreviousPathTracker />
       <SiteHeader />
       <main id="main-content" tabIndex={-1} className="relative focus:outline-none">
         <div className="relative">
