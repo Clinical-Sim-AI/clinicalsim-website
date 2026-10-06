@@ -9,18 +9,20 @@ import { JsonLd } from "@/components/json-ld"
 import { ArrowRight } from "lucide-react"
 import { BrandIcon } from "@/components/brand-icon"
 import { Waveform } from "@/components/waveform"
+import { ContactSourceField } from "@/components/contact-source-field"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 export const metadata: Metadata = {
-  title: "Contact us: start with an assessment",
-  description: "Tell ClinicalSim who would take part, your standard for communication, and how your institution needs the results reported.",
+  title: "Contact us: discuss your communication priorities",
+  description: "Tell ClinicalSim which conversation your institution wants to strengthen, who would take part, and the standard you already teach.",
   openGraph: {
     title: "Contact ClinicalSim.ai",
-    description: "Tell us about the group, your standard for communication, and how the results should be reported.",
+    description: "Tell us the communication priority, the people involved, and the question you'd like answered.",
     url: "https://clinicalsim.ai/contact",
   },
   twitter: {
     title: "Contact ClinicalSim.ai",
-    description: "Start with an assessment for a health system or medical education group.",
+    description: `${PRIMARY_CTA} with ClinicalSim, for a health system or medical education group.`,
   },
   alternates: {
     canonical: "https://clinicalsim.ai/contact",
@@ -37,7 +39,7 @@ export default function ContactPage() {
             "@type": "ContactPage",
             name: "Contact ClinicalSim.ai",
             description:
-              "Tell ClinicalSim who would take part, your institution's standard for communication, and how the results should be reported.",
+              "Tell ClinicalSim which conversation your institution wants to strengthen, who would take part, and the standard you already teach.",
             url: "https://clinicalsim.ai/contact",
             mainEntity: {
               "@type": "Organization",
@@ -77,11 +79,11 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             {/* Contact Info */}
             <div>
-              <h1 className="text-4xl md:text-5xl font-light mb-6">Tell us about the group and the standard</h1>
+              <h1 className="text-4xl md:text-5xl font-light mb-6">Tell us which conversation your institution wants to strengthen</h1>
               <p className="text-lg md:text-xl font-light leading-relaxed mb-8 text-cs-cloud">
-                Tell us who would take part, which conversation you want to strengthen
-                or which one learners need to practice, your standard for communication,
-                and who should see the results. We usually reply within two business days.
+                Tell us the priority, the people involved, and the question you&apos;d like
+                answered, along with the standard you already teach and who should see
+                the results. We usually reply within two business days.
               </p>
 
               <div className="space-y-6">
@@ -126,43 +128,84 @@ export default function ContactPage() {
               method="POST"
               className="space-y-6"
             >
+              <ContactSourceField />
+
               {/* Name Fields */}
-              <div>
-                <Label htmlFor="name" className="text-white text-base font-normal mb-2 block">
-                  Name <span className="text-cs-dark-blue">*</span>
-                </Label>
+              <fieldset>
+                <legend className="text-white text-base font-normal mb-2 block">
+                  Name <span aria-hidden="true" className="text-cs-electric">*</span>
+                </legend>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
+                    <Label htmlFor="firstName" className="sr-only">
+                      First name
+                    </Label>
                     <Input
+                      id="firstName"
                       name="firstName"
+                      autoComplete="given-name"
                       placeholder="First name"
                       required
                       className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                     />
                   </div>
                   <div>
+                    <Label htmlFor="lastName" className="sr-only">
+                      Last name
+                    </Label>
                     <Input
+                      id="lastName"
                       name="lastName"
+                      autoComplete="family-name"
                       placeholder="Last name"
                       required
                       className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                     />
                   </div>
                 </div>
-              </div>
+              </fieldset>
 
               {/* Email Field */}
               <div>
                 <Label htmlFor="email" className="text-white text-base font-normal mb-2 block">
-                  Email <span className="text-cs-dark-blue">*</span>
+                  Email <span aria-hidden="true" className="text-cs-electric">*</span>
                 </Label>
                 <Input
+                  id="email"
                   name="email"
                   type="email"
+                  autoComplete="email"
+                  aria-describedby="email-hint"
                   required
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
-                <p className="text-xs text-white/70 mt-2 font-light">We use this address to reply to your message.</p>
+                <p id="email-hint" className="text-xs text-white/70 mt-2 font-light">We use this address to reply to your message.</p>
+              </div>
+
+              <div>
+                <Label htmlFor="communicationPriority" className="text-white text-base font-normal mb-2 block">
+                  Communication priority <span aria-hidden="true" className="text-cs-electric">*</span>
+                </Label>
+                <Input
+                  id="communicationPriority"
+                  name="communicationPriority"
+                  required
+                  placeholder="For example, informed consent in surgery or breaking bad news in the PICU"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="role" className="text-white text-base font-normal mb-2 block">
+                  Your role
+                </Label>
+                <Input
+                  id="role"
+                  name="role"
+                  autoComplete="organization-title"
+                  placeholder="For example, program director or patient experience lead"
+                  className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
+                />
               </div>
 
               {/* Organization Field */}
@@ -171,7 +214,9 @@ export default function ContactPage() {
                   Organization
                 </Label>
                 <Input
+                  id="organization"
                   name="organization"
+                  autoComplete="organization"
                   placeholder="Hospital, medical school, or program"
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
                 />
@@ -213,24 +258,47 @@ export default function ContactPage() {
                 />
               </div>
 
+              <div>
+                <Label htmlFor="preferredNextStep" className="text-white text-base font-normal mb-2 block">
+                  Preferred next step
+                </Label>
+                <select
+                  id="preferredNextStep"
+                  name="preferredNextStep"
+                  defaultValue=""
+                  className="flex h-10 w-full rounded-lg border-2 border-white/30 bg-white/10 px-3 py-2 text-sm text-white focus:border-cs-electric focus:outline-none"
+                >
+                  <option value="" disabled className="text-cs-dark-blue">
+                    Select a next step
+                  </option>
+                  <option value="conversation" className="text-cs-dark-blue">A conversation about the priority</option>
+                  <option value="assessment" className="text-cs-dark-blue">A communication assessment</option>
+                  <option value="program" className="text-cs-dark-blue">A longer communication program</option>
+                  <option value="not-sure" className="text-cs-dark-blue">Not sure yet</option>
+                </select>
+              </div>
+
               {/* Message Field */}
               <div>
                 <Label htmlFor="message" className="text-white text-base font-normal mb-2 block">
-                  Message <span className="text-cs-dark-blue">*</span>
+                  Message <span aria-hidden="true" className="text-cs-electric">*</span>
                 </Label>
                 <Textarea
+                  id="message"
                   name="message"
+                  aria-describedby="message-hint"
                   rows={6}
                   placeholder="Tell us what people should practice, which standard or policy you already use, and how the results should be reported."
                   required
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 resize-none rounded-lg"
                 />
-                <p className="text-xs text-white/70 mt-2 font-light">Include participant access and privacy needs, plus whether the program needs aggregate practice patterns, completion records, or an approved research comparison.</p>
+                <p id="message-hint" className="text-xs text-white/70 mt-2 font-light">Include participant access and privacy needs, plus whether the program needs aggregate practice patterns, completion records, or an approved research comparison.</p>
               </div>
 
               {/* Newsletter Checkbox */}
               <div className="flex items-start space-x-3 bg-white/5 rounded-lg p-4 border border-white/10">
                 <Checkbox
+                  id="newsletter"
                   name="newsletter"
                   className="border-white/50 data-[state=checked]:bg-cs-electric data-[state=checked]:border-cs-electric mt-1"
                 />
@@ -249,7 +317,7 @@ export default function ContactPage() {
                 size="lg"
                 className="w-full md:w-auto"
               >
-                Start with an assessment
+                Send your priority
               </Button>
             </form>
           </div>
@@ -261,7 +329,7 @@ export default function ContactPage() {
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4 text-center">Other ways to work with us</h2>
           <p className="text-lg text-cs-dark-blue/70 font-light text-center mb-12 max-w-2xl mx-auto">
-            Start with an assessment, propose a study, or tell us about a case and rubric partnership.
+            Bring us a communication priority, propose a study, or tell us about a case and rubric partnership.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">

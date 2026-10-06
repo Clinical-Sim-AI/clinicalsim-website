@@ -46,11 +46,11 @@ const KEY_FACTS = `## Key facts
 - **Patient data.** Every patient in every case is synthetic, written from the clinical literature rather than adapted from a chart, so case development needs no patient record and no de-identification step. The platform does handle learner recordings, transcripts, account data, and institutional data. Voice collection is consent-gated and learners can request erasure. (/trust)
 - **Frameworks.** ${MEASUREMENT_CLAIM} The standard is either a published rubric attached to a current case or the customer's own consent policy, escalation policy, preceptor rubric, or other approved standard. Ready to use examples include ${FEATURED_FRAMEWORK_SUMMARY}. An element is scored only where the case gave the clinician a chance to show it. (/frameworks, /methodology)
 - **Limits of the evidence.** Those frameworks were built for trained human raters observing real encounters, which is where their published reliability was established. A framework's reliability does not carry over to an AI score in a simulated encounter, so each score is a formative signal rather than a validated measure. ClinicalSim does not claim its scoring is more accurate or more valid than a faculty member's read. (/methodology, /trust)
-- **Who it serves.** ${POSITIONING_AUDIENCE} Buyers include patient experience, risk and patient safety, nursing education, simulation, GME, and UME leaders. (/audiences)
+- **Who it serves.** ${POSITIONING_AUDIENCE} Buyers include patient experience, risk and patient safety, simulation, GME, and UME leaders. (/audiences)
 - **Proof you can read without signing in.** Four complete AI patient simulations are published at ${BASE_URL}/examples with audio, the full transcript, and the entire scored report, no sign-in and no form. Each report shows strengths, areas for focused practice, and the participant's own words behind the feedback.
 - **How it is licensed.** An annual per-learner subscription, so operating expense rather than a capital purchase. No list price is published; what a program pays depends on learner count, cases, and term. (/evaluation)
 - **Deployment.** Browser-based on any phone, tablet, or desktop with nothing to install. A typical encounter runs 3 to 10 minutes. English only. Four roles: Member, Project Manager, Admin, Owner. Nothing crosses organizations. IT may need to allow the voice service. (/faq, /help/roles-and-permissions)
-- **Contact.** ${BASE_URL}/contact for a pilot or a product question, ${BASE_URL}/research to propose a study (rolling review, typically a 1 to 2 week response).
+- **Contact.** ${BASE_URL}/contact to discuss a communication priority or ask a product question, ${BASE_URL}/research to propose a study (rolling review, typically a 1 to 2 week response).
 `
 
 const HEADER = `# ClinicalSim.ai
@@ -106,7 +106,7 @@ export async function GET() {
     `- [FAQ for medical educators](${BASE_URL}/medical-educator-faq): How to read a feedback report, inspect transcript evidence, compare GME and UME scoring, choose a practice cadence, and use results in a rotation or remediation plan.`,
     `- [Research collaboration](${BASE_URL}/research): Propose a study in communication training, implementation, patient experience, workforce education, or competency assessment.`,
     `- [Insights](${BASE_URL}/insights): Research and evidence on medical communication training, simulation technology, and clinical conversation outcomes.`,
-    `- [Contact](${BASE_URL}/contact): Start with an assessment: one group, one standard, and defined reporting rules.`,
+    `- [Contact](${BASE_URL}/contact): Tell ClinicalSim which conversation your institution wants to strengthen, who would take part, and the standard you already teach.`,
     `- [Help center](${BASE_URL}/help): Guides, release notes, and support for ClinicalSim programs and learners.`,
     `- [Release notes](${BASE_URL}/help/release-notes): A concise log of customer-visible ClinicalSim changes, newest first.`,
     // Mapped from the registry so this list and app/sitemap.ts cannot disagree.

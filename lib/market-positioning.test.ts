@@ -6,6 +6,7 @@ import {
   ASSESSMENT_ENTRY,
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
+  CATEGORY_MEANING,
   MEASUREMENT_CLAIM,
   MISSION_STATEMENT,
   MISSION_STATEMENT_BODY,
@@ -71,6 +72,14 @@ describe("market positioning", () => {
       expect(copy).toMatch(/institution/i)
       expect(copy).toMatch(/policy|service standard|script|rubric/i)
     }
+  })
+
+  it("names the clinical communication intelligence category and defines it first", () => {
+    expect(CATEGORY_LINE).toBe(
+      "The clinical communication intelligence platform for healthcare.",
+    )
+    expect(CATEGORY_MEANING).toMatch(/visible, interpretable, and improvable/)
+    expect(CATEGORY_DEFINITION.startsWith(CATEGORY_MEANING)).toBe(true)
   })
 
   it("positions the company as measuring communication, entered through an assessment", () => {

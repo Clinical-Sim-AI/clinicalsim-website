@@ -13,6 +13,7 @@ import {
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
   POSITIONING_ONE_LINER,
+  PRIMARY_CTA,
 } from "@/lib/positioning"
 import {
   NO_EMPLOYMENT_USE_LIMITATION,
@@ -25,7 +26,7 @@ const FAQ_DESCRIPTION =
   "Common questions about ClinicalSim: how practice with AI patients works, how it compares to Step 2 CS and standardized patients, scoring, privacy, and research."
 
 export const metadata: Metadata = {
-  title: { absolute: "FAQ: communication intelligence, scoring, privacy, and programs" },
+  title: { absolute: "FAQ: clinical communication intelligence, scoring, privacy, and programs" },
   description: FAQ_DESCRIPTION,
   openGraph: {
     title: "FAQ | ClinicalSim.ai",
@@ -642,8 +643,8 @@ export default function FaqPage() {
             <span className="text-cs-dark-blue font-medium">questions?</span>
           </h2>
           <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed mb-8">
-            Read the full methodology, or talk to us about piloting
-            ClinicalSim at your program.
+            Read the full methodology, or tell us which conversation your
+            program wants to strengthen.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/methodology">
@@ -653,7 +654,7 @@ export default function FaqPage() {
             </Link>
             <Link href="/contact">
               <Button variant="default" size="lg">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
           </div>

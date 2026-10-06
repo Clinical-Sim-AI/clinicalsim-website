@@ -126,7 +126,37 @@ export const BANNED_CLAIM_PATTERNS: { pattern: RegExp; why: string }[] = [
     pattern: /\bvalidated rubric\b/i,
     why: "No validated rubric exists for scoring a live procedural consent conversation in clinical care. Write 'scored against'.",
   },
+  // The four below come from the Walia & Miller strategy decks (2026-10). The decks are the
+  // source of the category language, so they are also the most likely source of a phrase
+  // copied in whole.
+  {
+    pattern: /\bcategory of one\b/i,
+    why: "A uniqueness claim the company cannot substantiate. Consultant deck language, not public copy.",
+  },
+  {
+    pattern: /\breveal(s|ed|ing)?\s+real\s+behaviou?rs?\b/i,
+    why: "A simulation shows what a participant said in a simulated conversation, not how they behave with real patients.",
+  },
+  {
+    pattern: /\beconomic exposure map\b/i,
+    why: "Unpublished consultant deliverable that frames clinicians as financial liability.",
+  },
+  {
+    pattern: /\bpredictive CCI\b/i,
+    why: "Roadmap concept. ClinicalSim does not predict outcomes; see NO_OUTCOME_PREDICTION_LIMITATION.",
+  },
+  {
+    pattern: /\bthe\s+only\s+(?:[\w-]+\s+){0,3}?(platform|company|solution|vendor)\b/i,
+    why: "A uniqueness claim the company cannot substantiate.",
+  },
 ]
+
+/**
+ * British spellings the consultant decks use. The site writes American English, and a single
+ * "programme" pasted from a deck reads as copied text.
+ */
+export const BRITISH_SPELLING_PATTERN =
+  /\b(practis(e|es|ed|ing)|programmes?|organis(e|es|ed|er|ers|ing|ation|ations|ational)|behavioural|behaviours?|judgements?|recognis(e|es|ed|ing|able)|prioritis(e|es|ed|ing|ation)|standardis(e|es|ed|ing|ation)|analys(e|ed|ing)|centres?|colours?)\b/i
 
 /**
  * Accreditors and framework owners whose appearance in a solution's copy obliges a

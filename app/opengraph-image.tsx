@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og"
 
 export const runtime = "edge"
-export const alt = "ClinicalSim: communication intelligence for healthcare"
+export const alt = "ClinicalSim: clinical communication intelligence for healthcare"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -42,7 +42,7 @@ export default async function OpenGraphImage() {
         >
           <div
             style={{
-              fontSize: 76,
+              fontSize: 64,
               fontWeight: 300,
               color: "#FFFFFF",
               lineHeight: 1.1,
@@ -50,7 +50,7 @@ export default async function OpenGraphImage() {
               marginBottom: 28,
             }}
           >
-            Communication intelligence
+            Clinical communication intelligence
           </div>
           <div
             style={{
@@ -73,7 +73,7 @@ export default async function OpenGraphImage() {
             opacity: 0.75,
           }}
         >
-          Your standard · Their words · Measured, then fixed
+          Your standard · Their words · What to practice next
         </div>
       </div>
     ),

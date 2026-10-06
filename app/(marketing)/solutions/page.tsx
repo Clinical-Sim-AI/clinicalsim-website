@@ -31,9 +31,9 @@ const GROUPS: {
 ]
 
 export const metadata: Metadata = {
-  title: "Communication intelligence use cases",
+  title: "Clinical communication intelligence use cases",
   description:
-    "ClinicalSim measures and fixes communication for health systems and medical education: patient experience, debriefing, informed consent, error disclosure, curricula, and remediation.",
+    "ClinicalSim measures communication in simulated conversations and turns it into focused practice for health systems and medical education: patient experience, debriefing, informed consent, error disclosure, curricula, and remediation.",
   openGraph: {
     title: "Use cases | ClinicalSim.ai",
     description:

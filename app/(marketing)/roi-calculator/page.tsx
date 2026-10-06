@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { PRIMARY_CTA } from "@/lib/positioning"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
@@ -164,7 +165,7 @@ export default function RoiCalculatorPage() {
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk to us
+                {PRIMARY_CTA}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
