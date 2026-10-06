@@ -73,13 +73,24 @@ const nextConfig = {
       // It pointed at /roi-calculator, which is `noindex, nofollow` while the
       // calculator is unpublished, so every inbound /pricing link terminated:
       // a crawler followed the redirect and hit a page it was told to drop.
-      // /evaluation carries the licensing answer and is indexable, so it is
+      // /evaluation carries the engagement answer and is indexable, so it is
       // both the right answer for a reader and a destination the redirect can
       // actually pass authority to.
       {
         source: '/pricing',
         destination: '/evaluation',
         permanent: true,
+      },
+      // /roi-calculator is hidden (Ben, 2026-10-06). It renders a public list
+      // price on a per-learner basis, and no price or billing basis is
+      // published (see the header of app/(marketing)/evaluation/page.tsx).
+      // Temporary rather than permanent so the page can return once the price
+      // is out of it; the page code and lib/roi stay in place. Remove this
+      // entry to unhide.
+      {
+        source: '/roi-calculator',
+        destination: '/evaluation',
+        permanent: false,
       },
     ]
   },
