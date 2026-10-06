@@ -59,8 +59,13 @@ export function getCategoryExample(): CategoryExample {
     throw new Error(`${CATEGORY_EXAMPLE_SLUG} has no scored communication section`)
   }
 
+  // Ranked by share of the domain's maximum, so a rubric with mixed scales
+  // still compares like with like. Ties keep the first domain in report order,
+  // matching lib/category-page.test.ts.
   const scored = section.competencies.filter((c) => !c.notAssessable)
-  const byValue = [...scored].sort((a, b) => (b.value ?? 0) - (a.value ?? 0))
+  const share = (c: (typeof scored)[number]) => (c.value ?? 0) / c.max
+  const strongest = scored.reduce((a, b) => (share(b) > share(a) ? b : a))
+  const nextFocus = scored.reduce((a, b) => (share(b) < share(a) ? b : a))
   const toDomain = (c: (typeof scored)[number]): CategoryExampleDomain => ({
     label: stripCode(c.label),
     value: c.value ?? 0,
@@ -75,7 +80,7 @@ export function getCategoryExample(): CategoryExample {
     minutes: Math.round((example.durationSeconds ?? 0) / 60),
     total: section.score.total,
     max: section.score.max,
-    strongest: toDomain(byValue[0]),
-    nextFocus: toDomain(byValue[byValue.length - 1]),
+    strongest: toDomain(strongest),
+    nextFocus: toDomain(nextFocus),
   }
 }

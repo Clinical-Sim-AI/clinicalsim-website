@@ -816,8 +816,8 @@ export default function MethodologyPage() {
           <p className="text-base text-cs-dark-blue/70 font-light leading-relaxed mb-8">
             Read the wider FAQ for questions about cost, rollout, and program
             fit. Or work through evaluating ClinicalSim to see what the
-            evidence supports, what a procurement review will find, and how it
-            is licensed.
+            evidence supports, what a procurement review will find, and how an
+            engagement starts.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/faq">

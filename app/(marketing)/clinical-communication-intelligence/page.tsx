@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 }
 
 const LOOP_LABELS = [
-  "Agree the standard",
+  "Agree on the standard",
   "Practice and observe",
   "Focus the next round",
   "Practice again and compare",
@@ -93,7 +93,7 @@ const roles = [
     question:
       "Is our communication training running against our own standard, and where should it go next?",
     answer:
-      "A plain record of which conversations were practiced, against which standard, and which areas the group chose to focus on. It informs program decisions and stays formative.",
+      "Through the program's leaders, a view of which conversations the group practiced, against which standard, and where the cohort results point next. It informs program decisions and stays formative.",
   },
 ]
 

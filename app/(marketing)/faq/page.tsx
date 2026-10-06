@@ -369,7 +369,8 @@ const faqSections: FaqSection[] = [
     // none of the three. Sources per answer: the engagement answer is
     // ASSESSMENT_ENTRY with no price and no billing basis (Ben, 2026-10-06);
     // the three program-fit objections (2026-10-06) restate /methodology,
-    // /trust, /roi-calculator, and the claim-discipline sentences; the rest
+    // /trust, and the claim-discipline sentences (no /roi-calculator link: it
+    // is unpublished and shows a list price); the rest
     // restate /faq "devices-and-install",
     // "encounter-length", "languages", /help/roles-and-permissions,
     // lib/release-notes.ts 2026-08-03, lib/examples/*.ts, and /research.
@@ -384,7 +385,7 @@ const faqSections: FaqSection[] = [
       {
         id: "already-provide-training",
         question: "We already provide communication training. Why add ClinicalSim?",
-        answer: `Most communication training is limited by how many sessions faculty and standardized patients can staff. ClinicalSim adds practice between those sessions: a participant can repeat a case from any device, and every score quotes the words they used, so the feedback is about their own conversation rather than conversations in general. ${SP_SUPPLEMENT_LINE}`,
+        answer: `Communication training is usually limited by how many sessions faculty and standardized patients can staff. ClinicalSim adds practice between those sessions: a participant can repeat a case from any device, and every score quotes the words they used, so the feedback is about their own conversation rather than conversations in general. ${SP_SUPPLEMENT_LINE}`,
       },
       {
         id: "build-it-ourselves",
@@ -420,22 +421,7 @@ const faqSections: FaqSection[] = [
       {
         id: "what-return",
         question: "What return should we expect from ClinicalSim?",
-        answer: `ClinicalSim does not promise a return. The ROI calculator lets a program enter its own figures, such as the number of residents and fellows, remediation cases, and the value of a faculty hour, and shows what those inputs imply, with the source behind each default. ${NO_OUTCOME_PREDICTION_LIMITATION}`,
-        answerNode: (
-          <p>
-            ClinicalSim does not promise a return. The{" "}
-            <Link
-              href="/roi-calculator"
-              className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"
-            >
-              ROI calculator
-            </Link>
-            {" "}lets a program enter its own figures, such as the number of
-            residents and fellows, remediation cases, and the value of a faculty
-            hour, and shows what those inputs imply, with the source behind each
-            default. {NO_OUTCOME_PREDICTION_LIMITATION}
-          </p>
-        ),
+        answer: `ClinicalSim does not promise a return, and it does not convert scores into dollars. What a program can expect to see is practice volume, scores against its own standard, and the participant's words behind each score, which it can weigh against its own goals. ${NO_OUTCOME_PREDICTION_LIMITATION}`,
       },
       {
         id: "what-to-start",
@@ -611,7 +597,7 @@ export default function FaqPage() {
               methodology page
             </Link>
             . For the questions behind a purchase, including evidence limits,
-            procurement, and licensing, see{" "}
+            procurement, and how an engagement is structured, see{" "}
             <Link
               href="/evaluation"
               className="text-cs-dark-blue underline underline-offset-2 hover:text-cs-navy"

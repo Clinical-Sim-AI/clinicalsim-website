@@ -55,7 +55,7 @@ export const HOMEPAGE_PUBLIC_COPY = {
       },
       {
         title: "Practice again and compare",
-        body: "Participants repeat the case and compare their new scores with the earlier attempt. Leaders see whether the group's focus areas moved, and that view stays formative: it describes the group and never ranks one person against another.",
+        body: "Participants repeat the case and compare their new scores with the earlier attempt. Leaders can review the group's results across attempts, and that review stays formative: it describes the group and never ranks one person against another.",
       },
     ],
     exampleLabel: "What one health system learned",

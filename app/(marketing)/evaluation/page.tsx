@@ -528,10 +528,9 @@ export default function EvaluationPage() {
             Another AI simulation tool
           </h3>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
-            Ask any vendor, us included, three questions. Which named standard
-            is the score built on? Does every score quote the transcript
-            evidence behind it, so a reviewer can check it? And what does the
-            vendor say the score must not be used for?
+            Ask any vendor, us included, which named standard the score is
+            built on, whether each score quotes the transcript behind it, and
+            what the score must not be used for.
           </p>
 
           <h3 className="text-xl font-medium text-cs-dark-blue mb-2">

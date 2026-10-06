@@ -386,7 +386,7 @@ export default function ContactPage() {
             <Link href="/evaluation" className="text-cs-dark-blue underline underline-offset-2 hover:no-underline">
               evaluating ClinicalSim
             </Link>{" "}
-            answers the procurement, evidence, and licensing questions.
+            answers the procurement, evidence, and engagement questions.
           </p>
         </div>
       </section>

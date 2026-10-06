@@ -75,8 +75,9 @@ describe("/clinical-communication-intelligence", () => {
     })
     const total = scored.reduce((sum, f) => sum + f.value, 0)
     const max = scored.reduce((sum, f) => sum + f.max, 0)
-    const high = scored.reduce((a, b) => (b.value > a.value ? b : a))
-    const low = scored.reduce((a, b) => (b.value < a.value ? b : a))
+    const share = (f: (typeof scored)[number]) => f.value / f.max
+    const high = scored.reduce((a, b) => (share(b) > share(a) ? b : a))
+    const low = scored.reduce((a, b) => (share(b) < share(a) ? b : a))
     const quoteOf = (reasoning: string) => reasoning.match(/You said "([^"]+)"/)![1]
 
     expect(html).toContain(`data-example="total">${total} of ${max}<`)
