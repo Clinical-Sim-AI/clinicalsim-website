@@ -33,6 +33,6 @@ describe("contact form accessibility", () => {
   })
 
   it("sends the referring page in a hidden field", () => {
-    expect(form).toMatch(/<input[^>]*type="hidden"[^>]*name="sourcePage"/)
+    expect(form).toMatch(/<input[^>]*type="hidden"[^>]*name="source_page"/)
   })
 })

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { HubSpotForm } from "@/components/hubspot-form"
 import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
@@ -278,9 +279,9 @@ export default function ResearchPage() {
             </div>
 
             {/* Application Form */}
-            <form
-              action="https://formspree.io/f/maqdboak"
-              method="POST"
+            <HubSpotForm
+              form="research"
+              successMessage="Your application is in. We review applications on a rolling basis and typically respond within 1-2 weeks."
               className="space-y-5"
             >
               {/* Name */}
@@ -289,7 +290,7 @@ export default function ResearchPage() {
                   Name <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
-                  name="name"
+                  name="fullname"
                   id="name"
                   required
                   placeholder="Full name"
@@ -317,7 +318,7 @@ export default function ResearchPage() {
                   Affiliate institution <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
-                  name="institution"
+                  name="company"
                   id="institution"
                   required
                   placeholder="University, hospital, or research center"
@@ -345,7 +346,7 @@ export default function ResearchPage() {
                   Study idea <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Textarea
-                  name="studyIdea"
+                  name="study_idea"
                   id="studyIdea"
                   rows={3}
                   required
@@ -360,7 +361,7 @@ export default function ResearchPage() {
                   Target participants <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
-                  name="targetParticipants"
+                  name="target_participants"
                   id="targetParticipants"
                   required
                   placeholder="e.g., PGY-1 internal medicine learners"
@@ -374,7 +375,7 @@ export default function ResearchPage() {
                   Estimated number of participants <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
-                  name="participantCount"
+                  name="participant_count"
                   id="participantCount"
                   required
                   placeholder="e.g., 30-50"
@@ -388,7 +389,7 @@ export default function ResearchPage() {
                   Feedback evaluation tool
                 </Label>
                 <Textarea
-                  name="feedbackTool"
+                  name="feedback_tool"
                   id="feedbackTool"
                   rows={2}
                   placeholder="e.g., Calgary-Cambridge or your program's rubric. If not yet decided, write NA."
@@ -402,7 +403,7 @@ export default function ResearchPage() {
                   Pre-survey details
                 </Label>
                 <Textarea
-                  name="preSurvey"
+                  name="pre_survey"
                   id="preSurvey"
                   rows={2}
                   placeholder="Describe any pre-intervention survey or assessment. If no, write NA."
@@ -416,7 +417,7 @@ export default function ResearchPage() {
                   Post-survey details
                 </Label>
                 <Textarea
-                  name="postSurvey"
+                  name="post_survey"
                   id="postSurvey"
                   rows={2}
                   placeholder="Describe any post-intervention survey or assessment. If no, write NA."
@@ -433,7 +434,7 @@ export default function ResearchPage() {
               >
                 Submit application
               </Button>
-            </form>
+            </HubSpotForm>
           </div>
         </div>
       </section>
