@@ -11,6 +11,7 @@
  * lib/posts.test.ts covers that half at runtime. Both halves are needed.
  */
 export type PostSlug =
+  | "what-an-osce-score-predicts"
   | "communication-remediation-plan"
   | "simulation-vendor-shutdown-program-obligations"
   | "why-standardized-patient-programs-run-out-of-capacity"
@@ -59,6 +60,21 @@ export interface Post {
 }
 
 const posts: Post[] = [
+  {
+    slug: "what-an-osce-score-predicts",
+    title: "What an OSCE score predicts, and what it doesn't",
+    seoTitle: "What an OSCE score predicts",
+    description:
+      "In a cohort of 3,424 physicians followed for up to 12 years, lower communication scores on a national clinical skills examination went with more retained patient complaints years later. What that does and does not tell a program about one resident.",
+    date: "2026-10-05",
+    author: "Gillian Brennan, MB BCh BAO",
+    // Byline PROPOSED, pending Gillian's yes. Until she confirms, either
+    // remove authorId and the author string (renders as ClinicalSim Team) or
+    // hold the post. See claude/team-and-attribution.md.
+    authorId: "gillian-brennan",
+    readingTime: "6 min read",
+    tags: ["OSCE", "assessment", "communication-assessment", "milestones", "medical-education", "residency"],
+  },
   {
     slug: "communication-remediation-plan",
     title: "What belongs in a resident communication remediation plan",
