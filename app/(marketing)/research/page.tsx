@@ -332,7 +332,7 @@ export default function ResearchPage() {
                   Primary specialty <span className="text-cs-dark-blue">*</span>
                 </Label>
                 <Input
-                  name="specialty"
+                  name="primary_specialty"
                   id="specialty"
                   required
                   placeholder="e.g., Palliative Care, Medical Education, Internal Medicine"
