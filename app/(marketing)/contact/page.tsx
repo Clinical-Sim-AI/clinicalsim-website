@@ -4,6 +4,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
+import { HubSpotForm } from "@/components/hubspot-form"
+import { HubSpotMeetings } from "@/components/hubspot-meetings"
+import { HUBSPOT_MEETINGS_URL } from "@/lib/hubspot"
 import Link from "next/link"
 import { JsonLd } from "@/components/json-ld"
 import { ArrowRight } from "lucide-react"
@@ -85,6 +88,15 @@ export default function ContactPage() {
                 answered, along with the standard you already teach and who should see
                 the results. We usually reply within two business days.
               </p>
+              {HUBSPOT_MEETINGS_URL && (
+                <a
+                  href="#book-a-meeting"
+                  className="inline-flex items-center text-base font-medium text-cs-electric hover:text-white transition-colors mb-8"
+                >
+                  Or book a time to talk
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </a>
+              )}
 
               <div className="space-y-6">
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
@@ -123,9 +135,10 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <form
-              action="https://formspree.io/f/mzzrnbkk"
-              method="POST"
+            <HubSpotForm
+              form="contact"
+              booleanFields={["newsletter_opt_in"]}
+              successMessage="Your message is with our team, and we will reply to the email address you gave us."
               className="space-y-6"
             >
               <ContactSourceField />
@@ -142,7 +155,7 @@ export default function ContactPage() {
                     </Label>
                     <Input
                       id="firstName"
-                      name="firstName"
+                      name="firstname"
                       autoComplete="given-name"
                       placeholder="First name"
                       required
@@ -155,7 +168,7 @@ export default function ContactPage() {
                     </Label>
                     <Input
                       id="lastName"
-                      name="lastName"
+                      name="lastname"
                       autoComplete="family-name"
                       placeholder="Last name"
                       required
@@ -188,7 +201,7 @@ export default function ContactPage() {
                 </Label>
                 <Input
                   id="communicationPriority"
-                  name="communicationPriority"
+                  name="communication_priority"
                   required
                   placeholder="For example, informed consent in surgery or breaking bad news in the PICU"
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
@@ -201,7 +214,7 @@ export default function ContactPage() {
                 </Label>
                 <Input
                   id="role"
-                  name="role"
+                  name="jobtitle"
                   autoComplete="organization-title"
                   placeholder="For example, program director or patient experience lead"
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
@@ -215,7 +228,7 @@ export default function ContactPage() {
                 </Label>
                 <Input
                   id="organization"
-                  name="organization"
+                  name="company"
                   autoComplete="organization"
                   placeholder="Hospital, medical school, or program"
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
@@ -251,7 +264,7 @@ export default function ContactPage() {
                 </Label>
                 <Input
                   id="pilotGroupSize"
-                  name="pilotGroupSize"
+                  name="pilot_group_size"
                   inputMode="numeric"
                   placeholder="For example, one unit or 25 participants"
                   className="bg-white/10 backdrop-blur-sm border-white/30 border-2 text-white placeholder:text-gray-300 focus:border-cs-electric focus:ring-0 rounded-lg"
@@ -264,7 +277,7 @@ export default function ContactPage() {
                 </Label>
                 <select
                   id="preferredNextStep"
-                  name="preferredNextStep"
+                  name="preferred_next_step"
                   defaultValue=""
                   className="flex h-10 w-full rounded-lg border-2 border-white/30 bg-white/10 px-3 py-2 text-sm text-white focus:border-cs-electric focus:outline-none"
                 >
@@ -299,7 +312,7 @@ export default function ContactPage() {
               <div className="flex items-start space-x-3 bg-white/5 rounded-lg p-4 border border-white/10">
                 <Checkbox
                   id="newsletter"
-                  name="newsletter"
+                  name="newsletter_opt_in"
                   className="border-white/50 data-[state=checked]:bg-cs-electric data-[state=checked]:border-cs-electric mt-1"
                 />
                 <div>
@@ -319,10 +332,22 @@ export default function ContactPage() {
               >
                 Send your priority
               </Button>
-            </form>
+            </HubSpotForm>
           </div>
         </div>
       </section>
+
+      {HUBSPOT_MEETINGS_URL && (
+        <section id="book-a-meeting" className="py-16 md:py-24 bg-white scroll-mt-20">
+          <div className="max-w-4xl mx-auto px-6 md:px-12">
+            <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">Book a time to talk</h2>
+            <p className="text-lg text-cs-dark-blue/70 font-light mb-10 max-w-2xl">
+              If you&apos;d rather talk than write it up, pick a time that works for you and we&apos;ll go through your program together.
+            </p>
+            <HubSpotMeetings title="Book a meeting with ClinicalSim" />
+          </div>
+        </section>
+      )}
 
       {/* Additional Contact Information */}
       <section className="py-16 md:py-24 bg-cs-cloud">

@@ -63,6 +63,16 @@ export default function RootLayout({
         <Script id="reb2b" strategy="afterInteractive">
           {`!function(key) {if (window.reb2b) return;window.reb2b = {loaded: true};var s = document.createElement("script");s.async = true;s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);}("GOYPYHQZM0OX");`}
         </Script>
+        {/* HubSpot tracking. Sets the hubspotutk cookie that components/hubspot-form.tsx
+            sends with each submission, so contacts carry their page-view history.
+            Production only, like GA4. */}
+        {process.env.VERCEL_ENV === 'production' && (
+          <Script
+            id="hs-script-loader"
+            src="https://js-na2.hs-scripts.com/247619565.js"
+            strategy="afterInteractive"
+          />
+        )}
       </body>
       {/* Production only, so localhost and Vercel preview traffic stay out of GA4. */}
       {process.env.VERCEL_ENV === 'production' && <GoogleAnalytics gaId="G-G7CL56CV6K" />}
