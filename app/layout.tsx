@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Plus_Jakarta_Sans } from 'next/font/google'
+import localFont from 'next/font/local'
 import Script from 'next/script'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/next'
@@ -7,9 +7,15 @@ import { POSITIONING_LONG } from '@/lib/positioning'
 import { HUBSPOT_PORTAL_ID } from '@/lib/hubspot'
 import './globals.css'
 
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['300', '500', '700'],
+// Bundled instead of next/font/google so a build never depends on fetching
+// from Google: a production deploy failed on 2026-10-07 when the font download
+// errored. One variable file (weights 200-800) subset to Google's latin and
+// latin-ext ranges, cut from google/fonts ofl/plusjakartasans. License in
+// app/fonts/PlusJakartaSans-OFL.txt.
+const plusJakarta = localFont({
+  src: './fonts/PlusJakartaSans-Latin-Variable.woff2',
+  weight: '200 800',
+  style: 'normal',
   display: 'swap',
   variable: '--font-plus-jakarta',
 })
