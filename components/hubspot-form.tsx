@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, type FormEvent, type ReactNode } from "react"
+import { sendGAEvent } from "@next/third-parties/google"
 import {
   HUBSPOT_FORMS,
   buildHubSpotPayload,
@@ -52,6 +53,7 @@ export function HubSpotForm({ form, children, className, booleanFields = [], suc
 
       element.reset()
       setStatus("success")
+      sendGAEvent("event", "generate_lead", { method: `hubspot_${form}_form` })
     } catch (error) {
       console.error(error)
       setStatus("error")
@@ -69,14 +71,16 @@ export function HubSpotForm({ form, children, className, booleanFields = [], suc
 
   return (
     // data-hs-do-not-collect stops the HubSpot tracking script's collected
-    // forms feature from submitting this form a second time.
-    <form onSubmit={handleSubmit} className={className} data-hs-do-not-collect="true" aria-busy={status === "pending"}>
+    // forms feature from submitting this form a second time. method="post"
+    // keeps a submit that lands before hydration from putting the visitor's
+    // email and message in the URL (and so in GA4 and server logs).
+    <form method="post" onSubmit={handleSubmit} className={className} data-hs-do-not-collect="true" aria-busy={status === "pending"}>
       <fieldset disabled={status === "pending"} className="contents">
         {children}
       </fieldset>
       <p role="alert" aria-live="assertive" className="text-sm text-white">
         {status === "error" &&
-          "Something went wrong sending your message. Please try again, or email us at hello@clinicalsim.ai."}
+          "Something went wrong sending your message. Please try again in a moment."}
       </p>
     </form>
   )

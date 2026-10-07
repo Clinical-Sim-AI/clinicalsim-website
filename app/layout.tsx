@@ -4,6 +4,7 @@ import Script from 'next/script'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/next'
 import { POSITIONING_LONG } from '@/lib/positioning'
+import { HUBSPOT_PORTAL_ID } from '@/lib/hubspot'
 import './globals.css'
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -69,7 +70,7 @@ export default function RootLayout({
         {process.env.VERCEL_ENV === 'production' && (
           <Script
             id="hs-script-loader"
-            src="https://js-na2.hs-scripts.com/247619565.js"
+            src={`https://js-na2.hs-scripts.com/${HUBSPOT_PORTAL_ID}.js`}
             strategy="afterInteractive"
           />
         )}
