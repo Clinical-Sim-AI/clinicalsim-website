@@ -100,7 +100,7 @@ export function buildHubSpotPayload(fields: HubSpotField[], context: HubSpotCont
 // Ben's HubSpot meetings scheduling page, e.g.
 // "https://meetings-na2.hubspot.com/ben-conway". While this is empty the
 // booking section on /contact renders nothing.
-export const HUBSPOT_MEETINGS_URL = ""
+export const HUBSPOT_MEETINGS_URL = "https://meetings-na2.hubspot.com/benjamin-conway/book-a-demo-with-ben-conway"
 
 // Builds the iframe URL HubSpot's own MeetingsEmbedCode.js would build. The
 // parent page URL and hubspotutk tie the booking to the visitor's tracked
