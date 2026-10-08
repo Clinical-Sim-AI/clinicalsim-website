@@ -66,13 +66,10 @@ const posts: Post[] = [
     seoTitle: "What an OSCE score predicts",
     description:
       "In a cohort of 3,424 physicians followed for up to 12 years, lower communication scores on a national clinical skills examination went with more retained patient complaints years later. What that does and does not tell a program about one resident.",
-    date: "2026-10-05",
+    date: "2026-10-08",
     author: "Gillian Brennan, MB BCh BAO",
-    // Byline PROPOSED, pending Gillian's yes. Until she confirms, either
-    // remove authorId and the author string (renders as ClinicalSim Team) or
-    // hold the post. See claude/team-and-attribution.md.
     authorId: "gillian-brennan",
-    readingTime: "6 min read",
+    readingTime: "4 min read",
     tags: ["OSCE", "assessment", "communication-assessment", "milestones", "medical-education", "residency"],
   },
   {
