@@ -1,0 +1,74 @@
+import { ArticleLayout } from "@/components/article-layout"
+import { ReferencesSection } from "@/components/references-section"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
+
+export const metadata = getPostMetadata("what-an-osce-score-predicts")
+
+<ArticleLayout post={getPostBySlug("what-an-osce-score-predicts")}>
+
+A resident clears a communication station, the rubric returns a number, and the program files it. But nobody thinks that number settles how the resident will handle a frightened, angry family at 2 a.m.
+
+The right question isn't whether to trust the score. It's how far the score reaches, and the evidence answers that more clearly than most programs realize.
+
+## An OSCE tells you what a resident can do under ideal conditions
+
+Miller's classic framework describes four levels: *knows, knows how, shows how, does* (Miller, *Academic Medicine*, 1990). An OSCE sits at *shows how*, where the resident performs in a room designed to let them perform, with a trained standardized patient and a rubric written in advance. The ward is *does*, where nothing is arranged and the chance to show a skill may never come.
+
+That's the design, not a flaw. A good station [engineers an opening for every behavior it scores](/insights/osce-case-design-guide). The trade-off is that it measures performance on a good day.
+
+## That score really does predict later practice
+
+The strongest evidence comes from a landmark Canadian study. Tamblyn and colleagues followed 3,424 physicians from their national clinical skills exam into real practice, tracking patient complaints to regulators for up to 12 years (Tamblyn et al., *JAMA*, 2007).
+
+Lower communication scores meant more complaints. A 2-SD drop in the communication score predicted a 38% higher rate of retained complaints (RR 1.38, 95% CI 1.18 to 1.61) and a 43% higher rate of communication-specific complaints (RR 1.43, 95% CI 1.15 to 1.77). A score recorded in an exam room in 1994 still said something about how that physician treated patients a decade later.
+
+## But it only predicts a little, so don't over-read it
+
+The same study sets the ceiling. Bottom-quartile communication scores explained just an additional 9.2% of complaints (95% CI 4.7 to 13.1%) beyond what other measures already captured. The effect is real and durable, but small.
+
+The takeaway cuts both ways:
+
+- A low score is a signal, not noise. It survived 12 years of practice across thousands of physicians.
+- A low score is not a verdict on the resident in front of you. It's a population finding, not a personal prediction.
+
+A 30-year review reached the same conclusion: exam performance predicts later behavior, the link doesn't fade with experience, and the case is never fully closed (Wenghofer and Boulet, *Canadian Medical Education Journal*, 2022).
+
+## Not every OSCE is that OSCE
+
+Tamblyn's number came from a rigorous national exam, with a published blueprint, trained raters, and many stations. A four-station local OSCE graded by two faculty on a Friday afternoon is a different instrument wearing the same name.
+
+Reliability varies enormously. Across 23 OSCE studies, Cronbach's alpha ranged from 0.43 to 0.93, and only about half reached the 0.8 benchmark for good consistency. The best designs used five to ten shorter stations (alpha 0.88) (Peng et al., *BMC Medical Education*, 2025). A score that isn't reliable can't predict anything, so a program should know roughly how good its own exam is.
+
+## The ward record is just another sample, and a thin one
+
+It's tempting to contrast a "clean" exam score with "real" clinical observation. But workplace observation is thinner than it looks. In one residency, across 2,517 workplace assessments over a year, each narrative captured only about 2 competencies, and most competencies showed up in fewer than 5% of assessments (Diller et al., *Western Journal of Emergency Medicine*, 2019).
+
+So a program isn't choosing between a sample and the truth. It holds two samples, each with known weaknesses, and decides how many of each it needs.
+
+## The real lesson: more observations beat one perfect one
+
+ACGME guidance on communication milestones calls for direct observation across settings, including real encounters, scenarios, and simulation, plus 360-degree and longitudinal methods (Morrison et al., ACGME). The common thread is repetition across settings and observers, not the search for one assessment that settles everything.
+
+Two things to take away, neither of which costs anything:
+
+- One score is one data point. Decide in advance what a passing score lets you conclude, and don't ask it to carry more than that.
+- Count how often each resident's communication is actually observed in a year. That number, not any single score, is what decides what you really know.
+
+## Where ClinicalSim fits
+
+ClinicalSim gives you more of the one thing that matters most: occasions. Residents practice real spoken conversations with AI patients and get feedback scored against a named rubric, with full transcripts they and faculty can inspect.
+
+We're clear about the limits. One ClinicalSim encounter is a sample under arranged conditions, just like one OSCE station. The scores are formative evidence for faculty review, not a replacement for human judgment or a standardized patient encounter. You can review [complete example encounters](/examples), including recordings, transcripts, and reports, before deciding what the output is worth.
+
+What repeated practice changes is simple. It changes how many samples you hold when a committee has to make a decision, which is the part [no single assessment has ever carried alone](/insights/what-programs-lost-when-step-2-cs-disappeared).
+
+<ReferencesSection references={[
+  { authors: "Tamblyn R, Abrahamowicz M, Dauphinee D, Wenghofer E, Jacques A, Klass D, Smee S, Blackmore D, Winslade N, Girard N, Du Berger R, Bartman I, Buckeridge DL, Hanley JA", title: "Physician scores on a national clinical skills examination as predictors of complaints to medical regulatory authorities", source: "JAMA", year: "2007", doi: "10.1001/jama.298.9.993" },
+  { authors: "Wenghofer E, Boulet J", title: "Medical Council of Canada Qualifying Examinations and performance in future practice", source: "Canadian Medical Education Journal", year: "2022", doi: "10.36834/cmej.73770" },
+  { authors: "Peng Q, Luo J, Wang C, Chen L, Tan S", title: "Impact of station number and duration time per station on the reliability of Objective Structured Clinical Examination (OSCE) scores: a systematic review and meta-analysis", source: "BMC Medical Education", year: "2025", doi: "10.1186/s12909-025-06691-0" },
+  { authors: "Diller D, Cooper S, Jain A, Lam CN, Riddell J", title: "Which emergency medicine milestone sub-competencies are identified through narrative assessments?", source: "Western Journal of Emergency Medicine", year: "2019", doi: "10.5811/westjem.2019.12.44468" },
+  { authors: "Miller GE", title: "The assessment of clinical skills/competence/performance", source: "Academic Medicine", year: "1990", doi: "10.1097/00001888-199009000-00045" },
+  { authors: "Morrison LJ, Joyce BL, Meyer LE, Moreland CJ, Puscas L, Regan L, Stephens MB, Roberts S, Edgar L", title: "Strengthening interpersonal and communication skills assessment through harmonized milestones", source: "Accreditation Council for Graduate Medical Education", year: "Accessed October 5, 2026", url: "https://www.acgme.org/globalassets/pdfs/milestones/harmonizingics.pdf" },
+]} />
+
+</ArticleLayout>
