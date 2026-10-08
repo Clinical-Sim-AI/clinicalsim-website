@@ -60,7 +60,7 @@ const authors: Author[] = [
     name: "Gillian Brennan",
     credentials: "MB BCh BAO",
     title: "VP of Clinical Research & Education, ClinicalSim",
-    bio: "Dr. Gillian Brennan is an Associate Professor of Pediatrics at the University of Chicago, Program Director of the Neonatology Fellowship, Associate Program Director of the Pediatric Residency, and Director of Neonatal Simulation. Over fourteen years she has educated and supervised more than 500 clinicians.",
+    bio: "Dr. Gillian Brennan is an Associate Professor of Pediatrics and attending neonatologist at the University of Chicago, where she has directed neonatal simulation since 2016 and the Neonatology Fellowship since 2023. She is also Associate Program Director for wellness in the Pediatrics Residency and sits on the executive committee of the Midwest Neonatal Perinatal Simulation Boot Camp. Her published work covers simulation curricula for neonatology fellows and post-resuscitation debriefing, and in 2025 she received a University of Chicago seed grant to study AI in medical education. Over fourteen years she has educated and supervised more than 500 clinicians.",
     colorVariant: "light-blue",
   },
   {
