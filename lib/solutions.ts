@@ -149,6 +149,12 @@ export interface Solution {
   /** Accreditors and framework owners named anywhere on the page. Drives the non-endorsement line. */
   nonEndorsementOrgs?: string[]
   claimBoundary?: SolutionClaimBoundary
+  /**
+   * When true the page renders no "What this page does not claim" block, and the claim-discipline
+   * tests skip their claim boundary and non-endorsement checks for it. Ben's call for workforce
+   * retention on 2026-10-11, where the hero and FAQ already state the turnover limit in the copy.
+   */
+  omitClaimBoundary?: boolean
 
   faqs?: SolutionFaq[]
   relatedPostSlugs?: PostSlug[]
@@ -1008,8 +1014,8 @@ const solutions: Solution[] = [
   // Workforce retention
   // -------------------------------------------------------------------------
   // Copy from Ben's handoff (workforce-retention-page-handoff-v1-2026-10-11). The obvious
-  // overclaim in this lane is "reduces turnover", so the hero, an FAQ, and the claim boundary
-  // all say plainly that it does not. lastUpdated is left unset for Ben to decide.
+  // overclaim in this lane is "reduces turnover", so the hero and an FAQ say plainly that it
+  // does not. Ben dropped the claim boundary block for this page on 2026-10-11.
   {
     slug: "workforce-retention",
     market: "health-system",
@@ -1019,12 +1025,13 @@ const solutions: Solution[] = [
     subtitle: "Practice the conversations behind whether staff stay",
     icon: "friendship",
     colorVariant: "navy",
+    lastUpdated: "2026-10-11",
     cardBullets: [
       "Stay conversations, safety concerns and feedback for frontline managers",
       "Escalation, handoff and delegation for nurses in their first year",
       "Scored against your leadership model or escalation policy",
     ],
-    metaTitle: "Communication practice for nurse managers and new nurses",
+    metaTitle: "Nurse retention communication practice",
     metaDescription:
       "Nurse managers, medical directors and new graduate nurses practice the conversations tied to retention, scored against your leadership model or escalation policy.",
     heroHeadline: "Practice the conversations that shape whether nurses and physicians stay",
@@ -1188,14 +1195,7 @@ const solutions: Solution[] = [
           "It can be one part of a residency's communication curriculum, scored against your escalation policy or TeamSTEPPS. ClinicalSim is not affiliated with ANCC or Vizient, and practice scores don't establish accreditation compliance.",
       },
     ],
-    nonEndorsementOrgs: ["AHRQ", "ANCC", "AONL", "Vizient", "McKinsey", "Mayo Clinic"],
-    claimBoundary: {
-      formative: true,
-      raterValidation: true,
-      noOutcomePrediction: true,
-      noEmploymentUse: true,
-      note: "No evidence links ClinicalSim, or communication training in general, to lower nurse or physician turnover, and this page makes no such claim. The workforce statistics on this page describe nurses and physicians, not ClinicalSim results.",
-    },
+    omitClaimBoundary: true,
     glossarySlugs: ["sbar", "teach-back-method"],
     ctaHeadline: "Bring us the conversation your managers find hardest",
     ctaDescription:

@@ -54,6 +54,7 @@ describe("market positioning", () => {
 
   it("requires system use cases to publish outcome and employment limits", () => {
     for (const solution of getSolutionsByMarket("health-system")) {
+      if (solution.omitClaimBoundary) continue
       expect(solution.claimBoundary?.formative, solution.slug).toBe(true)
       expect(solution.claimBoundary?.raterValidation, solution.slug).toBe(true)
       expect(solution.claimBoundary?.noOutcomePrediction, solution.slug).toBe(

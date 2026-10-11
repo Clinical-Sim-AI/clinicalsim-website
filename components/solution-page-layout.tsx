@@ -484,16 +484,18 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
 
       <GlossaryTermLinks slugs={solution.glossarySlugs} />
 
-      <ClaimBoundary
-        nonEndorsementOrgs={solution.nonEndorsementOrgs}
-        showFormative={solution.claimBoundary?.formative}
-        showRaterValidation={solution.claimBoundary?.raterValidation}
-        showOutcomePredictionLimit={
-          solution.claimBoundary?.noOutcomePrediction
-        }
-        showEmploymentUseLimit={solution.claimBoundary?.noEmploymentUse}
-        note={solution.claimBoundary?.note}
-      />
+      {!solution.omitClaimBoundary && (
+        <ClaimBoundary
+          nonEndorsementOrgs={solution.nonEndorsementOrgs}
+          showFormative={solution.claimBoundary?.formative}
+          showRaterValidation={solution.claimBoundary?.raterValidation}
+          showOutcomePredictionLimit={
+            solution.claimBoundary?.noOutcomePrediction
+          }
+          showEmploymentUseLimit={solution.claimBoundary?.noEmploymentUse}
+          note={solution.claimBoundary?.note}
+        />
+      )}
 
       {/* Final CTA */}
       <WaveformBand seed={solution.slug}>
