@@ -48,6 +48,7 @@ describe("market positioning", () => {
       "debriefing",
       "informed-consent",
       "error-disclosure",
+      "workforce-retention",
     ])
   })
 
@@ -116,6 +117,7 @@ describe("market positioning", () => {
           "debriefing",
           "informed-consent",
           "error-disclosure",
+          "workforce-retention",
         ],
       },
       {

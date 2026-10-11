@@ -15,6 +15,7 @@ const expectedUseCaseRoutes = {
     "/solutions/debriefing",
     "/solutions/informed-consent",
     "/solutions/error-disclosure",
+    "/solutions/workforce-retention",
   ],
   "Medical education": [
     "/solutions/longitudinal-curriculum",

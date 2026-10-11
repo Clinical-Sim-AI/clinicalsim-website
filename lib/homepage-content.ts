@@ -80,7 +80,7 @@ export const HOMEPAGE_PUBLIC_COPY = {
       "Most institutions already know which conversation they want to strengthen, so the first assessment starts there rather than with a list of features.",
     healthSystemHeading: "For health systems",
     healthSystemBody:
-      "ClinicalSim turns practice in consent, disclosure, debriefing, and patient service into feedback for each participant and measurable patterns for leaders. Each simulation uses your own service standard or policy, with the participant's words behind every score. It works alongside the healthcare simulation your education team already runs, so people can practice by voice from any device between scheduled sessions.",
+      "ClinicalSim turns practice in consent, disclosure, debriefing, patient service, and retention conversations into feedback for each participant and measurable patterns for leaders. Each simulation uses your own service standard or policy, with the participant's words behind every score. It works alongside the healthcare simulation your education team already runs, so people can practice by voice from any device between scheduled sessions.",
     medicalEducationHeading:
       "For residency, fellowship, and medical school programs",
     medicalEducationBody:
