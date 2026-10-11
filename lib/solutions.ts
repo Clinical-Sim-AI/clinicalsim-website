@@ -3,8 +3,8 @@ import type { Market } from "@/lib/positioning"
 import type { PostSlug } from "@/lib/posts"
 
 export interface SolutionStage {
-  /** Short label for the stage, e.g. "PGY-1", "M1/M2", "Giving feedback" */
-  label: string
+  /** Short label for the stage, e.g. "PGY-1", "M1/M2", "Giving feedback". Optional; no badge renders without one. */
+  label?: string
   title: string
   description: string
 }
@@ -69,6 +69,7 @@ export type SolutionSlug =
   | "debriefing"
   | "informed-consent"
   | "error-disclosure"
+  | "workforce-retention"
   | "remediation"
 
 export interface Solution {
@@ -126,21 +127,34 @@ export interface Solution {
   heroDescription: string
   lastUpdated?: string
 
+  /** A short prose section after the hero, for context the stages and value props cannot carry. */
+  context?: { heading: string; paragraphs: string[] }
+
   // The progression / topic arc
   stagesHeading?: string
   stagesIntro?: string
   stages?: SolutionStage[]
+  /** Several headed stage lists, for a page that speaks to more than one group. Renders after `stages`. */
+  stageGroups?: { heading: string; intro?: string; stages: SolutionStage[] }[]
 
   // What you get
   /** Heading over the value props. Was a per-slug switch inside the layout. */
   valuePropsHeading?: string
   valueProps?: SolutionValueProp[]
 
+  /** Intro over the frameworks list. Defaults to the AI patient wording, which suits patient-facing lanes. */
+  frameworksIntro?: string
   /** Named frameworks this lane scores against. Renders a section linking to /frameworks. */
   frameworks?: SolutionFramework[]
   /** Accreditors and framework owners named anywhere on the page. Drives the non-endorsement line. */
   nonEndorsementOrgs?: string[]
   claimBoundary?: SolutionClaimBoundary
+  /**
+   * When true the page renders no "What this page does not claim" block, and the claim-discipline
+   * tests skip their claim boundary and non-endorsement checks for it. Ben's call for workforce
+   * retention on 2026-10-11, where the hero and FAQ already state the turnover limit in the copy.
+   */
+  omitClaimBoundary?: boolean
 
   faqs?: SolutionFaq[]
   relatedPostSlugs?: PostSlug[]
@@ -995,6 +1009,197 @@ const solutions: Solution[] = [
     ctaHeadline: "Send us your disclosure policy",
     ctaDescription:
       "We will show you which of its elements a spoken conversation can evidence and what a scored disclosure looks like against your own wording, before anything is committed.",
+  },
+  // -------------------------------------------------------------------------
+  // Workforce retention
+  // -------------------------------------------------------------------------
+  // Copy from Ben's handoff (workforce-retention-page-handoff-v1-2026-10-11). The obvious
+  // overclaim in this lane is "reduces turnover", so the hero and an FAQ say plainly that it
+  // does not. Ben dropped the claim boundary block for this page on 2026-10-11.
+  {
+    slug: "workforce-retention",
+    market: "health-system",
+    category: "program",
+    title: "Retention conversations for managers and new nurses",
+    shortTitle: "Workforce retention",
+    subtitle: "Practice the conversations behind whether staff stay",
+    icon: "friendship",
+    colorVariant: "navy",
+    lastUpdated: "2026-10-11",
+    cardBullets: [
+      "Stay conversations, safety concerns and feedback for frontline managers",
+      "Escalation, handoff and delegation for nurses in their first year",
+      "Scored against your leadership model or escalation policy",
+    ],
+    metaTitle: "Nurse retention communication practice",
+    metaDescription:
+      "Nurse managers, medical directors and new graduate nurses practice the conversations tied to retention, scored against your leadership model or escalation policy.",
+    heroHeadline: "Practice the conversations that shape whether nurses and physicians stay",
+    heroDescription:
+      "Nurse managers, charge nurses, medical directors and new graduate nurses practice by voice with AI characters, from the experienced nurse who's quietly looking elsewhere to the on-call physician who doesn't want to come in. Each conversation is scored against your leadership model or escalation policy, with the participant's own words under every score. ClinicalSim does not predict or reduce turnover. It shows how these conversations go and gives people practice before the real one.",
+    context: {
+      heading: "Why these conversations",
+      paragraphs: [
+        "As more documentation and administrative work moves to software, more of each clinician's day is the work only a person can do, and much of that is talking: to patients, to families, to colleagues, and to the people they manage. Two groups come up again and again in the retention research: frontline managers and nurses in their first year.",
+        "Managers first. In a 2025 survey of 1,301 US frontline nurses, 41% said they don't feel valued by leadership, and feeling undervalued ranked second among their reasons for planning to leave (McKinsey, Nursing Pulse Survey, 2025). Among 3,896 Mayo Clinic physicians and scientists, each one-point gain on a 60-point rating of their supervisor's leadership went with a 3.3% lower likelihood of burnout and 9% higher satisfaction (Shanafelt et al., Mayo Clinic Proceedings, 2015). Most of what those ratings measure happens in conversation: explaining a change, asking for ideas, giving feedback, recognizing good work, talking about someone's career.",
+        "Then the first year. 22.7% of newly hired RNs leave within twelve months, at $60,090 per departure (NSI Nursing Solutions, 2026 National Health Care Retention and RN Staffing Report). Across more than 10,000 new graduate RNs assessed from 2011 to 2020, the share meeting entry-level competency expectations fell from 23% to 9% (Kavanagh and Sharpnack, OJIN, 2021).",
+      ],
+    },
+    stageGroups: [
+      {
+        heading: "What managers practice",
+        intro:
+          "The AI character plays a member of staff, and the manager gets to have the conversation once before it counts.",
+        stages: [
+          {
+            title: "A stay conversation with a strong nurse who's looking elsewhere",
+            description:
+              "Ask what keeps them and what would make them leave, recognize specific work, and commit only to a follow-up the manager can keep.",
+          },
+          {
+            title: "A safety concern raised mid-shift",
+            description:
+              "Hear an unsafe-assignment concern without defending the staffing grid, decide on a next step, and tell the nurse when they'll hear back.",
+          },
+          {
+            title: "A preceptor who's hard on new nurses",
+            description:
+              "Name the behavior and its effect on new hires without labels, and keep an experienced colleague on the unit.",
+          },
+          {
+            title: "A change staff won't like",
+            description:
+              "State the change and the reason early, take the reaction, and say what input is still open.",
+          },
+          {
+            title: "A physician who's pulling back",
+            description:
+              "For medical directors and section chiefs: check in on the person before negotiating the schedule.",
+          },
+        ],
+      },
+      {
+        heading: "What new nurses practice",
+        intro:
+          "For nurse residency programs and new graduate cohorts. The AI character plays the physician, the family member, the colleague or the oncoming nurse.",
+        stages: [
+          {
+            title: "The overnight call to a physician who doesn't want to come in",
+            description:
+              "Give an SBAR with an explicit recommendation, then use CUS language and the two-challenge rule if the concern isn't heard.",
+          },
+          {
+            title: "Calling the rapid response team",
+            description:
+              "Act on a calling criterion that's been met when a busy colleague says to wait.",
+          },
+          {
+            title: "A handoff with a pending result",
+            description:
+              "Name the result, the value that changes the plan and who calls whom, then ask for a read-back.",
+          },
+          {
+            title: "Delegating to an experienced colleague who pushes back",
+            description:
+              "Hold the request, or reprioritize it out loud, without apologizing it away.",
+          },
+          {
+            title: "A family question the nurse can't answer yet",
+            description:
+              "Say honestly what the nurse knows, don't speculate, and tell the family who will answer and when.",
+          },
+        ],
+      },
+    ],
+    valuePropsHeading: "What a health system gets",
+    valueProps: [
+      {
+        title: "Your standard, scored as written",
+        description:
+          "Send the leadership model, escalation policy or handoff tool you already teach. The report scores each element a case gave the participant a chance to show.",
+      },
+      {
+        title: "The words behind every score",
+        description:
+          "Each rating quotes what the manager or nurse said, so an educator can review the conversation without listening to every recording.",
+      },
+      {
+        title: "Reporting rules set before anyone practices",
+        description:
+          "Results can be named or anonymous, by unit or cohort. Manager and new nurse results stay out of performance reviews.",
+      },
+      {
+        title: "A study plan if you want to test retention",
+        description:
+          "If you want to know whether practice relates to retention, we'll help design a comparison against a unit or cohort using your own retention and survey data. That's a study, not a product outcome.",
+      },
+    ],
+    frameworksIntro:
+      "Each case names the published framework or institution-defined standard used for feedback. The report shows strengths and areas for practice, with the participant's own words behind each score.",
+    frameworks: [
+      {
+        name: "Your own leadership model, escalation policy or handoff tool",
+        owner: "Yours",
+        note: "Send the competency model, policy or tool you already teach. We score it as written.",
+      },
+      {
+        name: "SBI and Pendleton: Feedback conversations",
+        owner: "Center for Creative Leadership; Pendleton and colleagues",
+        note: "SBI ties feedback to a situation, a behavior and its impact. Pendleton's rules ask the person to say what went well and what to change before the observer adds their view.",
+      },
+      {
+        name: "SBAR: Structured communication",
+        owner: "Agency for Healthcare Research and Quality, TeamSTEPPS",
+        note: "Situation, background, assessment, and recommendation structure a concise clinical escalation or handoff.",
+      },
+      {
+        name: "TeamSTEPPS: Teamwork and communication competencies",
+        owner: "Agency for Healthcare Research and Quality and the US Department of Defense",
+        note: "The rubric scores communication, team leadership, situation monitoring, and mutual support when the case gives one speaker a chance to show them. Its tools include CUS, the two-challenge rule, check-back and DESC.",
+      },
+      {
+        name: "I-PASS: Handoff communication",
+        owner: "I-PASS Study Group and Agency for Healthcare Research and Quality",
+        note: "Illness severity, patient summary, action list, situation awareness and contingency planning, and synthesis by the receiver structure a handoff.",
+      },
+      {
+        name: "Teach-back",
+        owner: "Agency for Healthcare Research and Quality",
+        note: "The listener explains the information back in their own words, so the speaker can check what landed and correct what didn't.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does ClinicalSim reduce turnover?",
+        answer:
+          "No study shows that communication training, ours or anyone else's, reduces nurse or physician turnover. ClinicalSim measures how specific conversations go and gives people repeated practice. If you want to test a link to retention, we'll help you set up a comparison with your own data.",
+      },
+      {
+        question: "Who plays the staff member, physician or family member?",
+        answer:
+          "An AI character that the participant talks to by voice. Our clinical team writes each case, including how the character reacts when the conversation goes well or badly.",
+      },
+      {
+        question: "Can we score against our own leadership model?",
+        answer:
+          "Yes. Send the model or the competency language. The report scores the elements a case gave the manager a chance to show and quotes the words behind each score.",
+      },
+      {
+        question: "Can manager and new nurse results stay out of performance reviews?",
+        answer:
+          "Yes, and they should. Output is formative. The institution sets access before anyone practices, including anonymous participant IDs, and labor agreements govern what leadership can see.",
+      },
+      {
+        question: "Does this fit our nurse residency program?",
+        answer:
+          "It can be one part of a residency's communication curriculum, scored against your escalation policy or TeamSTEPPS. ClinicalSim is not affiliated with ANCC or Vizient, and practice scores don't establish accreditation compliance.",
+      },
+    ],
+    omitClaimBoundary: true,
+    glossarySlugs: ["sbar", "teach-back-method"],
+    ctaHeadline: "Bring us the conversation your managers find hardest",
+    ctaDescription:
+      "Send your leadership model, your escalation policy, or the conversation that keeps coming up in exit interviews. We'll map what a spoken case can score and agree on reporting rules before anyone practices.",
   },
   {
     slug: "remediation",

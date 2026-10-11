@@ -81,7 +81,7 @@ export async function GET() {
 
   const solutionLines = [
     `\n## Use cases\n`,
-    `- [Use cases](${BASE_URL}/solutions): One platform for patient experience, debriefing, informed consent, error disclosure, medical education, and communication remediation.`,
+    `- [Use cases](${BASE_URL}/solutions): One platform for patient experience, debriefing, informed consent, error disclosure, workforce retention, medical education, and communication remediation.`,
     ...solutions.map(
       (s) =>
         `- [${s.title}](${BASE_URL}/solutions/${s.slug}): ${s.metaDescription}`

@@ -38,7 +38,7 @@ export const PAGE_DATE_MODIFIED = {
   methodology: "2026-09-03",
   privacy: "2026-03-16",
   research: "2026-09-03",
-  solutions: "2026-09-02",
+  solutions: "2026-10-11",
   // Same 2026-09-03 commit.
   trust: "2026-09-03",
 } as const

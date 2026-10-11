@@ -105,6 +105,7 @@ describe("claim discipline", () => {
 
       for (const solution of getAllSolutions()) {
         if (solution.category !== "conversation") continue
+        if (solution.omitClaimBoundary) continue
 
         if (solution.claimBoundary?.formative !== true) {
           violations.push(`${solution.slug}: claimBoundary.formative must be true`)
@@ -137,6 +138,7 @@ describe("claim discipline", () => {
 
       for (const solution of getAllSolutions()) {
         if (solution.market !== "health-system") continue
+        if (solution.omitClaimBoundary) continue
 
         if (solution.claimBoundary?.noOutcomePrediction !== true) {
           violations.push(
@@ -214,6 +216,8 @@ describe("claim discipline", () => {
       const violations: string[] = []
 
       for (const solution of getAllSolutions()) {
+        // No ClaimBoundary renders, so there is no non-endorsement line to require.
+        if (solution.omitClaimBoundary) continue
         const declared = (solution.nonEndorsementOrgs ?? []).join(" ")
         const body = collectStrings(solution, solution.slug)
           // The declaration itself must not satisfy the requirement.

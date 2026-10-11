@@ -11,7 +11,7 @@ import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
 import { WaveformBand } from "@/components/waveform-band"
 import { heroBadge, heroBadgeIconColor } from "@/lib/color-variants"
 import { cn, formatIsoMonth } from "@/lib/utils"
-import { type Solution } from "@/lib/solutions"
+import { type Solution, type SolutionStage } from "@/lib/solutions"
 import { getPostBySlug } from "@/lib/posts"
 
 const valuePropBrandIcons: Array<BrandIconName | null> = [
@@ -39,6 +39,42 @@ interface SolutionPageLayoutProps {
   solution: Solution
 }
 
+function StageCard({
+  stage,
+  colorVariant,
+}: {
+  stage: SolutionStage
+  colorVariant: Solution["colorVariant"]
+}) {
+  return (
+    <div
+      className={cn(
+        "bg-white rounded-xl border border-cs-gray/50 border-l-4 p-6 md:p-7 hover:shadow-lg transition-all duration-300",
+        stageAccent[colorVariant]
+      )}
+    >
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+        {stage.label && (
+          <span
+            className={cn(
+              "inline-flex items-center self-start rounded-full px-3 py-1 text-sm font-medium",
+              stageBadge[colorVariant]
+            )}
+          >
+            {stage.label}
+          </span>
+        )}
+        <h3 className="text-xl font-medium text-cs-dark-blue">
+          {stage.title}
+        </h3>
+      </div>
+      <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
+        {stage.description}
+      </p>
+    </div>
+  )
+}
+
 export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
   const relatedPosts = (solution.relatedPostSlugs ?? [])
     .map((slug) => getPostBySlug(slug))
@@ -50,15 +86,20 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
    * negative space would show white and eat the band's bottom edge, so
    * whichever optional block renders first has to carry the hero's color.
    */
-  const optionalBlocks = [
-    (solution.stages?.length ?? 0) > 0,
-    (solution.valueProps?.length ?? 0) > 0,
-    (solution.frameworks?.length ?? 0) > 0,
-    (solution.faqs?.length ?? 0) > 0,
-    relatedPosts.length > 0,
-  ]
-  const underHero = (index: number) =>
-    optionalBlocks.slice(0, index).some(Boolean) ? undefined : "bg-cs-dark-blue"
+  const optionalBlocks = {
+    context: (solution.context?.paragraphs.length ?? 0) > 0,
+    stages: (solution.stages?.length ?? 0) > 0,
+    stageGroups: (solution.stageGroups?.length ?? 0) > 0,
+    valueProps: (solution.valueProps?.length ?? 0) > 0,
+    frameworks: (solution.frameworks?.length ?? 0) > 0,
+    faqs: (solution.faqs?.length ?? 0) > 0,
+    relatedPosts: relatedPosts.length > 0,
+  }
+  const blockOrder = Object.keys(optionalBlocks) as Array<keyof typeof optionalBlocks>
+  const underHero = (block: keyof typeof optionalBlocks) =>
+    blockOrder.slice(0, blockOrder.indexOf(block)).some((key) => optionalBlocks[key])
+      ? undefined
+      : "bg-cs-dark-blue"
 
   const faqJsonLd =
     solution.faqs && solution.faqs.length > 0
@@ -191,10 +232,35 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
         </div>
       </section>
 
+      {/* Context */}
+      {optionalBlocks.context && solution.context && (
+        <>
+          <SectionDivider variant="diagonal-down" color="white" className={underHero("context")} />
+
+          <section className="px-6 py-8 md:py-10 bg-white">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
+                {solution.context.heading}
+              </h2>
+              <div className="space-y-5">
+                {solution.context.paragraphs.map((paragraph, index) => (
+                  <p
+                    key={index}
+                    className="text-lg text-cs-dark-blue/85 font-light leading-relaxed"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+
       {/* Stages / progression arc */}
       {solution.stages && solution.stages.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-down" color="white" className={underHero(0)} />
+          <SectionDivider variant="diagonal-down" color="white" className={underHero("stages")} />
 
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
@@ -211,32 +277,48 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
 
               <div className="space-y-5">
                 {solution.stages.map((stage, index) => (
-                  <div
+                  <StageCard
                     key={index}
-                    className={cn(
-                      "bg-white rounded-xl border border-cs-gray/50 border-l-4 p-6 md:p-7 hover:shadow-lg transition-all duration-300",
-                      stageAccent[solution.colorVariant]
-                    )}
-                  >
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-                      <span
-                        className={cn(
-                          "inline-flex items-center self-start rounded-full px-3 py-1 text-sm font-medium",
-                          stageBadge[solution.colorVariant]
-                        )}
-                      >
-                        {stage.label}
-                      </span>
-                      <h3 className="text-xl font-medium text-cs-dark-blue">
-                        {stage.title}
-                      </h3>
-                    </div>
-                    <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-                      {stage.description}
-                    </p>
-                  </div>
+                    stage={stage}
+                    colorVariant={solution.colorVariant}
+                  />
                 ))}
               </div>
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* Headed stage groups, for pages that speak to more than one group */}
+      {solution.stageGroups && solution.stageGroups.length > 0 && (
+        <>
+          <SectionDivider variant="diagonal-down" color="white" className={underHero("stageGroups")} />
+
+          <section className="px-6 py-8 md:py-10 bg-white">
+            <div className="max-w-4xl mx-auto space-y-14">
+              {solution.stageGroups.map((group, groupIndex) => (
+                <div key={groupIndex}>
+                  <div className="text-center mb-10">
+                    <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-4">
+                      {group.heading}
+                    </h2>
+                    {group.intro && (
+                      <p className="text-lg text-cs-dark-blue/70 font-light max-w-2xl mx-auto">
+                        {group.intro}
+                      </p>
+                    )}
+                  </div>
+                  <div className="space-y-5">
+                    {group.stages.map((stage, index) => (
+                      <StageCard
+                        key={index}
+                        stage={stage}
+                        colorVariant={solution.colorVariant}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
         </>
@@ -245,7 +327,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* What you get */}
       {solution.valueProps && solution.valueProps.length > 0 && (
         <>
-          <SectionDivider variant="wave" color="white" className={underHero(1)} />
+          <SectionDivider variant="wave" color="white" className={underHero("valueProps")} />
 
           <section className="px-6 py-8 md:py-10 bg-cs-cloud">
             <div className="max-w-6xl mx-auto">
@@ -283,7 +365,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* Frameworks this lane scores against */}
       {solution.frameworks && solution.frameworks.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-up" color="white" className={underHero(2)} />
+          <SectionDivider variant="diagonal-up" color="white" className={underHero("frameworks")} />
 
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
@@ -291,9 +373,8 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                 The frameworks behind the score
               </h2>
               <p className="text-lg text-cs-dark-blue/70 font-light mb-8 max-w-2xl">
-                Each AI patient case names the published framework or institution-defined standard
-                used for feedback. The report shows strengths and areas for practice, with the
-                participant&apos;s own words behind each score.
+                {solution.frameworksIntro ??
+                  "Each AI patient case names the published framework or institution-defined standard used for feedback. The report shows strengths and areas for practice, with the participant's own words behind each score."}
               </p>
 
               <div className="space-y-4">
@@ -333,7 +414,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* FAQs */}
       {solution.faqs && solution.faqs.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-up" color="white" className={underHero(3)} />
+          <SectionDivider variant="diagonal-up" color="white" className={underHero("faqs")} />
 
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
@@ -370,7 +451,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* Related insights */}
       {relatedPosts.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-down" color="white" className={underHero(4)} />
+          <SectionDivider variant="diagonal-down" color="white" className={underHero("relatedPosts")} />
           <section className="px-6 py-8 md:py-10 bg-cs-cloud">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-8">
@@ -403,16 +484,18 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
 
       <GlossaryTermLinks slugs={solution.glossarySlugs} />
 
-      <ClaimBoundary
-        nonEndorsementOrgs={solution.nonEndorsementOrgs}
-        showFormative={solution.claimBoundary?.formative}
-        showRaterValidation={solution.claimBoundary?.raterValidation}
-        showOutcomePredictionLimit={
-          solution.claimBoundary?.noOutcomePrediction
-        }
-        showEmploymentUseLimit={solution.claimBoundary?.noEmploymentUse}
-        note={solution.claimBoundary?.note}
-      />
+      {!solution.omitClaimBoundary && (
+        <ClaimBoundary
+          nonEndorsementOrgs={solution.nonEndorsementOrgs}
+          showFormative={solution.claimBoundary?.formative}
+          showRaterValidation={solution.claimBoundary?.raterValidation}
+          showOutcomePredictionLimit={
+            solution.claimBoundary?.noOutcomePrediction
+          }
+          showEmploymentUseLimit={solution.claimBoundary?.noEmploymentUse}
+          note={solution.claimBoundary?.note}
+        />
+      )}
 
       {/* Final CTA */}
       <WaveformBand seed={solution.slug}>
