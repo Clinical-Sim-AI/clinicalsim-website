@@ -86,17 +86,20 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
    * negative space would show white and eat the band's bottom edge, so
    * whichever optional block renders first has to carry the hero's color.
    */
-  const optionalBlocks = [
-    (solution.context?.paragraphs.length ?? 0) > 0,
-    (solution.stages?.length ?? 0) > 0,
-    (solution.stageGroups?.length ?? 0) > 0,
-    (solution.valueProps?.length ?? 0) > 0,
-    (solution.frameworks?.length ?? 0) > 0,
-    (solution.faqs?.length ?? 0) > 0,
-    relatedPosts.length > 0,
-  ]
-  const underHero = (index: number) =>
-    optionalBlocks.slice(0, index).some(Boolean) ? undefined : "bg-cs-dark-blue"
+  const optionalBlocks = {
+    context: (solution.context?.paragraphs.length ?? 0) > 0,
+    stages: (solution.stages?.length ?? 0) > 0,
+    stageGroups: (solution.stageGroups?.length ?? 0) > 0,
+    valueProps: (solution.valueProps?.length ?? 0) > 0,
+    frameworks: (solution.frameworks?.length ?? 0) > 0,
+    faqs: (solution.faqs?.length ?? 0) > 0,
+    relatedPosts: relatedPosts.length > 0,
+  }
+  const blockOrder = Object.keys(optionalBlocks) as Array<keyof typeof optionalBlocks>
+  const underHero = (block: keyof typeof optionalBlocks) =>
+    blockOrder.slice(0, blockOrder.indexOf(block)).some((key) => optionalBlocks[key])
+      ? undefined
+      : "bg-cs-dark-blue"
 
   const faqJsonLd =
     solution.faqs && solution.faqs.length > 0
@@ -230,9 +233,9 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       </section>
 
       {/* Context */}
-      {solution.context && solution.context.paragraphs.length > 0 && (
+      {optionalBlocks.context && solution.context && (
         <>
-          <SectionDivider variant="diagonal-down" color="white" className={underHero(0)} />
+          <SectionDivider variant="diagonal-down" color="white" className={underHero("context")} />
 
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-3xl mx-auto">
@@ -257,7 +260,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* Stages / progression arc */}
       {solution.stages && solution.stages.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-down" color="white" className={underHero(1)} />
+          <SectionDivider variant="diagonal-down" color="white" className={underHero("stages")} />
 
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
@@ -289,7 +292,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* Headed stage groups, for pages that speak to more than one group */}
       {solution.stageGroups && solution.stageGroups.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-down" color="white" className={underHero(2)} />
+          <SectionDivider variant="diagonal-down" color="white" className={underHero("stageGroups")} />
 
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto space-y-14">
@@ -324,7 +327,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* What you get */}
       {solution.valueProps && solution.valueProps.length > 0 && (
         <>
-          <SectionDivider variant="wave" color="white" className={underHero(3)} />
+          <SectionDivider variant="wave" color="white" className={underHero("valueProps")} />
 
           <section className="px-6 py-8 md:py-10 bg-cs-cloud">
             <div className="max-w-6xl mx-auto">
@@ -362,7 +365,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* Frameworks this lane scores against */}
       {solution.frameworks && solution.frameworks.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-up" color="white" className={underHero(4)} />
+          <SectionDivider variant="diagonal-up" color="white" className={underHero("frameworks")} />
 
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
@@ -370,9 +373,8 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                 The frameworks behind the score
               </h2>
               <p className="text-lg text-cs-dark-blue/70 font-light mb-8 max-w-2xl">
-                Each AI patient case names the published framework or institution-defined standard
-                used for feedback. The report shows strengths and areas for practice, with the
-                participant&apos;s own words behind each score.
+                {solution.frameworksIntro ??
+                  "Each AI patient case names the published framework or institution-defined standard used for feedback. The report shows strengths and areas for practice, with the participant's own words behind each score."}
               </p>
 
               <div className="space-y-4">
@@ -412,7 +414,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* FAQs */}
       {solution.faqs && solution.faqs.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-up" color="white" className={underHero(5)} />
+          <SectionDivider variant="diagonal-up" color="white" className={underHero("faqs")} />
 
           <section className="px-6 py-8 md:py-10 bg-white">
             <div className="max-w-4xl mx-auto">
@@ -449,7 +451,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* Related insights */}
       {relatedPosts.length > 0 && (
         <>
-          <SectionDivider variant="diagonal-down" color="white" className={underHero(6)} />
+          <SectionDivider variant="diagonal-down" color="white" className={underHero("relatedPosts")} />
           <section className="px-6 py-8 md:py-10 bg-cs-cloud">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-8">

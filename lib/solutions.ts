@@ -142,6 +142,8 @@ export interface Solution {
   valuePropsHeading?: string
   valueProps?: SolutionValueProp[]
 
+  /** Intro over the frameworks list. Defaults to the AI patient wording, which suits patient-facing lanes. */
+  frameworksIntro?: string
   /** Named frameworks this lane scores against. Renders a section linking to /frameworks. */
   frameworks?: SolutionFramework[]
   /** Accreditors and framework owners named anywhere on the page. Drives the non-endorsement line. */
@@ -1125,6 +1127,8 @@ const solutions: Solution[] = [
           "If you want to know whether practice relates to retention, we'll help design a comparison against a unit or cohort using your own retention and survey data. That's a study, not a product outcome.",
       },
     ],
+    frameworksIntro:
+      "Each case names the published framework or institution-defined standard used for feedback. The report shows strengths and areas for practice, with the participant's own words behind each score.",
     frameworks: [
       {
         name: "Your own leadership model, escalation policy or handoff tool",

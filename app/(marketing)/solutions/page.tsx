@@ -20,7 +20,7 @@ const GROUPS: {
     market: "health-system",
     heading: "Health systems",
     intro:
-      "Patient experience, debriefing, informed consent, and error disclosure, scored against the standards and policies the institution already uses.",
+      "Patient experience, debriefing, informed consent, error disclosure, and workforce retention, scored against the standards and policies the institution already uses.",
   },
   {
     market: "medical-education",
@@ -33,7 +33,7 @@ const GROUPS: {
 export const metadata: Metadata = {
   title: "Clinical communication intelligence use cases",
   description:
-    "ClinicalSim measures communication in simulated conversations and turns it into focused practice for health systems and medical education: patient experience, debriefing, informed consent, error disclosure, curricula, and remediation.",
+    "ClinicalSim measures communication in simulated conversations and turns it into focused practice for health systems and medical education: patient experience, debriefing, informed consent, error disclosure, workforce retention, curricula, and remediation.",
   openGraph: {
     title: "Use cases | ClinicalSim.ai",
     description:
@@ -60,7 +60,7 @@ export default function SolutionsPage() {
             "@type": "CollectionPage",
             name: "ClinicalSim Use Cases",
             description:
-              "Clinical communication use cases for health systems and medical education, including patient experience, debriefing, informed consent, error disclosure, curricula, and remediation.",
+              "Clinical communication use cases for health systems and medical education, including patient experience, debriefing, informed consent, error disclosure, workforce retention, curricula, and remediation.",
             url: "https://clinicalsim.ai/solutions",
             isPartOf: {
               "@type": "WebSite",
