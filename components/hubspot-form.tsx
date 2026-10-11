@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent, type ReactNode } from "react"
 import { sendGAEvent } from "@next/third-parties/google"
+import { cn } from "@/lib/utils"
 import {
   HUBSPOT_FORMS,
   buildHubSpotPayload,
@@ -74,11 +75,13 @@ export function HubSpotForm({ form, children, className, booleanFields = [], suc
     // forms feature from submitting this form a second time. method="post"
     // keeps a submit that lands before hydration from putting the visitor's
     // email and message in the URL (and so in GA4 and server logs).
-    <form method="post" onSubmit={handleSubmit} className={className} data-hs-do-not-collect="true" aria-busy={status === "pending"}>
-      <fieldset disabled={status === "pending"} className="contents">
+    // The spacing class goes on the fieldset, not the form: the fields are the
+    // fieldset's children, so a space-y-* on the form never reached them.
+    <form method="post" onSubmit={handleSubmit} data-hs-do-not-collect="true" aria-busy={status === "pending"}>
+      <fieldset disabled={status === "pending"} className={cn("m-0 min-w-0 border-0 p-0", className)}>
         {children}
       </fieldset>
-      <p role="alert" aria-live="assertive" className="text-sm text-white">
+      <p role="alert" aria-live="assertive" className="mt-4 text-sm text-white empty:mt-0">
         {status === "error" &&
           "Something went wrong sending your message. Please try again in a moment."}
       </p>
