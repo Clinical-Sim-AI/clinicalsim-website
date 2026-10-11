@@ -62,6 +62,9 @@ ${KEY_FACTS}
 ## Pages
 
 - [Homepage](${BASE_URL}/): ${POSITIONING_LONG}
+- [Health systems](${BASE_URL}/health-systems): Spoken practice for patient experience, consent and disclosure, and team communication. Participant feedback, leader reporting, and how a first assessment starts.
+- [Medical education](${BASE_URL}/medical-education): Communication practice for residency, fellowship, medical school, faculty development, and remediation, alongside existing standardized patient programs.
+- [Evidence](${BASE_URL}/evidence): Inspect published example feedback, distinguish framework evidence from AI scoring evidence, and review public research records and product limits.
 - [About](${BASE_URL}/about): How ClinicalSim began, why the platform extends beyond medical education, how it handles scoring evidence, and the team responsible for the work.`
 
 export async function GET() {
@@ -100,7 +103,7 @@ export async function GET() {
   const otherPages = [
     `\n## More\n`,
     `- [Published frameworks and institution standards](${BASE_URL}/frameworks): Start with ready to use cases based on published clinical frameworks or add an institution's policy, service standard, script, or rubric. Every score cites transcript evidence, and the page states the scope rule and scoring limits.`,
-    `- [Clinical communication intelligence](${BASE_URL}/clinical-communication-intelligence): ${CATEGORY_MEANING} The page walks through the practice loop (agree on the standard, practice, focus the next round, practice again and compare), one scored conversation from the published examples, the question each role brings, and what the approach does not claim.`,
+    `- [How it works](${BASE_URL}/clinical-communication-intelligence): Spoken practice with AI patients, sourced participant feedback, and what leaders can review across a cohort or unit. Includes a scored example, engagement steps, and formative-use limits. ${CATEGORY_MEANING}`,
     `- [Methodology](${BASE_URL}/methodology): How ClinicalSim builds cases, names the competency and communication frameworks each case uses, and generates rubric-scored feedback tied to transcript evidence.`,
     `- [Evaluating ClinicalSim](${BASE_URL}/evaluation): The questions behind the purchase, answered in one place: what ClinicalSim is intended for and what it is not, who inside an institution owns the decision, what the evidence establishes and what it does not, what a privacy or procurement reviewer will find, what it takes to run, how an engagement is structured, how it fits with SP programs and patient experience surveys, and what ClinicalSim will not claim.`,
     `- [Trust and data handling](${BASE_URL}/trust): ClinicalSim is intended for training and assessment and does not diagnose patients, recommend treatment, or create clinical documentation. Cases use synthetic patients written from clinical literature rather than patient records. The product handles learner recordings, transcripts, account data, and institutional data.`,
@@ -108,7 +111,7 @@ export async function GET() {
     `- [FAQ for medical educators](${BASE_URL}/medical-educator-faq): How to read a feedback report, inspect transcript evidence, compare GME and UME scoring, choose a practice cadence, and use results in a rotation or remediation plan.`,
     `- [Research collaboration](${BASE_URL}/research): Propose a study in communication training, implementation, patient experience, workforce education, or competency assessment.`,
     `- [Insights](${BASE_URL}/insights): Research and evidence on medical communication training, simulation technology, and clinical conversation outcomes.`,
-    `- [Contact](${BASE_URL}/contact): Tell ClinicalSim which conversation your institution wants to strengthen, who would take part, and the standard you already teach.`,
+    `- [Contact](${BASE_URL}/contact): Ask a question, discuss communication practice for your team, or book a conversation. Planning details are optional.`,
     `- [Help center](${BASE_URL}/help): Guides, release notes, and support for ClinicalSim programs and learners.`,
     `- [Release notes](${BASE_URL}/help/release-notes): A concise log of customer-visible ClinicalSim changes, newest first.`,
     // Mapped from the registry so this list and app/sitemap.ts cannot disagree.

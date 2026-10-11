@@ -7,61 +7,24 @@ import userEvent from "@testing-library/user-event"
 import { SiteHeader } from "@/components/site-header"
 
 const navigation = vi.hoisted(() => ({ pathname: "/" }))
+vi.mock("next/navigation", () => ({ usePathname: () => navigation.pathname }))
 
-vi.mock("next/navigation", () => ({
-  usePathname: () => navigation.pathname,
-}))
-
-const HOVER_QUERY = "(hover: hover) and (pointer: fine)"
 const DESKTOP_QUERY = "(min-width: 1024px)"
-
-interface QueryState {
-  matches: boolean
-  listeners: Set<(event: MediaQueryListEvent) => void>
-}
-
-let queryStates: Map<string, QueryState>
-
-function getQueryState(query: string) {
-  let state = queryStates.get(query)
-  if (!state) {
-    state = { matches: false, listeners: new Set() }
-    queryStates.set(query, state)
-  }
-  return state
-}
-
-function setQueryMatch(query: string, matches: boolean) {
-  const state = getQueryState(query)
-  state.matches = matches
-  const event = { matches, media: query } as MediaQueryListEvent
-  state.listeners.forEach((listener) => listener(event))
-}
+let desktopQueries: Set<MediaQueryList>
 
 beforeEach(() => {
   navigation.pathname = "/"
-  queryStates = new Map([
-    [HOVER_QUERY, { matches: false, listeners: new Set() }],
-    [DESKTOP_QUERY, { matches: false, listeners: new Set() }],
-  ])
+  desktopQueries = new Set()
   window.matchMedia = vi.fn((query: string) => {
-    const state = getQueryState(query)
-    return {
-      get matches() {
-        return state.matches
-      },
+    const queryList = Object.assign(new EventTarget(), {
+      matches: false,
       media: query,
       onchange: null,
-      addEventListener: (_type: "change", listener: (event: MediaQueryListEvent) => void) =>
-        state.listeners.add(listener),
-      removeEventListener: (_type: "change", listener: (event: MediaQueryListEvent) => void) =>
-        state.listeners.delete(listener),
-      addListener: (listener: (event: MediaQueryListEvent) => void) =>
-        state.listeners.add(listener),
-      removeListener: (listener: (event: MediaQueryListEvent) => void) =>
-        state.listeners.delete(listener),
-      dispatchEvent: () => true,
-    } as MediaQueryList
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+    }) as MediaQueryList
+    desktopQueries.add(queryList)
+    return queryList
   })
 })
 
@@ -70,170 +33,114 @@ afterEach(() => {
   document.body.style.overflow = ""
 })
 
+const expectedLinks = ["Health systems", "Medical education", "How it works", "Evidence", "Sign in", "Talk with us"]
+
 describe("SiteHeader interactions", () => {
-  it("uses click on a non-hover pointer and keeps one desktop menu open", async () => {
-    const user = userEvent.setup()
+  it("shows direct links without a desktop dropdown, help, or registration action", () => {
     render(createElement(SiteHeader))
-    const solutions = screen.getByRole("button", { name: "Solutions" })
-
-    fireEvent.mouseEnter(solutions.parentElement as HTMLElement)
-    expect(screen.queryByRole("link", { name: "Informed consent" })).toBeNull()
-
-    await user.click(solutions)
-    expect(solutions.getAttribute("aria-expanded")).toBe("true")
-    expect(screen.getByRole("link", { name: "Informed consent" })).toBeTruthy()
-
-    await user.click(screen.getByRole("button", { name: "Evidence and insights" }))
-    expect(solutions.getAttribute("aria-expanded")).toBe("false")
-    expect(screen.queryByRole("link", { name: "Informed consent" })).toBeNull()
-    expect(screen.getByRole("link", { name: "Research collaboration" })).toBeTruthy()
+    const primary = screen.getByRole("navigation", { name: "Primary navigation" })
+    expect(within(primary).getAllByRole("link").map((link) => link.textContent)).toEqual(expectedLinks)
+    expect(within(primary).queryByRole("button")).toBeNull()
+    expect(within(primary).queryByRole("link", { name: "Help" })).toBeNull()
+    expect(within(primary).queryByRole("link", { name: "Sign up" })).toBeNull()
+    expect(within(primary).getByRole("link", { name: "Sign in" }).getAttribute("href")).toBe("https://platform.clinicalsim.ai/sign-in")
   })
 
-  it("keeps mega-menu centering separate from its enter animation", async () => {
+  it("opens the same direct navigation by keyboard and restores focus on Escape", async () => {
     const user = userEvent.setup()
     render(createElement(SiteHeader))
-
-    await user.click(screen.getByRole("button", { name: "Solutions" }))
-    const animatedPanel = screen
-      .getByRole("link", { name: "Informed consent" })
-      .closest(".dropdown-enter")
-
-    expect(animatedPanel).toBeTruthy()
-    expect(animatedPanel?.className).not.toContain("-translate-x-1/2")
-    expect(animatedPanel?.parentElement?.className).toContain("-translate-x-1/2")
-  })
-
-  it("opens on hover and closes after an outside pointer event", () => {
-    setQueryMatch(HOVER_QUERY, true)
-    render(createElement(SiteHeader))
-    const solutions = screen.getByRole("button", { name: "Solutions" })
-
-    fireEvent.mouseEnter(solutions.parentElement as HTMLElement)
-    expect(screen.getByRole("link", { name: "Informed consent" })).toBeTruthy()
-
-    fireEvent.pointerDown(document.body)
-    expect(screen.queryByRole("link", { name: "Informed consent" })).toBeNull()
-    expect(solutions.getAttribute("aria-expanded")).toBe("false")
-  })
-
-  it("supports Enter and Space and restores desktop trigger focus after Escape", async () => {
-    const user = userEvent.setup()
-    render(createElement(SiteHeader))
-    const solutions = screen.getByRole("button", { name: "Solutions" })
-
-    solutions.focus()
+    const trigger = screen.getByRole("button", { name: "Open menu" })
+    trigger.focus()
     await user.keyboard("{Enter}")
-    const informedConsent = screen.getByRole("link", { name: "Informed consent" })
-    informedConsent.focus()
+    const mobile = screen.getByRole("navigation", { name: "Mobile navigation" })
+    expect(trigger.getAttribute("aria-expanded")).toBe("true")
+    expect(within(mobile).getAllByRole("link").map((link) => link.textContent)).toEqual(expectedLinks)
+    expect(document.activeElement).toBe(within(mobile).getByRole("link", { name: "Health systems" }))
+    expect(document.body.style.overflow).toBe("hidden")
     await user.keyboard("{Escape}")
-
-    expect(screen.queryByRole("link", { name: "Informed consent" })).toBeNull()
-    expect(document.activeElement).toBe(solutions)
-
-    await user.keyboard(" ")
-    expect(screen.getByRole("link", { name: "Informed consent" })).toBeTruthy()
+    expect(screen.queryByRole("navigation", { name: "Mobile navigation" })).toBeNull()
+    expect(document.activeElement).toBe(trigger)
+    expect(document.body.style.overflow).toBe("")
   })
 
-  it("closes mobile navigation and its accordion when the viewport reaches lg", async () => {
+  it("keeps keyboard focus within the open mobile navigation and its toggle", async () => {
     const user = userEvent.setup()
     render(createElement(SiteHeader))
-
     await user.click(screen.getByRole("button", { name: "Open menu" }))
-    const mobileNavigation = screen.getByRole("navigation", { name: "Mobile navigation" })
-    const mobileSolutions = within(mobileNavigation).getByRole("button", { name: "Solutions" })
-    await user.click(mobileSolutions)
-    expect(document.body.style.overflow).toBe("hidden")
-    expect(mobileSolutions.getAttribute("aria-expanded")).toBe("true")
+    const mobile = screen.getByRole("navigation", { name: "Mobile navigation" })
+    within(mobile).getByRole("link", { name: "Talk with us" }).focus()
+    await user.tab()
+    const trigger = screen.getByRole("button", { name: "Close menu" })
+    expect(document.activeElement).toBe(trigger)
+    await user.tab({ shift: true })
+    expect(document.activeElement).toBe(within(mobile).getByRole("link", { name: "Talk with us" }))
+  })
 
-    setQueryMatch(DESKTOP_QUERY, true)
+  it("closes on an outside pointer event and restores prior body scrolling", async () => {
+    document.body.style.overflow = "auto"
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    await user.click(screen.getByRole("button", { name: "Open menu" }))
+    fireEvent.pointerDown(document.body)
+    expect(screen.queryByRole("navigation", { name: "Mobile navigation" })).toBeNull()
+    expect(document.body.style.overflow).toBe("auto")
+  })
 
+  it("closes mobile navigation when the viewport reaches desktop", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    await user.click(screen.getByRole("button", { name: "Open menu" }))
+    desktopQueries.forEach((query) => query.dispatchEvent(
+      Object.assign(new Event("change"), { matches: true, media: DESKTOP_QUERY })
+    ))
     await waitFor(() => {
       expect(screen.queryByRole("navigation", { name: "Mobile navigation" })).toBeNull()
       expect(document.body.style.overflow).toBe("")
-      expect(
-        screen.getByRole("button", { name: "Solutions" }).getAttribute("aria-expanded")
-      ).toBe("false")
     })
   })
 
-  it.each([
-    ["/solutions", "Use cases"],
-    ["/audiences", "Audiences"],
-  ])("marks the %s overview link active", async (pathname, label) => {
-    navigation.pathname = pathname
+  it("closes mobile navigation after a route change", async () => {
     const user = userEvent.setup()
-    render(createElement(SiteHeader))
-
-    await user.click(screen.getByRole("button", { name: "Solutions" }))
-    const overview = screen.getByRole("link", { name: label })
-    expect(overview.getAttribute("aria-current")).toBe("page")
-    expect(overview.className).toContain("bg-cs-cloud/70")
+    const view = render(createElement(SiteHeader))
+    await user.click(screen.getByRole("button", { name: "Open menu" }))
+    navigation.pathname = "/health-systems"
+    view.rerender(createElement(SiteHeader))
+    expect(screen.queryByRole("navigation", { name: "Mobile navigation" })).toBeNull()
+    expect(document.body.style.overflow).toBe("")
   })
 
-  it.each([
-    ["/solutions/informed-consent", "Use cases", "Informed consent"],
-    ["/audiences/program-directors", "Audiences", "Program directors"],
-  ])(
-    "marks only the child link current on %s",
-    async (pathname, overviewLabel, childLabel) => {
-      navigation.pathname = pathname
-      const user = userEvent.setup()
-      render(createElement(SiteHeader))
-
-      await user.click(screen.getByRole("button", { name: "Solutions" }))
-      const currentLinks = screen
-        .getAllByRole("link")
-        .filter((link) => link.getAttribute("aria-current") === "page")
-
-      expect(currentLinks.map((link) => link.textContent)).toEqual([childLabel])
-      expect(
-        screen.getByRole("link", { name: overviewLabel }).getAttribute("aria-current")
-      ).toBeNull()
-    }
-  )
-
-  it("keeps Insights visually active without marking it current on a post", async () => {
-    navigation.pathname = "/insights/example-post"
+  it("closes immediately when an internal mobile link is selected", async () => {
     const user = userEvent.setup()
     render(createElement(SiteHeader))
-
-    const resources = screen.getByRole("button", { name: "Evidence and insights" })
-    await user.click(resources)
-    const insights = screen.getByRole("link", { name: "Insights" })
-
-    expect(insights.getAttribute("aria-current")).toBeNull()
-    expect(insights.className).toContain("bg-cs-cloud/70")
-    expect(resources.className).toContain("border-b-2")
-  })
-
-  it("links Sign in and Sign up to the platform subdomain on both viewports", async () => {
-    const user = userEvent.setup()
-    render(createElement(SiteHeader))
-
-    const primary = screen.getByRole("navigation", { name: "Primary navigation" })
-    expect(
-      within(primary).getByRole("link", { name: "Sign in" }).getAttribute("href")
-    ).toBe("https://platform.clinicalsim.ai/sign-in")
-    expect(
-      within(primary).getByRole("link", { name: "Sign up" }).getAttribute("href")
-    ).toBe("https://platform.clinicalsim.ai/sign-up")
-
     await user.click(screen.getByRole("button", { name: "Open menu" }))
     const mobile = screen.getByRole("navigation", { name: "Mobile navigation" })
-    expect(
-      within(mobile).getByRole("link", { name: "Sign in" }).getAttribute("href")
-    ).toBe("https://platform.clinicalsim.ai/sign-in")
-    expect(
-      within(mobile).getByRole("link", { name: "Sign up" }).getAttribute("href")
-    ).toBe("https://platform.clinicalsim.ai/sign-up")
+    await user.click(within(mobile).getByRole("link", { name: "Health systems" }))
+    expect(screen.queryByRole("navigation", { name: "Mobile navigation" })).toBeNull()
+    expect(document.body.style.overflow).toBe("")
   })
 
-  it("keeps Help visually active without marking it current on release notes", () => {
-    navigation.pathname = "/help/release-notes"
+  it.each([
+    ["/health-systems", "Health systems"],
+    ["/medical-education", "Medical education"],
+    ["/evidence", "Evidence"],
+  ])("marks the %s page current", (pathname, label) => {
+    navigation.pathname = pathname
     render(createElement(SiteHeader))
+    const link = screen.getByRole("link", { name: label })
+    expect(link.getAttribute("aria-current")).toBe("page")
+    expect(link.className).toContain("border-cs-dark-blue")
+  })
 
-    const help = screen.getByRole("link", { name: "Help" })
-    expect(help.getAttribute("aria-current")).toBeNull()
-    expect(help.className).toContain("border-b-2")
+  it.each([
+    ["/solutions/informed-consent", "Health systems"],
+    ["/audiences/program-directors", "Medical education"],
+    ["/insights/example-post", "Evidence"],
+  ])("keeps the buyer path active on %s without claiming it's the current page", (pathname, label) => {
+    navigation.pathname = pathname
+    render(createElement(SiteHeader))
+    const link = screen.getByRole("link", { name: label })
+    expect(link.getAttribute("aria-current")).toBeNull()
+    expect(link.className).toContain("border-cs-dark-blue")
+    expect(screen.getAllByRole("link").filter((item) => item.getAttribute("aria-current") === "page")).toHaveLength(0)
   })
 })

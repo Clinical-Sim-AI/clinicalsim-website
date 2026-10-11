@@ -9,6 +9,17 @@ import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
 import { getAllExamples } from "@/lib/examples"
 import { ArrowRight } from "lucide-react"
+import { ClinicianTestimonials } from "@/components/clinician-testimonials"
+import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { DemoVideoSection } from "@/components/demo-video-section"
+import { VideoObjectSchema } from "@/components/video-object-schema"
+
+const DEMO_VIDEO = {
+  embedUrl: "https://www.youtube.com/embed/ZkA0slljnwI",
+  thumbnailUrl: "https://i.ytimg.com/vi/ZkA0slljnwI/maxresdefault.jpg",
+  uploadDate: "2026-09-10T10:00:26-07:00",
+  duration: "PT9M21S",
+}
 
 export const metadata: Metadata = {
   title: "See it in action: example simulation feedback",
@@ -44,6 +55,7 @@ export default function ExamplesPage() {
             description:
               "Unedited ClinicalSim encounters with the learner feedback report, recording, and transcript.",
             url: "https://clinicalsim.ai/examples",
+            dateModified: PAGE_DATE_MODIFIED.examples,
             mainEntity: {
               "@type": "ItemList",
               itemListElement: examples.map((example, index) => ({
@@ -112,6 +124,16 @@ export default function ExamplesPage() {
         </div>
       </section>
 
+      <section className="bg-cs-cloud px-6 py-12 md:py-16">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-3xl font-light text-cs-dark-blue">Watch the conversation and feedback</h2>
+          <p className="mt-4 mb-7 leading-relaxed text-cs-dark-blue/80">A learner talks a hesitant parent through a two-month vaccine visit, then reviews the scored feedback.</p>
+          <DemoVideoSection youtubeUrl={DEMO_VIDEO.embedUrl} title="Vaccine hesitancy counseling and feedback" />
+          <VideoObjectSchema name="Vaccine hesitancy counseling and feedback" description="A ClinicalSim practice conversation and the feedback report that follows." {...DEMO_VIDEO} />
+        </div>
+      </section>
+      <ClinicianTestimonials />
+
       {/* Final CTA */}
       <WaveformBand seed="examples">
         <div className="max-w-4xl mx-auto text-center">
@@ -127,15 +149,19 @@ export default function ExamplesPage() {
                 Talk with us
               </Button>
             </Link>
-            <Link href="/solutions/remediation">
+            <Link href="/health-systems">
               <Button
                 variant="outline"
                 size="lg"
                 className="border-white/30 text-white bg-transparent hover:bg-white/10"
               >
-                Communication remediation
+                For health systems
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
+            </Link>
+            <Link href="/medical-education" className="inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 font-medium text-white underline underline-offset-4">
+              For medical education
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

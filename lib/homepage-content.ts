@@ -1,5 +1,3 @@
-import { PRIMARY_CTA } from "./positioning"
-
 export const HOMEPAGE_SEO = {
   title: "AI clinical simulation for healthcare",
   description:
@@ -10,8 +8,8 @@ export const HOMEPAGE_PUBLIC_COPY = {
   hero: {
     eyebrow: "Clinical communication intelligence",
     headline: "Clinical simulation for better patient conversations.",
-    body: "Clinicians and trainees talk through realistic cases out loud with AI patients. Each clinical simulation is scored against your standard, so every person sees what they did well and what to practice next, and leaders can see where the group needs focused practice. It's built for anyone who talks to a patient, from residency programs to the front desk.",
-    primaryCta: PRIMARY_CTA,
+    body: "Clinicians, staff, and trainees practice out loud with AI patients. Each clinical simulation shows what they did well and what to practice next against your standard, with their own words behind each score. Leaders can review patterns across a cohort or unit.",
+    primaryCta: "Talk with us",
     secondaryCta: "See a conversation",
     // Count confirmed by Ben, 2026-10-06. Before changing the institution
     // wording, confirm every pilot is an academic medical center or a
@@ -80,16 +78,21 @@ export const HOMEPAGE_PUBLIC_COPY = {
       "Most institutions already know which conversation they want to strengthen, so the first assessment starts there rather than with a list of features.",
     healthSystemHeading: "For health systems",
     healthSystemBody:
-      "ClinicalSim turns practice in consent, disclosure, debriefing, patient service, and retention conversations into feedback for each participant and measurable patterns for leaders. Each simulation uses your own service standard or policy, with the participant's words behind every score. It works alongside the healthcare simulation your education team already runs, so people can practice by voice from any device between scheduled sessions.",
+      "Practice patient experience, consent and disclosure, and team conversations against your institution's own standards. Leaders review cohort or unit patterns alongside your existing healthcare simulation program.",
     medicalEducationHeading:
       "For residency, fellowship, and medical school programs",
     medicalEducationBody:
-      "Learners get repeatable practice between scheduled SP encounters. Faculty get rubric-scored feedback with the transcript behind every score, so they can inspect any case rather than trust a number. Your program keeps its medical simulation and SP sessions, and learners add simulation training on communication whenever they need it, not only when an SP is booked.",
+      "Give residents, fellows, and medical students repeatable communication practice between scheduled SP encounters. Add simulation training to your medical simulation curriculum, faculty development, or remediation plan.",
   },
+  startingSteps: [
+    { title: "Choose the priority", body: "Tell us which conversation your team wants to practice. We'll review your standard or help you choose a published framework." },
+    { title: "Agree on the assessment", body: "Choose the participating group, cases, and access rules together. Each person practices in their browser and gets feedback." },
+    { title: "Review and practice again", body: "Participants use their feedback for the next attempt. Leaders review group patterns and choose the next practice focus." },
+  ],
   proofHeading: "From clinicians who have used ClinicalSim",
   closing: {
     heading: "Bring us a communication priority.",
-    body: "Tell us which conversation your institution wants to strengthen and who needs to practice it. We'll review the standard you already teach, or show you the closest ready to use case, and plan an assessment around it.",
-    cta: PRIMARY_CTA,
+    body: "Tell us what your team wants to practice. We'll show you a relevant case and talk through how a first assessment could work.",
+    cta: "Talk with us",
   },
 } as const

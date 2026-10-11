@@ -59,6 +59,36 @@ export const metadata: Metadata = {
 const LAST_UPDATED = PAGE_DATE_MODIFIED.evaluation
 const LAST_UPDATED_LABEL = "October 2026"
 
+const reviewTopics = [
+  { href: "#intended-use", label: "Intended use" },
+  { href: "#evidence", label: "Evidence" },
+  { href: "#data-handling", label: "Data handling" },
+  { href: "#operations", label: "Rollout" },
+  { href: "#engagement", label: "How to start" },
+  { href: "#program-fit", label: "Program fit" },
+  { href: "#questions", label: "Common questions" },
+]
+
+// Summary of the existing intended-use, operations, and engagement sections.
+const reviewSummary = [
+  {
+    title: "For participants",
+    body: "Spoken practice with AI patients, followed by feedback that shows strengths and what to practice next, with the transcript behind each score.",
+  },
+  {
+    title: "For leaders",
+    body: "Cohort progress, recordings, transcripts, and feedback under the program's access rules, so leaders can plan coaching and further practice.",
+  },
+  {
+    title: "To launch",
+    body: "Start with a communication priority, a participating group, and a named standard. Participants use a browser, and IT may need to allow the voice service.",
+  },
+  {
+    title: "Before approval",
+    body: "Agree on access, retention, and reporting rules. Scores support formative practice and program judgment, and must not drive employment or other high-stakes decisions.",
+  },
+]
+
 /**
  * Each answer has to read on its own, without its question, because an answer
  * engine lifts them one at a time. Sources match the numbered sections below.
@@ -201,13 +231,29 @@ export default function EvaluationPage() {
             Last updated: {LAST_UPDATED_LABEL}
           </p>
 
-          <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-4 max-w-3xl">
-            An enterprise review usually spans the team that owns communication
-            training, the budget holder, IT and privacy reviewers, and the people
-            who will practice. This page covers evidence, rollout, data handling,
-            how an engagement is structured, and product limits so each group can
-            evaluate the same facts.
+          <p className="text-base md:text-lg text-cs-dark-blue/70 font-light leading-relaxed mb-6 max-w-3xl">
+            Use this guide to share the product&apos;s intended use, rollout
+            requirements, and limits with the people reviewing it. Start with
+            the summary, then go straight to the topic your team needs.
           </p>
+
+          <div className="mb-8 grid gap-4 sm:grid-cols-2">
+            {reviewSummary.map((item) => (
+              <div key={item.title} className="rounded-xl border border-cs-gray bg-white p-5">
+                <h2 className="mb-2 text-lg font-medium text-cs-dark-blue">{item.title}</h2>
+                <p className="text-sm font-light leading-relaxed text-cs-dark-blue/85">{item.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <nav aria-label="Evaluation topics" className="mb-8">
+            <p className="mb-3 text-sm font-medium text-cs-navy">Go to a review topic</p>
+            <ul className="flex flex-wrap gap-x-5 gap-y-3">
+              {reviewTopics.map((topic) => (
+                <li key={topic.href}><Link href={topic.href} className="text-sm font-medium text-cs-dark-blue underline underline-offset-4 hover:text-cs-navy">{topic.label}</Link></li>
+              ))}
+            </ul>
+          </nav>
 
           <div className="rounded-xl border-l-4 border-cs-electric bg-cs-dark-blue px-6 py-5 max-w-3xl">
             <p className="text-base md:text-lg text-white font-light leading-relaxed">
@@ -233,7 +279,7 @@ export default function EvaluationPage() {
           Sources: /trust section 1 (intended use) and section 5 (product
           boundaries); /faq "Why is ClinicalSim audio-only" and
           "How is ClinicalSim different from a standardized patient program". */}
-      <section className="px-6 py-8 md:py-10 bg-white">
+      <section id="intended-use" className="scroll-mt-24 px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
             1. What it is for, and what it is{" "}
@@ -261,7 +307,7 @@ export default function EvaluationPage() {
               href="/clinical-communication-intelligence"
               className="text-cs-dark-blue font-medium hover:text-cs-navy transition-colors"
             >
-              what clinical communication intelligence means for an institution
+              how participants practice and leaders review results
             </Link>
             .
           </p>
@@ -320,7 +366,7 @@ export default function EvaluationPage() {
           portfolio both stay off the site until the study owners confirm the
           records in writing (Ben, 2026-08-31). Do not restore either here
           without that confirmation. */}
-      <section className="px-6 py-8 md:py-10 bg-white">
+      <section id="evidence" className="scroll-mt-24 px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
             3. What the evidence establishes, and{" "}
@@ -382,7 +428,7 @@ export default function EvaluationPage() {
           publishes, plus per-organization isolation from
           /help/roles-and-permissions ("Nothing crosses organizations"). No new
           compliance facts: see the file header. */}
-      <section className="px-6 py-8 md:py-10 bg-cs-cloud">
+      <section id="data-handling" className="scroll-mt-24 px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
             4. What a privacy or procurement{" "}
@@ -446,7 +492,7 @@ export default function EvaluationPage() {
           views); lib/release-notes.ts 2026-08-07 (bulk invitations, cohort
           views, progress reports, exports) and 2026-08-03 (the connection test
           that names the blocked voice service). */}
-      <section className="px-6 py-8 md:py-10 bg-white">
+      <section id="operations" className="scroll-mt-24 px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
             5. What it takes to{" "}
@@ -486,7 +532,7 @@ export default function EvaluationPage() {
       {/* 6. Engagements. ASSESSMENT_ENTRY (lib/positioning.ts) verbatim. No
           price, no scope allowance, and no billing basis: see the file
           header. */}
-      <section className="px-6 py-8 md:py-10 bg-cs-cloud">
+      <section id="engagement" className="scroll-mt-24 px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
             6. How an engagement{" "}
@@ -510,7 +556,7 @@ export default function EvaluationPage() {
           lib/claim-discipline.ts. The survey sentence restates the published
           mission ("Medicine measures how patients experience communication,
           but rarely the communication itself"). No competitor is named. */}
-      <section className="px-6 py-8 md:py-10 bg-white">
+      <section id="program-fit" className="scroll-mt-24 px-6 py-8 md:py-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
             7. How this fits with{" "}
@@ -616,7 +662,7 @@ export default function EvaluationPage() {
       <SectionDivider variant="wave" color="white" />
 
       {/* 10. FAQ */}
-      <section className="px-6 py-8 md:py-10 bg-cs-cloud">
+      <section id="questions" className="scroll-mt-24 px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-8">
             10. Questions buyers{" "}

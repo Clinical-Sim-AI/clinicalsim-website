@@ -2,167 +2,70 @@ import { describe, expect, it } from "vitest"
 import { getAllAudiences } from "./audiences"
 import { getPublishedSolutions } from "./solutions"
 import {
+  FOOTER_GROUPS,
   getActiveHeaderItem,
   HEADER_ACTION,
-  HEADER_DIRECT_LINKS,
-  HEADER_MENUS,
-  transitionHeaderMenu,
+  HEADER_LINKS,
+  PLATFORM_SIGN_IN,
+  PLATFORM_SIGN_UP,
+  routeIsActive,
 } from "./site-navigation"
 
-const expectedUseCaseRoutes = {
-  "Health systems": [
-    "/solutions/patient-experience",
-    "/solutions/debriefing",
-    "/solutions/informed-consent",
-    "/solutions/error-disclosure",
-    "/solutions/workforce-retention",
-  ],
-  "Medical education": [
-    "/solutions/longitudinal-curriculum",
-    "/solutions/undergraduate-medical-education",
-    "/solutions/faculty-development",
-    "/solutions/remediation",
-  ],
-}
-
-const expectedAudienceRoutes = {
-  "Health systems": [
-    "/audiences/risk-and-patient-safety",
-    "/audiences/quality-and-patient-experience",
-  ],
-  "Medical education": [
-    "/audiences/program-directors",
-    "/audiences/dios-gme-leadership",
-    "/audiences/simulation-center-directors",
-    "/audiences/clinical-competency-committees",
-    "/audiences/medical-school-leadership",
-    "/audiences/faculty-clinician-educators",
-  ],
-}
-
-describe("header navigation", () => {
-  it("publishes the required top-level navigation and one contact action", () => {
-    expect(HEADER_MENUS.map(({ label }) => label)).toEqual([
-      "Solutions",
-      "How it works",
-      "Evidence and insights",
+describe("site navigation", () => {
+  it("keeps the first decision to four direct links and one contact action", () => {
+    expect(HEADER_LINKS.map(({ href, label }) => ({ href, label }))).toEqual([
+      { href: "/health-systems", label: "Health systems" },
+      { href: "/medical-education", label: "Medical education" },
+      { href: "/clinical-communication-intelligence", label: "How it works" },
+      { href: "/evidence", label: "Evidence" },
     ])
-    expect(HEADER_DIRECT_LINKS).toEqual([{ href: "/help", label: "Help" }])
     expect(HEADER_ACTION).toEqual({ href: "/contact", label: "Talk with us" })
-
-    const menuHrefs = HEADER_MENUS.flatMap((menu) =>
-      menu.kind === "grouped"
-        ? menu.columns.flatMap((column) =>
-            column.groups.flatMap((group) => group.items.map(({ href }) => href))
-          )
-        : menu.items.map(({ href }) => href)
-    )
-    const contactHrefs = [
-      ...menuHrefs,
-      ...HEADER_DIRECT_LINKS.map(({ href }) => href),
-      HEADER_ACTION.href,
-    ].filter((href) => href === "/contact")
-
-    expect(contactHrefs).toEqual(["/contact"])
   })
 
-  it("groups every published use case and audience once", () => {
-    const solutionsMenu = HEADER_MENUS[0]
-    expect(solutionsMenu.kind).toBe("grouped")
-    if (solutionsMenu.kind !== "grouped") throw new Error("Solutions menu must be grouped")
-
-    expect(
-      Object.fromEntries(
-        solutionsMenu.columns[0].groups.map((group) => [
-          group.label,
-          group.items.map(({ href }) => href),
-        ])
-      )
-    ).toEqual(expectedUseCaseRoutes)
-    expect(
-      Object.fromEntries(
-        solutionsMenu.columns[1].groups.map((group) => [
-          group.label,
-          group.items.map(({ href }) => href),
-        ])
-      )
-    ).toEqual(expectedAudienceRoutes)
-
-    const publishedRoutes = [
-      ...getPublishedSolutions().map(({ slug }) => `/solutions/${slug}`),
-      ...getAllAudiences().map(({ slug }) => `/audiences/${slug}`),
+  it("keeps each published specialist page active under its buyer path", () => {
+    const pages = [
+      ...getPublishedSolutions().map(({ slug, market }) => ({ href: `/solutions/${slug}`, market })),
+      ...getAllAudiences().map(({ slug, market }) => ({ href: `/audiences/${slug}`, market })),
     ]
-    const navigationRoutes = solutionsMenu.columns.flatMap((column) =>
-      column.groups.flatMap((group) => group.items.map(({ href }) => href))
-    )
-
-    expect(navigationRoutes).toHaveLength(new Set(navigationRoutes).size)
-    expect(navigationRoutes.toSorted()).toEqual(publishedRoutes.toSorted())
-  })
-
-  it("keeps the How it works and Resources route groups together", () => {
-    const howItWorks = HEADER_MENUS[1]
-    const resources = HEADER_MENUS[2]
-    expect(howItWorks.kind).toBe("links")
-    expect(resources.kind).toBe("links")
-    if (howItWorks.kind !== "links" || resources.kind !== "links") {
-      throw new Error("Link menus must use link navigation")
+    for (const { href, market } of pages) {
+      expect(getActiveHeaderItem(href), href).toBe(
+        market === "health-system" ? "health-systems" : "medical-education"
+      )
     }
-
-    expect(howItWorks.items).toEqual([
-      {
-        href: "/clinical-communication-intelligence",
-        label: "Clinical communication intelligence",
-      },
-      { href: "/examples", label: "Examples" },
-      { href: "/frameworks", label: "Frameworks and standards" },
-      { href: "/methodology", label: "Methodology" },
-      { href: "/evaluation", label: "Evaluating ClinicalSim" },
-    ])
-    expect(resources.items).toEqual([
-      { href: "/insights", label: "Insights" },
-      { href: "/research", label: "Research collaboration" },
-      { href: "/about", label: "About ClinicalSim" },
-      { href: "/faq", label: "FAQ" },
-      { href: "/medical-educator-faq", label: "FAQ for Medical Educators" },
-    ])
   })
 
   it.each([
-    ["/solutions/informed-consent", "solutions"],
-    ["/audiences/program-directors", "solutions"],
+    ["/health-systems", "health-systems"],
+    ["/medical-education", "medical-education"],
+    ["/clinical-communication-intelligence", "how-it-works"],
     ["/frameworks", "how-it-works"],
+    ["/examples/example-case", "how-it-works"],
     ["/evaluation", "how-it-works"],
-    ["/insights/example-post", "resources"],
-    ["/medical-educator-faq", "resources"],
-    ["/help/release-notes", "help"],
+    ["/evidence", "evidence"],
+    ["/methodology", "evidence"],
+    ["/insights/example-post", "evidence"],
+    ["/medical-educator-faq", "medical-education"],
+    ["/help/release-notes", null],
+    ["/solutions", null],
     ["/contact", "contact"],
     ["/", null],
   ])("marks %s active under %s", (pathname, expected) => {
     expect(getActiveHeaderItem(pathname)).toBe(expected)
   })
 
-  it("opens only the latest clicked or hovered menu", () => {
-    expect(transitionHeaderMenu(null, { type: "toggle", menu: "solutions" })).toBe(
-      "solutions"
-    )
-    expect(
-      transitionHeaderMenu("solutions", { type: "toggle", menu: "resources" })
-    ).toBe("resources")
-    expect(
-      transitionHeaderMenu("resources", { type: "open", menu: "how-it-works" })
-    ).toBe("how-it-works")
-    expect(
-      transitionHeaderMenu("how-it-works", { type: "toggle", menu: "how-it-works" })
-    ).toBeNull()
+  it("doesn't match a different route with the same prefix", () => {
+    expect(routeIsActive("/evidence-other", "/evidence")).toBe(false)
+    expect(getActiveHeaderItem("/solutions/informed-consent-other")).toBeNull()
   })
 
-  it.each(["escape", "outside", "route"] as const)(
-    "closes an open menu after %s",
-    (reason) => {
-      expect(
-        transitionHeaderMenu("solutions", { type: "dismiss", reason })
-      ).toBeNull()
+  it("keeps support and registration accessible in the grouped footer", () => {
+    const footerLinks = FOOTER_GROUPS.flatMap(({ links }) => links)
+    const hrefs = footerLinks.map(({ href }) => href)
+    expect(new Set(hrefs).size).toBe(hrefs.length)
+    expect(footerLinks).toContainEqual(PLATFORM_SIGN_IN)
+    expect(footerLinks).toContainEqual(PLATFORM_SIGN_UP)
+    for (const href of ["/help", "/help/release-notes", "/solutions", "/audiences", "/faq", "/medical-educator-faq", "/trust", "/compare", "/glossary"]) {
+      expect(hrefs).toContain(href)
     }
-  )
+  })
 })

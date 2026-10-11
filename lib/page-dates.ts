@@ -16,20 +16,23 @@ export const PAGE_DATE_MODIFIED = {
   about: "2026-10-06",
   audiences: "2026-09-02",
   // New category page (2026-10-06).
-  clinicalCommunicationIntelligence: "2026-10-06",
+  clinicalCommunicationIntelligence: "2026-10-11",
   compare: "2026-09-02",
-  contact: "2026-10-06",
+  contact: "2026-10-11",
   // Licensing section became engagements with no billing basis; added the
   // "How this fits with what you already run" section (2026-10-06).
-  evaluation: "2026-10-06",
-  examples: "2026-09-02",
+  evaluation: "2026-10-11",
+  evidence: "2026-10-11",
+  examples: "2026-10-11",
   // Licensing answer reworded without a billing basis; three program-fit
   // objections added (2026-10-06).
   faq: "2026-10-06",
   frameworks: "2026-09-03",
   glossary: "2026-08-18",
   // Category eyebrow, leader clause, single CTA, and the 29-pilot line.
-  home: "2026-10-06",
+  home: "2026-10-11",
+  healthSystems: "2026-10-11",
+  medicalEducation: "2026-10-11",
   // Added the communication remediation plan article to the listing.
   insights: "2026-09-24",
   // Rewritten by the 2026-09-03 ACGME claim removal (fadf4b5), which replaced

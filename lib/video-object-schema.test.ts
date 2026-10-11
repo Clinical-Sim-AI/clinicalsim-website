@@ -12,14 +12,14 @@ const UPLOAD_DATE_WITH_OFFSET =
   /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/
 
 describe("VideoObject uploadDate values", () => {
-  const homepage = readFileSync(
-    join(process.cwd(), "app/(marketing)/page.tsx"),
+  const examplesPage = readFileSync(
+    join(process.cwd(), "app/(marketing)/examples/page.tsx"),
     "utf8"
   )
 
-  const matches = [...homepage.matchAll(/uploadDate:\s*"([^"]+)"/g)]
+  const matches = [...examplesPage.matchAll(/uploadDate:\s*"([^"]+)"/g)]
 
-  it("declares at least one uploadDate on the homepage", () => {
+  it("declares at least one uploadDate beside the examples page's video", () => {
     expect(matches.length).toBeGreaterThan(0)
   })
 

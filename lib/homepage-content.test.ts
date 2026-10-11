@@ -3,7 +3,6 @@ import { renderToStaticMarkup } from "react-dom/server"
 import { describe, expect, it } from "vitest"
 import HomePage, { metadata } from "../app/(marketing)/page"
 import { HOMEPAGE_PUBLIC_COPY } from "./homepage-content"
-import { PRIMARY_CTA } from "./positioning"
 
 describe("homepage public copy", () => {
   it("keeps retired positioning phrases off the homepage", () => {
@@ -21,11 +20,13 @@ describe("homepage public copy", () => {
 })
 
 describe("homepage hero keeps both markets in frame", () => {
-  it("names patients and medical education programs in the hero", () => {
+  it("explains practice and gives both markets direct paths", () => {
     const { headline, body } = HOMEPAGE_PUBLIC_COPY.hero
     expect(`${headline} ${body}`).toMatch(/patients/i)
     expect(body).toMatch(/AI patients/i)
-    expect(body).toMatch(/residency|medical school/i)
+    const html = renderToStaticMarkup(createElement(HomePage))
+    expect(html).toContain('href="/health-systems"')
+    expect(html).toContain('href="/medical-education"')
     expect(body).toMatch(/standard/i)
   })
 
@@ -53,9 +54,9 @@ describe("homepage names the category and one call to action", () => {
     )
   })
 
-  it("uses the shared primary CTA in the hero and the closing", () => {
-    expect(HOMEPAGE_PUBLIC_COPY.hero.primaryCta).toBe(PRIMARY_CTA)
-    expect(HOMEPAGE_PUBLIC_COPY.closing.cta).toBe(PRIMARY_CTA)
+  it("uses the short contact action in the hero and the closing", () => {
+    expect(HOMEPAGE_PUBLIC_COPY.hero.primaryCta).toBe("Talk with us")
+    expect(HOMEPAGE_PUBLIC_COPY.closing.cta).toBe("Talk with us")
   })
 
   it("states the pilot count Ben confirmed on 2026-10-06", () => {

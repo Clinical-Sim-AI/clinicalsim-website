@@ -806,7 +806,7 @@ const audiences: Audience[] = [
     subtitle: "Practice the conversations faculty are expected to model",
     icon: "medal-star",
     colorVariant: "accent",
-    lastUpdated: "2026-10-06",
+    lastUpdated: "2026-10-11",
 
     cardBullets: [
       "Rehearse giving specific corrective feedback",
@@ -908,7 +908,7 @@ const audiences: Audience[] = [
       },
     ],
 
-    relevantSolutionSlugs: ["error-disclosure", "debriefing"],
+    relevantSolutionSlugs: ["faculty-development", "debriefing"],
 
     glossarySlugs: [
       "debriefing",
@@ -949,7 +949,7 @@ const audiences: Audience[] = [
       "Give clinicians a safe place to practice high-stakes safety conversations",
     heroDescription:
       "Clinicians rehearse disclosure, goals of care, family meetings, and de-escalation with AI patients. Each private report shows strengths and areas for practice against a published framework or institution policy. Leaders review completion or aggregate patterns under institution-defined access rules. ClinicalSim does not monitor patient care or predict claims.",
-    lastUpdated: "2026-10-06",
+    lastUpdated: "2026-10-11",
 
     painPoints: [
       {
@@ -1059,7 +1059,7 @@ const audiences: Audience[] = [
       },
     ],
 
-    relevantSolutionSlugs: ["faculty-development"],
+    relevantSolutionSlugs: ["error-disclosure", "informed-consent", "debriefing"],
 
     glossarySlugs: [
       "high-stakes-conversations",
@@ -1270,14 +1270,9 @@ const audiences: Audience[] = [
  * components/audience-page-layout.tsx instead of being generated from
  * relevantSolutionSlugs[0].
  *
- * The generated block renders the primary solution's title, heroDescription,
- * and shortTitle verbatim, so two audiences sharing a primary would ship the
- * same block on two indexable pages. That already happened once, when a
- * `?? getSolutionBySlug("remediation")` fallback put the identical remediation
- * block on three pages. lib/audiences.test.ts asserts the primaries are
- * distinct across every audience that renders the generated block, which is why
- * the exception list lives here rather than only in the layout: the layout and
- * the test have to be reading the same list for the check to mean anything.
+ * Audiences can share a primary solution when it answers their use case.
+ * Keep role-specific content in the audience page rather than forcing an
+ * unrelated solution solely to make generated blocks distinct.
  */
 export const BESPOKE_PRIMARY_CTA_AUDIENCE_SLUGS = ["program-directors"] as const
 

@@ -9,6 +9,7 @@ import {
   hubSpotSubmitUrl,
   readHubSpotUtk,
   toHubSpotFields,
+  toHubSpotContactFields,
   type HubSpotFormKey,
 } from "@/lib/hubspot"
 
@@ -38,7 +39,9 @@ export function HubSpotForm({ form, children, className, booleanFields = [], suc
       const formGuid = HUBSPOT_FORMS[form]
       if (!formGuid) throw new Error(`No HubSpot form GUID configured for "${form}"`)
 
-      const fields = toHubSpotFields(new FormData(element).entries(), booleanFields)
+      const fields = (form === "contact" ? toHubSpotContactFields : toHubSpotFields)(
+        new FormData(element).entries(), booleanFields,
+      )
       const payload = buildHubSpotPayload(fields, {
         hutk: readHubSpotUtk(document.cookie),
         pageUri: window.location.href,

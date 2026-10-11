@@ -76,6 +76,20 @@ export function toHubSpotFields(
   return fields
 }
 
+// The shorter contact form asks one open question. Keep both existing HubSpot
+// properties populated so the form's required-property contract stays intact.
+export function toHubSpotContactFields(
+  entries: Iterable<[string, FormDataEntryValue]>,
+  booleanFields: readonly string[] = [],
+): HubSpotField[] {
+  const fields = toHubSpotFields(entries, booleanFields)
+  if (!fields.some((field) => field.name === "communication_priority")) {
+    const message = fields.find((field) => field.name === "message")
+    if (message) fields.push({ name: "communication_priority", value: message.value })
+  }
+  return fields
+}
+
 // Reads the `hubspotutk` visitor cookie the HubSpot tracking script sets.
 // Passing it as `hutk` ties the submission to the visitor's page views.
 export function readHubSpotUtk(cookieHeader: string): string | undefined {

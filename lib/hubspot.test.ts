@@ -7,6 +7,7 @@ import {
   readHubSpotUtk,
   splitFullName,
   toHubSpotFields,
+  toHubSpotContactFields,
 } from "./hubspot"
 
 describe("toHubSpotFields", () => {
@@ -35,6 +36,24 @@ describe("toHubSpotFields", () => {
       { name: "lastname", value: "van der Berg" },
     ])
     expect(toHubSpotFields([["fullname", "Cher"]])).toEqual([{ name: "firstname", value: "Cher" }])
+  })
+})
+
+describe("short contact form", () => {
+  it("keeps the existing required HubSpot properties when the visitor answers one question", () => {
+    const fields = toHubSpotContactFields([
+      ["firstname", "Jane"], ["lastname", "Doe"], ["email", "jane@example.com"],
+      ["message", " We want to practice consent conversations. "],
+      ["communication_priority", ""],
+    ], ["newsletter_opt_in"])
+    expect(fields).toContainEqual({ name: "message", value: "We want to practice consent conversations." })
+    expect(fields).toContainEqual({ name: "communication_priority", value: "We want to practice consent conversations." })
+    expect(fields).toContainEqual({ name: "newsletter_opt_in", value: "false" })
+  })
+
+  it("preserves an optional priority the visitor provided", () => {
+    const fields = toHubSpotContactFields([["message", "Show us a case"], ["communication_priority", "Consent"]])
+    expect(fields.filter((field) => field.name === "communication_priority")).toEqual([{ name: "communication_priority", value: "Consent" }])
   })
 })
 

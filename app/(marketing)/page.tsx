@@ -1,41 +1,14 @@
 import type { Metadata } from "next"
-import dynamic from "next/dynamic"
 import Link from "next/link"
-import { ArrowRight, ChevronDown } from "lucide-react"
-import { AudienceCard } from "@/components/audience-card"
+import { ArrowRight } from "lucide-react"
+import { BrandIcon } from "@/components/brand-icon"
+import { FeedbackPreview } from "@/components/feedback-preview"
 import { JsonLd } from "@/components/json-ld"
-import { Reveal } from "@/components/reveal"
 import { Button } from "@/components/ui/button"
-import { VideoObjectSchema } from "@/components/video-object-schema"
 import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
-import { getFeaturedFrameworks } from "@/lib/frameworks"
 import { HOMEPAGE_PUBLIC_COPY, HOMEPAGE_SEO } from "@/lib/homepage-content"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
-import { getHomepageSolutionGroups } from "@/lib/solutions"
-
-const DemoVideoSection = dynamic(
-  () => import("@/components/demo-video-section").then((module) => ({
-    default: module.DemoVideoSection,
-  })),
-)
-
-/**
- * A resident's written reflection, emailed to Ben after they used ClinicalSim
- * and then held a similar palliative conversation with a real family. The text
- * is verbatim, so it keeps the writer's em dashes; only the curly quotes are
- * straightened. The full text sits in a server-rendered `details` element so
- * it stays in the HTML for crawlers while the card stays short.
- */
-const RESIDENT_REFLECTION = {
-  pullQuote:
-    "Rather than feeling compelled to immediately define \"goals of care\" or guide the conversation toward a particular medical decision, I was able to slow down and truly listen.",
-  paragraphs: [
-    "As I stood beside the interpreter, waiting for them to translate our response to the many fears this mother had just shared, I was struck by how familiar the conversation felt. Just a few weeks earlier, I had participated in a remarkably similar conversation—but that one did not involve a real mother or a real child suffering from a life-threatening illness. Rather, it was an AI-generated clinical simulation. The simulation, along with the feedback that followed, had prepared me to approach this encounter differently. I found myself more attuned not only to listening to this mother's fears, worries, and hopes, but also to validating and holding space for them. Rather than feeling compelled to immediately define \"goals of care\" or guide the conversation toward a particular medical decision, I was able to slow down and truly listen. I focused on understanding what a meaningful life looked like for her daughter and what mattered most to her as a mother—even when those priorities might not have aligned with what I would have initially considered the first-line \"medical\" recommendation.",
-    "In reflecting, I realized the value of ClinicalSim extended far beyond practicing communication skills in a simulated environment. It had changed the way I approached a real, difficult conversation with a family and overall strengthened my ability to better listen to, support, and advocate for families navigating profoundly difficult circumstances.",
-  ],
-  attribution: "Resident physician, ClinicalSim user",
-} as const
 
 export const metadata: Metadata = {
   title: HOMEPAGE_SEO.title,
@@ -44,502 +17,135 @@ export const metadata: Metadata = {
     title: HOMEPAGE_SEO.title,
     description: HOMEPAGE_SEO.description,
     url: "https://clinicalsim.ai",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "ClinicalSim, clinical communication intelligence for healthcare",
-      },
-    ],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "ClinicalSim, spoken practice with AI patients" }],
   },
-  twitter: {
-    title: HOMEPAGE_SEO.title,
-    description: HOMEPAGE_SEO.description,
-    images: ["/og-image.png"],
-  },
-  alternates: {
-    canonical: "https://clinicalsim.ai",
-  },
+  twitter: { title: HOMEPAGE_SEO.title, description: HOMEPAGE_SEO.description, images: ["/og-image.png"] },
+  alternates: { canonical: "https://clinicalsim.ai" },
 }
 
-/**
- * The homepage demo recording. The visible player and VideoObject data share
- * this object so a future video swap cannot leave stale schema behind.
- */
-const DEMO_VIDEO = {
-  embedUrl: "https://www.youtube.com/embed/ZkA0slljnwI",
-  thumbnailUrl: "https://i.ytimg.com/vi/ZkA0slljnwI/maxresdefault.jpg",
-  uploadDate: "2026-09-10T10:00:26-07:00",
-  duration: "PT9M21S",
-}
-
-const CONVERSATION_TYPES = [
-  "Patient service conversations",
-  "Clinical and educational debriefing",
-  "Breaking bad news",
-  "Goals of care",
-  "Informed consent",
-  "Error disclosure",
-  "High-stakes family meetings",
-  "Delivering a new diagnosis",
-  "Communicating uncertainty",
-  "Giving corrective feedback",
-  "Professionalism conversations",
-  "History taking",
+const priorities = [
+  { title: "Patient experience", body: "Practice listening, explanation, and respect against the service standard your institution already teaches.", href: "/solutions/patient-experience", icon: "chat-square-heart" as const },
+  { title: "Consent and disclosure", body: "Rehearse informed consent and error disclosure before the conversation with a patient or family.", href: "/health-systems#consent-and-disclosure", icon: "badge-check" as const },
+  { title: "Team communication", body: "Practice debriefing, feedback, and conversations between managers and staff against your own framework.", href: "/health-systems#team-communication", icon: "people-connected" as const },
 ]
 
 export default function HomePage() {
-  const featuredFrameworks = getFeaturedFrameworks()
-  const [healthSystemGroup, medicalEducationGroup] =
-    getHomepageSolutionGroups()
-
+  const copy = HOMEPAGE_PUBLIC_COPY
   return (
     <>
-      <JsonLd
-        data={[
-          {
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: HOMEPAGE_SEO.title,
-            description: HOMEPAGE_SEO.description,
-            url: "https://clinicalsim.ai",
-            dateModified: PAGE_DATE_MODIFIED.home,
-            isPartOf: {
-              "@type": "WebSite",
-              name: "ClinicalSim.ai",
-              url: "https://clinicalsim.ai",
-            },
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://clinicalsim.ai",
-              },
-            ],
-          },
-        ]}
-      />
+      <JsonLd data={[
+        { "@context": "https://schema.org", "@type": "WebPage", name: HOMEPAGE_SEO.title, description: HOMEPAGE_SEO.description, url: "https://clinicalsim.ai", dateModified: PAGE_DATE_MODIFIED.home, isPartOf: { "@type": "WebSite", name: "ClinicalSim.ai", url: "https://clinicalsim.ai" } },
+        { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://clinicalsim.ai" }] },
+      ]} />
 
-      <section className="relative overflow-hidden bg-cs-dark-blue px-6 py-20 text-white md:py-28 lg:py-32">
-        <Waveform
-          seed="home-hero"
-          variant="bars"
-          align="right"
-          opacity={0.2}
-          className="hidden lg:left-auto lg:block lg:w-[42%]"
-          animate
-        />
-        <Waveform
-          seed="home-hero-flow"
-          variant="flow"
-          align="right"
-          opacity={0.3}
-          className="hidden lg:left-auto lg:block lg:h-1/4 lg:w-[42%]"
-          animate
-        />
-
-        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-          <div className="relative z-10 max-w-2xl">
-            <p className="mb-6 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-cs-electric md:text-sm">
-              <span
-                className="h-1.5 w-1.5 rounded-full bg-cs-electric"
-                aria-hidden="true"
-              />
-              {HOMEPAGE_PUBLIC_COPY.hero.eyebrow}
-            </p>
-
-            <h1 className="mb-6 text-balance text-4xl font-light leading-[1.08] tracking-tight text-white md:text-5xl lg:text-[3.5rem]">
-              {HOMEPAGE_PUBLIC_COPY.hero.headline}
-            </h1>
-
-            <p className="mb-8 text-lg font-light text-cs-cloud md:text-xl">
-              {HOMEPAGE_PUBLIC_COPY.hero.body}
-            </p>
-
-            <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <Link href="/contact">
-                <Button variant="accent" size="xl" className="w-full sm:w-auto">
-                  {HOMEPAGE_PUBLIC_COPY.hero.primaryCta}
-                  <ArrowRight />
-                </Button>
-              </Link>
-              <Link href="/examples">
-                <Button variant="inverse" size="xl" className="w-full sm:w-auto">
-                  {HOMEPAGE_PUBLIC_COPY.hero.secondaryCta}
-                </Button>
-              </Link>
+      <section className="relative overflow-hidden bg-cs-dark-blue px-6 py-14 text-white md:py-20">
+        <div className="relative isolate mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+          {/* Anchor the wave to the first grid column and extend through the gap to the feedback card. */}
+          <Waveform seed="home-hero-flow" variant="flow" align="right" opacity={0.2} className="-z-10 hidden lg:col-start-1 lg:col-end-2 lg:block lg:left-[min(-1.5rem,calc((72rem_-_100vw)/2))] lg:right-auto lg:-top-20 lg:bottom-auto lg:h-[calc(100%_+_10rem)] lg:w-[calc(100%_+_4rem_+_max(1.5rem,calc((100vw_-_72rem)/2)))]" />
+          <div className="min-w-0">
+            <p className="mb-5 text-xs font-medium uppercase tracking-[0.14em] text-cs-electric md:text-sm">{copy.hero.eyebrow}</p>
+            <h1 className="max-w-2xl text-balance text-4xl font-light leading-[1.12] tracking-tight md:text-5xl lg:text-[3.5rem]">{copy.hero.headline}</h1>
+            <p className="mt-6 max-w-xl text-lg font-light leading-relaxed text-cs-cloud">{copy.hero.body}</p>
+            <div className="mt-8 flex min-w-0 flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button variant="accent" size="lg" asChild><Link href="/contact" className="h-auto min-h-12 whitespace-normal py-3 text-center">{copy.hero.primaryCta}<ArrowRight className="shrink-0" /></Link></Button>
+              <Button variant="inverse" size="lg" asChild><Link href="/examples" className="h-auto min-h-12 whitespace-normal py-3 text-center">{copy.hero.secondaryCta}</Link></Button>
             </div>
-
-            <p className="mt-8 text-sm font-light text-cs-cloud/80">
-              {HOMEPAGE_PUBLIC_COPY.hero.pilot}
-            </p>
+            <p className="mt-7 max-w-md text-sm leading-relaxed text-cs-cloud/80">{copy.hero.pilot}</p>
           </div>
-
-          <div className="relative z-10 w-full max-w-md lg:justify-self-end">
-            <dl className="rounded-2xl border border-white/10 bg-cs-navy/40 p-6 backdrop-blur-sm md:p-8">
-              {HOMEPAGE_PUBLIC_COPY.evidencePanel.map((item, index) => (
-                <div
-                  key={item.label}
-                  className={index === 0 ? "" : "mt-6 border-t border-white/10 pt-6"}
-                >
-                  <dt className="mb-1 text-sm font-light text-cs-cloud">
-                    {item.label}
-                  </dt>
-                  <dd className="text-2xl font-light text-white md:text-3xl">
-                    {item.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+          <FeedbackPreview compact dark />
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-cs-cloud px-6 py-16 md:py-24">
-        <Waveform tone="light" align="edges" opacity={0.3} seed="home-seam-video" className="h-16" />
-
-        <div className="relative z-10 mx-auto max-w-5xl">
-          <VideoObjectSchema
-            name="ClinicalSim demo: counseling vaccine hesitancy for a two-month-old"
-            description="A learner works through a vaccine hesitancy conversation with a ClinicalSim AI patient, then reviews the rubric scores and cited transcript excerpts."
-            thumbnailUrl={DEMO_VIDEO.thumbnailUrl}
-            uploadDate={DEMO_VIDEO.uploadDate}
-            embedUrl={DEMO_VIDEO.embedUrl}
-            duration={DEMO_VIDEO.duration}
-          />
-          <DemoVideoSection
-            title={HOMEPAGE_PUBLIC_COPY.demo.heading}
-            description={HOMEPAGE_PUBLIC_COPY.demo.body}
-            youtubeUrl={`${DEMO_VIDEO.embedUrl}?si=H8ioHlNkpc7yQrjZ`}
-          />
-        </div>
-      </section>
-
-      <section
-        id="how-an-assessment-works"
-        className="scroll-mt-20 bg-white px-6 py-16 md:py-24"
-      >
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-10 max-w-3xl md:mb-12">
-            <h2 className="mb-4 text-balance text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
-              {HOMEPAGE_PUBLIC_COPY.howItStarts.heading}
-            </h2>
-            <p className="text-lg font-light text-cs-dark-blue/70">
-              {HOMEPAGE_PUBLIC_COPY.howItStarts.intro}
-            </p>
-          </div>
-
-          <div className="space-y-5">
-            {HOMEPAGE_PUBLIC_COPY.howItStarts.steps.map((step, index) => (
-              <Reveal key={step.title} delay={index * 80}>
-                <div className="rounded-xl border border-cs-gray/50 border-l-4 border-l-cs-navy bg-white px-6 py-5">
-                  <h3 className="mb-2 text-lg font-medium text-cs-dark-blue">
-                    {index + 1}. {step.title}
-                  </h3>
-                  <p className="text-base font-light leading-relaxed text-cs-dark-blue/85">
-                    {step.body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="mt-8 rounded-2xl bg-cs-navy p-6 text-white md:p-8">
-            <p className="mb-3 text-sm font-medium uppercase tracking-[0.16em] text-cs-electric">
-              {HOMEPAGE_PUBLIC_COPY.howItStarts.exampleLabel}
-            </p>
-            <p className="text-lg font-light leading-relaxed text-cs-cloud">
-              {HOMEPAGE_PUBLIC_COPY.howItStarts.example}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-cs-gray/60 bg-white px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="mx-auto mb-10 max-w-3xl text-center md:mb-12">
-            <h2 className="text-balance text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
-              {HOMEPAGE_PUBLIC_COPY.scoring.heading}
-            </h2>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-            <article className="rounded-2xl bg-cs-navy p-6 text-white md:p-8">
-              <h3 className="mb-3 text-2xl font-medium text-white">
-                {HOMEPAGE_PUBLIC_COPY.scoring.institutionTitle}
-              </h3>
-              <p className="font-light leading-relaxed text-cs-cloud">
-                {HOMEPAGE_PUBLIC_COPY.scoring.institutionBody}
-              </p>
-              <div className="mt-8 border-t border-white/15 pt-6">
-                <p className="text-lg font-medium text-cs-electric">
-                  Policy, service model, script, or rubric
-                </p>
-                <p className="mt-2 text-sm font-light leading-relaxed text-cs-cloud">
-                  We review which elements a spoken conversation can show before the assessment begins.
-                </p>
-              </div>
-            </article>
-
-            <article className="rounded-2xl border border-cs-gray bg-white p-6 md:p-8">
-              <h3 className="mb-3 text-2xl font-medium text-cs-dark-blue">
-                {HOMEPAGE_PUBLIC_COPY.scoring.readyTitle}
-              </h3>
-              <p className="mb-6 font-light leading-relaxed text-cs-dark-blue">
-                {HOMEPAGE_PUBLIC_COPY.scoring.readyBody}
-              </p>
-              <ul className="grid gap-3 sm:grid-cols-2">
-                {featuredFrameworks.map((framework) => (
-                  <li
-                    key={framework.name}
-                    className="rounded-lg bg-cs-cloud px-4 py-3 text-sm font-medium text-cs-dark-blue"
-                  >
-                    {framework.homepageName ?? framework.name}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          </div>
-
-          <div className="mt-8 rounded-xl bg-cs-dark-blue px-6 py-5 text-center text-white md:px-8">
-            <p className="text-lg font-light">
-              {HOMEPAGE_PUBLIC_COPY.scoring.sharedLine}
-            </p>
-          </div>
-
-          <div className="mt-6 flex flex-col items-start justify-center gap-3 text-sm sm:flex-row sm:items-center sm:gap-6">
-            <Link
-              href="/frameworks#ready-to-use-frameworks"
-              className="font-medium text-cs-dark-blue underline decoration-cs-gray underline-offset-4 transition-colors hover:text-cs-navy"
-            >
-              View the ready to use scoring catalog
-            </Link>
-            <Link
-              href="/frameworks#scoring-limits"
-              className="font-medium text-cs-dark-blue underline decoration-cs-gray underline-offset-4 transition-colors hover:text-cs-navy"
-            >
-              Read the scoring limits
-            </Link>
-            <Link
-              href="/clinical-communication-intelligence"
-              className="font-medium text-cs-dark-blue underline decoration-cs-gray underline-offset-4 transition-colors hover:text-cs-navy"
-            >
-              What clinical communication intelligence means
-            </Link>
-          </div>
-
-          <div className="mt-14 border-t border-cs-gray pt-10 md:mt-16 md:pt-12">
-            <p className="mb-5 text-sm font-medium uppercase tracking-[0.16em] text-cs-dark-gray">
-              {HOMEPAGE_PUBLIC_COPY.scoring.conversationsHeading}
-            </p>
-            <ul className="flex flex-wrap gap-2.5 md:gap-3">
-              {CONVERSATION_TYPES.map((type) => (
-                <li
-                  key={type}
-                  className="rounded-md border border-cs-navy/25 border-l-4 border-l-cs-dark-blue bg-cs-cloud/50 px-4 py-2 text-sm font-medium text-cs-dark-blue"
-                >
-                  {type}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-cs-cloud px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-12 max-w-3xl md:mb-16">
-            <h2 className="mb-4 text-balance text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
-              {HOMEPAGE_PUBLIC_COPY.buyers.heading}
-            </h2>
-            <p className="text-lg font-light text-cs-dark-blue/70">
-              {HOMEPAGE_PUBLIC_COPY.buyers.intro}
-            </p>
-          </div>
-
-          <div className="mb-12 md:mb-14">
-            <h3 className="mb-4 text-2xl font-light tracking-tight text-cs-navy md:text-3xl">
-              {HOMEPAGE_PUBLIC_COPY.buyers.healthSystemHeading}
-            </h3>
-            <p className="max-w-3xl text-lg font-light text-cs-dark-blue">
-              {HOMEPAGE_PUBLIC_COPY.buyers.healthSystemBody}
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 md:gap-8">
-            {healthSystemGroup.solutions.map((solution, index) => (
-              <Reveal key={solution.slug} delay={index * 80} className="[&>a]:h-full">
-                <AudienceCard
-                  brandIcon={solution.icon}
-                  title={solution.title}
-                  subtitle={solution.subtitle}
-                  bullets={solution.cardBullets}
-                  href={`/solutions/${solution.slug}`}
-                  ctaLabel="View use case"
-                  variant={solution.colorVariant}
-                />
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="mb-12 mt-16 border-t border-cs-navy/15 pt-14 md:mb-14 md:mt-20 md:pt-16">
-            <h3 className="mb-4 text-2xl font-light tracking-tight text-cs-navy md:text-3xl">
-              {HOMEPAGE_PUBLIC_COPY.buyers.medicalEducationHeading}
-            </h3>
-            <p className="max-w-3xl text-lg font-light text-cs-dark-blue">
-              {HOMEPAGE_PUBLIC_COPY.buyers.medicalEducationBody}
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3 md:gap-8">
-            {medicalEducationGroup.solutions.map((solution, index) => (
-              <Reveal key={solution.slug} delay={index * 80} className="[&>a]:h-full">
-                <AudienceCard
-                  brandIcon={solution.icon}
-                  title={solution.title}
-                  subtitle={solution.subtitle}
-                  bullets={solution.cardBullets}
-                  href={`/solutions/${solution.slug}`}
-                  ctaLabel="View use case"
-                  variant={solution.colorVariant}
-                />
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="mt-10 text-center md:mt-12">
-            <Link
-              href="/solutions"
-              className="inline-flex items-center font-medium text-cs-dark-blue transition-colors hover:text-cs-navy"
-            >
-              Explore all use cases
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-white px-6 py-16 md:py-24">
-        <Waveform
-          tone="light"
-          align="edges"
-          opacity={0.3}
-          seed="home-seam-proof"
-          className="bottom-0 top-auto h-16"
-        />
-
-        <div className="relative z-10 mx-auto max-w-5xl">
-          <div className="mb-12 text-center md:mb-14">
-            <h2 className="text-3xl font-light tracking-tight text-cs-navy md:text-4xl">
-              {HOMEPAGE_PUBLIC_COPY.proofHeading}
-            </h2>
-          </div>
-
-          <div className="mx-auto max-w-3xl">
-            <div className="relative">
-              <div className="absolute -left-2 -top-2 text-6xl font-serif text-cs-dark-blue/20 md:-left-4">
-                &ldquo;
-              </div>
-              <blockquote className="relative pl-8 pt-4">
-                <p className="mb-4 text-2xl font-light leading-relaxed text-cs-dark-blue md:text-3xl">
-                  I just tried it out and it was like talking to a real patient.
-                </p>
-                <cite className="border-l-4 border-cs-dark-blue pl-4 text-base font-normal not-italic text-cs-dark-blue/70">
-                  Faculty, Johns Hopkins University School of Medicine
-                </cite>
-              </blockquote>
-            </div>
-
-            <div className="relative mt-12 md:mt-16">
-              <div className="absolute -left-2 -top-2 text-6xl font-serif text-cs-dark-blue/20 md:-left-4">
-                &ldquo;
-              </div>
-              <blockquote className="relative pl-8 pt-4">
-                <p className="mb-4 text-xl font-light leading-relaxed text-cs-dark-blue md:text-2xl">
-                  It was helpful to have time to think and reflect without feeling the pressure of a person across from you expecting a response.
-                </p>
-                <cite className="border-l-4 border-cs-dark-blue pl-4 text-base font-normal not-italic text-cs-dark-blue/70">
-                  Clinician, Pilot Study Participant
-                </cite>
-              </blockquote>
-            </div>
-
-            <div className="relative mt-12 md:mt-16">
-              <div className="absolute -left-2 -top-2 text-6xl font-serif text-cs-dark-blue/20 md:-left-4">
-                &ldquo;
-              </div>
-              <blockquote className="relative pl-8 pt-4">
-                <p className="mb-4 text-xl font-light leading-relaxed text-cs-dark-blue md:text-2xl">
-                  I had to tell a patient&apos;s father that his daughter would need long-term oxygen support through a tracheostomy. Before speaking with him, I practiced the conversation on ClinicalSim. It gave me confidence and feedback on my tone and delivery. Having difficult conversations can be extremely stressful, but having the practice beforehand allowed me to give appropriate time for silence and empathy.
-                </p>
-                <cite className="border-l-4 border-cs-dark-blue pl-4 text-base font-normal not-italic text-cs-dark-blue/70">
-                  Nurse practitioner, major health system
-                </cite>
-              </blockquote>
-            </div>
-
-            <figure className="mt-12 rounded-2xl border border-cs-gray/60 bg-cs-cloud/60 p-6 md:mt-16 md:p-10">
-              <p className="mb-4 text-sm font-medium uppercase tracking-wide text-cs-dark-blue/70">
-                A resident&apos;s reflection, weeks after a practice simulation
-              </p>
-              <blockquote className="border-l-4 border-cs-dark-blue pl-5 md:pl-6">
-                <p className="text-xl font-light leading-relaxed text-cs-dark-blue md:text-2xl">
-                  {RESIDENT_REFLECTION.pullQuote}
-                </p>
-              </blockquote>
-              <details className="group mt-6">
-                <summary className="flex cursor-pointer list-none items-center gap-2 font-medium text-cs-dark-blue transition-colors hover:text-cs-navy [&::-webkit-details-marker]:hidden">
-                  <span className="group-open:hidden">Read the full reflection</span>
-                  <span className="hidden group-open:inline">Hide the full reflection</span>
-                  <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
-                </summary>
-                <blockquote className="mt-5 space-y-4 border-t border-cs-navy/15 pt-5">
-                  {RESIDENT_REFLECTION.paragraphs.map((paragraph) => (
-                    <p
-                      key={paragraph.slice(0, 32)}
-                      className="text-base font-light leading-relaxed text-cs-dark-blue md:text-lg"
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
-                </blockquote>
-              </details>
-              <figcaption className="mt-6 text-base text-cs-dark-blue/70">
-                {RESIDENT_REFLECTION.attribution}
-              </figcaption>
-            </figure>
-          </div>
-
-          <div className="mt-12 text-center md:mt-14">
-            <Link href="/contact">
-              <Button size="xl">
-                {HOMEPAGE_PUBLIC_COPY.closing.cta}
-                <ArrowRight />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <WaveformBand seed="home-closing" className="py-20 md:py-28">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-6 text-balance text-3xl font-light tracking-tight md:text-4xl lg:text-5xl">
-            {HOMEPAGE_PUBLIC_COPY.closing.heading}
-          </h2>
-          <p className="mb-8 text-lg font-light text-white/90 md:text-xl">
-            {HOMEPAGE_PUBLIC_COPY.closing.body}
-          </p>
-          <Link href="/contact">
-            <Button variant="accent" size="xl">
-              {HOMEPAGE_PUBLIC_COPY.closing.cta}
-            </Button>
+      <section aria-label="Choose your setting" className="bg-cs-cloud px-6 py-12 md:py-16">
+        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
+          <Link href="/health-systems" className="group min-w-0 rounded-2xl border border-cs-gray/60 bg-white p-7 transition-colors hover:border-cs-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cs-navy md:p-9">
+            <BrandIcon name="hospital" size={36} className="mb-5" />
+            <h2 className="flex items-center justify-between gap-4 text-2xl font-medium text-cs-dark-blue">Health systems<ArrowRight className="h-5 w-5 shrink-0" /></h2>
+            <p className="mt-3 max-w-lg text-base leading-relaxed text-cs-dark-blue/80">{copy.buyers.healthSystemBody}</p>
           </Link>
+          <Link href="/medical-education" className="group min-w-0 rounded-2xl border border-cs-gray/60 bg-white p-7 transition-colors hover:border-cs-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cs-navy md:p-9">
+            <BrandIcon name="hat-graduation" size={36} className="mb-5" />
+            <h2 className="flex items-center justify-between gap-4 text-2xl font-medium text-cs-dark-blue">Medical education<ArrowRight className="h-5 w-5 shrink-0" /></h2>
+            <p className="mt-3 max-w-lg text-base leading-relaxed text-cs-dark-blue/80">{copy.buyers.medicalEducationBody}</p>
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-white px-6 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="max-w-2xl text-3xl font-light text-cs-dark-blue md:text-4xl">Useful feedback for each person. A clearer view for the program.</h2>
+          <div className="mt-9 grid items-start gap-8 lg:grid-cols-2 lg:gap-12">
+            <div className="min-w-0">
+              <p className="mb-5 text-lg leading-relaxed text-cs-dark-blue/80">Participants see what they did well and what to practice next. Every score points to their own words in the simulated conversation.</p>
+              <FeedbackPreview focus="next" headingLevel={3} />
+            </div>
+            <div className="min-w-0 rounded-xl bg-cs-cloud p-7 md:p-9">
+              <h3 className="text-2xl font-medium text-cs-dark-blue">What leaders can review</h3>
+              <p className="mt-4 leading-relaxed text-cs-dark-blue/80">Patterns across a cohort or anonymous unit, scored against the standard your team already teaches. Use that review to choose the next round of practice.</p>
+              <div className="mt-6 border-t border-cs-gray pt-6">
+                <p className="text-sm font-medium text-cs-navy">What one health system learned</p>
+                <p className="mt-3 leading-relaxed text-cs-dark-blue/80">{copy.howItStarts.example}</p>
+              </div>
+              <p className="mt-6 text-sm leading-relaxed text-cs-dark-blue/70">These are findings from simulated practice. Formative scores stay out of personnel files.</p>
+              <Link href="/clinical-communication-intelligence" className="mt-6 inline-flex items-center gap-2 font-medium text-cs-dark-blue underline underline-offset-4">See how it works<ArrowRight className="h-4 w-4 shrink-0" /></Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-cs-cloud px-6 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="text-3xl font-light text-cs-dark-blue md:text-4xl">Start with a conversation your institution cares about</h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {priorities.map((priority) => (
+              <Link key={priority.title} href={priority.href} className="min-w-0 rounded-xl border border-cs-gray/60 bg-white p-7 transition-colors hover:border-cs-navy">
+                <BrandIcon name={priority.icon} size={32} className="mb-5" />
+                <h3 className="text-xl font-medium text-cs-dark-blue">{priority.title}</h3>
+                <p className="mt-3 leading-relaxed text-cs-dark-blue/80">{priority.body}</p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-cs-navy">Explore this priority<ArrowRight className="h-4 w-4 shrink-0" /></span>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-7 leading-relaxed text-cs-dark-blue/80">For residency, fellowship, and medical school programs, explore <Link href="/medical-education" className="font-medium underline underline-offset-4">curriculum, faculty development, and communication remediation</Link>.</p>
+        </div>
+      </section>
+
+      <section className="bg-white px-6 py-16 md:py-20">
+        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.2fr_0.8fr] md:gap-16">
+          <figure className="min-w-0">
+            <blockquote className="border-l-4 border-cs-navy pl-6 text-2xl font-light leading-relaxed text-cs-dark-blue">&quot;It was helpful to have time to think and reflect without feeling the pressure of a person across from you expecting a response.&quot;</blockquote>
+            <figcaption className="mt-5 pl-6 text-sm text-cs-dark-blue/70">Clinician, Pilot Study Participant</figcaption>
+            <Link href="/examples#clinician-reflections" className="mt-6 inline-block pl-6 text-sm font-medium text-cs-dark-blue underline underline-offset-4">Read clinicians&apos; accounts</Link>
+          </figure>
+          <div>
+            <h2 className="text-2xl font-medium text-cs-dark-blue">Inspect the evidence before deciding</h2>
+            <p className="mt-4 leading-relaxed text-cs-dark-blue/80">Open complete practice reports and read how the scoring works, what research is public, and where the evidence stops.</p>
+            <Link href="/evidence" className="mt-6 inline-flex items-center gap-2 font-medium text-cs-dark-blue underline underline-offset-4">Evidence and scoring limits<ArrowRight className="h-4 w-4 shrink-0" /></Link>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-an-assessment-works" className="bg-cs-cloud px-6 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="text-3xl font-light text-cs-dark-blue md:text-4xl">Start with one team and one communication priority</h2>
+          <div className="mt-8 grid gap-8 md:grid-cols-3">
+            {copy.startingSteps.map((step, index) => (
+              <div key={step.title} className="min-w-0">
+                <p className="mb-3 text-sm font-medium text-cs-navy">Step {index + 1}</p>
+                <h3 className="text-xl font-medium text-cs-dark-blue">{step.title}</h3>
+                <p className="mt-3 leading-relaxed text-cs-dark-blue/80">{step.body}</p>
+              </div>
+            ))}
+          </div>
+          <Link href="/evaluation#operations" className="mt-8 inline-flex items-center gap-2 font-medium text-cs-dark-blue underline underline-offset-4">What launching requires<ArrowRight className="h-4 w-4 shrink-0" /></Link>
+        </div>
+      </section>
+
+      <WaveformBand seed="home-final">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl font-light md:text-4xl">{copy.closing.heading}</h2>
+          <p className="mt-5 text-lg font-light leading-relaxed text-cs-cloud">{copy.closing.body}</p>
+          <Button variant="accent" size="lg" asChild className="mt-7"><Link href="/contact">{copy.closing.cta}<ArrowRight /></Link></Button>
         </div>
       </WaveformBand>
     </>

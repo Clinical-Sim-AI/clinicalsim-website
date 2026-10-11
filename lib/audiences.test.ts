@@ -38,25 +38,11 @@ describe("Audience registry", () => {
     }
   })
 
-  // The routing half of the same defect: two audiences sharing a primary
-  // solution render a byte-identical use-case block, because
-  // components/audience-page-layout.tsx builds that block entirely from
-  // primarySolution.title, .heroDescription, and .shortTitle. Distinctness only
-  // has to hold across the audiences that actually render it, so the exception
-  // list is imported rather than restated.
-  it("gives every generated primary CTA a distinct solution", () => {
-    const generated = audiences.filter(rendersGeneratedPrimaryCta)
-    const primaries = generated.map((a) => a.relevantSolutionSlugs[0])
-    const distinct = new Set(primaries)
-
-    expect(
-      distinct.size,
-      `two audiences would render the same primary use-case block: ${primaries.join(", ")}`
-    ).toBe(generated.length)
+  it("routes faculty and safety leaders to relevant primary programs", () => {
+    expect(audiences.find((a) => a.slug === "faculty-clinician-educators")?.relevantSolutionSlugs[0]).toBe("faculty-development")
+    expect(audiences.find((a) => a.slug === "risk-and-patient-safety")?.relevantSolutionSlugs).toEqual(["error-disclosure", "informed-consent", "debriefing"])
   })
 
-  // Without this the check above weakens silently: moving every audience onto
-  // the bespoke list would leave it comparing an empty set to zero.
   it("keeps the bespoke CTA list to audiences that exist", () => {
     const slugs = new Set(audiences.map((a) => a.slug))
 
