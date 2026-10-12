@@ -1,0 +1,73 @@
+import { ArticleLayout } from "@/components/article-layout"
+import { KeyTakeaway } from "@/components/key-takeaway"
+import { ReferencesSection } from "@/components/references-section"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
+
+export const metadata = getPostMetadata("ccc-communication-evidence-threshold")
+
+<ArticleLayout post={getPostBySlug("ccc-communication-evidence-threshold")}>
+
+A clinical competency committee can only act on evidence a member can point to. When the question is a resident's interpersonal and communication skills, what usually sits in the file is a set of ratings with no documented observations behind them, and a committee that must rate anyway has produced a number it will struggle to defend at a promotion meeting or in a due process hearing.
+
+<KeyTakeaway>
+In one emergency medicine residency, faculty narrative assessments covered an average of 2.04 of the specialty's 23 milestone sub-competencies, and 14 of the 23 turned up in fewer than 5 percent of assessments (Diller et al., Western Journal of Emergency Medicine, 2019). A committee reading that file is rating most sub-competencies with no written observation behind them.
+</KeyTakeaway>
+
+## What the ACGME requires a CCC to do
+
+A [clinical competency committee](/audiences/clinical-competency-committees) is the group of program faculty that reviews all resident evaluations at least semi-annually and determines each resident's progress on the specialty-specific Milestones (ACGME Common Program Requirements for Residency, Sections 5.3.c and 5.3.d). It also has to meet before the residents' semi-annual evaluations and advise the program director on each resident's progress (Section 5.3.e). The committee's product is a judgment about a person's readiness to advance, so what it works from has to be behavior somebody watched.
+
+ACGME says where this breaks down, in its own words. Its 2020 guidance on preparing for committee meetings states that committees "face well-recognized challenges that may result in sub-optimal Milestones reporting," and that this "is especially true when CCC members judge resident/fellow performance on milestones they themselves have not directly observed." The same document notes that some programs still hand faculty the entire Milestones set as an end-of-rotation form, "though they were never meant to be used as a stand-alone assessment tool."
+
+The guidebook ACGME publishes for programs is blunter about the data. It sets out what it calls the garbage in, garbage out rule: "if the quality of the assessments being used to produce aggregate data, such as averages, is poor, then not even fancy statistics can make the assessment information better." It also says that "an overreliance on global, end-of-rotation evaluations should be avoided," and names direct observation of a specific component, multisource feedback, longitudinal evaluations, audit of clinical performance, and simulation among the core methods a program's assessment system should carry.
+
+## Why communication is the hardest domain to bring evidence for
+
+Faculty are less sure of themselves on communication than on anything else they rate. In ACGME's stakeholder survey behind the harmonized ICS milestones, 1,195 people responded, more than 80 percent of them program directors and coordinators, and 80.9 percent said they knew how to assess patient- and family-centered communication effectively. The authors read their own result plainly: "while the majority of GME stakeholders seem comfortable assessing the ICS milestones, approximately 1 in 5 is not." The same document blames the spread on a lack of standardization across specialties, which "has resulted in unnecessary variation and has complicated the development of validated assessment tools."
+
+Thin coverage makes it worse. When one emergency medicine program coded 2,517 workplace-based narrative assessments of its second, third, and fourth year residents against the 23 EM milestone sub-competencies, each assessment touched an average of 2.04 of them, and 14 of the 23 appeared in fewer than 5 percent (Diller et al., 2019). Patient-centered communication was among the sub-competencies faculty wrote about most, which is the interesting part: they comment on communication when something stands out, and stay quiet when it does not. That leaves a record weighted toward the memorable and silent about the ordinary, which is exactly backwards for a committee trying to describe a pattern. One program's habits are not the country's, so read it as a description rather than a rate.
+
+## What a record needs to carry before a committee can act
+
+Five things separate an assessment a committee can act on from a rating it can only average.
+
+1. A described behavior rather than an adjective. "Interrupted the mother twice while she was describing the seizure, then answered a question she had not asked" is something a committee can put in front of a resident. "Needs to work on communication" is not.
+2. A date and a setting. A family meeting in the PICU and a phone call to a referring physician are different skills, and a rating that does not say which one it describes cannot be checked.
+3. A named observer who can say they were in the room.
+4. Enough repeats to tell a pattern from a bad day. One observation is an anecdote, and three across two rotations is a finding.
+5. A stated comparison point. Level 3 relative to what, and what would have to change for the next rating to move.
+
+Program directors already know which method gets them there. In a survey of 267 family medicine program directors, 45 percent ranked direct observation as the most useful way to identify a resident who needs remediation, ahead of faculty evaluations, and 22 percent said a lack of documented evaluations made it harder to trigger or guide remediation at all (Frazier et al., Family Medicine, 2021). Programs don't disagree about what good evidence looks like. The problem is that it doesn't get written down at the moment it exists.
+
+The remediation literature points the same way. A systematic review of 16 studies on [remediating learners who struggle with communication](/solutions/remediation) found that three things separated the programs that worked: early identification and diagnosis, an individualized plan, and reassessment with feedback. In 62.5 percent of those studies, the structured encounter that identified the learner in the first place was an OSCE (Al-Sheikhly et al., BMC Medical Education, 2020).
+
+## What committees do when the record is thin
+
+They rate anyway. In a qualitative study of eight committee members, participants described using software-compiled numerical averages, peer comparison, narrative comments where they existed, and assumptions about time in training. Where assessment data was missing, they assumed average performance and assigned a rating rather than marking the milestone Not Yet Assessable. None of the eight had received formal training for the committee role (Maranich et al., Journal of Graduate Medical Education, 2022). Eight members in one study is a description of how committees reason, not a national rate, and it should be cited that way.
+
+ACGME's guidebook has a different answer. When a resident has not rotated through the experience a milestone describes, the committee should hold the previous reporting period's judgment rather than manufacture a new one, and committees "should have a shared understanding of how decisions will be made, including how to deal with inadequate assessment data or lack of data."
+
+This isn't about tidy paperwork. A file that cannot tell a judgment from a guess is a due process problem waiting for the first resident who disagrees with it, and by then the committee is defending a number nobody can trace to an afternoon.
+
+## Where practice with AI patients fits, and where it does not
+
+ClinicalSim is a voice-based AI patient simulation platform for practicing and measuring clinical communication in medical education. It generates [rubric scores with transcript evidence](/methodology) for faculty review. That report is formative evidence and does not replace human judgment, which also means it does not settle a promotion or remediation decision on its own.
+
+Standardized patients (SPs) stay stronger at several things, and a committee should know which. A trained actor reacts in ways a rubric cannot anticipate, a faculty observer in the room sees what a transcript loses, and an SP program gives a school a shared standard across a whole cohort on one day. AI patient simulation can add practice opportunities between scheduled encounters and can complement a standardized patient program, which is a narrower claim than it sounds like: the value is that a resident can repeat a family meeting on a Tuesday night in March, when no SP is scheduled and nobody is watching.
+
+## What to change before the next meeting
+
+Pick two or three ICS behaviors the committee will require real evidence for, and stop pretending to rate the rest. Ask each rotation for one dated observation with a named observer, rather than a full milestone set nobody has the data to complete. Use Not Yet Assessable when nothing was observed, because an honest gap is easier to defend than a guessed average, and it tells the program exactly where its assessment system is blind. Then say, for every rating the committee does assign, what would have to change for it to move.
+
+<ReferencesSection references={[
+  { title: "Preparing for effective Clinical Competency Committee meetings", source: "Accreditation Council for Graduate Medical Education", year: "2020", url: "https://www.acgme.org/globalassets/pdfs/milestones/guidebooks/preparing-for-effective-ccc-meetings.pdf" },
+  { authors: "Andolsek K, Padmore J, Hauer KE, Ekpenyong A, Edgar L, Holmboe E", title: "Clinical Competency Committees: a guidebook for programs, 3rd edition", source: "Accreditation Council for Graduate Medical Education", year: "2020" },
+  { title: "ACGME Common Program Requirements (Residency), Sections 5.3.c to 5.3.e, effective July 1, 2026", source: "Accreditation Council for Graduate Medical Education", year: "2026", url: "https://www.acgme.org/globalassets/pfassets/programrequirements/2026-prs/cprresidency_2026.pdf" },
+  { authors: "Morrison LJ, Joyce BL, Meyer LE, Moreland CJ, Puscas L, Regan L, Stephens MB, Roberts S, Edgar L", title: "Strengthening interpersonal and communication skills assessment through harmonized milestones", source: "Accreditation Council for Graduate Medical Education", year: "Accessed October 12, 2026", url: "https://www.acgme.org/globalassets/pdfs/milestones/harmonizingics.pdf" },
+  { authors: "Diller D, Cooper S, Jain A, Lam CN, Riddell J", title: "Which emergency medicine milestone sub-competencies are identified through narrative assessments?", source: "Western Journal of Emergency Medicine", year: "2019", doi: "10.5811/westjem.2019.12.44468" },
+  { authors: "Maranich AM, Hemmer PA, Uijtdehaage S, Battista A", title: "ACGME Milestones in the real world: a qualitative study exploring response process evidence", source: "Journal of Graduate Medical Education, 14(2):201", year: "2022" },
+  { authors: "Frazier W, Wilson SA, D'Amico F, Bergus GR", title: "Resident remediation in family medicine residency programs: a CERA survey of program directors", source: "Family Medicine", year: "2021", doi: "10.22454/FamMed.2021.546572" },
+  { authors: "Al-Sheikhly D, Ostlundh L, Arayssi T", title: "Remediation of learners struggling with communication skills: a systematic review", source: "BMC Medical Education", year: "2020", doi: "10.1186/s12909-020-02074-9" },
+]} />
+
+</ArticleLayout>
