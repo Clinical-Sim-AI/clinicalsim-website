@@ -11,6 +11,7 @@ import { getAllSolutions } from "./solutions"
  * union and keep type-checking a dead cross-registry reference.
  */
 const UNION_MEMBERS: PostSlug[] = [
+  "ccc-communication-evidence-threshold",
   "what-an-osce-score-predicts",
   "communication-remediation-plan",
   "simulation-vendor-shutdown-program-obligations",
