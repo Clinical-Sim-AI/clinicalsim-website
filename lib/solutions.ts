@@ -1,6 +1,7 @@
 import type { BrandIconName } from "@/components/brand-icon"
 import type { Market } from "@/lib/positioning"
 import type { PostSlug } from "@/lib/posts"
+import { NURSING_BRIEF_PATH } from "@/lib/nursing-turnover-brief"
 
 export interface SolutionStage {
   /** Short label for the stage, e.g. "PGY-1", "M1/M2", "Giving feedback". Optional; no badge renders without one. */
@@ -1035,7 +1036,7 @@ const solutions: Solution[] = [
     subtitle: "Practice the conversations behind whether staff stay",
     icon: "friendship",
     colorVariant: "navy",
-    lastUpdated: "2026-10-11",
+    lastUpdated: "2026-10-12",
     cardBullets: [
       "Stay conversations, safety concerns and feedback for frontline managers",
       "Escalation, handoff and delegation for nurses in their first year",
@@ -1211,7 +1212,7 @@ const solutions: Solution[] = [
       title: "The conversations behind nurse turnover",
       description: "A three-page brief for nurse leaders, with sources on every number.",
       linkLabel: "Get the brief",
-      href: "/resources/nursing-turnover-brief",
+      href: NURSING_BRIEF_PATH,
     },
     ctaHeadline: "Bring us the conversation your managers find hardest",
     ctaDescription:

@@ -5,13 +5,13 @@ import { JsonLd } from "@/components/json-ld"
 import {
   NURSING_BRIEF_MEETINGS_URL,
   NURSING_BRIEF_PDF_URL,
+  NURSING_BRIEF_THANK_YOU_URL,
   NURSING_BRIEF_URL,
 } from "@/lib/nursing-turnover-brief"
 
 // HubSpot redirects here after the brief's form is submitted. Kept out of the
 // sitemap and /llms.txt, and noindexed, because the PDF link is the gate.
 
-const URL = `${NURSING_BRIEF_URL}/thank-you`
 const DESCRIPTION = "Download the nursing turnover brief and book a 20-minute demo."
 
 export const metadata: Metadata = {
@@ -24,14 +24,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Nursing turnover brief download",
     description: DESCRIPTION,
-    url: URL,
+    url: NURSING_BRIEF_THANK_YOU_URL,
   },
   twitter: {
     title: "Nursing turnover brief download",
     description: DESCRIPTION,
   },
   alternates: {
-    canonical: URL,
+    canonical: NURSING_BRIEF_THANK_YOU_URL,
   },
 }
 
@@ -45,7 +45,7 @@ export default function NursingTurnoverBriefThankYouPage() {
             "@type": "WebPage",
             name: "Nursing turnover brief download",
             description: DESCRIPTION,
-            url: URL,
+            url: NURSING_BRIEF_THANK_YOU_URL,
             isPartOf: {
               "@type": "WebSite",
               name: "ClinicalSim.ai",
@@ -72,7 +72,7 @@ export default function NursingTurnoverBriefThankYouPage() {
                 "@type": "ListItem",
                 position: 3,
                 name: "Download",
-                item: URL,
+                item: NURSING_BRIEF_THANK_YOU_URL,
               },
             ],
           },

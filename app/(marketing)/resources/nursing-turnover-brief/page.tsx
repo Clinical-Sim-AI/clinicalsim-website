@@ -22,7 +22,7 @@ const INSIDE = [
 ]
 
 export const metadata: Metadata = {
-  title: "The conversations behind nurse turnover",
+  title: TITLE,
   description: DESCRIPTION,
   openGraph: {
     title: TITLE,
