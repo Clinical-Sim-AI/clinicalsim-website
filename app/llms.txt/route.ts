@@ -110,6 +110,7 @@ export async function GET() {
     `- [FAQ](${BASE_URL}/faq): Common questions about ClinicalSim's AI clinical simulation, including how it compares to Step 2 CS and standardized patients, communication remediation, scoring and My Progress, evidence for CCC review, privacy, and research.`,
     `- [FAQ for medical educators](${BASE_URL}/medical-educator-faq): How to read a feedback report, inspect transcript evidence, compare GME and UME scoring, choose a practice cadence, and use results in a rotation or remediation plan.`,
     `- [Research collaboration](${BASE_URL}/research): Propose a study in communication training, implementation, patient experience, workforce education, or competency assessment.`,
+    `- [The conversations behind nurse turnover](${BASE_URL}/resources/nursing-turnover-brief): A free three-page brief for nurse leaders on why nurses leave, why the hardest conversations go untrained, and how to practice them before they count. Download requires a short form.`,
     `- [Insights](${BASE_URL}/insights): Research and evidence on medical communication training, simulation technology, and clinical conversation outcomes.`,
     `- [Contact](${BASE_URL}/contact): Ask a question, discuss communication practice for your team, or book a conversation. Planning details are optional.`,
     `- [Help center](${BASE_URL}/help): Guides, release notes, and support for ClinicalSim programs and learners.`,

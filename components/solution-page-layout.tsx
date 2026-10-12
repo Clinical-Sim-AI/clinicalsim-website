@@ -497,6 +497,30 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
         />
       )}
 
+      {solution.resource && (
+        <section className="px-6 py-10 md:py-12 bg-white">
+          <div className="max-w-4xl mx-auto">
+            <Link
+              href={solution.resource.href}
+              className="group flex flex-col gap-5 rounded-2xl border border-cs-gray/60 bg-cs-cloud p-7 transition-colors hover:border-cs-navy md:flex-row md:items-center md:justify-between md:p-9"
+            >
+              <div className="min-w-0">
+                <h2 className="text-2xl font-medium text-cs-dark-blue">
+                  {solution.resource.title}
+                </h2>
+                <p className="mt-2 text-base font-light leading-relaxed text-cs-dark-blue/80">
+                  {solution.resource.description}
+                </p>
+              </div>
+              <span className="inline-flex shrink-0 items-center gap-2 font-medium text-cs-dark-blue underline underline-offset-4">
+                {solution.resource.linkLabel}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* Final CTA */}
       <WaveformBand seed={solution.slug}>
         <div className="max-w-4xl mx-auto text-center">

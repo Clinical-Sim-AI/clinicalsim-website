@@ -1,12 +1,21 @@
 import type { BrandIconName } from "@/components/brand-icon"
 import type { Market } from "@/lib/positioning"
 import type { PostSlug } from "@/lib/posts"
+import { NURSING_BRIEF_PATH } from "@/lib/nursing-turnover-brief"
 
 export interface SolutionStage {
   /** Short label for the stage, e.g. "PGY-1", "M1/M2", "Giving feedback". Optional; no badge renders without one. */
   label?: string
   title: string
   description: string
+}
+
+/** A gated or downloadable resource, shown as a card above the closing CTA. */
+export interface SolutionResource {
+  title: string
+  description: string
+  linkLabel: string
+  href: string
 }
 
 export interface SolutionFaq {
@@ -164,6 +173,8 @@ export interface Solution {
    * there. Hub-only terms are dropped at render time; list indexable ones.
    */
   glossarySlugs?: string[]
+
+  resource?: SolutionResource
 
   ctaHeadline: string
   ctaDescription: string
@@ -1025,7 +1036,7 @@ const solutions: Solution[] = [
     subtitle: "Practice the conversations behind whether staff stay",
     icon: "friendship",
     colorVariant: "navy",
-    lastUpdated: "2026-10-11",
+    lastUpdated: "2026-10-12",
     cardBullets: [
       "Stay conversations, safety concerns and feedback for frontline managers",
       "Escalation, handoff and delegation for nurses in their first year",
@@ -1197,6 +1208,12 @@ const solutions: Solution[] = [
     ],
     omitClaimBoundary: true,
     glossarySlugs: ["sbar", "teach-back-method"],
+    resource: {
+      title: "The conversations behind nurse turnover",
+      description: "A three-page brief for nurse leaders, with sources on every number.",
+      linkLabel: "Get the brief",
+      href: NURSING_BRIEF_PATH,
+    },
     ctaHeadline: "Bring us the conversation your managers find hardest",
     ctaDescription:
       "Send your leadership model, your escalation policy, or the conversation that keeps coming up in exit interviews. We'll map what a spoken case can score and agree on reporting rules before anyone practices.",
