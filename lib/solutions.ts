@@ -9,6 +9,14 @@ export interface SolutionStage {
   description: string
 }
 
+/** A gated or downloadable resource, shown as a card above the closing CTA. */
+export interface SolutionResource {
+  title: string
+  description: string
+  linkLabel: string
+  href: string
+}
+
 export interface SolutionFaq {
   question: string
   answer: string
@@ -164,6 +172,8 @@ export interface Solution {
    * there. Hub-only terms are dropped at render time; list indexable ones.
    */
   glossarySlugs?: string[]
+
+  resource?: SolutionResource
 
   ctaHeadline: string
   ctaDescription: string
@@ -1197,6 +1207,12 @@ const solutions: Solution[] = [
     ],
     omitClaimBoundary: true,
     glossarySlugs: ["sbar", "teach-back-method"],
+    resource: {
+      title: "The conversations behind nurse turnover",
+      description: "A three-page brief for nurse leaders, with sources on every number.",
+      linkLabel: "Get the brief",
+      href: "/resources/nursing-turnover-brief",
+    },
     ctaHeadline: "Bring us the conversation your managers find hardest",
     ctaDescription:
       "Send your leadership model, your escalation policy, or the conversation that keeps coming up in exit interviews. We'll map what a spoken case can score and agree on reporting rules before anyone practices.",

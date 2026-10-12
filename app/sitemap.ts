@@ -156,6 +156,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.6,
     },
+    // The thank-you page is noindexed and stays out of the sitemap.
+    {
+      url: `${BASE_URL}/resources/nursing-turnover-brief`,
+      lastModified: new Date(PAGE_DATE_MODIFIED.nursingTurnoverBrief),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
     // /roi-calculator is withheld from the sitemap while the page is unpublished.
     // The route still builds; restore this entry when it goes public.
     {
