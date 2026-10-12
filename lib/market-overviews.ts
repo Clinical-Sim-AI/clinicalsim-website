@@ -71,7 +71,6 @@ export const healthSystemsOverview: MarketOverviewContent = {
       links: [
         { label: "Debriefing", href: "/solutions/debriefing" },
         { label: "Manager and new nurse conversations", href: "/solutions/workforce-retention" },
-        { label: "Nursing turnover brief", href: "/resources/nursing-turnover-brief" },
       ],
     },
   ],
