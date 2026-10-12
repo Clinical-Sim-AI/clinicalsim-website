@@ -11,6 +11,7 @@
  * lib/posts.test.ts covers that half at runtime. Both halves are needed.
  */
 export type PostSlug =
+  | "ccc-communication-evidence-threshold"
   | "what-an-osce-score-predicts"
   | "communication-remediation-plan"
   | "simulation-vendor-shutdown-program-obligations"
@@ -60,6 +61,21 @@ export interface Post {
 }
 
 const posts: Post[] = [
+  {
+    slug: "ccc-communication-evidence-threshold",
+    title: "What a CCC needs before it can act on a communication problem",
+    seoTitle: "What a CCC needs to rate communication",
+    description:
+      "Faculty narrative assessments in one emergency medicine residency covered an average of 2.04 of 23 milestone sub-competencies, and 14 of the 23 appeared in fewer than 5 percent (Diller et al., 2019). What a committee needs in the file before it rates communication.",
+    date: "2026-10-12",
+    author: "Vinod Havalad, MD",
+    // Byline approved by Vinod on 2026-09-24 ("happy to have my name
+    // attached" / "good to go from my perspective"), covering this draft and
+    // communication-remediation-plan. His Google Doc edits are merged here.
+    authorId: "vinod-havalad",
+    readingTime: "6 min read",
+    tags: ["communication-assessment", "assessment", "ACGME", "milestones", "medical-education", "residency"],
+  },
   {
     slug: "what-an-osce-score-predicts",
     title: "What an OSCE score predicts, and what it doesn't",
