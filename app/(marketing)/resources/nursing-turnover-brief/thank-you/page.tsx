@@ -83,7 +83,7 @@ export default function NursingTurnoverBriefThankYouPage() {
         <div className="mx-auto max-w-3xl">
           <h1 className="text-3xl font-light tracking-tight md:text-5xl">Your brief is ready</h1>
           <p className="mt-6 text-lg font-light leading-relaxed text-cs-cloud md:text-xl">
-            Thanks for downloading it. A copy is on its way to your inbox as well.
+            Thanks. Your brief is ready below, and we&apos;ve sent a copy to your inbox.
           </p>
           <Button variant="accent" size="xl" asChild className="mt-8">
             <a href={NURSING_BRIEF_PDF_URL} target="_blank" rel="noopener">
