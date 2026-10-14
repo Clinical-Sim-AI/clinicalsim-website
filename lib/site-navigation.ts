@@ -81,6 +81,7 @@ const relatedRoutes: Record<Exclude<HeaderItemId, "contact">, string[]> = {
     "/solutions/informed-consent",
     "/solutions/error-disclosure",
     "/solutions/workforce-retention",
+    "/solutions/de-escalation",
     "/audiences/risk-and-patient-safety",
     "/audiences/quality-and-patient-experience",
     "/audiences/nursing-leadership",

@@ -1336,6 +1336,7 @@ const audiences: Audience[] = [
         title: "De-escalation",
         description:
           "Nurses practice talking down an agitated patient, family member or visitor, as spoken practice that adds to the course you already run.",
+        href: "/solutions/de-escalation",
       },
       {
         title: "New nurses and nurse managers",

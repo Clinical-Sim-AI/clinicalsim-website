@@ -50,6 +50,7 @@ describe("market positioning", () => {
       "informed-consent",
       "error-disclosure",
       "workforce-retention",
+      "de-escalation",
     ])
   })
 
@@ -120,6 +121,7 @@ describe("market positioning", () => {
           "informed-consent",
           "error-disclosure",
           "workforce-retention",
+          "de-escalation",
         ],
       },
       {

@@ -68,9 +68,11 @@ function StageCard({
           {stage.title}
         </h3>
       </div>
-      <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
-        {stage.description}
-      </p>
+      {stage.description && (
+        <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
+          {stage.description}
+        </p>
+      )}
     </div>
   )
 }
@@ -90,6 +92,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
     context: (solution.context?.paragraphs.length ?? 0) > 0,
     stages: (solution.stages?.length ?? 0) > 0,
     stageGroups: (solution.stageGroups?.length ?? 0) > 0,
+    scoring: (solution.scoring?.paragraphs.length ?? 0) > 0,
     valueProps: (solution.valueProps?.length ?? 0) > 0,
     frameworks: (solution.frameworks?.length ?? 0) > 0,
     faqs: (solution.faqs?.length ?? 0) > 0,
@@ -319,6 +322,31 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* How the lane is scored */}
+      {optionalBlocks.scoring && solution.scoring && (
+        <>
+          <SectionDivider variant="diagonal-down" color="white" className={underHero("scoring")} />
+
+          <section className="px-6 py-8 md:py-10 bg-white">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
+                {solution.scoring.heading}
+              </h2>
+              <div className="space-y-5">
+                {solution.scoring.paragraphs.map((paragraph, index) => (
+                  <p
+                    key={index}
+                    className="text-lg text-cs-dark-blue/85 font-light leading-relaxed"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </div>
           </section>
         </>
