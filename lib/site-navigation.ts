@@ -83,6 +83,7 @@ const relatedRoutes: Record<Exclude<HeaderItemId, "contact">, string[]> = {
     "/solutions/workforce-retention",
     "/audiences/risk-and-patient-safety",
     "/audiences/quality-and-patient-experience",
+    "/audiences/nursing-leadership",
   ],
   "medical-education": [
     "/solutions/longitudinal-curriculum",

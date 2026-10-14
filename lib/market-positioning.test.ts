@@ -24,6 +24,7 @@ describe("market positioning", () => {
     ).toEqual([
       "risk-and-patient-safety",
       "quality-and-patient-experience",
+      "nursing-leadership",
     ])
 
     expect(

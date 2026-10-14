@@ -6,6 +6,7 @@ import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { GlossaryTermLinks } from "@/components/glossary-term-links"
+import { ClaimBoundary } from "@/components/claim-boundary"
 import { rendersGeneratedPrimaryCta, type Audience } from "@/lib/audiences"
 import { getPostBySlug } from "@/lib/posts"
 import { getSolutionBySlug } from "@/lib/solutions"
@@ -21,6 +22,14 @@ const valuePropBrandIcons: Array<BrandIconName | null> = [
   null,
   "star-raising",
 ]
+
+/**
+ * Lowercase a sentence-case title's first letter so it reads mid-sentence,
+ * leaving acronyms ("HCAHPS", "Medical school (UME)") intact.
+ */
+function midSentence(title: string): string {
+  return /^[A-Z][a-z]/.test(title) ? title[0].toLowerCase() + title.slice(1) : title
+}
 
 interface AudiencePageLayoutProps {
   audience: Audience
@@ -180,6 +189,11 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             </h2>
           </div>
 
+          {audience.stakesSummary ? (
+            <p className="max-w-3xl mx-auto text-lg text-cs-dark-blue/80 font-light leading-relaxed">
+              {audience.stakesSummary}
+            </p>
+          ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {audience.painPoints.map((point, index) => (
               <div
@@ -207,6 +221,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
 
@@ -221,6 +236,18 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             </h2>
           </div>
 
+          {audience.numbers && audience.numbers.length > 0 ? (
+            <ul className="max-w-3xl mx-auto space-y-4">
+              {audience.numbers.map((line, index) => (
+                <li
+                  key={index}
+                  className="bg-white rounded-xl p-5 md:p-6 border border-cs-gray/50 text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed"
+                >
+                  {line}
+                </li>
+              ))}
+            </ul>
+          ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {audience.stats.map((stat, index) => (
               <StatHighlight
@@ -232,6 +259,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
               />
             ))}
           </div>
+          )}
         </div>
       </section>
 
@@ -250,6 +278,13 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             {audience.valueProps.map((prop, index) => {
               const slot = index % valuePropBrandIcons.length
               const brandIcon = valuePropBrandIcons[slot]
+              // Name the destination, not the card: "New nurses and nurse
+              // managers" links to the workforce retention page, so anchor
+              // text built from the card title would misdescribe the link.
+              const linkedSolution = prop.href?.startsWith("/solutions/")
+                ? getSolutionBySlug(prop.href.slice("/solutions/".length))
+                : undefined
+              const linkLabel = midSentence(linkedSolution?.shortTitle ?? prop.title)
               return (
                 <FeatureCard
                   key={index}
@@ -259,6 +294,17 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
                   description={prop.description}
                   variant={index === 0 ? "accent" : "default"}
                   expandOnHover
+                  footer={
+                    prop.href ? (
+                      <Link
+                        href={prop.href}
+                        className="inline-flex items-center gap-1 text-sm font-medium text-cs-dark-blue underline-offset-4 hover:underline"
+                      >
+                        Learn more about {linkLabel}
+                        <ArrowRight className="w-3 h-3" aria-hidden="true" />
+                      </Link>
+                    ) : undefined
+                  }
                 />
               )
             })}
@@ -394,6 +440,17 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
       <GlossaryTermLinks slugs={audience.glossarySlugs} />
 
+      {audience.claimBoundary && (
+        <ClaimBoundary
+          nonEndorsementOrgs={audience.nonEndorsementOrgs}
+          showFormative={audience.claimBoundary.formative}
+          showRaterValidation={audience.claimBoundary.raterValidation}
+          showOutcomePredictionLimit={audience.claimBoundary.noOutcomePrediction}
+          showEmploymentUseLimit={audience.claimBoundary.noEmploymentUse}
+          note={audience.claimBoundary.note}
+        />
+      )}
+
       {/* Final CTA */}
       <WaveformBand seed={audience.slug}>
         <div className="max-w-4xl mx-auto text-center">
@@ -409,10 +466,19 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
                 Talk with us
               </Button>
             </Link>
-            <Link href="/audiences">
+            <Link href={audience.secondaryCta?.href ?? "/audiences"}>
               <Button variant="outline" size="lg" className="border-white/30 bg-transparent text-white hover:bg-white/10">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                All audiences
+                {audience.secondaryCta ? (
+                  <>
+                    {audience.secondaryCta.label}
+                    <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                  </>
+                ) : (
+                  <>
+                    <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" />
+                    All audiences
+                  </>
+                )}
               </Button>
             </Link>
           </div>

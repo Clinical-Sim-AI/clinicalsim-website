@@ -121,6 +121,16 @@ export default function NursingTurnoverBriefPage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-8 text-base font-light leading-relaxed text-cs-cloud">
+              For how practice and unit-level reporting work across a nursing department, see{" "}
+              <Link
+                href="/audiences/nursing-leadership"
+                className="font-medium text-cs-electric underline underline-offset-4 hover:text-white"
+              >
+                ClinicalSim for nursing leadership
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>
