@@ -18,6 +18,7 @@ const UNION_MEMBERS: SolutionSlug[] = [
   "informed-consent",
   "error-disclosure",
   "workforce-retention",
+  "de-escalation",
   "remediation",
 ]
 

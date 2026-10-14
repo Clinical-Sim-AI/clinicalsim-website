@@ -78,7 +78,7 @@ export const HOMEPAGE_PUBLIC_COPY = {
       "Most institutions already know which conversation they want to strengthen, so the first assessment starts there rather than with a list of features.",
     healthSystemHeading: "For health systems",
     healthSystemBody:
-      "Practice patient experience, consent and disclosure, and team conversations against your institution's own standards. Leaders review cohort or unit patterns alongside your existing healthcare simulation program.",
+      "Practice patient experience, consent and disclosure, de-escalation, and team conversations against your institution's own standards. Leaders review cohort or unit patterns alongside your existing healthcare simulation program.",
     medicalEducationHeading:
       "For residency, fellowship, and medical school programs",
     medicalEducationBody:

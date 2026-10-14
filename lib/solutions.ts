@@ -7,7 +7,8 @@ export interface SolutionStage {
   /** Short label for the stage, e.g. "PGY-1", "M1/M2", "Giving feedback". Optional; no badge renders without one. */
   label?: string
   title: string
-  description: string
+  /** Optional. A stage with no description renders as its title alone. */
+  description?: string
 }
 
 /** A gated or downloadable resource, shown as a card above the closing CTA. */
@@ -79,6 +80,7 @@ export type SolutionSlug =
   | "informed-consent"
   | "error-disclosure"
   | "workforce-retention"
+  | "de-escalation"
   | "remediation"
 
 export interface Solution {
@@ -145,6 +147,9 @@ export interface Solution {
   stages?: SolutionStage[]
   /** Several headed stage lists, for a page that speaks to more than one group. Renders after `stages`. */
   stageGroups?: { heading: string; intro?: string; stages: SolutionStage[] }[]
+
+  /** A short prose section on how the lane is scored. Renders after the stages, same markup as `context`. */
+  scoring?: { heading: string; paragraphs: string[] }
 
   // What you get
   /** Heading over the value props. Was a per-slug switch inside the layout. */
@@ -1217,6 +1222,90 @@ const solutions: Solution[] = [
     ctaHeadline: "Bring us the conversation your managers find hardest",
     ctaDescription:
       "Send your leadership model, your escalation policy, or the conversation that keeps coming up in exit interviews. We'll map what a spoken case can score and agree on reporting rules before anyone practices.",
+  },
+  // -------------------------------------------------------------------------
+  // De-escalation
+  // -------------------------------------------------------------------------
+  // Copy from Ben's handoff (de-escalation-page-handoff-v1-2026-10-14), in as written. The
+  // handoff's four "does not claim" bullets are covered by the shared ClaimBoundary lines plus
+  // its first bullet as the note, because lib/claim-discipline.test.ts requires the shared ones.
+  {
+    slug: "de-escalation",
+    market: "health-system",
+    category: "conversation",
+    title: "De-escalation",
+    shortTitle: "De-escalation",
+    subtitle: "Practice talking down an agitated patient, family member or visitor",
+    icon: "chat-exclamation",
+    colorVariant: "navy",
+    cardBullets: [
+      "Waiting rooms, refused requests and visiting rules",
+      "Spoken practice that adds to the course you already run",
+      "Scored on de-escalation behaviors or your own policy",
+    ],
+    metaTitle: "De-escalation practice for nurses and hospital staff",
+    metaDescription:
+      "Nurses and frontline staff practice talking down an agitated patient, family member or visitor by voice, scored on de-escalation behaviors and your own policy.",
+    heroHeadline:
+      "Your staff took the de-escalation course. Now they can practice it out loud.",
+    heroDescription:
+      "Nurses, emergency department staff, security and front desk teams practice by voice with agitated AI characters. Each conversation is scored on de-escalation behaviors and your own workplace violence policy, with their own words under every score.",
+    context: {
+      heading: "Why practice, not only a course",
+      paragraphs: [
+        "A course shows that someone attended. It doesn't show what they say when a frightened, angry family member is two feet away.",
+        "The Joint Commission's workplace violence prevention standards, in effect since January 2022, require hospitals to train staff in workplace violence prevention, including de-escalation (The Joint Commission, 2022).",
+        "At least 20 states now have workplace violence laws for health care settings (Epstein Becker Green, 2026).",
+      ],
+    },
+    stagesHeading: "What staff practice",
+    stages: [
+      {
+        title:
+          "A parent in the emergency department waiting room who's been told, again, that it will be a while",
+      },
+      { title: "A patient refused an early opioid refill" },
+      { title: "A visitor angry about visiting hours who won't leave the unit" },
+      { title: "A family member who blames the nurse for a delay in care" },
+      { title: "A confused older patient pulling at lines and lashing out" },
+    ],
+    scoring: {
+      heading: "How it's scored",
+      paragraphs: [
+        "On the verbal de-escalation domains from the American Association for Emergency Psychiatry's Project BETA consensus, or on your own workplace violence and de-escalation policy. Every score quotes what the person said, so an educator can hear whether they acknowledged the person, set a clear limit and offered a choice, or argued. Results are reported by unit or cohort, and you decide whether anyone is named.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Does this replace our current de-escalation course?",
+        answer:
+          "No. It adds spoken practice to the course you already run, including any physical intervention training, which ClinicalSim doesn't teach.",
+      },
+      {
+        question: "Does it meet the Joint Commission requirement?",
+        answer:
+          "Practice scores don't establish compliance with any standard. ClinicalSim can be one part of the training program your standards call for, and it gives you a dated record of who practiced.",
+      },
+      {
+        question: "Can results stay anonymous for union staff?",
+        answer:
+          "Yes. You set reporting rules before anyone practices, and results can be anonymous and reported only by unit.",
+      },
+    ],
+    nonEndorsementOrgs: [
+      "The Joint Commission",
+      "the American Association for Emergency Psychiatry",
+    ],
+    claimBoundary: {
+      formative: true,
+      raterValidation: true,
+      noOutcomePrediction: true,
+      noEmploymentUse: true,
+      note: "ClinicalSim has no evidence of reducing workplace violence or injuries. The figures above describe hospital requirements, not ClinicalSim results.",
+    },
+    ctaHeadline: "Bring us the encounter your staff dread",
+    ctaDescription:
+      "Send your workplace violence policy or the situation your incident reports keep describing, and we'll show you what a case can score.",
   },
   {
     slug: "remediation",
