@@ -1,30 +1,129 @@
-export type HeaderItemId =
-  | "health-systems"
-  | "medical-education"
-  | "how-it-works"
-  | "evidence"
-  | "contact"
+import { getAudiencesByMarket } from "@/lib/audiences"
+import { getSolutionsByMarket } from "@/lib/solutions"
+import type { Market } from "@/lib/positioning"
+
+export type HeaderMenuId = "health-systems" | "medical-education" | "how-it-works" | "resources"
+export type HeaderItemId = HeaderMenuId | "contact"
 
 export interface HeaderLink {
   href: string
   label: string
 }
 
-export interface HeaderNavigationLink extends HeaderLink {
-  id: Exclude<HeaderItemId, "contact">
+export interface HeaderMenuGroup {
+  label?: string
+  items: HeaderLink[]
 }
 
-// Keep the first decision small. New catalog entries don't add header links.
-export const HEADER_LINKS: HeaderNavigationLink[] = [
-  { id: "health-systems", href: "/health-systems", label: "Health systems" },
-  { id: "medical-education", href: "/medical-education", label: "Medical education" },
+export interface HeaderNavigationMenu {
+  id: HeaderMenuId
+  label: string
+  // The hub page the label itself links to. Resources has no hub, so its
+  // label only opens the menu.
+  href?: string
+  groups: HeaderMenuGroup[]
+}
+
+function marketGroups(market: Market): HeaderMenuGroup[] {
+  return [
+    {
+      label: "Use cases",
+      items: getSolutionsByMarket(market).map((solution) => ({
+        href: `/solutions/${solution.slug}`,
+        label: solution.shortTitle,
+      })),
+    },
+    {
+      label: "Who it's for",
+      items: getAudiencesByMarket(market).map((audience) => ({
+        href: `/audiences/${audience.slug}`,
+        label: audience.title,
+      })),
+    },
+  ]
+}
+
+// Four buyer-path menus. Each label still links to its hub page, and the
+// menu opens beside it so every specialist page is one step from the header.
+export const HEADER_MENUS: HeaderNavigationMenu[] = [
+  {
+    id: "health-systems",
+    label: "Health systems",
+    href: "/health-systems",
+    groups: [
+      {
+        label: "Start here",
+        items: [
+          { href: "/health-systems", label: "Health systems overview" },
+          { href: "/resources/nursing-turnover-brief", label: "Nursing turnover brief" },
+        ],
+      },
+      ...marketGroups("health-system"),
+    ],
+  },
+  {
+    id: "medical-education",
+    label: "Medical education",
+    href: "/medical-education",
+    groups: [
+      {
+        label: "Start here",
+        items: [
+          { href: "/medical-education", label: "Medical education overview" },
+          { href: "/medical-educator-faq", label: "Medical educator FAQ" },
+        ],
+      },
+      ...marketGroups("medical-education"),
+    ],
+  },
   {
     id: "how-it-works",
-    href: "/clinical-communication-intelligence",
     label: "How it works",
+    href: "/clinical-communication-intelligence",
+    groups: [
+      {
+        items: [
+          { href: "/clinical-communication-intelligence", label: "Clinical communication intelligence" },
+          { href: "/examples", label: "Example feedback" },
+          { href: "/frameworks", label: "Frameworks and standards" },
+          { href: "/methodology", label: "Scoring methodology" },
+          { href: "/evaluation", label: "Evaluating ClinicalSim" },
+          { href: "/compare", label: "Compare approaches" },
+          { href: "/roi-calculator", label: "ROI calculator" },
+        ],
+      },
+    ],
   },
-  { id: "evidence", href: "/evidence", label: "Evidence" },
+  {
+    id: "resources",
+    label: "Resources",
+    groups: [
+      {
+        label: "Evidence and reading",
+        items: [
+          { href: "/evidence", label: "Evidence" },
+          { href: "/insights", label: "Insights" },
+          { href: "/research", label: "Research collaboration" },
+          { href: "/glossary", label: "Glossary" },
+        ],
+      },
+      {
+        label: "Support and company",
+        items: [
+          { href: "/help", label: "Help center" },
+          { href: "/help/release-notes", label: "Release notes" },
+          { href: "/faq", label: "FAQ" },
+          { href: "/about", label: "About ClinicalSim" },
+          { href: "/trust", label: "Trust and compliance" },
+        ],
+      },
+    ],
+  },
 ]
+
+export function getMenuLinks(menu: HeaderNavigationMenu): HeaderLink[] {
+  return menu.groups.flatMap((group) => group.items)
+}
 
 export const HEADER_ACTION: HeaderLink = { href: "/contact", label: "Talk with us" }
 
@@ -41,10 +140,14 @@ export const FOOTER_GROUPS: Array<{ label: string; links: HeaderLink[] }> = [
   {
     label: "Explore",
     links: [
-      ...HEADER_LINKS,
+      { href: "/health-systems", label: "Health systems" },
+      { href: "/medical-education", label: "Medical education" },
+      { href: "/clinical-communication-intelligence", label: "How it works" },
+      { href: "/evidence", label: "Evidence" },
       { href: "/solutions", label: "All use cases" },
       { href: "/audiences", label: "All audiences" },
       { href: "/examples", label: "Example feedback" },
+      { href: "/roi-calculator", label: "ROI calculator" },
     ],
   },
   {
@@ -56,6 +159,7 @@ export const FOOTER_GROUPS: Array<{ label: string; links: HeaderLink[] }> = [
       { href: "/insights", label: "Insights" },
       { href: "/research", label: "Research collaboration" },
       { href: "/compare", label: "Compare approaches" },
+      { href: "/resources/nursing-turnover-brief", label: "Nursing turnover brief" },
       { href: "/glossary", label: "Glossary" },
     ],
   },
@@ -74,46 +178,17 @@ export const FOOTER_GROUPS: Array<{ label: string; links: HeaderLink[] }> = [
   },
 ]
 
-const relatedRoutes: Record<Exclude<HeaderItemId, "contact">, string[]> = {
-  "health-systems": [
-    "/solutions/patient-experience",
-    "/solutions/debriefing",
-    "/solutions/informed-consent",
-    "/solutions/error-disclosure",
-    "/solutions/workforce-retention",
-    "/audiences/risk-and-patient-safety",
-    "/audiences/quality-and-patient-experience",
-  ],
-  "medical-education": [
-    "/solutions/longitudinal-curriculum",
-    "/solutions/undergraduate-medical-education",
-    "/solutions/faculty-development",
-    "/solutions/remediation",
-    "/audiences/program-directors",
-    "/audiences/dios-gme-leadership",
-    "/audiences/simulation-center-directors",
-    "/audiences/clinical-competency-committees",
-    "/audiences/medical-school-leadership",
-    "/audiences/faculty-clinician-educators",
-    "/medical-educator-faq",
-  ],
-  "how-it-works": ["/examples", "/frameworks", "/evaluation"],
-  evidence: ["/methodology", "/insights", "/research"],
-}
-
 export function routeIsActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`)
 }
 
+// A page keeps its buyer path underlined when it's the hub or any page in
+// that menu. Menus are checked in header order, so the first match wins.
 export function getActiveHeaderItem(pathname: string): HeaderItemId | null {
   if (routeIsActive(pathname, HEADER_ACTION.href)) return "contact"
-  for (const link of HEADER_LINKS) {
-    if (
-      routeIsActive(pathname, link.href) ||
-      relatedRoutes[link.id].some((href) => routeIsActive(pathname, href))
-    ) {
-      return link.id
-    }
+  for (const menu of HEADER_MENUS) {
+    const hrefs = [...(menu.href ? [menu.href] : []), ...getMenuLinks(menu).map((link) => link.href)]
+    if (hrefs.some((href) => routeIsActive(pathname, href))) return menu.id
   }
   return null
 }
