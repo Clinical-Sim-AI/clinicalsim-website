@@ -23,6 +23,14 @@ const valuePropBrandIcons: Array<BrandIconName | null> = [
   "star-raising",
 ]
 
+/**
+ * Lowercase a sentence-case title's first letter so it reads mid-sentence,
+ * leaving acronyms ("HCAHPS", "Medical school (UME)") intact.
+ */
+function midSentence(title: string): string {
+  return /^[A-Z][a-z]/.test(title) ? title[0].toLowerCase() + title.slice(1) : title
+}
+
 interface AudiencePageLayoutProps {
   audience: Audience
 }
@@ -270,6 +278,13 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             {audience.valueProps.map((prop, index) => {
               const slot = index % valuePropBrandIcons.length
               const brandIcon = valuePropBrandIcons[slot]
+              // Name the destination, not the card: "New nurses and nurse
+              // managers" links to the workforce retention page, so anchor
+              // text built from the card title would misdescribe the link.
+              const linkedSolution = prop.href?.startsWith("/solutions/")
+                ? getSolutionBySlug(prop.href.slice("/solutions/".length))
+                : undefined
+              const linkLabel = midSentence(linkedSolution?.shortTitle ?? prop.title)
               return (
                 <FeatureCard
                   key={index}
@@ -285,8 +300,8 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
                         href={prop.href}
                         className="inline-flex items-center gap-1 text-sm font-medium text-cs-dark-blue underline-offset-4 hover:underline"
                       >
-                        Learn more about {prop.title.toLowerCase()}
-                        <ArrowRight className="w-3 h-3" />
+                        Learn more about {linkLabel}
+                        <ArrowRight className="w-3 h-3" aria-hidden="true" />
                       </Link>
                     ) : undefined
                   }
@@ -451,21 +466,21 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
                 Talk with us
               </Button>
             </Link>
-            {audience.secondaryCta ? (
-              <Link href={audience.secondaryCta.href}>
-                <Button variant="outline" size="lg" className="border-white/30 bg-transparent text-white hover:bg-white/10">
-                  {audience.secondaryCta.label}
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
-            ) : (
-              <Link href="/audiences">
-                <Button variant="outline" size="lg" className="border-white/30 bg-transparent text-white hover:bg-white/10">
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  All audiences
-                </Button>
-              </Link>
-            )}
+            <Link href={audience.secondaryCta?.href ?? "/audiences"}>
+              <Button variant="outline" size="lg" className="border-white/30 bg-transparent text-white hover:bg-white/10">
+                {audience.secondaryCta ? (
+                  <>
+                    {audience.secondaryCta.label}
+                    <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                  </>
+                ) : (
+                  <>
+                    <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" />
+                    All audiences
+                  </>
+                )}
+              </Button>
+            </Link>
           </div>
         </div>
       </WaveformBand>

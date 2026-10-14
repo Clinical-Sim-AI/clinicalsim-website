@@ -77,17 +77,23 @@ describe("Audience registry", () => {
   // Value-prop links point at sibling solution and resource pages that are
   // sometimes built in a separate PR. A card that links to a route with no
   // page.tsx ships a 404 from an indexable page.
+  // Static routes only: a link to a dynamic route ([slug]) fails here and
+  // needs its own registry check.
+  const routeHasPage = (href: string) =>
+    ["page.tsx", "page.mdx"].some((file) =>
+      existsSync(path.join(process.cwd(), "app/(marketing)", href, file))
+    )
+  const INTERNAL_ROUTE = /^\/[a-z0-9-]+(\/[a-z0-9-]+)*$/
+
   it("links value props only to routes that exist", () => {
     for (const audience of audiences) {
-      for (const prop of audience.valueProps) {
-        if (!prop.href) continue
-        expect(prop.href, `${audience.slug}: ${prop.title}`).toMatch(/^\/[a-z0-9/-]+$/)
-        const page = path.join(process.cwd(), "app/(marketing)", prop.href, "page.tsx")
-        expect(existsSync(page), `${audience.slug} links ${prop.href}, which has no page`).toBe(true)
-      }
-      if (audience.secondaryCta) {
-        const page = path.join(process.cwd(), "app/(marketing)", audience.secondaryCta.href, "page.tsx")
-        expect(existsSync(page), `${audience.slug} secondaryCta ${audience.secondaryCta.href}`).toBe(true)
+      const hrefs = [
+        ...audience.valueProps.flatMap((prop) => (prop.href ? [prop.href] : [])),
+        ...(audience.secondaryCta ? [audience.secondaryCta.href] : []),
+      ]
+      for (const href of hrefs) {
+        expect(href, `${audience.slug}: ${href}`).toMatch(INTERNAL_ROUTE)
+        expect(routeHasPage(href), `${audience.slug} links ${href}, which has no page`).toBe(true)
       }
     }
   })
@@ -97,6 +103,21 @@ describe("Audience registry", () => {
       for (const text of [audience.stakesSummary ?? "", ...(audience.numbers ?? [])]) {
         expect(text, audience.slug).not.toMatch(/[–—]/)
       }
+    }
+  })
+
+  // The layout renders stakesSummary instead of painPoints, and numbers instead
+  // of stats. Filling both halves silently drops one, and filling neither
+  // renders an empty "What's at stake" or "The numbers" section.
+  it("fills exactly one of each alternative section pair", () => {
+    for (const audience of audiences) {
+      const hasSummary = Boolean(audience.stakesSummary?.trim())
+      const hasPainPoints = audience.painPoints.length > 0
+      expect(hasSummary !== hasPainPoints, `${audience.slug}: stakesSummary xor painPoints`).toBe(true)
+
+      const hasNumbers = (audience.numbers?.length ?? 0) > 0
+      const hasStats = audience.stats.length > 0
+      expect(hasNumbers !== hasStats, `${audience.slug}: numbers xor stats`).toBe(true)
     }
   })
 

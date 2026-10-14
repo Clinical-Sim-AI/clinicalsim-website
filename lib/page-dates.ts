@@ -14,7 +14,8 @@ export const PAGE_DATE_MODIFIED = {
   // Introduction and mission shortened; product sections combined.
   // Category line became "clinical communication intelligence" (2026-10-06).
   about: "2026-10-06",
-  audiences: "2026-09-02",
+  // Added the nursing leadership audience to the listing (2026-10-14).
+  audiences: "2026-10-14",
   // New category page (2026-10-06).
   clinicalCommunicationIntelligence: "2026-10-11",
   compare: "2026-09-02",
@@ -31,7 +32,8 @@ export const PAGE_DATE_MODIFIED = {
   glossary: "2026-08-18",
   // Category eyebrow, leader clause, single CTA, and the 29-pilot line.
   home: "2026-10-11",
-  healthSystems: "2026-10-11",
+  // Added nursing leadership to the roles list (2026-10-14).
+  healthSystems: "2026-10-14",
   medicalEducation: "2026-10-11",
   // Added the communication remediation plan article to the listing.
   insights: "2026-09-24",
