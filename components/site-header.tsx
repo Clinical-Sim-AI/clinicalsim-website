@@ -102,6 +102,9 @@ export function SiteHeader() {
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null)
   const desktopTriggerRefs = useRef<Partial<Record<HeaderMenuId, HTMLButtonElement | null>>>({})
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // The menu a pointer opened by hovering. A click on its button then keeps it
+  // open instead of toggling it shut under the cursor.
+  const hoverOpenedRef = useRef<HeaderMenuId | null>(null)
   const canHover = useSyncExternalStore(subscribeToHover, getHoverSnapshot, getHoverServerSnapshot)
   const activeHeaderItem = getActiveHeaderItem(pathname)
 
@@ -156,7 +159,12 @@ export function SiteHeader() {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key !== "Escape" || !activeMenu) return
       setActiveMenu(null)
-      desktopTriggerRefs.current[activeMenu]?.focus()
+      // Only move focus when it was in the header (or nowhere). A menu opened by
+      // hover must not pull focus out of a field elsewhere on the page.
+      const focused = document.activeElement
+      if (!focused || focused === document.body || headerRef.current?.contains(focused)) {
+        desktopTriggerRefs.current[activeMenu]?.focus()
+      }
     }
 
     document.addEventListener("pointerdown", handleClickOutside)
@@ -223,7 +231,7 @@ export function SiteHeader() {
         onClick={() => setMobileMenuOpen((open) => !open)}
         aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
         aria-expanded={mobileMenuOpen}
-        aria-controls="mobile-navigation"
+        aria-controls={mobileMenuOpen ? "mobile-navigation" : undefined}
       >
         {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
@@ -248,6 +256,7 @@ export function SiteHeader() {
                 canHover
                   ? () => {
                       clearHoverTimeout()
+                      if (activeMenu !== menu.id) hoverOpenedRef.current = menu.id
                       setActiveMenu(menu.id)
                     }
                   : undefined
@@ -282,7 +291,7 @@ export function SiteHeader() {
                 }}
                 type="button"
                 aria-expanded={open}
-                aria-controls={menuPanelId(menu.id, "desktop")}
+                aria-controls={open ? menuPanelId(menu.id, "desktop") : undefined}
                 aria-label={menu.href ? `${menu.label} menu` : undefined}
                 className={
                   menu.href
@@ -291,6 +300,12 @@ export function SiteHeader() {
                 }
                 onClick={() => {
                   clearHoverTimeout()
+                  if (hoverOpenedRef.current === menu.id) {
+                    hoverOpenedRef.current = null
+                    setActiveMenu(menu.id)
+                    return
+                  }
+                  hoverOpenedRef.current = null
                   setActiveMenu((current) => (current === menu.id ? null : menu.id))
                 }}
               >
@@ -303,11 +318,20 @@ export function SiteHeader() {
               {open && (
                 <div
                   id={menuPanelId(menu.id, "desktop")}
+                  data-hover-bridge={wide ? "" : undefined}
                   className={`absolute top-full z-50 ${
                     wide
-                      ? "left-1/2 w-[min(820px,calc(100vw-2rem))] -translate-x-1/2"
+                      ? // Wide panels hang off the header's bottom edge, below its
+                        // padding. The pseudo-element bridges that gap so the
+                        // pointer stays inside the menu on its way down.
+                        "left-1/2 w-[min(820px,calc(100vw-2rem))] -translate-x-1/2 before:absolute before:inset-x-0 before:bottom-full before:h-6 before:content-['']"
                       : `${alignEnd ? "right-0" : "left-0"} w-max min-w-64 pt-2`
                   }`}
+                  // Pressing on the panel's padding or a group label would blur
+                  // the focused trigger and close the menu under the pointer.
+                  onMouseDown={(event) => {
+                    if (!(event.target as Element).closest("a[href], button")) event.preventDefault()
+                  }}
                 >
                   <div className="dropdown-enter whitespace-normal rounded-xl border border-cs-gray/40 bg-white p-3 shadow-lg">
                     <MenuGroups menu={menu} pathname={pathname} surface="desktop" onNavigate={closeNavigation} />
@@ -358,7 +382,7 @@ export function SiteHeader() {
                       <button
                         type="button"
                         aria-expanded={expanded}
-                        aria-controls={menuPanelId(menu.id, "mobile")}
+                        aria-controls={expanded ? menuPanelId(menu.id, "mobile") : undefined}
                         aria-label={`${expanded ? "Hide" : "Show"} ${menu.label} pages`}
                         className="rounded-md p-3 text-cs-dark-blue transition-colors hover:bg-cs-cloud"
                         onClick={toggle}
@@ -370,7 +394,7 @@ export function SiteHeader() {
                     <button
                       type="button"
                       aria-expanded={expanded}
-                      aria-controls={menuPanelId(menu.id, "mobile")}
+                      aria-controls={expanded ? menuPanelId(menu.id, "mobile") : undefined}
                       className="flex flex-1 items-center justify-between rounded-md px-3 py-3 text-left font-medium text-cs-dark-blue transition-colors hover:bg-cs-cloud"
                       onClick={toggle}
                     >

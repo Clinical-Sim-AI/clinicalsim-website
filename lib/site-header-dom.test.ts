@@ -10,14 +10,17 @@ const navigation = vi.hoisted(() => ({ pathname: "/" }))
 vi.mock("next/navigation", () => ({ usePathname: () => navigation.pathname }))
 
 const DESKTOP_QUERY = "(min-width: 1024px)"
+const HOVER_QUERY = "(hover: hover) and (pointer: fine)"
 let desktopQueries: Set<MediaQueryList>
+let canHover: boolean
 
 beforeEach(() => {
   navigation.pathname = "/"
   desktopQueries = new Set()
+  canHover = false
   window.matchMedia = vi.fn((query: string) => {
     const queryList = Object.assign(new EventTarget(), {
-      matches: false,
+      matches: query === HOVER_QUERY && canHover,
       media: query,
       onchange: null,
       addListener: vi.fn(),
@@ -64,6 +67,65 @@ describe("SiteHeader interactions", () => {
     expect(trigger.getAttribute("aria-expanded")).toBe("false")
     expect(document.getElementById("desktop-menu-resources")).toBeNull()
     expect(document.activeElement).toBe(trigger)
+  })
+
+  it("points aria-controls only at panels that exist", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    const trigger = screen.getByRole("button", { name: "Resources" })
+    expect(trigger.getAttribute("aria-controls")).toBeNull()
+    expect(screen.getByRole("button", { name: "Open menu" }).getAttribute("aria-controls")).toBeNull()
+    await user.click(trigger)
+    expect(document.getElementById(trigger.getAttribute("aria-controls")!)).not.toBeNull()
+  })
+
+  it("keeps a hover-opened menu open when its button is clicked", async () => {
+    canHover = true
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    const trigger = screen.getByRole("button", { name: "Resources" })
+    await user.hover(trigger)
+    expect(trigger.getAttribute("aria-expanded")).toBe("true")
+    await user.click(trigger)
+    expect(trigger.getAttribute("aria-expanded")).toBe("true")
+    await user.click(trigger)
+    expect(trigger.getAttribute("aria-expanded")).toBe("false")
+  })
+
+  it("leaves focus outside the header alone when Escape closes a hover-opened menu", async () => {
+    canHover = true
+    const user = userEvent.setup()
+    const input = document.createElement("input")
+    document.body.appendChild(input)
+    render(createElement(SiteHeader))
+    input.focus()
+    const trigger = screen.getByRole("button", { name: "Resources" })
+    await user.hover(trigger)
+    expect(trigger.getAttribute("aria-expanded")).toBe("true")
+    await user.keyboard("{Escape}")
+    expect(trigger.getAttribute("aria-expanded")).toBe("false")
+    expect(document.activeElement).toBe(input)
+    input.remove()
+  })
+
+  it("stays open when a click lands on a group label inside the panel", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    const trigger = screen.getByRole("button", { name: "Health systems menu" })
+    await user.click(trigger)
+    expect(document.activeElement).toBe(trigger)
+    const panel = document.getElementById("desktop-menu-health-systems")!
+    await user.click(within(panel).getByText("Use cases"))
+    expect(document.getElementById("desktop-menu-health-systems")).not.toBeNull()
+  })
+
+  it("bridges the gap between the header and a wide panel", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    await user.click(screen.getByRole("button", { name: "Health systems menu" }))
+    const panel = document.getElementById("desktop-menu-health-systems")!
+    expect(panel.hasAttribute("data-hover-bridge")).toBe(true)
+    expect(panel.className).toContain("before:bottom-full")
   })
 
   it("lists use cases and audiences in the health systems menu", async () => {
