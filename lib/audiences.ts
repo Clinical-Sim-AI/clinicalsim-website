@@ -1305,6 +1305,7 @@ const audiences: Audience[] = [
     buyerQuestion:
       "Which conversations should our nurses practice first, and what will leaders see?",
     heroHeadline: "See how your nurses' conversations go, unit by unit",
+    lastUpdated: "2026-10-14",
     heroDescription:
       "For chief nursing officers, nurse directors and nursing professional development. Nurses practice the conversations behind patient experience, retention and safety by voice with AI characters, scored against your own standards, with results reported by unit.",
 
