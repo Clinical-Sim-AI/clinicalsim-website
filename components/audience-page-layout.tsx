@@ -6,6 +6,7 @@ import { FeatureCard } from "@/components/feature-card"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { GlossaryTermLinks } from "@/components/glossary-term-links"
+import { ClaimBoundary } from "@/components/claim-boundary"
 import { rendersGeneratedPrimaryCta, type Audience } from "@/lib/audiences"
 import { getPostBySlug } from "@/lib/posts"
 import { getSolutionBySlug } from "@/lib/solutions"
@@ -180,6 +181,11 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             </h2>
           </div>
 
+          {audience.stakesSummary ? (
+            <p className="max-w-3xl mx-auto text-lg text-cs-dark-blue/80 font-light leading-relaxed">
+              {audience.stakesSummary}
+            </p>
+          ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {audience.painPoints.map((point, index) => (
               <div
@@ -207,6 +213,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
 
@@ -221,6 +228,18 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
             </h2>
           </div>
 
+          {audience.numbers && audience.numbers.length > 0 ? (
+            <ul className="max-w-3xl mx-auto space-y-4">
+              {audience.numbers.map((line, index) => (
+                <li
+                  key={index}
+                  className="bg-white rounded-xl p-5 md:p-6 border border-cs-gray/50 text-base md:text-lg text-cs-dark-blue/85 font-light leading-relaxed"
+                >
+                  {line}
+                </li>
+              ))}
+            </ul>
+          ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {audience.stats.map((stat, index) => (
               <StatHighlight
@@ -232,6 +251,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
               />
             ))}
           </div>
+          )}
         </div>
       </section>
 
@@ -259,6 +279,17 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
                   description={prop.description}
                   variant={index === 0 ? "accent" : "default"}
                   expandOnHover
+                  footer={
+                    prop.href ? (
+                      <Link
+                        href={prop.href}
+                        className="inline-flex items-center gap-1 text-sm font-medium text-cs-dark-blue underline-offset-4 hover:underline"
+                      >
+                        Learn more about {prop.title.toLowerCase()}
+                        <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    ) : undefined
+                  }
                 />
               )
             })}
@@ -394,6 +425,17 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
 
       <GlossaryTermLinks slugs={audience.glossarySlugs} />
 
+      {audience.claimBoundary && (
+        <ClaimBoundary
+          nonEndorsementOrgs={audience.nonEndorsementOrgs}
+          showFormative={audience.claimBoundary.formative}
+          showRaterValidation={audience.claimBoundary.raterValidation}
+          showOutcomePredictionLimit={audience.claimBoundary.noOutcomePrediction}
+          showEmploymentUseLimit={audience.claimBoundary.noEmploymentUse}
+          note={audience.claimBoundary.note}
+        />
+      )}
+
       {/* Final CTA */}
       <WaveformBand seed={audience.slug}>
         <div className="max-w-4xl mx-auto text-center">
@@ -409,12 +451,21 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
                 Talk with us
               </Button>
             </Link>
-            <Link href="/audiences">
-              <Button variant="outline" size="lg" className="border-white/30 bg-transparent text-white hover:bg-white/10">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                All audiences
-              </Button>
-            </Link>
+            {audience.secondaryCta ? (
+              <Link href={audience.secondaryCta.href}>
+                <Button variant="outline" size="lg" className="border-white/30 bg-transparent text-white hover:bg-white/10">
+                  {audience.secondaryCta.label}
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+            ) : (
+              <Link href="/audiences">
+                <Button variant="outline" size="lg" className="border-white/30 bg-transparent text-white hover:bg-white/10">
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  All audiences
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </WaveformBand>

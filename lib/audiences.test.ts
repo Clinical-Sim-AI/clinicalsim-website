@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs"
+import path from "node:path"
 import { describe, expect, it } from "vitest"
 import {
   BESPOKE_PRIMARY_CTA_AUDIENCE_SLUGS,
@@ -70,5 +72,42 @@ describe("Audience registry", () => {
       )
       expect(question, `${audience.slug}: ${question}`).not.toMatch(/[–—]/)
     }
+  })
+
+  // Value-prop links point at sibling solution and resource pages that are
+  // sometimes built in a separate PR. A card that links to a route with no
+  // page.tsx ships a 404 from an indexable page.
+  it("links value props only to routes that exist", () => {
+    for (const audience of audiences) {
+      for (const prop of audience.valueProps) {
+        if (!prop.href) continue
+        expect(prop.href, `${audience.slug}: ${prop.title}`).toMatch(/^\/[a-z0-9/-]+$/)
+        const page = path.join(process.cwd(), "app/(marketing)", prop.href, "page.tsx")
+        expect(existsSync(page), `${audience.slug} links ${prop.href}, which has no page`).toBe(true)
+      }
+      if (audience.secondaryCta) {
+        const page = path.join(process.cwd(), "app/(marketing)", audience.secondaryCta.href, "page.tsx")
+        expect(existsSync(page), `${audience.slug} secondaryCta ${audience.secondaryCta.href}`).toBe(true)
+      }
+    }
+  })
+
+  it("keeps paragraph and list copy free of em and en dashes", () => {
+    for (const audience of audiences) {
+      for (const text of [audience.stakesSummary ?? "", ...(audience.numbers ?? [])]) {
+        expect(text, audience.slug).not.toMatch(/[–—]/)
+      }
+    }
+  })
+
+  it("renders a claim boundary on the nursing leadership page", () => {
+    const nursing = audiences.find((a) => a.slug === "nursing-leadership")
+    expect(nursing?.claimBoundary).toMatchObject({
+      formative: true,
+      raterValidation: true,
+      noOutcomePrediction: true,
+      noEmploymentUse: true,
+    })
+    expect(nursing?.nonEndorsementOrgs).toContain("ANCC")
   })
 })
