@@ -42,7 +42,7 @@ export const PAGE_DATE_MODIFIED = {
   medicalEducatorFaq: "2026-09-03",
   methodology: "2026-09-03",
   // Gated download page for the nurse turnover brief (2026-10-12).
-  nursingTurnoverBrief: "2026-10-12",
+  nursingTurnoverBrief: "2026-10-14",
   privacy: "2026-03-16",
   research: "2026-09-03",
   solutions: "2026-10-11",
