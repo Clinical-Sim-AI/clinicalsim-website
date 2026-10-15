@@ -118,7 +118,7 @@ export default function EvidencePage() {
             <article className="flex flex-col rounded-2xl border border-cs-gray bg-white p-6 md:p-8">
               <h3 className="mb-4 text-2xl font-medium text-cs-dark-blue">The participant experience</h3>
               <p className="mb-6 font-light leading-relaxed text-cs-dark-blue/85">
-                {examples.length} complete pediatric examples include the
+                {examples.length} complete examples include the
                 recording, full transcript, and feedback report, with no
                 sign-in required. They let you inspect the words behind a score
                 and judge whether the feedback would support practice in your

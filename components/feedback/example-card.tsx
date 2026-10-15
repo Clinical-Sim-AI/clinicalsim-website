@@ -36,7 +36,7 @@ export function ExampleCard({ example }: { example: ExampleCase }) {
 
         {assessmentCount > 0 && (
           <p className="mb-4 text-xs font-medium text-cs-dark-gray">
-            {assessmentCount} scored feedback report{assessmentCount === 1 ? "" : "s"} ·
+            {assessmentCount} feedback report{assessmentCount === 1 ? "" : "s"} ·
             simulated encounter audio · full transcript
           </p>
         )}

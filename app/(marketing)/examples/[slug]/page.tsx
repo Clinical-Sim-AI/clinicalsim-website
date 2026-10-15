@@ -16,6 +16,8 @@ import { getAllExamples, getExampleBySlug } from "@/lib/examples"
 type Props = { params: Promise<{ slug: string }> }
 
 const exampleDescriptions: Record<string, string> = {
+  "48-hours-in-the-hallway":
+    "Review an unedited ClinicalSim encounter in which an emergency nurse talks with the daughter of a patient boarding in a hallway bed, including the recording, transcript, and feedback.",
   "addressing-hydroxyurea-nonadherence-and-medical-mistrust":
     "Review an unedited ClinicalSim encounter about hydroxyurea nonadherence and medical mistrust, including the recording, transcript, and framework-based feedback.",
   "delivering-a-new-leukemia-diagnosis-to-a-family-in-the-emergency-department":
