@@ -10,14 +10,17 @@ const navigation = vi.hoisted(() => ({ pathname: "/" }))
 vi.mock("next/navigation", () => ({ usePathname: () => navigation.pathname }))
 
 const DESKTOP_QUERY = "(min-width: 1024px)"
+const HOVER_QUERY = "(hover: hover) and (pointer: fine)"
 let desktopQueries: Set<MediaQueryList>
+let canHover: boolean
 
 beforeEach(() => {
   navigation.pathname = "/"
   desktopQueries = new Set()
+  canHover = false
   window.matchMedia = vi.fn((query: string) => {
     const queryList = Object.assign(new EventTarget(), {
-      matches: false,
+      matches: query === HOVER_QUERY && canHover,
       media: query,
       onchange: null,
       addListener: vi.fn(),
@@ -33,20 +36,118 @@ afterEach(() => {
   document.body.style.overflow = ""
 })
 
-const expectedLinks = ["Health systems", "Medical education", "How it works", "Evidence", "Sign in", "Talk with us"]
+const topLinks = ["Health systems", "Medical education", "How it works"]
+const actions = ["Sign in", "Sign up", "Talk with us"]
 
 describe("SiteHeader interactions", () => {
-  it("shows direct links without a desktop dropdown, help, or registration action", () => {
+  it("shows hub links, menu buttons, and the platform actions", () => {
     render(createElement(SiteHeader))
     const primary = screen.getByRole("navigation", { name: "Primary navigation" })
-    expect(within(primary).getAllByRole("link").map((link) => link.textContent)).toEqual(expectedLinks)
-    expect(within(primary).queryByRole("button")).toBeNull()
-    expect(within(primary).queryByRole("link", { name: "Help" })).toBeNull()
-    expect(within(primary).queryByRole("link", { name: "Sign up" })).toBeNull()
+    expect(within(primary).getAllByRole("link").map((link) => link.textContent)).toEqual([...topLinks, ...actions])
+    expect(within(primary).getAllByRole("button").map((button) => button.getAttribute("aria-label") ?? button.textContent)).toEqual([
+      "Health systems menu",
+      "Medical education menu",
+      "How it works menu",
+      "Resources",
+    ])
     expect(within(primary).getByRole("link", { name: "Sign in" }).getAttribute("href")).toBe("https://platform.clinicalsim.ai/sign-in")
+    expect(within(primary).getByRole("link", { name: "Sign up" }).getAttribute("href")).toBe("https://platform.clinicalsim.ai/sign-up")
   })
 
-  it("opens the same direct navigation by keyboard and restores focus on Escape", async () => {
+  it("opens a desktop menu by click and returns focus to its button on Escape", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    const trigger = screen.getByRole("button", { name: "Resources" })
+    await user.click(trigger)
+    expect(trigger.getAttribute("aria-expanded")).toBe("true")
+    const panel = document.getElementById(trigger.getAttribute("aria-controls")!)!
+    expect(within(panel).getByRole("link", { name: "Help center" }).getAttribute("href")).toBe("/help")
+    expect(within(panel).getByRole("link", { name: "Evidence" }).getAttribute("href")).toBe("/evidence")
+    await user.keyboard("{Escape}")
+    expect(trigger.getAttribute("aria-expanded")).toBe("false")
+    expect(document.getElementById("desktop-menu-resources")).toBeNull()
+    expect(document.activeElement).toBe(trigger)
+  })
+
+  it("points aria-controls only at panels that exist", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    const trigger = screen.getByRole("button", { name: "Resources" })
+    expect(trigger.getAttribute("aria-controls")).toBeNull()
+    expect(screen.getByRole("button", { name: "Open menu" }).getAttribute("aria-controls")).toBeNull()
+    await user.click(trigger)
+    expect(document.getElementById(trigger.getAttribute("aria-controls")!)).not.toBeNull()
+  })
+
+  it("keeps a hover-opened menu open when its button is clicked", async () => {
+    canHover = true
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    const trigger = screen.getByRole("button", { name: "Resources" })
+    await user.hover(trigger)
+    expect(trigger.getAttribute("aria-expanded")).toBe("true")
+    await user.click(trigger)
+    expect(trigger.getAttribute("aria-expanded")).toBe("true")
+    await user.click(trigger)
+    expect(trigger.getAttribute("aria-expanded")).toBe("false")
+  })
+
+  it("leaves focus outside the header alone when Escape closes a hover-opened menu", async () => {
+    canHover = true
+    const user = userEvent.setup()
+    const input = document.createElement("input")
+    document.body.appendChild(input)
+    render(createElement(SiteHeader))
+    input.focus()
+    const trigger = screen.getByRole("button", { name: "Resources" })
+    await user.hover(trigger)
+    expect(trigger.getAttribute("aria-expanded")).toBe("true")
+    await user.keyboard("{Escape}")
+    expect(trigger.getAttribute("aria-expanded")).toBe("false")
+    expect(document.activeElement).toBe(input)
+    input.remove()
+  })
+
+  it("stays open when a click lands on a group label inside the panel", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    const trigger = screen.getByRole("button", { name: "Health systems menu" })
+    await user.click(trigger)
+    expect(document.activeElement).toBe(trigger)
+    const panel = document.getElementById("desktop-menu-health-systems")!
+    await user.click(within(panel).getByText("Use cases"))
+    expect(document.getElementById("desktop-menu-health-systems")).not.toBeNull()
+  })
+
+  it("bridges the gap between the header and a wide panel", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    await user.click(screen.getByRole("button", { name: "Health systems menu" }))
+    const panel = document.getElementById("desktop-menu-health-systems")!
+    expect(panel.hasAttribute("data-hover-bridge")).toBe(true)
+    expect(panel.className).toContain("before:bottom-full")
+  })
+
+  it("lists use cases and audiences in the health systems menu", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    await user.click(screen.getByRole("button", { name: "Health systems menu" }))
+    const panel = document.getElementById("desktop-menu-health-systems")!
+    expect(within(panel).getAllByRole("link")[0].getAttribute("href")).toBe("/health-systems")
+    expect(within(panel).getByRole("link", { name: "Informed consent" }).getAttribute("href")).toBe("/solutions/informed-consent")
+    expect(within(panel).getByRole("link", { name: "Nursing turnover brief" })).toBeTruthy()
+  })
+
+  it("closes a desktop menu on an outside pointer event", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    await user.click(screen.getByRole("button", { name: "How it works menu" }))
+    expect(document.getElementById("desktop-menu-how-it-works")).not.toBeNull()
+    fireEvent.pointerDown(document.body)
+    expect(document.getElementById("desktop-menu-how-it-works")).toBeNull()
+  })
+
+  it("opens mobile navigation by keyboard and restores focus on Escape", async () => {
     const user = userEvent.setup()
     render(createElement(SiteHeader))
     const trigger = screen.getByRole("button", { name: "Open menu" })
@@ -54,13 +155,27 @@ describe("SiteHeader interactions", () => {
     await user.keyboard("{Enter}")
     const mobile = screen.getByRole("navigation", { name: "Mobile navigation" })
     expect(trigger.getAttribute("aria-expanded")).toBe("true")
-    expect(within(mobile).getAllByRole("link").map((link) => link.textContent)).toEqual(expectedLinks)
+    expect(within(mobile).getAllByRole("link").map((link) => link.textContent)).toEqual([...topLinks, ...actions])
     expect(document.activeElement).toBe(within(mobile).getByRole("link", { name: "Health systems" }))
     expect(document.body.style.overflow).toBe("hidden")
     await user.keyboard("{Escape}")
     expect(screen.queryByRole("navigation", { name: "Mobile navigation" })).toBeNull()
     expect(document.activeElement).toBe(trigger)
     expect(document.body.style.overflow).toBe("")
+  })
+
+  it("expands one mobile section at a time", async () => {
+    const user = userEvent.setup()
+    render(createElement(SiteHeader))
+    await user.click(screen.getByRole("button", { name: "Open menu" }))
+    const mobile = screen.getByRole("navigation", { name: "Mobile navigation" })
+    await user.click(within(mobile).getByRole("button", { name: "Resources" }))
+    expect(within(mobile).getByRole("link", { name: "Help center" })).toBeTruthy()
+    const toggle = within(mobile).getByRole("button", { name: "Show Medical education pages" })
+    await user.click(toggle)
+    expect(toggle.getAttribute("aria-expanded")).toBe("true")
+    expect(within(mobile).getByRole("link", { name: "Medical educator FAQ" })).toBeTruthy()
+    expect(within(mobile).queryByRole("link", { name: "Help center" })).toBeNull()
   })
 
   it("keeps keyboard focus within the open mobile navigation and its toggle", async () => {
@@ -122,7 +237,7 @@ describe("SiteHeader interactions", () => {
   it.each([
     ["/health-systems", "Health systems"],
     ["/medical-education", "Medical education"],
-    ["/evidence", "Evidence"],
+    ["/clinical-communication-intelligence", "How it works"],
   ])("marks the %s page current", (pathname, label) => {
     navigation.pathname = pathname
     render(createElement(SiteHeader))
@@ -134,7 +249,7 @@ describe("SiteHeader interactions", () => {
   it.each([
     ["/solutions/informed-consent", "Health systems"],
     ["/audiences/program-directors", "Medical education"],
-    ["/insights/example-post", "Evidence"],
+    ["/frameworks", "How it works"],
   ])("keeps the buyer path active on %s without claiming it's the current page", (pathname, label) => {
     navigation.pathname = pathname
     render(createElement(SiteHeader))
@@ -142,5 +257,11 @@ describe("SiteHeader interactions", () => {
     expect(link.getAttribute("aria-current")).toBeNull()
     expect(link.className).toContain("border-cs-dark-blue")
     expect(screen.getAllByRole("link").filter((item) => item.getAttribute("aria-current") === "page")).toHaveLength(0)
+  })
+
+  it("underlines the Resources button on a resources page", () => {
+    navigation.pathname = "/insights/example-post"
+    render(createElement(SiteHeader))
+    expect(screen.getByRole("button", { name: "Resources" }).className).toContain("border-cs-dark-blue")
   })
 })

@@ -1,51 +1,87 @@
 import { describe, expect, it } from "vitest"
+import sitemap from "@/app/sitemap"
 import { getAllAudiences } from "./audiences"
 import { getPublishedSolutions } from "./solutions"
 import {
   FOOTER_GROUPS,
   getActiveHeaderItem,
+  getMenuLinks,
   HEADER_ACTION,
-  HEADER_LINKS,
+  HEADER_MENUS,
   PLATFORM_SIGN_IN,
   PLATFORM_SIGN_UP,
   routeIsActive,
 } from "./site-navigation"
 
+const headerHrefs = [
+  ...HEADER_MENUS.flatMap((menu) => [...(menu.href ? [menu.href] : []), ...getMenuLinks(menu).map(({ href }) => href)]),
+  HEADER_ACTION.href,
+]
+
 describe("site navigation", () => {
-  it("keeps the first decision to four direct links and one contact action", () => {
-    expect(HEADER_LINKS.map(({ href, label }) => ({ href, label }))).toEqual([
+  it("keeps four buyer-path menus and one contact action", () => {
+    expect(HEADER_MENUS.map(({ href, label }) => ({ href, label }))).toEqual([
       { href: "/health-systems", label: "Health systems" },
       { href: "/medical-education", label: "Medical education" },
       { href: "/clinical-communication-intelligence", label: "How it works" },
-      { href: "/evidence", label: "Evidence" },
+      { href: undefined, label: "Resources" },
     ])
     expect(HEADER_ACTION).toEqual({ href: "/contact", label: "Talk with us" })
   })
 
-  it("keeps each published specialist page active under its buyer path", () => {
+  it("starts each hub menu with its hub page", () => {
+    for (const menu of HEADER_MENUS.filter((item) => item.href)) {
+      expect(getMenuLinks(menu)[0].href, menu.id).toBe(menu.href)
+    }
+  })
+
+  it("lists every published use case and audience under its buyer path", () => {
     const pages = [
       ...getPublishedSolutions().map(({ slug, market }) => ({ href: `/solutions/${slug}`, market })),
       ...getAllAudiences().map(({ slug, market }) => ({ href: `/audiences/${slug}`, market })),
     ]
     for (const { href, market } of pages) {
-      expect(getActiveHeaderItem(href), href).toBe(
-        market === "health-system" ? "health-systems" : "medical-education"
-      )
+      const id = market === "health-system" ? "health-systems" : "medical-education"
+      const menu = HEADER_MENUS.find((item) => item.id === id)!
+      expect(getMenuLinks(menu).map((link) => link.href), href).toContain(href)
+      expect(getActiveHeaderItem(href), href).toBe(id)
     }
+  })
+
+  it("puts no page in two menus", () => {
+    const hrefs = HEADER_MENUS.flatMap((menu) => getMenuLinks(menu).map(({ href }) => href))
+    expect(new Set(hrefs).size).toBe(hrefs.length)
+  })
+
+  it("reaches every sitemap URL family from the header", () => {
+    const families = new Set(
+      sitemap().map(({ url }) => new URL(url).pathname.split("/")[1]).filter((segment) => segment && segment !== "privacy")
+    )
+    for (const family of families) {
+      expect(headerHrefs.some((href) => href.split("/")[1] === family), family).toBe(true)
+    }
+  })
+
+  it("links help and release notes from the header", () => {
+    expect(headerHrefs).toContain("/help")
+    expect(headerHrefs).toContain("/help/release-notes")
   })
 
   it.each([
     ["/health-systems", "health-systems"],
+    ["/resources/nursing-turnover-brief", "health-systems"],
     ["/medical-education", "medical-education"],
+    ["/medical-educator-faq", "medical-education"],
     ["/clinical-communication-intelligence", "how-it-works"],
     ["/frameworks", "how-it-works"],
     ["/examples/example-case", "how-it-works"],
-    ["/evaluation", "how-it-works"],
-    ["/evidence", "evidence"],
-    ["/methodology", "evidence"],
-    ["/insights/example-post", "evidence"],
-    ["/medical-educator-faq", "medical-education"],
-    ["/help/release-notes", null],
+    ["/methodology", "how-it-works"],
+    ["/compare/example", "how-it-works"],
+    ["/roi-calculator", "how-it-works"],
+    ["/evidence", "resources"],
+    ["/insights/example-post", "resources"],
+    ["/help/release-notes", "resources"],
+    ["/trust", "resources"],
     ["/solutions", null],
     ["/contact", "contact"],
     ["/", null],
@@ -58,13 +94,13 @@ describe("site navigation", () => {
     expect(getActiveHeaderItem("/solutions/informed-consent-other")).toBeNull()
   })
 
-  it("keeps support and registration accessible in the grouped footer", () => {
+  it("keeps support, registration, and every header page in the grouped footer", () => {
     const footerLinks = FOOTER_GROUPS.flatMap(({ links }) => links)
     const hrefs = footerLinks.map(({ href }) => href)
     expect(new Set(hrefs).size).toBe(hrefs.length)
     expect(footerLinks).toContainEqual(PLATFORM_SIGN_IN)
     expect(footerLinks).toContainEqual(PLATFORM_SIGN_UP)
-    for (const href of ["/help", "/help/release-notes", "/solutions", "/audiences", "/faq", "/medical-educator-faq", "/trust", "/compare", "/glossary"]) {
+    for (const href of ["/help", "/help/release-notes", "/solutions", "/audiences", "/faq", "/medical-educator-faq", "/trust", "/compare", "/glossary", "/roi-calculator", "/resources/nursing-turnover-brief"]) {
       expect(hrefs).toContain(href)
     }
   })
