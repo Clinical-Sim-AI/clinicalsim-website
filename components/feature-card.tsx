@@ -11,6 +11,8 @@ export interface FeatureCardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "default" | "accent" | "navy" | "light-blue"
   asymmetric?: boolean
   expandOnHover?: boolean
+  /** Optional content rendered below the description, such as a link. */
+  footer?: React.ReactNode
 }
 
 const variantStyles = {
@@ -48,6 +50,7 @@ export function FeatureCard({
   variant = "default",
   asymmetric = false,
   expandOnHover = false,
+  footer,
   className,
   ...props
 }: FeatureCardProps) {
@@ -80,6 +83,8 @@ export function FeatureCard({
       <p className="text-base md:text-lg text-cs-dark-blue leading-relaxed">
         {description}
       </p>
+
+      {footer && <div className="mt-4">{footer}</div>}
     </div>
   )
 }

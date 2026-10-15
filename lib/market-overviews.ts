@@ -88,6 +88,7 @@ export const healthSystemsOverview: MarketOverviewContent = {
   roles: [
     { label: "Quality and patient experience leaders", href: "/audiences/quality-and-patient-experience" },
     { label: "Risk and patient safety leaders", href: "/audiences/risk-and-patient-safety" },
+    { label: "Nursing leadership", href: "/audiences/nursing-leadership" },
   ],
 }
 

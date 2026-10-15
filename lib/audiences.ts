@@ -1,7 +1,7 @@
 import type { BrandIconName } from "@/components/brand-icon"
 import type { Market } from "@/lib/positioning"
 import type { FaqItem } from "@/lib/types"
-import type { SolutionSlug } from "@/lib/solutions"
+import type { SolutionClaimBoundary, SolutionSlug } from "@/lib/solutions"
 import type { PostSlug } from "@/lib/posts"
 
 export interface PainPoint {
@@ -14,6 +14,8 @@ export interface PainPoint {
 export interface ValueProp {
   title: string
   description: string
+  /** Optional internal route the card links to. lib/audiences.test.ts checks it resolves. */
+  href?: string
 }
 
 export interface AudienceStatItem {
@@ -49,9 +51,20 @@ export interface Audience {
 
   // Pain points
   painPoints: PainPoint[]
+  /**
+   * A single paragraph for "What's at stake", rendered instead of the
+   * painPoints cards. Use one or the other, not both.
+   */
+  stakesSummary?: string
 
   // Stats
   stats: AudienceStatItem[]
+  /**
+   * Sentence bullets for "The numbers", each carrying its own inline
+   * citation, rendered instead of the stats tiles. For findings that have no
+   * single figure to put in a tile.
+   */
+  numbers?: string[]
 
   // Value propositions
   valueProps: ValueProp[]
@@ -87,9 +100,19 @@ export interface Audience {
    */
   glossarySlugs?: string[]
 
+  /**
+   * Renders the "What this page does not claim" block above the final CTA,
+   * using the locked sentences in lib/claim-discipline.ts. Same shape as the
+   * solution registry's fields.
+   */
+  nonEndorsementOrgs?: string[]
+  claimBoundary?: SolutionClaimBoundary
+
   // CTA
   ctaHeadline: string
   ctaDescription: string
+  /** Replaces the "All audiences" button in the final CTA band. */
+  secondaryCta?: { label: string; href: string }
 
   // Related blog posts
   relatedPostSlugs: PostSlug[]
@@ -1262,6 +1285,116 @@ const audiences: Audience[] = [
       "why-communication-training-matters",
       "building-rapport-clinical-encounter",
     ],
+  },
+  {
+    slug: "nursing-leadership",
+    market: "health-system",
+    title: "Nursing leadership",
+    shortTitle: "For nursing leadership",
+    subtitle:
+      "Nurses practice the conversations behind patient experience, retention and safety",
+    icon: "people",
+    colorVariant: "light-blue",
+
+    cardBullets: [
+      "Practice rounding, discharge teaching and de-escalation by voice",
+      "Scored against AIDET or your own service standard",
+      "Results can be anonymous and reported by unit",
+    ],
+
+    buyerQuestion:
+      "Which conversations should our nurses practice first, and what will leaders see?",
+    heroHeadline: "See how your nurses' conversations go, unit by unit",
+    lastUpdated: "2026-10-14",
+    heroDescription:
+      "For chief nursing officers, nurse directors and nursing professional development. Nurses practice the conversations behind patient experience, retention and safety by voice with AI characters, scored against your own standards, with results reported by unit.",
+
+    painPoints: [],
+    stakesSummary:
+      "Nurses have more of the conversations patients remember than anyone else in the hospital: the admission, the hourly round, the discharge teaching, the call to a physician at 3 a.m. Those conversations show up later in patient survey scores, readmissions and whether new nurses stay, and nobody hears them while they happen.",
+
+    stats: [],
+    numbers: [
+      "Nurse communication is one of the patient survey measures in Medicare's hospital value-based purchasing program, where patient experience makes up a quarter of the score, and it stays in the score through fiscal 2029 (CMS, HCAHPS Online).",
+      "In Deloitte's analysis of US hospitals, communication with nurses had the strongest link to net margin of any patient survey measure (Deloitte, The value of patient experience, 2017).",
+      "Hospitals lose 17.6% of their RNs a year and 22.7% of new RNs in their first year, at $60,090 per departure (NSI Nursing Solutions, 2026).",
+    ],
+
+    valueProps: [
+      {
+        title: "Patient experience",
+        description:
+          "Nurses practice hourly rounding, explaining care and service recovery, scored against AIDET or your own service standard.",
+        href: "/solutions/patient-experience",
+      },
+      {
+        title: "Discharge teaching",
+        description:
+          "Nurses practice medication and follow-up teaching with patients and caregivers, scored on teach-back.",
+      },
+      {
+        title: "De-escalation",
+        description:
+          "Nurses practice talking down an agitated patient, family member or visitor, as spoken practice that adds to the course you already run.",
+      },
+      {
+        title: "New nurses and nurse managers",
+        description:
+          "New nurses practice escalation and handoffs, and managers practice stay conversations and feedback.",
+        href: "/solutions/workforce-retention",
+      },
+      {
+        title: "Reporting your teams can trust",
+        description:
+          "Every score quotes what the nurse said. Results can be anonymous and reported only by unit or cohort, and scores stay out of performance reviews.",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "Does this help with Magnet?",
+        answer:
+          "It can support the patient experience and professional development work Magnet asks for. ClinicalSim isn't affiliated with ANCC, and practice scores don't establish Magnet compliance.",
+      },
+      {
+        question: "We're a union environment. Who sees the results?",
+        answer:
+          "You set reporting rules before anyone practices. Results can be anonymous and reported only by unit, so no individual nurse is identified to leadership.",
+      },
+      {
+        question: "Where do we start?",
+        answer:
+          "With one unit or one new graduate cohort, one standard and one reporting question.",
+      },
+      {
+        question: "Will this raise our patient survey scores?",
+        answer:
+          "ClinicalSim doesn't predict patient survey scores. It shows how the conversations go and gives nurses practice, and if you want to test a link, we'll help you compare units using your own survey data.",
+      },
+    ],
+
+    relevantSolutionSlugs: ["patient-experience", "workforce-retention"],
+
+    glossarySlugs: ["hcahps", "aidet", "sbar", "teach-back-method"],
+
+    nonEndorsementOrgs: ["ANCC", "CMS", "NSI Nursing Solutions", "Deloitte"],
+    claimBoundary: {
+      formative: true,
+      raterValidation: true,
+      noOutcomePrediction: true,
+      noEmploymentUse: true,
+      note: "ClinicalSim has no evidence of raising patient survey scores, lowering turnover or reducing readmissions. The numbers above describe hospitals and nurses, not ClinicalSim results.",
+    },
+
+    ctaHeadline: "Bring us the unit you're most worried about",
+    ctaDescription:
+      "Tell us the unit, the cohort or the conversation that keeps showing up in your scores, and we'll show you what a case can measure.",
+    secondaryCta: {
+      label: "Read the nursing turnover brief",
+      href: "/resources/nursing-turnover-brief",
+    },
+
+    relatedPostSlugs: [],
   },
 ]
 
