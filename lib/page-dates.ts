@@ -24,7 +24,8 @@ export const PAGE_DATE_MODIFIED = {
   // "How this fits with what you already run" section (2026-10-06).
   evaluation: "2026-10-11",
   evidence: "2026-10-11",
-  examples: "2026-10-11",
+  // Added the 48 Hours in the Hallway example to the listing (2026-10-15).
+  examples: "2026-10-15",
   // Licensing answer reworded without a billing basis; three program-fit
   // objections added (2026-10-06).
   faq: "2026-10-06",
