@@ -33,7 +33,11 @@ type BaseField = {
 };
 
 export type EvaluationField =
-  | (BaseField & { type: "text" })
+  | (BaseField & {
+      type: "text";
+      /** Key of the boolean check this text field quotes evidence for. */
+      evidenceFor?: string;
+    })
   | (BaseField & { type: "number" })
   | (BaseField & { type: "boolean" })
   | (BaseField & {
@@ -48,5 +52,17 @@ export type OrdinalValue = {
   reasoning: string;
 };
 
-export type ExtractedValue = string | number | boolean | null | OrdinalValue;
+/** A non-ordinal answer the grader wrapped beside its reasoning. */
+export type WrappedValue = {
+  value: string | boolean | null;
+  reasoning: string;
+};
+
+export type ExtractedValue =
+  | string
+  | number
+  | boolean
+  | null
+  | OrdinalValue
+  | WrappedValue;
 export type ExtractedData = Record<string, ExtractedValue>;
