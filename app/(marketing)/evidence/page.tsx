@@ -11,6 +11,7 @@ import {
 } from "@/lib/claim-discipline"
 import { getAllExamples } from "@/lib/examples"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { ORGANIZATION } from "@/lib/positioning"
 
 const PAGE_URL = "https://clinicalsim.ai/evidence"
 const PAGE_DESCRIPTION =
@@ -72,11 +73,7 @@ export default function EvidencePage() {
             description: PAGE_DESCRIPTION,
             url: PAGE_URL,
             dateModified: PAGE_DATE_MODIFIED.evidence,
-            publisher: {
-              "@type": "Organization",
-              name: "ClinicalSim.ai",
-              url: "https://clinicalsim.ai",
-            },
+            publisher: ORGANIZATION,
             isPartOf: {
               "@type": "WebSite",
               name: "ClinicalSim.ai",

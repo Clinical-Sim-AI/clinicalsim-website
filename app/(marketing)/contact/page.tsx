@@ -13,6 +13,7 @@ import { JsonLd } from "@/components/json-ld"
 import { Waveform } from "@/components/waveform"
 import { ContactSourceField } from "@/components/contact-source-field"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { ORGANIZATION } from "@/lib/positioning"
 
 const description = "Talk with ClinicalSim about communication practice for your health system or medical education program. See a relevant case and discuss how to get started."
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export default function ContactPage() {
   return (
     <>
       <JsonLd data={[
-        { "@context": "https://schema.org", "@type": "ContactPage", name: "Contact ClinicalSim", description, url: "https://clinicalsim.ai/contact", dateModified: PAGE_DATE_MODIFIED.contact, mainEntity: { "@type": "Organization", name: "ClinicalSim", url: "https://clinicalsim.ai", contactPoint: { "@type": "ContactPoint", contactType: "sales", availableLanguage: "English" } } },
+        { "@context": "https://schema.org", "@type": "ContactPage", name: "Contact ClinicalSim", description, url: "https://clinicalsim.ai/contact", dateModified: PAGE_DATE_MODIFIED.contact, mainEntity: { ...ORGANIZATION, contactPoint: { "@type": "ContactPoint", contactType: "sales", availableLanguage: "English" } } },
         { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://clinicalsim.ai" }, { "@type": "ListItem", position: 2, name: "Contact", item: "https://clinicalsim.ai/contact" }] },
       ]} />
       <section className="relative overflow-hidden bg-cs-dark-blue px-6 py-14 text-white md:py-20">

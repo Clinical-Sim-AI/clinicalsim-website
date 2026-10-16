@@ -120,6 +120,29 @@ export const ORGANIZATION_LOGO = {
 } as const
 
 /**
+ * The company as every schema.org node on the site names it. `name` is the
+ * brand people search for; `legalName` is the incorporated entity, confirmed by
+ * Ben on 2026-10-16. Spread this rather than writing the name inline: the site
+ * had drifted to both "ClinicalSim" and "ClinicalSim.ai" across publisher
+ * nodes, which reads as two organizations.
+ */
+export const ORGANIZATION = {
+  "@type": "Organization",
+  name: "ClinicalSim",
+  legalName: "ClinicalSim, Inc.",
+  url: "https://clinicalsim.ai",
+} as const
+
+/** ORGANIZATION with its logo, for publisher nodes. */
+export const ORGANIZATION_PUBLISHER = {
+  ...ORGANIZATION,
+  logo: {
+    "@type": "ImageObject",
+    ...ORGANIZATION_LOGO,
+  },
+} as const
+
+/**
  * The mission statement, approved by Ben on 2026-09-03 and published verbatim.
  *
  * Two things about it are deliberate and should not be "cleaned up":

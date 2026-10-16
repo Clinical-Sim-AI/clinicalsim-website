@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/json-ld"
 import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
 import { getAllComparisons } from "@/lib/comparisons"
+import { ORGANIZATION } from "@/lib/positioning"
 
 export const metadata: Metadata = {
   title: "Compare clinical communication training approaches",
@@ -47,11 +48,7 @@ export default function CompareIndexPage() {
           name: c.title,
         })),
       },
-      publisher: {
-        "@type": "Organization" as const,
-        name: "ClinicalSim",
-        url: "https://clinicalsim.ai",
-      },
+      publisher: ORGANIZATION,
     },
     {
       "@context": "https://schema.org" as const,

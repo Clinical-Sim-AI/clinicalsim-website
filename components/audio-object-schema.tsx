@@ -1,5 +1,5 @@
 import { JsonLd } from "@/components/json-ld"
-import { ORGANIZATION_LOGO } from "@/lib/positioning"
+import { ORGANIZATION_PUBLISHER } from "@/lib/positioning"
 import { stripTranscriptMarkup } from "@/lib/feedback/transcript-markup"
 
 export interface AudioObjectSchemaProps {
@@ -92,15 +92,7 @@ export function AudioObjectSchema({
           ? { duration: toIso8601Duration(durationSeconds) }
           : {}),
         ...(transcriptText ? { transcript: transcriptText } : {}),
-        publisher: {
-          "@type": "Organization",
-          name: "ClinicalSim",
-          url: "https://clinicalsim.ai",
-          logo: {
-            "@type": "ImageObject",
-            ...ORGANIZATION_LOGO,
-          },
-        },
+        publisher: ORGANIZATION_PUBLISHER,
       }}
     />
   )

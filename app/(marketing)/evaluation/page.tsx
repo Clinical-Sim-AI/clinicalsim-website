@@ -11,7 +11,7 @@ import {
   SP_SUPPLEMENT_LINE,
 } from "@/lib/claim-discipline"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
-import { ASSESSMENT_ENTRY, PRIMARY_CTA } from "@/lib/positioning"
+import { ASSESSMENT_ENTRY, ORGANIZATION, PRIMARY_CTA } from "@/lib/positioning"
 import type { FaqItem } from "@/lib/types"
 
 /**
@@ -177,11 +177,7 @@ export default function EvaluationPage() {
               "Review ClinicalSim's intended use, evidence, rollout, data handling, engagement structure, and product limits before a scope or pricing call.",
             url: "https://clinicalsim.ai/evaluation",
             dateModified: LAST_UPDATED,
-            publisher: {
-              "@type": "Organization",
-              name: "ClinicalSim.ai",
-              url: "https://clinicalsim.ai",
-            },
+            publisher: ORGANIZATION,
             isPartOf: {
               "@type": "WebSite",
               name: "ClinicalSim.ai",

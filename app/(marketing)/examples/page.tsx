@@ -13,6 +13,7 @@ import { ClinicianTestimonials } from "@/components/clinician-testimonials"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { DemoVideoSection } from "@/components/demo-video-section"
 import { VideoObjectSchema } from "@/components/video-object-schema"
+import { ORGANIZATION } from "@/lib/positioning"
 
 const DEMO_VIDEO = {
   embedUrl: "https://www.youtube.com/embed/ZkA0slljnwI",
@@ -65,11 +66,7 @@ export default function ExamplesPage() {
                 name: example.title,
               })),
             },
-            publisher: {
-              "@type": "Organization",
-              name: "ClinicalSim",
-              url: "https://clinicalsim.ai",
-            },
+            publisher: ORGANIZATION,
           },
           {
             "@context": "https://schema.org",

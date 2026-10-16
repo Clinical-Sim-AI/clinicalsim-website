@@ -12,7 +12,7 @@ import {
   SP_SUPPLEMENT_LINE,
 } from "@/lib/claim-discipline"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
-import { CATEGORY_MEANING, PRIMARY_CTA } from "@/lib/positioning"
+import { CATEGORY_MEANING, ORGANIZATION, PRIMARY_CTA } from "@/lib/positioning"
 
 const PAGE_URL = "https://clinicalsim.ai/clinical-communication-intelligence"
 const PAGE_DESCRIPTION =
@@ -72,11 +72,7 @@ export default function ClinicalCommunicationIntelligencePage() {
               name: "ClinicalSim.ai",
               url: "https://clinicalsim.ai",
             },
-            publisher: {
-              "@type": "Organization",
-              name: "ClinicalSim.ai",
-              url: "https://clinicalsim.ai",
-            },
+            publisher: ORGANIZATION,
           },
           {
             "@context": "https://schema.org",

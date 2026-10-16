@@ -1,4 +1,14 @@
+import { Children, isValidElement, type ReactNode } from 'react'
 import type { MDXComponents } from 'mdx/types'
+import { headingId } from '@/lib/howto-schema'
+
+// Plain text of a heading, so an H2 containing a link or emphasis still gets
+// the same id the HowTo step URLs point at.
+function textOf(node: ReactNode): string {
+  if (typeof node === 'string' || typeof node === 'number') return String(node)
+  if (isValidElement<{ children?: ReactNode }>(node)) return textOf(node.props.children)
+  return Children.toArray(node).map(textOf).join('')
+}
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -8,7 +18,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-4 mt-8">
+      <h2
+        id={headingId(textOf(children))}
+        className="text-2xl md:text-3xl font-light text-gray-900 mb-4 mt-8"
+      >
         {children}
       </h2>
     ),

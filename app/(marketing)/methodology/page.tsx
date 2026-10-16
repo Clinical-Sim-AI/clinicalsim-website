@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { PRIMARY_CTA } from "@/lib/positioning"
+import { ORGANIZATION, PRIMARY_CTA } from "@/lib/positioning"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -185,23 +185,12 @@ export default function MethodologyPage() {
                   name: author.name,
                   honorificSuffix: author.credentials,
                   jobTitle: author.title,
-                  worksFor: {
-                    "@type": "Organization",
-                    // "ClinicalSim" to match the site-wide Organization node,
-                    // since the shared @id merges this Person with the /about
-                    // card and article bylines.
-                    name: "ClinicalSim",
-                    url: "https://clinicalsim.ai",
-                  },
+                  worksFor: ORGANIZATION,
                   ...(author.sameAs && author.sameAs.length > 0
                     ? { sameAs: author.sameAs }
                     : {}),
                 }
-              : {
-                  "@type": "Organization",
-                  name: "ClinicalSim.ai",
-                  url: "https://clinicalsim.ai",
-                },
+              : ORGANIZATION,
             isPartOf: {
               "@type": "WebSite",
               name: "ClinicalSim.ai",
