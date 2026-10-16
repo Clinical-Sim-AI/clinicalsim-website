@@ -12,6 +12,7 @@
  */
 export type PostSlug =
   | "ccc-communication-evidence-threshold"
+  | "identifying-struggling-residents-intern-year"
   | "what-an-osce-score-predicts"
   | "communication-remediation-plan"
   | "simulation-vendor-shutdown-program-obligations"
@@ -88,6 +89,19 @@ const posts: Post[] = [
     authorId: "vinod-havalad",
     readingTime: "6 min read",
     tags: ["communication-assessment", "assessment", "ACGME", "milestones", "medical-education", "residency"],
+  },
+  {
+    slug: "identifying-struggling-residents-intern-year",
+    title: "Most residents who need remediation are spotted in intern year",
+    seoTitle: "Identifying struggling residents early",
+    description:
+      "In a survey of 267 family medicine program directors, 86 percent of residents who needed remediation were identified before the end of intern year, and 46 percent of them between July and December of PGY-1. What that asks of an intern year assessment plan.",
+    date: "2026-10-16",
+    author: "Vinod Havalad, MD",
+    // Byline confirmed by Vinod, relayed by Ben on 2026-10-16.
+    authorId: "vinod-havalad",
+    readingTime: "5 min read",
+    tags: ["communication-remediation", "assessment", "ACGME", "milestones", "medical-education", "residency"],
   },
   {
     slug: "what-an-osce-score-predicts",

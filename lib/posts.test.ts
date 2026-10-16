@@ -12,6 +12,7 @@ import { getAllSolutions } from "./solutions"
  */
 const UNION_MEMBERS: PostSlug[] = [
   "ccc-communication-evidence-threshold",
+  "identifying-struggling-residents-intern-year",
   "what-an-osce-score-predicts",
   "communication-remediation-plan",
   "simulation-vendor-shutdown-program-obligations",
