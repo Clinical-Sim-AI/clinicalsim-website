@@ -17,6 +17,7 @@ import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import {
   CATEGORY_LINE,
   CATEGORY_MEANING,
+  ORGANIZATION,
   POSITIONING_ONE_LINER,
 } from "@/lib/positioning"
 
@@ -99,14 +100,7 @@ export default function AboutPage() {
               : {}),
             jobTitle: author.title,
             description: author.bio,
-            worksFor: {
-              "@type": "Organization" as const,
-              // "ClinicalSim" to match the site-wide Organization node and the
-              // Article author worksFor, since the shared @id above merges this
-              // Person with the article byline Person.
-              name: "ClinicalSim",
-              url: "https://clinicalsim.ai",
-            },
+            worksFor: ORGANIZATION,
             ...(author.sameAs && author.sameAs.length > 0
               ? { sameAs: author.sameAs }
               : {}),

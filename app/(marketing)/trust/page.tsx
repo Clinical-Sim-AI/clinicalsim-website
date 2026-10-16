@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/json-ld"
 import { WaveformBand } from "@/components/waveform-band"
 import type { FaqItem } from "@/lib/types"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { ORGANIZATION } from "@/lib/positioning"
 
 export const metadata: Metadata = {
   title: "Trust and data handling",
@@ -85,11 +86,7 @@ export default function TrustPage() {
               "How ClinicalSim handles synthetic cases, learner recordings, transcripts, account data, and institutional data.",
             url: "https://clinicalsim.ai/trust",
             dateModified: LAST_UPDATED,
-            publisher: {
-              "@type": "Organization",
-              name: "ClinicalSim.ai",
-              url: "https://clinicalsim.ai",
-            },
+            publisher: ORGANIZATION,
             isPartOf: {
               "@type": "WebSite",
               name: "ClinicalSim.ai",

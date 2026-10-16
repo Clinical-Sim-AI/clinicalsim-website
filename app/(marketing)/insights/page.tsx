@@ -9,6 +9,7 @@ import { WaveformBand } from "@/components/waveform-band"
 import { BookOpen } from "lucide-react"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { formatIsoDay } from "@/lib/utils"
+import { ORGANIZATION } from "@/lib/positioning"
 
 export const metadata: Metadata = {
   title: "Clinical communication training insights",
@@ -48,11 +49,7 @@ export default function InsightsPage() {
           name: post.title,
         })),
       },
-      publisher: {
-        "@type": "Organization" as const,
-        name: "ClinicalSim",
-        url: "https://clinicalsim.ai",
-      },
+      publisher: ORGANIZATION,
     },
     {
       "@context": "https://schema.org" as const,

@@ -5,8 +5,9 @@ import { AuthorByline } from "@/components/author-byline"
 import { AuthorBio } from "@/components/author-bio"
 import { getAuthorById, getAuthorUrl, TEAM_AUTHOR_ID } from "@/lib/authors"
 import { Waveform } from "@/components/waveform"
-import { ORGANIZATION_LOGO } from "@/lib/positioning"
+import { ORGANIZATION, ORGANIZATION_PUBLISHER } from "@/lib/positioning"
 import { formatIsoDay } from "@/lib/utils"
+import { buildHowToSchema } from "@/lib/howto-schema"
 import type { Post } from "@/lib/posts"
 
 function buildAuthorSchema(post: Post) {
@@ -27,11 +28,7 @@ function buildAuthorSchema(post: Post) {
       description: author.bio,
       ...(author.credentials ? { honorificSuffix: author.credentials } : {}),
       jobTitle: author.title,
-      worksFor: {
-        "@type": "Organization" as const,
-        name: "ClinicalSim",
-        url: "https://clinicalsim.ai",
-      },
+      worksFor: ORGANIZATION,
       // Populated only when verified off-site identity URLs exist (see Author.sameAs).
       ...(author.sameAs && author.sameAs.length > 0
         ? { sameAs: author.sameAs }
@@ -39,11 +36,7 @@ function buildAuthorSchema(post: Post) {
     }
   }
 
-  return {
-    "@type": "Organization" as const,
-    name: "ClinicalSim",
-    url: "https://clinicalsim.ai",
-  }
+  return ORGANIZATION
 }
 
 export function ArticleLayout({
@@ -53,8 +46,13 @@ export function ArticleLayout({
   post: Post
   children: React.ReactNode
 }) {
+  const author = buildAuthorSchema(post)
+  // Only posts whose body is a real sequence of steps carry howToSteps.
+  const howTo = buildHowToSchema(post, author)
+
   return (
     <section className="px-6 py-12 md:py-20">
+      {howTo && <JsonLd data={howTo} />}
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -67,7 +65,7 @@ export function ArticleLayout({
             "@type": "SpeakableSpecification",
             cssSelector: [".key-takeaway", ".article-intro"],
           },
-          author: buildAuthorSchema(post),
+          author,
           // Populated only when a credentialed reviewer is set (see Post.reviewedBy).
           ...(post.reviewedBy
             ? {
@@ -77,15 +75,7 @@ export function ArticleLayout({
                 },
               }
             : {}),
-          publisher: {
-            "@type": "Organization",
-            name: "ClinicalSim",
-            url: "https://clinicalsim.ai",
-            logo: {
-              "@type": "ImageObject",
-              ...ORGANIZATION_LOGO,
-            },
-          },
+          publisher: ORGANIZATION_PUBLISHER,
           image: "https://clinicalsim.ai/og-image.png",
           ...(post.tags.length > 0 ? { keywords: post.tags.join(", ") } : {}),
           // Bare reference to the WebSite node defined once in the marketing

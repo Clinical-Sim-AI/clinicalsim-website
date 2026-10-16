@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/json-ld"
 import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
 import { ArrowRight } from "lucide-react"
+import { ORGANIZATION } from "@/lib/positioning"
 
 export const metadata: Metadata = {
   title: { absolute: "Who we serve: health systems and medical education" },
@@ -63,11 +64,7 @@ export default function AudiencesPage() {
                 name: audience.title,
               })),
             },
-            publisher: {
-              "@type": "Organization",
-              name: "ClinicalSim",
-              url: "https://clinicalsim.ai",
-            },
+            publisher: ORGANIZATION,
           },
           {
             "@context": "https://schema.org",

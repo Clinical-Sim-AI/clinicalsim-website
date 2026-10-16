@@ -5,7 +5,8 @@ import { PreviousPathTracker } from "@/components/previous-path-tracker"
 import {
   CATEGORY_DEFINITION,
   CATEGORY_LINE,
-  ORGANIZATION_LOGO,
+  ORGANIZATION,
+  ORGANIZATION_PUBLISHER,
   POSITIONING_AUDIENCE,
   POSITIONING_LONG,
 } from "@/lib/positioning"
@@ -21,13 +22,7 @@ export default function MarketingLayout({
         data={[
           {
             "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "ClinicalSim",
-            url: "https://clinicalsim.ai",
-            logo: {
-              "@type": "ImageObject",
-              ...ORGANIZATION_LOGO,
-            },
+            ...ORGANIZATION_PUBLISHER,
             // Company-level category statement, then the plain-language
             // definition, then who uses it. An answer engine reads this node
             // before it reads any page, so it carries the same sentence the
@@ -56,11 +51,7 @@ export default function MarketingLayout({
             name: "ClinicalSim.ai",
             url: "https://clinicalsim.ai",
             description: POSITIONING_LONG,
-            publisher: {
-              "@type": "Organization",
-              name: "ClinicalSim",
-              url: "https://clinicalsim.ai",
-            },
+            publisher: ORGANIZATION,
           },
         ]}
       />

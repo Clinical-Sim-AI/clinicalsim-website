@@ -58,6 +58,19 @@ export interface Post {
    */
   reviewedBy?: string
   reviewedDate?: string
+  /**
+   * Set only on a post whose body is a real sequence of steps. ArticleLayout
+   * then emits a HowTo node beside the Article. Each `name` must be an H2 in
+   * the MDX, verbatim, and each `text` a paragraph from that section, verbatim:
+   * lib/howto-schema.test.ts fails on any drift. Do not paraphrase or add steps
+   * the page does not show.
+   */
+  howToSteps?: HowToStep[]
+}
+
+export interface HowToStep {
+  name: string
+  text: string
 }
 
 const posts: Post[] = [
@@ -205,6 +218,39 @@ const posts: Post[] = [
     author: "ClinicalSim Team",
     readingTime: "4 min read",
     tags: ["OSCE", "case design", "medical education", "assessment"],
+    // "Where AI patients fit" is left out: it is a product note, not a step.
+    // Step 4 uses the section's third paragraph, the one that states the
+    // action, rather than its framing opener.
+    howToSteps: [
+      {
+        name: "Start with the decision",
+        text: "A communication station and a diagnostic reasoning station may use the same encounter, but they should not use the same rubric. Write down what the score will mean before you write the patient. If the program cannot say what a passing performance allows it to conclude, the case is not ready.",
+      },
+      {
+        name: "Define behaviors a reviewer can see",
+        text: "Write objectives as actions. \"Acknowledges the patient's concern before giving more information\" is easier to observe than \"shows empathy.\" A reviewer should be able to point to what the learner said or did.",
+      },
+      {
+        name: "Give the learner a fair chance to show the skill",
+        text: "The case must create an opening for every scored behavior. If the rubric asks whether a learner responds to emotion, the patient needs a clear emotional cue. If the station does not give that opportunity, mark the item not assessable instead of treating silence as failure.",
+      },
+      {
+        name: 'Make "not assessable" a real outcome, not a zero',
+        text: "Two things follow for a station design. Say which items the station's own modality cannot reach, in the rubric, before anyone runs it. And report the count of excluded items alongside the total, so a reviewer reading 25 out of 30 knows whether the denominator was 30 or something less.",
+      },
+      {
+        name: "Match the case to the learner",
+        text: "An early medical student may need to gather a focused history and explain the next step. A resident may need to manage uncertainty, competing priorities, or a family meeting. The clinical task, case complexity, and framework should change with the learner's stage.",
+      },
+      {
+        name: "Train the standardized patient and the rater together",
+        text: "The patient portrayal and the scoring rules are part of the same instrument. Use sample learner responses to calibrate when the patient offers information, how emotion changes, and what evidence meets each rating.",
+      },
+      {
+        name: "Pilot before the score counts",
+        text: "Run the complete station with learners who resemble the intended group. Watch for unclear instructions, cues that appear too early or too late, equipment problems, and items that almost everyone passes or misses.",
+      },
+    ],
   },
   {
     slug: "hospital-communication-training-roi",

@@ -1,5 +1,5 @@
 import { JsonLd } from "@/components/json-ld"
-import { ORGANIZATION_LOGO } from "@/lib/positioning"
+import { ORGANIZATION_PUBLISHER } from "@/lib/positioning"
 
 export interface VideoObjectSchemaProps {
   name: string
@@ -54,15 +54,7 @@ export function VideoObjectSchema({
         ...(embedUrl ? { embedUrl } : {}),
         ...(duration ? { duration } : {}),
         ...(transcript ? { transcript } : {}),
-        publisher: {
-          "@type": "Organization",
-          name: "ClinicalSim",
-          url: "https://clinicalsim.ai",
-          logo: {
-            "@type": "ImageObject",
-            ...ORGANIZATION_LOGO,
-          },
-        },
+        publisher: ORGANIZATION_PUBLISHER,
       }}
     />
   )
