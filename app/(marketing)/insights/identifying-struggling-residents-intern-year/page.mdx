@@ -1,0 +1,75 @@
+import { ArticleLayout } from "@/components/article-layout"
+import { KeyTakeaway } from "@/components/key-takeaway"
+import { ReferencesSection } from "@/components/references-section"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
+
+export const metadata = getPostMetadata("identifying-struggling-residents-intern-year")
+
+<ArticleLayout post={getPostBySlug("identifying-struggling-residents-intern-year")}>
+
+<KeyTakeaway>
+In a 2017 survey of 267 family medicine program directors, published in 2021, 86 percent of residents who needed remediation were identified before the end of intern year, and 46 percent of them between July and December of that first year (Frazier et al., 2021).
+</KeyTakeaway>
+
+A program usually knows. A faculty member says something after a hard family meeting in September, a nurse manager repeats a version of it in October, and by the time the Clinical Competency Committee sits down in December the impression has hardened into a view. The question is almost never whether the program noticed. It's whether anything in the file records what the program noticed, and when.
+
+The survey evidence says the noticing happens early. That puts the weight of a program's remediation record on the months when it holds the least documentation about a resident it will ever hold.
+
+## Most of the signal arrives in the first six months
+
+In the CERA survey of family medicine program directors, 267 of 503 responded, a 53 percent response rate, and 93 percent of responding programs had remediated at least one resident in the previous three years (Frazier et al., 2021). Remediation is ordinary work, not an exception.
+
+The timing is the part that matters. Of the residents those programs identified as needing remediation, 46 percent were first identified between July and December of intern year, another 39 percent between January and June, and 1 percent before residency began. That's the 86 percent, and more than half of it lands in the first six months.
+
+The figure usually gets quoted as reassurance, as proof that programs catch problems early. Read it the other way and it sets a deadline. Whatever a program relies on to identify a struggling resident has to work by December of PGY-1, because that's when most of the cases surface.
+
+## What early identification means
+
+Early identification means naming a resident's specific performance problem in the months before a program has accumulated much documented evidence about that resident. In a systematic review of 16 studies of communication remediation, drawn from 1,636 records screened, early identification and diagnosis was the first of three components separating programs where remediation worked, alongside an individualized plan and reassessment with feedback (Al-Sheikhly et al., *BMC Medical Education*, 2020).
+
+## What the file holds when the first committee meets
+
+The Common Program Requirements set the floor. Evaluation "must be documented at the completion of the assignment," and for block rotations longer than three months, "at least every three months" (Sections 5.1.a and 5.1.a.1). The Clinical Competency Committee "must review all resident evaluations at least semi-annually" (Section 5.3.c), and the program director or a designee, with input from the committee, then reviews that documented semi-annual evaluation with the resident (Section 5.1.c).
+
+Those requirements govern how often evaluation happens. They say nothing about what an evaluation has to contain, which is where intern year gets hard. A program can count its own record and answer three questions about any intern six months in: how many completed evaluations exist, how many were written by someone who watched that resident talk to a patient, and how many describe what the resident said.
+
+The research on that third question isn't encouraging. Across 2,517 workplace narrative assessments of second- through fourth-year residents in one emergency medicine residency, each narrative named about two sub-competencies on average, and 14 of 23 sub-competencies turned up in fewer than 5 percent of assessments (Diller et al., *Western Journal of Emergency Medicine*, 2019). Patient-centered communication was among the five sub-competencies faculty wrote about most, which is the good news in that study. That study didn't include interns, and an intern's file six months in has had even less time to fill.
+
+## A committee short of evidence still has to produce a rating
+
+ACGME's own guidance names the problem without softening it. "CCCs face well-recognized challenges that may result in sub-optimal Milestones reporting," and it says this is especially true when CCC members judge performance "on milestones they themselves have not directly observed" (ACGME, *Preparing for Effective Clinical Competency Committee Meetings*, 2020). The same document notes that some programs still use the entire Milestones set as an end-of-rotation form, and that the set was "never meant to be used as a stand-alone assessment tool."
+
+A qualitative study of eight Transitional Year CCC members from four programs describes what that looks like at the table. Members described building Milestone ratings by comparing a resident's averaged assessment data to peers and time in training, and when assessment data were absent, they assumed average performance. The interviews also found an absence of formal training for the CCC role (Maranich et al., *Journal of Graduate Medical Education*, 2022). Eight members in one study is a description, not a rate, and it's worth reading it that way.
+
+The first semi-annual review of intern year is where that gap opens widest, because it's the meeting with the strongest impressions and the shortest record.
+
+## Three decisions that change what intern year can show
+
+None of these costs a budget line.
+
+Decide before July what counts as a trigger. Al-Sheikhly's review found that 62.5 percent of the included studies used an OSCE format to identify struggling learners, which is to say a scheduled observation rather than a complaint (Al-Sheikhly et al., 2020). A program with no scheduled communication observation in the first quarter is relying on whoever happens to speak up, and that's the one signal nobody designed.
+
+Put at least one observed conversation in the first quarter, and write down what the resident said rather than how it went. A rating records a judgment. A quotation records behavior, and behavior is what [a remediation plan](/insights/communication-remediation-plan) has to name. Direct observation was ranked first by 45 percent of program directors as the method that identifies a resident needing help, ahead of faculty evaluations at 40 percent (Frazier et al., 2021), and it is also the method that [costs faculty hours a program is already short of](/insights/faculty-hour-problem-communication-remediation).
+
+Decide what the first committee meeting may conclude from silence. When nothing was observed, the honest finding is that nothing was observed. A program that writes that down once learns more about its own assessment plan than it does from another mid-scale rating.
+
+## Where ClinicalSim fits
+
+The scarce thing in intern year is occasions. A program that wants documented evidence of how a resident handles a frightened family by December has to create those occasions before December, and the ones it already has are expensive to schedule.
+
+ClinicalSim is a voice-based AI patient simulation platform for practicing and measuring clinical communication. Residents hold spoken conversations with AI patients, and each encounter produces a rubric score with the transcript evidence behind it for faculty to review. That report is formative evidence for a faculty judgment, not a replacement for one, and it isn't a decision about a resident.
+
+A standardized patient encounter with a trained SP and a human debrief still carries things a simulated encounter does not, including an SP's own read of how the conversation felt. The argument is about adding practice and observation between scheduled encounters, not about replacing them. You can read [complete example encounters](/examples), with recordings, transcripts, and reports, before deciding what the output is worth.
+
+The 86 percent figure says programs already see the problem inside intern year. Whether a program can act on what it sees depends on [what the file holds when the committee meets](/insights/ccc-communication-evidence-threshold), and on how much [a single documented score was ever meant to carry](/insights/what-an-osce-score-predicts).
+
+<ReferencesSection references={[
+  { authors: "Frazier W, Wilson SA, D'Amico F, Bergus GR", title: "Resident remediation in family medicine residency programs: a CERA survey of program directors", source: "Family Medicine", year: "2021", doi: "10.22454/FamMed.2021.546572" },
+  { authors: "Al-Sheikhly D, Ostlundh L, Arayssi T", title: "Remediation of learners struggling with communication skills: a systematic review", source: "BMC Medical Education", year: "2020", doi: "10.1186/s12909-020-02074-9" },
+  { authors: "Diller D, Cooper S, Jain A, Lam CN, Riddell J", title: "Which emergency medicine milestone sub-competencies are identified through narrative assessments?", source: "Western Journal of Emergency Medicine", year: "2019", doi: "10.5811/westjem.2019.12.44468" },
+  { authors: "Maranich AM, Hemmer PA, Uijtdehaage S, Battista A", title: "ACGME Milestones in the real world: a qualitative study exploring response process evidence", source: "Journal of Graduate Medical Education, 14(2):201-209", year: "2022", doi: "10.4300/JGME-D-21-00546.1" },
+  { authors: "Accreditation Council for Graduate Medical Education", title: "ACGME Common Program Requirements (Residency), effective July 1, 2026", source: "Accreditation Council for Graduate Medical Education", year: "2026", url: "https://www.acgme.org/globalassets/pfassets/programrequirements/2026-prs/cprresidency_2026.pdf" },
+  { authors: "Accreditation Council for Graduate Medical Education", title: "Preparing for effective Clinical Competency Committee meetings", source: "Accreditation Council for Graduate Medical Education", year: "2020", url: "https://web.archive.org/web/20250603222605/https://www.acgme.org/globalassets/pdfs/milestones/guidebooks/preparing-for-effective-ccc-meetings.pdf" },
+]} />
+
+</ArticleLayout>
