@@ -89,7 +89,6 @@ export const HEADER_MENUS: HeaderNavigationMenu[] = [
           { href: "/methodology", label: "Scoring methodology" },
           { href: "/evaluation", label: "Evaluating ClinicalSim" },
           { href: "/compare", label: "Compare approaches" },
-          { href: "/roi-calculator", label: "ROI calculator" },
         ],
       },
     ],
@@ -147,7 +146,6 @@ export const FOOTER_GROUPS: Array<{ label: string; links: HeaderLink[] }> = [
       { href: "/solutions", label: "All use cases" },
       { href: "/audiences", label: "All audiences" },
       { href: "/examples", label: "Example feedback" },
-      { href: "/roi-calculator", label: "ROI calculator" },
     ],
   },
   {
