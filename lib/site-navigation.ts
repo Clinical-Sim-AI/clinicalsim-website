@@ -86,7 +86,7 @@ export const HEADER_MENUS: HeaderNavigationMenu[] = [
           { href: "/clinical-communication-intelligence", label: "Clinical communication intelligence" },
           { href: "/examples", label: "Example feedback" },
           { href: "/frameworks", label: "Frameworks and standards" },
-          { href: "/methodology", label: "Scoring methodology" },
+          { href: "/methodology", label: "Methodology" },
           { href: "/evaluation", label: "Evaluating ClinicalSim" },
           { href: "/compare", label: "Compare approaches" },
         ],
