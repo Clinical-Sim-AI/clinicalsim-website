@@ -40,7 +40,6 @@ const VALID_INTERNAL_PATHS = new Set<string>([
   "/medical-educator-faq",
   "/methodology",
   "/research",
-  "/roi-calculator",
   "/solutions",
   "/trust",
   ...getAllAudiences().map((a) => `/audiences/${a.slug}`),

@@ -85,8 +85,10 @@ const nextConfig = {
       // price on a per-learner basis, and no price or billing basis is
       // published (see the header of app/(marketing)/evaluation/page.tsx).
       // Temporary rather than permanent so the page can return once the price
-      // is out of it; the page code and lib/roi stay in place. Remove this
-      // entry to unhide.
+      // is out of it; the page code and lib/roi stay in place. To unhide,
+      // remove this entry and restore the "ROI calculator" links in the
+      // header and footer (lib/site-navigation.ts), which were taken out so
+      // every page stopped linking to a redirect.
       {
         source: '/roi-calculator',
         destination: '/evaluation',

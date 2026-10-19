@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest"
 import sitemap from "@/app/sitemap"
+import nextConfig from "@/next.config.mjs"
 import { getAllAudiences } from "./audiences"
 import { getPublishedSolutions } from "./solutions"
 import {
@@ -77,7 +78,6 @@ describe("site navigation", () => {
     ["/examples/example-case", "how-it-works"],
     ["/methodology", "how-it-works"],
     ["/compare/example", "how-it-works"],
-    ["/roi-calculator", "how-it-works"],
     ["/evidence", "resources"],
     ["/insights/example-post", "resources"],
     ["/help/release-notes", "resources"],
@@ -100,8 +100,15 @@ describe("site navigation", () => {
     expect(new Set(hrefs).size).toBe(hrefs.length)
     expect(footerLinks).toContainEqual(PLATFORM_SIGN_IN)
     expect(footerLinks).toContainEqual(PLATFORM_SIGN_UP)
-    for (const href of ["/help", "/help/release-notes", "/solutions", "/audiences", "/faq", "/medical-educator-faq", "/trust", "/compare", "/glossary", "/roi-calculator", "/resources/nursing-turnover-brief"]) {
+    for (const href of ["/help", "/help/release-notes", "/solutions", "/audiences", "/faq", "/medical-educator-faq", "/trust", "/compare", "/glossary", "/resources/nursing-turnover-brief"]) {
       expect(hrefs).toContain(href)
     }
+  })
+
+  it("never links the header or footer to a redirected path", async () => {
+    const redirects = (await nextConfig.redirects?.()) ?? []
+    const sources = new Set(redirects.filter((r) => !r.has).map((r) => r.source))
+    const navHrefs = [...headerHrefs, ...FOOTER_GROUPS.flatMap(({ links }) => links.map(({ href }) => href))]
+    expect(navHrefs.filter((href) => sources.has(href))).toEqual([])
   })
 })
