@@ -405,7 +405,12 @@ function collectCompetencyDetails(
     // check the panel names also gets a row (even one extraction omitted). It
     // still carries no value, so it stays out of any score.
     const undetermined = isUndetermined(f, extractedData, notApplicable, resultMode);
-    if (!wrapped && !undetermined) continue;
+    // A check the case ruled out keeps its Not scored row even when extraction
+    // wrote no entry for it (ENG-310) — once there is extracted data at all;
+    // pending/failed extraction falls back to the narrative instead.
+    const notScoredReason = notScoredReasonFor(notApplicable, f.key);
+    const ruledOut = !!extractedData && !!notScoredReason;
+    if (!wrapped && !undetermined && !ruledOut) continue;
     const rawValue = wrapped ? (entry as { value: unknown }).value : undefined;
     const reasoning =
       wrapped && "reasoning" in entry && typeof entry.reasoning === "string"
@@ -418,7 +423,7 @@ function collectCompetencyDetails(
       position,
       critical: f.critical ?? null,
       reference: f.reference ?? null,
-      notScoredReason: notScoredReasonFor(notApplicable, f.key),
+      notScoredReason,
       undetermined: false,
       min: f.scale.min,
       max: f.scale.max,
@@ -605,9 +610,10 @@ function collectChecks(
     const undetermined =
       f.type === "boolean" &&
       isUndetermined(f, extractedData, notApplicable, resultMode);
-    if (!(f.key in extractedData) && !undetermined) continue;
-    const { value, reasoning } = unwrapGradedValue(extractedData[f.key]);
     const notScoredReason = notScoredReasonFor(notApplicable, f.key);
+    // As for ordinals: a ruled-out check keeps its row with no entry (ENG-310).
+    if (!(f.key in extractedData) && !undetermined && !notScoredReason) continue;
+    const { value, reasoning } = unwrapGradedValue(extractedData[f.key]);
     const answer =
       f.type === "boolean" && !notScoredReason ? asBoolean(value) : null;
     const note = f.type === "text" ? trimmedText(value) : null;
@@ -1112,13 +1118,13 @@ export function buildFeedbackReport({
   for (const g of rubricGrades) {
     if (g.isAcgmeMilestone) continue;
     const resultMode = g.resultMode ?? "none";
-    const comps = collectCompetencyDetails(
+    let comps = collectCompetencyDetails(
       g.evaluationFields,
       g.extractedData,
       g.notApplicable,
       resultMode
     );
-    const checks = collectChecks(
+    let checks = collectChecks(
       g.evaluationFields,
       g.extractedData,
       feedbackFormatFor({
@@ -1128,6 +1134,16 @@ export function buildFeedbackReport({
       g.notApplicable,
       resultMode
     );
+    // A ruled-out row with no extracted entry (ENG-310) only fills in beside
+    // rows extraction actually produced. If it is all there is (extraction came
+    // back empty), drop it so the section falls back to the full narrative
+    // rather than showing nothing but Not scored rows.
+    const phantom = (r: { key: string; notScoredReason: string | null }) =>
+      !!r.notScoredReason && !(r.key in (g.extractedData ?? {}));
+    if (comps.every(phantom) && checks.every(phantom)) {
+      comps = [];
+      checks = [];
+    }
     // Checks are structured rows too, so a pure-check rubric (NURSE) is NOT a
     // "no structured rows" case — its narrative may be stripped to synthesis
     // just like a scored one, and its evidence still shows.

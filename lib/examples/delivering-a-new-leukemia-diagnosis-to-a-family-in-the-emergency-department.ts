@@ -9,7 +9,6 @@ const example: ExampleCase = {
   "role": "You are the Pediatric Hematology-Oncology fellow caring for Ethan, a previously healthy 7-year-old boy with new findings concerning for leukemia.",
   "summary": "Ethan Morales, a previously healthy 7 year old, came to the emergency department with two weeks of fatigue, bruising, intermittent fevers, and leg pain.",
   "scenario": "Ethan Morales, a previously healthy 7-year-old, came to the emergency department with two weeks of fatigue, bruising, intermittent fevers, and leg pain. His bloodwork shows **pancytopenia with circulating blasts**, concerning for acute lymphoblastic leukemia.\n\nThe diagnosis is **not yet confirmed** — a bone marrow biopsy is planned for the following morning to confirm it and guide treatment. Ethan's mother, Sofia, has been told only that the results are concerning. She has been waiting for hours.\n\nYou are meeting Sofia one-on-one in a quiet consultation room off the pediatric ED to disclose the likely diagnosis, explain the admission and the bone marrow biopsy, and support her through the news.",
-  "characterInteraction": "You are speaking by voice with Sofia Morales, Ethan's mother — a warm, polite, frightened parent who has been waiting for hours and is desperate to understand what is wrong with her son.",
   "objectives": [
     "Deliver a serious new diagnosis clearly and compassionately, using a warning shot and plain language.",
     "Assess and respond to the family's understanding and emotional state throughout the encounter.",

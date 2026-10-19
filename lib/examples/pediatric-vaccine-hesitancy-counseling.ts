@@ -8,7 +8,6 @@ const example: ExampleCase = {
   "role": "You are a pediatrics resident conducting a routine 2-month well-child visit.",
   "summary": "Your patient, Ava Mitchell, is a healthy full term infant due for her first routine vaccine series today (DTaP, IPV, Hib, PCV20, Rotavirus, and Hepatitis B).",
   "scenario": "Your patient, Ava Mitchell, is a healthy full-term infant due for her first routine vaccine series today (DTaP, IPV, Hib, PCV20, Rotavirus, and Hepatitis B). Her growth and development are normal. Her mother, Mrs. Lauren Mitchell, a first-time parent, has read online posts suggesting that 2 months is too young for vaccines and that giving several at once may overwhelm an infant's immune system. She is anxious and protective and is considering delaying or spacing the vaccines, but she is not anti-vaccine and remains open to guidance. This visit is your opportunity to address her concerns, correct misinformation, and facilitate an evidence-based, trust-centered shared decision.",
-  "characterInteraction": "You are speaking one-on-one with Mrs. Lauren Mitchell, a thirty-one-year-old first-time mother who is tired, mildly anxious, and holding her infant daughter close — cautious and uncertain, but persuadable if her concerns are heard.",
   "objectives": [
     "Build trust with a first-time parent using a non-judgmental approach",
     "Address vaccine misinformation with evidence-based, accessible language",

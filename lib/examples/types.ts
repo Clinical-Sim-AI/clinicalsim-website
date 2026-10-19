@@ -26,8 +26,10 @@ export interface ExampleCase {
   summary: string;
   /** Scenario markdown (briefing.scenario), or null. */
   scenario: string | null;
-  /** Single italic line describing the character interaction, or null. */
-  characterInteraction: string | null;
+  // No `characterInteraction`: it describes how the character behaves and gives
+  // the case away, so the app strips it from every learner surface (ENG-266)
+  // and the public examples never carry it. Leaving it off the type makes a
+  // snapshot that includes it fail to compile.
   /** Learning objectives (briefing.objectives). */
   objectives: string[];
   /** The run version's `evidence` blob (markdown), shown to learners as the

@@ -11,4 +11,10 @@ describe("public example catalog", () => {
       );
     }
   });
+
+  it("does not publish the author-only character interaction", () => {
+    for (const example of getAllExamples()) {
+      expect(example).not.toHaveProperty("characterInteraction");
+    }
+  });
 });
