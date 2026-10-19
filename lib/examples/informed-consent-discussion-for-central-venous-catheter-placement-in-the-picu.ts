@@ -9,7 +9,6 @@ const example: ExampleCase = {
   "role": "You are the Pediatric Critical Care Fellow caring for Noah Harris in the PICU.",
   "summary": "Noah Harris, a previously healthy five year old, was admitted to the PICU about thirty minutes ago with septic shock secondary to pneumonia.",
   "scenario": "Noah Harris, a previously healthy five-year-old, was admitted to the PICU about thirty minutes ago with septic shock secondary to pneumonia. He needs vasopressor support, aggressive fluid resuscitation, multiple IV medications, and frequent blood draws, but his peripheral IV access is tenuous and insufficient for escalating care. The team has decided to place a central venous catheter. You are at the bedside with his mother, Mrs. Danielle Harris, to obtain informed consent before the procedure. She is anxious, has some healthcare familiarity as a medical assistant, but does not understand what a central line is or why it differs from a regular IV.",
-  "characterInteraction": "You are speaking by voice with Mrs. Danielle Harris, Noah's frightened and protective mother, standing at her son's bedside.",
   "objectives": [
     "Explain the procedure clearly in plain language",
     "Discuss risks, benefits, and alternatives",

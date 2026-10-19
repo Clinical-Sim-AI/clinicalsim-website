@@ -1920,6 +1920,73 @@ describe("per-case N/A checks (ENG-258)", () => {
     });
     expect(section.score).toEqual({ total: 1, max: 1, percent: 100 });
   });
+
+  // ENG-310: the write path always stores an N/A key in extractedData, but a
+  // row written any other way must not make a check the case ruled out vanish.
+  describe("an N/A check with no extracted entry", () => {
+    const grouped = (field: EvaluationField, group: string): EvaluationField => ({ ...field, group });
+    const build = (
+      fields: EvaluationField[],
+      extractedData: RubricGradeInput["extractedData"],
+      notApplicable: Record<string, string>
+    ) =>
+      buildFeedbackReport({
+        builtInGrade: null,
+        builtInGradeFields: null,
+        rubricGrades: [
+          {
+            gradeId: "g",
+            rubricId: "r",
+            rubricName: "RESPECT",
+            content: "## Overall impression\nx",
+            extractedData,
+            notApplicable,
+            evaluationFields: fields,
+            isAcgmeMilestone: false,
+            competencyCode: null,
+          },
+        ],
+        associatedEpas: null,
+      }).sections[0]!;
+
+    it("still renders an ordinal as Not scored, outside the score", () => {
+      const section = build([ord("r1"), ord("x")], { r1: { value: 1, reasoning: "ok" } }, { x: "bedside exam" });
+      expect(section.competencies!.find((c) => c.key === "x")).toMatchObject({
+        notScoredReason: "bedside exam",
+        notAssessable: true,
+        value: null,
+      });
+      expect(section.score).toEqual({ total: 1, max: 1, percent: 100 });
+    });
+
+    it("still renders a Yes/No check as Not scored", () => {
+      const section = build([ord("r1"), bool("x")], { r1: { value: 1, reasoning: "ok" } }, { x: "bedside exam" });
+      expect(section.checks!.find((c) => c.key === "x")).toMatchObject({
+        notScoredReason: "bedside exam",
+        answer: null,
+      });
+      expect(section.score).toEqual({ total: 1, max: 1, percent: 100 });
+    });
+
+    it("collapses a letter the case ruled out entirely", () => {
+      const section = build(
+        [grouped(ord("s1"), "S — Site"), grouped(bool("s2"), "S — Site"), grouped(ord("t1"), "T — Thank")],
+        { t1: { value: 1, reasoning: "ok" } },
+        { s1: "bedside exam", s2: "bedside exam" }
+      );
+      expect(sectionRowGroups(section)[0]).toMatchObject({
+        heading: "S — Site",
+        allNotScored: true,
+        notScoredReason: "bedside exam",
+      });
+    });
+
+    it("renders no rows while extraction has not produced data", () => {
+      const section = build([ord("x"), bool("y")], null, { x: "bedside exam", y: "bedside exam" });
+      expect(section.competencies ?? []).toEqual([]);
+      expect(section.checks ?? []).toEqual([]);
+    });
+  });
 });
 
 describe("case result (ENG-261)", () => {
