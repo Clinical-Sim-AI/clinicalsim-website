@@ -218,6 +218,8 @@ export type MilestonePlacement = {
 };
 
 export type AssessmentSection = {
+  /** Set when this grade's extraction failed: the section falls back to its
+   *  written narrative and says the detailed rows could not be verified. */
   evidenceNotice?: string;
   /** Stable anchor id for the jump-nav, e.g. "sec-overall" / "sec-<gradeId>". */
   id: string;
@@ -293,6 +295,7 @@ export type AssessmentSection = {
 };
 
 export type FeedbackReport = {
+  /** Set when the built-in grade's extraction failed (see AssessmentSection). */
   evidenceNotice?: string;
   /** The built-in grade's narrative, lifted to the top as the headline prose. */
   overallNarrative?: string;
@@ -589,6 +592,7 @@ function collectChecks(
   // re-quote the learner — the two must agree on what "paired" means.
   const { evidenceKeyFor, isEvidence } = resolveEvidencePairs(list);
 
+  if (!extractedData) return [];
   const out: CheckDetail[] = [];
   let sawBoolean = false;
   for (const [position, f] of list.entries()) {
@@ -598,7 +602,6 @@ function collectChecks(
     // An evidence field never stands alone: it renders inside its boolean, and
     // if that boolean produced no answer at all it has no home to render in.
     if (isEvidence.has(f.key)) continue;
-    if (!extractedData) continue;
     const undetermined =
       f.type === "boolean" &&
       isUndetermined(f, extractedData, notApplicable, resultMode);
@@ -607,7 +610,7 @@ function collectChecks(
     const notScoredReason = notScoredReasonFor(notApplicable, f.key);
     const answer =
       f.type === "boolean" && !notScoredReason ? asBoolean(value) : null;
-    const note = f.type === "text" ? textBody(f.key, extractedData) : null;
+    const note = f.type === "text" ? trimmedText(value) : null;
     // Nothing to show: not a boolean, and no text body.
     if (answer === null && note === null && f.type === "text") continue;
     if (f.type === "boolean") sawBoolean = true;
@@ -1033,18 +1036,26 @@ function overallImpressionFields(
   return actionItems.length > 0 ? { actionItems } : { overallImpression };
 }
 
-export const EXTRACTION_EVIDENCE_NOTICE = "We couldn't verify the detailed feedback. The written feedback is shown below.";
+export const EXTRACTION_EVIDENCE_NOTICE =
+  "We couldn't verify the detailed feedback. The written feedback is shown below.";
 
 export function buildFeedbackReport({
-  builtInGrade,
+  builtInGrade: rawBuiltInGrade,
   builtInGradeFields,
-  rubricGrades,
+  rubricGrades: rawRubricGrades,
   associatedEpas,
   builtInSourceLabel = "Overall assessment",
 }: BuildFeedbackReportInput): FeedbackReport {
-  const builtInCompleted = builtInGrade?.status === "completed";
-  if (builtInGrade?.extractionStatus === "failed") builtInGrade = { ...builtInGrade, extractedData: null };
-  rubricGrades = rubricGrades.map(g => g.extractionStatus === "failed" ? { ...g, extractedData: null } : g);
+  const builtInCompleted = rawBuiltInGrade?.status === "completed";
+  const builtInExtractionFailed = rawBuiltInGrade?.extractionStatus === "failed";
+  // A failed extraction's data is unverified, so it is dropped and the grade
+  // degrades to its written narrative (with a notice), never half-rendered rows.
+  const builtInGrade = builtInExtractionFailed
+    ? { ...rawBuiltInGrade, extractedData: null }
+    : rawBuiltInGrade;
+  const rubricGrades = rawRubricGrades.map((g) =>
+    g.extractionStatus === "failed" ? { ...g, extractedData: null } : g
+  );
   const sections: AssessmentSection[] = [];
 
   // --- Built-in grade → the lead communication section (narrative lifted) ---
@@ -1145,7 +1156,9 @@ export function buildFeedbackReport({
       ...(g.reference ? { reference: g.reference } : {}),
       ...(caseResult ? { caseResult } : {}),
       ...(caseUndetermined.length > 0 ? { caseUndetermined } : {}),
-      evidenceNotice: g.extractionStatus === "failed" ? EXTRACTION_EVIDENCE_NOTICE : undefined,
+      ...(g.extractionStatus === "failed"
+        ? { evidenceNotice: EXTRACTION_EVIDENCE_NOTICE }
+        : {}),
       competencyCode: g.competencyCode,
       isPrimary: false,
       narrative: proj.fullFallback,
@@ -1164,36 +1177,40 @@ export function buildFeedbackReport({
   const milestoneSections: AssessmentSection[] = [];
   for (const g of rubricGrades) {
     if (!g.isAcgmeMilestone) continue;
+    // Normalize the same way the EPA set was built (hyphen-stripped), so
+    // "ICS-4" matches an associated EPA stored as "ICS4".
+    const code = g.competencyCode
+      ? parseLeadingCompetencyCode(g.competencyCode)
+      : null;
+    const head = {
+      id: `sec-${g.gradeId}`,
+      kind: "milestone" as const,
+      title: g.rubricName,
+      rubricId: g.rubricId,
+      ...(g.reference ? { reference: g.reference } : {}),
+      competencyCode: g.competencyCode,
+      isPrimary: code != null && codes.has(code),
+    };
     const placement = toMilestonePlacement(g);
     if (!placement) {
       // A verified milestone narrative is still useful when extraction fails.
-      if (g.extractionStatus === "failed" && g.content) milestoneSections.push({
-        id: `sec-${g.gradeId}`, kind: "milestone", title: g.rubricName, rubricId: g.rubricId,
-        competencyCode: g.competencyCode, isPrimary: false, narrative: g.content,
-        narrativeIsFullFallback: true, evidenceNotice: EXTRACTION_EVIDENCE_NOTICE,
-      });
+      // (Failed extraction nulls the data above, so a placement can never
+      // resolve on a failed grade: the notice only ever rides on this branch.)
+      if (g.extractionStatus === "failed" && g.content) {
+        milestoneSections.push({
+          ...head,
+          narrative: g.content,
+          narrativeIsFullFallback: true,
+          evidenceNotice: EXTRACTION_EVIDENCE_NOTICE,
+        });
+      }
       continue;
     }
     // The 1–5 track always renders here (placement resolved), so it carries the
     // per-level evidence — stripping the markdown to synthesis is safe.
     const proj = projectNarrative(g.content, "milestone", true);
     milestoneSections.push({
-      id: `sec-${g.gradeId}`,
-      kind: "milestone",
-      title: g.rubricName,
-      rubricId: g.rubricId,
-      ...(g.reference ? { reference: g.reference } : {}),
-      evidenceNotice: g.extractionStatus === "failed" ? EXTRACTION_EVIDENCE_NOTICE : undefined,
-      competencyCode: g.competencyCode,
-      isPrimary: Boolean(
-        g.competencyCode &&
-          (() => {
-            // Normalize the same way the EPA set was built (hyphen-stripped),
-            // so "ICS-4" matches an associated EPA stored as "ICS4".
-            const code = parseLeadingCompetencyCode(g.competencyCode);
-            return code != null && codes.has(code);
-          })()
-      ),
+      ...head,
       narrative: proj.fullFallback,
       narrativeIsFullFallback: proj.fullFallback != null,
       overallImpression: proj.overallImpression ?? undefined,
@@ -1212,7 +1229,11 @@ export function buildFeedbackReport({
     builtInProjection?.fullFallback ??
     undefined;
 
-  return { overallNarrative, sections,
-    ...(builtInCompleted && builtInGrade?.extractionStatus === "failed" ? { evidenceNotice: EXTRACTION_EVIDENCE_NOTICE } : {}),
+  return {
+    overallNarrative,
+    sections,
+    ...(builtInCompleted && builtInExtractionFailed
+      ? { evidenceNotice: EXTRACTION_EVIDENCE_NOTICE }
+      : {}),
   };
 }

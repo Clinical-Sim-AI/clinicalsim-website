@@ -11,7 +11,7 @@ import type { ReferenceLink } from "@/lib/feedback/grading-schema";
 export function PolicyLink({ reference }: { reference: ReferenceLink }) {
   if (!reference.url.startsWith("https://")) {
     return (
-      <span className="inline-flex min-h-6 items-center break-words text-xs font-semibold text-cs-navy">
+      <span className="inline-flex min-h-6 items-center break-words text-xs font-bold text-cs-navy">
         {reference.label}
       </span>
     );
@@ -21,7 +21,7 @@ export function PolicyLink({ reference }: { reference: ReferenceLink }) {
       href={reference.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex min-h-6 items-center break-words text-xs font-semibold text-cs-navy underline underline-offset-2"
+      className="inline-flex min-h-6 items-center break-words text-xs font-bold text-cs-navy underline underline-offset-2"
     >
       {reference.label} ↗
     </a>

@@ -54,7 +54,9 @@ export function checkOutcome(
   resultMode: RubricResultMode,
 ): CheckOutcome | null {
   if (field.type === "text" || field.type === "number") return null;
-  if (notApplicable[field.key]) return "not_applicable";
+  // Blank reasons do not count, matching how the report reads the same map.
+  const naReason: unknown = notApplicable[field.key];
+  if (typeof naReason === "string" && naReason.trim()) return "not_applicable";
   if (!(field.key in extracted)) return "unknown";
   const raw = extracted[field.key];
   if (field.type === "ordinal") {

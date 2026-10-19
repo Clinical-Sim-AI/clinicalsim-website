@@ -9,7 +9,7 @@ export function FormativeUseNotice({ className }: { className?: string }) {
     <p
       className={`border-t border-cs-gray pt-4 text-[13px] leading-relaxed text-muted-foreground ${className ?? ""}`}
     >
-      <span className="font-semibold text-cs-dark-blue">Formative use only.</span>{" "}
+      <span className="font-bold text-cs-dark-blue">Formative use only.</span>{" "}
       This feedback is AI-generated for education and professional development. It
       is not a clinical judgment or a credentialing determination, and must not be
       used as the sole basis for any promotion, remediation, credentialing, or
