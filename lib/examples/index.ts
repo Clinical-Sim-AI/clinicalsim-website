@@ -21,7 +21,7 @@ const examples: ExampleCase[] = rawExamples.map((example) => ({
   ...example,
   report: {
     ...example.report,
-    runVersionFields: null,
+    builtInGradeFields: null,
     associatedEpas: null,
     rubricGrades: example.report.rubricGrades.filter(
       (grade) => !grade.isAcgmeMilestone,

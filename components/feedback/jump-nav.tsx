@@ -36,7 +36,7 @@ export function JumpNav({
             key={s.id}
             type="button"
             onClick={() => onJump(s.id)}
-            className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs font-medium transition-colors ${tint}`}
+            className={`inline-flex min-h-11 items-center gap-2 rounded-full border px-3 py-2 text-xs font-medium transition-colors ${tint}`}
           >
             {primary && (
               <span

@@ -1,4 +1,4 @@
-import { ChevronDown } from "lucide-react";
+import { DisclosureChevron } from "@/components/feedback/disclosure-chevron";
 import { CEILING_MIN_FOR_OVERALL } from "@/lib/feedback/milestone-ceiling";
 
 type Props = {
@@ -39,7 +39,7 @@ export function FeedbackLegend({ className }: Props) {
       className={`group rounded-xl border border-cs-gray bg-white ${className ?? ""}`}
     >
       <summary className="flex cursor-pointer items-center gap-2 p-4 text-sm font-medium text-cs-dark-blue select-none [&::-webkit-details-marker]:hidden">
-        <ChevronDown className="h-4 w-4 flex-none text-cs-dark-gray transition-transform group-open:rotate-0 -rotate-90" />
+        <DisclosureChevron className="text-cs-dark-gray" />
         How to read this feedback
       </summary>
 

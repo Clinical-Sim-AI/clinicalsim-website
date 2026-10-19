@@ -5,8 +5,8 @@
  * `AssessmentSection`, and a `JumpNav` smooth-scrolls to + opens any section.
  * Sources never merge. Renders nothing when there is no content.
  *
- * Ported verbatim from app/src/features/feedback-report/feedback-report.tsx
- * (imports re-pointed to @/components/feedback/*).
+ * Ported from app/src/features/feedback-report/feedback-report.tsx (imports
+ * re-pointed to @/components/feedback/*; the admin-only `rubricHref` is dropped).
  */
 "use client";
 
@@ -16,13 +16,17 @@ import {
   type BuildFeedbackReportInput,
 } from "@/components/feedback/build-report";
 import { FeedbackLegend } from "@/components/feedback/feedback-legend";
+import { FormativeUseNotice } from "@/components/feedback/formative-use-notice";
 import { OverallSummary } from "@/components/feedback/overall-summary";
 import { JumpNav } from "@/components/feedback/jump-nav";
 import { AssessmentSectionCard } from "@/components/feedback/assessment-section";
+import { scrollToId } from "@/lib/feedback/scroll-to-id";
 
 export function FeedbackReport(props: BuildFeedbackReportInput) {
-  const { overallNarrative, sections } = buildFeedbackReport(props);
+  const { overallNarrative, sections, evidenceNotice } = buildFeedbackReport(props);
 
+  // Open/closed per section id, seeded once per id the first time it appears
+  // (the FIRST section opens by default), so the default stays sticky.
   const [openById, setOpenById] = useState<Map<string, boolean>>(new Map());
 
   useEffect(() => {
@@ -48,18 +52,17 @@ export function FeedbackReport(props: BuildFeedbackReportInput) {
 
   const jumpTo = (id: string) => {
     setOpen(id, true);
-    const el = typeof document !== "undefined" ? document.getElementById(id) : null;
-    if (el) {
-      const reduce =
-        typeof window !== "undefined" &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-    }
+    scrollToId(id);
   };
 
   return (
     <div className="space-y-5">
       <FeedbackLegend />
+      {evidenceNotice && (
+        <p role="status" className="text-sm text-destructive">
+          {evidenceNotice}
+        </p>
+      )}
       <OverallSummary narrative={overallNarrative} />
       <JumpNav sections={sections} onJump={jumpTo} />
       <div className="space-y-4">
@@ -72,6 +75,7 @@ export function FeedbackReport(props: BuildFeedbackReportInput) {
           />
         ))}
       </div>
+      <FormativeUseNotice />
     </div>
   );
 }
