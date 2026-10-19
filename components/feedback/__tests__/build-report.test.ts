@@ -1986,6 +1986,13 @@ describe("per-case N/A checks (ENG-258)", () => {
       expect(section.competencies ?? []).toEqual([]);
       expect(section.checks ?? []).toEqual([]);
     });
+
+    it("falls back to the narrative when extraction came back empty", () => {
+      const section = build([ord("r1"), ord("x"), bool("y")], {}, { x: "bedside exam", y: "bedside exam" });
+      expect(section.competencies ?? []).toEqual([]);
+      expect(section.checks ?? []).toEqual([]);
+      expect(section.narrativeIsFullFallback).toBe(true);
+    });
   });
 });
 

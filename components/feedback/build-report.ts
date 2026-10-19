@@ -1118,13 +1118,13 @@ export function buildFeedbackReport({
   for (const g of rubricGrades) {
     if (g.isAcgmeMilestone) continue;
     const resultMode = g.resultMode ?? "none";
-    const comps = collectCompetencyDetails(
+    let comps = collectCompetencyDetails(
       g.evaluationFields,
       g.extractedData,
       g.notApplicable,
       resultMode
     );
-    const checks = collectChecks(
+    let checks = collectChecks(
       g.evaluationFields,
       g.extractedData,
       feedbackFormatFor({
@@ -1134,6 +1134,16 @@ export function buildFeedbackReport({
       g.notApplicable,
       resultMode
     );
+    // A ruled-out row with no extracted entry (ENG-310) only fills in beside
+    // rows extraction actually produced. If it is all there is (extraction came
+    // back empty), drop it so the section falls back to the full narrative
+    // rather than showing nothing but Not scored rows.
+    const phantom = (r: { key: string; notScoredReason: string | null }) =>
+      !!r.notScoredReason && !(r.key in (g.extractedData ?? {}));
+    if (comps.every(phantom) && checks.every(phantom)) {
+      comps = [];
+      checks = [];
+    }
     // Checks are structured rows too, so a pure-check rubric (NURSE) is NOT a
     // "no structured rows" case — its narrative may be stripped to synthesis
     // just like a scored one, and its evidence still shows.
