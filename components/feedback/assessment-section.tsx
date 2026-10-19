@@ -2,13 +2,31 @@
  * One collapsible assessment section — a single grade source (a communication
  * framework like SPIKES/REMAP, or an ACGME milestone). The header is the toggle
  * and carries the headline (score + verdict, or placed level); the body leads
- * with this source's narrative prose, then renders its breakdown.
+ * with this source's narrative prose, then renders its breakdown:
+ *   - communication → the per-competency rows (each independently expandable),
+ *   - milestone     → the 1–5 placement track + anchor + evidence + growth edge.
+ *
+ * Open state is controlled by the orchestrator so the jump-nav can open a target.
+ *
+ * Ported from app/src/features/feedback-report/assessment-section.tsx. Website
+ * differences: no admin "View rubric" link, em dashes dropped from the visible
+ * copy (cc0c846), and synthesis prose split at sentence boundaries for
+ * readability (9483c3e).
  */
 "use client";
 
-import { ChevronDown, Info } from "lucide-react";
+import { Info } from "lucide-react";
 import { MarkdownContent } from "@/components/feedback/markdown-content";
+import { DisclosureChevron } from "@/components/feedback/disclosure-chevron";
 import { CompetencyRow } from "@/components/feedback/competency-row";
+import { CheckRow } from "@/components/feedback/check-row";
+import { sectionRowGroups } from "@/components/feedback/build-report";
+import { PolicyLink } from "@/components/feedback/policy-link";
+import {
+  ActionItems,
+  CaseResultPanel,
+} from "@/components/feedback/case-result-panel";
+import { NOT_SCORED_ROW } from "@/components/feedback/not-scored-row";
 import { MilestoneTrack } from "@/components/feedback/milestone-track";
 import { formatLevel } from "@/lib/feedback/level-display";
 import { isExcludedFromOverall } from "@/lib/feedback/milestone-ceiling";
@@ -28,6 +46,8 @@ function MilestonePlacementView({ placement }: { placement: MilestonePlacement }
     ceiling,
   } = placement;
   const anchorText = anchorDescription ?? anchorLabel;
+  // Per-conversation view has no learner benchmark in scope — judge against the
+  // default bar (null). The copy is per-scenario, not a claim about the overall.
   const excluded = isExcludedFromOverall(ceiling, null);
 
   return (
@@ -88,7 +108,8 @@ function MilestonePlacementView({ placement }: { placement: MilestonePlacement }
 
 /**
  * A soft-tinted wrapper for the case-level synthesis prose (Overall impression,
- * milestone Recommendations) that now sits BELOW the structured visual.
+ * milestone Recommendations) that now sits BELOW the structured visual. The
+ * `##` heading was stripped during parsing, so we re-surface it as a label.
  */
 function SynthesisBlock({
   label,
@@ -122,6 +143,13 @@ export function AssessmentSectionCard({
   onToggle: () => void;
 }) {
   const bodyId = `${section.id}-body`;
+  // Legacy / off-template content renders as one verbatim blob; the case
+  // result panel renders (at the top of the structured body) only off it.
+  const isFullFallback = Boolean(
+    section.narrativeIsFullFallback && section.narrative
+  );
+  const hasResultPanel =
+    !isFullFallback && Boolean(section.caseResult || section.caseUndetermined);
 
   return (
     <section
@@ -139,12 +167,7 @@ export function AssessmentSectionCard({
         onClick={onToggle}
         className="flex w-full items-center gap-3 px-5 py-4 text-left"
       >
-        <ChevronDown
-          className={`h-4 w-4 flex-none text-cs-dark-gray transition-transform ${
-            open ? "" : "-rotate-90"
-          }`}
-          aria-hidden="true"
-        />
+        <DisclosureChevron open={open} className="text-cs-dark-gray" />
         <div className="min-w-0 flex-1">
           {(section.competencyCode || section.isPrimary) && (
             <div className="mb-0.5 flex items-center gap-2">
@@ -182,24 +205,109 @@ export function AssessmentSectionCard({
 
       {open && (
         <div id={bodyId} className="space-y-4 border-t border-cs-gray px-5 py-4">
-          {section.narrativeIsFullFallback && section.narrative ? (
+          {section.evidenceNotice && <p role="status" className="text-sm text-destructive">{section.evidenceNotice}</p>}
+          {/* The case result panel carries the policy link itself, so the
+              section head shows it only when there is no panel. */}
+          {section.reference && !hasResultPanel && (
+            <div>
+              <PolicyLink reference={section.reference} />
+            </div>
+          )}
+          {isFullFallback && section.narrative ? (
+            // Legacy / off-template content with no synthesis heading — render
+            // the whole blob verbatim so nothing is ever hidden.
             <MarkdownContent className="text-sm">{section.narrative}</MarkdownContent>
           ) : (
             <>
-              {section.kind === "communication" && section.competencies && (
-                <div className="space-y-2">
-                  {section.competencies.map((c) => (
-                    <CompetencyRow
-                      key={c.key}
-                      competency={c}
-                      sectionId={section.id}
-                    />
-                  ))}
-                </div>
+              {/* The case result leads (ENG-278): Passed / Not passed, the
+                  critical checks not demonstrated and what to work on come
+                  before the rows that explain them. */}
+              {section.caseResult ? (
+                <CaseResultPanel
+                  result={section.caseResult}
+                  reference={section.reference}
+                  actionItems={section.actionItems}
+                />
+              ) : section.caseUndetermined ? (
+                <CaseResultPanel
+                  undetermined={section.caseUndetermined}
+                  reference={section.reference}
+                  actionItems={section.actionItems}
+                />
+              ) : (
+                section.actionItems && (
+                  <div className="rounded-2xl border border-cs-gray p-4 [&>div]:mt-0">
+                    <ActionItems items={section.actionItems} />
+                  </div>
+                )
               )}
+
+              {/* Then the structured visual — the milestone track / rows. */}
+              {section.kind === "communication" &&
+                (section.competencies || section.checks) && (
+                  <div className="space-y-4">
+                    {sectionRowGroups(section).map((group, i) =>
+                      group.allNotScored && group.heading ? (
+                        // A letter nothing in this encounter scored: one gray
+                        // line, so every letter still appears (ENG-271).
+                        <p
+                          key={`${group.heading}-${i}`}
+                          data-row-state="not-scored"
+                          className={`${NOT_SCORED_ROW} break-words px-3.5 py-2.5 text-[13px] leading-snug text-cs-slate`}
+                        >
+                          <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-cs-navy">
+                            {group.heading}
+                          </span>
+                          <span aria-hidden="true"> · </span>
+                          <span className="font-bold">Not scored: </span>
+                          {group.notScoredReason}
+                        </p>
+                      ) : (
+                      <div key={`${group.heading ?? ""}-${i}`} className="space-y-2">
+                        {group.heading && (
+                          <h4 className="break-words pt-1 text-[11px] font-bold uppercase tracking-[0.12em] text-cs-navy">
+                            {group.heading}
+                          </h4>
+                        )}
+                        {/* The grader's one-or-two-sentence take on this
+                            letter (ENG-270), before the rows behind it. */}
+                        {group.summary && (
+                          <MarkdownContent className="break-words text-[13px] leading-snug text-cs-dark-blue">
+                            {group.summary}
+                          </MarkdownContent>
+                        )}
+                        {group.rows.map((row) =>
+                          row.kind === "competency" ? (
+                            <CompetencyRow
+                              key={row.detail.key}
+                              competency={row.detail}
+                              sectionId={section.id}
+                            />
+                          ) : (
+                            <CheckRow
+                              key={row.detail.key}
+                              check={row.detail}
+                              sectionId={section.id}
+                            />
+                          )
+                        )}
+                      </div>
+                      )
+                    )}
+                  </div>
+                )}
 
               {section.kind === "milestone" && section.placement && (
                 <MilestonePlacementView placement={section.placement} />
+              )}
+
+              {/* Then the non-duplicated synthesis prose, below the visual, in
+                  the template's own order: an unscored rubric's Missed moments
+                  lead its Overall impression, as they do in the narrative. */}
+              {section.missedMoments && (
+                <SynthesisBlock label="Missed moments">
+                  {section.missedMoments}
+                </SynthesisBlock>
               )}
 
               {section.overallImpression && (
@@ -213,6 +321,7 @@ export function AssessmentSectionCard({
                   {section.recommendations}
                 </SynthesisBlock>
               )}
+
             </>
           )}
         </div>

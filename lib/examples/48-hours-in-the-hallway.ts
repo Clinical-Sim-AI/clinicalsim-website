@@ -20,43 +20,50 @@ const example: ExampleCase = {
   "durationSeconds": 282,
   "report": {
     "builtInGrade": null,
-    "runVersionFields": [],
+    "builtInGradeFields": null,
     "rubricGrades": [
       {
-        "gradeId": "290c4de2-3ad8-4455-a9b1-7ceb004e162a",
+        "gradeId": "8fd4d88f-51f9-4441-ad6e-29e736795e4e",
+        "rubricId": "2c3afccc-e403-4158-b632-810b18b53114",
         "rubricName": "NURSE — Empathic Responses to Emotion",
-        "content": "## NURSE — responding to emotion with articulated empathy\nNURSE names five kinds of empathic response a clinician can choose among when emotion surfaces: Naming, Understanding, Respecting, Supporting, Exploring. It is not scored, and using all five is not the goal — a skilled clinician plays the cards the moment calls for.\n\n## What you used\n| Response | Used |\n| --- | --- |\n| N · Naming | Yes |\n| U · Understanding | Yes |\n| R · Respecting | Yes |\n| S · Supporting | Yes |\n| E · Exploring | No |\n\n### N · Naming — Used\n- **What you said:** Learner said: \"I, I hear the frustration and I, I see it ... I'm really sorry this has been the experience you guys have had so far\"\n- **Effect:** You named the frustration tentatively and tied it to a visible cue, and she responded warmly, saying thank you — the naming landed as being seen rather than labeled.\n\n### U · Understanding — Used\n- **What you said:** Learner said: \"I'm sorry you've been told \"soon\" so much and it's been nothing but later and later\"\n- **Effect:** You legitimized that the repeated soon with nothing to show for it was unfair, which matched her lived experience and built trust. She immediately opened up about her father's independence and her own dilemma.\n\n### R · Respecting — Used\n- **What you said:** Learner said: \"you're the only one that knows what feels right or wrong for you\"\n- **Effect:** Naming her as the only one who knows what feels right, and later that she is doing incredible, acknowledged her advocacy and caregiving under strain. The second instance is a little broad, but the first fit the moment of indecision well.\n\n### S · Supporting — Used\n- **What you said:** Learner said: \"I promise, as soon as I know something, you'll know something ... I'm happy to bring over the charge nurse, um, again, and the attending physician\"\n- **Effect:** A clear, time-bound, non-abandonment commitment — labs, a return, and an offer to bring the charge nurse and attending. This was the spine of the encounter and directly answered her plea not to forget him.\n\n### E · Exploring — Not used\n- **What you said:** No moment in this encounter.\n- **Effect:** There were two openings where a single exploring question would have deepened what she offered — see Missed moments. You moved to reassurance or to the plan instead, which was adequate but closed the door a little earlier than it needed to close.\n\n## Missed moments\nWhen she said Character said: \"It's just me and him ... I don't even know if I should go to work today or stay\", she handed you her isolation and her own torn decision — a direct emotional disclosure. Your reply went to reassurance about him being in good hands and her being the one who knows. That is a reasonable answer, but a brief exploring question — asking what is pulling her toward staying, or simply more about him — would have let her say the harder thing before you solved it.\n\nSimilarly, her fear carried a specific worry: Character said: \"Is he going to get worse while he's waiting?\". You answered with monitoring information, which was appropriate and visibly reassured her, but it bypassed the fear itself; naming the worry about him getting worse first, then giving the facts, would have met both.\n\nThese are refinements, not failures — most of her cues got a genuine response.\n\n## Overall impression\n- **Strengths** — You met emotion repeatedly and with your own words: you named frustration tentatively, legitimized the broken soon promises specifically, and made a concrete, time-bound commitment not to abandon her father. When you did not know the labs, you were honest about it and paired that honesty with a plan, which rebuilt the trust the overnight team had spent.\n- **Priority gaps** — Twice, a vulnerable disclosure — her aloneness and her decision about work, and her fear of his condition worsening — was answered with reassurance or facts rather than a question that drew her out. Both answers were kind; both arrived a beat before she had finished being heard.\n- **Top action items**\n  1. When someone discloses a personal struggle like whether to stay or go to work, ask one open question before offering reassurance. Suggested wording: \"What's making the decision about staying feel so hard right now?\"\n  2. When a specific fear surfaces, name the fear first, then give the clinical information — let the acknowledgment precede the facts.\n  3. Keep the honest I haven't looked yet, but here is exactly when I will move — it was one of the strongest things you did.\n",
+        "showSubtotal": true,
+        "showOverallImpression": true,
+        "reference": null,
+        "resultMode": "none",
+        "content": "## NURSE — responding to emotion with articulated empathy\n\nNURSE describes five kinds of empathic response a clinician can make when emotion surfaces: Naming, Understanding, Respecting, Supporting, Exploring. It is not scored, and using all five is not the goal. A skilled clinician plays the cards the moment calls for and sets the others down.\n\n## What you used\n| Response | Used |\n| --- | --- |\n| N · Naming | Yes |\n| U · Understanding | Yes |\n| R · Respecting | Yes |\n| S · Supporting | Yes |\n| E · Exploring | No |\n\n### N · Naming — Used\n- **What you said:** Learner said: \"I understand why you feel so frustrated by this\"\n- **Effect:** Named the frustration directly, and later again when the daughter catalogued the indignities of the hallway stay Learner said: \"I hear the frustration and I, I see it\". Both landings were accurate and tentative in tone, and she responded with thanks each time rather than escalating — the naming kept the door open.\n\n### U · Understanding — Used\n- **What you said:** Learner said: \"I'm sorry you've been told \"soon\" so much and it's been nothing but later and later\"\n- **Effect:** Legitimized her experience of being told the same vague word over and over without claiming to fully grasp it. This acknowledgement came right before a concrete commitment, so it read as genuine rather than a deflection.\n\n### R · Respecting — Used\n- **What you said:** Learner said: \"I know that you care a lot about your dad\"\n- **Effect:** Named her caring and her role as her father's one advocate. When she disclosed she was alone in this — Character said: \"It's just me and him. My mom passed four years ago\" — the recognition of how hard she was working landed, though the praise phrasing Learner said: \"You're doing incredible\" risked sounding generic for a daughter who mainly wanted competent care, not applause.\n\n### S · Supporting — Used\n- **What you said:** Learner said: \"I promise, as soon as I know something, you'll know something ... I'm happy to bring over the charge nurse\"\n- **Effect:** This was the strongest thread of the encounter. Repeated, specific commitments — to check the labs and return, and to bring the charge nurse and attending — directly answered her core fear of being abandoned in the system. The explicit partnership and non-abandonment is exactly what Supporting is for, and she visibly settled.\n\n### E · Exploring — Not used\n- **What you said:** No moment in this encounter.\n- **Effect:** There were real openings to explore. When she said Character said: \"I don't even know if I should go to work today or stay\", a focused question inviting her to say more about what she was weighing would have deepened the moment; instead the reply moved to reassurance about leaving. A single exploring question would have let her name what she was actually afraid of.\n\n## Missed moments\nTwo emotional cues got answered with reassurance or logistics rather than exploration.\n\nWhen she wondered aloud whether to stay or go — Character said: \"I don't even know if I should go to work today or stay\" — the reply told her she was the only one who knew what felt right and that he would be in good hands. That is kind, but it closes the question rather than opening it; she was asking to be helped to think, not to be reassured.\n\nWhen she said the quieter, heavier thing — Character said: \"But he looks small in that stretcher\" — the grief and fear underneath went unexplored. The conversation stayed on the plan. A moment to sit with that image would have met the person rather than the task.\n\nOtherwise, the frustration cues throughout were consistently met, which is the strength of this encounter.\n\n## Overall impression\n- **Strengths** — Supporting was handled with real skill: concrete, repeated, specific commitments that directly answered the daughter's fear of being forgotten in the system, capped by a clear read-back of exactly what she would do next. Naming and Understanding were accurate and tentative, and the honesty about not yet having seen the labs built trust rather than eroding it.\n- **Priority gaps** — The softer, more vulnerable disclosures — her ambivalence about whether to stay, and how small her father looked on the stretcher — were met with reassurance instead of curiosity. These were the moments the daughter risked something personal, and they were the moments the conversation moved on from fastest.\n- **Top action items**\n  1. When someone voices ambivalence like whether to stay or go, ask before you reassure — draw out what they are weighing rather than resolving it for them.\n  2. When a person says something tender and off-plan, pause on it before returning to logistics. Suggested wording: \"It sounds like seeing him like that is really hard — can you say more about what's going through your mind right now?\"\n  3. Keep the specific, repeated commitments — they were the most effective thing you did; just pair one of them with an exploring question.\n",
         "extractedData": {
           "nurse_naming_used": {
             "value": true,
-            "reasoning": "You named the frustration tentatively and tied it to a visible cue, and she responded warmly with thanks — the naming landed as being seen rather than labeled."
+            "reasoning": "Learner said: \"I understand why you feel so frustrated by this\" — naming the frustration directly, and again when the daughter catalogued the hallway indignities Learner said: \"I hear the frustration and I, I see it\", landed accurately and tentatively, and she responded with thanks rather than escalating. Keep pairing these accurate names with a pause for her to say more."
           },
           "nurse_exploring_used": {
             "value": false,
-            "reasoning": "No corresponding moment in the encounter — there were two openings where a single exploring question would have deepened what she offered, but you moved to reassurance or the plan instead; a question like \"What's making the decision about staying feel so hard right now?\" (suggested wording) would have drawn her out."
+            "reasoning": "No corresponding moment in the encounter was taken up — when she voiced ambivalence about staying or going the reply moved to reassurance instead of curiosity. A stronger move is \"It sounds like seeing him like that is really hard — can you say more about what's going through your mind right now?\" (suggested wording)."
           },
-          "nurse_naming_evidence": "Learner said: \"I, I hear the frustration and I, I see it ... I'm really sorry this has been the experience you guys have had so far\"",
+          "nurse_naming_evidence": "I understand why you feel so frustrated by this",
           "nurse_respecting_used": {
             "value": true,
-            "reasoning": "Naming her as the only one who knows what feels right acknowledged her advocacy and caregiving under strain, fitting the moment of indecision well."
+            "reasoning": "Learner said: \"I know that you care a lot about your dad\" — named her caring and her role as her father's one advocate, which landed when she disclosed she was alone in this, though the praise phrasing Learner said: \"You're doing incredible\" risked sounding generic for a daughter who wanted competent care more than applause. Keep tying recognition to the specific effort you can see."
           },
           "nurse_supporting_used": {
             "value": true,
-            "reasoning": "A clear, time-bound, non-abandonment commitment that was the spine of the encounter and directly answered her plea not to forget her father."
+            "reasoning": "Learner said: \"I promise, as soon as I know something, you'll know something ... I'm happy to bring over the charge nurse\" — repeated, specific commitments to check the labs and return and to bring the charge nurse and attending directly answered her fear of being abandoned in the system, and she visibly settled. Keep these concrete commitments; just pair one with an exploring question."
           },
           "nurse_exploring_evidence": null,
           "nurse_understanding_used": {
             "value": true,
-            "reasoning": "You legitimized that the repeated promises with nothing to show for them were unfair, which matched her lived experience and opened her up to share more about her father."
+            "reasoning": "Learner said: \"I'm sorry you've been told \"soon\" so much and it's been nothing but later and later\" — legitimized her experience of being told the same vague word repeatedly without claiming to fully grasp it, and because it came right before a concrete commitment it read as genuine. Keep placing this acknowledgement before the plan, not instead of it."
           },
-          "nurse_respecting_evidence": "Learner said: \"you're the only one that knows what feels right or wrong for you\"",
-          "nurse_supporting_evidence": "Learner said: \"I promise, as soon as I know something, you'll know something ... I'm happy to bring over the charge nurse, um, again, and the attending physician\"",
-          "nurse_understanding_evidence": "Learner said: \"I'm sorry you've been told \"soon\" so much and it's been nothing but later and later\"",
+          "nurse_respecting_evidence": "I know that you care a lot about your dad",
+          "nurse_supporting_evidence": "I promise, as soon as I know something, you'll know something",
+          "nurse_understanding_evidence": "I'm sorry you've been told soon so much and it's been nothing but later and later",
           "nurse_emotion_met_before_information": {
-            "value": true,
-            "reasoning": "Learner said: \"I, I hear the frustration and I, I see it ... I'm really sorry this has been the experience you guys have had so far\" — most of her cues got a genuine response, though twice a vulnerable disclosure was answered with reassurance or facts a beat before she had finished being heard; naming the fear first, then giving the information, would meet both."
+            "value": false,
+            "reasoning": "No moment in this encounter — the softer disclosures about whether to stay and how small her father looked on the stretcher were met with reassurance and logistics rather than exploration; a stronger move is \"It sounds like seeing him like that is really hard — can you say more about what's going through your mind right now?\" (suggested wording)."
           }
         },
+        "extractionStatus": "completed",
+        "notApplicable": null,
         "evaluationFields": [
           {
             "key": "nurse_naming_used",
@@ -139,6 +146,177 @@ const example: ExampleCase = {
             "label": "Emotion met before information",
             "description": "When the person expressed emotion, the learner responded to the emotion before returning to facts, plan, or reassurance.",
             "extractionInstructions": "Answer true if, on the whole, the learner responded to expressed emotion before moving back to information, plan, or reassurance. Answer false if emotional statements were repeatedly answered with facts. Return null if no emotion surfaced in this encounter — that is a no-opportunity case, not a false. This is the one judgment in this rubric; it is still not a score."
+          }
+        ],
+        "isAcgmeMilestone": false,
+        "competencyCode": null,
+        "ceiling": null
+      },
+      {
+        "gradeId": "15a8fee6-12da-47a7-9271-8b97fb3f5a0a",
+        "rubricId": "3fea471f-d0f3-40c2-a57f-9f94814d18ce",
+        "rubricName": "Ask-Tell-Ask + Teach-Back — Information Exchange",
+        "showSubtotal": true,
+        "showOverallImpression": true,
+        "reference": null,
+        "resultMode": "none",
+        "content": "## Ask-Tell-Ask plus Teach-Back — micro-skills for health-literacy-sensitive information exchange\nEach of four dimensions scored on a 1–5 Likert scale (1 = Poor, 5 = Excellent).\n\n## Scorecard\n| Domain | Score |\n| --- | --- |\n| Ask (assess) | 2/5 · Fair |\n| Tell (plain language) | 3/5 · Good |\n| Ask / Teach-Back (confirm) | 2/5 · Fair |\n| Responsiveness & shared agenda | 4/5 · Very good |\n\n### Ask (assess) — 2/5 · Fair\n- **Evidence:** No corresponding moment in the encounter.\n  Character said: \"I read last night that a blocked bile duct can get infected.\"\n- **Rationale:** The learner never asked the daughter what she already understood about her father's condition or his place on the list, nor explicitly elicited her information needs before responding. She did respond to concerns the daughter volunteered, such as the infection worry and the timeline, which keeps this above Poor, but all the assessing was driven by the character's own questions rather than by the learner opening space to find out what Tiffany knew or wanted. There was a clear opening at the infection remark that could have been met with a question about what she had read. Because the learner never proactively assessed understanding or needs, this stays at Fair.\n- **Recommendations:** Before explaining, surface what the family member already understands so you can target the explanation. Suggested wording: \"Before I explain where things stand, can you tell me what you understand so far about why he's waiting and what you've read about the bile duct?\"\n\n### Tell (plain language) — 3/5 · Good\n- **Evidence:** Learner said: \"everything, um, is being monitored as closely as we possibly can ... if he ends up developing any signs or symptoms with an, uh, as an infection, then we would absolutely know it\"\n- **Rationale:** The learner used plain, jargon-free language throughout and delivered information in small, digestible pieces rather than a monologue, which meets the core of this dimension. However, much of what she told the daughter was procedural reassurance rather than substantive clinical information, and some key points were deferred because she did not yet have the labs. The reassurance about monitoring was somewhat vague rather than concretely explaining what signs of infection would be watched for. Competent and clear but with these gaps, so Good rather than Very good.\n- **Recommendations:** When you give reassurance, anchor it to one or two concrete specifics the family can hold onto. Suggested wording: \"Specifically, we check his temperature and bloodwork regularly, so if an infection were starting, we'd catch it early and act on it.\"\n\n### Ask / Teach-Back (confirm) — 2/5 · Fair\n- **Evidence:** Learner said: \"so what I'm hearing from you is that as soon as I leave here, I'm gonna sit down, make sure I have all the labs ... I'm gonna come back here to deliver them for you\"\n- **Rationale:** The learner did summarize the plan back and effectively confirmed the shared agenda, and the daughter validated it, which shows attention to mutual understanding. But teach-back specifically asks the patient or family to restate information in their own words, framed as the clinician checking their own clarity. Here it was the learner who did the restating, not the daughter, and there was no open check inviting the daughter to say what she had understood. The learner confirmed alignment but did not use teach-back to verify comprehension, so this reaches Fair rather than Good.\n- **Recommendations:** Turn the summary around so the family member does the restating, framed as checking yourself. Suggested wording: \"Just so I know I explained this clearly, can you tell me in your own words what's going to happen over the next twenty minutes?\"\n\n### Responsiveness & shared agenda — 4/5 · Very good\n- **Evidence:** Learner said: \"I'm sorry you've been told \"soon\" so much ... as soon as we're done with this conversation, I'll head over to the nursing station\"\n- **Rationale:** The learner was consistently attuned to the daughter's cues — acknowledging the frustration, adjusting to her request for a concrete time, honestly flagging that she had not yet seen the labs, and offering to bring the charge nurse and attending. She paced the conversation to the daughter's emotional state and never dumped information. The explicit shared-agenda summary near the end is a real strength. It falls short of Excellent because she did not directly invite open-ended questions and at moments leaned on reassurance over substance, but the tailoring and responsiveness were skilful and consistent.\n- **Recommendations:** Keep the responsiveness and add an explicit open invitation for remaining questions before you leave. Suggested wording: \"Before I head off to get those labs, what other questions do you have for me?\"\n\n## Overall impression\n- **Strengths** — Warm, honest, and highly responsive to the daughter's emotional cues; the learner tailored pace, committed to a concrete timeframe, was candid about not yet having the labs, and closed with a clear shared-agenda summary that the daughter endorsed.\n- **Priority gaps** — The front end of the loop was missing: the learner never assessed what the daughter already understood or explicitly elicited her questions, and the confirm step was a clinician-delivered summary rather than true teach-back. Much of the telling was reassurance rather than concrete information.\n- **Top action items**\n  1. Open by eliciting the family member's current understanding before explaining.\n  2. Use teach-back by having the family member restate the plan in their own words, framed as checking your own clarity.\n  3. Explicitly invite remaining questions before closing.\n  4. Anchor reassurance to one or two concrete specifics rather than general statements.\n",
+        "extractedData": {
+          "ata_ask_assess": {
+            "value": 2,
+            "reasoning": "No corresponding moment in the encounter — you never asked the daughter what she already understood about her father's condition or what she had read, even when she mentioned the bile duct infection. A stronger move is \"Before I explain where things stand, can you tell me what you understand so far about why he's waiting and what you've read about the bile duct?\" (suggested wording)"
+          },
+          "ata_teach_back_confirm": {
+            "value": 2,
+            "reasoning": "Learner said: \"so what I'm hearing from you is that as soon as I leave here, I'm gonna sit down, make sure I have all the labs ... I'm gonna come back here to deliver them for you\" — you summarized the plan yourself rather than having the daughter restate it; turn it around with \"Just so I know I explained this clearly, can you tell me in your own words what's going to happen over the next twenty minutes?\" (suggested wording)"
+          },
+          "ata_tell_plain_language": {
+            "value": 3,
+            "reasoning": "Learner said: \"everything, um, is being monitored as closely as we possibly can ... if he ends up developing any signs or symptoms with an, uh, as an infection, then we would absolutely know it\" — you used plain, jargon-free language in small pieces, but the reassurance about monitoring was vague; anchor it with \"Specifically, we check his temperature and bloodwork regularly, so if an infection were starting, we'd catch it early and act on it.\" (suggested wording)"
+          },
+          "ata_responsiveness_shared_agenda": {
+            "value": 4,
+            "reasoning": "Learner said: \"I'm sorry you've been told \"soon\" so much ... as soon as we're done with this conversation, I'll head over to the nursing station\" — you tailored pace to her emotional cues, committed to a concrete time, and were candid about not having the labs; to reach the top, add an open invitation like \"Before I head off to get those labs, what other questions do you have for me?\" (suggested wording)"
+          }
+        },
+        "extractionStatus": "completed",
+        "notApplicable": null,
+        "evaluationFields": [
+          {
+            "key": "ata_ask_assess",
+            "type": "ordinal",
+            "label": "Ask (assess)",
+            "scale": {
+              "max": 5,
+              "min": 1,
+              "anchors": [
+                {
+                  "label": "Poor",
+                  "value": 1
+                },
+                {
+                  "label": "Fair",
+                  "value": 2
+                },
+                {
+                  "label": "Good",
+                  "value": 3
+                },
+                {
+                  "label": "Very good",
+                  "value": 4
+                },
+                {
+                  "label": "Excellent",
+                  "value": 5
+                }
+              ]
+            },
+            "description": "Elicits the patient's current understanding and information needs before giving information: asks what they already know and what they want to know, and uses gaps/misconceptions to target the explanation.",
+            "requireReasoning": true,
+            "extractionInstructions": "Assign a single 1–5 global rating (1 Poor → 5 Excellent) for how well the clinician assessed the patient's existing understanding and information needs before explaining. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
+          },
+          {
+            "key": "ata_tell_plain_language",
+            "type": "ordinal",
+            "label": "Tell (plain language)",
+            "scale": {
+              "max": 5,
+              "min": 1,
+              "anchors": [
+                {
+                  "label": "Poor",
+                  "value": 1
+                },
+                {
+                  "label": "Fair",
+                  "value": 2
+                },
+                {
+                  "label": "Good",
+                  "value": 3
+                },
+                {
+                  "label": "Very good",
+                  "value": 4
+                },
+                {
+                  "label": "Excellent",
+                  "value": 5
+                }
+              ]
+            },
+            "description": "Gives information in plain, jargon-free language, in small chunks, focused on the few key points the patient most needs rather than telling everything at once.",
+            "requireReasoning": true,
+            "extractionInstructions": "Assign a single 1–5 global rating (1 Poor → 5 Excellent) for how plainly, concisely, and selectively the clinician delivered information. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
+          },
+          {
+            "key": "ata_teach_back_confirm",
+            "type": "ordinal",
+            "label": "Ask / Teach-Back (confirm)",
+            "scale": {
+              "max": 5,
+              "min": 1,
+              "anchors": [
+                {
+                  "label": "Poor",
+                  "value": 1
+                },
+                {
+                  "label": "Fair",
+                  "value": 2
+                },
+                {
+                  "label": "Good",
+                  "value": 3
+                },
+                {
+                  "label": "Very good",
+                  "value": 4
+                },
+                {
+                  "label": "Excellent",
+                  "value": 5
+                }
+              ]
+            },
+            "description": "Checks understanding using teach-back — asking the patient to explain in their own words, framed as the clinician checking their own explanation rather than testing the patient — and re-teaches and re-checks when a gap surfaces.",
+            "requireReasoning": true,
+            "extractionInstructions": "Assign a single 1–5 global rating (1 Poor → 5 Excellent) for how well the clinician confirmed understanding via teach-back. Weigh the listed behaviors together as one holistic judgment; credit open, self-framed teach-back over yes/no checks, and credit re-teaching when a gap appears. Rate only behaviors evidenced in the transcript."
+          },
+          {
+            "key": "ata_responsiveness_shared_agenda",
+            "type": "ordinal",
+            "label": "Responsiveness & shared agenda",
+            "scale": {
+              "max": 5,
+              "min": 1,
+              "anchors": [
+                {
+                  "label": "Poor",
+                  "value": 1
+                },
+                {
+                  "label": "Fair",
+                  "value": 2
+                },
+                {
+                  "label": "Good",
+                  "value": 3
+                },
+                {
+                  "label": "Very good",
+                  "value": 4
+                },
+                {
+                  "label": "Excellent",
+                  "value": 5
+                }
+              ]
+            },
+            "description": "Tailors pace and content to the patient's reactions and questions, actively invites questions, and avoids information overload.",
+            "requireReasoning": true,
+            "extractionInstructions": "Assign a single 1–5 global rating (1 Poor → 5 Excellent) for how responsively the clinician tailored the exchange to the patient and shared the agenda. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
           }
         ],
         "isAcgmeMilestone": false,
