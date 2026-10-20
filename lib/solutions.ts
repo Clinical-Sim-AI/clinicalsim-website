@@ -1,7 +1,7 @@
 import type { BrandIconName } from "@/components/brand-icon"
 import type { Market } from "@/lib/positioning"
 import type { PostSlug } from "@/lib/posts"
-import { COHORT_REPORT_PATH } from "@/lib/cohort-report"
+import { COHORT_REPORT_PATH, COHORT_REPORT_TITLE } from "@/lib/cohort-report"
 import { NURSING_BRIEF_PATH } from "@/lib/nursing-turnover-brief"
 
 export interface SolutionStage {
@@ -620,7 +620,7 @@ const solutions: Solution[] = [
     glossarySlugs: ["teach-back-method"],
     relatedSolutionSlugs: ["patient-understanding"],
     resource: {
-      title: "What one health system learned from 82 practice conversations",
+      title: COHORT_REPORT_TITLE,
       description: "An anonymized report scored against one partner health system's own patient experience frameworks, with the element table, the quotes behind the finding, and its limits.",
       linkLabel: "Read the cohort report",
       href: COHORT_REPORT_PATH,
@@ -1286,12 +1286,12 @@ const solutions: Solution[] = [
       "Clinicians practice discharge and procedure explanations with AI patients, and each report shows whether they checked understanding with teach-back, quoting their own words.",
     heroHeadline: "Understand how clearly your teams explain what happens next",
     heroDescription:
-      "Residents, fellows, and nurses explain a discharge plan, a procedure, or a change in care to an AI patient or parent. The report scores the explanation and the check of understanding against teach-back or your own standard, with the clinician's words under every score.",
+      "Residents and fellows explain a discharge plan, a procedure, or a change in care to an AI patient or parent. The report scores the explanation and the check of understanding against teach-back or your own standard, with the clinician's words under every score.",
     context: {
       heading: "Who owns the explanation",
       paragraphs: [
         "Every discharge, procedure, and change of plan ends with someone explaining what happens next. Nursing education, patient experience, and the residency programs that staff the floors each own part of that conversation. The usual check, \"Do you have any questions?\", invites a polite yes, and AHRQ's Health Literacy Universal Precautions Toolkit says plainly that yes-or-no questions are not teach-back.",
-        "The published evidence points at the end of the conversation. When 90 preoperative conversations were recorded and scored, surgeons reliably described the illness, the operation, and the complications, and were least likely to check whether the patient had understood any of it (Journal of the American College of Surgeons, 2021). Adult spinal deformity patients recalled a median 45% of the risks immediately afterward and 18% at six to eight weeks (Spine, 2015, n=56).",
+        "The published evidence points at the end of the conversation. When 90 preoperative conversations were recorded and scored, surgeons reliably described the illness, the operation, and the complications, and were least likely to check whether the patient had understood any of it (Journal of the American College of Surgeons, 2021). Adult spinal deformity patients who received both a verbal and a video risk discussion recalled a median 45% of the risks immediately afterward and 18% at six to eight weeks (Spine, 2015, n=56).",
         "Limited English proficiency raises the stakes. A parent who says okay to avoid asking questions in English can leave with a plan nobody confirmed she understood, and one of the cases below is written around exactly that parent.",
       ],
     },
@@ -1378,7 +1378,7 @@ const solutions: Solution[] = [
     glossarySlugs: ["teach-back-method"],
     relatedSolutionSlugs: ["informed-consent", "patient-experience"],
     resource: {
-      title: "What one health system learned from 82 practice conversations",
+      title: COHORT_REPORT_TITLE,
       description: "An anonymized partner report, including an asthma discharge conversation with limited English proficiency, with the element table, the quotes behind the finding, and its limits.",
       linkLabel: "Read the cohort report",
       href: COHORT_REPORT_PATH,
@@ -1419,7 +1419,7 @@ const solutions: Solution[] = [
     context: {
       heading: "Who owns the handoff",
       paragraphs: [
-        "Responsibility for a patient changes hands at every shift change, every transfer, and every call for help. GME offices answer for resident handoffs, nursing education for escalation, and patient safety teams review the events where a transfer went wrong. What none of them usually has is a record of how the conversation itself sounded.",
+        "Responsibility for a patient changes hands at every shift change, every transfer, and every call for help. GME offices answer for resident handoffs, nursing education for escalation, and patient safety teams review the safety events that involve a transfer of care. What none of them usually has is a record of how the conversation itself sounded.",
         "The best-known evidence is for a bundled program. In a nine-hospital study of the I-PASS handoff program, which combined a mnemonic, handoff and communication training, faculty development and observation, and a sustainability campaign, the medical error rate fell from 24.5 to 18.8 per 100 admissions and preventable adverse events from 4.7 to 3.3, across 10,740 admissions (Starmer et al., New England Journal of Medicine, 2014).",
         "Those results belong to that whole program. They are not evidence about ClinicalSim, and practice in simulation is one piece a program like that might include.",
       ],
@@ -1512,7 +1512,7 @@ const solutions: Solution[] = [
     glossarySlugs: ["sbar"],
     relatedSolutionSlugs: ["workforce-retention", "debriefing"],
     resource: {
-      title: "What one health system learned from 82 practice conversations",
+      title: COHORT_REPORT_TITLE,
       description: "An anonymized partner report showing what leaders see across a cohort: the element table, the quotes behind the finding, and its limits.",
       linkLabel: "Read the cohort report",
       href: COHORT_REPORT_PATH,
@@ -1548,7 +1548,7 @@ const solutions: Solution[] = [
     heroDescription:
       "Learners rehearse high-stakes conversations with AI patients, see what they did well and what to practice next, and return to coaching with transcript-linked feedback against the standard your program approves.",
     leadershipQuestion:
-      "What does your competency committee see of a struggling learner's communication between meetings?",
+      "What does your competency committee see of a learner's communication between meetings, while they're on a remediation plan?",
     ctaHeadline: "Start with a repeatable remediation structure",
     ctaDescription:
       "Review how structured practice and rubric-scored feedback could fit a communication remediation plan.",

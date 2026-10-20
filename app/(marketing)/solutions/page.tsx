@@ -34,7 +34,7 @@ const GROUPS: {
 export const metadata: Metadata = {
   title: "Clinical communication intelligence use cases",
   description:
-    "ClinicalSim measures communication in simulated conversations and turns it into focused practice for health systems and medical education: patient experience, debriefing, informed consent, error disclosure, workforce retention, curricula, and remediation.",
+    "ClinicalSim measures communication in simulated conversations and turns it into focused practice for health systems and medical education: patient experience, patient understanding, handoffs, debriefing, informed consent, error disclosure, workforce retention, curricula, and remediation.",
   openGraph: {
     title: "Use cases | ClinicalSim.ai",
     description:
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Use cases | ClinicalSim.ai",
     description:
-      "Communication use cases for health systems and medical education.",
+      "Communication use cases for health systems and medical education, from patient understanding and handoffs to curricula and remediation.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/solutions",

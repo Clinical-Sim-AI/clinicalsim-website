@@ -24,24 +24,25 @@ import {
   COHORT_REPORT_SCOPE_RULE,
   COHORT_REPORT_SCOPE_TOTALS,
   COHORT_REPORT_STRENGTH_QUOTES,
+  COHORT_REPORT_TITLE,
+  COHORT_REPORT_TOTALS,
 } from "@/lib/cohort-report"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { ORGANIZATION, PRIMARY_CTA } from "@/lib/positioning"
 
 const PAGE_URL = `https://clinicalsim.ai${COHORT_REPORT_PATH}`
-const PAGE_DESCRIPTION =
-  "An anonymized report from one partner health system: 82 practice conversations with AI patients by 68 clinicians, scored against the system's own patient experience frameworks."
+const PAGE_DESCRIPTION = `An anonymized report from one partner health system: ${COHORT_REPORT_TOTALS.conversations} practice conversations with AI patients by ${COHORT_REPORT_TOTALS.clinicians} clinicians, scored against the system's own patient experience frameworks.`
 
 export const metadata: Metadata = {
   title: "Health system cohort report example",
   description: PAGE_DESCRIPTION,
   openGraph: {
-    title: "What one health system learned from 82 practice conversations",
+    title: COHORT_REPORT_TITLE,
     description: PAGE_DESCRIPTION,
     url: PAGE_URL,
   },
   twitter: {
-    title: "What one health system learned from 82 practice conversations",
+    title: COHORT_REPORT_TITLE,
     description: PAGE_DESCRIPTION,
   },
   alternates: { canonical: PAGE_URL },
@@ -96,7 +97,7 @@ export default function HealthSystemCohortReportPage() {
             Anonymized report from one partner health system, {COHORT_REPORT_META.reportDateLabel}
           </p>
           <h1 className="max-w-4xl text-4xl font-light leading-tight text-balance md:text-5xl">
-            What one health system learned from 82 practice conversations
+            {COHORT_REPORT_TITLE}
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-light leading-relaxed text-cs-cloud">
             From {COHORT_REPORT_META.collectionWindow}, {COHORT_REPORT_META.participants} at
@@ -131,9 +132,12 @@ export default function HealthSystemCohortReportPage() {
           </h2>
           <div className="max-w-3xl space-y-4 text-lg font-light leading-relaxed text-cs-dark-blue/85">
             <p>
-              All three frameworks show the same pattern. Scores run highest where clinicians
-              receive a concern and explain the situation: hearing the family averaged 4.22 and
-              4.15 on the two service recovery models.
+              All three frameworks point the same way. On the general communication model, scored
+              on all {COHORT_REPORT_TOTALS.conversations} conversations, Listen averaged 3.83 and
+              Explain 3.79, while Inquire what matters most averaged 3.67, with 18% of
+              conversations below 3. The two service recovery models show the same shape on far
+              fewer conversations: hearing the family averaged 4.22 (n=9) and 4.15 (n=13), and
+              thanking the family for raising a concern averaged 2.00 (n=11).
             </p>
             <p>
               The transcripts show clinicians listening. The practice opportunity is saying so out
@@ -211,7 +215,7 @@ export default function HealthSystemCohortReportPage() {
           </h2>
           <p className="mb-8 max-w-3xl text-lg font-light leading-relaxed text-cs-dark-blue/85">
             The strongest conversations come from the same clinicians. Every line below is verbatim
-            from a recorded simulation and identified by scenario only.
+            from a recorded simulation, and no clinician is named.
           </p>
           <ul className="grid gap-5 md:grid-cols-3">
             {COHORT_REPORT_STRENGTH_QUOTES.map((quote) => (
@@ -236,6 +240,7 @@ export default function HealthSystemCohortReportPage() {
           <p className="mb-8 max-w-3xl text-lg font-light leading-relaxed text-cs-dark-blue/85">
             Each clinician reads scored, quoted feedback right after the conversation, before any
             group report exists. These two examples are on one element, {COHORT_REPORT_FEEDBACK_ELEMENT}.
+            Each shows the clinician&apos;s words and a summary of the feedback on them.
           </p>
           <div className="grid gap-5 md:grid-cols-2">
             {COHORT_REPORT_FEEDBACK_EXAMPLES.map((example, index) => (
@@ -261,7 +266,11 @@ export default function HealthSystemCohortReportPage() {
                   &quot;{example.quote}&quot;
                 </blockquote>
                 <p className={index === 0 ? "mt-5 font-light leading-relaxed text-white" : "mt-5 font-light leading-relaxed"}>
+                  <span className="sr-only">Feedback summary: </span>
                   {example.feedback}
+                </p>
+                <p className={index === 0 ? "mt-3 text-sm font-light text-cs-cloud/80" : "mt-3 text-sm font-light text-cs-dark-blue/70"}>
+                  Feedback summarized from the report
                 </p>
               </div>
             ))}

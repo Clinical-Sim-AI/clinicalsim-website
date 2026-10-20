@@ -9,7 +9,7 @@ import {
   FORMATIVE_USE_LIMITATION,
   NO_OUTCOME_PREDICTION_LIMITATION,
 } from "@/lib/claim-discipline"
-import { COHORT_REPORT_PATH } from "@/lib/cohort-report"
+import { COHORT_REPORT_PATH, COHORT_REPORT_SUMMARY } from "@/lib/cohort-report"
 import { getAllExamples } from "@/lib/examples"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { ORGANIZATION, PRIMARY_CTA } from "@/lib/positioning"
@@ -47,7 +47,7 @@ const evidenceLinks = [
   {
     id: "leadership-view",
     title: "What a leader sees across a cohort",
-    body: "One partner health system's anonymized report covers 82 practice conversations by 68 clinicians, scored against the system's own patient experience frameworks. It shows the element table, the quotes behind the finding, and the limits of a retrospective analysis.",
+    body: `${COHORT_REPORT_SUMMARY} It shows the full element table, the quotes behind the finding, and the limits of a retrospective analysis.`,
     href: COHORT_REPORT_PATH,
     label: "Read the health system cohort report",
   },

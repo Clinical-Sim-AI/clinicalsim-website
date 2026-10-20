@@ -30,8 +30,8 @@ export const PAGE_DATE_MODIFIED = {
   evaluation: "2026-10-20",
   // Added "Find the answer for your role" and the cohort report (2026-10-20).
   evidence: "2026-10-20",
-  // Added the 48 Hours in the Hallway example to the listing (2026-10-15).
-  examples: "2026-10-15",
+  // Linked the health system cohort report from the listing (2026-10-20).
+  examples: "2026-10-20",
   // Licensing answer reworded without a billing basis; three program-fit
   // objections added (2026-10-06).
   faq: "2026-10-06",

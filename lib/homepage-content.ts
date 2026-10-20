@@ -61,7 +61,7 @@ export const HOMEPAGE_PUBLIC_COPY = {
     exampleLabel: "What one health system learned",
     // Matches the anonymized partner report at COHORT_REPORT_PATH (lib/cohort-report.ts).
     example:
-      "In one health system pilot, participants consistently opened conversations well. The report identified three elements to reinforce at the close: thanking the family for raising a concern, reflecting the concern back, and asking what matters most. Leaders could see those patterns in the transcripts and use the same cases for focused practice.",
+      "In one health system's anonymized report, clinicians opened conversations well. The report named the steps at the close to practice next: reflecting the concern back, checking it was understood, asking what matters most, and thanking the family for raising it. Leaders could see those patterns in the transcripts and use the same cases for focused practice.",
     exampleLink: "Read the anonymized health system cohort report",
   },
   // No financial claim here. The post it links to explains why no ROI figure is published.

@@ -3,7 +3,7 @@ import { getPublishedSolutions } from "@/lib/solutions"
 import { getAllAudiences } from "@/lib/audiences"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
-import { COHORT_REPORT_PATH } from "@/lib/cohort-report"
+import { COHORT_REPORT_PATH, COHORT_REPORT_SUMMARY } from "@/lib/cohort-report"
 import { getIndexableGlossaryTerms } from "@/lib/glossary"
 import { getAllHelpArticles } from "@/lib/help-articles"
 import { getFeaturedFrameworks } from "@/lib/frameworks"
@@ -78,7 +78,7 @@ export async function GET() {
   const exampleLines = [
     `\n## Examples\n`,
     `- [Examples](${BASE_URL}/examples): Unedited ClinicalSim encounters with the feedback a learner receives, including the assessment report, recording, and full transcript. No sign-in required.`,
-    `- [Health system cohort report](${BASE_URL}${COHORT_REPORT_PATH}): An anonymized report from one partner health system (August 2026): 82 practice conversations with AI patients by 68 clinicians, scored against three of the system's own patient experience frameworks. Clinicians opened conversations well, with hearing the family averaging 4.15 to 4.22; the close is where to practice next, with thanking a family for raising a concern averaging 2.00. Includes the scope rule, limits, and what a next round looks like.`,
+    `- [Health system cohort report](${BASE_URL}${COHORT_REPORT_PATH}): ${COHORT_REPORT_SUMMARY} Clinicians opened conversations well, and the close (reflecting the concern back, confirming, asking what matters most, and thanking the family) is where to practice next. Service recovery results rest on 9 to 13 in-scope conversations. Published August 2026 report; includes the scope rule, limits, and what a next round looks like.`,
     ...examples.map(
       (e) => `- [${e.title}](${BASE_URL}/examples/${e.slug}): ${e.summary}`
     ),

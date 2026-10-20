@@ -13,6 +13,7 @@ import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import type { FaqItem } from "@/lib/types"
 import { FlaskConical, Laptop, BarChart3, FileText, Users, Lightbulb, Presentation, MapPin, Calendar } from "lucide-react"
 
+import { PRIMARY_CTA } from "@/lib/positioning"
 const RESEARCH_DESCRIPTION =
   "ClinicalSim works with investigators studying communication training, implementation, patient experience, workforce education, and competency assessment. Review presentations and propose a study."
 
@@ -569,9 +570,10 @@ export default function ResearchPage() {
           <div className="text-center mt-12">
             <p className="text-cs-dark-blue/70 font-light">
               For questions before applying,{" "}
-              <Link href="/contact" className="text-cs-dark-blue font-medium hover:text-cs-dark-blue transition-colors">
-                Get in touch
+              <Link href="/contact" className="text-cs-dark-blue font-medium underline underline-offset-4 hover:text-cs-navy transition-colors">
+                {PRIMARY_CTA.toLowerCase()} with our team
               </Link>
+              .
             </p>
           </div>
         </div>

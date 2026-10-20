@@ -2,6 +2,7 @@ import { readFileSync, readdirSync } from "node:fs"
 import { join, relative } from "node:path"
 import { describe, expect, it } from "vitest"
 
+import { metadata as contactMetadata } from "../app/(marketing)/contact/page"
 import { PRIMARY_CTA } from "./positioning"
 import { HEADER_ACTION } from "./site-navigation"
 
@@ -39,6 +40,26 @@ describe("primary call to action", () => {
       .filter((file) => !ALLOWED.has(file))
       .filter((file) => /talk with us/i.test(readFileSync(join(ROOT, file), "utf8")))
 
+    expect(offenders).toEqual([])
+  })
+
+  it("titles the contact page with the call to action", () => {
+    expect(contactMetadata.title).toBe(PRIMARY_CTA)
+  })
+
+  it("labels every contact button with PRIMARY_CTA", () => {
+    // A <Link href="/contact"> that wraps a <Button>, or a Button asChild around one, whose
+    // label is literal text rather than {PRIMARY_CTA}. Catches "Discuss your standard" and
+    // "Ask us a question", which the "Talk with us" scan alone let through.
+    const contactButton =
+      /<Link href="\/contact"[^>]*>\s*<Button[^>]*>\s*([^<{\s][^<{]*?)\s*<\/Button>|<Button[^>]*asChild[^>]*>\s*<Link href="\/contact"[^>]*>\s*([^<{\s][^<{]*?)\s*(?:<|\{)/g
+    const offenders = ["app", "components"]
+      .flatMap((dir) => sourceFiles(join(ROOT, dir)))
+      .flatMap((file) =>
+        [...readFileSync(file, "utf8").matchAll(contactButton)].map(
+          (m) => `${relative(ROOT, file)}: "${(m[1] ?? m[2]).trim()}"`,
+        ),
+      )
     expect(offenders).toEqual([])
   })
 })

@@ -28,15 +28,28 @@ export const COHORT_REPORT_META = {
   participants: "residents, fellows, attendings, and nurse practitioners",
 } as const
 
+/** The report's scope. Every page that cites the report reads these rather than restating them. */
+export const COHORT_REPORT_TOTALS = { conversations: 82, clinicians: 68, frameworks: 3 } as const
+
 export const COHORT_REPORT_COUNTS = [
-  { value: "82", label: "recorded practice conversations analyzed" },
-  { value: "68", label: "clinicians, anonymized" },
-  { value: "3", label: "of the health system's own frameworks applied" },
+  { value: String(COHORT_REPORT_TOTALS.conversations), label: "recorded practice conversations analyzed" },
+  { value: String(COHORT_REPORT_TOTALS.clinicians), label: "clinicians, anonymized" },
+  { value: String(COHORT_REPORT_TOTALS.frameworks), label: "of the health system's own frameworks applied" },
 ] as const
+
+/** The report page's H1, reused as the title of every card that links to it. */
+export const COHORT_REPORT_TITLE = `What one health system learned from ${COHORT_REPORT_TOTALS.conversations} practice conversations`
+
+/**
+ * One-paragraph summary for other pages. It leads with the general communication model, scored on
+ * every conversation, because the service recovery means rest on 9 to 13 conversations and the
+ * report's own limits say they shouldn't carry strong claims alone.
+ */
+export const COHORT_REPORT_SUMMARY = `One partner health system's anonymized report covers ${COHORT_REPORT_TOTALS.conversations} practice conversations by ${COHORT_REPORT_TOTALS.clinicians} clinicians, scored against the system's own patient experience frameworks. On the general communication model, scored on all ${COHORT_REPORT_TOTALS.conversations}, Listen averaged 3.83 and Explain 3.79, while Inquire what matters most averaged 3.67, with 18% of conversations below 3.`
 
 /** The three withheld frameworks, by the codes the report uses. */
 export const COHORT_REPORT_FRAMEWORKS = [
-  { code: "Comm", description: "the health system's general patient communication model, applied to all 82 conversations" },
+  { code: "Comm", description: `the health system's general patient communication model, applied to all ${COHORT_REPORT_TOTALS.conversations} conversations` },
   { code: "SR-A", description: "its earlier service recovery model" },
   { code: "SR-B", description: "the service recovery model replacing SR-A" },
 ] as const
@@ -87,13 +100,18 @@ export interface CohortQuote {
 
 /**
  * Lines from strong performances in the same cohort. The clinician's line and
- * the AI parent's replies are verbatim from the PDF's findings section.
+ * the AI parent's replies are verbatim from the PDF's findings section. The PDF
+ * names no scenario for the third line, so none is given.
+ *
+ * The clinician's "Does that kind of make sense?" is a yes-or-no check, which
+ * AHRQ says is not teach-back (see /solutions/patient-understanding). The
+ * strength is the reflection before it, and the context says so.
  */
 export const COHORT_REPORT_STRENGTH_QUOTES: CohortQuote[] = [
   {
     text: "Does that kind of make sense?",
     speaker: "Clinician",
-    context: "Goals of care, after reflecting the mother's account back to her: the smile she had seen fade and the six PICU admissions",
+    context: "Goals of care. The clinician had just reflected the mother's account back to her, the smile she had seen fade and the six PICU admissions, and asked whether the summary was right. The reflection is the skill; the question confirms it.",
   },
   {
     text: "that's exactly it.",
@@ -103,7 +121,7 @@ export const COHORT_REPORT_STRENGTH_QUOTES: CohortQuote[] = [
   {
     text: "Nobody's said it like that before.",
     speaker: "An AI parent in another encounter",
-    context: "Goals of care",
+    context: "Another conversation from the same cohort",
   },
 ]
 
@@ -116,7 +134,8 @@ export interface CohortFeedbackExample {
 /**
  * The two feedback examples the PDF gives on SR-B Learn. Quotes are verbatim.
  * The 5/5 feedback is the PDF's wording. The 2/5 feedback keeps the PDF's
- * facts and puts the next step first instead of the miss.
+ * facts and puts the next step first instead of the miss, so the page labels
+ * both notes as summaries rather than the participant's report text.
  */
 export const COHORT_REPORT_FEEDBACK_ELEMENT = "SR-B Learn: reflect the concern back and confirm understanding"
 
@@ -173,7 +192,7 @@ export const COHORT_REPORT_SCENARIOS: CohortScenario[] = [
   {
     name: "Unlabeled early sessions",
     conversations: 2,
-    summary: "The same drowning case, recorded in October and November 2025 before scenarios carried IDs.",
+    summary: "The same drowning case, recorded before scenarios carried IDs.",
     scope: { comm: "2/2", srA: "0/2", srB: "0/2" },
   },
   {
@@ -188,11 +207,11 @@ export const COHORT_REPORT_SCOPE_TOTALS = { comm: "82/82", srA: "13/82", srB: "9
 
 /** The scope rule, as the PDF states it. */
 export const COHORT_REPORT_SCOPE_RULE =
-  "The two service recovery models assume a family has raised a concern, complaint, or service failure. So before scoring, each conversation was judged in or out of scope for each framework, with the reason recorded, and no clinician was marked down for a behavior the conversation gave no chance to show. The general communication model applied to all 82."
+  `The two service recovery models assume a family has raised a concern, complaint, or service failure. So before scoring, each conversation was judged in or out of scope for each framework, with the reason recorded, and no clinician was marked down for a behavior the conversation gave no chance to show. The general communication model applied to all ${COHORT_REPORT_TOTALS.conversations}.`
 
 /** Report-specific limits, from the PDF's Limitations section. */
 export const COHORT_REPORT_LIMITS = [
-  "Service recovery results rest on 9 and 13 in-scope conversations, because the current cases rarely give a family a reason to raise a concern. Those means shouldn't carry strong claims on their own. The general communication model, scored on all 82, can.",
+  `Service recovery results rest on 9 and 13 in-scope conversations, because the current cases rarely give a family a reason to raise a concern. Those means shouldn't carry strong claims on their own. The general communication model, scored on all ${COHORT_REPORT_TOTALS.conversations}, can.`,
   "Scenario mixes differed by cohort, so nothing here compares units or programs.",
   "A simulation is a proxy for the bedside, the same proxy in-person simulation already relies on.",
 ]
@@ -208,7 +227,7 @@ export const COHORT_REPORT_NEXT_ROUND = [
   },
   {
     title: "Run the same cases with one defined group",
-    body: "Everyone in the group practices the same scenarios. Add cases in which a family raises a concern, since the current library gave a family that chance in only 9 of 82 conversations.",
+    body: `Everyone in the group practices the same scenarios. Add cases in which a family raises a concern, since the current library gave a family that chance in only 9 of ${COHORT_REPORT_TOTALS.conversations} conversations.`,
   },
   {
     title: "Return feedback to each participant",

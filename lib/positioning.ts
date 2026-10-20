@@ -101,7 +101,9 @@ export const ASSESSMENT_ENTRY =
  * Every button or link to /contact inside a page uses this wording; the decision
  * it invites is about the program, never about a person. The one exception is
  * HEADER_ACTION in lib/site-navigation.ts, which stays "Talk with us" because the
- * header has room for three words. lib/primary-cta.test.ts enforces both halves.
+ * header has room for three words. lib/primary-cta.test.ts enforces the header,
+ * the absence of "Talk with us" elsewhere, the contact page title, and the labels
+ * of every Button that links to /contact.
  */
 export const PRIMARY_CTA = "Discuss your communication priorities"
 

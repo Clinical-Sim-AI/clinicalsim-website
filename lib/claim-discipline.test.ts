@@ -55,8 +55,11 @@ function isNegated(text: string, matchIndex: number): boolean {
 }
 
 function namesBritishSpelling(text: string, matchIndex: number): boolean {
-  const sentenceStart = text.lastIndexOf(".", matchIndex - 1)
-  return /\bBritish\b/.test(text.slice(sentenceStart + 1, matchIndex))
+  // Sentence boundaries are a terminal mark followed by whitespace, so "4.22" doesn't split one.
+  const runUp = text.slice(0, matchIndex)
+  const boundaries = [...runUp.matchAll(/[.?!]\s/g)]
+  const sentenceStart = boundaries.length ? boundaries[boundaries.length - 1].index! + 2 : 0
+  return /\bBritish\b/.test(runUp.slice(sentenceStart))
 }
 
 const REGISTRIES: { name: string; entries: { slug: string; value: unknown }[] }[] = [
@@ -231,12 +234,14 @@ describe("claim discipline", () => {
             // Grader instructions in an example snapshot are copied from the staging rubric and
             // never rendered, so they are not public copy.
             if (path.endsWith(".extractionInstructions")) continue
-            const match = text.match(BRITISH_SPELLING_PATTERN)
-            if (!match || match.index === undefined) continue
-            // A sentence that names the British spelling ("British sources spell it...") is
-            // describing it, the way a negated sentence disclaims a banned claim.
-            if (namesBritishSpelling(text, match.index)) continue
-            violations.push(`${registry.name} ${path}: "${match[0]}"`)
+            const global = new RegExp(BRITISH_SPELLING_PATTERN.source, "gi")
+            for (const match of text.matchAll(global)) {
+              if (match.index === undefined) continue
+              // A sentence that names the British spelling ("British sources spell it...") is
+              // describing it, the way a negated sentence disclaims a banned claim.
+              if (namesBritishSpelling(text, match.index)) continue
+              violations.push(`${registry.name} ${path}: "${match[0]}"`)
+            }
           }
         }
       }

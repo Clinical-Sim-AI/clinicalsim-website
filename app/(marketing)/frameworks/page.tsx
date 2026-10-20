@@ -282,7 +282,7 @@ export default function FrameworksPage() {
           <div className="mt-8">
             <Link href="/contact">
               <Button variant="default" size="lg">
-                Discuss your standard
+                {PRIMARY_CTA}
               </Button>
             </Link>
           </div>
