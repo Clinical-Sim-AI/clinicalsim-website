@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs"
+import { join } from "node:path"
 import { describe, expect, it } from "vitest"
 import { BRITISH_SPELLING_PATTERN } from "./claim-discipline"
 import { getAllSolutions, getSolutionBySlug, type SolutionSlug } from "./solutions"
@@ -74,6 +76,15 @@ describe("Solution registry", () => {
     for (const target of ["patient-understanding", "handoffs-and-escalation"] as const) {
       const inbound = solutions.filter((s) => s.relatedSolutionSlugs?.includes(target))
       expect(inbound.length, `${target} inbound links`).toBeGreaterThanOrEqual(2)
+    }
+  })
+
+  it("has a route file for every solution", () => {
+    // Each lane has its own app/(marketing)/solutions/<slug>/page.tsx. A registry entry without
+    // one still reaches the nav and the sitemap, and 404s.
+    for (const solution of solutions) {
+      const route = join(__dirname, "..", "app", "(marketing)", "solutions", solution.slug, "page.tsx")
+      expect(existsSync(route), `${solution.slug} has no route file`).toBe(true)
     }
   })
 })

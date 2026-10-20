@@ -99,7 +99,7 @@ export default function HealthSystemCohortReportPage() {
             What one health system learned from 82 practice conversations
           </h1>
           <p className="mt-6 max-w-3xl text-lg font-light leading-relaxed text-cs-cloud">
-            Between {COHORT_REPORT_META.collectionWindow}, {COHORT_REPORT_META.participants} at
+            From {COHORT_REPORT_META.collectionWindow}, {COHORT_REPORT_META.participants} at
             one partner health system spoke with AI patients and family members on ClinicalSim.
             We scored every transcript against the system&apos;s own patient experience
             frameworks and quoted the clinician&apos;s words under every score.
