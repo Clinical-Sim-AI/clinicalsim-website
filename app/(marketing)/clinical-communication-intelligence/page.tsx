@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/json-ld"
 import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
 import { getCategoryExample } from "@/lib/category-example"
+import { CCI_BRIEF_PATH } from "@/lib/cci-executive-brief"
 import { COHORT_REPORT_PATH, COHORT_REPORT_SUMMARY } from "@/lib/cohort-report"
 import {
   FORMATIVE_USE_LIMITATION,
@@ -188,7 +189,10 @@ export default function ClinicalCommunicationIntelligencePage() {
           <div className="mt-6 rounded-xl border border-cs-gray bg-white p-6">
             <h3 className="mb-3 text-xl font-medium text-cs-dark-blue">A leadership report from one health system</h3>
             <p className="max-w-3xl font-light leading-relaxed text-cs-dark-blue/85">{COHORT_REPORT_SUMMARY} Clinicians opened conversations well, and the report names the steps at the close to practice next.</p>
-            <Link href={COHORT_REPORT_PATH} className="mt-4 inline-flex items-center gap-2 font-medium text-cs-dark-blue underline underline-offset-4 hover:text-cs-navy">Read the anonymized cohort report <ArrowRight className="h-4 w-4 shrink-0" /></Link>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:gap-8">
+              <Link href={COHORT_REPORT_PATH} className="inline-flex items-center gap-2 font-medium text-cs-dark-blue underline underline-offset-4 hover:text-cs-navy">Read the anonymized cohort report <ArrowRight className="h-4 w-4 shrink-0" /></Link>
+              <Link href={CCI_BRIEF_PATH} className="inline-flex items-center gap-2 font-medium text-cs-dark-blue underline underline-offset-4 hover:text-cs-navy">Get the two-page executive brief <ArrowRight className="h-4 w-4 shrink-0" /></Link>
+            </div>
           </div>
           <p className="mt-6 max-w-4xl font-light leading-relaxed text-cs-dark-blue/85">{FORMATIVE_USE_LIMITATION}</p>
           <Link href="/evaluation#operations" className="mt-4 inline-block font-medium text-cs-dark-blue underline underline-offset-4 hover:text-cs-navy">Review roles and rollout requirements</Link>

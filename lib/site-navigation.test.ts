@@ -79,6 +79,8 @@ describe("site navigation", () => {
     ["/methodology", "how-it-works"],
     ["/compare/example", "how-it-works"],
     ["/evidence", "resources"],
+    ["/resources/cci-executive-brief", "resources"],
+    ["/resources/cci-executive-brief/thank-you", "resources"],
     ["/insights/example-post", "resources"],
     ["/help/release-notes", "resources"],
     ["/trust", "resources"],
@@ -100,7 +102,7 @@ describe("site navigation", () => {
     expect(new Set(hrefs).size).toBe(hrefs.length)
     expect(footerLinks).toContainEqual(PLATFORM_SIGN_IN)
     expect(footerLinks).toContainEqual(PLATFORM_SIGN_UP)
-    for (const href of ["/help", "/help/release-notes", "/solutions", "/audiences", "/faq", "/medical-educator-faq", "/trust", "/compare", "/glossary", "/resources/nursing-turnover-brief"]) {
+    for (const href of ["/help", "/help/release-notes", "/solutions", "/audiences", "/faq", "/medical-educator-faq", "/trust", "/compare", "/glossary", "/resources/nursing-turnover-brief", "/resources/cci-executive-brief"]) {
       expect(hrefs).toContain(href)
     }
   })

@@ -8,6 +8,7 @@ import { getIndexableGlossaryTerms } from "@/lib/glossary"
 import { getAllHelpArticles, getHelpHubLastUpdated } from "@/lib/help-articles"
 import { RELEASE_NOTES_UPDATED_ISO } from "@/lib/release-notes"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { CCI_BRIEF_PATH } from "@/lib/cci-executive-brief"
 import { COHORT_REPORT_PATH } from "@/lib/cohort-report"
 
 const BASE_URL = "https://clinicalsim.ai"
@@ -163,7 +164,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.6,
     },
-    // The thank-you page is noindexed and stays out of the sitemap.
+    // The thank-you pages are noindexed and stay out of the sitemap.
+    {
+      url: `${BASE_URL}${CCI_BRIEF_PATH}`,
+      lastModified: new Date(PAGE_DATE_MODIFIED.cciExecutiveBrief),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
     {
       url: `${BASE_URL}/resources/nursing-turnover-brief`,
       lastModified: new Date(PAGE_DATE_MODIFIED.nursingTurnoverBrief),

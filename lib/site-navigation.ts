@@ -101,6 +101,7 @@ export const HEADER_MENUS: HeaderNavigationMenu[] = [
         label: "Evidence and reading",
         items: [
           { href: "/evidence", label: "Evidence" },
+          { href: "/resources/cci-executive-brief", label: "Executive brief" },
           { href: "/insights", label: "Insights" },
           { href: "/research", label: "Research collaboration" },
           { href: "/glossary", label: "Glossary" },
@@ -158,6 +159,7 @@ export const FOOTER_GROUPS: Array<{ label: string; links: HeaderLink[] }> = [
       { href: "/research", label: "Research collaboration" },
       { href: "/compare", label: "Compare approaches" },
       { href: "/resources/nursing-turnover-brief", label: "Nursing turnover brief" },
+      { href: "/resources/cci-executive-brief", label: "Executive brief" },
       { href: "/glossary", label: "Glossary" },
     ],
   },
