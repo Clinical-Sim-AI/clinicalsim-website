@@ -18,7 +18,7 @@ describe("health system cohort report", () => {
   it("has one H1 and a <title> that differs from it", () => {
     const h1s = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/g) ?? []
     expect(h1s).toHaveLength(1)
-    const h1 = h1s[0].replace(/<[^>]+>/g, "").trim()
+    const h1 = (h1s[0] ?? "").replace(/<[^>]+>/g, "").trim()
     expect(metadata.title).not.toBe(h1)
   })
 
