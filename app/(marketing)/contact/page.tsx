@@ -12,6 +12,7 @@ import { HUBSPOT_MEETINGS_URL } from "@/lib/hubspot"
 import { JsonLd } from "@/components/json-ld"
 import { Waveform } from "@/components/waveform"
 import { ContactSourceField } from "@/components/contact-source-field"
+import { CCI_BRIEF_PATH } from "@/lib/cci-executive-brief"
 import { COHORT_REPORT_PATH } from "@/lib/cohort-report"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { ORGANIZATION } from "@/lib/positioning"
@@ -58,7 +59,10 @@ export default function ContactPage() {
             <div className="mt-10 border-t border-white/20 pt-7">
               <h2 className="text-xl font-medium">See it before we talk</h2>
               <p className="mt-3 max-w-md leading-relaxed text-cs-cloud">Open a complete recording, transcript, and feedback report without signing in.</p>
-              <Link href="/examples" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white underline underline-offset-4">See example feedback<ArrowRight className="h-4 w-4" /></Link>
+              <div className="mt-4 flex flex-col gap-3">
+                <Link href="/examples" className="inline-flex items-center gap-2 text-sm font-medium text-white underline underline-offset-4">See example feedback<ArrowRight className="h-4 w-4" /></Link>
+                <Link href={CCI_BRIEF_PATH} className="inline-flex items-center gap-2 text-sm font-medium text-white underline underline-offset-4">Get the two-page executive brief to forward<ArrowRight className="h-4 w-4" /></Link>
+              </div>
             </div>
           </div>
           <div className="min-w-0 rounded-2xl border border-white/20 bg-white/5 p-6 md:p-8">

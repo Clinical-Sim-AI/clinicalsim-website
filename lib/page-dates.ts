@@ -17,8 +17,10 @@ export const PAGE_DATE_MODIFIED = {
   // Added the nursing leadership audience to the listing (2026-10-14).
   audiences: "2026-10-14",
   // New category page (2026-10-06).
-  // Linked the health system cohort report (2026-10-20).
+  // Linked the health system cohort report and the executive brief (2026-10-20).
   clinicalCommunicationIntelligence: "2026-10-20",
+  // Gated download page for the executive brief (2026-10-20).
+  cciExecutiveBrief: "2026-10-20",
   // Anonymized partner report, approved for publication 2026-10-20.
   cohortReport: "2026-10-20",
   compare: "2026-09-02",
