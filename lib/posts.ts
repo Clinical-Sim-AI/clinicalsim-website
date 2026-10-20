@@ -11,6 +11,7 @@
  * lib/posts.test.ts covers that half at runtime. Both halves are needed.
  */
 export type PostSlug =
+  | "communication-and-hospital-economics"
   | "ccc-communication-evidence-threshold"
   | "identifying-struggling-residents-intern-year"
   | "what-an-osce-score-predicts"
@@ -75,6 +76,17 @@ export interface HowToStep {
 }
 
 const posts: Post[] = [
+  {
+    slug: "communication-and-hospital-economics",
+    title: "The impact of communication on hospital economics",
+    seoTitle: "Communication and hospital economics",
+    description:
+      "Across 19 trials, discharge communication interventions were associated with fewer readmissions (relative risk 0.69; Becker, 2021), and by our calculation communication HCAHPS items make up roughly 12.5% to 17% of Medicare's value-based score. Neither tells a hospital what communication costs it. Here is a method for finding out.",
+    date: "2026-10-20",
+    author: "ClinicalSim Team",
+    readingTime: "14 min read",
+    tags: ["hospital-economics", "patient-experience", "readmissions", "health-system"],
+  },
   {
     slug: "ccc-communication-evidence-threshold",
     title: "What a CCC needs before it can act on a communication problem",

@@ -1,0 +1,295 @@
+import { ArticleLayout } from "@/components/article-layout"
+import { ArticleTable } from "@/components/article-table"
+import { KeyTakeaway } from "@/components/key-takeaway"
+import { ReferencesSection } from "@/components/references-section"
+import { getPostBySlug, getPostMetadata } from "@/lib/posts"
+
+export const metadata = getPostMetadata("communication-and-hospital-economics")
+
+<ArticleLayout post={getPostBySlug("communication-and-hospital-economics")}>
+
+<KeyTakeaway stat="0.69" statSource="relative risk of readmission with discharge communication interventions, pooled from 19 randomized trials (Becker et al., JAMA Network Open, 2021)">
+Communication shows up inside costs a hospital already carries, from readmissions to value-based payment scores to malpractice claims, but no published study tells a hospital what communication costs it. Start with one pathway, two owners, and the hospital's own data.
+</KeyTakeaway>
+
+## Executive summary
+
+Hospital leaders already track readmissions, patient survey scores, complaints and malpractice claims. Each of these can carry a communication problem inside it: a patient who went home without understanding the plan, a handoff that dropped an action item, a consent conversation that never checked what the patient took in. What leaders usually can't see is the conversation itself, so they can't tell whether communication is contributing to a cost the hospital already pays.
+
+This paper sets out a disciplined way to ask that question. It follows four communication behaviors into the operational consequences they may produce and the economic categories those consequences fall into. These are pathways to investigate. They are not proof that any hospital incurs each cost, or that any program removes it.
+
+The published evidence gives good reason to look. Communication interventions at hospital discharge were associated with fewer readmissions across randomized trials [1]. A structured handoff program was followed by fewer medical errors in nine pediatric hospitals [2]. In one large malpractice claims database, communication failure was a factor in 30% of cases filed from 2009 to 2013, and a later analysis that counted cases differently found 40% [3, 4]. By our calculation, communication-related patient survey items make up roughly 12.5% to 17% of the score Medicare uses to adjust value-based payments in fiscal years 2026 through 2029 [5, 6]. None of these studies tells a hospital what communication costs it, and none tested a training or simulation program on its own.
+
+So we recommend an institutional method we call Clinical Communication Intelligence: set the standard, observe performance against it, direct a targeted response, and have leadership review the operational evidence. Four economic categories stay separate so that no cost is counted twice. A first engagement should produce a pathway map for one pathway and a review question that local data can answer. Precise costing comes later.
+
+This is the shorter web edition. The [full white paper](/resources/hospital-economics-white-paper) covers more of the published evidence behind each pathway, and our earlier piece on [what the evidence says about communication training](/insights/why-communication-training-matters) explains why we don't publish an ROI figure.
+
+## 1. The executive question
+
+Where could communication be affecting hospital economics, and what can leadership currently see?
+
+Most of the measures that reach an executive dashboard sit downstream of a conversation. A readmission rate, a grievance log and a claims report each record what happened after a clinician talked with a patient, or after one clinician handed a patient to another. So does HCAHPS (the Hospital Consumer Assessment of Healthcare Providers and Systems), the national survey Medicare uses to collect patients' reports of their stay. None of them shows the conversation.
+
+That gap matters because the signals leaders can see often look better than what sits underneath. In a study of 395 older patients discharged from one academic medical center, 95.6% said they understood why they had been in the hospital, but only 59.6% could describe their diagnosis accurately [7]. In two health systems' emergency departments, 78% of patients had a gap in understanding their care or instructions in at least one area, and most were unaware of it [8]. A patient who doesn't know what they missed won't flag it on a survey or at the bedside.
+
+Survey scores also move unevenly. Across 3,909 US hospitals from 2008 to 2019, the HCAHPS nurse communication measure rose 6.5 percentage points, while doctor communication rose 0.8 points, the smallest gain of any measure [9]. A decade of public reporting and payment incentives coincided with almost no change in the physician measure, and the survey can't say why.
+
+So the question for leadership has two parts. Where might communication be contributing to costs, revenue effects or risks the hospital already carries? And what would the hospital need to see, in its own data and in observed clinical conversations, to know whether it is?
+
+## 2. The pathways
+
+Communication becomes an economic question when a specific behavior leads to a specific operational consequence, and that consequence lands in a cost or revenue category the hospital tracks. The communication pathway framework follows four behaviors along that route.
+
+<ArticleTable
+  caption="Table 1. Communication pathway framework"
+  headers={["Behavior", "Potential operational consequence", "Economic category"]}
+  rows={[
+  [
+    "Incomplete discharge explanation",
+    "Repeat clarification contacts; care transition delays",
+    "Staff capacity; care use"
+  ],
+  [
+    "Unclear handoff communication",
+    "Missed escalation; further investigation required",
+    "Additional expenditure; patient safety"
+  ],
+  [
+    "Inconsistent consent communication",
+    "Patient uncertainty; service recovery need",
+    "Patient experience; payment exposure"
+  ],
+  [
+    "Unresolved patient concern",
+    "Repeat contacts; satisfaction effect",
+    "Payment exposure; longer-term risk"
+  ]
+]}
+/>
+
+These are investigative pathways. They show where a hospital could look, and they are not proof that every hospital incurs each cost or that ClinicalSim or any other program removes it. Whether a pathway is active in a given hospital, how often and at what cost has to be established with that hospital's own data.
+
+Each row starts with something a clinician says or leaves out. An incomplete discharge explanation can send a patient home unsure about medications or warning signs, which can lead to calls back to the unit, missed follow-up or a return visit. An unclear handoff can mean the receiving clinician misses that a patient needs escalation, and the team then orders more tests to work out what happened.
+
+Inconsistent consent communication can leave a patient unsure what they agreed to, which can surface later as a complaint that staff have to resolve. An unresolved concern can turn into repeat contacts, a lower survey response and, for some patients, a formal grievance or a claim. The rows overlap in practice, and Section 4 explains how to keep the categories apart so the same event isn't counted twice.
+
+## 3. The evidence
+
+We chose a few studies that bear directly on the four pathways. For each, the useful question is what it establishes and what it leaves for the hospital to find out.
+
+### Discharge communication and readmissions
+
+Becker and colleagues pooled randomized trials of communication interventions delivered at hospital discharge [1]. The review included 60 trials with 16,070 patients from 18 countries, and excluded surgical wards and psychiatric hospitals. In the 19 trials (3,953 patients) that reported readmission, 9.1% of intervention patients were readmitted compared with 13.5% under usual care, a relative risk of 0.69 (95% CI, 0.56 to 0.84). Intervention patients were also more likely to follow their treatment (relative risk 1.24) and to be satisfied (relative risk 1.41), while mortality and emergency department return visits did not change significantly.
+
+The interventions matter as much as the result. The benefit came mainly from programs delivered by staff: medication counseling (relative risk 0.69 for readmission) and structured education about the disease and its management (relative risk 0.55), often combined with written plans or a phone line. The subgroup closest to how clinicians talk, specific techniques such as teach-back, shared decision-making and motivational interviewing, had only 3 trials and showed no significant effect on readmission (relative risk 1.06) [1]. None of the trials tested a training or simulation program, and the review didn't measure cost.
+
+So Becker gives a hospital reason to examine the discharge conversation, because deliberate changes to what patients were told were associated with fewer readmissions. The 31% relative reduction belongs to those interventions in those trials, and it shouldn't be transferred to any training program, ours included.
+
+### Handoffs and patient safety
+
+Starmer and colleagues studied the I-PASS handoff program in nine pediatric hospitals, covering 10,740 admissions [2]. After implementation, medical errors fell from 24.5 to 18.8 per 100 admissions (a 23% decrease), and preventable adverse events fell from 4.7 to 3.3 per 100 admissions (30%). Handoffs didn't take longer: about 2.4 minutes per patient before and 2.5 after.
+
+I-PASS was a bundle. It combined a standard mnemonic for spoken and written handoffs, communication training that included role-play and simulation, faculty development with direct observation of residents, and a campaign to sustain the change [2]. The study compared periods before and after implementation without a concurrent control group, errors fell significantly at six of the nine sites, and no costs were measured.
+
+I-PASS is the strongest published case for a structured institutional handoff program, though a before-and-after design can't prove cause. It doesn't show what simulation or training contributes alone, and the 23% and 30% figures belong to that bundle in pediatric teaching hospitals.
+
+### Malpractice and longer-term risk
+
+CRICO Strategies, part of the Risk Management Foundation of the Harvard Medical Institutions, reviewed 23,658 malpractice cases filed from 2009 to 2013 in its benchmarking database, which draws on claims from more than 400 hospitals [3]. Communication failure was a factor in 30% of them (7,149 cases), which carried $1.7 billion in total incurred losses over those five years, a figure that includes reserves on open cases. Failures between providers appeared in 57% of the communication cases and 73% of their losses, and inadequate informed consent was among the most common failures between providers and patients.
+
+A 2025 Candello (CRICO) follow-up found communication failures in 40% of cases asserted from 2014 to 2024, and those cases had 39% greater odds of closing with a payment [4]. The two reports counted cases differently, so the move from 30% to 40% isn't a like-for-like trend.
+
+These reports establish that communication failures are common among harmful events that become claims. They don't establish that communication caused the harm or the claim, since a case can have several contributing factors, and they say nothing about any one hospital's costs. At the physician level, unsolicited patient complaints have been associated with malpractice claims experience in a large academic medical group [10], which makes the complaint data a hospital already holds a reasonable place to start. That too is an association.
+
+### Payment exposure and patient experience
+
+Medicare's Hospital Value-Based Purchasing (VBP) Program withholds 2% of each participating hospital's base operating DRG payments (Medicare's standard per-case inpatient payment, set by diagnosis-related group) and pays the whole pool back out according to performance [11]. The program is budget neutral. The pool was about $1.7 billion for fiscal year 2026 and about $1.9 billion for fiscal year 2027 [12, 13], and a hospital can earn back less or more than its 2%. Four domains each count for 25% of a hospital's Total Performance Score, and one of them, Person and Community Engagement, is built from HCAHPS [14].
+
+By our calculation, communication-related HCAHPS dimensions account for roughly 12.5% to 17% of the Total Performance Score in fiscal years 2026 through 2029, depending on the year and how the scoring rules are treated [5, 6]. For fiscal years 2027 to 2029, CMS scores six HCAHPS dimensions, and four of them (communication with nurses, communication with doctors, communication about medicines, and discharge information) ask whether staff explained, listened or informed. Four of six, times the 25% domain weight, is 16.7%. Counting only the base score, which is 80 of the domain's 100 points, gives 13.3%, because the remaining 20 points depend on whichever dimension is the hospital's lowest. From fiscal year 2030, when nine dimensions are scored, the same methods give roughly 9% to 15%, depending on whether care coordination and the symptoms half of a combined dimension are counted.
+
+That share doesn't convert to dollars. Scoring is relative and the program is budget neutral, so multiplying a share by the national pool produces a meaningless number. A hospital's exposure has to be computed from its own base operating DRG payments, its current dimension scores and the national thresholds. Timing matters too: payment years lag the survey periods they rest on. Fiscal year 2027 payments reflect calendar 2025 surveys, and fiscal year 2028 rests on calendar 2026, which is nearly over, so a change made now would first show across a full performance period in fiscal year 2029 payment [5].
+
+HCAHPS is also poorly suited to detecting a training effect. In an observational study at Cleveland Clinic, physicians who took an eight-hour communication course scored higher than untrained physicians on an outpatient survey of physician communication, but their HCAHPS doctor communication scores didn't differ significantly (P = .22) [15]. A 2017 coaching study of 128 physicians found no significant effect on HCAHPS physician communication measures [16].
+
+### Consent
+
+In audiotaped office visits recorded in 1993, clinicians checked the patient's understanding in 1.5% of the clinical decisions studied [17]. In a randomized trial at seven VA medical centers, adding a repeat-back step to surgical consent improved comprehension by 3.2 percentage points and added about 2.6 minutes of clinician time [18]. Checking understanding can be done and measured, but the gain in that trial was modest, and we found no study that ties consent quality to a hospital dollar figure.
+
+<ArticleTable
+  caption="Table 2. What the selected evidence establishes"
+  headers={["Source", "Establishes", "Does not establish"]}
+  rows={[
+  [
+    "Becker et al. 2021 [1]",
+    "Discharge communication interventions, mostly medication counseling and disease education, were associated with fewer readmissions in pooled trials",
+    "That training or simulation reduces readmissions; any cost or saving; an effect for teach-back alone"
+  ],
+  [
+    "Starmer et al. 2014 (I-PASS) [2]",
+    "A multi-component handoff program was followed by fewer errors and preventable adverse events, without longer handoffs",
+    "Causation (no concurrent control); what any one component contributed; any financial effect"
+  ],
+  [
+    "CRICO 2015; Candello 2025 [3, 4]",
+    "Communication failures are common among malpractice cases and associated with higher odds of payment",
+    "That communication caused the harm; any single hospital's exposure"
+  ],
+  [
+    "VBP rules and HCAHPS [5, 11]",
+    "Communication items are a sizable share of a payment-linked score, and changes reach payment years later",
+    "A dollar value for any hospital; that training moves the score"
+  ],
+  [
+    "Boissy 2016; Seiler 2017 [15, 16]",
+    "HCAHPS barely registers communication training in the studies available",
+    "That training has no effect"
+  ],
+  [
+    "Braddock 1999; Fink 2010 [17, 18]",
+    "Checks for understanding were rare in recorded 1993 office visits; a deliberate check gave a modest gain in one trial, at a measurable time cost",
+    "Effects on complaints, claims or costs"
+  ]
+]}
+/>
+
+## 4. The institutional method
+
+### Four economic categories, kept separate
+
+<ArticleTable
+  caption="Table 3. Economic categories"
+  headers={["Category", "What it includes", "The rule that applies"]}
+  rows={[
+  [
+    "Additional expenditure",
+    "Costs incurred as a direct consequence: repeat tests, more contacts, service recovery",
+    "Count only costs the hospital bears that wouldn't otherwise occur"
+  ],
+  [
+    "Staff capacity",
+    "Staff time on avoidable follow-up",
+    "Released staff time isn't automatically cash savings"
+  ],
+  [
+    "Payment exposure",
+    "Value-based purchasing and readmission measures",
+    "Any quantified effect needs the hospital's payer context"
+  ],
+  [
+    "Longer-term risk",
+    "Reputational, regulatory and operational risk, including malpractice",
+    "Usually described, not priced, in a first review"
+  ]
+]}
+/>
+
+The same event can show up in more than one category. A confused discharge can produce a nurse call, a return emergency visit and a lower discharge information score. Assign each consequence to one category, record why, and add categories together only when each line describes a different event.
+
+### Why a readmission isn't a uniform loss
+
+A readmission's financial meaning depends on how the hospital is paid. Under fee-for-service payment, each admission brings more revenue, so an avoided readmission can be forgone revenue [19]. Under the Hospital Readmissions Reduction Program (HRRP), Medicare cuts base operating DRG payments by up to 3% for hospitals with excess readmissions across six conditions [20]. For fiscal year 2027, 2,334 of 2,912 hospitals evaluated (80%) were penalized, with an average penalty of 0.44% among them, and it's the first year the measures count Medicare Advantage patients [21, 22]. The penalty still falls on Medicare fee-for-service payments.
+
+Under episode-based payment, the hospital bears the cost of the extra stay [19]. The same reasoning suggests that under capitation or shared savings, an avoided readmission is a saving to whoever holds the risk. A business case therefore starts from the hospital's payer mix and contracts.
+
+The average adult readmission cost hospitals $17,700 to deliver in 2020 [23], but that covers all-cause stays and is neither a loss nor an avoidable share. In a 12-center study, physician reviewers classified 26.9% of readmissions as "potentially preventable," and failure to relay important information to outpatient clinicians was among the factors most strongly tied to preventability (adjusted odds ratio 4.19) [24]. Across 34 earlier studies, the median share judged avoidable was 27.1%, with a range of 5% to 79% [25], which is why a hospital has to review its own cases.
+
+### What staff capacity looks like in the data
+
+We found no published general benchmark for how many repeat clarification contacts follow a discharge or how much staff time they take. The closest data come from single sites. At one public safety-net hospital, 1.5% of 19,303 discharged patients called an advice line within 30 days, at the low end of the 1% to 10% the authors found in the literature, and 21% of callers had trouble understanding or following their discharge instructions [26]. In one primary care practice's planned post-discharge call program, each completed call took 34.1 minutes of nurse time [27].
+
+Those figures show the category can be measured, but they don't give a hospital its own rate. Grievances are similar. Medicare's Conditions of Participation require every participating hospital to run a governed grievance process with written responses [28], and we found no credible published cost per grievance, so the hospital's own logs are the source.
+
+### The operating model
+
+Clinical communication intelligence means making how healthcare teams handle important conversations visible, interpretable, and improvable. As an institutional method, Clinical Communication Intelligence (CCI) has four steps.
+
+1. Set the relevant standard. Leadership names the communication priority and the standard it will be judged against, such as a discharge education policy, a handoff protocol like I-PASS, a consent policy or a service standard.
+2. Observe performance. Clinicians' performance against that standard is observed and scored, in simulation, in live observation or both.
+3. Direct targeted development. The response goes to the behaviors and groups the findings point to.
+4. Review as leadership. Leaders read the assessment findings alongside the operational measures for that pathway and decide what happens next.
+
+I-PASS followed this shape: a shared standard, training with practice, supervisors who observed, and a campaign to keep it going [2].
+
+### An illustrative example
+
+This example is fictional. It shows the logic of the method and reports no result.
+
+A hospital's patient experience sponsor and its nursing leadership choose the discharge pathway. A selected cohort completes simulated discharge conversations scored against the hospital's discharge education standard, and the findings show inconsistent checks for understanding: participants explained the medication plan but often didn't ask the patient to say it back.
+
+That supports targeted practice for the cohort, and it raises a question for operations: are repeat clarification contacts common in the corresponding pathway, and what do they involve? A local review of call logs and nurse notes could establish how often patients call back, why, and how much staff effort the calls take. If the review finds enough volume to matter, an improvement evaluation could then test whether a defined intervention changes those measures.
+
+The simulated omission is not itself a measured loss. Whether there is anything to count is for the local review to decide.
+
+### Where simulation fits
+
+Simulation belongs at the second step. It makes behavior observable against an agreed standard, with the same scenario for every participant. A simulated finding can identify a question worth pursuing. It doesn't measure hospital loss, and it can't establish the cause of any incident; that takes the hospital's own review processes and data.
+
+## 5. The leadership decision
+
+Start with one pathway. The best first choice is one where leadership already watches a measure and a sponsor already owns the standard. For many hospitals that's discharge, because readmission rates and the HCAHPS discharge information score are already on the dashboard.
+
+Name two owners. A clinical, quality or patient experience sponsor owns the communication standard and the assessment, and an operations or finance partner owns the data and decides which economic category each consequence belongs in. Without that second owner, the findings tend to stay inside education.
+
+Then pull the local data that fits the pathway.
+
+<ArticleTable
+  caption="Table 4. Local data by pathway"
+  headers={["Pathway", "Local data to pull"]}
+  rows={[
+  [
+    "Discharge",
+    "Readmissions by service and payer; post-discharge call logs and nurse time; HCAHPS discharge and medicines scores; HRRP and VBP reports"
+  ],
+  [
+    "Handoff",
+    "Safety event reports citing handoff or escalation; rapid response reviews; handoff audits"
+  ],
+  [
+    "Consent",
+    "Consent-related complaints; procedure delays tied to consent questions; claims coded for consent"
+  ],
+  [
+    "Unresolved concern",
+    "Grievance volume and staff hours; repeat contacts; complaints by unit; claims history"
+  ]
+]}
+/>
+
+A useful first engagement should produce four things. The first is a pathway map for the chosen pathway, listing the behaviors, the operational consequences, the economic category for each, the local data source and the person who holds it. The second is a defined review question that local data can answer, for example: "How many patients discharged from our cardiac units call back within 30 days about medications or instructions, and how much nurse time do those calls take?"
+
+The third is a baseline of observed performance against the agreed standard for a defined group of clinicians. The fourth is a decision point agreed in advance: what the review would need to show for leadership to fund a targeted response, and which measure an evaluation would track.
+
+A quantified business case comes after that, if the review supports one. Starting with the map keeps the hospital from pricing a problem it hasn't confirmed.
+
+<ReferencesSection references={[
+  {"authors": "Becker C, Zumbrunn S, Beck K, et al", "title": "Interventions to improve communication at hospital discharge and rates of readmission: a systematic review and meta-analysis", "source": "JAMA Netw Open. 2021;4(8):e2119346", "year": "2021", "doi": "10.1001/jamanetworkopen.2021.19346"},
+  {"authors": "Starmer AJ, Spector ND, Srivastava R, et al; I-PASS Study Group", "title": "Changes in medical errors after implementation of a handoff program", "source": "N Engl J Med. 2014;371(19):1803-1812", "year": "2014", "doi": "10.1056/NEJMsa1405556"},
+  {"authors": "CRICO Strategies", "title": "Malpractice Risks in Communication Failures: 2015 Annual Benchmarking Report", "source": "The Risk Management Foundation of the Harvard Medical Institutions", "year": "2015", "url": "https://www.rmf.harvard.edu"},
+  {"authors": "Candello", "title": "New Candello report reveals communication failures between providers and patients are rising [press release]", "source": "CRICO; November 17, 2025", "year": "2025", "url": "https://www.rmf.harvard.edu/News-and-Blog/Press-Releases-Home/Press-Releases/2025/November/2025BenchmarkingReport10yearlookbackComm"},
+  {"authors": "Centers for Medicare & Medicaid Services", "title": "HCAHPS and Hospital VBP", "source": "HCAHPS Online. Updated December 17, 2024", "year": "2024", "url": "https://hcahpsonline.org/en/hcahps-and-hospital-vbp/"},
+  {"authors": "Centers for Medicare & Medicaid Services", "title": "Hospital VBP domain score calculation step-by-step guide", "source": "HCAHPS Online; February 2018", "year": "2018", "url": "https://mp.hcahpsonline.org/globalassets/hcahps/vbp/hospital-vbp-domain-score-calculation-step-by-step-guide-february-2018.pdf"},
+  {"authors": "Horwitz LI, Moriarty JP, Chen C, et al", "title": "Quality of discharge practices and patient understanding at an academic medical center", "source": "JAMA Intern Med. 2013;173(18):1715-1722", "year": "2013", "doi": "10.1001/jamainternmed.2013.9318"},
+  {"authors": "Engel KG, Heisler M, Smith DM, Robinson CH, Forman JH, Ubel PA", "title": "Patient comprehension of emergency department care and instructions: are patients aware of when they do not understand?", "source": "Ann Emerg Med. 2009;53(4):454-461.e15", "year": "2009", "doi": "10.1016/j.annemergmed.2008.05.016"},
+  {"authors": "Beckett MK, Quigley DD, Cohea CW, et al", "title": "Trends in HCAHPS survey scores, 2008-2019: a quality improvement perspective", "source": "Med Care. 2024;62(6):416-422", "year": "2024", "doi": "10.1097/MLR.0000000000002001"},
+  {"authors": "Hickson GB, Federspiel CF, Pichert JW, Miller CS, Gauld-Jaeger J, Bost P", "title": "Patient complaints and malpractice risk", "source": "JAMA. 2002;287(22):2951-2957", "year": "2002", "doi": "10.1001/jama.287.22.2951"},
+  {"authors": "Centers for Medicare & Medicaid Services", "title": "FY 2027 Hospital Inpatient Prospective Payment System (IPPS) and Long-Term Care Hospital Prospective Payment System (LTCH PPS) final rule (CMS-1849-F) [fact sheet]", "source": "CMS; July 31, 2026", "year": "2026", "url": "https://www.cms.gov/newsroom/fact-sheets/fy-2027-hospital-inpatient-prospective-payment-system-long-term-care-hospital-prospective-payment"},
+  {"authors": "Wisconsin Hospital Association; DataGen", "title": "Inpatient PPS rule brief: FFY 2026 final rule", "source": "Wisconsin Hospital Association", "year": "2025", "url": "https://www.wha.org/getmedia/457a9776-1753-4334-b680-d8bbbd0f4e8f/Inpatient-PPS-Rule-Brief-FFY-2026-Final-Rule.pdf"},
+  {"authors": "Healthcare Financial Management Association", "title": "FY 2027 IPPS/LTCH PPS final rule summary", "source": "HFMA; August 2026", "year": "2026", "url": "https://www.hfma.org/wp-content/uploads/2026/08/510155-FY-2027-IPPS_LTCH-PPS-Final-Rule-Summary.pdf"},
+  {"authors": "Centers for Medicare & Medicaid Services; Health Services Advisory Group", "title": "Fiscal year (FY) 2027 Hospital Value-Based Purchasing (VBP) Program quick reference guide", "source": "QualityReportingCenter.com; November 2024", "year": "2024", "url": "https://www.qualityreportingcenter.com/globalassets/2025/01/iqr/fy2027_hospitalvbp-quick-reference-guide.pdf"},
+  {"authors": "Boissy A, Windover AK, Bokar D, et al", "title": "Communication skills training for physicians improves patient satisfaction", "source": "J Gen Intern Med. 2016;31(7):755-761", "year": "2016"},
+  {"authors": "Seiler A, Knee A, Shaaban R, et al", "title": "Physician communication coaching effects on patient experience", "source": "PLoS One. 2017;12(7):e0180294", "year": "2017", "doi": "10.1371/journal.pone.0180294"},
+  {"authors": "Braddock CH III, Edwards KA, Hasenberg NM, Laidley TL, Levinson W", "title": "Informed decision making in outpatient practice: time to get back to basics", "source": "JAMA. 1999;282(24):2313-2320", "year": "1999"},
+  {"authors": "Fink AS, Prochazka AV, Henderson WG, et al", "title": "Enhancement of surgical informed consent by addition of repeat back: a multicenter, randomized controlled clinical trial", "source": "Ann Surg. 2010;252(1):27-36", "year": "2010"},
+  {"authors": "Chollet D, Barrett A, Lake T", "title": "Reducing Hospital Readmissions in New York State: A Simulation Analysis of Alternative Payment Incentives", "source": "Mathematica Policy Research; New York State Health Foundation; September 2011", "year": "2011", "url": "https://nyhealthfoundation.org/wp-content/uploads/2017/12/reducing-hospital-readmissions-payment-incentives-september-2011.pdf"},
+  {"authors": "Centers for Medicare & Medicaid Services", "title": "Hospital Readmissions Reduction Program (HRRP)", "source": "CMS", "year": "2026", "url": "https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/hospital-readmissions-reduction-program-hrrp"},
+  {"authors": "Pifer Parduhn R", "title": "Medicare penalizes more hospitals for readmissions", "source": "Healthcare Dive. October 8, 2026", "year": "2026", "url": "https://www.healthcaredive.com/news/hospital-readmission-reduction-program-penalties-rise-2027-cms/832473/"},
+  {"authors": "Bean M", "title": "Where readmission penalties hit hardest: 9 findings", "source": "Becker's Hospital Review. October 8, 2026", "year": "2026", "url": "https://www.beckershospitalreview.com/finance/where-readmission-penalties-hit-hardest-8-findings/"},
+  {"authors": "Jiang HJ, Barrett ML", "title": "Clinical conditions with frequent, costly hospital readmissions by payer, 2020. HCUP Statistical Brief #307", "source": "Agency for Healthcare Research and Quality; April 2024", "year": "2024", "url": "https://hcup-us.ahrq.gov/reports/statbriefs/sb307-readmissions-2020.jsp"},
+  {"authors": "Auerbach AD, Kripalani S, Vasilevskis EE, et al", "title": "Preventability and causes of readmissions in a national cohort of general medicine patients", "source": "JAMA Intern Med. 2016;176(4):484-493", "year": "2016", "doi": "10.1001/jamainternmed.2015.7863"},
+  {"authors": "van Walraven C, Bennett C, Jennings A, Austin PC, Forster AJ", "title": "Proportion of hospital readmissions deemed avoidable: a systematic review", "source": "CMAJ. 2011;183(7):E391-E402", "year": "2011", "doi": "10.1503/cmaj.101860"},
+  {"authors": "Stella SA, Allyn R, Keniston A, et al", "title": "Postdischarge problems identified by telephone calls to an advice line", "source": "J Hosp Med. 2014;9(11):695-699", "year": "2014", "doi": "10.1002/jhm.2252"},
+  {"authors": "Tang N, Fujimoto J, Karliner L", "title": "Evaluation of a primary care-based post-discharge phone call program: keeping the primary care practice at the center of post-hospitalization care transition", "source": "J Gen Intern Med. 2014;29(11):1513-1518", "year": "2014", "doi": "10.1007/s11606-014-2942-6"},
+  {"authors": "Condition of participation: patient's rights", "title": "42 CFR \u00a7482.13", "source": "Electronic Code of Federal Regulations (2026)", "year": "2026", "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-482/subpart-B/section-482.13"},
+]} />
+
+</ArticleLayout>

@@ -4,6 +4,7 @@ import { getAllAudiences } from "@/lib/audiences"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
 import { CCI_BRIEF_PATH } from "@/lib/cci-executive-brief"
+import { ECONOMICS_PAPER_PATH, ECONOMICS_POST_PATH } from "@/lib/hospital-economics-white-paper"
 import { COHORT_REPORT_PATH, COHORT_REPORT_SUMMARY } from "@/lib/cohort-report"
 import { getIndexableGlossaryTerms } from "@/lib/glossary"
 import { getAllHelpArticles } from "@/lib/help-articles"
@@ -113,6 +114,7 @@ export async function GET() {
     `- [FAQ](${BASE_URL}/faq): Common questions about ClinicalSim's AI clinical simulation, including how it compares to Step 2 CS and standardized patients, communication remediation, scoring and My Progress, evidence for CCC review, privacy, and research.`,
     `- [FAQ for medical educators](${BASE_URL}/medical-educator-faq): How to read a feedback report, inspect transcript evidence, compare GME and UME scoring, choose a practice cadence, and use results in a rotation or remediation plan.`,
     `- [Research collaboration](${BASE_URL}/research): Propose a study in communication training, implementation, patient experience, workforce education, or competency assessment.`,
+    `- [Hospital economics white paper](${BASE_URL}${ECONOMICS_PAPER_PATH}): The full white paper on the impact of communication on hospital economics: four communication pathways traced into costs a hospital already tracks, what the published evidence on discharge, handoffs, claims, value-based payment and consent establishes, and a method for a first review with local data. The shorter web edition is at ${BASE_URL}${ECONOMICS_POST_PATH}. Download requires a short form.`,
     `- [Clinical communication intelligence brief](${BASE_URL}${CCI_BRIEF_PATH}): A free two-page executive brief for a program director or patient experience lead to forward to a budget holder: the question clinical communication intelligence answers, how an engagement starts, and an excerpt from one anonymized health system report. Download requires a short form.`,
     `- [The conversations behind nurse turnover](${BASE_URL}/resources/nursing-turnover-brief): A free three-page brief for nurse leaders on why nurses leave, why the hardest conversations go untrained, and how to practice them before they count. Download requires a short form.`,
     `- [Insights](${BASE_URL}/insights): Research and evidence on medical communication training, simulation technology, and clinical conversation outcomes.`,
