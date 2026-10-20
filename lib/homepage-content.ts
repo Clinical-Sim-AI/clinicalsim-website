@@ -64,12 +64,13 @@ export const HOMEPAGE_PUBLIC_COPY = {
       "In one health system's anonymized report, clinicians opened conversations well. The report named the steps at the close to practice next: reflecting the concern back, checking it was understood, asking what matters most, and thanking the family for raising it. Leaders could see those patterns in the transcripts and use the same cases for focused practice.",
     exampleLink: "Read the anonymized health system cohort report",
   },
-  // No financial claim here. The post it links to explains why no ROI figure is published.
+  // No financial claim here. The white paper it links to explains why no ROI
+  // figure is published and how a hospital can examine its own costs instead.
   economics: {
     heading: "Making the budget case without an invented number",
-    body: "Someone in finance will ask what the program returns. We don't publish an ROI figure, because the published evidence on communication training doesn't support one. What a program can show is its own participants' practice, scored against a named standard, and the local measures it agreed on before launch.",
-    linkLabel: "What the evidence supports for a budget case",
-    href: "/insights/why-communication-training-matters",
+    body: "Someone in finance will ask what the program returns. We don't publish an ROI figure, because the published evidence on communication training doesn't support one. What a hospital can do is follow one communication pathway into the costs it already tracks, using its own data, and decide from there.",
+    linkLabel: "Read the white paper on communication and hospital economics",
+    href: "/insights/communication-and-hospital-economics",
   },
   scoring: {
     heading: "How we score each conversation",

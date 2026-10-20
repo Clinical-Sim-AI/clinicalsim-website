@@ -9,6 +9,7 @@ import { getAllHelpArticles, getHelpHubLastUpdated } from "@/lib/help-articles"
 import { RELEASE_NOTES_UPDATED_ISO } from "@/lib/release-notes"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { CCI_BRIEF_PATH } from "@/lib/cci-executive-brief"
+import { ECONOMICS_PAPER_PATH } from "@/lib/hospital-economics-white-paper"
 import { COHORT_REPORT_PATH } from "@/lib/cohort-report"
 
 const BASE_URL = "https://clinicalsim.ai"
@@ -165,6 +166,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     // The thank-you pages are noindexed and stay out of the sitemap.
+    {
+      url: `${BASE_URL}${ECONOMICS_PAPER_PATH}`,
+      lastModified: new Date(PAGE_DATE_MODIFIED.hospitalEconomicsWhitePaper),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
     {
       url: `${BASE_URL}${CCI_BRIEF_PATH}`,
       lastModified: new Date(PAGE_DATE_MODIFIED.cciExecutiveBrief),

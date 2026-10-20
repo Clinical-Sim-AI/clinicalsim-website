@@ -78,6 +78,7 @@ const roleRoutes = [
     role: "Finance",
     question: "What can we say about return without inventing a number?",
     links: [
+      { href: "/insights/communication-and-hospital-economics", label: "The impact of communication on hospital economics" },
       { href: "/insights/why-communication-training-matters", label: "What the evidence says about communication training" },
       { href: "/evaluation", label: "How an engagement is structured" },
     ],
