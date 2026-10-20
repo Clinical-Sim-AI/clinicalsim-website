@@ -13,7 +13,7 @@ import { ClinicianTestimonials } from "@/components/clinician-testimonials"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { DemoVideoSection } from "@/components/demo-video-section"
 import { VideoObjectSchema } from "@/components/video-object-schema"
-import { ORGANIZATION } from "@/lib/positioning"
+import { ORGANIZATION, PRIMARY_CTA } from "@/lib/positioning"
 
 const DEMO_VIDEO = {
   embedUrl: "https://www.youtube.com/embed/ZkA0slljnwI",
@@ -143,7 +143,7 @@ export default function ExamplesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href="/health-systems">

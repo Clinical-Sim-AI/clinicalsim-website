@@ -142,6 +142,12 @@ export const BANNED_CLAIM_PATTERNS: { pattern: RegExp; why: string }[] = [
     why: "Unpublished consultant deliverable that frames clinicians as financial liability.",
   },
   {
+    // Ben, 2026-10-20: the consultant decks' named leadership outputs are not products, so none
+    // of their names publishes.
+    pattern: /\b(communication performance profile|improvement priorities brief|institutional CCI)\b/i,
+    why: "Unconfirmed consultant deliverable names. Describe what a report shows instead.",
+  },
+  {
     pattern: /\bpredictive CCI\b/i,
     why: "Roadmap concept. ClinicalSim does not predict outcomes; see NO_OUTCOME_PREDICTION_LIMITATION.",
   },

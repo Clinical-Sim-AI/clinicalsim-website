@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/json-ld"
 import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
 import { ArrowRight } from "lucide-react"
-import { ORGANIZATION } from "@/lib/positioning"
+import { ORGANIZATION, PRIMARY_CTA } from "@/lib/positioning"
 
 export const metadata: Metadata = {
   title: { absolute: "Who we serve: health systems and medical education" },
@@ -166,7 +166,7 @@ export default function AudiencesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href="/solutions/patient-experience">

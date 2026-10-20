@@ -15,6 +15,7 @@ import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
 import { heroBadge, heroBadgeIconColor } from "@/lib/color-variants"
 import { cn, formatIsoMonth } from "@/lib/utils"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 const valuePropBrandIcons: Array<BrandIconName | null> = [
   "ribbon-check",
@@ -167,7 +168,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
           </div>
@@ -463,7 +464,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href={audience.secondaryCta?.href ?? "/audiences"}>

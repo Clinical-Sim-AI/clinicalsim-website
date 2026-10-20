@@ -12,6 +12,7 @@ import {
   SP_SUPPLEMENT_LINE,
 } from "@/lib/claim-discipline"
 import type { MarketOverviewContent } from "@/lib/market-overviews"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 interface MarketOverviewProps {
   content: MarketOverviewContent
@@ -68,7 +69,7 @@ export function MarketOverview({ content, dateModified }: MarketOverviewProps) {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild variant="accent" size="lg">
-                <Link href="/contact">Talk with us <ArrowRight aria-hidden="true" /></Link>
+                <Link href="/contact">{PRIMARY_CTA} <ArrowRight aria-hidden="true" /></Link>
               </Button>
               <Button asChild variant="inverse" size="lg">
                 <Link href="/examples">See a conversation</Link>
@@ -145,6 +146,21 @@ export function MarketOverview({ content, dateModified }: MarketOverviewProps) {
               <p className="text-base leading-relaxed text-cs-dark-blue/80">{content.clinicalSimProvides}</p>
             </div>
           </div>
+          {content.continuity && content.continuity.length > 0 && (
+            <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-12">
+              {content.continuity.map((item) => (
+                <div key={item.question}>
+                  <h3 className="mb-3 text-xl font-medium">{item.question}</h3>
+                  <p className="text-base leading-relaxed text-cs-dark-blue/80">{item.answer}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          {content.continuityLink && (
+            <Link href={content.continuityLink.href} className={`${inlineLink} mt-6`}>
+              {content.continuityLink.label} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          )}
           <div className="mt-8 rounded-xl border border-cs-gray p-6">
             <h3 className="mb-3 text-xl font-medium">What launching requires</h3>
             <p className="max-w-4xl text-base leading-relaxed text-cs-dark-blue/80">
@@ -170,7 +186,7 @@ export function MarketOverview({ content, dateModified }: MarketOverviewProps) {
           <p className="mb-8 mt-4 text-base leading-relaxed text-cs-cloud">
             We&apos;ll show you a simulated conversation and its feedback, then discuss where it could fit your {isHealthSystem ? "team's training" : "program"}.
           </p>
-          <Button asChild variant="accent" size="lg"><Link href="/contact">Talk with us <ArrowRight aria-hidden="true" /></Link></Button>
+          <Button asChild variant="accent" size="lg"><Link href="/contact">{PRIMARY_CTA} <ArrowRight aria-hidden="true" /></Link></Button>
         </div>
       </WaveformBand>
     </>

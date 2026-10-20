@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/json-ld"
 import { Waveform } from "@/components/waveform"
 import { getSolutionsByMarket } from "@/lib/solutions"
 import type { Market } from "@/lib/positioning"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 /**
  * The public library follows the two buying contexts that use the platform.
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Use cases | ClinicalSim.ai",
     description:
-      "One platform for patient experience, debriefing, safety conversations, medical education, and communication remediation.",
+      "One platform for patient experience, patient understanding, handoffs, debriefing, safety conversations, medical education, and communication remediation.",
     url: "https://clinicalsim.ai/solutions",
   },
   twitter: {
@@ -161,7 +162,7 @@ export default function SolutionsPage() {
           </p>
           <Link href="/contact">
             <Button variant="accent" size="xl">
-              Talk with us
+              {PRIMARY_CTA}
             </Button>
           </Link>
         </div>

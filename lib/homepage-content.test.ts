@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server"
 import { describe, expect, it } from "vitest"
 import HomePage, { metadata } from "../app/(marketing)/page"
 import { HOMEPAGE_PUBLIC_COPY } from "./homepage-content"
+import { PRIMARY_CTA } from "./positioning"
 
 describe("homepage public copy", () => {
   it("keeps retired positioning phrases off the homepage", () => {
@@ -54,9 +55,9 @@ describe("homepage names the category and one call to action", () => {
     )
   })
 
-  it("uses the short contact action in the hero and the closing", () => {
-    expect(HOMEPAGE_PUBLIC_COPY.hero.primaryCta).toBe("Talk with us")
-    expect(HOMEPAGE_PUBLIC_COPY.closing.cta).toBe("Talk with us")
+  it("uses the primary call to action in the hero and the closing", () => {
+    expect(HOMEPAGE_PUBLIC_COPY.hero.primaryCta).toBe(PRIMARY_CTA)
+    expect(HOMEPAGE_PUBLIC_COPY.closing.cta).toBe(PRIMARY_CTA)
   })
 
   it("states the pilot count Ben confirmed on 2026-10-06", () => {

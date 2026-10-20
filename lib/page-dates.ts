@@ -17,13 +17,19 @@ export const PAGE_DATE_MODIFIED = {
   // Added the nursing leadership audience to the listing (2026-10-14).
   audiences: "2026-10-14",
   // New category page (2026-10-06).
-  clinicalCommunicationIntelligence: "2026-10-11",
+  // Linked the health system cohort report (2026-10-20).
+  clinicalCommunicationIntelligence: "2026-10-20",
+  // Anonymized partner report, approved for publication 2026-10-20.
+  cohortReport: "2026-10-20",
   compare: "2026-09-02",
-  contact: "2026-10-11",
+  // New H1 and title; success message points to the cohort report (2026-10-20).
+  contact: "2026-10-20",
   // Licensing section became engagements with no billing basis; added the
   // "How this fits with what you already run" section (2026-10-06).
-  evaluation: "2026-10-11",
-  evidence: "2026-10-11",
+  // Linked the cohort report from the engagement section (2026-10-20).
+  evaluation: "2026-10-20",
+  // Added "Find the answer for your role" and the cohort report (2026-10-20).
+  evidence: "2026-10-20",
   // Added the 48 Hours in the Hallway example to the listing (2026-10-15).
   examples: "2026-10-15",
   // Licensing answer reworded without a billing basis; three program-fit
@@ -32,10 +38,13 @@ export const PAGE_DATE_MODIFIED = {
   frameworks: "2026-09-03",
   glossary: "2026-08-18",
   // Category eyebrow, leader clause, single CTA, and the 29-pilot line.
-  home: "2026-10-11",
+  // Economics section and the cohort report link added (2026-10-20).
+  home: "2026-10-20",
   // Added nursing leadership to the roles list (2026-10-14).
-  healthSystems: "2026-10-14",
-  medicalEducation: "2026-10-11",
+  // Linked the patient understanding and handoff use cases (2026-10-20).
+  healthSystems: "2026-10-20",
+  // New-cohort and wider-engagement answers added (2026-10-20).
+  medicalEducation: "2026-10-20",
   // Added the communication remediation plan article to the listing.
   insights: "2026-09-24",
   // Rewritten by the 2026-09-03 ACGME claim removal (fadf4b5), which replaced
@@ -46,7 +55,8 @@ export const PAGE_DATE_MODIFIED = {
   nursingTurnoverBrief: "2026-10-14",
   privacy: "2026-03-16",
   research: "2026-09-03",
-  solutions: "2026-10-11",
+  // Patient understanding and handoffs use cases added (2026-10-20).
+  solutions: "2026-10-20",
   // Same 2026-09-03 commit.
   trust: "2026-09-03",
 } as const

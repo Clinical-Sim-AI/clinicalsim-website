@@ -69,3 +69,11 @@ The two tests that matter were checked directly against the real registry code i
 ### Found while here
 
 `lib/posts.ts` line 131 carries an em dash in the `eol-communication-training-measurement-gap` description. It breaks the zero dash rule in published copy. It was left alone because that post sits behind an evidence guardrail in `CLAUDE.md` that holds its registry description until Ben and Lauren confirm the wording.
+
+## Proposed topics from Walia & Miller Doc 7, section 18 (added 2026-10-20)
+
+Not yet in the cloud backlog. Source-check every claim before drafting, as for any other row.
+
+- **The visibility question.** What a program director or patient experience leader can actually see about how their clinicians communicate, and what stays invisible because survey comments never attach to a conversation. The anonymized partner report at `/examples/health-system-cohort-report` is the first-hand source to cite.
+- **From a first program to continuing responsibility.** How a communication program moves from one assessment with one group to a responsibility the institution keeps: new cohorts, repeat practice, and faculty validation. Follow the engagement sequence in `ASSESSMENT_ENTRY` and publish no durations or prices.
+- **Economics.** Don't write a new post. Extend `why-communication-training-matters`, which already absorbed the ROI post (`hospital-communication-training-roi` redirects there) and argues that a single ROI number is false precision.

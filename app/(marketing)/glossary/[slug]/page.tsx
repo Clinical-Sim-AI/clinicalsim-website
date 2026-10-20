@@ -13,6 +13,7 @@ import {
   getRelatedGlossaryTerms,
   isIndexableGlossaryTerm,
 } from "@/lib/glossary"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -287,7 +288,7 @@ export default async function GlossaryTermPage({ params }: Props) {
           </p>
           <Link href="/contact">
             <Button variant="accent" size="xl">
-              Talk with us
+              {PRIMARY_CTA}
             </Button>
           </Link>
         </div>

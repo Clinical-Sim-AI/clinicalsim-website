@@ -6,6 +6,7 @@ import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { HelpSearch, type HelpSearchItem } from "@/components/help-search"
 import { getAllHelpArticles } from "@/lib/help-articles"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 export const metadata: Metadata = {
   title: "Help center: answers, examples, and release notes",
@@ -258,7 +259,7 @@ export default function HelpPage() {
             </p>
             <div className="mt-auto flex flex-col sm:flex-row gap-4">
               <Link href="/contact">
-                <Button size="lg">Talk with us</Button>
+                <Button size="lg">{PRIMARY_CTA}</Button>
               </Link>
               <Link href="/research">
                 <Button variant="secondary" size="lg">

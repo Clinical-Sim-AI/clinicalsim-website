@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest"
-import { getAllSolutions, type SolutionSlug } from "./solutions"
+import { BRITISH_SPELLING_PATTERN } from "./claim-discipline"
+import { getAllSolutions, getSolutionBySlug, type SolutionSlug } from "./solutions"
 
 const solutions = getAllSolutions()
 
@@ -18,6 +19,8 @@ const UNION_MEMBERS: SolutionSlug[] = [
   "informed-consent",
   "error-disclosure",
   "workforce-retention",
+  "patient-understanding",
+  "handoffs-and-escalation",
   "remediation",
 ]
 
@@ -47,5 +50,30 @@ describe("Solution registry", () => {
   it("has no duplicate slugs", () => {
     const slugs = solutions.map((s) => s.slug)
     expect(new Set(slugs).size).toBe(slugs.length)
+  })
+
+  it("asks every lane's sponsor one question, in American English", () => {
+    for (const solution of solutions) {
+      const question = solution.leadershipQuestion
+      expect(question, `${solution.slug} has no leadershipQuestion`).toBeTruthy()
+      expect(question!.trim().endsWith("?"), `${solution.slug} question must end in "?"`).toBe(true)
+      expect(question).not.toMatch(BRITISH_SPELLING_PATTERN)
+    }
+  })
+
+  it("links each related use case that exists", () => {
+    for (const solution of solutions) {
+      for (const slug of solution.relatedSolutionSlugs ?? []) {
+        expect(getSolutionBySlug(slug), `${solution.slug} links to missing ${slug}`).toBeTruthy()
+        expect(slug, `${solution.slug} links to itself`).not.toBe(solution.slug)
+      }
+    }
+  })
+
+  it("gives each new application page two inbound links besides /solutions", () => {
+    for (const target of ["patient-understanding", "handoffs-and-escalation"] as const) {
+      const inbound = solutions.filter((s) => s.relatedSolutionSlugs?.includes(target))
+      expect(inbound.length, `${target} inbound links`).toBeGreaterThanOrEqual(2)
+    }
   })
 })

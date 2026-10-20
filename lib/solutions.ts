@@ -1,6 +1,7 @@
 import type { BrandIconName } from "@/components/brand-icon"
 import type { Market } from "@/lib/positioning"
 import type { PostSlug } from "@/lib/posts"
+import { COHORT_REPORT_PATH } from "@/lib/cohort-report"
 import { NURSING_BRIEF_PATH } from "@/lib/nursing-turnover-brief"
 
 export interface SolutionStage {
@@ -79,6 +80,8 @@ export type SolutionSlug =
   | "informed-consent"
   | "error-disclosure"
   | "workforce-retention"
+  | "patient-understanding"
+  | "handoffs-and-escalation"
   | "remediation"
 
 export interface Solution {
@@ -176,6 +179,18 @@ export interface Solution {
 
   resource?: SolutionResource
 
+  /**
+   * Other use cases this page links to by name. Every page needs two inbound links besides
+   * /solutions, so a new lane is linked from the existing lanes closest to it.
+   */
+  relatedSolutionSlugs?: SolutionSlug[]
+
+  /**
+   * The question a sponsor should be able to answer after reading the page (Walia & Miller
+   * Doc 7, section 11). Rendered just above the closing call to action. Ends in "?".
+   */
+  leadershipQuestion?: string
+
   ctaHeadline: string
   ctaDescription: string
 }
@@ -250,7 +265,7 @@ const solutions: Solution[] = [
     subtitle: "A longitudinal communication curriculum across PGY years",
     icon: "stack",
     colorVariant: "accent",
-    lastUpdated: "2026-09-03",
+    lastUpdated: "2026-10-20",
     cardBullets: [
       "A gradual arc from PGY-1 to senior resident and fellow",
       "Mapped to your program's competency standards",
@@ -320,6 +335,8 @@ const solutions: Solution[] = [
       "millers-pyramid",
       "family-meeting",
     ],
+    leadershipQuestion:
+      "Could you show how one resident's communication changed between intern year and graduation?",
     ctaHeadline: "Build a communication curriculum that spans training.",
     ctaDescription:
       "Review a longitudinal sequence of rubric-scored cases from intern year through fellowship.",
@@ -337,7 +354,7 @@ const solutions: Solution[] = [
     subtitle: "From history-taking to delivering a diagnosis, across four years",
     icon: "student",
     colorVariant: "blue",
-    lastUpdated: "2026-09-02",
+    lastUpdated: "2026-10-20",
     cardBullets: [
       "A four-year arc from M1 history-taking to M4 diagnosis disclosure",
       "OSCE practice on demand between scheduled SP encounters",
@@ -404,6 +421,8 @@ const solutions: Solution[] = [
       "spikes-protocol",
       "clinical-reasoning",
     ],
+    leadershipQuestion:
+      "Where in your curriculum does a student first practice delivering a serious diagnosis out loud?",
     ctaHeadline: "Sequence communication across all four years.",
     ctaDescription:
       "Review a four-year sequence from the first patient history through diagnosis disclosure.",
@@ -421,7 +440,7 @@ const solutions: Solution[] = [
     subtitle: "The conversations faculty are expected to model",
     icon: "group",
     colorVariant: "light-blue",
-    lastUpdated: "2026-09-02",
+    lastUpdated: "2026-10-20",
     cardBullets: [
       "Practice giving specific corrective feedback",
       "Lead professionalism conversations with peers",
@@ -483,6 +502,8 @@ const solutions: Solution[] = [
       "psychological-safety-in-simulation",
       "telehealth-communication",
     ],
+    leadershipQuestion:
+      "When did your faculty last practice the feedback conversation they're expected to model?",
     ctaHeadline: "Add communication practice to faculty development",
     ctaDescription:
       "Review cases for corrective feedback, professionalism concerns, and bedside teaching.",
@@ -500,7 +521,7 @@ const solutions: Solution[] = [
     subtitle: "Practice the behaviors behind listening, explanation, and respect",
     icon: "chat-square-heart",
     colorVariant: "accent",
-    lastUpdated: "2026-10-06",
+    lastUpdated: "2026-10-20",
     cardBullets: [
       "Score the service standards your institution already teaches",
       "Quote the words behind each score",
@@ -597,6 +618,15 @@ const solutions: Solution[] = [
       noEmploymentUse: true,
     },
     glossarySlugs: ["teach-back-method"],
+    relatedSolutionSlugs: ["patient-understanding"],
+    resource: {
+      title: "What one health system learned from 82 practice conversations",
+      description: "An anonymized report scored against one partner health system's own patient experience frameworks, with the element table, the quotes behind the finding, and its limits.",
+      linkLabel: "Read the cohort report",
+      href: COHORT_REPORT_PATH,
+    },
+    leadershipQuestion:
+      "Which behavior in your service standard would you most like to hear in your staff's own words?",
     ctaHeadline: "Start with one team and one service standard",
     ctaDescription:
       "Bring the standard you already teach. We will map what a spoken encounter can score and define the reporting rules before the pilot begins.",
@@ -614,7 +644,7 @@ const solutions: Solution[] = [
     subtitle: "Practice leading a debrief before the real event",
     icon: "people-connected",
     colorVariant: "light-blue",
-    lastUpdated: "2026-09-01",
+    lastUpdated: "2026-10-20",
     cardBullets: [
       "Rehearse clinical event and educational debriefs",
       "Score against the framework your institution teaches",
@@ -706,6 +736,9 @@ const solutions: Solution[] = [
       "plus-delta-debriefing",
       "psychological-safety-in-simulation",
     ],
+    relatedSolutionSlugs: ["handoffs-and-escalation"],
+    leadershipQuestion:
+      "How would you know whether the debriefs your faculty lead follow the framework you teach?",
     ctaHeadline: "Build the practice that follows your debriefing course",
     ctaDescription:
       "Bring the framework you teach. We will map it to a case, a rubric, and the completion report your institution needs.",
@@ -737,7 +770,7 @@ const solutions: Solution[] = [
     subtitle: "Scoring the conversation behind the signature",
     icon: "badge-check",
     colorVariant: "navy",
-    lastUpdated: "2026-10-06",
+    lastUpdated: "2026-10-20",
     cardBullets: [
       "Scored element by element against your own consent policy",
       "Every score quotes the line the clinician actually said",
@@ -867,6 +900,9 @@ const solutions: Solution[] = [
       note: "Practicing consent conversations in simulation has not been shown to reduce claims, reduce survey findings, improve patient recall, or change any accreditation score, and this page does not claim it does. The closest published attempt improved interns' confidence discussing benefits without moving total confidence (Journal of Surgical Education, 2023).",
     },
     relatedPostSlugs: ["breaking-bad-news-practice-not-knowledge"],
+    relatedSolutionSlugs: ["patient-understanding"],
+    leadershipQuestion:
+      "If you listened to ten consent conversations tomorrow, how many would include a check of understanding?",
     ctaHeadline: "Send us your consent policy",
     ctaDescription:
       "We will show you which of its elements a spoken conversation can evidence, which ones it cannot, and what a scored consent encounter looks like against your own wording.",
@@ -897,7 +933,7 @@ const solutions: Solution[] = [
     subtitle: "Practicing the conversation before it is needed",
     icon: "chat-exclamation",
     colorVariant: "blue",
-    lastUpdated: "2026-09-01",
+    lastUpdated: "2026-10-20",
     cardBullets: [
       "Practice in private, before the first real disclosure",
       "Scored against your own disclosure policy, element by element",
@@ -1017,6 +1053,8 @@ const solutions: Solution[] = [
       note: "ClinicalSim has no evidence of any effect on malpractice claims, indemnity, defense cost, or time to resolution, and makes no such claim. The published evidence in this lane measures performance on the next simulated disclosure, which is what this page describes.",
     },
     relatedPostSlugs: ["breaking-bad-news-practice-not-knowledge"],
+    leadershipQuestion:
+      "Who on your staff has practiced a disclosure conversation before having to lead a real one?",
     ctaHeadline: "Send us your disclosure policy",
     ctaDescription:
       "We will show you which of its elements a spoken conversation can evidence and what a scored disclosure looks like against your own wording, before anything is committed.",
@@ -1036,7 +1074,7 @@ const solutions: Solution[] = [
     subtitle: "Practice the conversations behind whether staff stay",
     icon: "friendship",
     colorVariant: "navy",
-    lastUpdated: "2026-10-12",
+    lastUpdated: "2026-10-20",
     cardBullets: [
       "Stay conversations, safety concerns and feedback for frontline managers",
       "Escalation, handoff and delegation for nurses in their first year",
@@ -1208,15 +1246,282 @@ const solutions: Solution[] = [
     ],
     omitClaimBoundary: true,
     glossarySlugs: ["sbar", "teach-back-method"],
+    relatedSolutionSlugs: ["handoffs-and-escalation"],
     resource: {
       title: "The conversations behind nurse turnover",
       description: "A three-page brief for nurse leaders, with sources on every number.",
       linkLabel: "Get the brief",
       href: NURSING_BRIEF_PATH,
     },
+    leadershipQuestion:
+      "Which conversation do your managers find hardest to have with the staff they most want to keep?",
     ctaHeadline: "Bring us the conversation your managers find hardest",
     ctaDescription:
       "Send your leadership model, your escalation policy, or the conversation that keeps coming up in exit interviews. We'll map what a spoken case can score and agree on reporting rules before anyone practices.",
+  },
+  // -------------------------------------------------------------------------
+  // Patient understanding
+  // -------------------------------------------------------------------------
+  // Walia & Miller Doc 7 application page (2026-10-20). The three cases below are the published
+  // catalog cases in staging whose titles match discharge, consent, or escalation; read with the
+  // staging-read skill on 2026-10-20. List only confirmed cases here, never a planned one.
+  // The published figures are the ones already on /solutions/informed-consent.
+  {
+    slug: "patient-understanding",
+    market: "health-system",
+    category: "conversation",
+    title: "Patient understanding and discharge",
+    shortTitle: "Patient understanding",
+    subtitle: "Understand how clearly your teams explain what happens next",
+    icon: "chat-alt-checkmark",
+    colorVariant: "light-blue",
+    lastUpdated: "2026-10-20",
+    cardBullets: [
+      "Discharge, procedure, and change of plan explanations",
+      "Teach-back scored when your standard asks for it",
+      "A case written around limited English proficiency",
+    ],
+    metaTitle: "Discharge teaching and teach-back practice",
+    metaDescription:
+      "Clinicians practice discharge and procedure explanations with AI patients, and each report shows whether they checked understanding with teach-back, quoting their own words.",
+    heroHeadline: "Understand how clearly your teams explain what happens next",
+    heroDescription:
+      "Residents, fellows, and nurses explain a discharge plan, a procedure, or a change in care to an AI patient or parent. The report scores the explanation and the check of understanding against teach-back or your own standard, with the clinician's words under every score.",
+    context: {
+      heading: "Who owns the explanation",
+      paragraphs: [
+        "Every discharge, procedure, and change of plan ends with someone explaining what happens next. Nursing education, patient experience, and the residency programs that staff the floors each own part of that conversation. The usual check, \"Do you have any questions?\", invites a polite yes, and AHRQ's Health Literacy Universal Precautions Toolkit says plainly that yes-or-no questions are not teach-back.",
+        "The published evidence points at the end of the conversation. When 90 preoperative conversations were recorded and scored, surgeons reliably described the illness, the operation, and the complications, and were least likely to check whether the patient had understood any of it (Journal of the American College of Surgeons, 2021). Adult spinal deformity patients recalled a median 45% of the risks immediately afterward and 18% at six to eight weeks (Spine, 2015, n=56).",
+        "Limited English proficiency raises the stakes. A parent who says okay to avoid asking questions in English can leave with a plan nobody confirmed she understood, and one of the cases below is written around exactly that parent.",
+      ],
+    },
+    stagesHeading: "Conversations your teams can practice",
+    stagesIntro:
+      "Each is a published case in the ClinicalSim catalog. The AI patient or parent responds to how clearly the clinician explains and whether they check what landed.",
+    stages: [
+      {
+        label: "Discharge",
+        title: "Limited English Proficiency Discharge Counseling After PICU Asthma Admission",
+        description:
+          "A pediatric resident counsels a mother who primarily speaks Spanish and has declined an interpreter, two hours before her 6-year-old goes home on a controller and a rescue inhaler. The resident covers the medications, return precautions, and follow-up in a way she can understand.",
+      },
+      {
+        label: "Procedure",
+        title: "Informed Consent Discussion for Central Venous Catheter Placement in the PICU",
+        description:
+          "A PICU fellow explains a central line to the anxious mother of a 5-year-old in septic shock. She is a medical assistant who knows what an IV is but not why a central line is different, and the case asks the fellow to confirm her understanding with teach-back.",
+      },
+      {
+        label: "Change of plan",
+        title: "PICU escalation",
+        description:
+          "A pediatric hospital medicine fellow tells the mother of a 4-year-old with severe cerebral palsy, who speaks limited English, that her son needs to move to the intensive care unit, and works toward a shared understanding of the plan.",
+      },
+    ],
+    valuePropsHeading: "What a program gets",
+    valueProps: [
+      {
+        title: "Teach-back scored when the case asks for it",
+        description:
+          "When your standard includes teach-back, the report scores whether the clinician asked for the patient's own account and quotes the question they used.",
+      },
+      {
+        title: "Your discharge standard, scored as written",
+        description:
+          "Send the discharge teaching standard or script your units use. The rubric scores each element a case gave the clinician a chance to show.",
+      },
+      ON_DEMAND_VALUE_PROP,
+      DASHBOARD_VALUE_PROP,
+    ],
+    frameworks: [
+      {
+        name: "Teach-back",
+        owner: "Agency for Healthcare Research and Quality",
+        note: "The listener explains the information back in their own words, so the speaker can check what landed and correct what didn't.",
+      },
+      {
+        name: "Your own discharge or procedure teaching standard",
+        owner: "Yours",
+        note: "Send the standard, script, or checklist your units already teach. We use its element definitions as written.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does ClinicalSim measure what a real patient understood?",
+        answer:
+          "No. ClinicalSim scores the simulated conversation: whether the clinician explained the plan in plain language and checked understanding the way the case and your standard ask. It does not measure what a real patient later understood, remembered, or did after discharge.",
+      },
+      {
+        question: "Can a case include a patient or parent with limited English proficiency?",
+        answer:
+          "Yes. The asthma discharge case is written around a mother with limited English proficiency who has declined an interpreter. The conversation itself runs in English, because ClinicalSim is English only, so the case practices plain language and checking understanding rather than working through an interpreter.",
+      },
+      {
+        question: "Why practice teach-back if clinicians already know the method?",
+        answer:
+          "Knowing the method and asking for the patient's own words at the end of a busy explanation are different things. AHRQ's toolkit warns that \"Do you understand?\" and \"Does that make sense?\" invite a yes whether or not the patient understood. A scored practice conversation shows which question the clinician actually asked.",
+      },
+      {
+        question: "What can a finding from these conversations justify?",
+        answer:
+          "A finding can justify education, a workflow change, or further investigation. It never establishes the cause of an incident, and scores from practice conversations stay formative.",
+      },
+    ],
+    nonEndorsementOrgs: ["AHRQ", "the American College of Surgeons"],
+    claimBoundary: {
+      formative: true,
+      raterValidation: true,
+      noOutcomePrediction: true,
+      noEmploymentUse: true,
+      note: "A finding from these conversations can justify education, a workflow change, or further investigation. It never establishes the cause of an incident, and it does not measure what a real patient understood after discharge.",
+    },
+    glossarySlugs: ["teach-back-method"],
+    relatedSolutionSlugs: ["informed-consent", "patient-experience"],
+    resource: {
+      title: "What one health system learned from 82 practice conversations",
+      description: "An anonymized partner report, including an asthma discharge conversation with limited English proficiency, with the element table, the quotes behind the finding, and its limits.",
+      linkLabel: "Read the cohort report",
+      href: COHORT_REPORT_PATH,
+    },
+    leadershipQuestion: "Which explanation do your patients most often leave without understanding?",
+    ctaHeadline: "Send us your discharge teaching standard",
+    ctaDescription:
+      "We'll show you which of its steps a spoken conversation can evidence and what a scored discharge conversation looks like against your own wording.",
+  },
+  // -------------------------------------------------------------------------
+  // Handoffs and escalation
+  // -------------------------------------------------------------------------
+  // Walia & Miller Doc 7 application page (2026-10-20). Cases are the published catalog cases in
+  // staging whose titles match handoff, transfer, or escalation (staging-read, 2026-10-20).
+  // Starmer 2014 is cited only as evidence for the bundled I-PASS program it studied, never as
+  // evidence about ClinicalSim. PMID 25372088, DOI 10.1056/NEJMsa1405556 (resolved 2026-10-20).
+  {
+    slug: "handoffs-and-escalation",
+    market: "health-system",
+    category: "conversation",
+    title: "Handoffs and escalation",
+    shortTitle: "Handoffs and escalation",
+    subtitle: "Make the transfer of responsibility a conversation you can examine",
+    icon: "share",
+    colorVariant: "accent",
+    lastUpdated: "2026-10-20",
+    cardBullets: [
+      "Floor to ICU transfers and sign-out under time pressure",
+      "Disagreement between teams about what happens next",
+      "Scored against I-PASS, SBAR, or your own handoff policy",
+    ],
+    metaTitle: "I-PASS handoff and escalation practice",
+    metaDescription:
+      "Residents and fellows practice transfers and escalation with AI characters, scored against I-PASS, SBAR, or your handoff policy, with their own words quoted under every score.",
+    heroHeadline: "Make the transfer of responsibility a conversation you can examine",
+    heroDescription:
+      "Residents and fellows practice transfer calls and disagreements between teams with AI characters who respond to what is said. Each conversation is scored against I-PASS, SBAR, or your institution's handoff policy, with the participant's own words under every score.",
+    context: {
+      heading: "Who owns the handoff",
+      paragraphs: [
+        "Responsibility for a patient changes hands at every shift change, every transfer, and every call for help. GME offices answer for resident handoffs, nursing education for escalation, and patient safety teams review the events where a transfer went wrong. What none of them usually has is a record of how the conversation itself sounded.",
+        "The best-known evidence is for a bundled program. In a nine-hospital study of the I-PASS handoff program, which combined a mnemonic, handoff and communication training, faculty development and observation, and a sustainability campaign, the medical error rate fell from 24.5 to 18.8 per 100 admissions and preventable adverse events from 4.7 to 3.3, across 10,740 admissions (Starmer et al., New England Journal of Medicine, 2014).",
+        "Those results belong to that whole program. They are not evidence about ClinicalSim, and practice in simulation is one piece a program like that might include.",
+      ],
+    },
+    stagesHeading: "Conversations your teams can practice",
+    stagesIntro:
+      "Each is a published case in the ClinicalSim catalog. The AI character on the other end responds to how clearly the participant states severity, the plan, and what to watch for.",
+    stages: [
+      {
+        label: "Transfer",
+        title: "Floor-to-ICU Transfer During Clinical Deterioration (Pediatric)",
+        description:
+          "A pediatric floor resident calls a tired, rushed PICU fellow at shift change to transfer an 8-year-old with pneumonia who has deteriorated into septic shock. The case asks for a safe, structured handoff.",
+      },
+      {
+        label: "Transfer",
+        title: "ICU Transfer Handoff for Rapidly Deteriorating Septic Shock (Adult)",
+        description:
+          "An internal medicine resident calls the MICU at evening sign-out about a 67-year-old with urosepsis who is still hypotensive after fluids and antibiotics, with transport ten minutes away. The case is scored on I-PASS principles, starting with illness severity.",
+      },
+      {
+        label: "Disagreement",
+        title: "Escalation Disagreement Between PICU and Pediatric Surgery Teams",
+        description:
+          "A PICU fellow who wants urgent surgery for an 11-year-old with perforated appendicitis talks with a pediatric surgery fellow who favors antibiotics and drainage first. The teams disagree, and the conversation has to reach a plan.",
+      },
+    ],
+    valuePropsHeading: "What a program gets",
+    valueProps: [
+      {
+        title: "Your handoff tool, scored as written",
+        description:
+          "Send the I-PASS adaptation, SBAR template, or escalation policy your institution teaches. The report scores each element the case gave the participant a chance to show.",
+      },
+      {
+        title: "The words behind every score",
+        description:
+          "Each rating quotes what the participant said, so an educator can see whether illness severity and the contingency plan were stated without replaying the call.",
+      },
+      ON_DEMAND_VALUE_PROP,
+      DASHBOARD_VALUE_PROP,
+    ],
+    frameworks: [
+      {
+        name: "I-PASS: Handoff communication",
+        owner: "I-PASS Study Group and Agency for Healthcare Research and Quality",
+        note: "Illness severity, patient summary, action list, situation awareness and contingency planning, and synthesis by the receiver structure a handoff.",
+      },
+      {
+        name: "SBAR: Structured communication",
+        owner: "Agency for Healthcare Research and Quality, TeamSTEPPS",
+        note: "Situation, background, assessment, and recommendation structure a concise clinical escalation or handoff.",
+      },
+      {
+        name: "Your own handoff or escalation policy",
+        owner: "Yours",
+        note: "Send the policy or tool your institution already teaches. We use its element definitions as written.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does handoff practice in ClinicalSim reduce medical errors?",
+        answer:
+          "No study shows that. The I-PASS results come from a bundled program in nine hospitals that combined a mnemonic, training, faculty observation, and a sustainability campaign (Starmer et al., New England Journal of Medicine, 2014). ClinicalSim scores a simulated handoff against the tool you teach and gives participants another attempt.",
+      },
+      {
+        question: "Can a ClinicalSim score be used in an incident review?",
+        answer:
+          "No. A finding from these conversations can justify education, a workflow change, or further investigation. It never establishes the cause of an incident, and practice scores stay formative.",
+      },
+      {
+        question: "Who plays the receiving clinician or the other team?",
+        answer:
+          "An AI character the participant talks to by voice. Our clinical team writes each case, including how the character reacts when a handoff leaves out severity or a disagreement goes unresolved.",
+      },
+      {
+        question: "Can we score against our own handoff tool?",
+        answer:
+          "Yes. Send the I-PASS adaptation, SBAR template, or escalation policy you use. The report scores the elements a case gave the participant a chance to show and quotes the words behind each score.",
+      },
+    ],
+    nonEndorsementOrgs: ["the I-PASS Study Group", "AHRQ"],
+    claimBoundary: {
+      formative: true,
+      raterValidation: true,
+      noOutcomePrediction: true,
+      noEmploymentUse: true,
+      note: "A finding from these conversations can justify education, a workflow change, or further investigation. It never establishes the cause of an incident. The I-PASS results cited on this page describe a bundled program and are not evidence about ClinicalSim.",
+    },
+    glossarySlugs: ["sbar"],
+    relatedSolutionSlugs: ["workforce-retention", "debriefing"],
+    resource: {
+      title: "What one health system learned from 82 practice conversations",
+      description: "An anonymized partner report showing what leaders see across a cohort: the element table, the quotes behind the finding, and its limits.",
+      linkLabel: "Read the cohort report",
+      href: COHORT_REPORT_PATH,
+    },
+    leadershipQuestion:
+      "When responsibility for a deteriorating patient changes hands tonight, how would you know what was said?",
+    ctaHeadline: "Send us your handoff tool",
+    ctaDescription:
+      "We'll show you which of its elements a spoken handoff can evidence and what a scored transfer call looks like against your own wording.",
   },
   {
     slug: "remediation",
@@ -1229,7 +1534,7 @@ const solutions: Solution[] = [
     colorVariant: "navy",
     customPage: true,
     hideFromHomepage: true,
-    lastUpdated: "2026-09-03",
+    lastUpdated: "2026-10-20",
     cardBullets: [
       "Targeted, rubric-scored practice for a learner who needs support",
       "Repeatable, on-demand practice without SP scheduling",
@@ -1242,6 +1547,8 @@ const solutions: Solution[] = [
       "Give every learner a clear path to better communication",
     heroDescription:
       "Learners rehearse high-stakes conversations with AI patients, see what they did well and what to practice next, and return to coaching with transcript-linked feedback against the standard your program approves.",
+    leadershipQuestion:
+      "What does your competency committee see of a struggling learner's communication between meetings?",
     ctaHeadline: "Start with a repeatable remediation structure",
     ctaDescription:
       "Review how structured practice and rubric-scored feedback could fit a communication remediation plan.",

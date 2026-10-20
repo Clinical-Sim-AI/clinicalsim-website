@@ -8,6 +8,7 @@ import { getIndexableGlossaryTerms } from "@/lib/glossary"
 import { getAllHelpArticles, getHelpHubLastUpdated } from "@/lib/help-articles"
 import { RELEASE_NOTES_UPDATED_ISO } from "@/lib/release-notes"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { COHORT_REPORT_PATH } from "@/lib/cohort-report"
 
 const BASE_URL = "https://clinicalsim.ai"
 
@@ -141,6 +142,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(PAGE_DATE_MODIFIED.examples),
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}${COHORT_REPORT_PATH}`,
+      lastModified: new Date(PAGE_DATE_MODIFIED.cohortReport),
+      changeFrequency: "yearly",
+      priority: 0.7,
     },
     {
       url: `${BASE_URL}/help`,

@@ -22,12 +22,14 @@ interface HubSpotFormProps {
   // Checkbox names to send as "true" / "false" (see toHubSpotFields).
   booleanFields?: string[]
   successMessage: string
+  /** Optional content under the message, such as links to read while the visitor waits. */
+  successDetail?: ReactNode
 }
 
 // Submits a branded form to the HubSpot Forms API instead of using HubSpot's
 // embed, which would replace the site's styling with HubSpot markup. The
 // field markup stays in the page; input names must be HubSpot property names.
-export function HubSpotForm({ form, children, className, booleanFields = [], successMessage }: HubSpotFormProps) {
+export function HubSpotForm({ form, children, className, booleanFields = [], successMessage, successDetail }: HubSpotFormProps) {
   const [status, setStatus] = useState<Status>("idle")
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -69,6 +71,7 @@ export function HubSpotForm({ form, children, className, booleanFields = [], suc
       <div role="status" className="rounded-xl border border-cs-electric/40 bg-white/10 p-6 text-white">
         <p className="text-lg font-medium text-cs-electric mb-2">Thank you.</p>
         <p className="font-light text-cs-cloud">{successMessage}</p>
+        {successDetail}
       </div>
     )
   }

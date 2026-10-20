@@ -97,9 +97,11 @@ export const ASSESSMENT_ENTRY =
   "An engagement starts with a communication priority your institution already recognizes. In a communication assessment, one group practices a conversation or two with AI patients against the standard your institution already holds, and the report shows strengths and areas for focused practice in the participants' own words. A longer program can include that baseline, and a continuing engagement extends practice and review across more teams."
 
 /**
- * The one in-page primary call to action, from the Walia & Miller decks
- * (2026-10). The decision it invites is about the program, never about a
- * person. The short header button keeps "Talk with us".
+ * The in-page primary call to action, from the Walia & Miller decks (2026-10).
+ * Every button or link to /contact inside a page uses this wording; the decision
+ * it invites is about the program, never about a person. The one exception is
+ * HEADER_ACTION in lib/site-navigation.ts, which stays "Talk with us" because the
+ * header has room for three words. lib/primary-cta.test.ts enforces both halves.
  */
 export const PRIMARY_CTA = "Discuss your communication priorities"
 

@@ -255,7 +255,7 @@ const audiences: Audience[] = [
     ],
     ctaHeadline: "Start with a repeatable remediation structure",
     ctaDescription:
-      "Talk with us about how structured practice and rubric-scored feedback could fit your communication remediation plan.",
+      "We'll walk through how structured practice and rubric-scored feedback could fit your communication remediation plan.",
 
     relatedPostSlugs: [
       "osce-case-design-guide",
@@ -395,7 +395,7 @@ const audiences: Audience[] = [
     ],
     ctaHeadline: "Give every program the same starting point",
     ctaDescription:
-      "Talk with us about shared case standards, learner feedback, and the reporting rules your GME office needs.",
+      "Bring the questions your GME office is weighing, and we'll cover shared case standards, learner feedback, and the reporting rules you need.",
 
     relatedPostSlugs: [
       "why-communication-training-matters",
@@ -540,7 +540,7 @@ const audiences: Audience[] = [
     ],
     ctaHeadline: "See how ClinicalSim extends an SP program",
     ctaDescription:
-      "Talk with us about how repeatable AI patient practice could extend your simulation center's communication training capacity.",
+      "We'll look at how repeatable AI patient practice could extend your simulation center's communication training capacity.",
 
     relatedPostSlugs: [
       "osce-case-design-guide",
@@ -676,7 +676,7 @@ const audiences: Audience[] = [
     ],
     ctaHeadline: "Add another source of communication evidence",
     ctaDescription:
-      "Talk with us about the learner feedback and transcript evidence ClinicalSim can add to your committee's existing sources.",
+      "We'll show you the learner feedback and transcript evidence ClinicalSim can add to your committee's existing sources.",
 
     relatedPostSlugs: [
       "osce-case-design-guide",
@@ -812,7 +812,7 @@ const audiences: Audience[] = [
     ctaHeadline:
       "Build communication skill across all four years.",
     ctaDescription:
-      "Talk with us about a four-year practice sequence from the first patient history through diagnosis disclosure.",
+      "We'll map a four-year practice sequence with you, from the first patient history through diagnosis disclosure.",
 
     relatedPostSlugs: [
       "osce-case-design-guide",
@@ -943,7 +943,7 @@ const audiences: Audience[] = [
     ctaHeadline:
       "Give faculty the practice they never got.",
     ctaDescription:
-      "Talk with us about cases for corrective feedback, professionalism concerns, and bedside teaching.",
+      "We'll walk through cases for corrective feedback, professionalism concerns, and bedside teaching.",
 
     relatedPostSlugs: [
       "eol-communication-training-measurement-gap",
@@ -1094,7 +1094,7 @@ const audiences: Audience[] = [
     ],
     ctaHeadline: "Add structured practice to your patient safety training",
     ctaDescription:
-      "Talk with us about the conversations clinicians should practice and the access rules your institution needs.",
+      "Tell us which conversations your clinicians should practice, and we'll work out the access rules your institution needs.",
 
     relatedPostSlugs: [
       "why-communication-training-matters",

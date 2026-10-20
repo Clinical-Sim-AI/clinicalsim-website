@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/json-ld"
 import { Button } from "@/components/ui/button"
 import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
+import { COHORT_REPORT_PATH } from "@/lib/cohort-report"
 import { HOMEPAGE_PUBLIC_COPY, HOMEPAGE_SEO } from "@/lib/homepage-content"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 
@@ -83,8 +84,9 @@ export default function HomePage() {
               <h3 className="text-2xl font-medium text-cs-dark-blue">What leaders can review</h3>
               <p className="mt-4 leading-relaxed text-cs-dark-blue/80">Patterns across a cohort or anonymous unit, scored against the standard your team already teaches. Use that review to choose the next round of practice.</p>
               <div className="mt-6 border-t border-cs-gray pt-6">
-                <p className="text-sm font-medium text-cs-navy">What one health system learned</p>
+                <p className="text-sm font-medium text-cs-navy">{copy.howItStarts.exampleLabel}</p>
                 <p className="mt-3 leading-relaxed text-cs-dark-blue/80">{copy.howItStarts.example}</p>
+                <Link href={COHORT_REPORT_PATH} className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-cs-dark-blue underline underline-offset-4">{copy.howItStarts.exampleLink}<ArrowRight className="h-4 w-4 shrink-0" /></Link>
               </div>
               <p className="mt-6 text-sm leading-relaxed text-cs-dark-blue/70">These are findings from simulated practice. Formative scores stay out of personnel files.</p>
               <Link href="/clinical-communication-intelligence" className="mt-6 inline-flex items-center gap-2 font-medium text-cs-dark-blue underline underline-offset-4">See how it works<ArrowRight className="h-4 w-4 shrink-0" /></Link>
@@ -121,6 +123,16 @@ export default function HomePage() {
             <h2 className="text-2xl font-medium text-cs-dark-blue">Inspect the evidence before deciding</h2>
             <p className="mt-4 leading-relaxed text-cs-dark-blue/80">Open complete practice reports and read how the scoring works, what research is public, and where the evidence stops.</p>
             <Link href="/evidence" className="mt-6 inline-flex items-center gap-2 font-medium text-cs-dark-blue underline underline-offset-4">Evidence and scoring limits<ArrowRight className="h-4 w-4 shrink-0" /></Link>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="budget-case" className="bg-white px-6 pb-16 md:pb-20">
+        <div className="mx-auto max-w-6xl border-t border-cs-gray pt-12 md:pt-16">
+          <div className="max-w-3xl">
+            <h2 id="budget-case" className="text-2xl font-medium text-cs-dark-blue">{copy.economics.heading}</h2>
+            <p className="mt-4 leading-relaxed text-cs-dark-blue/80">{copy.economics.body}</p>
+            <Link href={copy.economics.href} className="mt-6 inline-flex items-center gap-2 font-medium text-cs-dark-blue underline underline-offset-4">{copy.economics.linkLabel}<ArrowRight className="h-4 w-4 shrink-0" /></Link>
           </div>
         </div>
       </section>

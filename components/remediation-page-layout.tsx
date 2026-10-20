@@ -19,6 +19,8 @@ import { WaveformBand } from "@/components/waveform-band"
 import { cn, formatIsoMonth } from "@/lib/utils"
 import { chunkParagraph } from "@/lib/feedback/paragraphs"
 import type { RemediationPageData } from "@/lib/remediation"
+import { PRIMARY_CTA } from "@/lib/positioning"
+import { getSolutionBySlug } from "@/lib/solutions"
 
 // ---------------------------------------------------------------------------
 // Icon mapping
@@ -86,6 +88,9 @@ interface RemediationPageLayoutProps {
 }
 
 export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
+  // The bespoke page reads its copy from lib/remediation.ts; the sponsor question
+  // lives on the solution registry entry with every other lane's.
+  const leadershipQuestion = getSolutionBySlug("remediation")?.leadershipQuestion
   const faqJsonLd =
     data.faqs && data.faqs.length > 0
       ? {
@@ -208,7 +213,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href="#evidence">
@@ -639,7 +644,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <div className="text-center mt-10">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
           </div>
@@ -701,6 +706,14 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
 
       <WaveformBand seed="remediation">
         <div className="max-w-4xl mx-auto text-center">
+          {leadershipQuestion && (
+            <p className="text-lg md:text-xl font-light leading-snug text-cs-cloud mb-6 max-w-3xl mx-auto">
+              <span className="block text-sm font-medium uppercase tracking-[0.12em] text-cs-electric mb-3">
+                A question for leaders
+              </span>
+              {leadershipQuestion}
+            </p>
+          )}
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             {data.ctaHeadline}
           </h2>
@@ -710,7 +723,7 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href="/solutions">
