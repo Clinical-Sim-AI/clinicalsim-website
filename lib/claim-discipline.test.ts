@@ -8,9 +8,13 @@ import {
   NO_OUTCOME_PREDICTION_LIMITATION,
   NON_ENDORSEMENT_TRIGGERS,
 } from "./claim-discipline"
+import * as cohortReport from "./cohort-report"
 import { getAllComparisons } from "./comparisons"
+import { getAllExamples } from "./examples"
 import { getAllGlossaryTerms } from "./glossary"
+import { getAllHelpArticles } from "./help-articles"
 import { HOMEPAGE_PUBLIC_COPY, HOMEPAGE_SEO } from "./homepage-content"
+import * as marketOverviews from "./market-overviews"
 import * as positioning from "./positioning"
 import { getAllPosts } from "./posts"
 import { getAllSolutions } from "./solutions"
@@ -50,6 +54,14 @@ function isNegated(text: string, matchIndex: number): boolean {
   return /\b(no|not|never|nobody|none|cannot|without|neither|nor)\b|n't/i.test(runUp)
 }
 
+function namesBritishSpelling(text: string, matchIndex: number): boolean {
+  // Sentence boundaries are a terminal mark followed by whitespace, so "4.22" doesn't split one.
+  const runUp = text.slice(0, matchIndex)
+  const boundaries = [...runUp.matchAll(/[.?!]\s/g)]
+  const sentenceStart = boundaries.length ? boundaries[boundaries.length - 1].index! + 2 : 0
+  return /\bBritish\b/.test(runUp.slice(sentenceStart))
+}
+
 const REGISTRIES: { name: string; entries: { slug: string; value: unknown }[] }[] = [
   {
     name: "lib/solutions.ts",
@@ -84,6 +96,31 @@ const REGISTRIES: { name: string; entries: { slug: string; value: unknown }[] }[
       { slug: "HOMEPAGE_SEO", value: HOMEPAGE_SEO },
       { slug: "HOMEPAGE_PUBLIC_COPY", value: HOMEPAGE_PUBLIC_COPY },
     ],
+  },
+]
+
+/**
+ * Spelling applies to every public registry, including the ones the claim checks above don't
+ * walk. Help articles and example snapshots carry product copy and verbatim transcripts; the
+ * cohort report carries verbatim quotes from a partner analysis.
+ */
+const SPELLING_REGISTRIES: typeof REGISTRIES = [
+  ...REGISTRIES,
+  {
+    name: "lib/help-articles.ts",
+    entries: getAllHelpArticles().map((a) => ({ slug: a.slug, value: a })),
+  },
+  {
+    name: "lib/examples",
+    entries: getAllExamples().map((e) => ({ slug: e.slug, value: e })),
+  },
+  {
+    name: "lib/cohort-report.ts",
+    entries: Object.entries(cohortReport).map(([name, value]) => ({ slug: name, value })),
+  },
+  {
+    name: "lib/market-overviews.ts",
+    entries: Object.entries(marketOverviews).map(([name, value]) => ({ slug: name, value })),
   },
 ]
 
@@ -188,21 +225,23 @@ describe("claim discipline", () => {
   })
 
   describe("American spelling", () => {
-    it("positioning, homepage, and audience copy carry no British spellings from the consultant decks", () => {
+    it("no registry carries a British spelling from the consultant decks", () => {
       const violations: string[] = []
 
-      for (const registry of REGISTRIES) {
-        if (
-          registry.name !== "lib/positioning.ts" &&
-          registry.name !== "lib/homepage-content.ts" &&
-          registry.name !== "lib/audiences.ts"
-        ) {
-          continue
-        }
+      for (const registry of SPELLING_REGISTRIES) {
         for (const entry of registry.entries) {
           for (const { path, text } of collectStrings(entry.value, entry.slug)) {
-            const match = text.match(BRITISH_SPELLING_PATTERN)
-            if (match) violations.push(`${registry.name} ${path}: "${match[0]}"`)
+            // Grader instructions in an example snapshot are copied from the staging rubric and
+            // never rendered, so they are not public copy.
+            if (path.endsWith(".extractionInstructions")) continue
+            const global = new RegExp(BRITISH_SPELLING_PATTERN.source, "gi")
+            for (const match of text.matchAll(global)) {
+              if (match.index === undefined) continue
+              // A sentence that names the British spelling ("British sources spell it...") is
+              // describing it, the way a negated sentence disclaims a banned claim.
+              if (namesBritishSpelling(text, match.index)) continue
+              violations.push(`${registry.name} ${path}: "${match[0]}"`)
+            }
           }
         }
       }

@@ -11,6 +11,7 @@ import {
   formatReleaseDate,
   RELEASE_NOTES_UPDATED_ISO,
 } from "@/lib/release-notes"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 export const metadata: Metadata = {
   title: "Release notes: what's new in ClinicalSim",
@@ -212,7 +213,7 @@ export default function ReleaseNotesPage() {
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg">Talk with us</Button>
+              <Button size="lg">{PRIMARY_CTA}</Button>
             </Link>
           </div>
         </div>

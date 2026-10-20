@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/json-ld"
 import { Button } from "@/components/ui/button"
 import { getHelpArticleBySlug } from "@/lib/help-articles"
 import { formatIsoDay } from "@/lib/utils"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 const SITE_URL = "https://clinicalsim.ai"
 
@@ -109,7 +110,7 @@ export function HelpArticleLayout({
           </Link>
           <div className="sm:ml-auto">
             <Link href="/contact">
-              <Button variant="secondary">Ask us a question</Button>
+              <Button variant="secondary">{PRIMARY_CTA}</Button>
             </Link>
           </div>
         </div>

@@ -12,6 +12,7 @@ import {
   readyToUseFrameworks,
 } from "@/lib/frameworks"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 const CANONICAL = "https://clinicalsim.ai/frameworks"
 
@@ -281,7 +282,7 @@ export default function FrameworksPage() {
           <div className="mt-8">
             <Link href="/contact">
               <Button variant="default" size="lg">
-                Discuss your standard
+                {PRIMARY_CTA}
               </Button>
             </Link>
           </div>
@@ -426,7 +427,7 @@ export default function FrameworksPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href="/solutions">

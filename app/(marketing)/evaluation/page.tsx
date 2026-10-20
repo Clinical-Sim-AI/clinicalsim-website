@@ -10,6 +10,7 @@ import {
   NO_OUTCOME_PREDICTION_LIMITATION,
   SP_SUPPLEMENT_LINE,
 } from "@/lib/claim-discipline"
+import { COHORT_REPORT_PATH } from "@/lib/cohort-report"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { ASSESSMENT_ENTRY, ORGANIZATION, PRIMARY_CTA } from "@/lib/positioning"
 import type { FaqItem } from "@/lib/types"
@@ -542,6 +543,16 @@ export default function EvaluationPage() {
             There is no price on this page. We scope each engagement with the
             institution, around the conversation it wants to strengthen and
             the people who will practice it, and quote it directly.
+          </p>
+          <p className="mt-4 text-base text-cs-dark-blue/85 font-light leading-relaxed">
+            To see what leaders receive at the end of an assessment, read{" "}
+            <Link
+              href={COHORT_REPORT_PATH}
+              className="font-medium text-cs-dark-blue underline underline-offset-4 hover:text-cs-navy"
+            >
+              one partner health system&apos;s anonymized cohort report
+            </Link>
+            , including the scope rule, its limits, and what a second round of practice looks like.
           </p>
         </div>
       </section>

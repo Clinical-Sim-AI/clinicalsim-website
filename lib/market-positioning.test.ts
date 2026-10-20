@@ -50,6 +50,8 @@ describe("market positioning", () => {
       "informed-consent",
       "error-disclosure",
       "workforce-retention",
+      "patient-understanding",
+      "handoffs-and-escalation",
     ])
   })
 
@@ -120,6 +122,8 @@ describe("market positioning", () => {
           "informed-consent",
           "error-disclosure",
           "workforce-retention",
+          "patient-understanding",
+          "handoffs-and-escalation",
         ],
       },
       {

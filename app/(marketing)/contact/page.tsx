@@ -12,17 +12,30 @@ import { HUBSPOT_MEETINGS_URL } from "@/lib/hubspot"
 import { JsonLd } from "@/components/json-ld"
 import { Waveform } from "@/components/waveform"
 import { ContactSourceField } from "@/components/contact-source-field"
+import { COHORT_REPORT_PATH } from "@/lib/cohort-report"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { ORGANIZATION } from "@/lib/positioning"
 
-const description = "Talk with ClinicalSim about communication practice for your health system or medical education program. See a relevant case and discuss how to get started."
+const description = "Bring ClinicalSim a conversation your health system or medical education program wants to improve. See a relevant case and discuss how a first assessment could work."
+// The <title> is the in-page CTA wording (PRIMARY_CTA), so it differs from the H1.
 export const metadata: Metadata = {
-  title: "Talk with us",
+  title: "Discuss your communication priorities",
   description,
-  openGraph: { title: "Talk with ClinicalSim", description, url: "https://clinicalsim.ai/contact" },
-  twitter: { title: "Talk with ClinicalSim", description },
+  openGraph: { title: "Discuss your communication priorities with ClinicalSim", description, url: "https://clinicalsim.ai/contact" },
+  twitter: { title: "Discuss your communication priorities with ClinicalSim", description },
   alternates: { canonical: "https://clinicalsim.ai/contact" },
 }
+
+// Shown after a successful submit, for the visitor who wants to read while waiting.
+const successDetail = (
+  <div className="mt-5 border-t border-white/20 pt-5">
+    <p className="font-light text-cs-cloud">While you wait, you can read:</p>
+    <ul className="mt-3 space-y-2">
+      <li><Link href={COHORT_REPORT_PATH} className="inline-flex items-center gap-2 font-medium text-white underline underline-offset-4">One health system&apos;s anonymized cohort report<ArrowRight className="h-4 w-4 shrink-0" /></Link></li>
+      <li><Link href="/examples" className="inline-flex items-center gap-2 font-medium text-white underline underline-offset-4">Complete participant feedback examples<ArrowRight className="h-4 w-4 shrink-0" /></Link></li>
+    </ul>
+  </div>
+)
 
 const fieldClass = "border-2 border-white/30 bg-white/10 text-white placeholder:text-white/60 focus:border-cs-electric focus:ring-0"
 const labelClass = "mb-2 block text-base font-normal text-white"
@@ -38,7 +51,7 @@ export default function ContactPage() {
         <Waveform seed="contact" align="right" opacity={0.12} />
         <div className="relative mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
           <div className="min-w-0">
-            <h1 className="text-4xl font-light md:text-5xl">Talk with us about your team</h1>
+            <h1 className="text-4xl font-light md:text-5xl">Bring us a conversation your institution wants to improve</h1>
             <p className="mt-6 max-w-lg text-lg font-light leading-relaxed text-cs-cloud">Tell us what you&apos;re considering or ask a question. We&apos;ll show you a relevant case and talk through how a first assessment could work. You don&apos;t need a finished plan.</p>
             <p className="mt-5 text-sm text-cs-cloud/80">We usually reply within two business days.</p>
             {HUBSPOT_MEETINGS_URL && <a href="#book-a-meeting" className="mt-7 inline-flex items-center gap-2 font-medium text-cs-electric underline underline-offset-4">Or book a time to talk<ArrowRight className="h-4 w-4" /></a>}
@@ -49,7 +62,7 @@ export default function ContactPage() {
             </div>
           </div>
           <div className="min-w-0 rounded-2xl border border-white/20 bg-white/5 p-6 md:p-8">
-            <HubSpotForm form="contact" booleanFields={["newsletter_opt_in"]} successMessage="Your message is with our team, and we'll reply to the email address you gave us." className="space-y-5">
+            <HubSpotForm form="contact" booleanFields={["newsletter_opt_in"]} successMessage="Your message is with our team, and we'll reply to the email address you gave us." successDetail={successDetail} className="space-y-5">
               <ContactSourceField />
               <fieldset className="min-w-0">
                 <legend className={labelClass}>Name <span aria-hidden="true" className="text-cs-electric">*</span></legend>

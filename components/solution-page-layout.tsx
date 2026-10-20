@@ -11,8 +11,9 @@ import { BrandIcon, type BrandIconName } from "@/components/brand-icon"
 import { WaveformBand } from "@/components/waveform-band"
 import { heroBadge, heroBadgeIconColor } from "@/lib/color-variants"
 import { cn, formatIsoMonth } from "@/lib/utils"
-import { type Solution, type SolutionStage } from "@/lib/solutions"
+import { getSolutionBySlug, type Solution, type SolutionStage } from "@/lib/solutions"
 import { getPostBySlug } from "@/lib/posts"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 const valuePropBrandIcons: Array<BrandIconName | null> = [
   "sound-wave",
@@ -76,6 +77,10 @@ function StageCard({
 }
 
 export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
+  const relatedSolutions = (solution.relatedSolutionSlugs ?? [])
+    .map((slug) => getSolutionBySlug(slug))
+    .filter((related): related is Solution => Boolean(related && !related.unpublished))
+
   const relatedPosts = (solution.relatedPostSlugs ?? [])
     .map((slug) => getPostBySlug(slug))
     .filter(Boolean)
@@ -220,7 +225,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href="/solutions">
@@ -482,6 +487,32 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
         </>
       )}
 
+      {relatedSolutions.length > 0 && (
+        <section className="px-6 py-8 md:py-10 bg-white">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-light text-cs-dark-blue mb-6">
+              Related use cases
+            </h2>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {relatedSolutions.map((related) => (
+                <li key={related.slug}>
+                  <Link
+                    href={`/solutions/${related.slug}`}
+                    className="group flex h-full flex-col rounded-xl border border-cs-gray/50 p-5 transition-colors hover:border-cs-navy"
+                  >
+                    <span className="flex items-center gap-2 text-lg font-medium text-cs-dark-blue">
+                      {related.title}
+                      <ArrowRight className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-1" />
+                    </span>
+                    <span className="mt-1 text-sm font-light text-cs-dark-blue/75">{related.subtitle}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
       <GlossaryTermLinks slugs={solution.glossarySlugs} />
 
       {!solution.omitClaimBoundary && (
@@ -524,6 +555,14 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
       {/* Final CTA */}
       <WaveformBand seed={solution.slug}>
         <div className="max-w-4xl mx-auto text-center">
+          {solution.leadershipQuestion && (
+            <p className="text-lg md:text-xl font-light leading-snug text-cs-cloud mb-6 max-w-3xl mx-auto">
+              <span className="block text-sm font-medium uppercase tracking-[0.12em] text-cs-electric mb-3">
+                A question for leaders
+              </span>
+              {solution.leadershipQuestion}
+            </p>
+          )}
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light mb-6">
             {solution.ctaHeadline}
           </h2>
@@ -533,7 +572,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href="/solutions">

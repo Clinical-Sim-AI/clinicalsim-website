@@ -11,6 +11,7 @@ import {
   isIndexableGlossaryTerm,
 } from "@/lib/glossary"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 export const metadata: Metadata = {
   title: { absolute: "Medical education glossary: CBME, EPAs, milestones, and more" },
@@ -252,7 +253,7 @@ export default function GlossaryPage() {
           </p>
           <Link href="/contact">
             <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-base font-medium transition-all duration-300 bg-cs-electric text-cs-dark-blue hover:bg-cs-electric/90 hover:shadow-lg h-14 px-10 font-bold">
-              Talk with us
+              {PRIMARY_CTA}
             </button>
           </Link>
         </div>

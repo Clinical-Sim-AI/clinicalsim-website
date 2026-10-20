@@ -9,9 +9,10 @@ import {
   FORMATIVE_USE_LIMITATION,
   NO_OUTCOME_PREDICTION_LIMITATION,
 } from "@/lib/claim-discipline"
+import { COHORT_REPORT_PATH, COHORT_REPORT_SUMMARY } from "@/lib/cohort-report"
 import { getAllExamples } from "@/lib/examples"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
-import { ORGANIZATION } from "@/lib/positioning"
+import { ORGANIZATION, PRIMARY_CTA } from "@/lib/positioning"
 
 const PAGE_URL = "https://clinicalsim.ai/evidence"
 const PAGE_DESCRIPTION =
@@ -44,6 +45,13 @@ const evidenceLinks = [
     label: "Read the methodology",
   },
   {
+    id: "leadership-view",
+    title: "What a leader sees across a cohort",
+    body: `${COHORT_REPORT_SUMMARY} It shows the full element table, the quotes behind the finding, and the limits of a retrospective analysis.`,
+    href: COHORT_REPORT_PATH,
+    label: "Read the health system cohort report",
+  },
+  {
     id: "frameworks",
     title: "Published communication frameworks",
     body: "The framework library links to the sources behind the named standards. Their published reliability comes from the settings and raters those studies tested. It doesn't establish the reliability of AI scoring in ClinicalSim.",
@@ -56,6 +64,41 @@ const evidenceLinks = [
     body: "Our research page lists conference presentations, including records from the International Pediatric Simulation Symposium and Workshops, the Pediatric Academic Societies Meeting, and the Critical Care Congress. A presentation record isn't evidence of a confirmed product outcome.",
     href: "/research",
     label: "View presentations and research collaboration",
+  },
+]
+
+// Doc 7 section 13: send each reviewer to the page that answers their question.
+const roleRoutes = [
+  {
+    role: "Clinical reviewer",
+    question: "How are cases built, and what can a score establish?",
+    links: [{ href: "/methodology", label: "Methodology and scoring limits" }],
+  },
+  {
+    role: "Finance",
+    question: "What can we say about return without inventing a number?",
+    links: [
+      { href: "/insights/why-communication-training-matters", label: "What the evidence says about communication training" },
+      { href: "/evaluation", label: "How an engagement is structured" },
+    ],
+  },
+  {
+    role: "Procurement, IT, and privacy",
+    question: "What data does the product handle, and how?",
+    links: [{ href: "/trust", label: "Trust and data handling" }],
+  },
+  {
+    role: "Executive sponsor",
+    question: "What would leaders review, and how does the work run?",
+    links: [
+      { href: COHORT_REPORT_PATH, label: "An anonymized health system cohort report" },
+      { href: "/clinical-communication-intelligence", label: "How ClinicalSim works" },
+    ],
+  },
+  {
+    role: "Research collaborator",
+    question: "Can we study this with our own learners?",
+    links: [{ href: "/research", label: "Research collaboration" }],
   },
 ]
 
@@ -135,7 +178,27 @@ export default function EvidencePage() {
         </div>
       </section>
 
-      <section id="score-limits" className="scroll-mt-24 bg-white px-6 py-12 md:py-16">
+      <section aria-labelledby="by-role" className="bg-white px-6 py-12 md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <h2 id="by-role" className="mb-3 text-3xl font-light text-cs-navy md:text-4xl">Find the answer for your role</h2>
+          <p className="mb-8 max-w-3xl font-light leading-relaxed text-cs-dark-blue/85">Each person in an institution&apos;s review tends to ask a different question first. These are the pages that answer them.</p>
+          <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {roleRoutes.map((route) => (
+              <li key={route.role} className="flex flex-col rounded-xl border border-cs-gray p-6">
+                <h3 className="text-lg font-medium text-cs-dark-blue">{route.role}</h3>
+                <p className="mt-2 mb-4 font-light leading-relaxed text-cs-dark-blue/85">{route.question}</p>
+                <div className="mt-auto flex flex-col gap-2">
+                  {route.links.map((link) => (
+                    <Link key={link.href} href={link.href} className="inline-flex items-center gap-2 font-medium text-cs-dark-blue underline underline-offset-4 hover:text-cs-navy">{link.label} <ArrowRight className="h-4 w-4 shrink-0" /></Link>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section id="score-limits" className="scroll-mt-24 bg-cs-cloud px-6 py-12 md:py-16">
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-6 max-w-4xl text-3xl font-light text-cs-navy md:text-4xl">A framework&apos;s evidence doesn&apos;t validate an AI score</h2>
           <div className="grid gap-8 lg:grid-cols-2">
@@ -153,7 +216,7 @@ export default function EvidencePage() {
         </div>
       </section>
 
-      <section className="bg-cs-cloud px-6 py-12 md:py-16">
+      <section className="bg-white px-6 py-12 md:py-16">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
           <div>
             <h2 className="mb-5 text-3xl font-light text-cs-navy">Research outcomes need a confirmed record</h2>
@@ -175,7 +238,7 @@ export default function EvidencePage() {
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-5 text-3xl font-light md:text-4xl">Bring the questions your team needs answered</h2>
           <p className="mb-8 text-lg font-light leading-relaxed text-cs-cloud">We&apos;ll walk through the product, the standard you want participants to practice against, and the evidence your institution needs to review.</p>
-          <Button asChild variant="accent" size="lg"><Link href="/contact">Talk with us</Link></Button>
+          <Button asChild variant="accent" size="lg"><Link href="/contact">{PRIMARY_CTA}</Link></Button>
         </div>
       </WaveformBand>
     </>

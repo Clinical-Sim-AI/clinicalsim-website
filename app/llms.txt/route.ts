@@ -3,6 +3,7 @@ import { getPublishedSolutions } from "@/lib/solutions"
 import { getAllAudiences } from "@/lib/audiences"
 import { getAllComparisons } from "@/lib/comparisons"
 import { getAllExamples } from "@/lib/examples"
+import { COHORT_REPORT_PATH, COHORT_REPORT_SUMMARY } from "@/lib/cohort-report"
 import { getIndexableGlossaryTerms } from "@/lib/glossary"
 import { getAllHelpArticles } from "@/lib/help-articles"
 import { getFeaturedFrameworks } from "@/lib/frameworks"
@@ -77,6 +78,7 @@ export async function GET() {
   const exampleLines = [
     `\n## Examples\n`,
     `- [Examples](${BASE_URL}/examples): Unedited ClinicalSim encounters with the feedback a learner receives, including the assessment report, recording, and full transcript. No sign-in required.`,
+    `- [Health system cohort report](${BASE_URL}${COHORT_REPORT_PATH}): ${COHORT_REPORT_SUMMARY} Clinicians opened conversations well, and the close (reflecting the concern back, confirming, asking what matters most, and thanking the family) is where to practice next. Service recovery results rest on 9 to 13 in-scope conversations. Published August 2026 report; includes the scope rule, limits, and what a next round looks like.`,
     ...examples.map(
       (e) => `- [${e.title}](${BASE_URL}/examples/${e.slug}): ${e.summary}`
     ),
@@ -84,7 +86,7 @@ export async function GET() {
 
   const solutionLines = [
     `\n## Use cases\n`,
-    `- [Use cases](${BASE_URL}/solutions): One platform for patient experience, debriefing, informed consent, error disclosure, workforce retention, medical education, and communication remediation.`,
+    `- [Use cases](${BASE_URL}/solutions): One platform for patient experience, patient understanding and discharge, handoffs and escalation, debriefing, informed consent, error disclosure, workforce retention, medical education, and communication remediation.`,
     ...solutions.map(
       (s) =>
         `- [${s.title}](${BASE_URL}/solutions/${s.slug}): ${s.metaDescription}`

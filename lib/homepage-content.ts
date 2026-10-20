@@ -1,3 +1,5 @@
+import { PRIMARY_CTA } from "@/lib/positioning"
+
 export const HOMEPAGE_SEO = {
   title: "AI clinical simulation for healthcare",
   description:
@@ -9,7 +11,7 @@ export const HOMEPAGE_PUBLIC_COPY = {
     eyebrow: "Clinical communication intelligence",
     headline: "Clinical simulation for better patient conversations.",
     body: "Clinicians, staff, and trainees practice out loud with AI patients. Each clinical simulation shows what they did well and what to practice next against your standard, with their own words behind each score. Leaders can review patterns across a cohort or unit.",
-    primaryCta: "Talk with us",
+    primaryCta: PRIMARY_CTA,
     secondaryCta: "See a conversation",
     // Count confirmed by Ben, 2026-10-06. Before changing the institution
     // wording, confirm every pilot is an academic medical center or a
@@ -57,8 +59,17 @@ export const HOMEPAGE_PUBLIC_COPY = {
       },
     ],
     exampleLabel: "What one health system learned",
+    // Matches the anonymized partner report at COHORT_REPORT_PATH (lib/cohort-report.ts).
     example:
-      "In one health system pilot, participants consistently opened conversations well. The report identified three elements to reinforce at the close: thanking the patient for raising a concern, reflecting the concern back, and summarizing the plan. Leaders could see those patterns in the transcripts and use the same cases for focused practice.",
+      "In one health system's anonymized report, clinicians opened conversations well. The report named the steps at the close to practice next: reflecting the concern back, checking it was understood, asking what matters most, and thanking the family for raising it. Leaders could see those patterns in the transcripts and use the same cases for focused practice.",
+    exampleLink: "Read the anonymized health system cohort report",
+  },
+  // No financial claim here. The post it links to explains why no ROI figure is published.
+  economics: {
+    heading: "Making the budget case without an invented number",
+    body: "Someone in finance will ask what the program returns. We don't publish an ROI figure, because the published evidence on communication training doesn't support one. What a program can show is its own participants' practice, scored against a named standard, and the local measures it agreed on before launch.",
+    linkLabel: "What the evidence supports for a budget case",
+    href: "/insights/why-communication-training-matters",
   },
   scoring: {
     heading: "How we score each conversation",
@@ -93,6 +104,6 @@ export const HOMEPAGE_PUBLIC_COPY = {
   closing: {
     heading: "Bring us a communication priority.",
     body: "Tell us what your team wants to practice. We'll show you a relevant case and talk through how a first assessment could work.",
-    cta: "Talk with us",
+    cta: PRIMARY_CTA,
   },
 } as const

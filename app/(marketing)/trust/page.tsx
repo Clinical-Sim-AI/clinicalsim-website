@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/json-ld"
 import { WaveformBand } from "@/components/waveform-band"
 import type { FaqItem } from "@/lib/types"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
-import { ORGANIZATION } from "@/lib/positioning"
+import { ORGANIZATION, PRIMARY_CTA } from "@/lib/positioning"
 
 export const metadata: Metadata = {
   title: "Trust and data handling",
@@ -331,7 +331,7 @@ export default function TrustPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href="/methodology">

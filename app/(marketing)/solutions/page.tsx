@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/json-ld"
 import { Waveform } from "@/components/waveform"
 import { getSolutionsByMarket } from "@/lib/solutions"
 import type { Market } from "@/lib/positioning"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 /**
  * The public library follows the two buying contexts that use the platform.
@@ -33,17 +34,17 @@ const GROUPS: {
 export const metadata: Metadata = {
   title: "Clinical communication intelligence use cases",
   description:
-    "ClinicalSim measures communication in simulated conversations and turns it into focused practice for health systems and medical education: patient experience, debriefing, informed consent, error disclosure, workforce retention, curricula, and remediation.",
+    "ClinicalSim measures communication in simulated conversations and turns it into focused practice for health systems and medical education: patient experience, patient understanding, handoffs, debriefing, informed consent, error disclosure, workforce retention, curricula, and remediation.",
   openGraph: {
     title: "Use cases | ClinicalSim.ai",
     description:
-      "One platform for patient experience, debriefing, safety conversations, medical education, and communication remediation.",
+      "One platform for patient experience, patient understanding, handoffs, debriefing, safety conversations, medical education, and communication remediation.",
     url: "https://clinicalsim.ai/solutions",
   },
   twitter: {
     title: "Use cases | ClinicalSim.ai",
     description:
-      "Communication use cases for health systems and medical education.",
+      "Communication use cases for health systems and medical education, from patient understanding and handoffs to curricula and remediation.",
   },
   alternates: {
     canonical: "https://clinicalsim.ai/solutions",
@@ -161,7 +162,7 @@ export default function SolutionsPage() {
           </p>
           <Link href="/contact">
             <Button variant="accent" size="xl">
-              Talk with us
+              {PRIMARY_CTA}
             </Button>
           </Link>
         </div>

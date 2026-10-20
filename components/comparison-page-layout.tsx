@@ -8,6 +8,7 @@ import { WaveformBand } from "@/components/waveform-band"
 import { getAllComparisons, type Comparison } from "@/lib/comparisons"
 import { getPostBySlug } from "@/lib/posts"
 import { formatIsoMonth } from "@/lib/utils"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 interface ComparisonPageLayoutProps {
   comparison: Comparison
@@ -289,7 +290,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href="/compare">

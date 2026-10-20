@@ -26,6 +26,9 @@ export interface MarketOverviewContent {
   startingPoint: string
   institutionProvides: string
   clinicalSimProvides: string
+  /** What happens after the first round (Walia & Miller Doc 7, section 12). */
+  continuity?: { question: string; answer: string }[]
+  continuityLink?: MarketLink
   roles: MarketLink[]
 }
 
@@ -51,6 +54,7 @@ export const healthSystemsOverview: MarketOverviewContent = {
       icon: "chat-square-heart",
       links: [
         { label: "Patient experience program", href: "/solutions/patient-experience" },
+        { label: "Discharge and patient understanding", href: "/solutions/patient-understanding" },
       ],
     },
     {
@@ -70,6 +74,7 @@ export const healthSystemsOverview: MarketOverviewContent = {
       icon: "people-connected",
       links: [
         { label: "Debriefing", href: "/solutions/debriefing" },
+        { label: "Handoffs and escalation", href: "/solutions/handoffs-and-escalation" },
         { label: "Manager and new nurse conversations", href: "/solutions/workforce-retention" },
         { label: "Nursing turnover brief", href: "/resources/nursing-turnover-brief" },
       ],
@@ -153,6 +158,23 @@ export const medicalEducationOverview: MarketOverviewContent = {
     "A program lead, the participating learners, and the conversation you want them to practice. Name the faculty who will review feedback and how practice fits your teaching or coaching plan.",
   clinicalSimProvides:
     "We'll work with you to choose cases and the scoring framework, then agree on learner feedback, assignments, and the program reporting your faculty needs.",
+  // Engagement shape from ASSESSMENT_ENTRY in lib/positioning.ts. No durations or prices.
+  continuity: [
+    {
+      question: "What happens when a new cohort begins?",
+      answer:
+        "A new cohort starts on the cases and standard the program already approved, so nothing has to be rebuilt. Faculty can compare the new group's first attempts with an earlier group's at the cohort level, without ranking anyone, and decide which cases to keep, swap, or add for the year.",
+    },
+    {
+      question: "How does a program connect to a wider institutional engagement?",
+      answer:
+        "A program can start on its own with a communication assessment for one learner group. When other programs or the health system's own teams want the same kind of practice, a continuing engagement extends practice and review across more teams, and each program keeps its own cases, standard, and access rules.",
+    },
+  ],
+  continuityLink: {
+    label: "How ClinicalSim works, from the first case to the next round",
+    href: "/clinical-communication-intelligence",
+  },
   roles: [
     { label: "Program directors", href: "/audiences/program-directors" },
     { label: "DIOs and GME leaders", href: "/audiences/dios-gme-leadership" },

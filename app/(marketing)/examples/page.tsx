@@ -7,13 +7,14 @@ import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
 import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
+import { COHORT_REPORT_PATH, COHORT_REPORT_TITLE } from "@/lib/cohort-report"
 import { getAllExamples } from "@/lib/examples"
 import { ArrowRight } from "lucide-react"
 import { ClinicianTestimonials } from "@/components/clinician-testimonials"
 import { PAGE_DATE_MODIFIED } from "@/lib/page-dates"
 import { DemoVideoSection } from "@/components/demo-video-section"
 import { VideoObjectSchema } from "@/components/video-object-schema"
-import { ORGANIZATION } from "@/lib/positioning"
+import { ORGANIZATION, PRIMARY_CTA } from "@/lib/positioning"
 
 const DEMO_VIDEO = {
   embedUrl: "https://www.youtube.com/embed/ZkA0slljnwI",
@@ -121,6 +122,28 @@ export default function ExamplesPage() {
         </div>
       </section>
 
+      {/* The leadership view of the same kind of encounters */}
+      <section className="px-6 pb-12 md:pb-16 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <Link
+            href={COHORT_REPORT_PATH}
+            className="group flex flex-col gap-4 rounded-2xl border border-cs-gray/60 bg-cs-cloud p-7 transition-colors hover:border-cs-navy md:flex-row md:items-center md:justify-between md:p-9"
+          >
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-cs-navy">What a leader sees</p>
+              <h2 className="mt-2 text-2xl font-medium text-cs-dark-blue">{COHORT_REPORT_TITLE}</h2>
+              <p className="mt-2 max-w-3xl font-light leading-relaxed text-cs-dark-blue/80">
+                The examples above show one participant&apos;s report. This anonymized report from a partner health system shows the group view, scored against the system&apos;s own frameworks.
+              </p>
+            </div>
+            <span className="inline-flex shrink-0 items-center gap-2 font-medium text-cs-dark-blue underline underline-offset-4">
+              Read the cohort report
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </span>
+          </Link>
+        </div>
+      </section>
+
       <section className="bg-cs-cloud px-6 py-12 md:py-16">
         <div className="mx-auto max-w-4xl">
           <h2 className="text-3xl font-light text-cs-dark-blue">Watch the conversation and feedback</h2>
@@ -143,7 +166,7 @@ export default function ExamplesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href="/health-systems">

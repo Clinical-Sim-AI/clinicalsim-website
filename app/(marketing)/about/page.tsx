@@ -19,6 +19,7 @@ import {
   CATEGORY_MEANING,
   ORGANIZATION,
   POSITIONING_ONE_LINER,
+  PRIMARY_CTA,
 } from "@/lib/positioning"
 
 // Page-specific so /about stops sharing POSITIONING_LONG with /faq and the
@@ -285,7 +286,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link

@@ -12,6 +12,7 @@ import { ConversationTranscript } from "@/components/feedback/conversation-trans
 import { Waveform } from "@/components/waveform"
 import { AudioObjectSchema } from "@/components/audio-object-schema"
 import { getAllExamples, getExampleBySlug } from "@/lib/examples"
+import { PRIMARY_CTA } from "@/lib/positioning"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -262,7 +263,7 @@ export default async function ExampleCasePage({ params }: Props) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
-                Talk with us
+                {PRIMARY_CTA}
               </Button>
             </Link>
             <Link href="/examples">
