@@ -44,6 +44,53 @@ export function formatReleaseDate(date: string): string {
 
 export const releases: Release[] = [
   {
+    id: "2026-10-21",
+    date: "2026-10-21",
+    userFacing: [
+      "**Fewer feedback reports lost to small citation slips.** The grader sometimes listed a learner's words out of order, or pointed one line away from where they were said. We used to throw those reports away. Now we find the right line in the transcript and show the learner's actual words, in the order they said them. If the words can't be found, the report is still withheld, as before.",
+    ],
+    team: [],
+  },
+  {
+    id: "2026-10-19",
+    date: "2026-10-19",
+    userFacing: [
+      "**Feedback waits for long encounters.** After a long encounter, the feedback page could give up and say \"Feedback didn't finish generating\" just before the feedback arrived. About a third of graded runs in the past month finished after that cutoff. The page now starts its clock when the call ends, not when it starts, so learners see their feedback, and any follow-up survey, without having to reopen the run.",
+    ],
+    team: [
+      "The script that copies a real feedback report to the website's examples now produces the current report format, and it keeps hand-written copy and the examples list intact instead of overwriting them. On those examples, a check marked not applicable with no reason now reads \"Not scored.\"",
+      "New test scenarios for the hand-off case replay two real production runs, so we can confirm the console appears when a learner asks for it and the character stops inventing controls on the imaging unit.",
+    ],
+  },
+  {
+    id: "2026-10-16",
+    date: "2026-10-16",
+    note: "Cases can now put real-looking clinical materials on screen, like a wristband, a requisition or an imaging console, at the moment the learner asks to see them. Checklist-style rubrics now give a plain Passed or Not passed result that names any critical check the learner missed, and program leads can export item-level results for every project they run.",
+    userFacing: [
+      "**Case materials on screen.** A case can now include the materials a clinician would actually handle: a patient wristband, a requisition form, an imaging console, a worklist. When the learner asks to see one, it opens over the call, drawn to look like the real thing, while the conversation keeps going. A Materials button reopens anything already shown, and everything works on a phone.",
+      "**Feedback knows what the learner saw.** The grader now sees which materials were on screen and when, so a learner isn't faulted for missing something that was never shown to them.",
+      "**A clear Passed or Not passed.** Rubrics built as a checklist of required steps can now show a single case result. The case passes only when every check that applies to it was met, and a Not passed result lists the critical checks that were missed. Nothing is added up or averaged. If the grader couldn't judge a check, the result is left open rather than counted as a pass.",
+      "**Checklists that read like the policy.** Checks can be grouped under section headings, critical checks carry a badge, and each check can link to the exact section of the policy it comes from. Under each heading, the grader writes one or two sentences addressed to the learner as \"you.\" Pass/fail checks state the outcome once instead of repeating it, and a rubric can hide its Overall impression section.",
+      "**Graded for the case in front of you.** A rubric shared across several cases can now mark which of its checks don't apply to a particular case, with a short reason. Those checks show as \"Not scored\" and never count against the learner. A learner is no longer marked down for not asking an intubated patient open-ended questions.",
+      "**Your organization's policies, inside ClinicalSim.** An organization's own policy document can be hosted in the app, visible only to its members. Feedback links go straight to the relevant section, and a link opened while signed out still lands on that section after sign-in.",
+      "**Item-level results for program leads.** Project result downloads now include each learner's attempt number, whether it was a first attempt, the case result, and any missed critical checks. Two new downloads cover every project you manage: an item report (how often each check was met, week by week) and a site summary (learners, runs, passes and first-attempt passes per week).",
+      "**Case details stay hidden from learners.** The author's notes on how a character behaves no longer appear on the learner's briefing, and the learner's browser no longer receives the character's instructions or grading setup at all.",
+      "**One bad line no longer hides the whole checklist.** If the grader writes one explanation we can't verify, we ask again for that line alone, and drop it if it still fails. The rest of the checklist still shows. The \"What you said\" quotes on each check now always come from the learner's own words in the transcript.",
+    ],
+    team: [
+      "A new Materials tab in the version editor lets authors add wristbands, requisitions, consoles and worklists, set their order and which are visible from the start, write the rule for when each one is revealed, upload console images (metadata stripped, 2 MB limit), and preview the instructions the character receives. Materials freeze at publish and sync to production with their images.",
+      "Both voice agents, staging and production, are configured to show materials, and every session now says explicitly which tools it may use. That also closed a staging gap where any case could receive a material request it couldn't handle.",
+      "Platform admins can see a timeline of what the materials overlay did during a call: each reveal, open, switch and close.",
+      "A \"needs review\" flag can mark a run where a hidden material was never shown and a critical check was missed, so the team can tell a platform problem from a learner miss. It sits behind a feature flag that is off by default, uses each check's and material's real name, and clears once a later regrade passes.",
+      "On each simulation's Rubrics tab, admins can mark checks as not applicable to that case and write the learner-facing reason, and can add per-check guidance on what counts as evidence in that case. Content sync carries both to production and shows them side by side with production's values during review.",
+      "In the rubric editor: section headings, a Critical check toggle with a category, a \"result of\" link between checks, the case-result mode, policy links per check and per rubric, and a switch to hide Overall impression.",
+      "An offline rubric-tuning tool grades a saved transcript against draft rubric content many times over, without publishing a version or touching a database, so we can see how consistently the grader scores before anything ships.",
+      "A test harness checks how reliably the character reveals materials at the right moments, using the same session setup and reveal handling as the real app.",
+      "Tightened how the grader's checklist answers are repaired: only explanations are re-asked, unexpected fields are ignored, and repairs run in small batches.",
+      "The October 9 release notes were added to the repository.",
+    ],
+  },
+  {
     id: "2026-10-09",
     date: "2026-10-09",
     note: "Program leads get a rebuilt project page and more control over when a study's final survey appears. Learners on hospital Wi-Fi now get clear steps when a voice session can't connect, and a learner who pauses after delivering hard news no longer gets cut off.",
