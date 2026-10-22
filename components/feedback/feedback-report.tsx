@@ -29,12 +29,9 @@ export function FeedbackReport(props: BuildFeedbackReportInput) {
   // (the FIRST section opens by default), so the default stays sticky.
   const [openById, setOpenById] = useState<Map<string, boolean>>(new Map());
 
-  // Re-seed only when the set/order of section ids changes. Adjusting state
-  // during render (not in an effect) avoids a cascading second render.
-  const sectionKey = sections.map((s) => s.id).join(" ");
-  const [seededKey, setSeededKey] = useState<string | null>(null);
-  if (seededKey !== sectionKey) {
-    setSeededKey(sectionKey);
+  // Seed during render (not in an effect) whenever a section id is missing from
+  // the map. Once every id is seeded the guard is false, so this cannot loop.
+  if (sections.some((s) => !openById.has(s.id))) {
     setOpenById((prev) => {
       let next: Map<string, boolean> | null = null;
       sections.forEach((s, i) => {
