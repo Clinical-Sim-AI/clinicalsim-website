@@ -9,6 +9,7 @@ export const HUBSPOT_PORTAL_ID = "247619565"
 export const HUBSPOT_FORMS = {
   contact: "ce2bc823-8a6d-4539-ac23-6c88e0cdb6c4",
   research: "180d381a-0733-493d-a667-076c99f7397a",
+  pal: "3eeb93c2-56ee-4785-9509-a071f54e0595",
 } as const
 
 export type HubSpotFormKey = keyof typeof HUBSPOT_FORMS
@@ -63,6 +64,14 @@ export function toHubSpotFields(
       const { firstname, lastname } = splitFullName(value)
       fields.push({ name: "firstname", value: firstname })
       if (lastname) fields.push({ name: "lastname", value: lastname })
+      continue
+    }
+
+    // Several checked boxes share one name. HubSpot reads a multi-checkbox
+    // property as one semicolon-separated value, not as repeated fields.
+    const existing = fields.find((field) => field.name === name)
+    if (existing) {
+      existing.value = `${existing.value};${value}`
       continue
     }
 

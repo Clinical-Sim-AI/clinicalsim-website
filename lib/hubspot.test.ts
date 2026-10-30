@@ -30,6 +30,19 @@ describe("toHubSpotFields", () => {
     ])
   })
 
+  it("joins repeated names with semicolons, as HubSpot multi-checkbox properties expect", () => {
+    expect(
+      toHubSpotFields([
+        ["pal_symposium_interest", "multisite_trial"],
+        ["email", "a@example.com"],
+        ["pal_symposium_interest", "clinicalsim_institution"],
+      ]),
+    ).toEqual([
+      { name: "pal_symposium_interest", value: "multisite_trial;clinicalsim_institution" },
+      { name: "email", value: "a@example.com" },
+    ])
+  })
+
   it("splits fullname into firstname and lastname", () => {
     expect(toHubSpotFields([["fullname", "Jane van der Berg"]])).toEqual([
       { name: "firstname", value: "Jane" },
