@@ -107,6 +107,7 @@ export async function GET() {
 
   const otherPages = [
     `\n## More\n`,
+    `- [ClinicalSim video library](${BASE_URL}/videos): Feature walkthroughs with written summaries and transcripts, including creating projects, assigning simulations, setting practice goals, and adding project managers.`,
     `- [Published frameworks and institution standards](${BASE_URL}/frameworks): Start with ready to use cases based on published clinical frameworks or add an institution's policy, service standard, script, or rubric. Every score cites transcript evidence, and the page states the scope rule and scoring limits.`,
     `- [How it works](${BASE_URL}/clinical-communication-intelligence): Spoken practice with AI patients, sourced participant feedback, and what leaders can review across a cohort or unit. Includes a scored example, engagement steps, and formative-use limits. ${CATEGORY_MEANING}`,
     `- [Methodology](${BASE_URL}/methodology): How ClinicalSim builds cases, names the competency and communication frameworks each case uses, and generates rubric-scored feedback tied to transcript evidence.`,

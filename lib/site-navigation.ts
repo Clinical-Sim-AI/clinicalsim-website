@@ -86,6 +86,7 @@ export const HEADER_MENUS: HeaderNavigationMenu[] = [
         items: [
           { href: "/clinical-communication-intelligence", label: "Clinical communication intelligence" },
           { href: "/examples", label: "Example feedback" },
+          { href: "/videos", label: "Video library" },
           { href: "/frameworks", label: "Frameworks and standards" },
           { href: "/methodology", label: "Methodology" },
           { href: "/evaluation", label: "Evaluating ClinicalSim" },
@@ -155,6 +156,7 @@ export const FOOTER_GROUPS: Array<{ label: string; links: HeaderLink[] }> = [
   {
     label: "Resources",
     links: [
+      { href: "/videos", label: "Video library" },
       { href: "/frameworks", label: "Frameworks and standards" },
       { href: "/methodology", label: "Scoring methodology" },
       { href: "/evaluation", label: "Evaluating ClinicalSim" },
