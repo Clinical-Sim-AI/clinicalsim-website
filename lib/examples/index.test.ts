@@ -3,27 +3,28 @@ import { getAllExamples, getExampleBySlug } from ".";
 import { buildFeedbackReport } from "@/components/feedback/build-report";
 
 describe("public example catalog", () => {
-  it("publishes the newer goals-of-care assessment with all seven scored domains and evidence", () => {
+  it("publishes the requested Goals of Care run with NURSE and REMAP feedback", () => {
     const example = getExampleBySlug("goals-of-care-medically-complex-child")!;
-    expect(example.conversationId).toBe("f7e7bb1b-4fbf-4aed-82c3-2e0a1b964b60");
-    expect(example.transcript).toHaveLength(31);
+    expect(example.conversationId).toBe("f3a8eaf2-cbdb-48d7-b416-3be48d6581cb");
+    expect(example.title).toBe("Goals of Care: medically complex child");
+    expect(example.transcript).toHaveLength(23);
+    expect(example.transcript[1].message).toContain("Monica, you and Eli");
+    expect(example.durationSeconds).toBe(329);
     const report = buildFeedbackReport(example.report);
-    expect(report.overallNarrative).toContain("Introduce palliative care before hospice");
-    expect(report.overallNarrative).not.toMatch(/Scorecard|ICS\d|PROF\d|Level \d/);
-    const assessment = report.sections.find((section) => section.id === "sec-overall");
-    expect(assessment?.score).toMatchObject({ total: 26, max: 35 });
-    expect(assessment?.competencies).toHaveLength(7);
-    expect(assessment?.competencies?.map((competency) => competency.value)).toEqual([5, 4, 4, 3, 3, 2, 5]);
-    expect(assessment?.competencies?.[0].reasoning).toContain("what is your perception of how he's doing?");
-    expect(assessment?.competencies?.[0].anchorDescription).toContain("Coaches others");
-    expect(example.objectives.join(" ")).not.toMatch(/ICS\d|PROF\d|SBP\d/);
+    expect(report.sections).toHaveLength(2);
+    expect(report.sections[0].score).toMatchObject({ total: 20, max: 25 });
+    expect(report.sections[0].competencies).toHaveLength(5);
+    expect(report.sections[1].score).toMatchObject({ total: 14, max: 20 });
+    expect(report.sections[1].competencies).toHaveLength(5);
+    expect(example.report.rubricGrades.map((grade) => grade.rubricName)).toEqual([
+      "NURSE — Empathic Responses to Emotion",
+      "REMAP — Goals-of-Care Conversation Framework",
+    ]);
   });
 
   it("does not publish ACGME milestone scoring sections", () => {
     for (const example of getAllExamples()) {
-      if (example.slug !== "goals-of-care-medically-complex-child") {
-        expect(example.report.builtInGradeFields).toBeNull();
-      }
+      expect(example.report.builtInGradeFields).toBeNull();
       expect(example.report.associatedEpas).toBeNull();
       expect(example.report.rubricGrades).not.toContainEqual(
         expect.objectContaining({ isAcgmeMilestone: true }),

@@ -18,7 +18,7 @@ type Props = { params: Promise<{ slug: string }> }
 
 const exampleDescriptions: Record<string, string> = {
   "goals-of-care-medically-complex-child":
-    "Review a PICU goals-of-care conversation with a mother whose child may not recover, including the recording, transcript, and scored feedback.",
+    "Review a Goals of Care conversation about a medically complex child, including the recording, transcript, and NURSE and REMAP feedback.",
   "48-hours-in-the-hallway":
     "Review an unedited ClinicalSim encounter in which an emergency nurse talks with the daughter of a patient boarding in a hallway bed, including the recording, transcript, and feedback.",
   "addressing-hydroxyurea-nonadherence-and-medical-mistrust":

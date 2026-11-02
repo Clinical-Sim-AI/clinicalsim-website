@@ -13,25 +13,15 @@ const rawExamples: ExampleCase[] = [
   deliveringANewLeukemiaDiagnosisToAFamilyInTheEmergencyDepartment,
   informedConsentDiscussionForCentralVenousCatheterPlacementInThePicu,
   pediatricVaccineHesitancyCounseling,
-  {
-    ...goalsOfCareMedicallyComplexChild,
-    title: "Goals of care: medically complex child",
-    objectives: goalsOfCareMedicallyComplexChild.objectives.map((objective) =>
-      objective.replace(/\s*\([^)]*\)\.?$/, ".").replaceAll("\u2014", ","),
-    ),
-  },
+  goalsOfCareMedicallyComplexChild,
 ];
 
 // Separate ACGME milestone rubric sections remain excluded from public examples.
-// This case's built-in assessment is included so readers can review all seven
-// domains and the transcript evidence alongside the overall narrative.
 const examples: ExampleCase[] = rawExamples.map((example) => ({
   ...example,
   report: {
     ...example.report,
-    builtInGradeFields: example.slug === "goals-of-care-medically-complex-child"
-      ? example.report.builtInGradeFields
-      : null,
+    builtInGradeFields: null,
     associatedEpas: null,
     rubricGrades: example.report.rubricGrades.filter(
       (grade) => !grade.isAcgmeMilestone,
