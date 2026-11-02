@@ -8,12 +8,16 @@ import { TEAM_SECTION_PUBLISHED } from "./authors"
 import { getAllPosts, type Post } from "./posts"
 
 describe("About page", () => {
-  it("omits the unpublished team section and its Person schema", () => {
+  it("publishes the medical team while omitting the full team section", () => {
     const html = renderToStaticMarkup(createElement(AboutPage))
 
     expect(html).not.toContain("The people who built it")
     expect(html).not.toContain('id="lauren-rissman"')
-    expect(html).not.toContain('"@type":"Person"')
+    expect(html).toContain("Our medical team")
+    for (const name of ["Lauren Rissman", "Vinod Havalad", "Gillian Brennan", "Jacqueline Ponczek"]) {
+      expect(html).toContain(name)
+    }
+    expect(html).toContain('"@type":"Person"')
   })
 
   it("publishes the concise mission statement", () => {

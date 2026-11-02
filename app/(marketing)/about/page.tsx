@@ -9,6 +9,7 @@ import { Waveform } from "@/components/waveform"
 import { WaveformBand } from "@/components/waveform-band"
 import {
   getAllAuthors,
+  getAuthorById,
   getAuthorUrl,
   TEAM_SECTION_PUBLISHED,
 } from "@/lib/authors"
@@ -50,7 +51,8 @@ const LAST_UPDATED = PAGE_DATE_MODIFIED.about
 const SHOW_TEAM: boolean = TEAM_SECTION_PUBLISHED
 
 export default function AboutPage() {
-  const team = SHOW_TEAM ? getAllAuthors() : []
+  const medicalTeam = ["lauren-rissman", "vinod-havalad", "gillian-brennan", "jacqueline-ponczek"].map((id) => getAuthorById(id)!)
+  const team = SHOW_TEAM ? getAllAuthors() : medicalTeam
 
   return (
     <>
@@ -201,6 +203,22 @@ export default function AboutPage() {
         color={SHOW_TEAM ? "cloud" : "white"}
         className="bg-cs-navy"
       />
+
+      {!SHOW_TEAM && (
+        <section className="px-6 py-12 bg-white">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-light text-cs-navy mb-6">Our medical team</h2>
+            <ul className="space-y-5 list-disc pl-6 text-cs-dark-blue">
+              {medicalTeam.map((author) => (
+                <li key={author.id}>
+                  <p className="font-medium">{author.name}, {author.credentials}</p>
+                  <p className="font-light">{author.title}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {SHOW_TEAM && (
         <>

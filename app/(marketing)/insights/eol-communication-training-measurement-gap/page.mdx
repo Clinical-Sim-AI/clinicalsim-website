@@ -1,3 +1,5 @@
+import { ArticleTable } from "@/components/article-table"
+import { ReferencesSection } from "@/components/references-section"
 import { ArticleLayout } from "@/components/article-layout"
 import { getPostBySlug, getPostMetadata } from "@/lib/posts"
 
@@ -21,15 +23,18 @@ What struck me wasn't that physicians were lying or careless. Most of them were 
 
 ## Six of 105
 
-That question — how do we know if these conversations are working? — became the frame for a systematic review our group published recently. We looked at 105 published studies examining end-of-life communication training in pediatric critical care. One hundred and five studies. This is not an under-researched area. People care about this problem and have been trying to address it for decades.
+Our group's scoping review examined pediatric palliative care education for residents and fellows in pediatric intensive care. The review found few articles addressing that education, and evaluation tools varied across the included articles.
 
-Of those 105 studies, only 6 had clearly stated training objectives. Six.
+<ArticleTable
+  caption="Articles in the pediatric palliative care education scoping review"
+  headers={["Review finding", "Articles"]}
+  rows={[
+    ["Articles reviewed", "105"],
+    ["Articles addressing pediatric palliative care education in the PICU", "6"],
+  ]}
+/>
 
-Of those 6, none shared the same objectives, the same outcome measures, or the same framework for what they were trying to teach or assess.
-
-This is not a gap in effort. It is a gap in standardization. Researchers and educators across the field are working on this problem in parallel, from different starting points, measuring different things in different ways with no shared language. The result is 105 data points that can't be compared, combined, or built on — because nobody agreed on what they were trying to measure.
-
-We cannot improve what we are not measuring consistently. And right now, we are not measuring this consistently at all.
+The included articles described simulation curricula focused on communication about end-of-life care. The [published review](https://pubmed.ncbi.nlm.nih.gov/41668675/) calls for broader pediatric palliative care curricula and describes varied evaluation methods.
 
 ## EPAs give trainees a target they've never had
 
@@ -75,10 +80,14 @@ The next International Pediatric Simulation Society meeting is in Dublin in May 
 
 There's a lot of work between now and then. The measurement problem in end-of-life communication training is solvable. We have the frameworks: EPAs give us shared competency targets, the SCCM guidelines give programs a shared standard. We have the tools: AI simulation creates practice volume and generates the objective data that has been missing from this field. What's needed now is the institutional commitment to actually use them — program by program, fellow by fellow, conversation by conversation.
 
-The field has produced 105 studies. It's time to produce a few that share the same outcomes.
+The review found varied evaluation methods. Shared measures would give programs a clearer basis for comparing what learners gain from training.
 
 ---
 
 *This piece is adapted from a conversation with Dr. Samreen Vora on the [IPSS Podcast](https://ipss.org/Podcast).*
+
+<ReferencesSection references={[
+  { authors: "Rissman L, Collell A, Lyons K, Ashworth R, Alladin A, Dickerman M", title: "Palliative Care Education for Pediatric Critical Care Trainees: A Scoping Review and a Call to Action", source: "American Journal of Hospice and Palliative Medicine", year: "2026", doi: "10.1177/10499091261424903", url: "https://pubmed.ncbi.nlm.nih.gov/41668675/" },
+]} />
 
 </ArticleLayout>

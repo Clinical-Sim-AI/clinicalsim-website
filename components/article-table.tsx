@@ -14,9 +14,9 @@ export function ArticleTable({
   rows: string[][]
 }) {
   return (
-    <figure className="not-prose my-8">
+    <figure className="not-prose my-8 min-w-0 max-w-full">
       <div className="overflow-x-auto rounded-xl border border-cs-gray">
-        <table className="w-full min-w-[32rem] text-left text-sm text-cs-dark-blue">
+        <table aria-label={caption} className="w-full min-w-[32rem] text-left text-sm text-cs-dark-blue">
           <thead className="bg-cs-dark-blue text-white">
             <tr>
               {headers.map((header) => (

@@ -38,6 +38,7 @@ export interface SolutionValueProp {
 
 /** A named element framework this lane can score a conversation against. */
 export interface SolutionFramework {
+  list?: { ordered: boolean; items: string[] }
   name: string
   /** Who publishes it. Named so a reader can go and read the elements themselves. */
   owner: string
@@ -140,7 +141,13 @@ export interface Solution {
   lastUpdated?: string
 
   /** A short prose section after the hero, for context the stages and value props cannot carry. */
-  context?: { id?: string; heading: string; paragraphs: string[]; links?: { label: string; href: string }[] }
+  context?: {
+    id?: string
+    heading: string
+    paragraphs: string[]
+    links?: { label: string; href: string }[]
+    table?: { caption: string; headers: string[]; rows: string[][] }
+  }
 
   // The progression / topic arc
   stagesHeading?: string
@@ -1128,9 +1135,18 @@ const solutions: Solution[] = [
       heading: "Why these conversations",
       paragraphs: [
         "As more documentation and administrative work moves to software, more of each clinician's day is the work only a person can do, and much of that is talking: to patients, to families, to colleagues, and to the people they manage. Two groups come up again and again in the retention research: frontline managers and nurses in their first year.",
-        "Managers first. In a 2025 survey of US nurses, 41% of frontline nurses who were likely to leave said they don't feel valued by their leaders, a reason second only to looking for a better job (McKinsey, Nursing Pulse Survey, 2025). Among 2,813 Mayo Clinic physicians and scientists who rated their supervisor's leadership on a 12 to 60 scale, each one-point gain went with a 3.3% lower likelihood of burnout and a 9% higher likelihood of satisfaction (Shanafelt et al., Mayo Clinic Proceedings, 2015). Most of what those ratings measure happens in conversation: explaining a change, asking for ideas, giving feedback, recognizing good work, talking about someone's career.",
-        "Then the first year. 22.7% of newly hired RNs leave within twelve months, at $60,090 per departure (NSI Nursing Solutions, 2026 National Health Care Retention and RN Staffing Report). Across more than 10,000 new graduate RNs assessed from 2011 to 2020, the share meeting entry-level competency expectations fell from 23% to 9% (Kavanagh and Sharpnack, OJIN, 2021).",
+        "Most of what leadership ratings measure happens in conversation: explaining a change, asking for ideas, giving feedback, recognizing good work, talking about someone's career.",
       ],
+      table: {
+        caption: "Research on leadership, retention, and readiness for practice",
+        headers: ["Finding", "Figure", "Source"],
+        rows: [
+          ["Frontline nurses likely to leave who said they don't feel valued by their leaders, second only to looking for a better job", "41%", "McKinsey, Nursing Pulse Survey, 2025"],
+          ["Each one-point gain in supervisor leadership ratings on a 12 to 60 scale among 2,813 Mayo Clinic physicians and scientists", "3.3% lower likelihood of burnout; 9% higher likelihood of satisfaction", "Shanafelt et al., Mayo Clinic Proceedings, 2015"],
+          ["Newly hired RNs leaving within twelve months and cost per departure", "22.7%; $60,090 per departure", "NSI Nursing Solutions, 2026 National Health Care Retention and RN Staffing Report"],
+          ["New graduate RNs meeting entry-level competency expectations, assessed from 2011 to 2020", "Fell from 23% to 9% across more than 10,000 RNs", "Kavanagh and Sharpnack, OJIN, 2021"],
+        ],
+      },
     },
     stageGroups: [
       {
@@ -1242,12 +1258,14 @@ const solutions: Solution[] = [
       {
         name: "TeamSTEPPS: Teamwork and communication competencies",
         owner: "Agency for Healthcare Research and Quality and the US Department of Defense",
-        note: "The rubric scores communication, team leadership, situation monitoring, and mutual support when the case gives one speaker a chance to show them. Its tools include CUS, the two-challenge rule, check-back and DESC.",
+        note: "The rubric scores communication, team leadership, situation monitoring, and mutual support when the case gives one speaker a chance to show them. Its tools include:",
+        list: { ordered: false, items: ["CUS", "The two-challenge rule", "Check-back", "DESC"] },
       },
       {
         name: "I-PASS: Handoff communication",
         owner: "I-PASS Study Group and Agency for Healthcare Research and Quality",
-        note: "Illness severity, patient summary, action list, situation awareness and contingency planning, and synthesis by the receiver structure a handoff.",
+        note: "These elements structure a handoff:",
+        list: { ordered: true, items: ["Illness severity", "Patient summary", "Action list", "Situation awareness and contingency planning", "Synthesis by the receiver"] },
       },
       {
         name: "Teach-back",

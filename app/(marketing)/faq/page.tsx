@@ -1,3 +1,4 @@
+import { ArticleTable } from "@/components/article-table"
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
 import Link from "next/link"
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
 
 // Visible + schema recency. Update whenever answers change.
 const LAST_UPDATED_ISO = PAGE_DATE_MODIFIED.faq
-const LAST_UPDATED_LABEL = "October 6, 2026"
+const LAST_UPDATED_LABEL = "November 2, 2026"
 
 interface FaqEntry {
   id: string
@@ -85,6 +86,32 @@ interface FaqSection {
   items: FaqEntry[]
 }
 
+const comparison = {
+  caption: "ClinicalSim, standardized patient programs, and general AI assistants",
+  headers: ["Approach", "Practice and assessment"],
+  rows: [
+    ["ClinicalSim", "Repeatable practice between SP encounters, physician-authored cases, fixed objectives, named frameworks, repeatable scoring logic, and transcript evidence faculty can review."],
+    ["Standardized patient program", "Live coaching and high-stakes assessment."],
+    ["General AI assistant", "Can improvise a conversation."],
+  ],
+}
+const spIntroduction = "ClinicalSim extends standardized patient (SP) programs and does not replace them."
+const scoringPoints = {
+  gme: [
+    "GME cases use the competency framework and rubric approved for the program.",
+    "The report scores only the behaviors the case gives the learner a fair chance to show.",
+    "Faculty can use the report as one source of evidence in CCC review.",
+  ],
+  ume: [
+    "UME cases align to the Foundational Competencies for Undergraduate Medical Education (AAMC, AACOM, and ACGME) and the AAMC Core Entrustable Professional Activities (EPAs) for Entering Residency.",
+    "Because the Foundational Competencies are not published with the milestones' five-level scale, ClinicalSim does not assign a numeric level for UME; it records whether each competency was demonstrated and scores performance through the applied communication or skill rubric.",
+    "Entrustment remains a program decision that this evidence informs.",
+  ],
+}
+function ScoringList({ items }: { items: string[] }) {
+  return <ul className="list-disc space-y-2 pl-6">{items.map((item) => <li key={item}>{item}</li>)}</ul>
+}
+
 const faqSections: FaqSection[] = [
   {
     category: "About ClinicalSim",
@@ -107,15 +134,15 @@ const faqSections: FaqSection[] = [
       {
         id: "vs-standardized-patients",
         question: "How is ClinicalSim different from a standardized patient program?",
-        answer:
-          "ClinicalSim extends standardized patient (SP) programs and does not replace them. SP encounters remain important for live coaching and high-stakes assessment. ClinicalSim adds repeatable practice between those encounters, without requiring another actor or room for each attempt.",
+        answer: [spIntroduction, comparison.headers.join(" "), ...comparison.rows.flat(), comparison.caption].join(" "),
+        answerNode: <><p>{spIntroduction}</p><ArticleTable {...comparison} /></>,
       },
       {
         id: "vs-chatgpt",
         question:
           "How is ClinicalSim different from using ChatGPT to practice high-stakes conversations?",
-        answer:
-          "A general AI assistant can improvise a conversation. ClinicalSim uses physician-authored cases with fixed objectives, named frameworks, repeatable scoring logic, and transcript evidence a faculty member can review across learners.",
+        answer: "A general AI assistant can improvise a conversation. ClinicalSim uses physician-authored cases with fixed objectives, named frameworks, repeatable scoring logic, and transcript evidence a faculty member can review across learners. See the comparison with standardized patient programs.",
+        answerNode: <p>{"A general AI assistant can improvise a conversation. ClinicalSim uses physician-authored cases with fixed objectives, named frameworks, repeatable scoring logic, and transcript evidence a faculty member can review across learners."} <Link href="#vs-standardized-patients" className="underline underline-offset-4">See the comparison with standardized patient programs.</Link></p>,
       },
       {
         id: "communication-remediation",
@@ -262,15 +289,15 @@ const faqSections: FaqSection[] = [
       {
         id: "gme-scoring",
         question: "How are graduate medical education (GME) cases scored?",
-        answer:
-          "GME cases use the competency framework and rubric approved for the program. The report scores only the behaviors the case gives the learner a fair chance to show. Faculty can use the report as one source of evidence in CCC review.",
+        answer: scoringPoints.gme.join(" "),
+        answerNode: <ScoringList items={scoringPoints.gme} />,
       },
       {
         id: "ume-scoring",
         question:
           "How are undergraduate medical education (UME) cases scored, since there's no five-level milestone scale?",
-        answer:
-          "UME cases align to the Foundational Competencies for Undergraduate Medical Education (AAMC, AACOM, and ACGME) and the AAMC Core Entrustable Professional Activities (EPAs) for Entering Residency. Because the Foundational Competencies are not published with the milestones' five-level scale, ClinicalSim does not assign a numeric level for UME; it records whether each competency was demonstrated and scores performance through the applied communication or skill rubric. Entrustment remains a program decision that this evidence informs.",
+        answer: scoringPoints.ume.join(" "),
+        answerNode: <ScoringList items={scoringPoints.ume} />,
       },
       {
         id: "high-stakes",
@@ -698,7 +725,7 @@ export default function FaqPage() {
               </Button>
             </Link>
             <Link href="/contact">
-              <Button variant="default" size="lg">
+              <Button variant="default" size="lg" className="max-w-full h-auto min-h-11 whitespace-normal py-3">
                 {PRIMARY_CTA}
               </Button>
             </Link>
