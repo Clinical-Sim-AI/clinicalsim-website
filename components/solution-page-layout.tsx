@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { ArticleTable } from "@/components/article-table"
 import { ArrowLeft, ArrowRight, ChevronRight, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { FeatureCard } from "@/components/feature-card"
@@ -278,6 +279,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                   ))}
                 </ul>
               )}
+              {solution.context.table && <ArticleTable {...solution.context.table} />}
             </div>
           </section>
         </>
@@ -420,6 +422,12 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                     <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
                       {framework.note}
                     </p>
+                    {framework.list && (() => {
+                      const List = framework.list.ordered ? "ol" : "ul"
+                      return <List className={cn("mt-3 space-y-2 pl-6 text-base text-cs-dark-blue/85 font-light", framework.list.ordered ? "list-decimal" : "list-disc")}>
+                        {framework.list.items.map((item) => <li key={item}>{item}</li>)}
+                      </List>
+                    })()}
                   </div>
                 ))}
               </div>

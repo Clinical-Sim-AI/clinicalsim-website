@@ -14,7 +14,7 @@ export const PAGE_DATE_MODIFIED = {
   nursing: "2026-11-02",
   // Introduction and mission shortened; product sections combined.
   // Category line became "clinical communication intelligence" (2026-10-06).
-  about: "2026-10-06",
+  about: "2026-11-02",
   // Added the nursing leadership audience to the listing (2026-10-14).
   audiences: "2026-11-02",
   // New category page (2026-10-06).
@@ -39,7 +39,7 @@ export const PAGE_DATE_MODIFIED = {
   examples: "2026-11-02",
   // Licensing answer reworded without a billing basis; three program-fit
   // objections added (2026-10-06).
-  faq: "2026-10-06",
+  faq: "2026-11-02",
   frameworks: "2026-09-03",
   glossary: "2026-08-18",
   // Category eyebrow, leader clause, single CTA, and the 29-pilot line.
