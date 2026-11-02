@@ -445,7 +445,7 @@ const faqSections: FaqSection[] = [
         id: "see-before-deciding",
         question: "Can we see real ClinicalSim encounters before deciding?",
         answer:
-          "Yes. Five complete AI patient simulations are published with the audio, the full transcript, and the feedback report, with no sign-in and no form. The reports show what the learner did well, where more practice would help, and the learner's own words behind the feedback. Reading one shows exactly what a participant and an authorized coach receive.",
+          "Yes. Six AI patient encounters are published with the audio, the full transcript, and the feedback report, with no sign-in and no form. The reports show what the learner did well, where more practice would help, and the learner's own words behind the feedback. Reading one shows exactly what a participant and an authorized coach receive.",
       },
       {
         id: "research-response-time",

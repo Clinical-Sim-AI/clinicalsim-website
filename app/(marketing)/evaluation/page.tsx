@@ -99,7 +99,7 @@ const evaluationFaqs: FaqItem[] = [
     question:
       "What should a program consider before adopting an AI communication training platform?",
     answer:
-      "Review the platform's intended use and limits, the evidence behind its claims, data handling, rollout needs, how an engagement is structured, and the experience of the people who will practice. Five complete AI patient simulations are published with audio, transcript, and full reports so each reviewer can evaluate the same facts before a scope or pricing call.",
+      "Review the platform's intended use and limits, the evidence behind its claims, data handling, rollout needs, how an engagement is structured, and the experience of the people who will practice. Six AI patient encounters are published with audio, transcript, and feedback so each reviewer can evaluate the same facts before a scope or pricing call.",
   },
   {
     question: "Does ClinicalSim replace a standardized patient program?",
@@ -129,7 +129,7 @@ const evaluationFaqs: FaqItem[] = [
   {
     question: "Can I see a real ClinicalSim encounter before talking to sales?",
     answer:
-      "Yes. Five complete AI patient simulations are published at clinicalsim.ai/examples with audio, the full transcript, and the entire feedback report, with no sign-in and no form. Each report shows strengths, areas for focused practice, and the participant's words behind the feedback.",
+      "Yes. Six AI patient encounters are published at clinicalsim.ai/examples with audio, the full transcript, and feedback, with no sign-in and no form. Each report shows strengths, areas for focused practice, and the participant's words behind the feedback.",
   },
 ]
 
@@ -254,8 +254,8 @@ export default function EvaluationPage() {
 
           <div className="rounded-xl border-l-4 border-cs-electric bg-cs-dark-blue px-6 py-5 max-w-3xl">
             <p className="text-base md:text-lg text-white font-light leading-relaxed">
-              Five complete AI patient simulations are published with audio,
-              transcript, and the full report, with no sign-in required. Each
+              Six AI patient encounters are published with audio,
+              transcript, and feedback, with no sign-in required. Each
               shows strengths, areas for focused practice, and the participant&apos;s
               words behind the feedback.{" "}
               <Link
@@ -611,8 +611,8 @@ export default function EvaluationPage() {
           </h2>
 
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-4">
-            Five complete encounters are published with the audio, the full
-            transcript, and the entire feedback report. No sign-in, no form, no
+            Six encounters are published with the audio, the full
+            transcript, and feedback. No sign-in, no form, no
             call first.
           </p>
           <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed mb-6">
