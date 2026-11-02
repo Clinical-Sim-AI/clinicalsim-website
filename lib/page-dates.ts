@@ -11,6 +11,7 @@
  * entry are the same fact, so they read it from the same place.
  */
 export const PAGE_DATE_MODIFIED = {
+  videos: "2026-11-02",
   nursing: "2026-11-02",
   // Introduction and mission shortened; product sections combined.
   // Category line became "clinical communication intelligence" (2026-10-06).
