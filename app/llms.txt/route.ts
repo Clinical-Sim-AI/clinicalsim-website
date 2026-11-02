@@ -65,6 +65,7 @@ ${KEY_FACTS}
 ## Pages
 
 - [Homepage](${BASE_URL}/): ${POSITIONING_LONG}
+- [Nursing communication training](${BASE_URL}/nursing): Spoken practice for patient and family conversations, nurse residencies, escalation and handoffs. Transcript-linked formative feedback, HCAHPS limits, and no ANCC affiliation or Magnet compliance claim.
 - [Health systems](${BASE_URL}/health-systems): Spoken practice for patient experience, consent and disclosure, and team communication. Participant feedback, leader reporting, and how a first assessment starts.
 - [Medical education](${BASE_URL}/medical-education): Communication practice for residency, fellowship, medical school, faculty development, and remediation, alongside existing standardized patient programs.
 - [Evidence](${BASE_URL}/evidence): Inspect published example feedback, distinguish framework evidence from AI scoring evidence, and review public research records and product limits.

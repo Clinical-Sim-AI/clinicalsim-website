@@ -116,6 +116,7 @@ const posts: Post[] = [
     tags: ["communication-remediation", "assessment", "ACGME", "milestones", "medical-education", "residency"],
   },
   {
+    dateModified: "2026-11-02",
     slug: "what-an-osce-score-predicts",
     title: "What an OSCE score predicts, and what it doesn't",
     seoTitle: "What an OSCE score predicts",
@@ -152,6 +153,7 @@ const posts: Post[] = [
     tags: ["simulation", "assessment", "ACGME", "medical education"],
   },
   {
+    dateModified: "2026-11-02",
     slug: "why-standardized-patient-programs-run-out-of-capacity",
     title: "Why standardized patient programs run out of capacity",
     // TODO(ben): confirm short title.
@@ -240,7 +242,7 @@ const posts: Post[] = [
     seoTitle: "OSCE case design guide",
     description: "Start with the decision the station should support, define observable behaviors, give learners a fair chance to show them, train the SP, and pilot the scoring before the station counts.",
     date: "2026-03-04",
-    dateModified: "2026-09-02",
+    dateModified: "2026-11-02",
     author: "ClinicalSim Team",
     readingTime: "4 min read",
     tags: ["OSCE", "case design", "medical education", "assessment"],

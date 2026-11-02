@@ -55,6 +55,7 @@ export const HEADER_MENUS: HeaderNavigationMenu[] = [
         label: "Start here",
         items: [
           { href: "/health-systems", label: "Health systems overview" },
+          { href: "/nursing", label: "Nursing communication training" },
           { href: "/resources/nursing-turnover-brief", label: "Nursing turnover brief" },
         ],
       },
@@ -143,6 +144,7 @@ export const FOOTER_GROUPS: Array<{ label: string; links: HeaderLink[] }> = [
     links: [
       { href: "/health-systems", label: "Health systems" },
       { href: "/medical-education", label: "Medical education" },
+      { href: "/nursing", label: "Nursing communication training" },
       { href: "/clinical-communication-intelligence", label: "How it works" },
       { href: "/evidence", label: "Evidence" },
       { href: "/solutions", label: "All use cases" },

@@ -76,6 +76,7 @@ export const healthSystemsOverview: MarketOverviewContent = {
         { label: "Debriefing", href: "/solutions/debriefing" },
         { label: "Handoffs and escalation", href: "/solutions/handoffs-and-escalation" },
         { label: "Manager and new nurse conversations", href: "/solutions/workforce-retention" },
+        { label: "Nursing communication training", href: "/nursing" },
         { label: "Nursing turnover brief", href: "/resources/nursing-turnover-brief" },
       ],
     },
@@ -125,6 +126,7 @@ export const medicalEducationOverview: MarketOverviewContent = {
       icon: "student",
       links: [
         { label: "Undergraduate medical education", href: "/solutions/undergraduate-medical-education" },
+        { label: "OSCE communication practice", href: "/solutions/undergraduate-medical-education#osce-practice" },
       ],
     },
     {

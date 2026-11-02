@@ -31,6 +31,7 @@ export interface Comparison {
   rows: ComparisonRow[]
   lastUpdated?: string
   relatedSolutionSlugs?: string[]
+  practiceLink?: { label: string; href: string }
   relatedPostSlugs?: PostSlug[]
   faqs?: ComparisonFaq[]
 }
@@ -42,6 +43,7 @@ export interface Comparison {
 const comparisons: Comparison[] = [
   {
     slug: "ai-clinical-simulation-vs-standardized-patients",
+    practiceLink: { label: "OSCE communication practice for medical students", href: "/solutions/undergraduate-medical-education#osce-practice" },
     title: "AI clinical simulation vs. standardized patients",
     metaTitle:
       "AI clinical simulation vs. standardized patients: a comparison",
@@ -104,7 +106,7 @@ const comparisons: Comparison[] = [
           "Live coaching and high-stakes or summative assessment, including OSCEs.",
       },
     ],
-    lastUpdated: "2026-09-03",
+    lastUpdated: "2026-11-02",
     relatedSolutionSlugs: ["remediation", "undergraduate-medical-education"],
     relatedPostSlugs: [
       "why-standardized-patient-programs-run-out-of-capacity",

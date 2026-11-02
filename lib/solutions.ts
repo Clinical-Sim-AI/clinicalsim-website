@@ -140,7 +140,7 @@ export interface Solution {
   lastUpdated?: string
 
   /** A short prose section after the hero, for context the stages and value props cannot carry. */
-  context?: { heading: string; paragraphs: string[] }
+  context?: { id?: string; heading: string; paragraphs: string[]; links?: { label: string; href: string }[] }
 
   // The progression / topic arc
   stagesHeading?: string
@@ -184,6 +184,7 @@ export interface Solution {
    * /solutions, so a new lane is linked from the existing lanes closest to it.
    */
   relatedSolutionSlugs?: SolutionSlug[]
+  relatedLinks?: { label: string; href: string }[]
 
   /**
    * The question a sponsor should be able to answer after reading the page (Walia & Miller
@@ -354,7 +355,7 @@ const solutions: Solution[] = [
     subtitle: "From history-taking to delivering a diagnosis, across four years",
     icon: "student",
     colorVariant: "blue",
-    lastUpdated: "2026-10-20",
+    lastUpdated: "2026-11-02",
     cardBullets: [
       "A four-year arc from M1 history-taking to M4 diagnosis disclosure",
       "OSCE practice on demand between scheduled SP encounters",
@@ -366,6 +367,22 @@ const solutions: Solution[] = [
     heroHeadline: "Build communication skills alongside clinical knowledge",
     heroDescription:
       "Sequence practice from the first patient history through diagnosis disclosure and clerkship conversations, including the communication stations students meet in an OSCE. Each conversation is scored against the communication framework named on the case and recorded against the AAMC Foundational Competencies.",
+    context: {
+      id: "osce-practice",
+      heading: "OSCE communication practice between SP encounters",
+      paragraphs: [
+        "A student opens a practice case and speaks with an AI patient by voice. They can rehearse taking a focused history, explaining a care plan, or responding to a family's questions, then review feedback and try again before the next scheduled station.",
+        "Each attempt uses the rubric named on the case, with transcript evidence behind each score. The report shows what the student did well and what to practice next. A school can supply its own checklist, keeping its element names and definitions. Faculty and ClinicalSim review which spoken behaviors the case can assess and agree on the scoring standard before students begin.",
+        "Students can repeat practice without booking an actor, room, or faculty observer for each attempt. Faculty and OSCE directors can review completion, repeated attempts, and transcript-linked feedback under institution-defined access rules, then choose a focus for coaching.",
+        "Use these encounters for preparation between SP sessions. Standardized patients and faculty keep the graded OSCE and summative assessment. Spoken practice cannot assess physical examination, eye contact, body language, or other behaviors that require in-person observation. Practice scores are formative, and they do not establish OSCE readiness or predict a passing result.",
+      ],
+      links: [
+        { label: "Compare AI practice and standardized patient encounters", href: "/compare/ai-clinical-simulation-vs-standardized-patients" },
+        { label: "How institution-supplied rubrics work", href: "/frameworks" },
+        { label: "Inspect a diagnosis disclosure case scored with SPIKES", href: "/examples/delivering-a-new-leukemia-diagnosis-to-a-family-in-the-emergency-department" },
+        { label: "Inspect a vaccine counseling case and feedback", href: "/examples/pediatric-vaccine-hesitancy-counseling" },
+      ],
+    },
     stagesHeading: "A four-year progression",
     stagesIntro:
       "Communication competency sequenced to develop in step with the curriculum.",
@@ -393,6 +410,22 @@ const solutions: Solution[] = [
     valueProps: UME_VALUE_PROPS,
     faqs: [
       {
+        question: "Can a student repeat an OSCE practice station?",
+        answer: "Students can repeat a practice case and review transcript-linked feedback between attempts. ClinicalSim adds spoken preparation between scheduled SP encounters without requiring an actor, room, or faculty observer for every attempt.",
+      },
+      {
+        question: "Can we use our own OSCE checklist?",
+        answer: "Yes. Supply your school's checklist with its element names and definitions, as described on ClinicalSim's frameworks page. Faculty and ClinicalSim review which items a spoken case gives the student a chance to show, then agree on the case standard before practice starts. Physical examination and nonverbal items need another assessment method. Faculty-rater validation on a customer's own rubric has not been completed, so practice scores remain formative.",
+      },
+      {
+        question: "Does this replace standardized patients or the graded OSCE?",
+        answer: "ClinicalSim extends your SP program. Students use AI patients for repeatable spoken practice, while standardized patients and faculty keep live coaching, graded OSCEs, and summative assessment. A practice score does not establish readiness for a high-stakes decision.",
+      },
+      {
+        question: "What do students need for OSCE practice?",
+        answer: "ClinicalSim runs in a browser on a phone, tablet, or computer. Students need internet access, microphone access, and a place where they can speak privately. Nothing needs installing, and institutional IT may need to allow the voice service. Practice is in English.",
+      },
+      {
         question: "How does this fit a four-year UME curriculum?",
         answer:
           "Scenarios are sequenced so communication complexity rises with clinical knowledge, beginning with structured history-taking in the preclinical years and progressing to diagnosis disclosure during clerkships. A longitudinal dashboard follows each student across all four years.",
@@ -410,8 +443,8 @@ const solutions: Solution[] = [
     ],
     relatedPostSlugs: [
       "osce-case-design-guide",
-      "what-learners-want-from-ai-sps",
-      "breaking-bad-news-practice-not-knowledge",
+      "what-an-osce-score-predicts",
+      "why-standardized-patient-programs-run-out-of-capacity",
     ],
     glossarySlugs: [
       "osce",
@@ -521,7 +554,7 @@ const solutions: Solution[] = [
     subtitle: "Practice the behaviors behind listening, explanation, and respect",
     icon: "chat-square-heart",
     colorVariant: "accent",
-    lastUpdated: "2026-10-20",
+    lastUpdated: "2026-11-02",
     cardBullets: [
       "Score the service standards your institution already teaches",
       "Quote the words behind each score",
@@ -579,7 +612,12 @@ const solutions: Solution[] = [
           "Structured aggregate exports can support an approved comparison with institution held patient experience data. ClinicalSim does not treat that comparison as an established product outcome.",
       },
     ],
+    relatedLinks: [{ label: "Nursing communication training", href: "/nursing" }],
     faqs: [
+      {
+        question: "Where can nursing educators review communication practice?",
+        answer: "The nursing communication training page covers patient and family practice, nurse residency communication, and reporting rules.",
+      },
       {
         question: "Can ClinicalSim score our service scripts and standards?",
         answer:
@@ -1074,7 +1112,7 @@ const solutions: Solution[] = [
     subtitle: "Practice the conversations behind whether staff stay",
     icon: "friendship",
     colorVariant: "navy",
-    lastUpdated: "2026-10-20",
+    lastUpdated: "2026-11-02",
     cardBullets: [
       "Stay conversations, safety concerns and feedback for frontline managers",
       "Escalation, handoff and delegation for nurses in their first year",
@@ -1128,7 +1166,7 @@ const solutions: Solution[] = [
         ],
       },
       {
-        heading: "What new nurses practice",
+        heading: "Nurse residency communication practice",
         intro:
           "For nurse residency programs and new graduate cohorts. The AI character plays the physician, the family member, the colleague or the oncoming nurse.",
         stages: [
@@ -1217,7 +1255,12 @@ const solutions: Solution[] = [
         note: "The listener explains the information back in their own words, so the speaker can check what landed and correct what didn't.",
       },
     ],
+    relatedLinks: [{ label: "Nursing communication training", href: "/nursing" }],
     faqs: [
+      {
+        question: "Where can nursing educators review communication practice?",
+        answer: "The nursing communication training page covers patient and family practice, nurse residency communication, and reporting rules.",
+      },
       {
         question: "Does ClinicalSim reduce turnover?",
         answer:

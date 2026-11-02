@@ -136,6 +136,14 @@ export default function AudiencesPage() {
 
       <SectionDivider variant="wave" color="white" />
 
+      <section className="px-6 py-8 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-light text-cs-navy mb-4">For nursing educators and nurse residency coordinators</h2>
+          <p className="text-lg font-light text-cs-dark-blue/85 mb-4">Review patient and family practice, escalation and handoffs, and the reporting rules nurses need before they take part.</p>
+          <Link href="/nursing" className="text-cs-dark-blue underline underline-offset-4">Nursing communication training</Link>
+        </div>
+      </section>
+
       {/* Solutions bridge */}
       <section className="px-6 py-8 md:py-10 bg-cs-cloud">
         <div className="max-w-4xl mx-auto text-center">
