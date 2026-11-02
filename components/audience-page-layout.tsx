@@ -283,7 +283,7 @@ export function AudiencePageLayout({ audience }: AudiencePageLayoutProps) {
               // managers" links to the workforce retention page, so anchor
               // text built from the card title would misdescribe the link.
               const linkedSolution = prop.href?.startsWith("/solutions/")
-                ? getSolutionBySlug(prop.href.slice("/solutions/".length))
+                ? getSolutionBySlug(prop.href.slice("/solutions/".length).split("#")[0])
                 : undefined
               const linkLabel = midSentence(linkedSolution?.shortTitle ?? prop.title)
               return (

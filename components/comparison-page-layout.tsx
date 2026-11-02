@@ -179,6 +179,12 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
         </div>
       </section>
 
+      {comparison.practiceLink && (
+        <div className="max-w-4xl mx-auto px-6 py-6">
+          <Link href={comparison.practiceLink.href} className="text-cs-dark-blue underline underline-offset-4">{comparison.practiceLink.label}</Link>
+        </div>
+      )}
+
       {/* FAQs */}
       {comparison.faqs && comparison.faqs.length > 0 && (
         <>

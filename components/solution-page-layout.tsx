@@ -237,12 +237,22 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
         </div>
       </section>
 
+      {solution.relatedLinks && (
+        <nav aria-label="Related programs" className="bg-cs-cloud px-6 py-5">
+          <div className="max-w-4xl mx-auto flex flex-wrap gap-4">
+            {solution.relatedLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="text-cs-dark-blue underline underline-offset-4">{link.label}</Link>
+            ))}
+          </div>
+        </nav>
+      )}
+
       {/* Context */}
       {optionalBlocks.context && solution.context && (
         <>
           <SectionDivider variant="diagonal-down" color="white" className={underHero("context")} />
 
-          <section className="px-6 py-8 md:py-10 bg-white">
+          <section id={solution.context.id} className="scroll-mt-24 px-6 py-8 md:py-10 bg-white">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light text-cs-navy mb-6">
                 {solution.context.heading}
@@ -257,6 +267,17 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
                   </p>
                 ))}
               </div>
+              {solution.context.links && (
+                <ul className="mt-6 space-y-3">
+                  {solution.context.links.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className="text-cs-dark-blue underline underline-offset-4 hover:text-cs-navy">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </section>
         </>

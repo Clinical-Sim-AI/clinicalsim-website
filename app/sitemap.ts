@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const glossary = getIndexableGlossaryTerms()
 
   const staticPages: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/nursing`, lastModified: new Date(PAGE_DATE_MODIFIED.nursing), changeFrequency: "monthly", priority: 0.9 },
     {
       url: `${BASE_URL}/health-systems`,
       lastModified: new Date(PAGE_DATE_MODIFIED.healthSystems),

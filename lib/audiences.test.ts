@@ -81,9 +81,9 @@ describe("Audience registry", () => {
   // needs its own registry check.
   const routeHasPage = (href: string) =>
     ["page.tsx", "page.mdx"].some((file) =>
-      existsSync(path.join(process.cwd(), "app/(marketing)", href, file))
+      existsSync(path.join(process.cwd(), "app/(marketing)", href.split("#")[0], file))
     )
-  const INTERNAL_ROUTE = /^\/[a-z0-9-]+(\/[a-z0-9-]+)*$/
+  const INTERNAL_ROUTE = /^\/[a-z0-9-]+(\/[a-z0-9-]+)*(#[a-z0-9-]+)?$/
 
   it("links value props only to routes that exist", () => {
     for (const audience of audiences) {

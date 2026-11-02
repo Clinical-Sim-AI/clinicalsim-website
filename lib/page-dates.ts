@@ -11,11 +11,12 @@
  * entry are the same fact, so they read it from the same place.
  */
 export const PAGE_DATE_MODIFIED = {
+  nursing: "2026-11-02",
   // Introduction and mission shortened; product sections combined.
   // Category line became "clinical communication intelligence" (2026-10-06).
   about: "2026-10-06",
   // Added the nursing leadership audience to the listing (2026-10-14).
-  audiences: "2026-10-14",
+  audiences: "2026-11-02",
   // New category page (2026-10-06).
   // Linked the health system cohort report and the executive brief (2026-10-20).
   clinicalCommunicationIntelligence: "2026-10-20",
@@ -46,9 +47,9 @@ export const PAGE_DATE_MODIFIED = {
   home: "2026-10-20",
   // Added nursing leadership to the roles list (2026-10-14).
   // Linked the patient understanding and handoff use cases (2026-10-20).
-  healthSystems: "2026-10-20",
+  healthSystems: "2026-11-02",
   // New-cohort and wider-engagement answers added (2026-10-20).
-  medicalEducation: "2026-10-20",
+  medicalEducation: "2026-11-02",
   // Added the communication remediation plan article to the listing.
   insights: "2026-09-24",
   // Rewritten by the 2026-09-03 ACGME claim removal (fadf4b5), which replaced
