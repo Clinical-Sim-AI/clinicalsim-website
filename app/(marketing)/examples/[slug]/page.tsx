@@ -18,7 +18,7 @@ type Props = { params: Promise<{ slug: string }> }
 
 const exampleDescriptions: Record<string, string> = {
   "goals-of-care-medically-complex-child":
-    "Review a PICU goals-of-care conversation with a mother whose child may not recover, including the recording, transcript, and narrative feedback.",
+    "Review a PICU goals-of-care conversation with a mother whose child may not recover, including the recording, transcript, and scored feedback.",
   "48-hours-in-the-hallway":
     "Review an unedited ClinicalSim encounter in which an emergency nurse talks with the daughter of a patient boarding in a hallway bed, including the recording, transcript, and feedback.",
   "addressing-hydroxyurea-nonadherence-and-medical-mistrust":
@@ -148,9 +148,7 @@ export default async function ExampleCasePage({ params }: Props) {
             </p>
           )}
           <p className="mt-6 max-w-2xl text-sm text-cs-cloud/70 font-light">
-            {example.slug === "goals-of-care-medically-complex-child"
-              ? "This is an unedited encounter from ClinicalSim with the latest narrative feedback. ACGME-linked scores and descriptors aren't included in this public example."
-              : "This is an unedited encounter from ClinicalSim. Review the same recording, transcript, and feedback report the learner received."}
+            This is an unedited encounter from ClinicalSim. Review the same recording, transcript, and feedback report the learner received.
           </p>
         </div>
       </section>
