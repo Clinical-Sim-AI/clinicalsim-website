@@ -36,10 +36,6 @@ export function ExampleCard({ example }: { example: ExampleCase }) {
           </div>
         )}
 
-        <span className="mb-4 inline-flex w-fit items-center rounded-full bg-cs-cloud px-3 py-1 text-xs font-medium uppercase tracking-wide text-cs-navy">
-          Example feedback
-        </span>
-
         <h3 className="mb-2 text-xl font-medium text-cs-dark-blue transition-colors group-hover:text-cs-navy md:text-2xl">
           {example.title}
         </h3>

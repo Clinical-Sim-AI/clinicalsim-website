@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -12,6 +13,7 @@ import { ConversationTranscript } from "@/components/feedback/conversation-trans
 import { Waveform } from "@/components/waveform"
 import { AudioObjectSchema } from "@/components/audio-object-schema"
 import { getAllExamples, getExampleBySlug } from "@/lib/examples"
+import { examplePortraits } from "@/lib/examples/portraits"
 import { PRIMARY_CTA } from "@/lib/positioning"
 
 type Props = { params: Promise<{ slug: string }> }
@@ -59,7 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   // Absolute so the root layout's "| ClinicalSim.ai" template does not push these
   // past the 75-character title limit. metaTitle overrides for the long case names.
-  const title = example.metaTitle ?? `${example.title}: Example Feedback`
+  const title = example.metaTitle ?? `${example.title}: Example`
   const description = getExampleDescription(example.slug, example.title)
   const url = `https://clinicalsim.ai/examples/${example.slug}`
 
@@ -77,6 +79,7 @@ export default async function ExampleCasePage({ params }: Props) {
   const example = getExampleBySlug(slug)
   if (!example) notFound()
 
+  const portrait = examplePortraits[example.slug]
   const duration = formatDuration(example.durationSeconds)
   // Every example used to be reachable only from the /examples hub, which left each
   // one with a single incoming internal link. Cross-linking the siblings fixes that
@@ -91,7 +94,7 @@ export default async function ExampleCasePage({ params }: Props) {
           {
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: `${example.title}: Example Feedback`,
+            name: `${example.title}: Example`,
             description: getExampleDescription(example.slug, example.title),
             url: `https://clinicalsim.ai/examples/${example.slug}`,
             isPartOf: {
@@ -139,17 +142,38 @@ export default async function ExampleCasePage({ params }: Props) {
           >
             <ArrowLeft className="h-4 w-4" /> All examples
           </Link>
-          <h1 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-light leading-tight text-white">
-            {example.title}
-          </h1>
-          {duration && (
-            <p className="mt-4 inline-flex items-center gap-1.5 text-sm text-cs-cloud/70">
-              <Clock className="h-4 w-4" /> {duration} encounter
-            </p>
-          )}
-          <p className="mt-6 max-w-2xl text-sm text-cs-cloud/70 font-light">
-            This is an unedited encounter from ClinicalSim. Review the same recording, transcript, and feedback report the learner received.
-          </p>
+          <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+            {portrait && (
+              <figure className="w-40 shrink-0">
+                <Image
+                  src={portrait.src}
+                  alt={`Portrait of ${portrait.name}, a simulated participant`}
+                  width={160}
+                  height={160}
+                  sizes="160px"
+                  preload
+                  className="h-40 w-40 rounded-xl object-cover"
+                />
+                <figcaption className="mt-3 text-sm">
+                  <span className="block font-medium text-white">{portrait.name}</span>
+                  <span className="mt-1 block text-xs text-cs-cloud/70">Simulated participant</span>
+                </figcaption>
+              </figure>
+            )}
+            <div className="min-w-0 flex-1">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight text-white">
+                {example.title}
+              </h1>
+              {duration && (
+                <p className="mt-4 inline-flex items-center gap-1.5 text-sm text-cs-cloud/70">
+                  <Clock className="h-4 w-4" /> {duration} encounter
+                </p>
+              )}
+              <p className="mt-6 max-w-2xl text-sm text-cs-cloud/70 font-light">
+                This is an unedited encounter from ClinicalSim. Review the same recording, transcript, and feedback report the learner received.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

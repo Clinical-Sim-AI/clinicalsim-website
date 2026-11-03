@@ -24,17 +24,17 @@ const DEMO_VIDEO = {
 }
 
 export const metadata: Metadata = {
-  title: "See it in action: example simulation feedback",
+  title: "Examples",
   description:
     "Browse unedited ClinicalSim encounters and open the feedback a learner receives, including the assessment report, recording, and full transcript. No sign-in required.",
   openGraph: {
-    title: "See ClinicalSim feedback in action",
+    title: "Examples",
     description:
       "Unedited example encounters with the learner feedback report, audio recording, and transcript. No sign-in required.",
     url: "https://clinicalsim.ai/examples",
   },
   twitter: {
-    title: "See ClinicalSim feedback in action",
+    title: "Examples",
     description:
       "Unedited example encounters with the learner feedback report, recording, and transcript.",
   },
@@ -53,7 +53,7 @@ export default function ExamplesPage() {
           {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            name: "Example simulation feedback",
+            name: "Examples",
             description:
               "Unedited ClinicalSim encounters with the learner feedback report, recording, and transcript.",
             url: "https://clinicalsim.ai/examples",
@@ -95,7 +95,7 @@ export default function ExamplesPage() {
         <Waveform seed="examples" align="edges" opacity={0.17} />
         <div className="max-w-4xl mx-auto relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.08] text-balance mb-6 text-white">
-            See the feedback for yourself
+            Examples
           </h1>
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-4 max-w-3xl mx-auto">
             These are unedited encounters from the platform. Open a case to review the assessment report, recording, and full transcript without signing in or booking a demo.

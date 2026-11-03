@@ -16,7 +16,7 @@ export interface ExampleCase {
   title: string;
   /**
    * Optional override for the <title> tag. Set this when the case title plus
-   * ": Example Feedback" runs past 75 characters, which Semrush flags as a
+   * ": Example" runs past 75 characters, which Semrush flags as a
    * too-long title. The case title itself stays untouched for the UI.
    */
   metaTitle?: string;

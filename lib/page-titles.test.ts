@@ -97,7 +97,7 @@ describe("page titles", () => {
 
   it("keeps every example case title inside the audit limit", () => {
     for (const example of getAllExamples()) {
-      const rendered = example.metaTitle ?? `${example.title}: Example Feedback`
+      const rendered = example.metaTitle ?? `${example.title}: Example`
       expect(
         rendered.length,
         `${example.slug} renders a ${rendered.length} char title: ${rendered}`
