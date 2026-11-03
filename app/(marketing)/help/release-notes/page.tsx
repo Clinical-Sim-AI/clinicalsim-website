@@ -206,7 +206,7 @@ export default function ReleaseNotesPage() {
             Browse the help center for getting-started guides, or reach out and
             talk to our team.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center">
             <Link href="/help">
               <Button variant="secondary" size="lg">
                 Visit the help center

@@ -166,7 +166,7 @@ export default function FrameworksPage() {
             policy, service standard, script, or rubric they already use.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
             <Link href="#ready-to-use-frameworks">
               <Button variant="accent" size="xl">
                 View ready to use frameworks
@@ -424,7 +424,7 @@ export default function FrameworksPage() {
             Tell us which conversation you need to train. We will show you the closest ready to use
             case or explain how to add your institution&apos;s standard.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
                 {PRIMARY_CTA}

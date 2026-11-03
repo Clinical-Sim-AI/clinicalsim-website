@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 import { ChevronRight } from "lucide-react"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
@@ -251,11 +252,9 @@ export default function GlossaryPage() {
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
             ClinicalSim maps voice-based practice to the competency framework that fits the learner&apos;s stage.
           </p>
-          <Link href="/contact">
-            <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-base font-medium transition-all duration-300 bg-cs-electric text-cs-dark-blue hover:bg-cs-electric/90 hover:shadow-lg h-14 px-10 font-bold">
-              {PRIMARY_CTA}
-            </button>
-          </Link>
+          <Button asChild variant="accent" size="xl" className="text-base">
+            <Link href="/contact">{PRIMARY_CTA}</Link>
+          </Button>
         </div>
       </WaveformBand>
     </>

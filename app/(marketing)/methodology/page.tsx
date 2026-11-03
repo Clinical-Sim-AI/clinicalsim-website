@@ -808,7 +808,7 @@ export default function MethodologyPage() {
             evidence supports, what a procurement review will find, and how an
             engagement starts.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center">
             <Link href="/faq">
               <Button variant="secondary" size="lg">
                 Read the FAQ

@@ -257,15 +257,13 @@ export default function HelpPage() {
               roughly when, and we can look into it. For anything about piloting
               ClinicalSim at your program, email is easier.
             </p>
-            <div className="mt-auto flex flex-col sm:flex-row gap-4">
-              <Link href="/contact">
-                <Button size="lg">{PRIMARY_CTA}</Button>
-              </Link>
-              <Link href="/research">
-                <Button variant="secondary" size="lg">
-                  See the research
-                </Button>
-              </Link>
+            <div className="mt-auto flex flex-col items-start gap-4">
+              <Button asChild size="lg">
+                <Link href="/contact">{PRIMARY_CTA}</Link>
+              </Button>
+              <Button asChild variant="secondary" size="lg">
+                <Link href="/research">See the research</Link>
+              </Button>
             </div>
           </div>
         </div>

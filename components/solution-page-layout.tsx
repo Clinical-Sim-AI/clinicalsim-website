@@ -223,7 +223,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
             {solution.heroDescription}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
             <Link href="/contact">
               <Button variant="accent" size="xl">
                 {PRIMARY_CTA}
@@ -598,7 +598,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
             {solution.ctaDescription}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
                 {PRIMARY_CTA}

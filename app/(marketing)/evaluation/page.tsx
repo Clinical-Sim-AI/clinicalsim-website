@@ -712,7 +712,7 @@ export default function EvaluationPage() {
             when the answer is that we haven&apos;t built it or haven&apos;t
             measured it yet.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
                 {PRIMARY_CTA}
