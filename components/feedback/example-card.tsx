@@ -1,12 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ExampleCase } from "@/lib/examples/types";
+import { examplePortraits } from "@/lib/examples/portraits";
 
 /** A hub card for one example case — title, role line, one-liner, and the count
  *  of assessments it shows. Links to /examples/<slug>. */
 export function ExampleCard({ example }: { example: ExampleCase }) {
   const assessmentCount = example.report.rubricGrades.length;
+  const portrait = examplePortraits[example.slug];
 
   return (
     <Link href={`/examples/${example.slug}`} className="group block">
@@ -16,7 +19,24 @@ export function ExampleCard({ example }: { example: ExampleCase }) {
           "border border-cs-gray transition-all duration-300 hover:shadow-lg",
         )}
       >
-        <span className="mb-4 inline-flex w-fit items-center rounded-full bg-cs-electric/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cs-navy">
+        {portrait && (
+          <div className="mb-5 flex items-center gap-4">
+            <Image
+              src={portrait.src}
+              alt={`Portrait of ${portrait.name}, a simulated participant`}
+              width={112}
+              height={112}
+              sizes="112px"
+              className="h-28 w-28 shrink-0 rounded-xl object-cover"
+            />
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-cs-dark-blue">{portrait.name}</p>
+              <p className="mt-1 text-xs text-cs-dark-blue/70">Simulated participant</p>
+            </div>
+          </div>
+        )}
+
+        <span className="mb-4 inline-flex w-fit items-center rounded-full bg-cs-cloud px-3 py-1 text-xs font-medium uppercase tracking-wide text-cs-navy">
           Example feedback
         </span>
 
