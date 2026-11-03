@@ -301,7 +301,7 @@ export default function AboutPage() {
           <p className="text-lg md:text-xl font-light mb-8 text-white/90 max-w-3xl mx-auto">
             Tell us who would practice, what standard you already use, and how the results should be reported. We&apos;ll show you what one pilot cycle could look like.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center items-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
                 {PRIMARY_CTA}

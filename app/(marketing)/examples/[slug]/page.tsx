@@ -286,7 +286,7 @@ export default async function ExampleCasePage({ params }: Props) {
             Every completed practice session produces a report tied to the
             frameworks named on the case and the evidence in the transcript.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
                 {PRIMARY_CTA}

@@ -328,7 +328,7 @@ export default function TrustPage() {
             </Link>
             , or see how we handle website data in our privacy policy.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
                 {PRIMARY_CTA}

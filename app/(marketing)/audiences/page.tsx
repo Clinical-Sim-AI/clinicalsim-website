@@ -171,7 +171,7 @@ export default function AudiencesPage() {
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
             Bring one team, one standard, and one reporting question.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
                 {PRIMARY_CTA}

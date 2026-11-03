@@ -293,7 +293,7 @@ export function ComparisonPageLayout({ comparison }: ComparisonPageLayoutProps) 
             See how repeatable, rubric-scored practice fits your curriculum,
             standards, and reporting needs.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center">
             <Link href="/contact">
               <Button variant="accent" size="xl">
                 {PRIMARY_CTA}

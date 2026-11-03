@@ -1055,7 +1055,7 @@ export default function ProgramDirectorFaqPage() {
             Read the full methodology, or tell us which conversation your
             program wants to strengthen.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center">
             <Link href="/methodology">
               <Button variant="secondary" size="lg">
                 Read the full methodology

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { SectionDivider } from "@/components/section-divider"
 import { JsonLd } from "@/components/json-ld"
@@ -122,11 +123,9 @@ export default function CompareIndexPage() {
           <p className="text-lg md:text-xl font-light mb-8 text-white/90">
             Tell us whether you need practice, coaching, or a high-stakes assessment. We will show you where ClinicalSim fits and where it does not.
           </p>
-          <Link href="/contact">
-            <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-base font-bold transition-all duration-300 bg-cs-electric text-cs-dark-blue hover:bg-cs-electric/90 hover:shadow-lg h-14 px-10">
-              {PRIMARY_CTA}
-            </button>
-          </Link>
+          <Button asChild variant="accent" size="xl" className="text-base">
+            <Link href="/contact">{PRIMARY_CTA}</Link>
+          </Button>
         </div>
       </WaveformBand>
     </>
