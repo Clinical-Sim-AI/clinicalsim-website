@@ -1,16 +1,16 @@
 /** Local snapshots of the case portraits, independent of staging storage. */
 export const examplePortraits: Record<string, { src: string; name: string }> = {
-  "discussing-relapsed-sarcoma-and-limited-curative-options": {
-    src: "/examples/discussing-relapsed-sarcoma-and-limited-curative-options/portrait.webp",
+  "goals-of-care-progressive-osteosarcoma": {
+    src: "/examples/goals-of-care-progressive-osteosarcoma/portrait.webp",
     name: "Ravi Patel",
   },
-  "goals-of-care-discussion-in-progressive-respiratory-failure": {
-    src: "/examples/goals-of-care-discussion-in-progressive-respiratory-failure/portrait.webp",
-    name: "Sarah Mitchell",
+  "goals-of-care-childhood-brain-tumor": {
+    src: "/examples/goals-of-care-childhood-brain-tumor/portrait.webp",
+    name: "Nora Lindgren",
   },
-  "disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary": {
-    src: "/examples/disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary/portrait.webp",
-    name: "Dennis Boyd",
+  "goals-of-care-severe-neurologic-injury": {
+    src: "/examples/goals-of-care-severe-neurologic-injury/portrait.webp",
+    name: "Maria Lopez",
   },
   "48-hours-in-the-hallway": {
     src: "/examples/48-hours-in-the-hallway/portrait.webp",

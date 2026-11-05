@@ -19,12 +19,12 @@ import { PRIMARY_CTA } from "@/lib/positioning"
 type Props = { params: Promise<{ slug: string }> }
 
 const exampleDescriptions: Record<string, string> = {
-  "discussing-relapsed-sarcoma-and-limited-curative-options":
-    "Review a conversation with a father about his daughter's relapsed sarcoma, including the recording, transcript, and REMAP feedback.",
-  "goals-of-care-discussion-in-progressive-respiratory-failure":
-    "Review a partial ICU Goals of Care conversation about a father's wishes for life support, including the recording, transcript, and REMAP feedback.",
-  "disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary":
-    "Review a conversation about an unexpected finding of metastatic cancer, including the recording, transcript, and SPIKES and NURSE feedback.",
+  "goals-of-care-progressive-osteosarcoma":
+    "Review a family conversation about progressive osteosarcoma, comfort, and including a child in decisions, with the recording, transcript, and REMAP feedback.",
+  "goals-of-care-childhood-brain-tumor":
+    "Review a conversation about a child's progressive brain tumor, time at home, and hospice support, with the recording, transcript, and REMAP feedback.",
+  "goals-of-care-severe-neurologic-injury":
+    "Review a PICU Goals of Care conversation about a child's wishes, CPR, and continued life support, with the recording, transcript, and Kalamazoo feedback.",
   "goals-of-care-medically-complex-child":
     "Review a Goals of Care conversation about a medically complex child, including the recording, transcript, and NURSE and REMAP feedback.",
   "48-hours-in-the-hallway":

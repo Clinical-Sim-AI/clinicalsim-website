@@ -27,6 +27,22 @@ const nextConfig = {
         destination: 'https://clinicalsim.ai/:path*',
         permanent: true,
       },
+      // Keep shared example links working; temporary so the original cases can return with new recordings.
+      {
+        source: '/examples/discussing-relapsed-sarcoma-and-limited-curative-options',
+        destination: '/examples/goals-of-care-progressive-osteosarcoma',
+        permanent: false,
+      },
+      {
+        source: '/examples/goals-of-care-discussion-in-progressive-respiratory-failure',
+        destination: '/examples/goals-of-care-childhood-brain-tumor',
+        permanent: false,
+      },
+      {
+        source: '/examples/disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary',
+        destination: '/examples/goals-of-care-severe-neurologic-injury',
+        permanent: false,
+      },
       {
         source: '/practice',
         destination: 'https://platform.clinicalsim.ai',

@@ -7,9 +7,9 @@ import { examplePortraits } from "./portraits";
 
 describe("public example catalog", () => {
   it.each([
-    ["discussing-relapsed-sarcoma-and-limited-curative-options", "b89dfbbd-3c77-40e2-a6f5-cab0e8270c96", "2026-06-23", 369, "REMAP", 12, 25],
-    ["goals-of-care-discussion-in-progressive-respiratory-failure", "c7ce471e-51a2-4099-b692-cb58b0c83c29", "2026-06-17", 178, "REMAP", 9, 25],
-    ["disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary", "d0cce95c-8a20-466c-8077-a25a4dd186a3", "2026-09-19", 311, "SPIKES", 15, 30],
+    ["goals-of-care-progressive-osteosarcoma", "a6239062-fc26-4468-b15f-ac4fdbfcc9a2", "2026-09-17", 484, "REMAP", 15, 25],
+    ["goals-of-care-childhood-brain-tumor", "4ddfe2a0-abe3-461a-918e-3fb80ad0b4db", "2026-09-17", 520, "REMAP", 19, 25],
+    ["goals-of-care-severe-neurologic-injury", "f3f25981-55e4-4fe1-bd7c-2de81e8194a7", "2026-06-17", 421, "KEECC", 22, 35],
   ] as const)("publishes the requested staging run for %s with its saved score and assets", (slug, conversationId, date, duration, framework, total, max) => {
     const example = getExampleBySlug(slug)!;
     expect(example.conversationId).toBe(conversationId);
@@ -26,10 +26,18 @@ describe("public example catalog", () => {
     }
   });
 
-  it("identifies the respiratory failure conversation as partial", () => {
-    const example = getExampleBySlug("goals-of-care-discussion-in-progressive-respiratory-failure")!;
-    expect(example.summary).toContain("Partial conversation");
-    expect(example.recordingNote).toContain("ends before");
+  it("leads with the advance care planning examples for UChicago", () => {
+    expect(getAllExamples().slice(0, 3).map((example) => example.slug)).toEqual([
+      "goals-of-care-childhood-brain-tumor",
+      "goals-of-care-severe-neurologic-injury",
+      "goals-of-care-medically-complex-child",
+    ]);
+  });
+
+  it("discloses the unresolved ending of the osteosarcoma conversation", () => {
+    const example = getExampleBySlug("goals-of-care-progressive-osteosarcoma")!;
+    expect(example.recordingNote).toContain("ends while the father asks");
+    expect(example.transcript.at(-1)?.message).toContain("actually say to her");
   });
 
   it("publishes the requested Goals of Care run with NURSE and REMAP feedback", () => {
