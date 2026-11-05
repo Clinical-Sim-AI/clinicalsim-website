@@ -10,10 +10,13 @@ import goalsOfCareProgressiveOsteosarcoma from "./goals-of-care-progressive-oste
 import goalsOfCareChildhoodBrainTumor from "./goals-of-care-childhood-brain-tumor";
 import goalsOfCareSevereNeurologicInjury from "./goals-of-care-severe-neurologic-injury";
 
+import disclosingMetastaticDisease from "./disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary";
+
 const rawExamples: ExampleCase[] = [
   goalsOfCareChildhoodBrainTumor,
   goalsOfCareSevereNeurologicInjury,
   goalsOfCareMedicallyComplexChild,
+  disclosingMetastaticDisease,
   goalsOfCareProgressiveOsteosarcoma,
   hoursInTheHallway,
   addressingHydroxyureaNonadherenceAndMedicalMistrust,

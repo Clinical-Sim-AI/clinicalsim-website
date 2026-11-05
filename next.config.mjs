@@ -39,11 +39,6 @@ const nextConfig = {
         permanent: false,
       },
       {
-        source: '/examples/disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary',
-        destination: '/examples/goals-of-care-severe-neurologic-injury',
-        permanent: false,
-      },
-      {
         source: '/practice',
         destination: 'https://platform.clinicalsim.ai',
         permanent: false,
