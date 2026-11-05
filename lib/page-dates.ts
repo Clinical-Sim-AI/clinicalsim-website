@@ -36,8 +36,8 @@ export const PAGE_DATE_MODIFIED = {
   evaluation: "2026-10-20",
   // Added "Find the answer for your role" and the cohort report (2026-10-20).
   evidence: "2026-10-20",
-  // Added case portraits to the example cards.
-  examples: "2026-11-03",
+  // Added sarcoma, respiratory failure, and metastatic disease encounters.
+  examples: "2026-11-04",
   // Licensing answer reworded without a billing basis; three program-fit
   // objections added (2026-10-06).
   faq: "2026-11-02",

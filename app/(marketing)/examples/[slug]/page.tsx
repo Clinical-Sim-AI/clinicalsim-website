@@ -19,6 +19,12 @@ import { PRIMARY_CTA } from "@/lib/positioning"
 type Props = { params: Promise<{ slug: string }> }
 
 const exampleDescriptions: Record<string, string> = {
+  "discussing-relapsed-sarcoma-and-limited-curative-options":
+    "Review a conversation with a father about his daughter's relapsed sarcoma, including the recording, transcript, and REMAP feedback.",
+  "goals-of-care-discussion-in-progressive-respiratory-failure":
+    "Review a partial ICU Goals of Care conversation about a father's wishes for life support, including the recording, transcript, and REMAP feedback.",
+  "disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary":
+    "Review a conversation about an unexpected finding of metastatic cancer, including the recording, transcript, and SPIKES and NURSE feedback.",
   "goals-of-care-medically-complex-child":
     "Review a Goals of Care conversation about a medically complex child, including the recording, transcript, and NURSE and REMAP feedback.",
   "48-hours-in-the-hallway":
@@ -192,11 +198,16 @@ export default async function ExampleCasePage({ params }: Props) {
                   Listen to the recording
                 </p>
                 <p className="text-xs text-cs-slate">
-                  Hear the full{duration ? ` ${duration}` : ""} encounter
+                  Hear the{duration ? ` ${duration}` : ""} recording
                 </p>
               </div>
               <ExampleAudioPlayer src={example.audio.src} />
             </div>
+            {example.recordingNote && (
+              <p className="mt-3 text-sm leading-relaxed text-cs-dark-blue">
+                {example.recordingNote}
+              </p>
+            )}
           </div>
 
           {/* Transcript, collapsible, default closed (mirrors the app page, which
