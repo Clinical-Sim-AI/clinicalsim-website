@@ -25,8 +25,8 @@ export const examplePortraits: Record<string, { src: string; name: string }> = {
     name: "Sofia Morales",
   },
   "goals-of-care-medically-complex-child": {
-    src: "/examples/goals-of-care-medically-complex-child/portrait.webp",
-    name: "Monica Thompson",
+    src: "/examples/goals-of-care-medically-complex-child/portrait-fa74f769.webp",
+    name: "Marissa Johnson",
   },
   "informed-consent-discussion-for-central-venous-catheter-placement-in-the-picu": {
     src: "/examples/informed-consent-discussion-for-central-venous-catheter-placement-in-the-picu/portrait.webp",

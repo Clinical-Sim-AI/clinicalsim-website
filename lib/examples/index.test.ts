@@ -40,23 +40,28 @@ describe("public example catalog", () => {
     expect(example.transcript.at(-1)?.message).toContain("actually say to her");
   });
 
-  it("publishes the requested Goals of Care run with NURSE and REMAP feedback", () => {
+  it("publishes the selected medically complex child run with REMAP and SPIKES feedback", () => {
     const example = getExampleBySlug("goals-of-care-medically-complex-child")!;
-    expect(example.conversationId).toBe("f3a8eaf2-cbdb-48d7-b416-3be48d6581cb");
+    expect(example.conversationId).toBe("fa74f769-ba7a-4b04-9769-b170e8fdb4db");
     expect(example.title).toBe("Goals of Care: medically complex child");
-    expect(example.transcript).toHaveLength(23);
-    expect(example.transcript[1].message).toContain("Monica, you and Eli");
-    expect(example.durationSeconds).toBe(329);
+    expect(example.role).toContain("PICU clinician (fellow)");
+    expect(example.transcript).toHaveLength(21);
+    expect(example.transcript[1].message).toContain("Ms. Johnson");
+    expect(example.durationSeconds).toBe(449);
+    expect(example.audio.durationSeconds).toBe(449);
+    expect(examplePortraits[example.slug].name).toBe("Marissa Johnson");
+    for (const src of [example.audio.src, examplePortraits[example.slug].src]) {
+      expect(existsSync(join(process.cwd(), "public", src))).toBe(true);
+    }
     const report = buildFeedbackReport(example.report);
     expect(report.sections).toHaveLength(2);
-    expect(report.sections[0].score).toMatchObject({ total: 20, max: 25 });
-    expect(report.sections[0].competencies).toHaveLength(5);
-    expect(report.sections[1].score).toMatchObject({ total: 14, max: 20 });
-    expect(report.sections[1].competencies).toHaveLength(5);
-    expect(example.report.rubricGrades.map((grade) => grade.rubricName)).toEqual([
-      "NURSE — Empathic Responses to Emotion",
-      "REMAP — Goals-of-Care Conversation Framework",
-    ]);
+    const remap = report.sections.find((section) => section.title.startsWith("REMAP"))!;
+    const spikes = report.sections.find((section) => section.title.startsWith("SPIKES"))!;
+    expect(remap.score).toMatchObject({ total: 13, max: 25 });
+    expect(remap.competencies).toHaveLength(5);
+    expect(spikes.score).toMatchObject({ total: 18, max: 30 });
+    expect(spikes.competencies).toHaveLength(6);
+    expect(example.report.rubricGrades.some((grade) => grade.rubricName.startsWith("NURSE"))).toBe(false);
   });
 
   it("does not publish ACGME milestone scoring sections", () => {

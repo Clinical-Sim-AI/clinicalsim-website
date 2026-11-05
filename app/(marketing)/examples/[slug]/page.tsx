@@ -26,7 +26,7 @@ const exampleDescriptions: Record<string, string> = {
   "goals-of-care-severe-neurologic-injury":
     "Review a PICU Goals of Care conversation about a child's wishes, CPR, and continued life support, with the recording, transcript, and Kalamazoo feedback.",
   "goals-of-care-medically-complex-child":
-    "Review a Goals of Care conversation about a medically complex child, including the recording, transcript, and NURSE and REMAP feedback.",
+    "Review a PICU Goals of Care conversation about a medically complex child, returning home, and palliative support, with the recording, transcript, and REMAP and SPIKES feedback.",
   "48-hours-in-the-hallway":
     "Review an unedited ClinicalSim encounter in which an emergency nurse talks with the daughter of a patient boarding in a hallway bed, including the recording, transcript, and feedback.",
   "addressing-hydroxyurea-nonadherence-and-medical-mistrust":
