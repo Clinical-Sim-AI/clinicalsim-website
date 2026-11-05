@@ -6,8 +6,14 @@ import deliveringANewLeukemiaDiagnosisToAFamilyInTheEmergencyDepartment from "./
 import informedConsentDiscussionForCentralVenousCatheterPlacementInThePicu from "./informed-consent-discussion-for-central-venous-catheter-placement-in-the-picu";
 import pediatricVaccineHesitancyCounseling from "./pediatric-vaccine-hesitancy-counseling";
 import goalsOfCareMedicallyComplexChild from "./goals-of-care-medically-complex-child";
+import discussingRelapsedSarcoma from "./discussing-relapsed-sarcoma-and-limited-curative-options";
+import goalsOfCareRespiratoryFailure from "./goals-of-care-discussion-in-progressive-respiratory-failure";
+import disclosingMetastaticDisease from "./disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary";
 
 const rawExamples: ExampleCase[] = [
+  discussingRelapsedSarcoma,
+  goalsOfCareRespiratoryFailure,
+  disclosingMetastaticDisease,
   hoursInTheHallway,
   addressingHydroxyureaNonadherenceAndMedicalMistrust,
   deliveringANewLeukemiaDiagnosisToAFamilyInTheEmergencyDepartment,

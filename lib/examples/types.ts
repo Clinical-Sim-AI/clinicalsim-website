@@ -47,4 +47,6 @@ export interface ExampleCase {
   transcript: ExampleTranscriptTurn[];
   /** The static recording. */
   audio: { src: string; durationSeconds: number | null };
+  /** Context about an incomplete recording, shown beside the audio player. */
+  recordingNote?: string;
 }
