@@ -6,20 +6,20 @@ import deliveringANewLeukemiaDiagnosisToAFamilyInTheEmergencyDepartment from "./
 import informedConsentDiscussionForCentralVenousCatheterPlacementInThePicu from "./informed-consent-discussion-for-central-venous-catheter-placement-in-the-picu";
 import pediatricVaccineHesitancyCounseling from "./pediatric-vaccine-hesitancy-counseling";
 import goalsOfCareMedicallyComplexChild from "./goals-of-care-medically-complex-child";
-import discussingRelapsedSarcoma from "./discussing-relapsed-sarcoma-and-limited-curative-options";
-import goalsOfCareRespiratoryFailure from "./goals-of-care-discussion-in-progressive-respiratory-failure";
-import disclosingMetastaticDisease from "./disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary";
+import goalsOfCareProgressiveOsteosarcoma from "./goals-of-care-progressive-osteosarcoma";
+import goalsOfCareChildhoodBrainTumor from "./goals-of-care-childhood-brain-tumor";
+import goalsOfCareSevereNeurologicInjury from "./goals-of-care-severe-neurologic-injury";
 
 const rawExamples: ExampleCase[] = [
-  discussingRelapsedSarcoma,
-  goalsOfCareRespiratoryFailure,
-  disclosingMetastaticDisease,
+  goalsOfCareChildhoodBrainTumor,
+  goalsOfCareSevereNeurologicInjury,
+  goalsOfCareMedicallyComplexChild,
+  goalsOfCareProgressiveOsteosarcoma,
   hoursInTheHallway,
   addressingHydroxyureaNonadherenceAndMedicalMistrust,
   deliveringANewLeukemiaDiagnosisToAFamilyInTheEmergencyDepartment,
   informedConsentDiscussionForCentralVenousCatheterPlacementInThePicu,
   pediatricVaccineHesitancyCounseling,
-  goalsOfCareMedicallyComplexChild,
 ];
 
 // Separate ACGME milestone rubric sections remain excluded from public examples.
