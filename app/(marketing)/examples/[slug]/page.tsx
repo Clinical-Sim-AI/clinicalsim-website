@@ -19,6 +19,8 @@ import { PRIMARY_CTA } from "@/lib/positioning"
 type Props = { params: Promise<{ slug: string }> }
 
 const exampleDescriptions: Record<string, string> = {
+  "disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary":
+    "Review an adult oncology conversation about unexpected metastatic disease and involving a family member, with the recording, transcript, and SPIKES and NURSE feedback.",
   "goals-of-care-progressive-osteosarcoma":
     "Review a family conversation about progressive osteosarcoma, comfort, and including a child in decisions, with the recording, transcript, and REMAP feedback.",
   "goals-of-care-childhood-brain-tumor":

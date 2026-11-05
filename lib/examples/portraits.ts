@@ -1,5 +1,9 @@
 /** Local snapshots of the case portraits, independent of staging storage. */
 export const examplePortraits: Record<string, { src: string; name: string }> = {
+  "disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary": {
+    src: "/examples/disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary/portrait-efa995b5.webp",
+    name: "Dennis Boyd",
+  },
   "goals-of-care-progressive-osteosarcoma": {
     src: "/examples/goals-of-care-progressive-osteosarcoma/portrait.webp",
     name: "Ravi Patel",

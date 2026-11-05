@@ -10,7 +10,8 @@ describe("public example catalog", () => {
     ["goals-of-care-progressive-osteosarcoma", "a6239062-fc26-4468-b15f-ac4fdbfcc9a2", "2026-09-17", 484, "REMAP", 15, 25],
     ["goals-of-care-childhood-brain-tumor", "4ddfe2a0-abe3-461a-918e-3fb80ad0b4db", "2026-09-17", 520, "REMAP", 19, 25],
     ["goals-of-care-severe-neurologic-injury", "f3f25981-55e4-4fe1-bd7c-2de81e8194a7", "2026-06-17", 421, "KEECC", 22, 35],
-  ] as const)("publishes the requested staging run for %s with its saved score and assets", (slug, conversationId, date, duration, framework, total, max) => {
+    ["disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary", "efa995b5-8427-4486-8cca-d3017480b2b1", "2026-11-04", 586, "SPIKES", 20, 30],
+  ] as const)("publishes the selected run for %s with its saved score and assets", (slug, conversationId, date, duration, framework, total, max) => {
     const example = getExampleBySlug(slug)!;
     expect(example.conversationId).toBe(conversationId);
     expect(example.recordedAt).toContain(date);
