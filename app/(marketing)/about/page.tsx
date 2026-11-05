@@ -253,6 +253,51 @@ export default function AboutPage() {
         </>
       )}
 
+      <section aria-labelledby="recognition" className="px-6 py-12 bg-cs-cloud">
+        <div className="max-w-3xl mx-auto">
+          <h2 id="recognition" className="text-3xl font-light text-cs-navy mb-6">Recognition</h2>
+          <h3 className="text-xl md:text-2xl font-medium text-cs-dark-blue mb-4">
+            Selected for Loyola&apos;s 2026 Health Equity Quest
+          </h3>
+          <div className="space-y-4 text-lg text-cs-dark-blue/85 font-light leading-relaxed">
+            <p>
+              ClinicalSim was selected for the AI for Health Equity by Design workshop, part of{" "}
+              <a
+                href="https://www.luc.edu/parkinson/innovationchallenge/"
+                className="text-cs-dark-blue font-medium underline decoration-cs-dark-blue/30 hover:decoration-cs-dark-blue underline-offset-4 transition-colors"
+              >
+                Loyola University Chicago&apos;s 2026 Health Equity Quest
+              </a>
+              , organized by the Parkinson School of Health Sciences and Public Health in collaboration with MATTER.
+            </p>
+            <p>
+              Co-founder and CEO Ben Conway attended the workshop in Chicago on November 4, 2026.
+            </p>
+          </div>
+          {/* Official organizer logos from Loyola's 2026 Health Equity Quest page. */}
+          <div className="mt-8 rounded-xl border border-cs-gray/50 bg-white p-6">
+            <p className="mb-5 text-sm font-medium text-cs-dark-blue/70">Workshop organizers</p>
+            <div className="grid grid-cols-[1.5fr_1fr] items-center gap-6 sm:gap-12">
+              <Image
+                src="/recognition/loyola-health-equity-quest/loyola.svg"
+                alt="Loyola University Chicago"
+                width={482}
+                height={103}
+                className="h-auto w-full max-w-[280px]"
+              />
+              <Image
+                src="/recognition/loyola-health-equity-quest/matter.png"
+                alt="MATTER"
+                width={836}
+                height={404}
+                sizes="128px"
+                className="h-auto w-full max-w-[128px] justify-self-center"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* What ClinicalSim is */}
       <section className="px-6 py-16 md:py-20 bg-white">
         <div className="max-w-3xl mx-auto">

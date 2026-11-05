@@ -15,7 +15,8 @@ export const PAGE_DATE_MODIFIED = {
   nursing: "2026-11-02",
   // Introduction and mission shortened; product sections combined.
   // Category line became "clinical communication intelligence" (2026-10-06).
-  about: "2026-11-02",
+  // Added Loyola Health Equity Quest workshop selection and attendance.
+  about: "2026-11-05",
   // Added the nursing leadership audience to the listing (2026-10-14).
   audiences: "2026-11-02",
   // New category page (2026-10-06).
