@@ -974,7 +974,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     ],
     relatedLinks: [
       { href: "/insights/osce-case-design-guide", label: "Designing OSCE cases that hold up" },
-      { href: "/solutions/undergraduate-medical-education", label: "OSCE practice across four years of medical school" },
+      { href: "/solutions/osce-preparation", label: "AI OSCE prep for medical schools" },
       { href: "/compare/ai-clinical-simulation-vs-standardized-patients", label: "AI patients and standardized patients compared" },
     ],
     lastUpdated: "2026-09-02",
@@ -1309,6 +1309,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     ],
     relatedLinks: [
       { href: "/insights/breaking-bad-news-practice-not-knowledge", label: "Breaking bad news is a practice problem, not a knowledge problem" },
+      { href: "/solutions/breaking-bad-news", label: "Breaking bad news practice with AI patients" },
       { href: "/examples", label: "See example AI patient encounters" },
     ],
     lastUpdated: "2026-08-18",

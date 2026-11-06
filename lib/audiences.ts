@@ -480,7 +480,7 @@ const audiences: Audience[] = [
     valueProps: [
       {
         title: "Extend, don't replace",
-        href: "/solutions/undergraduate-medical-education#osce-practice",
+        href: "/solutions/osce-preparation",
         description:
           "ClinicalSim adds repeatable practice between scheduled SP encounters. Your SP program keeps the live coaching and high-stakes assessments that require human presence.",
       },
@@ -768,7 +768,7 @@ const audiences: Audience[] = [
       },
       {
         title: "Practice between SP encounters",
-        href: "/solutions/undergraduate-medical-education#osce-practice",
+        href: "/solutions/osce-preparation",
         description:
           "ClinicalSim adds voice-based practice between scheduled standardized patient sessions and OSCEs. Live coaching and assessment stay with people.",
       },

@@ -12,7 +12,8 @@
  */
 export const PAGE_DATE_MODIFIED = {
   videos: "2026-11-02",
-  nursing: "2026-11-02",
+  // Rebuilt around voice AI practice for nurses (2026-11-06).
+  nursing: "2026-11-06",
   // Introduction and mission shortened; product sections combined.
   // Category line became "clinical communication intelligence" (2026-10-06).
   about: "2026-11-02",
@@ -48,7 +49,8 @@ export const PAGE_DATE_MODIFIED = {
   home: "2026-10-20",
   // Added nursing leadership to the roles list (2026-10-14).
   // Linked the patient understanding and handoff use cases (2026-10-20).
-  healthSystems: "2026-11-02",
+  // Rebuilt as its own page with the conversation grid, rollout steps, and FAQs (2026-11-06).
+  healthSystems: "2026-11-06",
   // New-cohort and wider-engagement answers added (2026-10-20).
   medicalEducation: "2026-11-02",
   // Added the communication remediation plan article to the listing.
@@ -62,7 +64,8 @@ export const PAGE_DATE_MODIFIED = {
   privacy: "2026-03-16",
   research: "2026-09-03",
   // Patient understanding and handoffs use cases added (2026-10-20).
-  solutions: "2026-10-20",
+  // Breaking bad news and OSCE preparation added to the medical education group (2026-11-06).
+  solutions: "2026-11-06",
   // Same 2026-09-03 commit.
   trust: "2026-09-03",
 } as const

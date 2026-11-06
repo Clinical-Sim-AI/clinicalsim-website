@@ -132,6 +132,8 @@ describe("market positioning", () => {
           "longitudinal-curriculum",
           "undergraduate-medical-education",
           "faculty-development",
+          "breaking-bad-news",
+          "osce-preparation",
         ],
       },
     ])

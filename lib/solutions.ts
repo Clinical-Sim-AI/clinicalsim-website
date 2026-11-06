@@ -3,12 +3,17 @@ import type { Market } from "@/lib/positioning"
 import type { PostSlug } from "@/lib/posts"
 import { COHORT_REPORT_PATH, COHORT_REPORT_TITLE } from "@/lib/cohort-report"
 import { NURSING_BRIEF_PATH } from "@/lib/nursing-turnover-brief"
+import type { ContentSection } from "@/lib/content-sections"
+import type { PageReview } from "@/lib/review-schema"
+import type { Citation } from "@/lib/types"
 
 export interface SolutionStage {
   /** Short label for the stage, e.g. "PGY-1", "M1/M2", "Giving feedback". Optional; no badge renders without one. */
   label?: string
   title: string
   description: string
+  /** Optional link under the stage description, for a stage that has its own page. */
+  link?: { label: string; href: string }
 }
 
 /** A gated or downloadable resource, shown as a card above the closing CTA. */
@@ -76,6 +81,8 @@ export type SolutionSlug =
   | "longitudinal-curriculum"
   | "undergraduate-medical-education"
   | "faculty-development"
+  | "breaking-bad-news"
+  | "osce-preparation"
   | "patient-experience"
   | "debriefing"
   | "informed-consent"
@@ -174,6 +181,31 @@ export interface Solution {
    * retention on 2026-10-11, where the hero and FAQ already state the turnover limit in the copy.
    */
   omitClaimBoundary?: boolean
+
+  /**
+   * A real sequence of steps. Renders as a visible numbered list under an H2 (after the stages,
+   * before `sections`) and emits HowTo JSON-LD. Each step's name and text must read as written
+   * on the page; components/solution-page-layout.test.tsx checks they render verbatim.
+   */
+  howToSteps?: { name: string; text: string }[]
+  /** H2 over the HowTo list. Defaults to "How to practice <shortTitle>". */
+  howToHeading?: string
+
+  /**
+   * Structured content blocks (prose, lists, tables, cards, report excerpts, case tables) from
+   * lib/content-sections.ts. Render after the HowTo list and before the value props and FAQs.
+   */
+  sections?: ContentSection[]
+
+  /**
+   * A named clinician's review of the page. Renders "Medically reviewed by" in the hero and adds
+   * `reviewedBy` and `lastReviewed` to the WebPage node. A factual claim about what that person
+   * did: never set it without their confirmation (see Authorship in CLAUDE.md).
+   */
+  reviewedBy?: PageReview
+
+  /** Sources cited on the page. Render as a references list after the FAQs and as WebPage `citation`. */
+  citations?: Citation[]
 
   faqs?: SolutionFaq[]
   relatedPostSlugs?: PostSlug[]
@@ -329,6 +361,7 @@ const solutions: Solution[] = [
           "No. ClinicalSim scores each practice conversation against the rubric on the case and quotes the learner's words under every score, so a faculty member arrives at coaching knowing which element needs attention. A faculty mentor observing a real family meeting provides human judgment that ClinicalSim does not replace.",
       },
     ],
+    relatedSolutionSlugs: ["breaking-bad-news", "osce-preparation"],
     relatedPostSlugs: [
       "what-programs-lost-when-step-2-cs-disappeared",
       "breaking-bad-news-practice-not-knowledge",
@@ -353,6 +386,7 @@ const solutions: Solution[] = [
   // -------------------------------------------------------------------------
   // Undergraduate Medical Education (UME)
   // -------------------------------------------------------------------------
+  // <solution:undergraduate-medical-education>
   {
     slug: "undergraduate-medical-education",
     market: "medical-education",
@@ -362,32 +396,27 @@ const solutions: Solution[] = [
     subtitle: "From history-taking to delivering a diagnosis, across four years",
     icon: "student",
     colorVariant: "blue",
-    lastUpdated: "2026-11-02",
+    lastUpdated: "2026-11-06",
     cardBullets: [
       "A four-year arc from M1 history-taking to M4 diagnosis disclosure",
-      "OSCE practice on demand between scheduled SP encounters",
+      "Spoken practice between scheduled SP encounters",
       "A dashboard that follows students through clerkships",
     ],
-    metaTitle: "OSCE practice for medical students (UME)",
+    metaTitle: "Communication skills for medical students",
     metaDescription:
-      "Give medical students virtual OSCE practice between scheduled standardized patient encounters, sequenced across four years from the first history through diagnosis disclosure.",
+      "Medical students practice clinical conversations with AI patients across four years, from the first patient history through diagnosis disclosure, mapped to the AAMC Foundational Competencies.",
     heroHeadline: "Build communication skills alongside clinical knowledge",
     heroDescription:
-      "Sequence practice from the first patient history through diagnosis disclosure and clerkship conversations, including the communication stations students meet in an OSCE. Each conversation is scored against the communication framework named on the case and recorded against the AAMC Foundational Competencies.",
+      "Sequence practice from the first patient history through diagnosis disclosure and clerkship conversations. Each conversation is scored against the communication framework named on the case and recorded against the AAMC Foundational Competencies.",
     context: {
       id: "osce-practice",
       heading: "OSCE communication practice between SP encounters",
       paragraphs: [
-        "A student opens a practice case and speaks with an AI patient by voice. They can rehearse taking a focused history, explaining a care plan, or responding to a family's questions, then review feedback and try again before the next scheduled station.",
-        "Each attempt uses the rubric named on the case, with transcript evidence behind each score. The report shows what the student did well and what to practice next. A school can supply its own checklist, keeping its element names and definitions. Faculty and ClinicalSim review which spoken behaviors the case can assess and agree on the scoring standard before students begin.",
-        "Students can repeat practice without booking an actor, room, or faculty observer for each attempt. Faculty and OSCE directors can review completion, repeated attempts, and transcript-linked feedback under institution-defined access rules, then choose a focus for coaching.",
-        "Use these encounters for preparation between SP sessions. Standardized patients and faculty keep the graded OSCE and summative assessment. Spoken practice cannot assess physical examination, eye contact, body language, or other behaviors that require in-person observation. Practice scores are formative, and they do not establish OSCE readiness or predict a passing result.",
+        "Students can rehearse OSCE communication stations out loud with AI patients between scheduled SP encounters, then review transcript-linked feedback and try again.",
+        "Standardized patients and faculty keep the graded OSCE, and practice scores stay formative.",
       ],
       links: [
-        { label: "Compare AI practice and standardized patient encounters", href: "/compare/ai-clinical-simulation-vs-standardized-patients" },
-        { label: "How institution-supplied rubrics work", href: "/frameworks" },
-        { label: "Inspect a diagnosis disclosure case scored with SPIKES", href: "/examples/delivering-a-new-leukemia-diagnosis-to-a-family-in-the-emergency-department" },
-        { label: "Inspect a vaccine counseling case and feedback", href: "/examples/pediatric-vaccine-hesitancy-counseling" },
+        { label: "How students prepare for OSCE communication stations with AI patients", href: "/solutions/osce-preparation" },
       ],
     },
     stagesHeading: "A four-year progression",
@@ -411,41 +440,25 @@ const solutions: Solution[] = [
         title: "Delivering a new diagnosis",
         description:
           "Disclosing a serious new diagnosis with structure (SPIKES), responding to emotion, and outlining next steps clearly.",
+        link: { label: "Breaking bad news practice for M4 students", href: "/solutions/breaking-bad-news" },
       },
     ],
     valuePropsHeading: "One record across four years",
     valueProps: UME_VALUE_PROPS,
     faqs: [
       {
-        question: "Can a student repeat an OSCE practice station?",
-        answer: "Students can repeat a practice case and review transcript-linked feedback between attempts. ClinicalSim adds spoken preparation between scheduled SP encounters without requiring an actor, room, or faculty observer for every attempt.",
-      },
-      {
-        question: "Can we use our own OSCE checklist?",
-        answer: "Yes. Supply your school's checklist with its element names and definitions, as described on ClinicalSim's frameworks page. Faculty and ClinicalSim review which items a spoken case gives the student a chance to show, then agree on the case standard before practice starts. Physical examination and nonverbal items need another assessment method. Faculty-rater validation on a customer's own rubric has not been completed, so practice scores remain formative.",
-      },
-      {
-        question: "Does this replace standardized patients or the graded OSCE?",
-        answer: "ClinicalSim extends your SP program. Students use AI patients for repeatable spoken practice, while standardized patients and faculty keep live coaching, graded OSCEs, and summative assessment. A practice score does not establish readiness for a high-stakes decision.",
-      },
-      {
-        question: "What do students need for OSCE practice?",
-        answer: "ClinicalSim runs in a browser on a phone, tablet, or computer. Students need internet access, microphone access, and a place where they can speak privately. Nothing needs installing, and institutional IT may need to allow the voice service. Practice is in English.",
-      },
-      {
         question: "How does this fit a four-year UME curriculum?",
         answer:
           "Scenarios are sequenced so communication complexity rises with clinical knowledge, beginning with structured history-taking in the preclinical years and progressing to diagnosis disclosure during clerkships. A longitudinal dashboard follows each student across all four years.",
       },
       {
-        question: "Can students use it to prepare for an OSCE?",
+        question: "Can a student repeat a practice case?",
         answer:
-          "Students get repeatable OSCE practice on demand between scheduled standardized patient encounters, rehearsing the communication tasks a station asks for: taking a focused history, explaining a diagnosis, and answering a family's questions. Each attempt is scored against the rubric written for the case, with the student's own words quoted under every score, so the student sees what worked and what to practice before the station counts. Scheduled SP encounters are limited by actor time, rooms, and faculty observers, so they can score a communication skill without giving a student the repetition needed to build one. Live assessment stays with faculty and the program. Extend your SP program, don't replace it.",
+          "Yes. A student can repeat a case and review transcript-linked feedback between attempts, so they can see what changed from one try to the next. Students can practice in private before sharing a report with a faculty member, coach, or the program.",
       },
       {
-        question: "What does a virtual OSCE station look like here?",
-        answer:
-          "A student opens a case, speaks with an AI patient by voice for about the length of a station, and gets a report scored against the rubric written for that case and the AAMC Foundational Competencies. The encounter is transcribed, so a student can read back what they actually said rather than what they remember saying, which is the part a hurried debrief after a real OSCE rarely reaches. Graded encounters stay with faculty.",
+        question: "What do students need to practice?",
+        answer: "ClinicalSim runs in a browser on a phone, tablet, or computer. Students need internet access, microphone access, and a place where they can speak privately. Nothing needs installing, and institutional IT may need to allow the voice service. Practice is in English.",
       },
     ],
     relatedPostSlugs: [
@@ -467,6 +480,7 @@ const solutions: Solution[] = [
     ctaDescription:
       "Review a four-year sequence from the first patient history through diagnosis disclosure.",
   },
+  // </solution:undergraduate-medical-education>
 
   // -------------------------------------------------------------------------
   // Faculty Development
@@ -548,6 +562,649 @@ const solutions: Solution[] = [
     ctaDescription:
       "Review cases for corrective feedback, professionalism concerns, and bedside teaching.",
   },
+
+  // -------------------------------------------------------------------------
+  // Breaking bad news
+  // -------------------------------------------------------------------------
+  // <solution:breaking-bad-news>
+  {
+    slug: "breaking-bad-news",
+    market: "medical-education",
+    category: "conversation",
+    title: "Breaking bad news",
+    shortTitle: "Breaking bad news",
+    subtitle: "Serious news practiced out loud before the first real family",
+    icon: "chat-exclamation",
+    colorVariant: "navy",
+    lastUpdated: "2026-11-06",
+    cardBullets: [
+      "Deliver serious news out loud to an AI patient or family",
+      "Scored against SPIKES, with the learner's words behind every score",
+      "Repeat the case in private, then review it with faculty",
+    ],
+    metaTitle: "Breaking bad news practice with AI patients",
+    metaDescription:
+      "Learners deliver serious news out loud to an AI patient or family, then get feedback scored against SPIKES or their program's rubric, with their own words quoted behind every score.",
+    heroHeadline: "Breaking bad news practice with AI patients",
+    heroDescription:
+      "Learners deliver a serious diagnosis out loud to an AI patient or family member, then get feedback scored against SPIKES or their program's own rubric. Every score quotes the learner's own words, so faculty can see what was said.",
+    relatedLinks: [
+      {
+        label: "See a breaking bad news conversation",
+        href: "/examples/delivering-a-new-leukemia-diagnosis-to-a-family-in-the-emergency-department",
+      },
+    ],
+    context: {
+      id: "why-say-it-out-loud",
+      heading: "Why learners need to say it out loud before the first real time",
+      paragraphs: [
+        "A learner can know every step of SPIKES and still lose the thread when a parent starts crying. Lectures and pocket cards teach the protocol, but they don't give anyone practice saying the words.",
+        "Standardized patient sessions help, and they stay part of the training. Actor time, rooms, and faculty observers limit how often each learner can practice, so a learner may reach the first real family with few repetitions behind them.",
+        "Learners add those repetitions with AI patients between sessions. Extend your SP program, don't replace it.",
+      ],
+      links: [
+        {
+          label: "Why breaking bad news is a practice problem, not a knowledge problem",
+          href: "/insights/breaking-bad-news-practice-not-knowledge",
+        },
+        {
+          label: "Why standardized patient programs run out of capacity",
+          href: "/insights/why-standardized-patient-programs-run-out-of-capacity",
+        },
+      ],
+    },
+    howToHeading: "How a ClinicalSim breaking bad news case works",
+    howToSteps: [
+      {
+        name: "Choose the case",
+        text: "The program picks or approves a case, including who the patient is, what the news is, and who is in the room.",
+      },
+      {
+        name: "Talk to the AI patient",
+        text: "The learner opens the case in a browser and speaks out loud to the AI patient or family member.",
+      },
+      {
+        name: "Respond to what happens",
+        text: "The patient or family member answers in character, with questions, emotion, and silence, so the learner has to adjust as the conversation moves.",
+      },
+      {
+        name: "Read the report",
+        text: "The learner gets a report with strengths, next steps, and a score for each framework step, each one backed by quoted lines from the transcript.",
+      },
+      {
+        name: "Repeat and review",
+        text: "The learner runs the case again, and faculty review the attempts with the learner and choose the next focus.",
+      },
+    ],
+    sections: [
+      {
+        type: "table",
+        id: "frameworks",
+        heading: "Scored against the frameworks your faculty already teach",
+        intro:
+          "Each case names the framework it is scored against. The published frameworks are the floor: programs can add their own rubric, and it gets its own score.",
+        columns: ["Framework", "What it covers", "What the report shows"],
+        rows: [
+          [
+            "SPIKES (Baile et al., 2000)",
+            "Setting, perception, invitation, knowledge, emotion, and strategy and summary",
+            "A score for each step with the learner's words behind it, or a note that the step was missing",
+          ],
+          [
+            "NURSE (VitalTalk)",
+            "Naming, understanding, respecting, supporting, and exploring emotion",
+            "Which of the five responses the learner used and where, with their words quoted. NURSE responses are reported, not scored.",
+          ],
+          [
+            "Ask, tell, ask, and teach back",
+            "Checking understanding in small pieces",
+            "Whether the learner checked what the patient or family heard",
+          ],
+          [
+            "Your program's rubric",
+            "Whatever your faculty use",
+            "A separate score, kept apart from the published frameworks",
+          ],
+        ],
+        links: [
+          { label: "How cases are built and scored", href: "/methodology" },
+          { label: "Every framework a case can be scored against", href: "/frameworks" },
+        ],
+      },
+      {
+        type: "cards",
+        id: "examples",
+        heading: "See a full breaking bad news conversation",
+        intro:
+          "Two published examples include the recording, the full transcript, and the feedback report, with no sign-in.",
+        cards: [
+          {
+            title: "Delivering a new leukemia diagnosis to a family in the emergency department",
+            description:
+              "A pediatric hematology-oncology fellow tells a mother that her son's blood work points to leukemia. The report scores each SPIKES step.",
+            href: "/examples/delivering-a-new-leukemia-diagnosis-to-a-family-in-the-emergency-department",
+            linkLabel: "See the leukemia diagnosis conversation",
+          },
+          {
+            title: "Disclosing an incidental finding of metastatic disease with no known primary",
+            description:
+              "A primary care physician tells a patient who came in about back pain that his MRI shows metastatic disease. The report scores SPIKES and shows the physician's NURSE responses.",
+            href: "/examples/disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary",
+            linkLabel: "See the metastatic disease conversation",
+          },
+        ],
+      },
+      {
+        type: "report-excerpt",
+        id: "report-excerpt",
+        heading: "One SPIKES step from a published report",
+        intro:
+          "In the leukemia example, the report scored step P, assessing perception, at 5 out of 5 (Excellent). This is the line it quoted as evidence.",
+        quote:
+          "before I share with you a bit about what I know now, I would love to hear a bit about what you've been seeing and what you understand.",
+        source: {
+          exampleSlug: "delivering-a-new-leukemia-diagnosis-to-a-family-in-the-emergency-department",
+          label: "Delivering a new leukemia diagnosis to a family in the emergency department",
+        },
+        note: "The same report gave the fellow a next step for the invitation step: ask how much detail the mother wanted before sharing the diagnosis.",
+      },
+      {
+        type: "cases",
+        id: "cases",
+        heading: "Serious news cases in the ClinicalSim catalog",
+        intro:
+          "These cases are grouped by the conversation, not the specialty. A program can also ask for a case written for its own specialty, and physicians review every case before release.",
+        columns: ["Conversation", "Case", "Who the learner talks to"],
+        rows: [
+          [
+            "New diagnosis",
+            "Delivering Serious News: New Diagnosis of Likely Leukemia (Pediatric)",
+            "A mother who has been told only that the blood work is abnormal",
+          ],
+          [
+            "New diagnosis",
+            "New Leukemia Diagnosis Disclosure: PEM",
+            "A mother in a consultation room off the emergency department",
+          ],
+          [
+            "New diagnosis",
+            "New Diagnosis: Delivering Serious News Adult EM",
+            "The wife of a patient whose CT is highly concerning for metastatic pancreatic cancer",
+          ],
+          [
+            "New diagnosis",
+            "Disclosing an Incidental Finding of Metastatic Disease With No Known Primary",
+            "A patient who came alone to a back pain appointment",
+          ],
+          [
+            "New diagnosis",
+            "New Diagnosis of Type 1 Diabetes: Serious-News Delivery and Guilt Correction",
+            "A mother who worries she caused her son's diagnosis",
+          ],
+          [
+            "New diagnosis",
+            "Counseling a New Diagnosis of Dilated Cardiomyopathy in an Adolescent: Navigating Medical Distrust and Treatment Refusal",
+            "A mother who distrusts the medical system",
+          ],
+          [
+            "New diagnosis",
+            "Disclosing a Bone Lesion Found After a Soccer Injury",
+            "A father whose son came in with a sports injury",
+          ],
+          [
+            "Prognosis and relapse",
+            "Discussing Relapsed Sarcoma and Limited Curative Options",
+            "A father who expected to talk about the next round of chemotherapy",
+          ],
+          [
+            "Prognosis and relapse",
+            "Grade IV IVH Prognostic Counseling",
+            "The father of a premature infant in the NICU",
+          ],
+          [
+            "Prognosis and relapse",
+            "Fetal Counseling for Aortic Stenosis With Dilated Left Ventricle: Uncertain Prognosis",
+            "A pregnant patient at her first fetal cardiology visit, alone",
+          ],
+          [
+            "Prognosis and relapse",
+            "Pediatric Polytrauma: Urgent Family Meeting: PEM",
+            "A father who knows only that his son was in a car accident",
+          ],
+          [
+            "Death notification",
+            "SUID Death Notification & Bereavement: PEM",
+            "A mother who has been told only that the team is still working",
+          ],
+        ],
+        catalogHref: "https://platform.clinicalsim.ai/catalog",
+        catalogLabel: "Browse the full catalog",
+      },
+      {
+        type: "cards",
+        id: "curriculum",
+        heading: "Where it fits in your curriculum",
+        cards: [
+          {
+            title: "Medical school",
+            description:
+              "M4 diagnosis disclosure, OSCE stations, and clerkship preparation, with each student's words quoted under every score.",
+            href: "/solutions/undergraduate-medical-education",
+            linkLabel: "Undergraduate medical education",
+          },
+          {
+            title: "Residency and fellowship",
+            description:
+              "Repeated practice across PGY years in oncology, pediatrics, critical care, emergency medicine, and palliative care.",
+            href: "/solutions/longitudinal-curriculum",
+            linkLabel: "Longitudinal residency curriculum",
+          },
+          {
+            title: "Remediation",
+            description:
+              "Targeted cases for a learner's practice plan. Faculty and the clinical competency committee keep decision authority.",
+            href: "/solutions/remediation",
+            linkLabel: "Communication remediation",
+          },
+          {
+            title: "Related conversations",
+            description:
+              "Disclosing a medical error and leading a goals of care conversation use the same practice and feedback loop.",
+            href: "/solutions/error-disclosure",
+            linkLabel: "Error disclosure practice",
+          },
+        ],
+        links: [
+          { label: "OSCE preparation with AI patients", href: "/solutions/osce-preparation" },
+          {
+            label: "Goals of care example: a childhood brain tumor",
+            href: "/examples/goals-of-care-childhood-brain-tumor",
+          },
+        ],
+      },
+      {
+        type: "list",
+        id: "what-faculty-see",
+        heading: "What faculty see",
+        ordered: false,
+        items: [
+          "Each learner's attempts, the score for each framework step, and the transcript lines behind it.",
+          "Participation and repeated practice across the cohort.",
+          "Access roles the institution sets before launch, so learners know who will see a report.",
+        ],
+      },
+      {
+        type: "list",
+        id: "limits",
+        heading: "What ClinicalSim doesn't do",
+        ordered: false,
+        items: [
+          "Practice is simulated. ClinicalSim doesn't record or monitor real patient encounters.",
+          "Feedback is formative. It isn't for credentialing, licensure, or other high-stakes decisions.",
+          "Scores come from the transcript of what the learner said. Tone of voice isn't scored.",
+          "Practice with AI patients extends SP programs and VitalTalk-style workshops. It doesn't replace them.",
+          "Practice is audio only and in English for now.",
+        ],
+        links: [
+          { label: "The evidence behind communication practice", href: "/evidence" },
+          { label: "Research and study status", href: "/research" },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can learners practice breaking bad news by talking out loud to an AI patient?",
+        answer:
+          "Yes. Learners open a serious news case in a browser and speak to an AI patient or family member, who answers in character. Afterward they get a report with strengths, next steps, and a score for each framework step, each one backed by their own quoted words. They can then run the case again and compare attempts.",
+      },
+      {
+        question: "Which frameworks are used to score breaking bad news?",
+        answer:
+          "Each case names its framework. Both published serious news examples are scored against SPIKES (Baile et al., The Oncologist, 2000), and one also reports NURSE, which shows the responses to emotion a learner used without scoring them. Programs can add ask, tell, ask and teach back, or their own rubric, and each one is reported separately.",
+      },
+      {
+        question: "Does the AI patient show emotion?",
+        answer:
+          "Yes. The AI patient or family member responds in character, with the questions, fear, grief, and silence written into the case. In the leukemia example, the mother asks for a moment and asks whether her son will die. The learner has to respond to what happens rather than follow a script, and the report scores what the learner said.",
+      },
+      {
+        question: "Does ClinicalSim score tone of voice?",
+        answer:
+          "No. Scores come from the transcript of what the learner said, and every score quotes the words behind it. Because the learner speaks in real time, pacing, silence, and word choice still shape how the conversation goes. Eye contact, body language, and physical presence stay with standardized patient sessions and faculty observation.",
+      },
+      {
+        question: "Can we build cases for our own specialty?",
+        answer:
+          "Yes. A program can ask for a serious news case written for its own specialty, learners, and setting. Physicians review each case for accuracy and fit before release, and the program agrees on the case and its scoring standard before learners start. The catalog already covers emergency medicine, oncology, neonatology, cardiology, and general pediatrics.",
+      },
+      {
+        question: "How does this fit with standardized patients and VitalTalk training?",
+        answer:
+          "It gives learners more repetitions between those sessions. Standardized patients and faculty-led workshops keep live coaching and summative assessment. With AI patients, a learner can rehearse the same serious news conversation again in a browser and bring a report to the next workshop or SP session. Extend your SP program, don't replace it.",
+      },
+      {
+        question: "Who sees a learner's results?",
+        answer:
+          "The access roles your institution sets before launch decide who sees each report. Learners can repeat a case in private before sharing the report with a faculty member, coach, or program. Faculty with access review attempts, scores, and the transcript lines behind them. Practice scores are formative and should not be used for credentialing or employment decisions.",
+      },
+      {
+        question: "What do learners need to practice breaking bad news?",
+        answer:
+          "A browser, a microphone, internet access, and a private place to talk. Cases run on a phone, tablet, or computer with nothing to install, though institutional IT may need to allow the voice service. Practice is in English for now. Learners can run a case at home, in a call room, or anywhere else they can speak without being overheard.",
+      },
+      {
+        question: "Is there evidence that this kind of practice works?",
+        answer:
+          "Studies of ClinicalSim are underway at partner institutions, and their outcomes publish only after the study owners confirm the record in writing. Until then this page makes no outcome claim. The evidence page explains what supports spoken practice with feedback, and the research page shows what has been presented so far.",
+      },
+    ],
+    citations: [
+      {
+        authors: "Baile WF, Buckman R, Lenzi R, Glober G, Beale EA, Kudelka AP",
+        title: "SPIKES: a six-step protocol for delivering bad news: application to the patient with cancer",
+        source: "The Oncologist, 5(4), 302-311",
+        year: "2000",
+        doi: "10.1634/theoncologist.5-4-302",
+      },
+    ],
+    relatedPostSlugs: [
+      "breaking-bad-news-practice-not-knowledge",
+      "why-standardized-patient-programs-run-out-of-capacity",
+    ],
+    relatedSolutionSlugs: [
+      "undergraduate-medical-education",
+      "longitudinal-curriculum",
+      "osce-preparation",
+      "error-disclosure",
+      "remediation",
+    ],
+    glossarySlugs: ["spikes-protocol", "ask-tell-ask", "teach-back-method", "high-stakes-conversations"],
+    // Framework owners named on the page: SPIKES (Baile et al.) and NURSE (VitalTalk). No
+    // accreditor in NON_ENDORSEMENT_TRIGGERS is named here.
+    nonEndorsementOrgs: ["VitalTalk", "the authors of SPIKES"],
+    claimBoundary: {
+      formative: true,
+      raterValidation: true,
+      noOutcomePrediction: true,
+      noEmploymentUse: true,
+      note: "The scores describe a simulated conversation. This page makes no claim that practice changes how a learner delivers serious news to a real patient or family, or how that family experiences it.",
+    },
+    leadershipQuestion:
+      "Where does a learner in your program first deliver serious news out loud?",
+    ctaHeadline: "See a serious news case run end to end",
+    ctaDescription:
+      "We'll walk through a case, the framework it is scored against, and the report a learner sees after each attempt.",
+  },
+  // </solution:breaking-bad-news>
+
+  // -------------------------------------------------------------------------
+  // OSCE preparation
+  // -------------------------------------------------------------------------
+  // <solution:osce-preparation>
+  {
+    slug: "osce-preparation",
+    market: "medical-education",
+    category: "program",
+    title: "OSCE preparation",
+    shortTitle: "OSCE preparation",
+    subtitle: "Spoken practice for OSCE communication stations",
+    icon: "ribbon-check",
+    colorVariant: "light-blue",
+    lastUpdated: "2026-11-06",
+    cardBullets: [
+      "Rehearse OSCE communication stations out loud with AI patients",
+      "Feedback against a named framework or your school's own checklist",
+      "Students get the repetitions, and faculty keep the graded OSCE",
+    ],
+    metaTitle: "AI OSCE prep with AI standardized patients",
+    metaDescription:
+      "Medical students rehearse OSCE communication stations out loud with AI patients, any time, and get feedback scored against Calgary-Cambridge, SEGUE, or your own checklist.",
+    heroHeadline: "AI OSCE prep for medical schools",
+    heroDescription:
+      "Students rehearse OSCE communication stations out loud with an AI patient, as often as they need, between scheduled SP encounters. Each score quotes the student's own words or notes what was missing, so faculty can coach to what was said.",
+    context: {
+      id: "why-students-reach-the-osce-underpracticed",
+      heading: "Why students reach the OSCE underpracticed",
+      paragraphs: [
+        "A standardized patient session needs a trained actor, a room, and often a faculty observer, so a student gets only a few tries at each skill before the OSCE. That is enough to assess a communication skill, but it rarely gives a student the repetition needed to build one.",
+        "In the US, Step 2 CS ended and no national exam replaced it, so each school now decides on its own how to assess clinical communication. Schools in the UK and elsewhere that run OSCE stations in English can use the same practice.",
+        "Some students practice with a general AI assistant instead. It can improvise replies, but it isn't written as a patient case with a history to uncover, it often runs as typed text, and it doesn't score the conversation against your checklist. Students here practice with AI patients built for spoken, scored conversations.",
+      ],
+      links: [
+        { label: "Why standardized patient programs run out of capacity", href: "/insights/why-standardized-patient-programs-run-out-of-capacity" },
+        { label: "What programs lost when Step 2 CS ended", href: "/insights/what-programs-lost-when-step-2-cs-disappeared" },
+      ],
+    },
+    howToHeading: "How OSCE practice works in ClinicalSim",
+    howToSteps: [
+      {
+        name: "Faculty choose the station.",
+        text: "Faculty pick a case from the catalog, or approve one built around the school's own checklist, before any student sees it.",
+      },
+      {
+        name: "The student opens it in a browser.",
+        text: "The student starts the station on a phone, tablet, or computer and talks with the AI patient out loud.",
+      },
+      {
+        name: "The AI patient answers in character.",
+        text: "The patient responds as the case is written and shares only what a real patient would share when asked, so the student has to draw out the history.",
+      },
+      {
+        name: "The student reads the report.",
+        text: "The report scores each checklist item or framework step and quotes the transcript lines behind each score, so the student sees what went well and what to practice next.",
+      },
+      {
+        name: "The student repeats the station.",
+        text: "The student runs the station again, and faculty see completion and repeated attempts across the cohort under the access rules the school sets.",
+      },
+    ],
+    sections: [
+      {
+        type: "cases",
+        id: "osce-stations",
+        heading: "OSCE stations students can rehearse",
+        intro:
+          "Each row pairs a common OSCE communication station with published frameworks a school can score it against, and cases already in the catalog. Each case names the framework it uses, and a school can swap in its own checklist.",
+        columns: ["Station", "Frameworks", "Cases in the catalog"],
+        rows: [
+          ["History taking", "Calgary-Cambridge, SEGUE, or Kalamazoo (KEECC-A)", "History-Taking Practice: Acute Abdominal Pain"],
+          ["Adolescent psychosocial history", "HEEADSSS", "Confidential Adolescent Psychosocial Interview; Confidential HEEADSSS Assessment With a Risky Teen"],
+          ["Explaining a diagnosis or plan", "Ask, tell, ask and teach back", "Limited English Proficiency Discharge Counseling After PICU Asthma Admission"],
+          ["Delivering serious news", "SPIKES, with NURSE responses reported", "New Diagnosis: Delivering Serious News Adult EM"],
+          ["Informed consent", "AMA consent elements", "Informed Consent for Laparoscopic Cholecystectomy; Why Does My Baby Need a Spinal Tap?"],
+          ["Counseling and behavior change", "SEGUE, or motivational interviewing (MITI)", "Pediatric Vaccine Hesitancy Counseling; But Antibiotics Always Help Him"],
+          ["Error disclosure", "AHRQ CANDOR", "Medication Error Disclosure Without Harm: Duplicate Ceftriaxone Dose"],
+          ["Your school's own checklist", "Your rubric", "Built with your faculty"],
+        ],
+        catalogHref: "https://platform.clinicalsim.ai/catalog",
+        catalogLabel: "Browse the full catalog",
+        links: [
+          { label: "Practice delivering serious news with AI patients", href: "/solutions/breaking-bad-news" },
+          { label: "Every framework and how scoring against one works", href: "/frameworks" },
+        ],
+      },
+      {
+        type: "list",
+        id: "scoring",
+        ordered: false,
+        heading: "Scoring students and faculty can check",
+        items: [
+          "Every score traces to a word-for-word line from the transcript, or to a note that the behavior did not occur.",
+          "Each communication framework and the school's own checklist are scored separately.",
+          "Each UME competency is recorded as demonstrated, partially demonstrated, or not demonstrated. Entrustment stays a program decision that this evidence informs.",
+          "Competencies map to the AAMC Foundational Competencies, as on the medical school page. A school outside the US can score against its own checklist instead.",
+        ],
+        links: [
+          { label: "How a conversation is scored, step by step", href: "/methodology" },
+          { label: "The four-year medical school sequence", href: "/solutions/undergraduate-medical-education" },
+        ],
+      },
+      {
+        type: "report-excerpt",
+        id: "scored-excerpt",
+        heading: "One scored line from an example report",
+        intro:
+          "In this vaccine hesitancy conversation, the learner, a pediatrics resident, scored 5 of 5 on the SEGUE task set \"Understand the patient's perspective.\" This is the first line the report quotes as evidence.",
+        quote: "I hear the worry, um, in your voice, and I also hear how important it is to protect Ava",
+        source: { exampleSlug: "pediatric-vaccine-hesitancy-counseling", label: "Pediatric vaccine hesitancy counseling" },
+        note: "The same report scores the close of the visit 2 of 5 and names what to add next time: a summary of the plan, return precautions, and a check for remaining questions.",
+        links: [{ label: "Browse more scored example conversations", href: "/examples" }],
+      },
+      {
+        type: "table",
+        id: "extend-your-sp-program",
+        heading: "Extend your SP program, don't replace it",
+        intro:
+          "ClinicalSim gives students repetitions between SP sessions. Your faculty and standardized patients keep the graded OSCE.",
+        caption: "SP sessions, general AI assistants, and ClinicalSim for OSCE practice",
+        columns: ["What students get", "SP session", "General AI assistant", "ClinicalSim"],
+        rows: [
+          ["Spoken conversation", "Yes, in person", "Often typed", "Yes"],
+          ["Available any time", "No, scheduled", "Yes", "Yes"],
+          ["Scored against a named framework", "By a faculty observer", "No", "Yes, with quoted evidence"],
+          ["Cohort view for faculty", "Manual", "No", "Yes"],
+          ["Runs the graded OSCE", "Yes", "No", "No, that stays with faculty"],
+        ],
+        links: [
+          { label: "Compare AI practice and standardized patient encounters", href: "/compare/ai-clinical-simulation-vs-standardized-patients" },
+        ],
+      },
+      {
+        type: "list",
+        id: "what-your-program-sees",
+        ordered: false,
+        heading: "What your program sees",
+        items: [
+          "Participation and repeated practice by cohort, with each piece of feedback linked to the transcript line behind it.",
+          "Access roles your institution sets before launch, so students know who can open a report.",
+          "A cohort-level comparison of first and later attempts, without ranking individual students.",
+          "Practice scores are formative. They do not establish OSCE readiness or predict a passing result.",
+        ],
+      },
+      {
+        type: "list",
+        id: "getting-started",
+        ordered: false,
+        heading: "Getting started",
+        items: [
+          "Start with one cohort and a few stations, and have faculty approve each case before students open it.",
+          "Students need a browser and a microphone on a phone, tablet, or computer. Nothing needs installing.",
+          "Practice is audio only and in English for now, so physical examination and nonverbal skills stay with live encounters.",
+          "Institutional IT may need to allow the voice service before the first session.",
+        ],
+        links: [
+          { label: "How the platform works for programs", href: "/clinical-communication-intelligence" },
+          { label: "Data handling, access roles, and product boundaries", href: "/trust" },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can AI standardized patients help students prepare for OSCEs?",
+        answer:
+          "Yes, for the communication stations. Students rehearse taking a history, explaining a plan, delivering serious news, or getting consent out loud with an AI patient, then review feedback that quotes their own words under each score. They can repeat a station between scheduled SP sessions as often as they need. Practice scores are formative and do not establish OSCE readiness or predict a pass.",
+      },
+      {
+        question: "How is this different from practicing an OSCE station with ChatGPT or Claude?",
+        answer:
+          "A general AI assistant can improvise a conversation, but it isn't built as a patient case. Here the AI patient follows a physician-authored case and shares history only when the student asks for it. The encounter is spoken, and the report scores it against your checklist or a named framework, with transcript evidence behind each score that faculty can review.",
+      },
+      {
+        question: "Does ClinicalSim replace standardized patients in OSCE prep?",
+        answer:
+          "No. It extends your SP program. Students use AI patients for the repetitions between scheduled SP sessions, while standardized patients and faculty keep live coaching, the graded OSCE, and summative assessment. Physical examination, eye contact, and body language still need an in-person encounter.",
+      },
+      {
+        question: "Can we upload our own OSCE checklist?",
+        answer:
+          "Yes. Your school supplies its checklist with its own element names and definitions. Faculty and our team then agree which items a spoken case lets the student show, and how each is scored, before practice starts. Physical exam and nonverbal items need another method. Faculty-rater validation on your own rubric hasn't been done, so scores stay formative.",
+      },
+      {
+        question: "Can ClinicalSim run the graded OSCE?",
+        answer:
+          "No. Its feedback is formative practice between SP sessions, and the graded OSCE stays with your faculty and standardized patients. A practice score doesn't establish OSCE readiness, predict a passing result, or settle a progression decision. Programs can use the reports to choose a coaching focus before the real station, and students use them to plan their next attempt.",
+      },
+      {
+        question: "Does AI OSCE practice work for medical schools outside the US?",
+        answer:
+          "Yes, wherever stations run in English. A school in the UK or elsewhere can score practice against its own OSCE checklist, or against a published framework such as Calgary-Cambridge or SEGUE. Practice runs in English only for now, and the school's IT team may need to allow the voice service before students start.",
+      },
+      {
+        question: "Which communication frameworks can OSCE practice be scored against?",
+        answer:
+          "Calgary-Cambridge, SEGUE, and the Kalamazoo checklist (KEECC-A) for history taking, HEEADSSS for adolescent interviews, SPIKES for serious news (with NURSE responses reported), ask, tell, ask and teach back for explanations, motivational interviewing (MITI) for counseling, the AMA consent elements, and AHRQ CANDOR for disclosure. A school's own checklist can sit alongside any of them and is scored separately.",
+      },
+      {
+        question: "Does OSCE practice score tone of voice or the physical exam?",
+        answer:
+          "No. Students speak out loud, and scoring reads the transcript of what they said rather than the sound of their voice. The platform doesn't cover physical examination and can't assess eye contact or body language, so those parts of an OSCE station stay with standardized patients and faculty observers.",
+      },
+      {
+        question: "Who sees a student's OSCE practice results?",
+        answer:
+          "The people in the roles your institution sets before launch. Students can repeat a station in private first, before a report is shared with a faculty member, coach, or OSCE lead. Faculty review cohort patterns without ranking individual students, and because practice results are formative, they shouldn't feed a grading or progression decision.",
+      },
+    ],
+    citations: [
+      {
+        authors: "Harden RM, Stevenson M, Downie WW, Wilson GM",
+        title: "Assessment of clinical competence using objective structured examination",
+        source: "BMJ",
+        year: "1975",
+        doi: "10.1136/bmj.1.5955.447",
+      },
+      {
+        authors: "Makoul G",
+        title: "The SEGUE Framework for teaching and assessing communication skills",
+        source: "Patient Education and Counseling",
+        year: "2001",
+        doi: "10.1016/S0738-3991(01)00136-7",
+      },
+      {
+        authors: "Kogan JR, Hauer KE, Holmboe ES",
+        title: "The Dissolution of the Step 2 Clinical Skills Examination and the Duty of Medical Educators to Step Up the Effectiveness of Clinical Skills Assessment",
+        source: "Academic Medicine",
+        year: "2021",
+        doi: "10.1097/ACM.0000000000004216",
+      },
+    ],
+    relatedPostSlugs: [
+      "osce-case-design-guide",
+      "what-an-osce-score-predicts",
+      "what-learners-want-from-ai-sps",
+      "why-standardized-patient-programs-run-out-of-capacity",
+    ],
+    relatedLinks: [
+      { label: "See a scored vaccine hesitancy conversation", href: "/examples/pediatric-vaccine-hesitancy-counseling" },
+    ],
+    relatedSolutionSlugs: [
+      "undergraduate-medical-education",
+      "breaking-bad-news",
+      "informed-consent",
+      "longitudinal-curriculum",
+    ],
+    glossarySlugs: [
+      "osce",
+      "standardized-patient",
+      "ai-standardized-patient",
+      "virtual-patient-simulation",
+      "spikes-protocol",
+      "teach-back-method",
+      "motivational-interviewing",
+    ],
+    nonEndorsementOrgs: ["the AAMC", "the AMA", "AHRQ"],
+    claimBoundary: {
+      formative: true,
+      raterValidation: true,
+      note: "Practice scores do not establish OSCE readiness or predict a passing OSCE result.",
+    },
+    leadershipQuestion:
+      "How many times does a student rehearse a station before the real OSCE?",
+    ctaHeadline: "See a scored OSCE practice conversation",
+    ctaDescription:
+      "We'll walk through a station, the checklist it is scored against, and the feedback a student sees.",
+  },
+  // </solution:osce-preparation>
 
   // -------------------------------------------------------------------------
   // Patient experience
@@ -1097,6 +1754,7 @@ const solutions: Solution[] = [
       noEmploymentUse: true,
       note: "ClinicalSim has no evidence of any effect on malpractice claims, indemnity, defense cost, or time to resolution, and makes no such claim. The published evidence in this lane measures performance on the next simulated disclosure, which is what this page describes.",
     },
+    relatedSolutionSlugs: ["breaking-bad-news"],
     relatedPostSlugs: ["breaking-bad-news-practice-not-knowledge"],
     leadershipQuestion:
       "Who on your staff has practiced a disclosure conversation before having to lead a real one?",

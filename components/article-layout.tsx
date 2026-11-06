@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react"
 import { JsonLd } from "@/components/json-ld"
 import { AuthorByline } from "@/components/author-byline"
 import { AuthorBio } from "@/components/author-bio"
+import { ReviewerByline } from "@/components/reviewer-byline"
 import { getAuthorById, getAuthorUrl, TEAM_AUTHOR_ID } from "@/lib/authors"
 import { Waveform } from "@/components/waveform"
 import { ORGANIZATION, ORGANIZATION_PUBLISHER } from "@/lib/positioning"
@@ -128,20 +129,7 @@ export function ArticleLayout({
           </p>
           <AuthorByline authorId={post.authorId} authorName={post.author} />
           {post.reviewedBy && (
-            <p className="mt-3 text-sm text-cs-dark-gray font-light">
-              Medically reviewed by{" "}
-              <span className="text-cs-dark-blue/85 font-medium">
-                {post.reviewedBy}
-              </span>
-              {post.reviewedDate && (
-                <>
-                  {" · "}
-                  <time dateTime={post.reviewedDate}>
-                    {formatIsoDay(post.reviewedDate)}
-                  </time>
-                </>
-              )}
-            </p>
+            <ReviewerByline name={post.reviewedBy} date={post.reviewedDate} />
           )}
         </div>
 

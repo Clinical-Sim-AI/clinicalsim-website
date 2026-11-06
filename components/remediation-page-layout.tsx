@@ -697,6 +697,28 @@ export function RemediationPageLayout({ data }: RemediationPageLayoutProps) {
         </>
       )}
 
+      {data.relatedLinks && data.relatedLinks.length > 0 && (
+        <section aria-labelledby="remediation-related-heading" className="py-12 px-4 sm:px-6 lg:px-8 bg-white">
+          <div className="max-w-4xl mx-auto">
+            <h2 id="remediation-related-heading" className="text-2xl font-medium text-cs-dark-blue mb-4">
+              Related use cases
+            </h2>
+            <ul className="flex flex-col gap-2">
+              {data.relatedLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-base font-medium text-cs-dark-blue underline underline-offset-4 hover:text-cs-navy"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
       <GlossaryTermLinks slugs={data.glossarySlugs} />
 
       {/* ----------------------------------------------------------------- */}

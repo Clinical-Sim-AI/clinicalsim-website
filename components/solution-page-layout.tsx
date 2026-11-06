@@ -15,6 +15,12 @@ import { cn, formatIsoMonth } from "@/lib/utils"
 import { getSolutionBySlug, type Solution, type SolutionStage } from "@/lib/solutions"
 import { getPostBySlug } from "@/lib/posts"
 import { PRIMARY_CTA } from "@/lib/positioning"
+import { ContentSection, ContentSections } from "@/components/content-section"
+import { ReviewerByline } from "@/components/reviewer-byline"
+import { ReferencesSection } from "@/components/references-section"
+import { buildHowToSchema, headingId } from "@/lib/howto-schema"
+import { buildWebPageReviewFields } from "@/lib/review-schema"
+import type { ListSection } from "@/lib/content-sections"
 
 const valuePropBrandIcons: Array<BrandIconName | null> = [
   "sound-wave",
@@ -35,6 +41,17 @@ const stageBadge = {
   navy: "bg-cs-navy text-white",
   blue: "bg-cs-dark-blue text-white",
   "light-blue": "bg-cs-light-blue text-cs-dark-blue",
+}
+
+/**
+ * H2 over a solution's HowTo list: `howToHeading`, else "How to practice <shortTitle>", with the
+ * short title's first letter lowered unless it starts an acronym ("OSCE preparation").
+ */
+export function howToHeadingFor(solution: Pick<Solution, "howToHeading" | "shortTitle">): string {
+  if (solution.howToHeading) return solution.howToHeading
+  const title = solution.shortTitle
+  const lowered = /^[A-Z][a-z]/.test(title) ? title[0].toLowerCase() + title.slice(1) : title
+  return `How to practice ${lowered}`
 }
 
 interface SolutionPageLayoutProps {
@@ -73,6 +90,15 @@ function StageCard({
       <p className="text-base text-cs-dark-blue/85 font-light leading-relaxed">
         {stage.description}
       </p>
+      {stage.link && (
+        <Link
+          href={stage.link.href}
+          className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-cs-dark-blue underline underline-offset-4 hover:text-cs-navy"
+        >
+          {stage.link.label}
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </Link>
+      )}
     </div>
   )
 }
@@ -96,9 +122,12 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
     context: (solution.context?.paragraphs.length ?? 0) > 0,
     stages: (solution.stages?.length ?? 0) > 0,
     stageGroups: (solution.stageGroups?.length ?? 0) > 0,
+    howTo: (solution.howToSteps?.length ?? 0) > 0,
+    sections: (solution.sections?.length ?? 0) > 0,
     valueProps: (solution.valueProps?.length ?? 0) > 0,
     frameworks: (solution.frameworks?.length ?? 0) > 0,
     faqs: (solution.faqs?.length ?? 0) > 0,
+    references: (solution.citations?.length ?? 0) > 0,
     relatedPosts: relatedPosts.length > 0,
   }
   const blockOrder = Object.keys(optionalBlocks) as Array<keyof typeof optionalBlocks>
@@ -106,6 +135,28 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
     blockOrder.slice(0, blockOrder.indexOf(block)).some((key) => optionalBlocks[key])
       ? undefined
       : "bg-cs-dark-blue"
+
+  const pageUrl = `https://clinicalsim.ai/solutions/${solution.slug}`
+
+  // The visible steps and the HowTo node come from the same array, and each list item carries
+  // the anchor the step's schema URL points at.
+  const howToHeading = howToHeadingFor(solution)
+  const howToSection: ListSection | null = optionalBlocks.howTo
+    ? {
+        type: "list",
+        id: headingId(howToHeading),
+        heading: howToHeading,
+        ordered: true,
+        items: solution.howToSteps!.map((step) => ({
+          id: headingId(step.name),
+          title: step.name,
+          text: step.text,
+        })),
+      }
+    : null
+  const howToJsonLd = howToSection
+    ? buildHowToSchema({ name: howToHeading, url: pageUrl, steps: solution.howToSteps! })
+    : undefined
 
   const faqJsonLd =
     solution.faqs && solution.faqs.length > 0
@@ -132,10 +183,11 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
             "@type": "WebPage",
             name: solution.metaTitle,
             description: solution.heroDescription,
-            url: `https://clinicalsim.ai/solutions/${solution.slug}`,
+            url: pageUrl,
             ...(solution.lastUpdated
               ? { dateModified: solution.lastUpdated }
               : {}),
+            ...buildWebPageReviewFields(solution.reviewedBy, solution.citations),
             isPartOf: {
               "@type": "WebSite",
               name: "ClinicalSim.ai",
@@ -166,6 +218,7 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
               },
             ],
           },
+          ...(howToJsonLd ? [howToJsonLd] : []),
           ...(faqJsonLd ? [faqJsonLd] : []),
         ]}
       />
@@ -217,6 +270,15 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
               Last updated:{" "}
               {formatIsoMonth(solution.lastUpdated)}
             </p>
+          )}
+
+          {solution.reviewedBy && (
+            <ReviewerByline
+              authorId={solution.reviewedBy.authorId}
+              date={solution.reviewedBy.date}
+              tone="dark"
+              className="mt-0 mb-4"
+            />
           )}
 
           <p className="text-lg md:text-xl text-cs-cloud font-light leading-relaxed mb-8 max-w-3xl">
@@ -352,6 +414,22 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
         </>
       )}
 
+      {/* HowTo steps, as a visible numbered list */}
+      {howToSection && (
+        <>
+          <SectionDivider variant="diagonal-down" color="white" className={underHero("howTo")} />
+          <ContentSection section={howToSection} />
+        </>
+      )}
+
+      {/* Structured content sections */}
+      {optionalBlocks.sections && (
+        <>
+          <SectionDivider variant="diagonal-down" color="white" className={underHero("sections")} />
+          <ContentSections sections={solution.sections} />
+        </>
+      )}
+
       {/* What you get */}
       {solution.valueProps && solution.valueProps.length > 0 && (
         <>
@@ -480,6 +558,15 @@ export function SolutionPageLayout({ solution }: SolutionPageLayoutProps) {
             </div>
           </section>
         </>
+      )}
+
+      {/* References cited on the page */}
+      {optionalBlocks.references && (
+        <section className="px-6 pb-10 bg-white">
+          <div className="max-w-4xl mx-auto">
+            <ReferencesSection references={solution.citations!} />
+          </div>
+        </section>
       )}
 
       {/* Related insights */}
