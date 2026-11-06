@@ -817,8 +817,8 @@ const solutions: Solution[] = [
         links: [
           { label: "OSCE preparation with AI patients", href: "/solutions/osce-preparation" },
           {
-            label: "Goals of care example: a childhood brain tumor",
-            href: "/examples/goals-of-care-childhood-brain-tumor",
+            label: "Goals of care example: a medically complex child",
+            href: "/examples/goals-of-care-medically-complex-child",
           },
         ],
       },

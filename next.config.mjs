@@ -35,7 +35,17 @@ const nextConfig = {
       },
       {
         source: '/examples/goals-of-care-discussion-in-progressive-respiratory-failure',
-        destination: '/examples/goals-of-care-childhood-brain-tumor',
+        destination: '/examples/goals-of-care-medically-complex-child',
+        permanent: false,
+      },
+      {
+        source: '/examples/goals-of-care-childhood-brain-tumor',
+        destination: '/examples/disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary',
+        permanent: false,
+      },
+      {
+        source: '/examples/goals-of-care-severe-neurologic-injury',
+        destination: '/examples',
         permanent: false,
       },
       {

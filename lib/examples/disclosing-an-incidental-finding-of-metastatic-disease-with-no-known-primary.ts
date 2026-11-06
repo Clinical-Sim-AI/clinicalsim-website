@@ -1,5 +1,5 @@
 // Snapshot from the user-selected production conversation, read through Supabase MCP in a READ ONLY transaction.
-// Source: production conversation efa995b5-8427-4486-8cca-d3017480b2b1
+// Source: production conversation ea2c79ac-4127-42a5-b5c7-a7b35e40f2f0
 // Recording: original voice-provider audio for the call referenced by the app record.
 import type { ExampleCase } from "./types";
 
@@ -19,46 +19,46 @@ const example: ExampleCase = {
     "Convey that follow-up is urgent rather than routine, name the services involved: oncology plus a spine service: and give him activity guidance and the symptoms that would mean being seen immediately."
   ],
   "references": null,
-  "conversationId": "efa995b5-8427-4486-8cca-d3017480b2b1",
-  "recordedAt": "2026-11-04T14:35:41.277Z",
-  "durationSeconds": 586,
+  "conversationId": "ea2c79ac-4127-42a5-b5c7-a7b35e40f2f0",
+  "recordedAt": "2026-11-06T21:57:48.657Z",
+  "durationSeconds": 541,
   "report": {
     "builtInGrade": null,
     "builtInGradeFields": null,
     "rubricGrades": [
       {
-        "gradeId": "51952059-2b4f-4495-860a-c8043fb50cd5",
+        "gradeId": "9a03fde8-0cc4-42d3-87af-9ab0e6968f35",
         "rubricId": "c5cc8a0d-62a1-4aa8-af04-3d22bf25fbee",
         "rubricName": "SPIKES: Six-Step Protocol for Delivering Bad News",
         "showSubtotal": true,
         "showOverallImpression": true,
         "reference": null,
         "resultMode": "none",
-        "content": "## SPIKES: six-step protocol for delivering bad news\nEach domain scored out of 5.\n\n## Scorecard\n| Domain | Score |\n| --- | --- |\n| S · Setting up the interview | 3/5 · Good |\n| P · Assessing the patient's Perception | 4/5 · Very good |\n| I · Obtaining the patient's Invitation | 3/5 · Good |\n| K · Giving Knowledge and information | 4/5 · Very good |\n| E · Addressing Emotions | 2/5 · Fair |\n| S · Strategy and Summary | 4/5 · Very good |\n\n### S · Setting up the interview: 3/5 · Good\n- **Evidence:** Learner said: \"do you want to call your wife on the phone so that she can listen in while we're chatting, or would you like to talk to her later?\"\n- **Rationale:** The learner addressed involvement of a significant other well, offering to call the wife before disclosure and remaining flexible about how and when that happened. The learner also stayed verbally engaged and corrected an interruption graciously. However, the physical setting, privacy, and any time constraints were never established or named, and much of what Setting involves (seating, undivided attention through nonverbal presence) cannot be surfaced here. On the assessable behaviors, the task was competently done with gaps, placing this at Good.\n- **Recommendations:** Briefly confirm the setting and time available at the outset. Suggested wording: \"Before we start, we've got this room to ourselves and about twenty minutes: is this an okay place for you to talk?\"\n\n### P · Assessing the patient's Perception: 4/5 · Very good\n- **Evidence:** Learner said: \"is there a reason why you thought that it was a disc specifically?\"\n  Character said: \"Just... lifting, I guess. I've been at the warehouse thirty years\"\n- **Rationale:** The learner opened by exploring the patient's own belief that it was a disc, drawing out his reasoning (the lifting, thirty years at the warehouse) and connecting his symptoms (the weight loss, the night pain) to the decision to scan. This elicited the patient's understanding before delivering news and tailored the disclosure. It falls short of Excellent only because the exploration was fairly brief and did not fully probe what he feared or expected the scan might show.\n- **Recommendations:** Keep eliciting the patient's own framing; one more open question about what he worried the scan might find would deepen it. Suggested wording: \"When you came in for the scan, was there anything you were worried it might show?\"\n\n### I · Obtaining the patient's Invitation: 3/5 · Good\n- **Evidence:** Learner said: \"are you the kind of person that would like more details now, or, or do you need a little bit more time?\"\n- **Rationale:** The learner did check how much the patient wanted: asking whether he was the kind of person who wanted more details now or needed time. This is a genuine invitation attempt, which reaches Good. It came, however, after the core diagnosis had already been delivered rather than before, and it was folded into a reassurance about having a plan, so it functioned more as a pacing check than a true pre-disclosure invitation. That sequencing caps it below Very good.\n- **Recommendations:** Ask how much detail the patient wants before disclosing, not after. Suggested wording: \"Before I go into the results, some people want every detail and others want the big picture first: what works best for you?\"\n\n### K · Giving Knowledge and information: 4/5 · Very good\n- **Evidence:** Learner said: \"what we saw were some tumors in the spine that are concerning for cancer ... this is cancer that has spread from somewhere\"\n- **Rationale:** The learner gave a clear warning shot before disclosing, used plain language (tumors, cancer that has spread, bone made weak), and delivered information in manageable chunks, checking understanding along the way. The explanation of why the pain changed and what symptoms warrant the ER was accurate and well matched to the patient's vocabulary. It stops short of Excellent because the initial disclosure was somewhat dense: the warning shot and the news arrived close together without a pause to let cancer land before continuing with the spread.\n- **Recommendations:** After the warning shot, deliver the single headline and pause before adding detail. Suggested wording: \"I'm afraid the scan shows something serious. (pause) It showed cancer. (pause) Let me explain what that means.\"\n\n### E · Addressing Emotions: 2/5 · Fair\n- **Evidence:** Learner said: \"definitely don't feel that way ... this wasn't an outcome that we expected\"\n  Character said: \"Should I have brought Marlene? I feel stupid now, coming on my own.\"\n- **Rationale:** The learner used acknowledging phrases (I know this is very hard news to hear, I can understand this is very difficult) but these were verbal reassurances repeated somewhat formulaically rather than true empathic engagement. At the moments of highest emotion: the patient falling silent after the word cancer, and his self-blame about not bringing Marlene and feeling stupid: the learner moved quickly to logistics or reassurance rather than naming the emotion, identifying its source, and allowing silence to sit. The patient's feeling was never explicitly named, and no space was held before pressing on. This minimal, flawed attempt places it at Fair.\n- **Recommendations:** Name the emotion and its source, then stay silent and let the patient respond before continuing. Suggested wording: \"I can see this has knocked the wind out of you: hearing the word cancer when you came in expecting a disc. Take whatever time you need.\"\n\n### S · Strategy and Summary: 4/5 · Very good\n- **Evidence:** Learner said: \"we do treat this with some urgency ... I'm gonna give them a call directly to let them know what the situation is so that they can expedite your appointment\"\n  Character said: \"say it back, make sure I've got it ... That right?\"\n- **Rationale:** The learner built a concrete, shared plan: imaging, oncology and spine referrals, direct calls to expedite, a work note, pain medication, activity restrictions, and explicit red-flag return precautions: and framed realistic short-term goals when the patient asked what he could do today. The learner responded to the patient's need to know who would call and when, and invited questions throughout, with the patient teaching back accurately. It reaches short of Excellent because prognosis questions, though handled honestly, were deferred without acknowledging the distress underneath the how long have I got question before pivoting to the plan.\n- **Recommendations:** Check readiness and acknowledge the feeling behind a prognosis question before moving to logistics. Suggested wording: \"That's the question weighing on you most, and I wish I could answer it today. Before we talk about the plan: how are you doing right now?\"\n\n## Overall impression\n- **Strengths**: The learner structured the encounter well: a genuine perception check up front, a clear warning shot, plain-language disclosure, and an organized, actionable plan with red-flag precautions the patient could confidently repeat back. The handling of the wife's involvement was flexible and patient-led.\n- **Priority gaps**: The weakest thread was emotion. At the hardest moments: the silence after cancer, the self-blame about coming alone: the learner reached for reassurance and logistics instead of naming the feeling and holding space. The invitation also came after disclosure rather than before.\n- **Top action items**\n  1. At moments of high emotion, name the feeling and its source, then pause and let silence do the work before moving on.\n  2. Ask how much detail the patient wants before delivering the diagnosis.\n  3. After the warning shot, give one headline sentence and pause before adding the spread and next steps.\n",
+        "content": "## SPIKES: six-step protocol for delivering bad news\nEach domain scored out of 5.\n\n## Scorecard\n| Domain | Score |\n| --- | --- |\n| S · Setting up the interview | 3/5 · Good |\n| P · Assessing the patient's Perception | 1/5 · Poor |\n| I · Obtaining the patient's Invitation | 3/5 · Good |\n| K · Giving Knowledge and information | 4/5 · Very good |\n| E · Addressing Emotions | 2/5 · Fair |\n| S · Strategy and Summary | 4/5 · Very good |\n\n### S · Setting up the interview: 3/5 · Good\n- **Evidence:** Learner said: \"I do want to have a pretty significant conversation with you, and I'm afraid the news, um, is not good ... I wanted to give you the opportunity to see if you wanted to maybe call someone\"\n- **Rationale:** The learner flagged a significant conversation and proactively invited a support person before delivering news, which is the central setup task and reaches Good. When the wife could not be reached and the patient asked to proceed, the learner respected that choice. Physical privacy and interruption management cannot be assessed in a spoken simulation, but what was observable: full verbal engagement, no rushing, offering to involve a significant other: was handled competently. It does not reach Very good because the setup was condensed; there was no explicit check on time available or that the patient was somewhere he could speak freely.\n- **Recommendations:** Briefly confirm the patient's immediate setting and comfort before proceeding. Suggested wording: \"Before we get into the results: are you somewhere you can talk freely right now, and do we have enough time that we won't be interrupted?\"\n\n### P · Assessing the patient's Perception: 1/5 · Poor\n- **Evidence:** No corresponding moment in the encounter.\n  Character said: \"So is it a disc? My wife's convinced I've done something to a disc.\"\n- **Rationale:** The patient opened with a clear belief: that this was a disc problem his wife suspected: which was an ideal opening to explore. The learner never asked what the patient already understood about his situation or symptoms before delivering the news, so the bad news was not tailored to his existing (mistaken) framework. The perception step was essentially skipped, which anchors this at Poor.\n- **Recommendations:** Ask an open question about current understanding before disclosing. Suggested wording: \"Before I share the scan findings, can you tell me what you've been told so far, and what you've been worried it might be?\"\n\n### I · Obtaining the patient's Invitation: 3/5 · Good\n- **Evidence:** Learner said: \"Sure, I totally understand\"\n- **Rationale:** The learner responded appropriately when the patient asked to be told directly, acknowledging and honoring the patient's stated preference to hear it straight. That is a genuine, if reactive, handling of the invitation. It does not reach Very good because the learner never proactively asked how much detail the patient wanted or in what form: the invitation was driven by the patient, not elicited by the learner.\n- **Recommendations:** Ask directly how much the patient wants to know. Suggested wording: \"Some people want every detail, others prefer the big picture first: how would you like me to walk you through this?\"\n\n### K · Giving Knowledge and information: 4/5 · Very good\n- **Evidence:** Learner said: \"it looks like from your scans, um, that there is actually a fracture ... what's causing the fracture and localized, what we say compression, is actually, um, cancer that has spread from somewhere else\"\n- **Rationale:** A clear warning shot preceded the news, and information came in digestible chunks: fracture first, then the cancer cause, then the spread. The learner used plain language, translated jargon (metastasize, compression), and used an accessible caving-ceiling analogy. Information was honest without excessive bluntness, and the learner was candid about uncertainty on prognosis and primary source. It falls short of Excellent because the learner did not periodically check the patient's understanding during disclosure: the patient supplied his own teach-back unprompted at the end rather than being invited to.\n- **Recommendations:** Pause to check understanding after each chunk rather than waiting for the patient. Suggested wording: \"That's a lot to take in: before I go on, can I check what you've understood so far?\"\n\n### E · Addressing Emotions: 2/5 · Fair\n- **Evidence:** Learner said: \"Um, I totally understand why you're asking that question ... I, I don't have that information to give you at all\"\n  Character said: \"how long have I got? I know that's probably not fair to ask yet.\"\n- **Rationale:** The patient voiced fear and loss at several moments: asking how long he had, absorbing the word cancer. The learner acknowledged the legitimacy of the prognosis question but largely redirected to information rather than naming or sitting with the emotion. There was no explicit naming of fear, no validating statement such as acknowledging how hard this is to hear, and no space allowed before moving to logistics. The partial acknowledgment keeps it above Poor, but the repeated pivot to facts over feeling caps it at Fair.\n- **Recommendations:** Name the emotion and pause before returning to information. Suggested wording: \"I can see how frightening this is, and that question about time is completely natural. Let's take a moment with that.\"\n\n### S · Strategy and Summary: 4/5 · Very good\n- **Evidence:** Learner said: \"any of those things happening, I would 100% come in straight away or give one of us a call\"\n- **Rationale:** The learner laid out concrete next steps: oncology referral, imaging, bloods, a 24: 48 hour contact window: and addressed the patient's practical concerns about work with a letter. Critically, the learner gave clear red-flag safety-netting (weakness, numbness, bladder changes) with explicit instruction to return immediately, which is excellent anticipatory guidance. The patient's own accurate summary was affirmed. It falls short of Excellent because the learner did not first check the patient's readiness to move to planning, and framed little explicit realistic hope around achievable goals beyond the logistics.\n- **Recommendations:** Check readiness before launching into the plan. Suggested wording: \"We've covered a lot: are you ready for me to go over what happens next, or do you need a minute first?\"\n\n## Overall impression\n- **Strengths**: The learner delivered difficult, uncertain news with honesty and clarity: a genuine warning shot, well-chunked plain-language explanation, strong use of analogy, and excellent safety-netting with concrete red flags and a clear follow-up timeline. The patient's closing thanks for being told straight reflects a conversation that landed.\n- **Priority gaps**: The perception step was skipped entirely despite an obvious opening (the disc belief), so the news was not anchored to what the patient already thought. Emotional moments: especially the prognosis question and the word cancer: were consistently met with information rather than acknowledgment, which left the fear unaddressed.\n- **Top action items**\n  1. Before disclosing, ask what the patient already understands and build from there.\n  2. When emotion surfaces, name it and pause before returning to facts.\n  3. Check understanding during disclosure and readiness before moving to the plan, rather than relying on the patient to self-direct.\n",
         "extractedData": {
           "spikes_setting": {
             "value": 3,
-            "reasoning": "Learner said: \"do you want to call your wife on the phone so that she can listen in while we're chatting, or would you like to talk to her later?\": you involved the wife flexibly but never confirmed the setting or time, so try \"Before we start, we've got this room to ourselves and about twenty minutes: is this an okay place for you to talk?\" (suggested wording)"
+            "reasoning": "Learner said: \"I do want to have a pretty significant conversation with you, and I'm afraid the news, um, is not good ... I wanted to give you the opportunity to see if you wanted to maybe call someone\": you flagged a significant conversation and offered to involve a support person, which handled the core setup task; to strengthen it, \"Before we get into the results: are you somewhere you can talk freely right now, and do we have enough time that we won't be interrupted?\" (suggested wording)"
           },
           "spikes_emotions": {
             "value": 2,
-            "reasoning": "Learner said: \"definitely don't feel that way ... this wasn't an outcome that we expected\": reassurances were formulaic and the emotion was never named or given space; try \"I can see this has knocked the wind out of you: hearing the word cancer when you came in expecting a disc. Take whatever time you need.\" (suggested wording)"
+            "reasoning": "Learner said: \"Um, I totally understand why you're asking that question ... I, I don't have that information to give you at all\": you acknowledged the prognosis question but redirected to information rather than naming or sitting with the fear; instead try \"I can see how frightening this is, and that question about time is completely natural. Let's take a moment with that.\" (suggested wording)"
           },
           "spikes_knowledge": {
             "value": 4,
-            "reasoning": "Learner said: \"what we saw were some tumors in the spine that are concerning for cancer ... this is cancer that has spread from somewhere\": clear warning shot and plain language, but the news was dense; pace it with \"I'm afraid the scan shows something serious. (pause) It showed cancer. (pause) Let me explain what that means.\" (suggested wording)"
+            "reasoning": "Learner said: \"it looks like from your scans, um, that there is actually a fracture ... what's causing the fracture and localized, what we say compression, is actually, um, cancer that has spread from somewhere else\": clear warning shot, plain language, and well-chunked information fell just short of checking understanding mid-disclosure; Suggested wording: \"That's a lot to take in: before I go on, can I check what you've understood so far?\""
           },
           "spikes_invitation": {
             "value": 3,
-            "reasoning": "Learner said: \"are you the kind of person that would like more details now, or, or do you need a little bit more time?\": this was a genuine invitation but came after disclosure, so ask earlier using \"Before I go into the results, some people want every detail and others want the big picture first: what works best for you?\" (suggested wording)"
+            "reasoning": "Learner said: \"Sure, I totally understand\": you honored the patient's wish to hear it straight, but the invitation was patient-driven; proactively ask \"Some people want every detail, others prefer the big picture first: how would you like me to walk you through this?\" (suggested wording)"
           },
           "spikes_perception": {
-            "value": 4,
-            "reasoning": "Learner said: \"is there a reason why you thought that it was a disc specifically?\": you drew out his own framing well; deepen it next time with \"When you came in for the scan, was there anything you were worried it might show?\" (suggested wording)"
+            "value": 1,
+            "reasoning": "No corresponding moment in the encounter: despite the patient's disc belief opening the door, you never asked what he already understood before disclosing, so a stronger move is \"Before I share the scan findings, can you tell me what you've been told so far, and what you've been worried it might be?\" (suggested wording)"
           },
           "spikes_strategy_summary": {
             "value": 4,
-            "reasoning": "Learner said: \"we do treat this with some urgency ... I'm gonna give them a call directly to let them know what the situation is so that they can expedite your appointment\": a concrete, shared plan with red-flag precautions, but acknowledge the prognosis distress first using \"That's the question weighing on you most, and I wish I could answer it today. Before we talk about the plan: how are you doing right now?\" (suggested wording)"
+            "reasoning": "Learner said: \"any of those things happening, I would 100% come in straight away or give one of us a call\": concrete next steps and excellent safety-netting carried this, but you launched into the plan without checking readiness; Suggested wording: \"We've covered a lot: are you ready for me to go over what happens next, or do you need a minute first?\""
           }
         },
         "extractionStatus": "completed",
@@ -96,7 +96,7 @@ const example: ExampleCase = {
             },
             "description": "Establishes privacy and a setting where the patient can speak freely, involves significant others at the patient's choice, gives the patient full verbal attention and stays engaged, and manages time and interruptions.",
             "requireReasoning": true,
-            "extractionInstructions": "Assign a single 1-5 global rating (1 Poor → 5 Excellent) for how well the clinician set up the interview. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
+            "extractionInstructions": "Assign a single 1: 5 global rating (1 Poor → 5 Excellent) for how well the clinician set up the interview. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
           },
           {
             "key": "spikes_perception",
@@ -130,7 +130,7 @@ const example: ExampleCase = {
             },
             "description": "Uses open-ended questions to learn what the patient already understands before giving news, and uses this to correct misinformation and tailor the message.",
             "requireReasoning": true,
-            "extractionInstructions": "Assign a single 1-5 global rating (1 Poor → 5 Excellent) for how well the clinician assessed the patient's perception. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
+            "extractionInstructions": "Assign a single 1: 5 global rating (1 Poor → 5 Excellent) for how well the clinician assessed the patient's perception. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
           },
           {
             "key": "spikes_invitation",
@@ -164,7 +164,7 @@ const example: ExampleCase = {
             },
             "description": "Asks how much and what kind of information the patient wants, and respects a wish not to know full details while offering to answer questions later.",
             "requireReasoning": true,
-            "extractionInstructions": "Assign a single 1-5 global rating (1 Poor → 5 Excellent) for how well the clinician obtained the patient's invitation. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
+            "extractionInstructions": "Assign a single 1: 5 global rating (1 Poor → 5 Excellent) for how well the clinician obtained the patient's invitation. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
           },
           {
             "key": "spikes_knowledge",
@@ -198,7 +198,7 @@ const example: ExampleCase = {
             },
             "description": "Gives a warning shot, uses plain non-technical language in small chunks, checks understanding, and avoids bluntness and \"nothing more can be done\" statements.",
             "requireReasoning": true,
-            "extractionInstructions": "Assign a single 1-5 global rating (1 Poor → 5 Excellent) for how well the clinician gave knowledge and information. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
+            "extractionInstructions": "Assign a single 1: 5 global rating (1 Poor → 5 Excellent) for how well the clinician gave knowledge and information. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
           },
           {
             "key": "spikes_emotions",
@@ -232,7 +232,7 @@ const example: ExampleCase = {
             },
             "description": "Observes and names the patient's emotion, connects it to its cause, gives a validating empathic response, and allows space until the patient is calmer.",
             "requireReasoning": true,
-            "extractionInstructions": "Assign a single 1-5 global rating (1 Poor → 5 Excellent) for how well the clinician addressed emotions with empathic responses. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
+            "extractionInstructions": "Assign a single 1: 5 global rating (1 Poor → 5 Excellent) for how well the clinician addressed emotions with empathic responses. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
           },
           {
             "key": "spikes_strategy_summary",
@@ -266,7 +266,7 @@ const example: ExampleCase = {
             },
             "description": "Checks readiness to discuss next steps, summarizes and presents options with shared decision-making, frames realistic hope around achievable goals, and addresses follow-up.",
             "requireReasoning": true,
-            "extractionInstructions": "Assign a single 1-5 global rating (1 Poor → 5 Excellent) for how well the clinician handled strategy and summary. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
+            "extractionInstructions": "Assign a single 1: 5 global rating (1 Poor → 5 Excellent) for how well the clinician handled strategy and summary. Weigh the listed behaviors together as one holistic judgment; rate only behaviors evidenced in the transcript."
           }
         ],
         "isAcgmeMilestone": false,
@@ -274,43 +274,43 @@ const example: ExampleCase = {
         "ceiling": null
       },
       {
-        "gradeId": "a2712084-622f-43a1-b1b0-89c21775c36f",
+        "gradeId": "2f94c0de-c0d3-4bd5-b0b7-baeaa0baab80",
         "rubricId": "bbb12b78-4764-4102-901e-f2097a97221b",
         "rubricName": "NURSE: Empathic Responses to Emotion",
         "showSubtotal": true,
         "showOverallImpression": true,
         "reference": null,
         "resultMode": "none",
-        "content": "## NURSE: five ways to respond when emotion shows up\n\nNURSE is a set of cards a clinician plays as the moment calls for, not a sequence or checklist. It is not scored, and using all five is not the goal: a skilled clinician picks the responses the moment calls for. The learning below lives in whether the emotional moments got a response, not in how many elements appeared.\n\n## What you used\n\n| Response | Used |\n| --- | --- |\n| N · Naming | Yes |\n| U · Understanding | Yes |\n| R · Respecting | Yes |\n| S · Supporting | Yes |\n| E · Exploring | No: no opportunity |\n\n### N · Naming: Used\n- **What you said:** Learner said: \"I know this is very hard news to, to hear\"\n- **Effect:** When the patient fell silent on hearing the diagnosis, the learner named the difficulty of hearing the news. The phrasing was accurate and not overstated, though it named the situation more than the patient's own emotion. Later, Learner said: \"we know that there is something ... we don't have all the answers yet\" named the specific tension of knowing something is wrong without having answers: this landed closer to what the patient was actually struggling with.\n\n### U · Understanding: Used\n- **What you said:** Learner said: \"definitely don't feel that way ... this wasn't an outcome that we expected\"\n- **Effect:** When the patient voiced embarrassment about coming alone, the learner legitimized the situation and reframed it so the patient was not at fault, which met the self-blame directly rather than brushing past it.\n\n### R · Respecting: Used\n- **What you said:** Learner said: \"It sounds like you have a very good understanding of what's going on\"\n- **Effect:** After the patient carefully read back the whole plan, the learner acknowledged the patient's grasp of a frightening amount of information. This recognized a real coping effort at a moment when the patient was working hard to stay oriented.\n\n### S · Supporting: Used\n- **What you said:** Learner said: \"I'm gonna give them a call directly ... get you in as soon as possible\"\n- **Effect:** The learner made concrete commitments: organizing appointments, calling specialists directly to expedite, offering to speak with the wife: and closed with an explicit non-abandonment message Learner said: \"please feel free to give us a call back ... I'm happy to, to discuss everything\". These were specific rather than generic, so the partnership felt real.\n\n### E · Exploring: Not used\n- **What you said:** No moment in this encounter.\n- **Effect:** The patient volunteered several openings that could have been deepened with a focused question. The learner responded warmly with acknowledgment and reassurance, but did not invite the patient to say more. This was not a missed obligation: the conversation did not require it: but an exploring question at one of these moments might have surfaced what the patient most needed before leaving.\n\n## Missed moments\n\nTwo moments pulled toward information before the emotion underneath them was met.\n\nWhen the patient asked the hardest question: Character said: \"how long have I got? I know that's the question nobody wants\": the learner answered the content and briefly named the difficulty, but moved to the plan quickly. The prognosis question is almost always an emotional one as much as a factual one; a beat acknowledging the fear in asking it, before the pivot to next steps, would have met the person as well as the question.\n\nWhen the patient surfaced the core distress of the whole encounter: Character said: \"I don't know what I'm telling her yet. That's the problem\": the learner responded with Learner said: \"I can imagine that this is very difficult\", then immediately proposed discussing the short-term plan. The plan was genuinely what the patient asked for and the pivot was responsive. Still, that disclosure was an opening to explore what the patient feared most about the conversation with Marlene, and it went to logistics instead. A single question such as the one below might have let the patient name what was hardest before problem-solving began.\n\n## Overall impression\n\n- **Strengths**: The learner responded to emotion repeatedly and with genuine warmth, and several responses were well-chosen for the moment: naming the specific pain of knowing without answers, legitimizing the patient's embarrassment at coming alone, recognizing the patient's effort to understand, and backing commitments with concrete action rather than platitudes. The non-abandonment thread ran through the whole encounter. The learner also handled the early question about a disc skillfully, gathering a little more before warning and offering to involve the wife early.\n- **Priority gaps**: The two hardest emotional openings: the prognosis question and the dread about telling Marlene: were met with acknowledgment that then moved fairly quickly to information and planning. The content was right and the patient wanted it; what was thin was the pause to sit with the fear before solving.\n- **Top action items**\n  1. When a patient asks how long they have, treat it first as an emotional disclosure: acknowledge the fear in asking before explaining why you cannot yet answer.\n  2. When a patient names the real problem of not knowing what to tell their spouse, try one exploring question before shifting to the plan. Suggested wording: \"What worries you most about that conversation with her?\"\n  3. Keep doing the concrete, specific support commitments: they were a clear strength and they clearly landed.\n",
+        "content": "## NURSE: five ways to respond when emotion shows up\nNURSE names five kinds of empathic response a clinician can reach for when emotion surfaces: Naming, Understanding, Respecting, Supporting, Exploring. It is not scored, and using all five is not the goal: a skilled clinician plays the cards the moment calls for and sets the rest down.\n\n## What you used\n| Response | Used |\n| --- | --- |\n| N · Naming | No |\n| U · Understanding | Yes |\n| R · Respecting | No |\n| S · Supporting | Yes |\n| E · Exploring | No |\n\n### N · Naming: Not used\n- **What you said:** No moment in this encounter.\n- **Effect:** Several turns carried unmistakable emotion: Dennis's flat repetition after hearing the word cancer Character said: \"...Cancer. Cancer of what?\", and his careful, braced way of asking how long he had Character said: \"how long have I got? I know that's probably not fair to ask yet\". No turn named what he might be feeling (shock, fear, dread). The replies acknowledged his questions were understandable but moved straight to explanation, so the emotion underneath was never reflected back to him.\n\n### U · Understanding: Used\n- **What you said:** Learner said: \"I totally understand why you're asking that question\"\n- **Effect:** When Dennis asked the prognosis question he himself flagged as unfair, the learner legitimized the question before explaining why it couldn't yet be answered. This signalled the question made sense rather than brushing it off, and Dennis accepted the limit gracefully. The phrasing I totally understand why you're asking recurs, though, and leans toward understanding the question rather than the feeling driving it.\n\n### R · Respecting: Not used\n- **What you said:** No moment in this encounter.\n- **Effect:** There was a clear opening at the end, when Dennis summarized the whole conversation back accurately and unprompted Character said: \"Can I just... say back what you told me, make sure I've got it right?\". That was real coping and real effort under hard news. The reply confirmed the facts Learner said: \"That's it. You got it.\" but did not acknowledge how well he was holding himself together: a chance to name his composure as a strength that went by.\n\n### S · Supporting: Used\n- **What you said:** Learner said: \"I'm gonna go ahead and make all of the referrals for you\"\n- **Effect:** The learner repeatedly offered concrete help: the work letter, clear return-precautions, making the referrals, a 24: 48 hour timeline: and framed the plan as something the team would carry forward. This landed as partnership and non-abandonment; Dennis audibly relaxed into the logistics (That's quick. That's good.).\n\n### E · Exploring: Not used\n- **What you said:** No moment in this encounter.\n- **Effect:** Dennis gave several openings that invited being drawn out: I almost called to cancel, his worry about telling Marlene, telling himself it was just the lifting. Each was met with information rather than a question that deepened the feeling. A single exploring question early on would have let his fear surface instead of staying beneath the practical questions.\n\n## Missed moments\nThe largest missed moment was the word landing. When Dennis said Character said: \"...Cancer. Cancer of what?\", the reply named the organ question and went to how metastasis works. That was accurate and it was not what the moment asked for first: a beat acknowledging the shock would have met him where he was.\n\nThe prognosis question was also a moment of real vulnerability: Character said: \"how long have I got? I know that's probably not fair to ask yet\". The learner legitimized the asking, which was good, but the fear inside the question: am I dying: was never touched.\n\nAnd at the very end, Dennis did something striking: he recited the whole plan back correctly and then thanked the learner for straight talk Character said: \"Thank you for just telling me straight. I'd rather know.\". That composure under devastating news was worth naming out loud, and the reply stayed with confirming the facts.\n\n## Overall impression\n- **Strengths**: The learner was a steady, generous source of support: clear return-precautions, a concrete work letter, a named next step with a real timeline, and honest acknowledgment of what isn't yet known. When Dennis asked the unfair prognosis question, the learner legitimized it rather than deflecting, and consistently respected his autonomy about work and disclosure.\n- **Priority gaps**: Emotion surfaced repeatedly and was almost always met with information. The word cancer landing, the braced question about time, and his quiet dread never got a response aimed at the feeling itself. The conversation was informationally excellent and emotionally under-attended: strong on the what, lighter on the how are you taking this.\n- **Top action items**\n  1. When bad news lands, pause the explanation and name what you see before teaching: a tentative reflection like \"This is a lot to take in: it sounds like that word just hit you hard.\" (suggested wording) before moving to mechanism.\n  2. Treat a question like how long have I got as an emotional cue first: respond to the fear, then the facts.\n  3. When a patient copes visibly well, say so: acknowledging his accurate summary and composure would have let him hear his own strength reflected back.\n",
         "extractedData": {
           "nurse_naming_used": {
-            "value": true,
-            "reasoning": "Learner said: \"I know this is very hard news to, to hear\": when the patient went silent on hearing the diagnosis, you named how hard the news was, and later named the specific tension of knowing something is wrong without answers, which landed closer to what he was struggling with."
+            "value": false,
+            "reasoning": "No corresponding moment got a response: when the word cancer landed and when Dennis braced to ask how long he had, the replies acknowledged the questions were understandable and moved to explanation, so the shock and fear underneath were never reflected back. A tentative reflection like \"This is a lot to take in: it sounds like that word just hit you hard.\" (suggested wording) before the mechanism would have met him first."
           },
           "nurse_exploring_used": {
             "value": false,
-            "reasoning": "No moment in this encounter: the patient volunteered openings you met with warmth and reassurance, but the conversation did not require an exploring question; it was an option, not an obligation."
+            "reasoning": "No corresponding moment got a response: Dennis's openings (I almost called to cancel, his worry about telling Marlene, telling himself it was just the lifting) were each met with information rather than a question that deepened the feeling. A single exploring question early on would have let his fear surface."
           },
-          "nurse_naming_evidence": "I know this is very hard news to, to hear",
+          "nurse_naming_evidence": null,
           "nurse_respecting_used": {
-            "value": true,
-            "reasoning": "Learner said: \"It sounds like you have a very good understanding of what's going on\": after the patient read the whole plan back, you acknowledged his grasp of a frightening amount of information, recognizing a real coping effort."
+            "value": false,
+            "reasoning": "No corresponding moment got a response: when Dennis recited the whole plan back accurately and unprompted, the reply confirmed the facts but did not acknowledge how well he was holding himself together. Naming his composure as a real strength would have let him hear it reflected back."
           },
           "nurse_supporting_used": {
             "value": true,
-            "reasoning": "Learner said: \"I'm gonna give them a call directly ... get you in as soon as possible\": you made concrete commitments to organize appointments and call specialists directly, and closed with an explicit non-abandonment message, so the partnership felt real."
+            "reasoning": "Repeatedly offering concrete help: the referrals, a work letter, clear return-precautions, a 24: 48 hour timeline: landed as partnership and non-abandonment, and Dennis audibly relaxed into the logistics."
           },
           "nurse_exploring_evidence": null,
           "nurse_understanding_used": {
             "value": true,
-            "reasoning": "Learner said: \"definitely don't feel that way ... this wasn't an outcome that we expected\": when the patient voiced embarrassment about coming alone, you legitimized the situation and reframed it so he was not at fault, meeting the self-blame directly."
+            "reasoning": "Legitimizing the prognosis question before explaining the limit signalled it made sense rather than brushing it off, and Dennis accepted the limit gracefully; the phrasing leaned toward understanding the question more than the feeling driving it."
           },
-          "nurse_respecting_evidence": "It sounds like you have a very good understanding of what's going on",
-          "nurse_supporting_evidence": "I'm gonna give them a call directly ... get you in as soon as possible",
-          "nurse_understanding_evidence": "definitely don't feel that way ... this wasn't an outcome that we expected",
+          "nurse_respecting_evidence": null,
+          "nurse_supporting_evidence": "I'm gonna go ahead and make all of the referrals for you",
+          "nurse_understanding_evidence": "I totally understand why you're asking that question",
           "nurse_emotion_met_before_information": {
             "value": false,
-            "reasoning": "Learner said: \"I can imagine that this is very difficult\": the two hardest openings, the prognosis question and the dread about telling Marlene, were met with brief acknowledgment that then moved fairly quickly to the plan; try one exploring question such as \"What worries you most about that conversation with her?\" (suggested wording) before shifting to logistics so the fear gets a beat first."
+            "reasoning": "Learner said: \"I totally understand why you're asking that question\" legitimized one question, but on the whole emotion surfaced repeatedly and was met with information: the word cancer landing, the braced question about time, and his quiet dread each went to facts rather than the feeling. Pausing to name what you see before teaching would have met him where he was."
           }
         },
         "extractionStatus": "completed",
@@ -413,248 +413,128 @@ const example: ExampleCase = {
     },
     {
       "role": "user",
-      "message": "That is definitely a legitimate concern. Um, is there a reason why you thought that it was a disc specifically?"
+      "message": "Hi, Dennis. Uh, I'm Dr. Brennan. Uh, thanks for coming in today. I'm glad we're getting a chance to talk."
     },
     {
       "role": "agent",
-      "message": "Just... lifting, I guess. I've been at the warehouse thirty years, something was bound to go eventually. Figured that was it."
+      "message": "Yeah, of course. Honestly, I almost called to cancel: the weekend wasn't too bad. But I figured I'd come in since you'd booked me for the scan results."
     },
     {
       "role": "user",
-      "message": "Yeah, that sounds hard. I know you do a lot of, a lot of physical labor."
+      "message": "Um, okay. So, I do want to have a pretty significant conversation with you, and I'm afraid the news, um, is not good. Uh, I wanted to give you the opportunity to see if you wanted to maybe call someone or have someone else come and join this meeting."
     },
     {
       "role": "agent",
-      "message": "..."
+      "message": "[quiet] Oh. Um. I came on my own: Marlene's at work, I didn't think... \n\nIs it that bad? Should I be calling her?"
     },
     {
       "role": "user",
-      "message": "What else?"
+      "message": "It, it might make sense to have her on the phone while I talk to you."
     },
     {
       "role": "agent",
-      "message": "I mean, it ..."
+      "message": "[quiet] Okay. Okay, let me... let me try her.\n\nGive me a second. \n\n...She's not picking up. She's probably on the floor. Can I: can you just tell me? I'd rather hear it than sit here guessing."
     },
     {
       "role": "user",
-      "message": "What I thought... Oh, I'm so sorry. Please. I cut you off."
+      "message": "Sure, I totally understand. So it looks like from your scans, um, that there is actually a fracture, uh, present within your spine. Um, and that's not necessarily, um, the bad news. It looks like, uh, what's causing the fracture and localized, what we say compression, is actually, um, cancer that has spread from somewhere else."
     },
     {
       "role": "agent",
-      "message": "No, you're alright. I was just going to say, it wakes me up most nights now. And I've dropped some weight, which I wasn't trying to do. Marlene noticed before I did."
+      "message": "[quiet] ...Cancer.\n\n[slow] Cancer of what?"
     },
     {
       "role": "user",
-      "message": "Yeah, it sounds like your wife is very, is very attentive. And that's, those are definitely the things that worried me and the reason that I got the scan."
+      "message": "That's a great question. We don't actually know, uh, right now. Um, often when you have cancer in another area of the body, uh, one of the places that it spreads to, or the word that we use is metastasize, um, is the spine. So, I cannot tell you right now where the cancer is coming from."
     },
     {
       "role": "agent",
-      "message": "Right. So did it show the disc, or...?"
+      "message": "[quiet] So it's somewhere else, and it's gone to my back. And you don't know where it started.\n\nHow do you find that out?"
     },
     {
       "role": "user",
-      "message": "Yeah. So I actually have some difficult news. Uh, before I go into the details, I wanted to ask, uh, do you want to call your wife on the phone so that she can listen in while we're chatting, or would you like to talk to her later?"
+      "message": "That's also a great question. So, what this will mean for you is that we kinda have to start from the beginning and do, uh, top-to-bottom testing. So you will require, uh, more imaging, um, to look and see if we can find the primary cancer."
     },
     {
       "role": "agent",
-      "message": "[quiet] Difficult news. Um. She's at work. I didn't... I didn't think today was going to be that kind of appointment. Maybe later. Just tell me."
+      "message": "Okay. How long does that take: the finding out part?"
     },
     {
       "role": "user",
-      "message": "Okay. Of course. So unfortunately, when we were reviewing the results of the scan, what we saw were some tumors in the spine that are concerning for cancer. We don't know where the original cancer is, but based on the imaging, it looks like they're, like they're, these are, this is cancer that has spread from somewhere."
+      "message": "And that's the difficult part. Um, it's probably going to take, um, at least a week or two, if not longer. Um, you know, we'll have to kinda get going on the testing, and so, um, depending on what we find on that testing, we may not know straightaway. But I imagine we will, um, have this hopefully figured out within the coming weeks."
     },
     {
       "role": "agent",
-      "message": "[quiet] Cancer."
+      "message": "[quiet] Weeks. Okay.\n\nAnd... how long have I got? I know that's probably not fair to ask yet."
     },
     {
       "role": "user",
-      "message": "Yeah, absolutely. I know this is very hard news to, to hear."
+      "message": "Um, I totally understand why you're asking that question. Um, the difficult thing about this is that because we don't know what the primary cancer is, we can't really say at all, um, how it potentially will impact your life or what the treatment would be. And so, I, I don't have that information to give you at all."
     },
     {
       "role": "agent",
-      "message": "..."
+      "message": "[quiet] Right. No, that's... that's fair.\n\nThe fracture: is that why it's been waking me up at night? Because that part I'd noticed. The nights got worse a few weeks ago."
     },
     {
       "role": "user",
-      "message": "..."
+      "message": "Yeah. So basically, what ends up happening is when the cancer spreads into the bone within the spine, it kind of, um, alters the actual architecture of that bone, and then kind of causes the bone almost to collapse. So kind of think of it like a ceiling that's caving in. Basically, the same thing is happening with the, with the bones within the spine in that area. And so, that's why you're getting so much pain occurring."
     },
     {
       "role": "agent",
-      "message": "[quiet] Cancer of what?"
+      "message": "[quiet] Okay. That... that actually makes sense. I'd been telling myself it was just the lifting.\n\nWhat do I do about work? I'm a warehouse supervisor: I'm on my feet, I'm lifting. Am I still okay to go in Monday?"
     },
     {
       "role": "user",
-      "message": "Yeah, that's a great question. So unfortunately, that's not information that I have right now. Um, we... I do have a plan in terms of next steps that we would take to try to get that information for you. Um, but before I go into those details, um, I know this is a lot of information. Do you need, do you need some time? Um, are you the kind of person that would like more details now, or, or do you need a little bit more time?"
+      "message": "So that is another great question. I think at, at this point, um, lip smacks I'm cognizant of the fact that it's difficult for you, um, to not go into work. Um, I'm happy to give you a letter to say that at this point in time, um, you probably shouldn't be lifting anything, uh, for the foreseeable future. And so, um, I can give you a letter so that you can state that to your employer."
     },
     {
       "role": "agent",
-      "message": "[quiet] No, go on. Tell me the plan."
+      "message": "[quiet] Okay. A letter would help. I don't really want to get into it with them yet, not till I know what I'm telling them.\n\nWhat about just being there: standing, walking around? And is there anything that would mean I need to come back in straight away, not wait?"
     },
     {
       "role": "user",
-      "message": "Okay."
+      "message": "That's also a great question. So just to answer your first question about work, that really depends on you, right? So I've given you, um, very significant news, so you need to take whatever time that you can take, um, in order to, um, digest that news. And people are different. Some people, uh, want to stay away from other people. Some people kind of want to go back and just treat life as normal and continue their routine, so I fully understand if you would prefer to be at work.Um, certainly I'll give you that letter to make sure that, um, you don't have to do any heavy lifting, and I completely understand you're not at the point that you would want to disclose anything to the folks at work, um, anyway, so I completely get that. Um, can you remind me of what your second question was?"
     },
     {
       "role": "agent",
-      "message": "How do you find where it started?"
+      "message": "[quiet] Yeah: what would mean I need to come back in right away? Not wait for the next appointment. Anything with my back I should be watching for?"
     },
     {
       "role": "user",
-      "message": "Yeah. So the next steps would be for us to go ahead and get more imaging so that hopefully we could see kind of where the, the initial cancer is. Um, we would also send you to a cancer doctor, which is an oncologist, um, that'll, that'll help us with that process, as well as a spine specialist that's gonna help you with management of your pain and, and symptoms that you have from these tumors in your spine."
+      "message": "Yeah, that's also a great question. So with the s- with the spine, um, there's a big nerve that travels down your back through your spinal canal, so, like, almost like a tunnel that's going down your back. Currently, it doesn't look like that damaged s- uh, bone within your spine is in any way affecting the nerve that's traveling through that area, which is good news. However, um, if things are to worsen in that area lip smack or were to get anew area, it could press on the spine, and it could potentially affect more of your neurological status in that area. And what I mean by that is, you may end up actually having more, um, nerve issues. So that can present in different ways, but it may be that you have weakness, um, in the area below where the, um, fracture is in your spine. Um, it could also mean that you may have some numbness, so change in, in sensation or tingling, and then it could also affect things like your ability to empty your bladder when you go to the bathroom. So any of those things happening, I would 100% come in straight away or give one of us a call."
     },
     {
       "role": "agent",
-      "message": "[quiet] How long does that take? Finding where it started."
+      "message": "[quiet] Okay. Weakness, numbness, trouble with the bathroom. Got it.\n\nSo what happens next? Who calls me, and when?"
     },
     {
       "role": "user",
-      "message": "Yeah, that's a great question. It, it's, it's actually a little bit difficult for me to answer that. Um, what I can tell you is that we do, we do treat this with some urgency. So, I'm gonna get you in to get those scans as soon as possible. lip smack Um, and then I'm gonna send referrals to the oncologist and also to the spine specialist. Additionally, um, I'm gonna give them a call directly to let them know what the situation is so that they can expedite your appointment and get you in as soon as possible."
+      "message": "So what we're gonna do is w- I'm gonna go ahead and make all of the referrals for you. Um, so what we need to do is refer you to, uh, a cancer doctor, an oncologist, and they will help and get the ball rolling with setting up all of your imaging and also getting some blood work going as well."
     },
     {
       "role": "agent",
-      "message": "[quiet] Okay."
+      "message": "Okay. And how soon do I hear from them: days, a week?"
     },
     {
       "role": "user",
-      "message": "..."
+      "message": "No, you should be hearing from them within the next 24 to 48 hours."
     },
     {
       "role": "agent",
-      "message": "And... how long have I got? I know that's the question nobody wants."
+      "message": "[quiet] Okay. That's quick. That's good.\n\nCan I just... say back what you told me, make sure I've got it right? There's a fracture in my spine, and it's from cancer that started somewhere else, and you don't know where yet: and that's what the next tests are for. And I shouldn't lift anything. Oncology calls in a day or two."
     },
     {
       "role": "user",
-      "message": "No, of course. And I think one of the things that makes this so hard is that we know that there is something, you know, we, you, you do have cancer and that's something that's very scary, but we don't have all the answers yet. So unfortunately, I'm not able to answer that question as of now, um, but our plan is to get you in to see the right people so you're able to have those conversations as soon as possible."
+      "message": "That's it. You got it."
     },
     {
       "role": "agent",
-      "message": "[quiet] Alright. \n\nShould I have brought Marlene? I feel stupid now, coming on my own."
-    },
-    {
-      "role": "user",
-      "message": "No, of course. Uh, and definitely don't feel that way. I don't think that... You know, we were concerned by some of your symptoms, but this wasn't an outcome that we expected or, um, anything that we, you know, news that we wanted to give you."
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] Yeah.\n\nCan I call her from here? Before I drive anywhere."
-    },
-    {
-      "role": "user",
-      "message": "Absolutely. Um, you know, l- l- we can call her together if that would be more comfortable for you. Um, if you'd like me to step out so you can talk to her first, we can do that as well. Whatever is easiest."
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] Thanks. I'll call her first, on my own, and then maybe you can talk to her after. If that's alright."
-    },
-    {
-      "role": "user",
-      "message": "Absolutely. I can understand that this is very difficult news. Um, if there's anything that you wanna talk through before giving her a call, since I know this is gonna be a very difficult conversation, um, I'm happy to listen."
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] I don't know what I'm telling her yet. That's the problem. She's going to ask cancer of what, same as I did, and I haven't got an answer."
-    },
-    {
-      "role": "user",
-      "message": "Yeah, of course. And, and I, and I can, I can imagine that this is very difficult."
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] Yeah.\n\nWhat do I tell her I'm doing about it? Today, I mean. Right now."
-    },
-    {
-      "role": "user",
-      "message": "Yeah, of course. So, why don't we talk about the short-term plan then, like the things that we can do until you're able to get into those visits? Would that be helpful?"
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] Yeah. Please."
-    },
-    {
-      "role": "user",
-      "message": "Okay. So, I know that you, you work a job which you, you have to lift some heavy things and it's a very physical job. So, I'm gonna give you a note to excuse you from work, um, until we're able to get a little more information."
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] ..."
-    },
-    {
-      "role": "user",
-      "message": "Is that something you'd be comfortable with?"
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] Okay. I'll have to tell my supervisor something. But okay.\n\nIs there stuff I shouldn't be doing? With the back, I mean. At home."
-    },
-    {
-      "role": "user",
-      "message": "Yeah, of course. So, um, we'll, we'll give you medication to help with the symptoms of the pain that you've been experiencing. Uh, and then I would, would suggest that you not do any heavy lifting until we have some more information. When you have, um, tumors in the spine, it makes the bone weak. Um, it's part of what's causing your pain, but it also means that it can get injured more easily."
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] That's why it changed. The pain. That makes sense, actually. First thing today that has.\n\nWhat would mean I need to come back in straight away? Or go to the ER?"
-    },
-    {
-      "role": "user",
-      "message": "Yeah, that's a great question. So, definitely if you have, uh, a sudden worsening of your pain, I want you to go to the emergency room right away. Because that bone is weak, uh, my concern would be that there could be a break in the bone or, or something that needs to be managed more urgently."
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] Okay. Worsening pain, ER. Got it.\n\nWhat about my legs? Like if they went numb or something, is that the sort of thing?"
-    },
-    {
-      "role": "user",
-      "message": "Yes, of course. So any, any numbness or new tingling in your legs, um, if there's any new incontinence, so if you stool yourself or urinate yourself, um, tho- those would be concerning symptoms for me and a reason to go to the emergency room right away."
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] Alright. Numbness, tingling, accidents. Straight to the ER."
-    },
-    {
-      "role": "user",
-      "message": "Yeah. Is there, is there anything else that you'd like to talk through that you feel would be helpful to, to clarify right now?"
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] Let me just... say it back, make sure I've got it.\n\nThe scan showed cancer in the bones of my spine. You don't know yet where it started, and that's what the other scans and the oncologist are for. No lifting, pain meds, note for work. If the pain gets suddenly worse, or my legs go funny, or I have an accident, I go to the ER. That right?"
-    },
-    {
-      "role": "user",
-      "message": "Yes. It sounds like you have a very good understanding of what's going on."
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] Okay.\n\nWho calls me, and when? So I know what I'm waiting for."
-    },
-    {
-      "role": "user",
-      "message": "Yeah, of course. Um, so once we get finished with this visit, um, I'll do my part and I'll make sure... I'll, I'll organize all of those appointments for you."
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] Okay."
-    },
-    {
-      "role": "user",
-      "message": "So our office will, will give you a call with all of that information, uh, by tomorrow. If you don't hear to us by tomorrow... hear from us by tomorrow afternoon, I want you guy- you to go ahead and give us a call back."
-    },
-    {
-      "role": "agent",
-      "message": "[quiet] Alright. Call by tomorrow afternoon, otherwise I ring you. Got it.\n\nThank you. I mean it. I'm going to go sit in the car and call Marlene."
-    },
-    {
-      "role": "user",
-      "message": "Sounds good. And I, uh, I'm very sorry that you had to hear this news today and that n- you're, you know, you'll have to t- talk to your wife on your own. But please feel free to give us a call back. Um, have her call me directly, and I'm happy to, to discuss everything that we talked about here as well."
-    },
-    {
-      "role": "agent",
-      "message": "Thank you. I'll have her call you. Appreciate it."
+      "message": "[quiet] Okay.\n\nI'll try Marlene again from the car. I'd rather tell her face to face, but... she'll know something's up if I wait.\n\nThank you for just telling me straight. I'd rather know."
     }
   ],
   "audio": {
-    "src": "/examples/disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary/audio-efa995b5.mp3",
-    "durationSeconds": 586
+    "src": "/examples/disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary/audio-ea2c79ac.mp3",
+    "durationSeconds": 541
   }
 };
 
