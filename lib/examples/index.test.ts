@@ -8,9 +8,7 @@ import { examplePortraits } from "./portraits";
 describe("public example catalog", () => {
   it.each([
     ["goals-of-care-progressive-osteosarcoma", "a6239062-fc26-4468-b15f-ac4fdbfcc9a2", "2026-09-17", 484, "REMAP", 15, 25],
-    ["goals-of-care-childhood-brain-tumor", "4ddfe2a0-abe3-461a-918e-3fb80ad0b4db", "2026-09-17", 520, "REMAP", 19, 25],
-    ["goals-of-care-severe-neurologic-injury", "f3f25981-55e4-4fe1-bd7c-2de81e8194a7", "2026-06-17", 421, "KEECC", 22, 35],
-    ["disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary", "efa995b5-8427-4486-8cca-d3017480b2b1", "2026-11-04", 586, "SPIKES", 20, 30],
+    ["disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary", "ea2c79ac-4127-42a5-b5c7-a7b35e40f2f0", "2026-11-06", 541, "SPIKES", 17, 30],
   ] as const)("publishes the selected run for %s with its saved score and assets", (slug, conversationId, date, duration, framework, total, max) => {
     const example = getExampleBySlug(slug)!;
     expect(example.conversationId).toBe(conversationId);
@@ -27,11 +25,10 @@ describe("public example catalog", () => {
     }
   });
 
-  it("leads with the advance care planning examples for UChicago", () => {
-    expect(getAllExamples().slice(0, 3).map((example) => example.slug)).toEqual([
-      "goals-of-care-childhood-brain-tumor",
-      "goals-of-care-severe-neurologic-injury",
+  it("leads with the goals of care example, then the adult oncology disclosure", () => {
+    expect(getAllExamples().slice(0, 2).map((example) => example.slug)).toEqual([
       "goals-of-care-medically-complex-child",
+      "disclosing-an-incidental-finding-of-metastatic-disease-with-no-known-primary",
     ]);
   });
 

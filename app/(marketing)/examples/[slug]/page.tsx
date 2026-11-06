@@ -23,10 +23,6 @@ const exampleDescriptions: Record<string, string> = {
     "Review an adult oncology conversation about unexpected metastatic disease and involving a family member, with the recording, transcript, and SPIKES and NURSE feedback.",
   "goals-of-care-progressive-osteosarcoma":
     "Review a family conversation about progressive osteosarcoma, comfort, and including a child in decisions, with the recording, transcript, and REMAP feedback.",
-  "goals-of-care-childhood-brain-tumor":
-    "Review a conversation about a child's progressive brain tumor, time at home, and hospice support, with the recording, transcript, and REMAP feedback.",
-  "goals-of-care-severe-neurologic-injury":
-    "Review a PICU Goals of Care conversation about a child's wishes, CPR, and continued life support, with the recording, transcript, and Kalamazoo feedback.",
   "goals-of-care-medically-complex-child":
     "Review a PICU Goals of Care conversation about a medically complex child, returning home, and palliative support, with the recording, transcript, and REMAP and SPIKES feedback.",
   "48-hours-in-the-hallway":

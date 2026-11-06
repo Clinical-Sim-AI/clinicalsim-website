@@ -8,14 +8,6 @@ export const examplePortraits: Record<string, { src: string; name: string }> = {
     src: "/examples/goals-of-care-progressive-osteosarcoma/portrait.webp",
     name: "Ravi Patel",
   },
-  "goals-of-care-childhood-brain-tumor": {
-    src: "/examples/goals-of-care-childhood-brain-tumor/portrait.webp",
-    name: "Nora Lindgren",
-  },
-  "goals-of-care-severe-neurologic-injury": {
-    src: "/examples/goals-of-care-severe-neurologic-injury/portrait.webp",
-    name: "Maria Lopez",
-  },
   "48-hours-in-the-hallway": {
     src: "/examples/48-hours-in-the-hallway/portrait.webp",
     name: "Tiffany Miller",
