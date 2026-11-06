@@ -29,7 +29,8 @@ export default function UndergraduateMedicalEducationPage() {
       "@context": "https://schema.org",
       "@type": "Product",
       name: "ClinicalSim OSCE communication practice",
-      description: solution.metaDescription,
+      // Describes the #osce-practice section it points at, not the four-year page around it.
+      description: solution.context!.paragraphs.join(" "),
       url: "https://clinicalsim.ai/solutions/undergraduate-medical-education#osce-practice",
       brand: ORGANIZATION,
     }} />

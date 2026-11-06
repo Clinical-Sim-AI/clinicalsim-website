@@ -69,3 +69,48 @@ describe("headingId", () => {
     )
   })
 })
+
+describe("buildHowToSchema for any page", () => {
+  const steps = [
+    { name: "Set the scene", text: "Find a private room." },
+    { name: "Ask what they know", text: "Start from their understanding." },
+  ]
+
+  it("builds a HowTo from a name, url, and steps, anchoring each step", () => {
+    const schema = buildHowToSchema({
+      name: "How to practice breaking bad news",
+      url: "https://clinicalsim.ai/solutions/breaking-bad-news",
+      steps,
+      description: "A short description.",
+    })
+    expect(schema).toEqual({
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      name: "How to practice breaking bad news",
+      description: "A short description.",
+      url: "https://clinicalsim.ai/solutions/breaking-bad-news",
+      step: [
+        {
+          "@type": "HowToStep",
+          position: 1,
+          name: "Set the scene",
+          text: "Find a private room.",
+          url: "https://clinicalsim.ai/solutions/breaking-bad-news#set-the-scene",
+        },
+        {
+          "@type": "HowToStep",
+          position: 2,
+          name: "Ask what they know",
+          text: "Start from their understanding.",
+          url: "https://clinicalsim.ai/solutions/breaking-bad-news#ask-what-they-know",
+        },
+      ],
+    })
+  })
+
+  it("omits description when none is given and returns undefined with no steps", () => {
+    const schema = buildHowToSchema({ name: "N", url: "https://clinicalsim.ai/x", steps })
+    expect(schema).not.toHaveProperty("description")
+    expect(buildHowToSchema({ name: "N", url: "https://clinicalsim.ai/x", steps: [] })).toBeUndefined()
+  })
+})

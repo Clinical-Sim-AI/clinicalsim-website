@@ -146,6 +146,7 @@ export const FOOTER_GROUPS: Array<{ label: string; links: HeaderLink[] }> = [
       { href: "/health-systems", label: "Health systems" },
       { href: "/medical-education", label: "Medical education" },
       { href: "/nursing", label: "Nursing communication training" },
+      { href: "/solutions/breaking-bad-news", label: "Breaking bad news practice" },
       { href: "/clinical-communication-intelligence", label: "How it works" },
       { href: "/evidence", label: "Evidence" },
       { href: "/solutions", label: "All use cases" },

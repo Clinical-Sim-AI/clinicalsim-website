@@ -78,6 +78,9 @@ export interface RemediationPageData {
    */
   glossarySlugs: string[]
 
+  /** Related use case pages, linked with descriptive anchor text above the glossary links. */
+  relatedLinks?: { label: string; href: string }[]
+
   // CTA
   ctaHeadline: string
   ctaDescription: string
@@ -387,6 +390,10 @@ export const remediationPageData: RemediationPageData = {
     },
   ],
 
+  relatedLinks: [
+    { label: "Breaking bad news practice with AI patients", href: "/solutions/breaking-bad-news" },
+    { label: "Error disclosure training", href: "/solutions/error-disclosure" },
+  ],
   glossarySlugs: [
     "remediation",
     "milestones",

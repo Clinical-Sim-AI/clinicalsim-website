@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs"
+import { existsSync, readFileSync } from "node:fs"
 import { join } from "node:path"
 import { describe, expect, it } from "vitest"
 import { BRITISH_SPELLING_PATTERN } from "./claim-discipline"
@@ -16,6 +16,8 @@ const UNION_MEMBERS: SolutionSlug[] = [
   "longitudinal-curriculum",
   "undergraduate-medical-education",
   "faculty-development",
+  "breaking-bad-news",
+  "osce-preparation",
   "patient-experience",
   "debriefing",
   "informed-consent",
@@ -76,6 +78,20 @@ describe("Solution registry", () => {
     for (const target of ["patient-understanding", "handoffs-and-escalation"] as const) {
       const inbound = solutions.filter((s) => s.relatedSolutionSlugs?.includes(target))
       expect(inbound.length, `${target} inbound links`).toBeGreaterThanOrEqual(2)
+    }
+  })
+
+  it("wraps each content agent's entry in its own marker comments", () => {
+    // Content agents edit one lane each, in parallel, and find their block by these markers.
+    const source = readFileSync(join(__dirname, "solutions.ts"), "utf8")
+    for (const slug of ["undergraduate-medical-education", "breaking-bad-news", "osce-preparation"]) {
+      const open = `// <solution:${slug}>`
+      const close = `// </solution:${slug}>`
+      expect(source.split(open).length - 1, `${slug} opening marker`).toBe(1)
+      expect(source.split(close).length - 1, `${slug} closing marker`).toBe(1)
+      const block = source.slice(source.indexOf(open), source.indexOf(close))
+      expect(block, `${slug} block holds its own entry`).toContain(`slug: "${slug}",`)
+      expect(block.match(/\bslug: "/g), `${slug} block holds one entry`).toHaveLength(1)
     }
   })
 

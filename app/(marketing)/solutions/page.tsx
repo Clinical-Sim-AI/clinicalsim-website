@@ -27,14 +27,14 @@ const GROUPS: {
     market: "medical-education",
     heading: "Medical education",
     intro:
-      "Longitudinal curricula, undergraduate medical education, faculty development, and targeted remediation on the same platform.",
+      "Longitudinal curricula, undergraduate medical education, OSCE preparation, breaking bad news practice, faculty development, and targeted remediation on the same platform.",
   },
 ]
 
 export const metadata: Metadata = {
   title: "Clinical communication intelligence use cases",
   description:
-    "ClinicalSim measures communication in simulated conversations and turns it into focused practice for health systems and medical education: patient experience, patient understanding, handoffs, debriefing, informed consent, error disclosure, workforce retention, curricula, and remediation.",
+    "ClinicalSim measures communication in simulated conversations and turns it into focused practice for health systems and medical education: patient experience, patient understanding, handoffs, debriefing, informed consent, error disclosure, workforce retention, breaking bad news, OSCE preparation, curricula, and remediation.",
   openGraph: {
     title: "Use cases | ClinicalSim.ai",
     description:
@@ -61,7 +61,7 @@ export default function SolutionsPage() {
             "@type": "CollectionPage",
             name: "ClinicalSim Use Cases",
             description:
-              "Clinical communication use cases for health systems and medical education, including patient experience, debriefing, informed consent, error disclosure, workforce retention, curricula, and remediation.",
+              "Clinical communication use cases for health systems and medical education, including patient experience, debriefing, informed consent, error disclosure, workforce retention, breaking bad news, OSCE preparation, curricula, and remediation.",
             url: "https://clinicalsim.ai/solutions",
             isPartOf: {
               "@type": "WebSite",

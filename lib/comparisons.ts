@@ -43,7 +43,7 @@ export interface Comparison {
 const comparisons: Comparison[] = [
   {
     slug: "ai-clinical-simulation-vs-standardized-patients",
-    practiceLink: { label: "OSCE communication practice for medical students", href: "/solutions/undergraduate-medical-education#osce-practice" },
+    practiceLink: { label: "AI OSCE prep for medical schools", href: "/solutions/osce-preparation" },
     title: "AI clinical simulation vs. standardized patients",
     metaTitle:
       "AI clinical simulation vs. standardized patients: a comparison",

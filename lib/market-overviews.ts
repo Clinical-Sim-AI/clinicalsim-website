@@ -32,72 +32,9 @@ export interface MarketOverviewContent {
   roles: MarketLink[]
 }
 
-// Product and reporting descriptions come from /evaluation, /trust,
-// /help/roles-and-permissions, and the linked solution and audience pages.
-// These overviews introduce those programs without adding outcome claims.
-export const healthSystemsOverview: MarketOverviewContent = {
-  slug: "health-systems",
-  title: "Health systems",
-  headline: "Practice the conversations your teams have with patients and each other",
-  description:
-    "Clinicians and staff practice spoken conversations with AI patients and get feedback against a published framework or your institution's own standard. Each person sees what they did well and what to practice next.",
-  metaDescription:
-    "Spoken communication practice for health system teams: patient experience, consent and disclosure, and team communication, with participant feedback and agreed reporting.",
-  participants:
-    "Nurses, clinicians, patient facing staff, and managers, selected for the conversation your team wants to practice.",
-  programsHeading: "Choose a communication priority",
-  programs: [
-    {
-      title: "Patient experience",
-      description:
-        "Practice listening, explaining care, checking understanding, and responding to concerns against the service standard you already teach.",
-      icon: "chat-square-heart",
-      links: [
-        { label: "Patient experience program", href: "/solutions/patient-experience" },
-        { label: "Discharge and patient understanding", href: "/solutions/patient-understanding" },
-      ],
-    },
-    {
-      title: "Consent and disclosure",
-      description:
-        "Clinicians rehearse consent discussions and explaining a medical error before leading those conversations with a patient or family.",
-      icon: "chat-exclamation",
-      links: [
-        { label: "Informed consent", href: "/solutions/informed-consent" },
-        { label: "Error disclosure", href: "/solutions/error-disclosure" },
-      ],
-    },
-    {
-      title: "Team communication",
-      description:
-        "Practice debriefing after a clinical event or simulation, and feedback conversations between managers and new nurses.",
-      icon: "people-connected",
-      links: [
-        { label: "Debriefing", href: "/solutions/debriefing" },
-        { label: "Handoffs and escalation", href: "/solutions/handoffs-and-escalation" },
-        { label: "Manager and new nurse conversations", href: "/solutions/workforce-retention" },
-        { label: "Nursing communication training", href: "/nursing" },
-        { label: "Nursing turnover brief", href: "/resources/nursing-turnover-brief" },
-      ],
-    },
-  ],
-  participantFeedback:
-    "Each participant gets a report that shows strengths and next practice steps, with their own words behind each score. They can review the feedback and repeat the conversation.",
-  leaderReporting:
-    "Leaders can review completion and practice patterns across a cohort or unit. Decide whether you need completion records, agreed coaching access, or anonymous unit results before anyone starts.",
-  startingPoint:
-    "Start with one team and one communication priority. We'll agree on the conversation, scoring standard, and reporting rules before staff take part.",
-  institutionProvides:
-    "A training lead, the participating group, and the policy or service standard you want to practice. Your team sets who can see results and how you plan to use them.",
-  clinicalSimProvides:
-    "We'll work with you to choose the cases and map what a spoken conversation can score, then agree on participant feedback and the reporting your team needs.",
-  roles: [
-    { label: "Quality and patient experience leaders", href: "/audiences/quality-and-patient-experience" },
-    { label: "Risk and patient safety leaders", href: "/audiences/risk-and-patient-safety" },
-    { label: "Nursing leadership", href: "/audiences/nursing-leadership" },
-  ],
-}
-
+// Product and reporting descriptions come from the linked solution and audience pages.
+// The overview introduces those programs without adding outcome claims. /health-systems
+// no longer uses this shape; its content lives in lib/health-systems.ts.
 export const medicalEducationOverview: MarketOverviewContent = {
   slug: "medical-education",
   title: "Medical education",
@@ -126,7 +63,7 @@ export const medicalEducationOverview: MarketOverviewContent = {
       icon: "student",
       links: [
         { label: "Undergraduate medical education", href: "/solutions/undergraduate-medical-education" },
-        { label: "OSCE communication practice", href: "/solutions/undergraduate-medical-education#osce-practice" },
+        { label: "OSCE communication practice", href: "/solutions/osce-preparation" },
       ],
     },
     {

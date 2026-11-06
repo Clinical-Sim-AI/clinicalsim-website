@@ -14,7 +14,9 @@ import { getAllExamples } from "./examples"
 import { getAllGlossaryTerms } from "./glossary"
 import { getAllHelpArticles } from "./help-articles"
 import { HOMEPAGE_PUBLIC_COPY, HOMEPAGE_SEO } from "./homepage-content"
+import * as healthSystems from "./health-systems"
 import * as marketOverviews from "./market-overviews"
+import * as nursing from "./nursing"
 import * as positioning from "./positioning"
 import { getAllPosts } from "./posts"
 import { getAllSolutions } from "./solutions"
@@ -96,6 +98,14 @@ const REGISTRIES: { name: string; entries: { slug: string; value: unknown }[] }[
       { slug: "HOMEPAGE_SEO", value: HOMEPAGE_SEO },
       { slug: "HOMEPAGE_PUBLIC_COPY", value: HOMEPAGE_PUBLIC_COPY },
     ],
+  },
+  {
+    name: "lib/health-systems.ts",
+    entries: Object.entries(healthSystems).map(([name, value]) => ({ slug: name, value })),
+  },
+  {
+    name: "lib/nursing.ts",
+    entries: Object.entries(nursing).map(([name, value]) => ({ slug: name, value })),
   },
 ]
 
