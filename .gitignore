@@ -27,7 +27,9 @@ yarn-error.log*
 next-env.d.ts
 
 # local tooling
-.claude/
+.claude/*
+!.claude/rules/
+CLAUDE.local.md
 .pnpm-store/
 .playwright-mcp/
 test-results/
