@@ -1,326 +1,88 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Marketing site for clinicalsim.ai: Next.js 16 App Router, Tailwind with CSS variables, shadcn/ui on Radix, Lucide icons, React Hook Form with Zod, Vitest.
 
-## Development Commands
+Area-specific rules live in `.claude/rules/` and load when you touch matching files: `insight-posts.md`, `authorship.md`, `design-system.md`, `seo-and-schema.md`, `example-snapshots.md`. Machine-local paths (brand source documents) are in `CLAUDE.local.md`, which is gitignored and may be absent.
 
-- `pnpm dev` - Start development server
-- `pnpm build` - Build for production
-- `pnpm start` - Start production server
-- `pnpm lint` - Run ESLint
-- `pnpm typecheck` - Run TypeScript without emitting files
-- `pnpm test` - Run the Vitest suite once
+## Commands
 
-Before handing off code or content changes, run `pnpm lint`, `pnpm typecheck`, `pnpm test`, and `pnpm build`. The production build does not replace the separate lint and type checks.
+- `pnpm dev`, `pnpm build`, `pnpm start`
+- `pnpm lint` (ESLint), `pnpm typecheck` (`tsc --noEmit`), `pnpm test` (Vitest, single run)
 
-## Testing and CI
+Before handing off code or content changes, run `pnpm lint`, `pnpm typecheck`, `pnpm test`, and `pnpm build`. The build skips type errors (`typescript.ignoreBuildErrors` in `next.config.mjs`), so it does not replace the separate checks. `.github/workflows/quality.yml` runs ESLint and TypeScript as separate CI jobs.
 
-- Tests use Vitest and live beside the code they cover.
-- `lib/llms-coverage.test.ts` verifies that every indexable sitemap URL appears in `/llms.txt`. It also guards the complete hydroxyurea example summary against the previous truncation.
-- When adding or removing an indexable route, update both `app/sitemap.ts` and `app/llms.txt/route.ts`, then run the full test suite.
-- `.github/workflows/quality.yml` runs ESLint and TypeScript as separate GitHub checks on pull requests and pushes to `main`.
+Quote paths that contain parentheses, because zsh treats them as globs: `git diff "app/(marketing)/insights/page.tsx"`, not `git diff app/(marketing)/insights/page.tsx`.
 
-## Shell Commands
+Other agents add insight posts to this repo, so pull before committing.
 
-**IMPORTANT**: Always quote file paths containing special characters (parentheses, spaces, etc.) in shell commands.
+## Where things live
 
-- ❌ `git diff app/(marketing)/insights/page.tsx` - Will fail with "no matches found"
-- ✅ `git diff "app/(marketing)/insights/page.tsx"` - Works correctly
+Most pages render from typed registries in `lib/`, and the sitemap, `/llms.txt`, and the title tests read the same registries:
 
-This applies to all shell commands including `git`, `ls`, `cat`, etc.
+- `lib/posts.ts` (insight posts), `lib/help-articles.ts`, `lib/solutions.ts`, `lib/comparisons.ts`, `lib/audiences.ts`, `lib/examples/*` (snapshotted encounters)
+- `lib/authors.ts` (bylines), `lib/positioning.ts` (Organization schema constants), `lib/page-dates.ts` (static page change dates)
 
-## Architecture Overview
+Tests sit beside the code they cover. `components/ui/` starts from the shadcn CLI (`npx shadcn@latest add <component>`). Keep hand edits there deliberate: `button.tsx` carries the brand variants, and re-running the CLI on it would overwrite them. `next.config.mjs` pins `turbopack.root` to this repo so Next ignores lockfiles in parent folders.
 
-This is a Next.js 16 application using the App Router with a component-driven architecture built on shadcn/ui and Radix UI primitives.
+When you add or remove an indexable route, update `app/sitemap.ts` and `app/llms.txt/route.ts`, then run `pnpm test`.
 
-### Key Technologies
-- **Framework**: Next.js 16 with App Router
-- **Styling**: Tailwind CSS with CSS variables for theming
-- **Components**: shadcn/ui components built on Radix UI primitives
-- **Icons**: Lucide React
-- **Forms**: React Hook Form with Zod validation
-- **Charts**: Recharts
-- **Toast**: Sonner
+## Canonical host
 
-### Project Structure
-- `app/` - Next.js App Router pages and layouts
-- `components/ui/` - shadcn/ui components (auto-generated, avoid manual edits)
-- `components/` - Custom components
-- `lib/` - Utility functions (primarily `utils.ts` for cn helper)
-- `hooks/` - Custom React hooks
-- `public/` - Static assets
+The canonical host is `https://clinicalsim.ai` (apex, no www). Use it for every `canonical`, `openGraph.url`, and absolute URL in the sitemap, llms.txt, and JSON-LD. `next.config.mjs` redirects www to the apex, so a www URL recreates the duplicate Google reports as "Alternate page with proper canonical tag". Build absolute URLs from the `https://clinicalsim.ai` string already used in `lib/` and `app/sitemap.ts` rather than adding a new base constant.
 
-### Component System
-The project uses shadcn/ui components which are:
-- Built on Radix UI primitives
-- Styled with Tailwind CSS using CSS variables
-- Configured via `components.json`
-- Installed via CLI (`npx shadcn@latest add <component>`)
+## Accuracy
 
-### Styling Conventions
-- Uses CSS variables defined in `app/globals.css` for theming
-- Tailwind with custom color system (background, foreground, primary, etc.)
-- `cn()` utility function from `lib/utils.ts` for conditional class merging
-- Dark mode support via `class` strategy
+This is a medical education site, so a fabricated fact does more damage than a missing one.
 
-### Path Aliases
-- `@/*` - Project root
-- `@/components` - Components directory
-- `@/lib` - Library/utility functions
-- `@/hooks` - Custom hooks
+- Don't invent statistics, study results, journal names, citations, quotes, testimonials, CPT codes, reimbursement rates, or regulatory claims. If you don't know the source, say so.
+- Before writing a number, percentage, or dollar amount, confirm it already exists in the codebase or the user supplied it. Don't extrapolate or round existing figures into new ones.
+- Existing site content is not automatically correct. Flag anything that looks wrong or unsourced instead of copying it forward.
+- When in doubt, leave it out, and tell the user what you left out.
 
-### Build Configuration
-- `next.config.mjs` sets `turbopack.root` to this repository so Next does not infer the parent directory from unrelated lockfiles.
-- Next build-time TypeScript validation remains disabled with `typescript.ignoreBuildErrors`. `pnpm typecheck` and the separate TypeScript CI job are required safeguards.
-- ESLint runs through `pnpm lint` and its own CI job.
+### Evidence guardrails
 
-## Content Management
+- Remediation time: the supported figure is a mean of 29.6 specialist contact hours in one clinical reasoning remediation program (Guerrasio and Aagaard, 2014). Don't turn it into a general range such as 29 to 45 or 25 to 75 hours.
+- Standardized patient cost: the hourly rate is publishable and the per-encounter total is not. Ben authorized $123 to $177 an hour fully loaded, and roughly $27,000 to $68,000 a year for a 60-resident program, on 2026-08-31, sourced to the published UCLA and University of Utah rate cards (seed deck v10 slide 11). It ships in `lib/comparisons.ts` with the rate-card date printed and labelled as the SP-time component. Keep actor wages, space, faculty time, geography, and program design separate unless a public method supports an all-in total.
+- The University of Chicago coaching study and the Advocate Health feasibility study are separate records. Their outcomes stay unpublished until Havalad, Brennan, and Lemelman confirm in writing each title, author list, institution, sample, outcome, venue or manuscript status, and primary analysis. Seed deck v10 slide 10 has all those fields; the missing piece is the written confirmation, which Ben did not have as of 2026-08-31.
+- The shape of the research portfolio (study counts, institutions, stages, grants) is also unpublishable until that confirmation arrives. It was drafted onto `/research` and `/evaluation` on 2026-08-31 and withdrawn the same day at Ben's instruction, so don't restore it from the deck.
+- Leave the founding story in `eol-communication-training-measurement-gap` as is until Ben and Lauren confirm the sequence and wording. Then update the post, its registry description, and `dateModified` together.
 
-### Blog Posts (Insights)
-- **Location**: `app/(marketing)/insights/[slug]/page.mdx`
-- **Registry**: `lib/posts.ts` - Must be updated when adding new posts
-- **Layout**: Posts use `components/article-layout.tsx` wrapper
-- **Metadata (REQUIRED pattern)**: An insight post's `export const metadata` MUST be `getPostMetadata("<slug>")` from `lib/posts.ts` — nothing else. That helper is the single source of the post's `title`, `description`, canonical, OpenGraph (`type: article`), and Twitter tags, derived from the registry entry.
-  - **Do NOT hand-write a `metadata` object in an MDX post.** Hand-written blocks have shipped with no `alternates.canonical` (breaks the every-page-needs-a-canonical rule) and with `title` baking in `| ClinicalSim.ai`, which the root layout template (`%s | ClinicalSim.ai`) then appends a second time, producing a double suffix in `<title>` and `og:title`.
-  - The registry `title` in `lib/posts.ts` is the bare title with **no** `| ClinicalSim.ai` suffix. `getPostMetadata` emits `title: post.seoTitle ?? post.title` through the root layout template, so every post's `<title>` ends in ` | ClinicalSim.ai` exactly once. `og:title` and `twitter:title` keep the full `title`.
-  - **Rendered title = 60 characters or fewer, suffix included.** The suffix is 17 characters, so any registry `title` over 43 characters needs a short `seoTitle` that keeps the page's main search phrase. Don't shorten the headline itself to fit.
-  - **Never emit a `<title>` identical to the page's `<h1>`.** Semrush flags every such page ("Title identical to H1"). Until 2026-09-23 posts, help articles, and compare pages used `title: { absolute }` with the bare H1, which tripped this on 18 pages. Going through the template is what keeps them different, so don't reintroduce `absolute` for a registry-driven family.
-  - The registry `title` is also the visible `<h1>` (`components/article-layout.tsx`), so shortening one is an editorial change, not just a metadata change.
-  - **Title length is enforced by a test.** `lib/page-titles.test.ts` fails if a post, help article, or templated compare page renders a `<title>` over 60 characters or equal to its H1, and if any other page renders one over 75, across `lib/posts.ts`, `lib/help-articles.ts`, `lib/solutions.ts`, `lib/comparisons.ts`, `lib/examples/*`, and the hand-written `metadata` blocks in `app/(marketing)/**`.
-- **Workflow**: Blog posts may be created by separate agents/processes
-  - Always check `lib/posts.ts` for the current list of posts
-  - Verify new posts are registered in the posts array with metadata
-  - Ensure MDX files follow the ArticleLayout pattern and use `getPostMetadata` (above)
-  - **IMPORTANT**: When multiple agents work on this codebase, always pull latest changes before making commits to avoid conflicts with blog post additions
+## Writing site copy
 
-### Authorship (E-E-A-T)
-- **Author registry**: `lib/authors.ts` — 6 real team members + "ClinicalSim.ai Team" fallback
-- **Assigning an author to a post**: Add `authorId: "vinod-havalad"` (or any valid author ID) to the post entry in `lib/posts.ts`. Valid IDs: `ben-conway`, `will-meyer`, `lauren-rissman`, `vinod-havalad`, `gillian-brennan`, `jacqueline-ponczek`
-- **`lib/authors.ts` is the ONLY source of valid IDs.** Before writing an `authorId`, grep the registry rather than trusting the list above; it has drifted before. An unrecognized ID fails silently, rendering as "ClinicalSim.ai Team" with no error.
-- **`authorId` and `reviewedBy` are factual claims about what a named person did.** Never assign either without that person's confirmation, and never attach a name to a post carrying unsourced or contested figures.
-- **Default behavior**: Posts without `authorId` (or with no match) render as "ClinicalSim.ai Team" with a Users icon
-- **Individual authors** render with colored initials avatar + name + title via `components/author-byline.tsx`
-- **JSON-LD**: Article schema automatically uses `Person` for individual authors and `Organization` for team posts
-- **About page**: The team section is **unpublished** (`TEAM_SECTION_PUBLISHED = false` in `lib/authors.ts`, set deliberately in `d30bb2b` on 2026-09-01 and locked by `lib/about-page.test.ts`). It emits **no** Person JSON-LD and renders no author cards. The earlier claim that it emits Person JSON-LD for each team member via `getAllAuthors()` has been false since that date.
-  - Because those cards are the only page on the site that gives a person a URL, `getAuthorPath()` and `getAuthorUrl()` return `undefined` while the flag is false, and every consumer omits the author `@id`, `url`, and the visible "More about the team" link. A bylined post's Person node then carries `name`, `jobTitle`, and `description` with no URL. That is a weaker signal than a resolvable entity but an honest one; the previous behavior pointed the site's one Person node at `/about#lauren-rissman`, a fragment with no element in the DOM.
-  - Flipping `TEAM_SECTION_PUBLISHED` to `true` restores the cards, the Person schema, and every author URL in one move. Do not reintroduce an `/about#<id>` reference by hand.
-- **`dateModified`**: Optional field on posts. Falls back to `date` in JSON-LD if not set. Update when making significant content edits.
-- The sitemap uses `dateModified ?? date` for insight posts, so registry dates must describe real content changes rather than the build date.
+These rules cover everything a visitor reads: page and hero text, headings, MDX bodies, FAQ answers, metadata descriptions, alt text, and button labels. ClinicalSim sells to graduate medical education, and copy that reads as generated undercuts its credibility.
 
-#### Author credential snapshot (source of truth for `lib/authors.ts`)
-Pulled from the pitch deck team slide (as of 2026-08-22). Use these — don't re-open the CVs in `Clinical Sim AI LLC/Team/` unless a name/title looks stale or a new author needs adding; that folder is fallback only (see `[[author-credentials-source]]`).
-- **Ben Conway, CEO** — Second-time founder. Co-founded VNTANA, spent 14 years building it for customers including Johnson & Johnson and Pfizer, raising $18M+ along the way, and closed $8M+ in enterprise sales.
-- **Lauren Rissman, MD, Chief Medical Officer** — Pediatric intensivist and palliative care physician at Advocate Health Care. Named author on SCCM's 2026 End-of-Life Care Guidelines. Sits on the editorial board of Pediatric Critical Care Medicine.
-- **Will Meyer, CTO** — Co-founder of Troops, acquired by Salesforce. Spent two years architecting Salesforce AI infrastructure, including Slackbot.
-- **Vinod Havalad, MD, Chief Clinical Partnerships Officer** — Pediatric critical care physician and Pediatric Critical Care Fellowship Director at Advocate Children's Hospital, leading physician education there since 2012. PI of a national pediatric critical care simulation curriculum.
-- **Gillian Brennan, MB BCh BAO, VP of Clinical Research and Education** — Associate Professor of Pediatrics at the University of Chicago (since 2025), Neonatology Fellowship Program Director (since 2023), Associate Program Director for wellness in the Pediatrics Residency (since 2023), and Director of Neonatal Simulation (since 2016). Fourteen years supervising more than 500 clinicians. Verified against her May 2026 CV on 2026-10-08.
-- **Jacqueline Ponczek, MD, VP of MedEd, Quality and Standards** — Pediatrician and simulation educator at Northwestern Feinberg and Lurie Children's, leading simulation curricula since 2020. Repeat recipient of Feinberg's Teaching Pin.
-- The name/title lead-in on each line above is the ClinicalSim role already in `lib/authors.ts`; the rest is career credentials, not a separate title. Don't invent a ClinicalSim-specific title that isn't already in `lib/authors.ts` or confirmed by Ben.
+Before finalizing user-facing prose, run the `humanizer` skill, including its final dash scan. The skill holds the full voice spec and wins on voice where it differs from this file. The accuracy rules above win on facts. The brand voice source document is listed in `CLAUDE.local.md`. If the skill is unavailable, apply the rules below.
 
-### Citations in Blog Posts
-- **Component**: `components/references-section.tsx` — numbered academic citation list
-- **Type**: `Citation` interface in `lib/types.ts` (fields: `authors?`, `title`, `source`, `year`, `url?`, `doi?`)
-- **Usage in MDX**: Import and use at the bottom of a post:
-  ```mdx
-  import { ReferencesSection } from "@/components/references-section"
+- No em dashes or en dashes in published copy. Use commas, periods, parentheses, or a rewrite, and `--` only where a dash is unavoidable.
+- Drop AI vocabulary: additionally, furthermore, moreover, subsequently, consequently, delve, crucial, enhance, foster, garner, robust, nuanced, seamless, pivotal, showcase, underscore, abstract "landscape" or "tapestry", metaphorical "navigate".
+- Use "is", "are", and "has" rather than "serves as", "stands as", "boasts", "features", "offers", or "represents".
+- Avoid forced triplets, runs of fragments, and question headers like "The result?". Prefer flowing 20 to 30 word sentences joined with "that", "and", or "so", and keep short sentences for emphasis.
+- No hype or empty verbs: revolutionizing, cutting-edge, state-of-the-art, best-in-class, game-changer, leverage, unlock, empower, synergy.
+- No chatbot phrases, hedges ("quite", "fairly", "somewhat"), or generic closers ("the future looks bright").
+- Straight quotes, sentence-case headings, no emoji unless Ben asks, and no hyphens in open compounds such as "real time", "high quality", "data driven".
+- Give every claim a number, a name, or a source.
+- On long pages, keep paragraphs to four sentences or fewer and use subheads or lists for sequences.
+- Vary the rhythm, take a point of view, and be specific. Test: would a program director take it seriously, and would it sound right if Ben said it in a meeting?
 
-  {/* ... post content ... */}
+### Product language
 
-  <ReferencesSection references={[
-    { authors: "Smith J, Doe A", title: "Study Title", source: "Journal Name", year: "2024", doi: "10.1234/example" },
-  ]} />
-  ```
-- **Hallucination rule applies**: Never fabricate citations. Only add references with real, verifiable sources.
-- **Resolve every DOI before shipping it.** Run `curl -sI https://doi.org/<doi>` and confirm it redirects to the article, not "DOI Not Found". A citation shipped with a DOI built from the article number (`2023AO0163`) instead of the registered one (`2023AO0036`), and Semrush logged it as a broken link. Take the DOI from the publisher's article page or Crossref, and make the `source` article number match it.
+- "AI patients", not "bots", "virtual patients", or "chatbot". The product is voice-based simulation.
+- "High-stakes conversations", not "difficult conversations". "Communication training" or "communication remediation", not "soft skills".
+- "Evidence-based", not "clinically proven" or "validated". The RCT is "among the first", nothing stronger.
+- ClinicalSim extends a standardized patient program and does not replace it.
+- Make the learner or program the subject of the sentence: "clinicians build confidence through practice", not "AI helps clinicians build confidence".
 
-### MDX Content Guidelines
-- Use `page.mdx` files that import ArticleLayout component
-- Escape special characters: `p<0.001` → `p&lt;0.001`
-- Follow established tag conventions (see Insights page for color coding)
+### Clinicians at the center
 
-## Brand Voice & Anti-AI Writing
+Buyers want measurement and reporting, but clinicians, learners, and staff are the people who use the product, and public copy has to respect both.
 
-All written copy on this site must read as human and on-brand, never as generated AI prose. This applies to page and hero text, section headlines, blog/MDX body, FAQ answers, `metadata` descriptions, alt text, and button labels. This is a healthcare/GME credibility brand, and copy that reads as AI slop actively undermines it.
-
-**Source of truth**: `/Users/benconway/Documents/Documents - Ben ClinicalSim Macbook Pro/Clinical Sim AI LLC/Claude-Workspace/context/brand-voice.md` (Ben's environment) plus the `humanizer` skill, which carries the full 25-pattern spec tuned to ClinicalSim's voice.
-
-**Before finalizing any user-facing prose, invoke the `humanizer` skill** and run its final em-dash scan. If the skill is unavailable, apply the condensed rules below. On voice, the skill wins over this file where they conflict. On factual claims, the Hallucination Prevention rules above override everything.
-
-### Non-negotiable rules (published copy)
-- **Zero em dashes and en dashes.** Replace with commas, periods, parentheses, or a rewrite. Use double hyphens (`--`) only where a dash is genuinely unavoidable. (This ban is for published content, not for this instructions file.)
-- **Kill AI vocabulary**: "Additionally", "Furthermore", "Moreover", "Subsequently", "Consequently", "delve", "crucial", "enhance", "foster", "garner", "robust", "nuanced", "seamless", "pivotal", "showcase", "underscore", abstract "landscape"/"tapestry", metaphorical "navigate". Use plain words.
-- **No copula avoidance**: use "is / are / has", not "serves as", "stands as", "boasts", "features", "offers", "represents".
-- **No forced triplets, no staccato fragment runs, no punchy question headers** ("The result?", "The takeaway?"). Lean toward flowing 20-30 word sentences with connectors ("that", "and", "so"); short sentences only for emphasis.
-- **No hype or empty verbs**: "revolutionizing", "cutting-edge", "state-of-the-art", "best-in-class", "game-changer", "leverage", "unlock", "empower", "synergy".
-- **No chatbot artifacts, hedging, or generic conclusions**: cut "I hope this helps", "Of course!", "quite / fairly / somewhat", "the future looks bright".
-- **Mechanics**: straight quotes (not curly), sentence-case headings, no emojis unless Ben asks, and don't over-hyphenate common compounds ("real time", "high quality", "data driven").
-- **Every claim gets a number, a name, or a source.** This ties into Hallucination Prevention above: when in doubt, leave it out.
-
-### Product & positioning language (keep consistent)
-- Say **"AI patients"**, never "bots", "virtual patients", or "chatbot" (the product is voice-based simulation).
-- Say **"high-stakes conversations"**, not "difficult conversations". Say **"communication training / remediation"**, not "soft skills".
-- Say **"evidence-based"**, not "clinically proven" or "validated". The RCT framing is **"among the first"**, not an overclaim.
-- **Never claim SP replacement**: "extend your SP program, don't replace it." Make the learner or program the subject of the sentence, not the AI ("clinicians build confidence through practice", not "AI helps clinicians build confidence").
-
-### Put clinicians at the center
-- Enterprise buyers need measurement and reporting, but clinicians, learners, and staff are the people using ClinicalSim. Public copy must respect both audiences.
 - Lead with practice, useful feedback, and better patient conversations. Measurement is the method, not the purpose.
-- Make clear that participants practice simulated conversations with AI patients. Never imply that ClinicalSim records or monitors real patient encounters unless the product actually does so.
-- Measure the conversation and support the participant. Never frame clinicians as problems to find or fix.
-- Describe balanced feedback: what the participant did well and what to practice next. Avoid deficit-first phrases such as "fell short," "breaks down," "fix what we find," "going wrong," and "where complaints are coming from" in marketing copy.
-- Put the participant benefit before the leader reporting benefit. Leaders can review patterns across a cohort or unit, while each participant gets clear feedback and another chance to practice.
-- Keep formative and employment-use boundaries explicit where reporting could feel punitive. Do not let stronger commercial language weaken those safeguards.
+- Make clear that participants practice simulated conversations with AI patients. Don't imply ClinicalSim records or monitors real patient encounters.
+- Measure the conversation and support the participant. Don't frame clinicians as problems to find or fix.
+- Describe feedback as balanced: what the participant did well and what to practice next. Avoid deficit-first phrases in marketing copy, such as "fell short", "breaks down", "fix what we find", "going wrong", and "where complaints are coming from".
+- Put the participant's benefit before the leader's reporting benefit. Leaders review patterns across a cohort or unit, and each participant gets clear feedback and another chance to practice.
+- Where reporting could feel punitive, state the formative-use and employment-use boundaries, and don't let commercial language weaken them.
 
-### Add soul
-Clean but sterile copy is also an AI tell. Vary the rhythm, take a point of view, and be specific rather than neutral. Voice test: would a program director take it seriously, and would it sound right if Ben said it out loud in a meeting?
+## Search visibility in one paragraph
 
-## Design System (Updated May 2026)
-
-**Source of truth**: `/Users/benconway/Documents/Documents - Ben ClinicalSim Macbook Pro/Clinical Sim AI LLC/Claude-Workspace/context/brand-guidelines.md`. Read it before producing any visual or branded output. The guidelines override anything below if they conflict.
-
-### Color System (Tailwind tokens in `tailwind.config.ts`)
-**Primary palette**
-- `cs-dark-blue` `#061729` — primary brand color, default body text on light, hero backgrounds
-- `cs-electric` `#79f0b8` — accent only (CTAs, single emphasized words, logo soundwave)
-- `cs-cloud` `#e8e7e6` — soft neutral background
-
-**Secondary palette**
-- `cs-navy` `#163b61` — color-coded sections, secondary dark surfaces
-- `cs-light-blue` `#86d0eb` — soft accent
-- `cs-dark-gray` `#8e9091`, `cs-gray` `#c3c5c7` — dividers, secondary text, footnotes
-
-**Electric green contrast rule (non-negotiable)**
-- Electric is only legible over `cs-dark-blue` or `cs-navy`. Never place Electric text, icons, dividers, or backgrounds on White, Cloud, Light Blue, or Gray.
-- For CTAs on light surfaces use the inverse pair: Dark Blue background, White text. Reserve the Electric-background button for placements that sit on Dark Blue or Navy.
-
-### Typography
-- **Plus Jakarta Sans** is the only brand typeface. Loaded via `var(--font-plus-jakarta)` in `tailwind.config.ts`.
-- Approved weights only: Light (300), Medium (500), Bold (700).
-- Default text color on light surfaces is `cs-dark-blue` (never pure black). On Dark Blue or Navy surfaces use white or `cs-cloud`.
-
-### Button Variants (`components/ui/button.tsx`)
-- `default` — Dark Blue background, white text. Primary CTA on light surfaces.
-- `accent` — Electric background, Dark Blue text, bold. Primary CTA on Dark Blue or Navy surfaces only.
-- `secondary` — 1.5px Dark Blue outline, Dark Blue text, fills on hover.
-- `link` — Dark Blue underline on hover.
-- `outline`, `ghost`, `destructive` — shadcn defaults retained for product UI.
-
-### Custom Components Library
-**Feature Components:**
-- `components/feature-card.tsx` — Asymmetric cards with hover state
-- `components/stat-highlight.tsx` — Large statistics, Plus Jakarta
-- `components/evidence-showcase.tsx` — Research study display with badges and citations
-
-**Layout Components:**
-- `components/asymmetric-grid.tsx` — Featured-left/right, staggered, mixed
-- `components/section-divider.tsx` — SVG dividers: diagonal-down/up, wave, curve
-
-**Media Components:**
-- `components/demo-video-section.tsx` — Video embed
-- `components/screenshot-gallery.tsx` — Lightbox gallery with keyboard navigation
-
-**Authorship & Citation Components:**
-- `components/author-byline.tsx` — Author display with colored initials avatar (individual) or Users icon (team)
-- `components/references-section.tsx` — Numbered academic citation list for MDX blog posts
-
-### Border Radius System
-- `rounded-xs` (4px), `rounded-sm` (6px), `rounded-md` (8px), `rounded-lg` (8px), `rounded-xl` (16px), `rounded-2xl` (24px)
-- Vary based on component importance — avoid uniform 8px everywhere.
-
-### Retired (do not reintroduce)
-The following are deprecated as of April 2026. Do not add new instances and replace any survivors:
-- Warm orange accent `#F97316` and `text-warm` / `bg-warm` / `border-warm` / `warm-accent` / `warm-filled` classes
-- Blue-to-indigo-to-purple gradient buttons (`gradient-primary`) and shimmer animations
-- Border-glow hover in warm orange
-- Poppins, IBM Plex Mono, Inter, Roboto — replaced by Plus Jakarta Sans only
-
-## Hallucination Prevention
-
-This is a healthcare/medical education site. Accuracy is non-negotiable.
-
-- **NEVER fabricate statistics, study results, journal names, or citations.** If you don't know the real source, say so — do not invent one.
-- **NEVER invent CPT codes, reimbursement rates, or regulatory claims.** Verify against existing site content or ask the user for the source.
-- **Before writing any claim with a number, percentage, or dollar amount:** confirm it exists in the codebase already OR the user has provided it. Do not extrapolate or round existing stats into new ones.
-- **Quotes and testimonials:** Only use quotes that already exist in the codebase. Never generate fake testimonials.
-- **When in doubt, leave it out.** A page with no citation is better than a page with a fabricated one. Flag uncertain claims to the user rather than guessing.
-- **Existing site content is not automatically trustworthy.** If something on the site looks wrong or unsourced, flag it rather than propagating it into new content.
-
-## Search and answer-engine requirements
-
-There is no separate "GEO" discipline to optimize for. Google's guidance on generative AI features in Search (Search Central, 2026) is explicit that AI Overviews and AI Mode are grounded in the normal Search index, so **a page has to be indexed and snippet-eligible to appear in them at all, and the work of getting it there is ordinary SEO**. The same guidance says Google does not require structured data for AI features and **ignores llms.txt**.
-
-What that leaves as the actual lever is the thing the doc weights most heavily: non-commodity, expert-led content with a first-hand point of view, supported by real images and video. This site's technical foundation is already strong (full server rendering, 100% canonical coverage on the apex, no accidental noindex, no verbatim duplication across the registry-driven families). The gaps that decide visibility are editorial: media, named human authorship, and posts long and specific enough to be worth citing.
-
-Follow the rules below when creating or modifying pages. They are grouped by what they actually buy.
-
-### Page Metadata (Required for all TSX pages)
-- Every page MUST have `export const metadata: Metadata` with: `title`, `description`, `openGraph` (title, description, url), `twitter` (title, description), and `alternates.canonical`
-- Root layout (`app/layout.tsx`) uses `metadataBase` and template titles (`%s | ClinicalSim.ai`)
-- Descriptions should include specific stats and source references where possible
-
-### Canonical Host (non-negotiable)
-- The canonical host is the non-www apex **`https://clinicalsim.ai`**. Every `canonical`, `openGraph.url`, and any hardcoded absolute URL (sitemap, llms.txt, JSON-LD) MUST use this host. Never emit a `www.clinicalsim.ai` URL.
-- Why: the site resolves on both www and apex. `next.config.mjs` permanently redirects `www.clinicalsim.ai` to the apex so the two don't compete. Emitting a www URL anywhere reintroduces the duplicate that Google flags as "Alternate page with proper canonical tag" and crawls as a separate www page.
-- When adding a new page, build absolute URLs from the `https://clinicalsim.ai` base string already used across `lib/` and `app/sitemap.ts`. Do not introduce a new base constant and do not prefix with `www.`.
-
-### Structured Data (JSON-LD)
-**Why it is here:** rich-results eligibility and unambiguous entity data. It is **not** an AI-search lever. Google's guidance states structured data is not required for AI features, so do not add a schema type on the theory that it will influence an AI answer. The rule stays non-negotiable because it is cheap, already built, and earns its keep in ordinary search.
-- Use `components/json-ld.tsx` helper for all structured data
-- Marketing layout includes Organization + WebSite schemas
-- Blog posts include Article schema via `components/article-layout.tsx`
-- Standard solution pages include WebPage, BreadcrumbList, and FAQPage schemas via `components/solution-page-layout.tsx`. A solution with `howToSteps` also emits HowTo, and `reviewedBy` and `citations` add `reviewedBy`, `lastReviewed`, and `citation` to the WebPage node (`lib/review-schema.ts`). `/health-systems` and `/nursing` build the same set by hand from `lib/health-systems.ts` and `lib/nursing.ts`.
-- The bespoke remediation page includes the same page-level schema set via `components/remediation-page-layout.tsx`.
-- Standalone pages include WebPage and BreadcrumbList schemas. See `/privacy` or `/research` for examples.
-- **Example snapshots** come from `scripts/snapshot-example.mjs` in `clinical-sim-app-deux`, which reads **staging only**. A production conversation (a `platform.clinicalsim.ai` link) is not in staging: read it through the Supabase MCP on `ClinicalSim-Prod` inside `begin read only; ... commit;`, assemble the file with the script's logic, and get the recording from Ben, because the production storage bucket is private. Mark the file header `Source: production conversation <id>`. Keep the hand-edited copy fields (`title`, `metaTitle`, `summary`, briefing text), replace dashes the way the existing files do, and when a run replaces an earlier one, suffix the audio file with the conversation id (`audio-<id8>.mp3`).
-- Example pages include AudioObject via `components/audio-object-schema.tsx`, derived entirely from the `lib/examples` snapshot. Google has no audio rich result, so this one is for the answer engines rather than the SERP, and the component's docblock says so.
-- **IMPORTANT**: Every new page MUST include appropriate JSON-LD structured data. This is a non-negotiable requirement — always add at minimum WebPage + BreadcrumbList schemas when creating new pages.
-- Never point a schema node at an asset or URL that does not resolve. `Organization.logo`, `Article.publisher.logo`, and `VideoObject.publisher.logo` all pointed at `/logo.svg` for months, which 404s; the path now lives once in `ORGANIZATION_LOGO` (`lib/positioning.ts`) and `lib/organization-logo.test.ts` checks the file exists under `public/`. Every ClinicalSim Organization node spreads `ORGANIZATION` (or `ORGANIZATION_PUBLISHER`, which adds the logo) from the same file: `name` "ClinicalSim", `legalName` "ClinicalSim, Inc.". Never write the company name inline in schema. Same rule for author URLs: see the `/about` note under Authorship.
-- **HowTo** is emitted for an insight post with `howToSteps` in `lib/posts.ts` (currently `osce-case-design-guide`), for a solution with `howToSteps` in `lib/solutions.ts`, and on `/health-systems` and `/nursing`. On solution and standalone pages the steps render as a visible numbered list, and `components/solution-page-layout.test.tsx` checks each step renders verbatim. Step names must be verbatim H2s and step text verbatim paragraphs; `lib/howto-schema.test.ts` enforces it. MDX H2s get ids from `headingId()` so step URLs resolve. Google retired HowTo rich results in 2023, so this is entity markup, not a SERP feature.
-
-### Non-commodity content (the part that actually decides visibility)
-Google's guidance names expert-led, first-hand content as what gets surfaced, and warns specifically against producing separate content for every variation of a query. That makes the following load-bearing rather than nice to have:
-- **Say something only this company can say.** The snapshotted encounters registered in `lib/examples/index.ts` carry real transcripts, real rubric rationale, and verbatim learner quotes. They are the strongest first-hand asset the site has, and citing a specific score split from one beats another paragraph of literature synthesis. Prefer them when expanding a post.
-- **A thin post is a liability, not a placeholder.** Nine insight posts sat between 316 and 602 words with three redundant pairs among them, so each pair split one topic's authority in two. Consolidate with the `redirectTo` pattern in `lib/posts.ts` plus a `next.config.mjs` permanent redirect rather than keeping both.
-- **Human authorship is an unpublished asset, not a missing one.** `authorId`, `reviewedBy`, and `Author.sameAs` are fully plumbed and mostly unused. Filling them needs the named person's confirmation (see Authorship above), not code.
-- **Do not create a page per query variation.** Two FAQ pages answering the same question is that pattern; `/faq` now defers five questions to `/medical-educator-faq` via `FaqEntry.educatorFaqAnchor` and excludes them from its own FAQPage schema so one page owns each answer.
-
-### Citation Magnets & Extractable Content
-- Include self-contained, quotable definition blocks (2-3 sentences with a stat + source)
-- FAQ sections on solution pages: clear Q/A format, self-contained answers, each with a stat + source
-- "Key Takeaway" blocks at the top of high-value blog posts: 1 quotable sentence + stat
-- All statistics must include their source attribution
-- `readingTime` in `lib/posts.ts` is a claim a reader can check in ten seconds, and every short post used to overstate it by two to three times. `lib/reading-time.test.ts` bounds each registry value against the MDX word count at 225 wpm, within a minute. Update the value when you change a post's length.
-
-### Content Structure for AI Discoverability
-- Use clear heading hierarchy (H2 for sections, H3 for subsections)
-- Write self-contained paragraphs — avoid ambiguous pronouns; AI systems extract individual passages
-- Include specific numbers, CPT codes, dollar amounts, and percentages with source citations
-- FAQ answers should be independently understandable without reading the question
-
-### Infrastructure Files
-- `app/robots.ts`: Crawler rules explicitly allow both `OAI-SearchBot` and `GPTBot`.
-- `app/sitemap.ts`: Generated from the post, solution, audience, comparison, and example registries.
-- `app/llms.txt/route.ts`: Page index for LLM crawlers, served at `/llms.txt`. Update it when adding or removing pages. There is no `public/llms.txt`; the route handler is the only source.
-  - **Google ignores llms.txt.** Its guidance says so directly. The file stays because it is maintained for the non-Google answer engines, where Semrush measures ClinicalSim at 21% share of voice and the 4th-most-cited domain in its category. `lib/llms-coverage.test.ts` stays too. What must stop is treating it as a Google lever: shipping a page is not "done for AI search" because it was added to `/llms.txt`, and no Google-side visibility problem is ever fixed by editing that file.
-- When adding new pages, update `app/sitemap.ts` and `app/llms.txt/route.ts`
-- **Every sitemap `url` must match the URL internal links resolve to.** For the homepage that is `https://clinicalsim.ai/` with the trailing slash, because every internal link is `href="/"`. The sitemap once listed `https://clinicalsim.ai`, and Semrush, which compares strings literally, reported it as an orphaned page. The rendered homepage canonical stays `https://clinicalsim.ai` because Next strips a trailing slash from metadata URLs; the two are the same URL to Google (RFC 3986), so don't fight it. Every other path has no trailing slash and must equal its canonical exactly.
-- **No page with a single inbound link.** When adding a help article or other leaf page, link to it with descriptive anchor text from at least two related pages besides its hub (a registry listing on `/help` or `/insights` counts as the hub). `/help/resend-an-invitation` shipped with only the hub link and was flagged.
-- **Keep paragraphs short on long pages.** Semrush's content check flagged `/methodology`, `/solutions/remediation`, and an example page for long paragraphs and low readability. Aim for four sentences or fewer per paragraph and use subheads or lists for sequences.
-- **The platform app (`platform.clinicalsim.ai`, repo `clinical-sim-app-deux`) is noindexed** via `X-Robots-Tag` and root `robots` metadata, with a `robots.txt` that allows crawling so crawlers can see the noindex. Its pages still need distinct titles, descriptions, and a server-rendered `<h1>`, because Semrush campaigns that include subdomains audit them.
-- `lib/page-dates.ts`: Shared material change dates for static pages whose schema and sitemap dates must match. Update a value only when the public page changes materially.
-
-### Solution Page Data (`lib/solutions.ts`)
-- `faqs` field: Array of `{ question, answer }` for FAQ section + FAQPage JSON-LD
-- `lastUpdated` field: ISO date string displayed in hero section
-- When modifying solution page content, update `lastUpdated` date
-- `metaTitle` must be a bare title with no `| ClinicalSim` suffix. Solution pages still use the root layout template, so the suffix is appended once and the bare `metaTitle` must leave room for its 17 characters.
-- Insight posts, help articles (`lib/help-articles.ts`), `/insights`, and the avatar and voice/text compare pages go through the template (see the Metadata rule under Blog Posts): bare title of 43 characters or fewer, rendered with the suffix at 60 or fewer, never equal to the H1. Comparisons put the short `<title>` in `metaTitle` and the H1 in `heroHeadline`; `og:title` uses `title`.
-- Audiences, examples, `/compare/ai-clinical-simulation-vs-standardized-patients`, and the standalone marketing pages (`/about`, `/faq`, `/glossary`, `/methodology`, `/audiences`) still set `title: { absolute: ... }` with **no** brand suffix, because the template pushed them over the 75-character audit limit. An `absolute` title must still differ from the page's `<h1>` (the SP comparison adds ": a comparison"). `lib/examples/types.ts` has an optional `metaTitle` for cases whose title plus ": Example Feedback" runs long.
-
-### Current evidence guardrails
-
-- The supported remediation time figure is a mean of 29.6 specialist contact hours in one clinical reasoning remediation program (Guerrasio and Aagaard, 2014). Do not turn it into a general 29-to-45-hour or 25-to-75-hour range.
-- Standardized patient cost: the **hourly** rate is publishable, the **per encounter** total is not. Ben authorized $123 to $177 an hour fully loaded, and roughly $27,000 to $68,000 a year for a 60-resident program, on 2026-08-31, sourced to the published UCLA and University of Utah rate cards (seed deck v10 slide 11). It ships on `lib/comparisons.ts` with the rate-card date printed and labelled as the SP-time component. Do not roll it up into an all-in cost per encounter: actor wages, space, faculty time, geography, and program design must remain separate unless a public method supports the total.
-- The University of Chicago coaching study and the Advocate Health feasibility study are separate records. Public outcomes remain withheld until the study owners confirm each title, author list, institution, sample, outcome, venue or manuscript status, and primary analysis. Seed deck v10 slide 10 now supplies every one of those fields for both, so the remaining gate is written confirmation from Havalad, Brennan, and Lemelman, not sourcing. Ben confirmed on 2026-08-31 that he does not yet have it.
-- The **shape** of the research portfolio (13 studies across 9 institutions, 2 reported, 3 collecting, 7 pre-IRB, 3 on outside grants, investigator-initiated but not independent) is **not publishable**. It was drafted onto `/research` and `/evaluation` on 2026-08-31 and withdrawn the same day at Ben's instruction: nothing about the research publishes ahead of the study owners' written confirmation, the portfolio's shape included. Do not restore it from the deck.
-- Do not revise the founding story in `eol-communication-training-measurement-gap` until Ben and Lauren confirm the sequence and wording. Update the post, registry description, and `dateModified` together after confirmation.
+Google's 2026 guidance says AI Overviews and AI Mode draw on the normal search index, don't require structured data, and ignore llms.txt. A page reaches them through ordinary SEO, and what decides visibility here is editorial: first-hand, expert-led content with real media and named authors. Details are in `.claude/rules/seo-and-schema.md`.
